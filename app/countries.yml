@@ -1,0 +1,619 @@
+Country(1):
+    name:           Belarus
+
+Country(2):
+    name:           Russia
+
+Country(3):
+    name:           Kazakhstan
+
+Country(17):
+    name:           Abkhazia
+    
+Country(151):
+    name:           Afghanistan
+
+Country(90):
+    name:           Albania
+    
+Country(4):
+    name:           Algeria
+
+Country(5):
+    name:           Andorra
+    
+Country(6):
+    name:           Angola
+
+Country(7):
+    name:           Antigua and Barbuda
+    
+Country(8):
+    name:           Argentina
+
+Country(9):
+    name:           Armenia
+    
+Country(10):
+    name:           Australia
+
+Country(11):
+    name:           Austria
+    
+Country(12):
+    name:           Azerbaijan
+
+Country(13):
+    name:           Bahamas
+        
+Country(14):
+    name:           Bahrain
+
+Country(15):
+    name:           Bangladesh
+    
+Country(16):
+    name:           Barbados
+    
+Country(18):
+    name:           Belgium
+
+Country(19):
+    name:           Belize
+    
+Country(20):
+    name:           Benin
+
+Country(21):
+    name:           Bhutan
+    
+Country(22):
+    name:           Bolivia
+
+Country(23):
+    name:           Bosnia and Herzegovina
+    
+Country(24):
+    name:           Botswana
+
+Country(25):
+    name:           Brazil
+        
+Country(26):
+    name:           Brunei
+
+Country(27):
+    name:           Bulgaria
+    
+Country(28):
+    name:           Burkina Faso
+
+Country(29):
+    name:           Burma
+    
+Country(30):
+    name:           Burundi
+
+Country(31):
+    name:           Cambodia
+    
+Country(32):
+    name:           Cameroon
+
+Country(33):
+    name:           Canada
+    
+Country(34):
+    name:           Cape Verde
+
+Country(35):
+    name:           Central African Republic
+    
+Country(36):
+    name:           Chad
+
+Country(37):
+    name:           Chile
+        
+Country(38):
+    name:           China
+
+Country(39):
+    name:           Taiwan
+    
+Country(40):
+    name:           Colombia
+
+Country(41):
+    name:           Comoros
+    
+Country(42):
+    name:           Congo
+
+Country(43):
+    name:           Congo
+    
+Country(44):
+    name:           Costa Rica
+
+Country(45):
+    name:           Cote d'Ivoire
+    
+Country(46):
+    name:           Croatia
+
+Country(47):
+    name:           Cuba
+    
+Country(48):
+    name:           Cyprus
+
+Country(49):
+    name:           Czech
+        
+Country(50):
+    name:           Denmark
+
+Country(51):
+    name:           Djibouti
+    
+Country(52):
+    name:           Dominica
+
+Country(53):
+    name:           Dominican Republic
+    
+Country(54):
+    name:           East Timor
+
+Country(55):
+    name:           Ecuador
+    
+Country(56):
+    name:           Egypt
+
+Country(57):
+    name:           El Salvador
+    
+Country(58):
+    name:           Equatorial Guinea
+
+Country(59):
+    name:           Eritrea
+    
+Country(60):
+    name:           Estonia
+
+Country(61):
+    name:           Ethiopia
+        
+Country(62):
+    name:           Fiji
+
+Country(63):
+    name:           Finland
+    
+Country(64):
+    name:           France
+
+Country(65):
+    name:           Gabon
+    
+Country(66):
+    name:           Gambia
+
+Country(67):
+    name:           Georgia
+    
+Country(68):
+    name:           Germany
+
+Country(69):
+    name:           Ghana
+    
+Country(70):
+    name:           Greece
+
+Country(71):
+    name:           Grenada
+    
+Country(72):
+    name:           Guatemala
+
+Country(73):
+    name:           Guinea
+        
+Country(74):
+    name:           Guinea-Bissau
+
+Country(75):
+    name:           Guyana
+    
+Country(76):
+    name:           Haiti
+
+Country(77):
+    name:           Honduras
+    
+Country(78):
+    name:           Hungary
+
+Country(79):
+    name:           Iceland
+    
+Country(80):
+    name:           India
+
+Country(81):
+    name:           Indonesia
+    
+Country(82):
+    name:           Iran
+
+Country(83):
+    name:           Iraq
+    
+Country(84):
+    name:           Ireland
+
+Country(85):
+    name:           Israel
+        
+Country(86):
+    name:           Italy
+
+Country(87):
+    name:           Jamaica
+    
+Country(88):
+    name:           Japan
+
+Country(89):
+    name:           Jordan
+
+Country(91):
+    name:           Kenya
+    
+Country(92):
+    name:           Kiribati
+
+Country(93):
+    name:           Korea, North
+    
+Country(94):
+    name:           Korea, South
+
+Country(95):
+    name:           Kosovo
+    
+Country(96):
+    name:           Kuwait
+
+Country(97):
+    name:           Kyrgyzstan
+        
+Country(98):
+    name:           Laos
+
+Country(99):
+    name:           Latvia
+    
+Country(100):
+    name:           Lebanon
+
+Country(101):
+    name:           Lesotho
+    
+Country(102):
+    name:           Liberia
+
+Country(103):
+    name:           Libya
+    
+Country(104):
+    name:           Liechtenstein
+
+Country(105):
+    name:           Lithuania
+    
+Country(106):
+    name:           Luxembourg
+
+Country(107):
+    name:           Macedonia
+    
+Country(108):
+    name:           Madagascar
+
+Country(109):
+    name:           Malawi
+        
+Country(110):
+    name:           Malaysia
+
+Country(111):
+    name:           Maldives
+    
+Country(112):
+    name:           Mali
+
+Country(113):
+    name:           Malta
+    
+Country(114):
+    name:           Marshall Islands
+
+Country(115):
+    name:           Mauritania
+    
+Country(116):
+    name:           Mauritius
+
+Country(117):
+    name:           Mexico
+    
+Country(118):
+    name:           Micronesia
+
+Country(119):
+    name:           Moldova
+    
+Country(120):
+    name:           Monaco
+
+Country(121):
+    name:           Mongolia
+        
+Country(122):
+    name:           Montenegro
+
+Country(123):
+    name:           Morocco
+    
+Country(124):
+    name:           Mozambique
+
+Country(125):
+    name:           Nagorno-Karabakh
+    
+Country(126):
+    name:           Namibia
+
+Country(127):
+    name:           Nauru
+    
+Country(128):
+    name:           Nepal
+
+Country(129):
+    name:           Netherlands
+    
+Country(130):
+    name:           New Zealand
+
+Country(131):
+    name:           Nicaragua
+    
+Country(132):
+    name:           Niger
+
+Country(133):
+    name:           Nigeria
+        
+Country(134):
+    name:           Niue
+
+Country(135):
+    name:           Northern Cyprus
+    
+Country(136):
+    name:           North Korea
+
+Country(137):
+    name:           Norway
+    
+Country(138):
+    name:           Oman
+
+Country(139):
+    name:           Pakistan
+    
+Country(140):
+    name:           Palau
+
+Country(141):
+    name:           Panama
+    
+Country(142):
+    name:           Papua New Guinea
+
+Country(143):
+    name:           Paraguay
+    
+Country(144):
+    name:           Peru
+
+Country(145):
+    name:           Philippines
+        
+Country(146):
+    name:           Poland
+
+Country(147):
+    name:           Portugal
+    
+Country(148):
+    name:           Pridnestrovie
+
+Country(149):
+    name:           Qatar
+    
+Country(150):
+    name:           Romania
+
+
+        
+Country(152):
+    name:           Rwanda
+
+Country(153):
+    name:           Sahrawi Arab Democratic Republic
+    
+Country(154):
+    name:           Saint Kitts and Nevis
+
+Country(155):
+    name:           Saint Lucia
+    
+Country(156):
+    name:           Saint Vincent and the Grenadines
+
+Country(157):
+    name:           Samoa
+    
+Country(158):
+    name:           San Marino
+
+Country(159):
+    name:           São Tomé and Príncipe
+    
+Country(160):
+    name:           Saudi Arabia
+
+Country(161):
+    name:           Senegal
+    
+Country(162):
+    name:           Serbia
+
+Country(163):
+    name:           Seychelles
+        
+Country(164):
+    name:           Sierra Leone
+
+Country(165):
+    name:           Singapore
+    
+Country(166):
+    name:           Slovakia
+
+Country(167):
+    name:           Slovenia
+    
+Country(168):
+    name:           Solomon Islands
+
+Country(169):
+    name:           Somalia
+    
+Country(170):
+    name:           Somaliland
+
+Country(171):
+    name:           South Africa
+    
+Country(172):
+    name:           South Korea
+
+Country(173):
+    name:           South Ossetia
+    
+Country(174):
+    name:           South Sudan
+
+Country(175):
+    name:           Spain
+        
+Country(176):
+    name:           Sri Lanka
+
+Country(177):
+    name:           Sudan
+    
+Country(178):
+    name:           South Sudan
+
+Country(179):
+    name:           Suriname
+    
+Country(180):
+    name:           Swaziland
+
+Country(181):
+    name:           Sweden
+    
+Country(182):
+    name:           Switzerland
+
+Country(183):
+    name:           Syria
+    
+Country(184):
+    name:           Tajikistan
+
+Country(185):
+    name:           Tanzania
+    
+Country(186):
+    name:           Thailand
+
+Country(187):
+    name:           Togo
+        
+Country(188):
+    name:           Tonga
+
+Country(189):
+    name:           Transnistria
+    
+Country(190):
+    name:           Trinidad and Tobago
+
+Country(191):
+    name:           Tunisia
+    
+Country(192):
+    name:           Turkey
+
+Country(193):
+    name:           Turkmenistan
+        
+Country(194):
+    name:           Tuvalu
+
+Country(195):
+    name:           Uganda
+    
+Country(196):
+    name:           Ukraine
+
+Country(197):
+    name:           United Arab Emirates
+    
+Country(198):
+    name:           United Kingdom
+
+Country(199):
+    name:           United States
+    
+Country(201):
+    name:           Uzbekistan
+    
+Country(202):
+    name:           Vanuatu
+
+Country(203):
+    name:           Vatican City
+    
+Country(204):
+    name:           Venezuela
+
+Country(205):
+    name:           Vietnam
+        
+Country(206):
+    name:           Yemen
+
+Country(207):
+    name:           Zambia                                                                                                                   

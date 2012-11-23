@@ -1,0 +1,46 @@
+#{extends 'main_markup.html'/}
+<script src="@{'/public/javascripts/controllers/LoginController.js'}" type="text/javascript" charset="utf-8"></script>
+%{
+	def currentValidation = play.data.validation.Validation.current();
+}% 
+<h1>Вы прошли первый тест! Последний рывок перед регистрацией</h1>
+#{form @LoginController.secondTestPassed()}
+	<div class="test">
+		#{list items:test.questions, as:'question'}
+			<div class="test-item">
+				#{if question_isFirst}
+					<div class="help">
+						<h3>Как проходить тест</h3>
+						<p>Для прохождения второго теста Вам необходимо выбрать наиболее подходящее для вас утверждение.</p>
+						<p>Каждый вариант вопроса содержит три пункта, напротив каждого из которых необходимо поставить то, что вам больше подходит по характеру и поведению</p>
+					</div>
+				#{ifErrors}
+					<div class="test-btm">
+						<div class="alert">
+			                Вы не ответили на несколько вопрососв.<br>
+			                Необходимо ответить на вопросы выделенные красным<br>
+			        	</div>
+			    	</div>
+	            #{/ifErrors}
+				#{/if}
+				<p class="question"><span>—</span> ${question?.value}</p>
+					<ul class="reply-group">
+						#{list items:question.questions, as:'innerQuestion'}
+							<li #{if currentValidation?.hasError(utils.ApplicationConstants.VALIDATION_MODEL_TEST_QUESTION_INNER_QUESTION_ANSWER_REQUIRED + innerQuestion?.id)}class="error"#{/if}>
+								<span class="reply-txt">${innerQuestion?.value}</span>
+								#{list items:innerQuestion.answers, as:'answer'}
+									<input column="${answer_index}" type="radio" value="${answer?.id}" name="test.questions[${question_index}].questions[${innerQuestion_index}].answer.id" id="rad${(((innerQuestion_index - 1)*3) + answer_index) + ((question_index - 1)*9)}" class="radio" #{if innerQuestion?.answer?.id.equals(answer.id)}checked#{/if}>
+									<label for="rad${(((innerQuestion_index - 1)*3) + answer_index) + ((question_index - 1)*9)}" class="radio-btn">Наиболее</label>
+								#{/list}
+							</li>
+						#{/list}
+					</ul>
+			</div>
+		#{/list}
+		<div class="test-btm">
+			<a href="" id="secondTest" class="test-btn" id="secondTest">
+				Покажите результаты
+			</a>
+		</div>
+	</div>
+#{/form}

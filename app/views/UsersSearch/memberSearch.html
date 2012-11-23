@@ -1,0 +1,228 @@
+#{extends 'main_templeate.html' /} #{set title:'search member' /} 
+#{form @UsersSearch.memberSearch()} #{showError errors:errors /}
+<h2>Найти участника</h2>
+<script type="text/javascript">
+					$(document).ready(function () {
+						$('.show-search a').click(function () {
+							$('.show-search').hide();
+							$('#search-block').css({visibility:'visible',position:'static',left:'0'});
+							return false;
+						});
+						$('.search-close a').click(function () {
+							$('.show-search').show();
+							$('#search-block').css({visibility:'hidden',position:'absolute',left:'-9999px'});
+							return false;
+						});
+					});
+				</script>
+<div class="show-search">
+	<a href="#">Воспользоваться поиском еще раз</a>
+</div>
+<div class="search-block" id="search-block">
+	<div class="search-form">
+		<div class="search-item clearFix">
+			<label for="">Страна</label> <select class="cSelect"
+				name="member.country" style="width: 276px;">
+				<option value="">&{'unimportant'}</option> 
+				#{list items:services.CountryService.getSortedCountries(), as:'country'}
+				<option value="${country.name}" #{if country.name==member?.country}selected="selected"#{/if}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country?.name)}</option> #{/list}
+			</select>
+		</div>
+		<div class="search-item">
+			<label for="">Город</label> <input type="text" name="member.city"
+				value="${member?.city}" id="" placeholder="&{'unimportant'}" />
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Возраст</label> <input type="text" name="member.ageMin"
+				id="" value="${member?.ageMin}" placeholder="&{'unimportant'}"
+				style="width: 64px;" /> <span class="mdash">&mdash;</span> <input
+				type="text" name="member.ageMax" id="" value="${member?.ageMax}"
+				placeholder="&{'unimportant'}" style="width: 64px;" />
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Пол</label> <select name="member.sex" class="cSelect"
+				style="width: 276px;">
+				<option value="">&{'unimportant'}</option>
+				<option value="true" #{if member?.sex== "true"}selected="selected"#{/if}>Мужской</option>
+				<option value="false" #{if member?.sex== "false"}selected="selected"#{/if}>Женский</option>
+			</select>
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Состоит ли в команде</label> <select
+				name="member.inCommand" class="cSelect" style="width: 276px;">
+				<option value="">&{'unimportant'}</option>
+				<option value="true" #{if member?.inCommand=="true"}selected="selected"#{/if}>Да</option>
+				<option value="false" #{if member?.inCommand=="false"}selected="selected"#{/if}>Нет</option>
+			</select>
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Тип бизнеса</label> <select name="member.bissnessType"
+				class="cSelect" style="width: 276px;">
+				<option value="">&{'unimportant'}</option> 
+				#{list items:models.BType.findAll(), as:'type'}
+				<option value="${type.name}" #{if type.name==member?.bissnessType}selected="selected"#{/if}>&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(type.name)}</option> 
+				#{/list}
+			</select>
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Бизнес сфера</label> <select
+				name="member.bissnessSphere" class="cSelect" style="width: 276px;">
+				<option value="">&{'unimportant'}</option> 
+				#{list items:models.BSphere.findAll(), as:'sphere'}
+				<option value="${sphere.name}" #{if sphere.name==member?.bissnessSphere} selected="selected"#{/if}>&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(sphere.name)}</option>
+				#{/list}
+			</select>
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Маркетинг</label> <select class="cSelect"
+				style="width: 276px;" name="member.marketing">
+				<option value="">&{'unimportant'}</option> 
+				#{list items:models.UserLevel.findAll(), as:'level'}
+				<option value="${level.userLevel}" #{if level.userLevel==member?.marketing }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+				#{/list}
+			</select>
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Продажи/Переговоры</label> <select class="cSelect"
+				style="width: 276px;" name="member.sale">
+				<option value="">&{'unimportant'}</option> 
+				#{list items:models.UserLevel.findAll(), as:'level'}
+				<option value="${level.userLevel}" #{if level.userLevel==member?.sale }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+				#{/list}
+			</select>
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Менеджмент</label> <select class="cSelect"
+				style="width: 276px;" name="member.management">
+				<option value="">&{'unimportant'}</option> 
+				#{list items:models.UserLevel.findAll(), as:'level'}
+				<option value="${level.userLevel}" #{if level.userLevel==member?.management }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+				#{/list}
+			</select>
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Финансы</label> <select class="cSelect"
+				style="width: 276px;" name="member.finance">
+				<option value="">&{'unimportant'}</option> 
+				#{list items:models.UserLevel.findAll(), as:'level'}
+				<option value="${level.userLevel}" #{if level.userLevel==member?.finance }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+				#{/list}
+			</select>
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Право</label> <select class="cSelect"
+				style="width: 276px;" name="member.legal">
+				<option value="">&{'unimportant'}</option> 
+				#{list items:models.UserLevel.findAll(), as:'level'}
+				<option value="${level.userLevel}" #{if level.userLevel==member?.legal }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+				#{/list}
+			</select>
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Программирование</label> <select class="cSelect"
+				style="width: 276px;" name="member.it">
+				<option value="">&{'unimportant'}</option> 
+				#{list items:models.UserLevel.findAll(), as:'level'}
+				<option value="${level.userLevel}" #{if level.userLevel==member?.it}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option> #{/list}
+			</select>
+		</div>
+		<div class="search-item">
+			<label for="">Предприниматель</label> <input type="text"
+				name="member.bmanMin" id="" value="${member?.bmanMin}"
+				placeholder="&{'unimportant'}" style="width: 64px;" /> <span class="mdash">&mdash;</span>
+			<input type="text" name="member.bmanMax" id=""
+				value="${member?.bmanMax}" placeholder="&{'unimportant'}"
+				style="width: 64px;" />
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Идеализм</label> <input type="text"
+				name="member.idealMin" id="" value="${member?.idealMin}"
+				placeholder="&{'unimportant'}" style="width: 64px;" /> <span class="mdash">&mdash;</span>
+			<input type="text" name="member.idealMax" id=""
+				value="${member?.idealMax}" placeholder="&{'unimportant'}"
+				style="width: 64px;" />
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Коммуникация</label> <input type="text"
+				name="member.comutMin" id="" value="${member?.comutMin}"
+				placeholder="&{'unimportant'}" style="width: 64px;" /> <span class="mdash">&mdash;</span>
+			<input type="text" name="member.comutMax" id=""
+				value="${member?.comutMax}" placeholder="&{'unimportant'}"
+				style="width: 64px;" />
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Прагматика</label> <input type="text"
+				name="member.pragmatMin" id="" value="${member?.pragmatMin}"
+				placeholder="&{'unimportant'}" style="width: 64px;" /> <span class="mdash">&mdash;</span>
+			<input type="text" name="member.pragmatMax" id=""
+				value="${member?.pragmatMax}" placeholder="&{'unimportant'}"
+				style="width: 64px;" />
+		</div>
+		
+		
+		<div class="clearFix" style="margin-left: 100px">
+			<button type="submit" class="search-btn search" style="margin: 0 0 0 0">Найти
+				участника</button>
+			<button type="reset" class="search-btn" style="margin: 0 0 0 0"
+				onclick="$('input').val(''); $('.cSelect').each(function(n, element){ $('option:first', element).attr('selected', 'selected')}); $('.jquery-selectbox-currentItem').each(function(n, element){$(element).text('&{'unimportant'}')}) ; return false;">Очистить</button>
+		</div>
+		<div class="search-close">
+			<a href="#">&#8593; <span>Свернуть поиск</span></a>
+		</div>
+	</div>
+</div>
+<div class="create-form">
+                    <div class="box-radio">
+                    	<input type="radio" name="member.orderBy" id="member.orderBybusinessman"  onclick="$('.search').click()" class="radio" value="businessman" #{if member?.orderBy=="businessman"}checked#{/if}/>
+						<label for="member.orderBybusinessman" class="radio-btn">&{'businessman'}</label>
+						<input type="radio" name="member.orderBy" id="member.orderByidealist"  onclick="$('.search').click()" class="radio" value="idealist" #{if member?.orderBy=="idealist"}checked#{/if}/>
+						<label for="member.orderByidealist" class="radio-btn">&{'idealist'}</label>
+						<input type="radio" name="member.orderBy" id="member.orderBycommunicant" onclick="$('.search').click()" class="radio" value="communicant" #{if member?.orderBy=="communicant"}checked#{/if}/>
+						<label for="member.orderBycommunicant" class="radio-btn">&{'communicant'}</label>
+						<input type="radio" name="member.orderBy" id="member.orderBypragmatist" onclick="$('.search').click()" class="radio" value="pragmatist" #{if member?.orderBy=="pragmatist"}checked#{/if}/>
+						<label for="member.orderBypragmatist" class="radio-btn">&{'pragmatist'}</label>
+						<input type="radio" name="member.orderBy" id="member.orderByage" onclick="$('.search').click()" class="radio" value="age"  #{if member?.orderBy=="age"}checked#{/if}/>
+						<label for="member.orderByage" class="radio-btn">Возраст</label>
+                    </div><br/>
+                    
+                    <div class="box-radio">
+                    	<input type="radio" name="member.asc" id="member.asc" onclick="$('.search').click()" class="radio" value="true" #{if member?.asc}checked#{/if}/>
+						<label for="member.asc" class="radio-btn">возрастанию</label>
+						<input type="radio" name="member.asc" id="member.desc" onclick="$('.search').click()" class="radio" value="false" #{if !member?.asc}checked#{/if}/>
+						<label for="member.desc" class="radio-btn">убыванию</label>
+                    </div><br/>
+                    </div>
+#{/form}
+
+<div class="ttl-search-result">Найдено ${paginator?.size()}
+	участника</div>
+<ul class="search-result-list">
+
+
+	#{paginate.list items:paginator, as:'user'}
+	<li class="search-result-item"><a href="">
+		#{avatar.avatar user:user, cssClass:'search-result-pic', maleImg:'searchm.png', femaleImg:'searchf.png', avatarSize:85 /}
+	</a>
+		<div class="list-cont">
+			<div class="search-profile-info">
+				<h4 class="search-profile-name">
+					<img src="@{'public/images/boilerplate/ico-man-big.png'}" alt=""><a
+						href="@{UserController.index(user.id)}">${user?.name + " " +
+						user?.lastName}</a><span>${user.age} лет</span>
+				</h4>
+				<p>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.country?.name)} / ${user?.city}</p>
+				<p>
+					Команда: #{if user?.command != null}<a href="@{GroupController.index(user.command?.id)}">${user?.command?.name}</a>#{/if} #{else}Не состоит#{/else}
+				</p>
+			</div>
+			<ul class="search-profile-test">
+				<li><span>${user.businessman}</span> &mdash;
+					&{'businessman'}</li>
+				<li><span>${user.idealist}</span> &mdash; &{'idealist'}</li>
+				<li><span>${user.communicant}</span> &mdash; &{'communicant'}</li>
+				<li><span>${user.pragmatist}</span> &mdash; &{'pragmatist'}</li>
+			</ul>
+		</div></li> #{/paginate.list}
+</ul>
+#{paginate.controls items:paginator /}
+

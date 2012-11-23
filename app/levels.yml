@@ -1,0 +1,11 @@
+UserLevel(UserLevel_1):
+    userLevel:           None
+    
+UserLevel(UserLevel_2):
+    userLevel:           Theoretical Knowledge
+        
+UserLevel(UserLevel_3):
+    userLevel:           Brief Experience
+   
+UserLevel(UserLevel_4):
+    userLevel:           Considerable Experience

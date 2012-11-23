@@ -1,0 +1,187 @@
+#{extends 'main_templeate.html' /} #{set title:'Group' /}
+%{ 
+	boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN; 
+	boolean currentGroupAdmin = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id) && (adminGroup); 
+	boolean notInGroup = utils.SessionHelper.getCurrentUser(session)?.command == null; 
+	boolean wasInviteToThisGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id == group.id;
+	boolean wasNotInviteToGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite == null;
+	boolean wasInviteToOtherGroup = (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null) && (utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id !=group.id);
+ 	boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
+%}
+#{if currentGroupAdmin}
+<h2>${utils.SessionHelper.getCurrentUser(session)?.command?.name}</h2>
+<h2 class="profile-h2">Характеристики команды</h2>
+                <div class="profile-form">
+					<div class="profile-item">
+						<label for="">Дата создания</label>
+						${utils.DateUtils.getFormatedStringDate(group.regDate,false)}
+					</div>
+                    <div class="profile-item">
+						<label for="">Количество участников</label>
+						${group.users.size()}
+					</div>
+                    <div class="profile-item">
+						<label for="">Администратор</label>
+						<a href="@{UserController.index(group.founderUser?.id)}">${group.founderUser.name + " " +
+							group.founderUser.lastName}</a>
+					</div>
+				</div>
+<div class="group-info">
+	<div class="group-info-ttl">Описание команды</div>
+	<div class="group-info-rate clearFix">
+		<div>
+			<strong>${group.businessman}</strong> Предпринимательство
+		</div>
+		<div>
+			<strong>${group.idealist}</strong> Идеализм
+		</div>
+		<div>
+			<strong>${group.communicant}</strong> Комуникабельность
+		</div>
+		<div>
+			<strong>${group.pragmatist}</strong> Прагматика
+		</div>
+	</div>
+	<div class="group-info-rate-help">* на основе данных об
+		участниках команды</div>
+</div>
+
+#{form @GroupController.updateGroup()} 
+#{showError errors:errors /}
+<input type="hidden" name="group.id" value="${group.id}"/>
+                <div class="create-form">
+					<label for="">Требуются участники</label>
+						<div class="box-radio">
+							<input type="radio" name="group.isVacancy" id="isVacancyY" class="radio" value="true"  #{if group?.isVacancy}checked#{/if}/>
+							<label for="isVacancyY" class="radio-btn">Да</label>
+							<input type="radio" name="group.isVacancy" id="isVacancyN" class="radio" value="false"  #{if !group?.isVacancy}checked#{/if}/>
+							<label for="isVacancyN" class="radio-btn">Нет</label>
+	                   </div>
+                	<input type="text" name="group.name" id="" placeholder="Название проекта" value="${group.name}" style="width:563px;" />
+                    <label for="" class="fl">Тип бизнеса</label>
+					<select name="group.type.id" class="cSelect" style="width:181px;">
+					#{list items:models.BType.findAll(), as:'businessType'}
+					 		#{if businessType.id == group.type.id}
+							<option value="${businessType.id}" selected="selected" >&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(businessType.name)}</option>
+							#{/if}
+							#{else}
+							<option value="${businessType.id}" >&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(businessType.name)}</option>
+							#{/else}
+					#{/list}
+				</select>
+					
+                    <label for="" class="fl">Сфера</label>
+					<select name="group.sphere.id" class="cSelect" style="width:181px;">
+					#{list items:models.BSphere.findAll(), as:'businessSphere'}
+							<option value="${businessSphere.id}" #{if businessSphere.id == group.sphere.id} selected="selected" #{/if}>&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(businessSphere.name)}</option>
+					#{/list}
+			</select>
+                    <label for="">Стадия проекта:</label>
+                    <div class="box-radio">
+                    #{list items:models.ProjectPhase.findAll(), as:'phase'}
+						<input type="radio" name="group.phase.id" id="${phase.id}" class="radio" value="${phase.id}" #{if phase.id == group.phase.id} checked #{/if}/>
+						<label for="${phase.id}" class="radio-btn">&{'models.ProjectPhase.name.' + utils.ModelUtils.replaceSpacesForI18n(phase?.name)}</label>
+					#{/list}
+                    </div>
+                    <textarea name="group.description" placeholder="Описание проекта">${group.description}</textarea>
+                    <label for="" class="fl">Страна</label>
+					<select name="group.country.id" class="cSelect" style="width:181px;">
+					#{list items:services.CountryService.getSortedCountries(), as:'country'}
+							<option value="${country.id}" #{if country.id == group.country.id} selected="selected" #{/if}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country.name)}</option>
+					#{/list}
+					</select>
+                    <label for="" class="fl">Город</label>
+                    <input type="text" name="group.city" value="${group.city}" id="" style="width: 181px"/>
+                <h2 class="profile-h2" style="margin-bottom:14px;">Потребность в участниках</h2>
+                	<label for="">Опыт в маркетинге/рекламе</label> 
+                    <div class="box-radio">
+						<input type="radio" name="group.marketing.active" id="rad1" class="radio" value="true" #{if group.marketing.active}checked #{/if}/>
+						<label for="rad1" class="radio-btn">Да</label>
+						<input type="radio" name="group.marketing.active" id="rad2" class="radio" value="false" #{if !group.marketing.active}checked #{/if}/>
+						<label for="rad2" class="radio-btn">Нет</label>
+	                   </div>
+                	<textarea name="group.marketing.descrition" placeholder="Какой опыт вам необходим в команду" style="height:87px;" class="dis">${group.marketing.descrition}</textarea>
+                    <label for="">Опыт в менеджменте</label> 
+                    <div class="box-radio">
+						<input type="radio" name="group.management.active" id="managementY" class="radio" value="true" #{if group.management.active}checked #{/if}/>
+						<label for="managementY" class="radio-btn">Да</label>
+						<input type="radio" name="group.management.active" id="managementN" class="radio" value="false" #{if !group.management.active}checked #{/if}/>
+						<label for="managementN" class="radio-btn">Нет</label>
+	                   </div>
+                	<textarea name="group.management.descrition" placeholder="Какой опыт вам необходим в команду" style="height:87px;" class="dis">${group.management.descrition}</textarea>
+                    <label for="">Продажи\Переговоры</label> 
+                    <div class="box-radio">
+						<input type="radio" name="group.sale.active" id="saleY" class="radio" value="true" #{if group.trade.active}checked #{/if}/>
+						<label for="saleY" class="radio-btn">Да</label>
+						<input type="radio" name="group.sale.active" id="saleN" class="radio" value="false" #{if !group.trade.active}checked #{/if}/>
+						<label for="saleN" class="radio-btn">Нет</label>
+	                   </div>
+                	<textarea name="group.sale.descrition" placeholder="Какой опыт вам необходим в команду" style="height:87px;" class="dis">${group.trade?.descrition}</textarea>
+                    
+                    <label for="">Финансы</label> 
+                    <div class="box-radio">
+						<input type="radio" name="group.finance.active" id="financeY" class="radio" value="true" #{if group.finance.active}checked #{/if}/>
+						<label for="financeY" class="radio-btn">Да</label>
+						<input type="radio" name="group.finance.active" id="financeN" class="radio" value="false" #{if !group.finance.active}checked #{/if}/>
+						<label for="financeN" class="radio-btn">Нет</label>
+	                   </div>
+                	<textarea name="group.finance.descrition" placeholder="Какой опыт вам необходим в команду" style="height:87px;" class="dis">${group.finance?.descrition}</textarea>
+                    
+                    <label for="">Право</label> 
+                    <div class="box-radio">
+						<input type="radio" name="group.legal.active" id="legalY" class="radio" value="true" #{if group.legal.active}checked #{/if}/>
+						<label for="legalY" class="radio-btn">Да</label>
+						<input type="radio" name="group.legal.active" id="legalN" class="radio" value="false" #{if !group.legal.active}checked #{/if}/>
+						<label for="legalN" class="radio-btn">Нет</label>
+	                   </div>
+                	<textarea name="group.legal.descrition" placeholder="Какой опыт вам необходим в команду" style="height:87px;" class="dis">${group.legal.descrition}</textarea>
+                    
+                    <label for="">Программирование</label> 
+                    <div class="box-radio">
+						<input type="radio" name="group.programming.active" id="programmingY" class="radio" value="true" #{if group.programming.active}checked #{/if}/>
+						<label for="programmingY" class="radio-btn">Да</label>
+						<input type="radio" name="group.programming.active" id="programmingN" class="radio" value="false" #{if !group.programming.active}checked #{/if}/>
+						<label for="programmingN" class="radio-btn">Нет</label>
+	                   </div>
+                	<textarea name="group.programming.descrition" placeholder="Какой опыт вам необходим в команду" style="height:87px;" class="dis">${group.programming.descrition}</textarea>
+                    
+                    <label for="">Другое</label> 
+                    <div class="box-radio">
+						<input type="radio" name="group.other.active" id="otherY" class="radio" value="true" #{if group.otherSkill.active}checked #{/if}/>
+						<label for="otherY" class="radio-btn">Да</label>
+						<input type="radio" name="group.other.active" id="otherN" class="radio" value="false" #{if !group.otherSkill.active}checked #{/if}/>
+						<label for="otherN" class="radio-btn">Нет</label>
+	                   </div>
+                	<textarea name="group.other.descrition" placeholder="Какой опыт вам необходим в команду" style="height:87px;" class="dis">${group.otherSkill.descrition}</textarea>
+                    
+					 <label for="">Прагматичность</label> 
+                    <div class="box-radio">
+						<input type="radio" name="group.pragmatica.active" id="pragmaticaY" class="radio" value="true"  #{if group.pragmatica.active}checked #{/if}/>
+						<label for="pragmaticaY" class="radio-btn">Да</label>
+						<input type="radio" name="group.pragmatica.active" id="pragmaticaN" class="radio" value="false" #{if !group.pragmatica.active}checked #{/if}/>
+						<label for="pragmaticaN" class="radio-btn">Нет</label>
+	                   </div>
+                	<textarea name="group.pragmatica.descrition" placeholder="Какой опыт вам необходим в команду" style="height:87px;" class="dis">${group.pragmatica.descrition}</textarea>
+                    
+                    <label for="">Идеалистичность</label> 
+                    <div class="box-radio">
+						<input type="radio" name="group.idealize.active" id="idealizeY" class="radio" value="true" #{if group.idealize.active}checked #{/if}/>
+						<label for="idealizeY" class="radio-btn">Да</label>
+						<input type="radio" name="group.idealize.active" id="idealizeN" class="radio" value="false"  #{if !group.idealize.active}checked #{/if}/>
+						<label for="idealizeN" class="radio-btn">Нет</label>
+	                   </div>
+                	<textarea name="group.idealize.descrition" placeholder="Какой опыт вам необходим в команду" style="height:87px;" class="dis">${group.idealize.descrition}</textarea>
+                    
+                    <label for="">Комуникабельность</label> 
+                    <div class="box-radio">
+						<input type="radio" name="group.communication.active" id="communicationY" class="radio" value="true" #{if group.communication.active}checked #{/if}/>
+						<label for="communicationY" class="radio-btn">Да</label>
+						<input type="radio" name="group.communication.active" id="communicationN" class="radio" value="false"  #{if !group.communication.active}checked #{/if}/>
+						<label for="communicationN" class="radio-btn">Нет</label>
+	                   </div>
+                	<textarea name="group.communication.descrition" placeholder="Какой опыт вам необходим в команду" style="height:87px;" class="dis">${group.communication.descrition}</textarea>
+                                        
+                	<button type="submit" class="create-btn">Сохранить изменения</button>
+                	</div>
+#{/form}
+#{/if}

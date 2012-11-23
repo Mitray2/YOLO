@@ -1,0 +1,98 @@
+#{extends 'group_templeate.html' /} #{set title:'main' /}
+%{
+	long userId = utils.SessionHelper.getCurrentUser(session)?.id;
+	boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN; 
+	boolean currentGroupAdmin = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id) && (adminGroup); 
+	boolean notInGroup = utils.SessionHelper.getCurrentUser(session)?.command == null; 
+	boolean wasInviteToThisGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id == group.id;
+	boolean wasNotInviteToGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite == null;
+	boolean wasInviteToOtherGroup = (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null) && (utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id !=group.id);
+ 	boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
+%}
+
+
+
+
+<div class="tabs clearFix">
+	<a href="@{GroupController.index(group.id)}" >Описание</a> <a href="@{GroupController.groupTopics(group.id)}" class="act">Обсуждения</a> <a
+		href="@{GroupController.groupUsers(group.id)}" >Участники</a>
+</div>
+
+<script type="text/javascript">
+function editEnabled(element){
+	$(element).parent().parent().parent().find('.msg').show(); 
+	$(element).parent().parent().parent().find('.msgRead').hide(); 
+	return false;
+}
+function editDisabled(element){
+	$(element).parent().parent().parent().find('.msg').hide(); 
+	$(element).parent().parent().parent().find('.msgRead').show(); 
+	return false;
+}
+</script>
+
+#{if groupMember}
+<a href="@{GroupController.createTopic(group.id)}" class="new-theme-btn"><img src="@{'public/images/boilerplate/ico-new-theme.gif'}" alt="">Создать новую тему</a>
+#{/if}
+<div class="ttl-search-result2">Всего ${group.topics?.size()-1} тем для обсуждения</div>
+	<ul class="search-result-list">
+	
+	#{list items:topics, as:'topic'}
+		#{if (topic.publicTopic || groupMember) && (!topic.mainTopic)}
+		<li class="search-result-item clearFix">
+			<h4><a href="@{GroupController.indexTopic(topic.id, group.id)}">${topic.name}</a></h4>
+			<p>${topic.description}</p>
+			<div class="search-result-list-date"> <strong>${topic.msg?.size()} ответов <br/>${utils.DateUtils.getFormatedStringDate(topic.lastUpdateDate, true)}</strong></div>
+            <a href="@{GroupController.indexTopic(topic.id, group.id)}" class="search-result-list-more">Перейти к обсуждению <span>&nbsp;&#8594;</span></a>
+		</li>
+		#{/if}
+	#{/list}
+		
+	</ul>
+
+			<div class="group-theme-dialog-ttl">Написать ответ</div>
+               #{form @GroupController.addMsgToMainTopic()}
+               <input name="topicId" value="${mainTopic.id}" type="hidden"> 
+               <input name="groupId" value="${group.id}" type="hidden">
+                <ul class="group-theme-dialog-form">
+                	<li>
+						#{avatar.avatar user:utils.SessionHelper.getCurrentUser(session), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
+                        <textarea name="msg.text" cols="" rows=""></textarea>
+                        <button type="submit" class="group-theme-btn">Отправить</button>
+                    </li>
+                </ul>
+               #{/form}
+
+				<ul class="group-theme-dialog">
+                #{list items:mainTopic.msg, as:'msg'}
+               		#{form @GroupController.editMainMsg()}
+	                <input name="msg.id" value="${msg.id}" type="hidden">
+					<input name="topicId" value="${mainTopic.id}" type="hidden">
+					<input name="groupId" value="${group.id}" type="hidden">
+                	<li>
+                    	#{avatar.avatar user:msg.from, cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
+                        <div class="group-theme-dialog-name">
+                        	<a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${msg.createDate}
+                        	#{if (userId == msg.from.id) || (isAdmin)}
+                        		<span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">Редактировать сообщение</span></span>
+                        	#{/if}
+                        </div>
+                        <p class="msgRead">
+                        <div class="msg group-theme-dialog-form">
+                        	<textarea style="border: none" readonly="readonly" cols="" rows="" >${msg.text} </textarea>
+                        </div>
+                        </p>
+                        <div style="display: none" class="msg group-theme-dialog-form">
+			            	<textarea name="msg.text" cols="" rows="">${msg.text} </textarea>
+			                <button type="submit" class="group-theme-btn">Сохранить</button>
+			                <button type="button" onclick="editDisabled(this);" class="group-theme-btn">Отменить</button>
+						</div>
+						
+                    </li>
+                    #{/form}
+                #{/list}
+				</ul>
+
+
+
+

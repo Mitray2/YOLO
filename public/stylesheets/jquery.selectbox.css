@@ -1,0 +1,92 @@
+/*jquery-selectbox*/
+.jquery-selectbox {
+	position:relative;
+	height:31px;
+	width:371px;
+	z-index:0;
+	float:left;
+	display:inline;
+	padding:0;
+	background:#fff;
+	-webkit-box-shadow: inset #fbfbfb 0 0 5px;
+  	-moz-box-shadow: inset #fbfbfb 0 0 5px;
+  	box-shadow: inset #fbfbfb 0 0 5px;
+	-webkit-border-radius:5px;
+  	-moz-border-radius:5px;
+  	border-radius:5px;
+	border:1px solid #d9d9d9;
+	text-align:left;
+	font-size:1em;
+	font-weight:normal;
+	color:#291a0c;
+}
+.entry .jquery-selectbox{
+	font: 16px/21px "MyriadPro-Regular", Arial, sans-serif;
+  	color: #626262;
+	margin-right:2px;
+	height:41px;
+}
+.jquery-selectbox.selecthover {
+	z-index: 700;
+}	
+.jquery-selectbox .jquery-selectbox-currentItem {
+	padding:1px 0px 0px 1px;
+	white-space: nowrap;
+	display: block;
+	overflow: hidden;
+	line-height:normal;
+}
+.entry .jquery-selectbox .jquery-selectbox-currentItem {
+	padding:11px 0px 0px 10px;
+}
+.jquery-selectbox .jquery-selectbox-list {
+	display: none;
+	position: absolute;
+	top: 0;
+	padding:0;
+	left: 0px;
+	background:#fff;
+	width: 264px;
+	height: 120px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	z-index: 1000;
+	border:1px solid #7FB9D7;
+	-webkit-box-shadow: #7FB9D7 0 0 3px;
+  	-moz-box-shadow: #7FB9D7 0 0 3px;
+  	box-shadow: #7FB9D7 0 0 3px;
+	-webkit-border-radius:5px;
+  	-moz-border-radius:5px;
+  	border-radius:5px;
+}
+.entry .jquery-selectbox .jquery-selectbox-list{
+	padding:41px 0 0;
+}
+.jquery-selectbox .jquery-selectbox-moreButton {
+	float: right;
+	background: url(../img/sel-arrow.png) no-repeat 3px 15px;
+	width: 15px;
+	height: 31px;
+	cursor: pointer;
+}
+.entry .jquery-selectbox .jquery-selectbox-moreButton{
+	background-position:3px 21px;
+	height: 41px;
+}
+.jquery-selectbox .jquery-selectbox-leftCorner {
+	float: left;
+	width: 7px;
+	height: 26px;
+	cursor: pointer;
+	display:none;
+}
+.jquery-selectbox .jquery-selectbox-item.listelementhover {
+	background: #c6e0e8;
+	color: #4a4a4a;
+	cursor:pointer;
+}
+.jquery-selectbox .jquery-selectbox-item {
+	display: block;
+	cursor: default;
+	padding:2px 0 2px 7px;
+}

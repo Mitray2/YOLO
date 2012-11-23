@@ -1,0 +1,117 @@
+#{extends 'main_templeate.html' /} #{set title:'search friend' /}
+
+#{form @UsersSearch.peopleSearch()} #{showError errors:errors /}
+<h2>Найти друга</h2>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.show-search a').click(function() {
+			$('.show-search').hide();
+			$('#search-block').css({
+				visibility : 'visible',
+				position : 'static',
+				left : '0'
+			});
+			return false;
+		});
+		$('.search-close a').click(function() {
+			$('.show-search').show();
+			$('#search-block').css({
+				visibility : 'hidden',
+				position : 'absolute',
+				left : '-9999px'
+			});
+			return false;
+		});
+	});
+</script>
+<div class="show-search">
+	<a href="#">Воспользоваться поиском еще раз</a>
+</div>
+<div class="search-block" id="search-block">
+	<div class="search-form">
+		<div class="search-item clearFix">
+			<label for="">Страна</label> <select class="cSelect"
+				name="member.country" style="width: 276px;">
+				<option value="">неважно</option>
+				 #{list items:models.Country.findAll(), as:'country'}
+				<option value="${country.name}" #{if country.name==friend?.country}selected="selected"#{/if}>${country.name}</option>
+				#{/list}
+			</select>
+		</div>
+		<div class="search-item">
+			<label for="">Фамилия</label> <input type="text"
+				name="friend.lastName" value="${friend?.lastName}" id=""
+				placeholder="Неважно" />
+		</div>
+		<div class="search-item">
+			<label for="">Имя</label> <input type="text" name="friend.name"
+				value="${friend?.name}" id="" placeholder="Неважно" />
+		</div>
+
+		<div class="search-item">
+			<label for="">Город</label> <input type="text" name="friend.city"
+				value="${friend?.city}" id="" placeholder="Неважно" />
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Возраст</label> <input type="text" name="friend.min"
+				id="" value="${friend?.min}" placeholder="Неважно"
+				style="width: 64px;" /> <span class="mdash">&mdash;</span> <input
+				type="text" name="friend.max" id="" value="${friend?.max}"
+				placeholder="Неважно" style="width: 64px;" />
+		</div>
+		<div class="search-item clearFix">
+			<label for="">Пол</label> <select name="friend.sex" class="cSelect"
+				style="width: 276px;">
+				<option value="">Неважно</option>
+				<option value="true" #{if friend?.sex== "true"}selected="selected"#{/if}>Мужской</option>
+				<option value="false" #{if friend?.sex== "false"}selected="selected"#{/if}>Женский</option>
+			</select>
+		</div>
+		<div class="search-item">
+			<label for="">eMail</label> <input type="text" name="friend.email"
+				value="${friend?.email}" id="" placeholder="Неважно" />
+		</div>
+		<div class="clearFix" style="margin-left: 100px">
+			<button type="submit" class="search-btn" style="margin: 0 0 0 0">Найти
+				участника</button>
+			<button type="reset" class="search-btn" style="margin: 0 0 0 0"
+				onclick="$('input').val(''); $('.cSelect').each(function(n, element){ $('option:first', element).attr('selected', 'selected')}); $('.jquery-selectbox-currentItem').each(function(n, element){$(element).text('Неважно')}) ; return false;">Очистить</button>
+		</div>
+		<div class="search-close">
+			<a href="#">&#8593; <span>Свернуть поиск</span></a>
+		</div>
+	</div>
+</div>
+#{/form}
+
+<div class="ttl-search-result">Найдено ${paginator?.size()}
+	друзей</div>
+<ul class="search-result-list">
+
+
+	#{paginate.list items:paginator, as:'user'}
+	<li class="search-result-item"><a href="">
+		#{avatar.avatar user:user, cssClass:'search-result-pic', maleImg:'searchm.png', femaleImg:'searchf.png', avatarSize:85 /}
+	</a>
+		<div class="list-cont">
+			<div class="search-profile-info">
+				<h4 class="search-profile-name">
+					<img src="@{'public/images/boilerplate/ico-man-big.png'}" alt=""><a
+						href="@{UserController.index(user.id)}">${user?.name + " " +
+						user?.lastName}</a><span>${user.age} лет</span>
+				</h4>
+				<p>${user.country?.name} / ${user.city}</p>
+				<p>
+					Команда: <a href="@{GroupController.index(user.command?.id)}">${user.command?.name}</a>
+				</p>
+			</div>
+			<ul class="search-profile-test">
+				<li><span>${user.businessman}</span> &mdash;
+					Предпринимательство</li>
+				<li><span>${user.idealist}</span> &mdash; Идеализм</li>
+				<li><span>${user.communicant}</span> &mdash; Комуникабельность</li>
+				<li><span>${user.pragmatist}</span> &mdash; Прагматика</li>
+			</ul>
+		</div></li> #{/paginate.list}
+</ul>
+#{paginate.controls items:paginator /}

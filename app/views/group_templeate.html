@@ -1,0 +1,129 @@
+#{extends 'main_templeate.html' /} 
+%{
+	boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN; 
+	boolean currentGroupAdmin = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id) && (adminGroup); 
+	boolean notInGroup = utils.SessionHelper.getCurrentUser(session)?.command == null; 
+	boolean wasInviteToThisGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id == group.id;
+	boolean wasNotInviteToGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite == null;
+	boolean wasInviteToOtherGroup = (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null) && (utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id !=group.id);
+ 	boolean currentGroupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
+%}
+	
+<h2>${group?.name}</h2>
+#{if currentGroupAdmin}
+				<div class="links">
+                	<a href="@{GroupController.editGroup(group.id)}">Редактировать описание</a>
+                </div>
+	#{/if}
+	<div class="group-shot-info">
+		<table>
+			<tr>
+				<td>
+					<div class="group-shot-info-user">
+						#{avatar.avatar user:group?.founderUser, cssClass:'group-shot-info-pic', maleImg:'upm.png', femaleImg:'upf.png', avatarSize:27 /}
+							 <a
+							href="@{UserController.index(group?.founderUser?.id)}"
+							class="man">${group.founderUser?.name + " " + group.founderUser.lastName}</a>
+						<div>#{common.formattedDate date:group?.regDate /}</div>
+					</div>
+				</td>
+				<td>
+					<div class="group-shot-info-place">
+						<div>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(group?.country.name)} / ${group?.city}</div>
+						<div>
+							<span>Бизнес:</span> &{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(group.type?.name)} / &{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(group.sphere.name)}
+						</div>
+						<div>
+							<span>Стадия проекта:</span> &{'models.ProjectPhase.name.' + utils.ModelUtils.replaceSpacesForI18n(group.phase?.name)}
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="group-shot-info-people">
+						<strong>${group?.users?.size()}</strong> участников
+						#{if group?.isVacancy} 
+						<span class="tooltip">
+							<span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Требуются участники</span>
+						</span>
+						#{/if}
+						<br/>
+						 
+						#{if adminGroup }
+							#{if !currentGroupMember}
+								<a	href="" onclick="return false;" title="Вы должны сначала передать права администратора участнику группы, прежде чем выйти и подать заявку на вступление в группу">Вступить в группу</a>
+							#{/if}
+						#{/if}
+						
+						#{if notInGroup && wasNotInviteToGroup} 
+							<a	href=""  onclick="$('.sendNotif').show(); return false;">Вступить в группу</a> 
+						#{/if} 
+						#{if !notInGroup && !currentGroupMember && !adminGroup}
+								<a href="" onclick="$('.joinGroup').show(); return false;">Вступить в группу</a>
+								<div class="joinGroup"  style="display: none">
+								<div class="overlay"></div>
+								<div class="popup">
+								    	<h2>Вступить в команду</h2>
+								        <p>Вы уверены, что хотите выйти из своей команды и вступить в новую?</p>
+								        <a class="btn" href=""  onclick="$('.joinGroup').hide(); $('.sendNotif').show(); return false;">Да</a>
+								        <a href="" onclick="$('.joinGroup').hide(); return false;" class="cancel">Нет</a>
+								</div>
+							</div>
+						#{/if}
+						<div class="sendNotif"  style="display: none">
+							<div class="overlay"></div>
+							<div class="popup">
+								<h2>Добавить в свою команду</h2>
+								#{form @UserController.joinGroup()}
+								 <input name="groupId" value="${group.id}" type="hidden"> 
+								 <div class="profile-item clearFix popup-formtxt">
+								 	<textarea name="text" cols="30" rows="5" class="mt15"></textarea>
+								 </div>
+								 <input type="submit" value="Вступить">
+								 <a href=""  onclick="$('.sendNotif').hide(); return false;" class="cancel">Отмена</a>
+								#{/form}
+							</div>
+						</div>
+						#{if wasInviteToThisGroup} Ваша заявка на
+						вступление на рассмотрении у администратора 
+						<a	href=""
+							onclick="$('.cancelJoinGroup').show(); return false">Отменить</a>
+							<div class="cancelJoinGroup"  style="display: none">
+								<div class="overlay"></div>
+								<div class="popup">
+								    	<h2>Отмена заявки</h2>
+								        <p>Вы уверены что хотите отменить заявку?</p>
+								        <a class="btn" href="@{UserController.cancelJoinGroup(group.id)}">Да</a>
+								        <a href="" onclick="$('.cancelJoinGroup').hide(); return false;" class="cancel">Нет</a>
+								</div>
+							</div>
+						#{/if}
+						#{if !currentGroupAdmin && currentGroupMember}
+							<a href="" onclick="$('.exitGroup').show();return false;">Выйти из группы</a>
+							<div class="exitGroup"  style="display: none">
+								<div class="overlay"></div>
+								<div class="popup">
+								    	<h2>Выйти из команды</h2>
+								        <p>Вы уверены что хотите выйти из команды?</p>
+								        <a class="btn" href="@{UserController.exitGroup()}">Выйти</a>
+								        <a href="" onclick="$('.exitGroup').hide(); return false;" class="cancel">Отмена</a>
+								</div>
+							</div>
+						#{/if}
+						#{if (group?.users?.size() == 1) && currentGroupAdmin && (group?.usersForAprove?.isEmpty())}
+							<a href="" onclick="$('.removeGroup').show(); return false;">Удалить команду!</a>
+							<div class="removeGroup"  style="display: none">
+								<div class="overlay"></div>
+								<div class="popup">
+								    	<h2>Удалить команду</h2>
+								        <p>Вы уверены что хотите удалить вашу команду?</p>
+								        <a class="btn" href="@{GroupController.removeGroup(group.id)}">Удалить</a>
+								        <a href="" onclick="$('.removeGroup').hide(); return false;" class="cancel">Отмена</a>
+								</div>
+							</div>
+						#{/if}
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+#{doLayout/}

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script src="@{'public/javascripts/jquery.selectbox.js'}"></script>
+	<script src="@{'public/javascripts/jquery.placeholder.min.js'}"></script>
+	<script src="@{'/public/javascripts/controllers/Common.js'}" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="@{'public/stylesheets/jquery.selectbox.css'}" /> 
+	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/jquery.selectbox.css'}" />
+	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/stl.css'}" />
+	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/custom_stl.css'}" />
+	#{if request?.path.equals('/firstTestPassed') || request?.path.startsWith('/news/') || request?.path.equals('/secondTestPassed')}
+		<script src="@{'/public/javascripts/boilerplate/social-likes.js'}" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/social-likes.css'}" />
+	#{/if}
+	<!--[if IE]>	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>	<![endif]-->
+%{
+	def currentUser = utils.SessionHelper.getCurrentUser(session);
+	def currentValidation = play.data.validation.Validation.current();
+}%
+
+<script type="text/javascript">
+$(document).ready(function() {
+	/*placeholder*/
+	$('input[placeholder], textarea[placeholder]').placeholder();
+	#{if currentValidation?.hasError('recoverEmail')}
+		$('#enterForm').hide();
+		$('#recoverEmailForm').show();
+		$('#overlay').show();
+		$('#popup-enter').show();
+	#{/if}
+	#{if currentValidation?.hasError('loginEmail') || currentValidation?.hasError('loginPassword') || currentValidation?.hasError('emailPassword') || currentValidation?.hasError(utils.ApplicationConstants.VALIDATION_LOGIN_CONTROLLER_APPROVE_REGISTRATION)}
+		$('#overlay').show();
+		$('#popup-enter').show();
+	#{/if}
+});
+</script>
+</head>
+<body>
+	<div class="wrapper inner-page">
+		<header class="hdr-page">
+			<div class="inner">
+				<a href="/"><img src="@{'public/images/boilerplate/logo.png'}" alt="" class="logo" /></a>
+				<nav class="main-nav">
+					<ul>
+						<li><a href="/">Главная</a></li>
+						<li><a href="/news">Новости</a></li>
+						<li><a href="/about/">О проекте</a></li>
+						<li><a href="/contacts/">Контакты</a></li>
+						<li><a href="/partners/">Партнеры</a></li>
+					</ul>
+				</nav>
+				<a href="#{if currentUser}@{LoginController.logout()}#{/if}" id="#{if !currentUser}sign-in#{/if}" class="sign-in">#{if currentUser}Выйти#{/if}#{else}Войти на сайт#{/else}</a>
+			</div>
+		</header>
+		<div class="content wrap-test clearFix">
+			#{doLayout currentValidation:currentValidation/}
+		</div>
+	</div>
+	<footer class="ftr-page">
+		<div class="inner">
+			<p>&copy; 2012 Все права защищены. TeamPusher</p>
+			<nav class="ftr-nav">
+				<ul>
+					<li><a href="/">Главная</a></li>
+					<li><a href="/news">Новости</a></li>
+					<li><a href="/about/">О проекте</a></li>
+					<li><a href="/contacts/">Контакты</a></li>
+					<li><a href="/partners/">Партнеры</a></li>
+				</ul>
+			</nav>
+		</div>
+	</footer>
+	<div id="overlay" class="overlay"></div>
+	<div id="popup-enter" class="popup-enter">
+		<a href="" id="close" class="close"><img src="@{'/public/images/boilerplate/popup-close.gif'}" alt=""></a>
+    	<div class="popup-enter-ttl" id="popup-enter-ttl">Вход в систему</div>
+    		#{form @LoginController.login(), id:'enterForm'}
+	        	<input type="text" name="loginEmail" id="" placeholder="Электронная почта"> 
+				<input type="password" name="loginPassword" id="" placeholder="Пароль для входа">
+				<a href="#" id="forget-password" class="forget-password">Забыли пароль?</a>
+	            <button class="enter-btn" onclick="this.form.submit();">Войти на сайт</button>
+	            #{if currentValidation?.hasError('loginEmail') || currentValidation?.hasError('loginPassword') || currentValidation?.hasError('emailPassword') || currentValidation?.hasError(utils.ApplicationConstants.VALIDATION_LOGIN_CONTROLLER_APPROVE_REGISTRATION)}
+		            <div class="alert">
+		            	#{errors}
+		            		#{if errors_isLast}
+		            			${error}
+		            		#{/if}
+							#{else}
+								${error}<br/>
+							#{/else}		            		
+		            	#{/errors}
+		            </div>
+	            #{/if}
+	        #{/form}
+	        #{form @LoginController.recoverPassword(), id:'recoverEmailForm'}
+	        	<input type="text" name="recoverEmail" placeholder="Электронная почта"> 
+				<a href="#" id="showEnterForm" class="forget-password">Войти</a>
+	            <button class="enter-btn" onclick="this.form.submit();">Отправить письмо</button>
+	            #{if currentValidation?.hasError('recoverEmail')}
+		            <div class="alert">
+		            	#{errors}
+		            		#{if errors_isLast}
+		            			${error}
+		            		#{/if}
+							#{else}
+								${error}<br/>
+							#{/else}		            		
+		            	#{/errors}
+		            </div>
+	            #{/if}
+	        #{/form}
+    </div>
+    #{userPopup/}
+</body>
+</html>

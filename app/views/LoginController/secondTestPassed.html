@@ -1,0 +1,19 @@
+#{extends 'main_markup.html'/}
+<h1>Вы прошли второй тест тест!</h1>
+<div class="test">
+	<div class="test-results">
+		Команда TeamPusher рада, что Вы решили сделать еще один шаг по дороге собственного успеха вместе с нашим проектом. На основании приведенных ниже результатов Вы можете оценить Ваши сильные и слабые стороны. Найдите себе единомышленников и партнеров, наиболее полно дополняющих Ваш проект, и двигайтесь вперед к Вашему светлому будущему
+		<br>
+		<br>
+		Результаты теста:<br>
+		Прагаматик = #{models.user.processedParameter parameter:currentUser?.pragmatist/}<br>
+		Коммуникат = #{models.user.processedParameter parameter:currentUser?.communicant/}<br>
+		Идеалист&nbsp;&nbsp; = #{models.user.processedParameter parameter:currentUser?.idealist/}<br>
+		<ul class="social-likes" data-title="&{'models.test.number2.social.title'}" data-twit="&{'models.test.number2.social.text', result}" data-description="&{'models.test.number1.social.text', result}" data-url="${request.getBase()}" >
+			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
+			<li class="twitter"  title="Опубликовать ссылку в Твиттере">Twitter</li>
+			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
+		</ul>
+	</div>
+	<div class="test-btm"><a href="/blankform/" class="test-btn">Перейти ко заполнению анкеты</a></div>
+</div>

@@ -1,0 +1,82 @@
+<script>
+$(function() {
+	initChangeAvatar();
+});
+function initChangeAvatar() {
+	$('#changeAvatar').upload({
+		name: 'newAvatar',
+		method: 'post',
+		enctype: 'multipart/form-data',
+		action: 'AvatarController/updateAvatar',
+		onSubmit: function() {
+			$("#changeAvatarLoading").show();
+		},
+		onComplete: function(data) {
+			try {
+				var resultData = eval('(' + data + ')');
+				if (resultData.resultCode != 0) {
+					errorAvatar(resultData.errorDetails);
+				} else {
+					$("#changeAvatarLoading").hide();
+					$("#approveAvatar img").each(function(index, item){
+						$(item).attr('src', $(item).attr('src') + '?t=${java.lang.System.currentTimeMillis()}');
+					})
+					$("#approveAvatar").show();
+				}				
+			} catch (error) {
+				errorAvatar("exceeded.image.size");
+			}
+
+		}
+	});	
+}
+function approveAvatar() {
+	$.getJSON('AvatarController/approveAvatar', function(data) {
+		if (data.resultCode != 0) {
+			errorAvatar(data.errorDetails);
+		} else {
+			$("#changeAvatarLoading").hide();
+			$("#approveAvatar").hide();
+			$("#successAvatar").show();
+		}
+	});
+}
+function errorAvatar(errorDetails) {
+	$("#changeAvatarLoading").hide();
+	$("#approveAvatar").hide();
+	$("#errorAvatar").show();
+	if (errorDetails == "exceeded.image.size") {
+		errorDetails = "Превышен размер изображения. Используйте файл размером не более 2 МБ.";
+	}
+	if (errorDetails == "invalid.file.format") {
+		errorDetails = "Неверный формат файла. Используйте изображения png или jpeg.";
+	}
+	if (errorDetails == "error.avatar.creation") {
+		errorDetails = "Не удалось создать аватар. Обратитесь к администратору.";
+	}
+	if (errorDetails == "error.avatar.update") {
+		errorDetails = "Не удалось сохранить аватар. Обратитесь к администратору.";
+	}
+	$("#errorAvatar p").text(errorDetails);
+}
+</script>
+<div id="changeAvatarLoading" class="popup" style="display: none;">
+	<h2>Загрузка изображения на сервер</h2>
+	<p>Пожалуйста, подождите...</p>
+</div>
+<div id="approveAvatar" class="popup" style="display: none;">
+	<h2>Подтверждение изменения аватара</h2>
+	<p>Использовать данное изображение как ваш новый аватар?</p>
+	<img src="${play.Play.configuration.getProperty("filestoteURL")}/avatars/${_user.id}/newAvatar_123.jpg">
+	<button class="btn" onclick="$(this).parent().fadeOut(500); approveAvatar(); return false;">OK</button>
+	<button class="btn" onclick="$(this).parent().fadeOut(500); return false;">Отмена</button>
+</div>
+<div id="errorAvatar" class="popup" style="display: none;">
+	<h2>Ошибка!</h2>
+	<p></p>
+	<button class="btn" onclick="$(this).parent().fadeOut(500);">OK</button>
+</div>
+<div id="successAvatar" class="popup" style="display: none;">
+	<h2>Аватар изменен успешно</h2>
+	<button class="btn" onclick="$(this).parent().fadeOut(500);">OK</button>
+</div>

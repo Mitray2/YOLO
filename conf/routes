@@ -1,0 +1,66 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# MAIN PAGES
+GET     /                                       ApplicationController.index
+GET		/contacts/?								ContactsController.index
+GET		/news/?									NewsController.index
+GET		/about/?								AboutController.index
+GET		/organizators/?							OrganizatorsController.index
+GET		/partners/?								PartnersController.index
+GET		/sponsors/?								SponsorsController.index
+
+
+
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Import CRUD routes
+#*      /admin              CRUD.index
+
+# Routes for the CRUD module
+# ~~~~~~~~~~~
+
+#{crud.types}
+GET			/admin?											${type.controllerClass.name.substring(12).replace('$','')}.index
+GET			/admin/${type.controllerName}						${type.controllerClass.name.substring(12).replace('$','')}.list
+GET			/admin/${type.controllerName}/new					${type.controllerClass.name.substring(12).replace('$','')}.blank
+GET			/admin/${type.controllerName}/{id}				${type.controllerClass.name.substring(12).replace('$','')}.show
+GET			/admin/${type.controllerName}/{id}/{field}		${type.controllerClass.name.substring(12).replace('$','')}.attachment
+GET			/admin/${type.controllerName}/{id}/edit			${type.controllerClass.name.substring(12).replace('$','')}.edit
+POST		/admin/${type.controllerName}						${type.controllerClass.name.substring(12).replace('$','')}.create
+POST		/admin/${type.controllerName}/{id}				${type.controllerClass.name.substring(12).replace('$','')}.save
+DELETE		/admin/${type.controllerName}/{id}				${type.controllerClass.name.substring(12).replace('$','')}.delete
+#{/crud.types}
+*			/admin											CRUD_2.index
+
+
+#LoginController
+POST		/firstTest/?								LoginController.firstTest
+POST		/firstTestPassed/?							LoginController.firstTestPassed
+GET			/secondTest/?								LoginController.secondTest
+POST		/secondTestPassed/?							LoginController.secondTestPassed
+GET			/blankform/?								LoginController.blankForm
+POST		/blankformPassed/?							LoginController.blankFormPassed
+POST		/login/?									LoginController.login
+GET			/logout/?									LoginController.logout
+GET 		/confirmRegistration/?						LoginController.confirmRegistration
+POST		/recoverPassword/?							LoginController.recoverPassword
+														
+#UserController
+GET 		/changePassword								UserController.changePassword
+POST 		/doChangePassword							UserController.doChangePassword
+GET			/user/changePassword						UserController.changePassword
+GET			/user/changeEmail							UserController.changeEmail
+GET			/peopleSearch								UserController.peopleSearch
+GET			/groupSearch								UserController.groupSearch
+GET			/{userId}/?									UserController.index
+
+#NewsController
+GET			/news/?										NewsController.index
+GET			/news/{id}/?								NewsController.showNews
+
+# Catch all
+*       /{controller}/{action}                  			{controller}.{action}

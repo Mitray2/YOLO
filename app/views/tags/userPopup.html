@@ -1,0 +1,17 @@
+%{
+	def userMessage = utils.SessionHelper.getUserMessage(session); 
+}%
+#{if userMessage}
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#userMessagePopup').fadeIn(500);
+		});
+	</script>
+	<div id="userMessagePopup" class="popup">
+		#{if userMessage.title}
+    		<h2>${userMessage.title}</h2>
+    	#{/if}
+        <p>&{userMessage.value}</p>
+        <button class="btn" onclick="$(this).parent().fadeOut(500);">OK</button>
+    </div>
+#{/if}

@@ -1,0 +1,307 @@
+#{extends 'main_templeate.html' /} #{set title:'Profile' /}
+%{
+	boolean currentAdminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN;
+	boolean otherUser = utils.SessionHelper.getCurrentUser(session)?.id != user?.id;
+	boolean groupAdmin = (utils.SessionHelper.getCurrentUser(session)?.id == user?.id) && (utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN);
+	boolean haveGroupOrInviteJoin = (utils.SessionHelper.getCurrentUser(session)?.command != null) || (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null);
+%}
+#{if otherUser}
+<div class="profile-user-name"> 
+
+                    ${user.name + " " + user.lastName}
+                    <em>${user.age} лет</em>
+                </div>
+
+                <div class="profile-user-info">
+                	#{avatar.avatar user:user, cssClass:'profile-user-info-pic', maleImg:'avabigm.jpg', femaleImg:'avabigf.jpg', avatarSize:123 /}
+                    <div><a href="#">&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.country?.name)}</a> / <a href="#">${user?.city}</a></div>
+                    <div><span>На сайте:</span> <em>#{common.formattedDate date:lUserData?.lastSeen /}</em></div>
+                    <div><span>Электронный адрес:</span> #{if user.showEmailForOthers} ${user.email} #{/if} #{else}Скрыт#{/else}</div>
+                    <div><span>Интересуется бизнесом:</span> <a href="#">&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.businessType?.name)}</a> / <a href="#">&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.businessSphere?.name)}</a></div>
+                    <div class="profile-user-info-btn">
+                        <a href="#">Отправить сообщение</a>
+                        #{if currentAdminGroup}
+                        	<a href="" onclick="$('.sendNotif').show(); return false;">Пригласить в команду</a>
+                        #{/if}
+                    </div>
+                    <div class="sendNotif"  style="display: none">
+						<div class="overlay"></div>
+						<div class="popup">
+							<h2>Добавить в свою команду</h2>
+							#{form @GroupController.joinMyGroup()}
+							 <input name="userForJoinId" value="${user.id}" type="hidden"> 
+							 <input name="groupId" value="${utils.SessionHelper.getCurrentUser(session).command?.id}" type="hidden"> 
+							 <div class="profile-item clearFix popup-formtxt ">
+								 	<textarea name="text" cols="30" rows="5" class="mt15"></textarea>
+								 </div>
+								 <input type="submit" value="Пригласить">
+							<a href=""  onclick="$('.sendNotif').hide(); return false;" class="cancel">Отмена</a>
+							#{/form}
+						</div>
+					</div>
+                </div>
+                <div class="user-info-rate clearFix">
+                    <div>
+                        <strong>${user.businessman}</strong>
+                        &{'businessman'}
+                    </div>
+                    <div>
+                        <strong>${user.idealist}</strong>
+                        &{'idealist'}
+                    </div>
+                    <div>
+                       	<strong>${user.communicant}</strong>
+                       &{'communicant'}
+                    </div>
+                    <div>
+                        <strong>${user.pragmatist}</strong>
+                         &{'pragmatist'}
+                    </div>
+                </div>
+                <div class="user-info-ttl">Персональная характеристика</div>
+                <div class="user-info">
+                    <p>${user.personalCV}</p>
+                </div>
+                <div class="group-consist-ttl">Состоит в группе</div>
+                <div class="group-consist">
+                    <h4><a href="@{GroupController.index(user.command?.id)}">${user.command?.name}</a></h4>
+                    #{if user.command != null}
+                    <div class="founder">Основатель: <a href="@{UserController.index(user.command?.founderUser?.id)}" class="man">${user.command?.founderUser?.name + " " + user.command?.founderUser?.lastName}</a></div>
+                    #{/if}
+                </div>
+                <div class="group-vacancies-ttl">Профессиональные навыки</div>
+                <div class="group-vacancies">
+                	<div class="group-vacancies-item">
+                    	<div class="group-vacancies-name">Маркетинг <span>&#8594;</span>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expMarketing?.level?.userLevel)}</div>
+                        <p>${user?.expMarketing?.description}</p>
+                    </div>
+                    <div class="group-vacancies-item">
+                    	<div class="group-vacancies-name">Продажи <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expSale?.level?.userLevel)}</div>
+                        <p>${user?.expSale?.description}</p>
+                    </div>
+                    <div class="group-vacancies-item">
+                    	<div class="group-vacancies-name">Финансы<span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expFinance?.level?.userLevel)}</div>
+                        <p>${user?.expFinance?.description}</p>
+                    </div>
+                    <div class="group-vacancies-item">
+                    	<div class="group-vacancies-name">Право <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expLegal?.level?.userLevel)}</div>
+                        <p>${user?.expLegal?.description}</p>
+                    </div>
+                    <div class="group-vacancies-item">
+                    	<div class="group-vacancies-name">Программирование / IT <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expIT?.level?.userLevel)}</div>
+                        <p>${user?.expIT?.description}</p>
+                    </div>
+                    <div class="group-vacancies-item">
+                    	<div class="group-vacancies-name">Другое <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expOther?.level?.userLevel)}</div>
+                        <p>${user?.expOther?.description}</p>
+                    </div>
+                </div>
+#{/if}
+
+
+#{else}
+
+<h1 class="profile-h1">Мой профиль</h1>
+                <h2 class="profile-h2" style="margin-bottom:9px;">Личные данные</h2>
+                <div class="profile-form">
+               
+                	<div class="profile-item mb3">
+						<label for="">Имя</label>
+						${user.name}
+					</div>
+                    <div class="profile-item mb3">
+						<label for="">Фамилия</label>
+						${user.lastName}
+					</div>
+                    <div class="profile-item mb3">
+						<label for="">Пол</label>
+						#{if user.sex}
+							мужской
+						#{/if}
+						#{else}
+							женский
+						#{/else}
+					</div>
+					
+					<div class="profile-item">
+						<label for="">День рождения</label>
+						#{common.formattedDate date:user.birthday /}
+					</div>
+					
+					<div class="group-info">
+						<div class="group-info-ttl">Характеристика</div>
+						<div class="group-info-rate clearFix">
+							<div>
+		                        <strong>${user.businessman}</strong>
+		                        &{'businessman'}
+		                    </div>
+		                    <div>
+		                        <strong>${user.idealist}</strong>
+		                        &{'idealist'}
+		                    </div>
+		                    <div>
+		                       	<strong>${user.communicant}</strong>
+		                       &{'communicant'}
+		                    </div>
+		                    <div>
+		                        <strong>${user.pragmatist}</strong>
+		                         &{'pragmatist'}
+		                    </div>
+						</div>
+						<div class="group-info-rate-help">* на основе данных теста</div>
+					</div>
+					</div>
+					
+					#{form @UserController.editContactData()} #{showError errors:errors /}
+					<div class="create-form">
+					<label for="">Электронный адрес</label>
+						 ${user.email} 
+						<div class="box-radio">
+							<input type="radio" name="showEmailForOthers" id="showEmailForOthersY" class="radio" value="true"  #{if user?.showEmailForOthers}checked#{/if}/>
+							<label for="showEmailForOthersY" class="radio-btn">Показать всем</label>
+							<input type="radio" name="showEmailForOthers" id="showEmailForOthersN" class="radio" value="false"  #{if !user?.showEmailForOthers}checked#{/if}/>
+							<label for="showEmailForOthersN" class="radio-btn">Скрыть от всех</label>
+	                   </div>
+                    </div>
+                    <div class="profile-form">
+                     <div class="profile-item">
+ 						<label for="">Мой аватар</label>
+                         <div class="profile-pic">
+							#{avatar.avatar user:user, cssClass:'profile-pic-img', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
+                         	<div class="profile-pic-btn" id="changeAvatar">Обзор<input name="" type="file"></div>
+                         	#{avatar.changeAvatar user:user/}
+                         	<div class="profile-pic-type">Максимальный размер изображения 800х600 px 2Мб (.jpg, .jpeg, .png, .gif, .bmp)</div>
+                         </div>
+ 					</div>
+                    <div class="profile-item clearFix">
+						<label for="">Страна</label>
+						<select name="countryId" class="cSelect" style="width:321px;">
+							#{list items:services.CountryService.getSortedCountries(), as:'country'}
+								<option value="${country.id}" #{if user?.country?.id == country.id}selected="selected"#{/if}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country.name)}</option>
+							#{/list}
+						</select>
+					</div>
+                    <div class="profile-item">
+						<label for="">Город</label>
+						<input type="text" name="city" value="${user.city}" id="" placeholder="${user.city}" />
+					</div>
+                    <button type="submit" class="profile-btn">Сохранить изменения</button>
+                    </div>
+                    #{/form}
+                
+                <h2 class="profile-h2">Сменить пароль</h2>
+                <div class="profile-form">
+                #{form @UserController.doChangePassword()}
+                #{showError errors:errors /}
+                    <div class="profile-item">
+						<label for="">Старый пароль</label>
+						<input type="password" name="oldPassword" id="" />
+					</div>
+                    <div class="profile-item">
+						<label for="">Введите новый пароль</label>
+						<input type="password" name="newPassword" id="" />
+					</div>
+                    <div class="profile-item">
+						<label for="">Повторите новый пароль</label>
+						<input type="password" name="newPasswordRepeat" id="" />
+					</div>
+                    <button type="submit" class="profile-btn">Сохранить изменения</button>
+                 #{/form}
+                </div>
+                <h2 class="profile-h2">Профессиональные навыки</h2>
+               
+                #{form @UserController.editSkill()}
+                 <div class="profile-form" style="padding-bottom:10px;">
+					<div class="profile-item clearFix">
+						<label for="">Интересующий тип бизнеса</label>
+						<select name="currentUser.businessType.id" class="cSelect" style="width:321px;">
+							#{list items:models.BType.findAll(), as:'businessType'}
+								<option value="${businessType.id}" #{if user?.businessType?.id == businessType.id}selected="selected"#{/if}>&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(businessType.name)}</option>
+							#{/list}
+						</select>
+					</div>
+					<div class="profile-item clearFix">
+						<label for="">Интересующая сфера бизнеса</label>
+						<select name="currentUser.businessSphere.id" class="cSelect" style="width:321px;">
+							#{list items:models.BSphere.findAll(), as:'businessSphere'}
+								<option value="${businessSphere.id}" #{if user?.businessSphere?.id == businessSphere.id}selected="selected"#{/if}>&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(businessSphere.name)}</option>
+							#{/list}
+						</select>
+					</div>
+					<div class="profile-item clearFix">
+						<label for="">Опыт в маркетинге/рекламе<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<select name="currentUser.expMarketing.level.id" class="cSelect" style="width:321px;">
+							#{list items:models.UserLevel.findAll(), as:'level'}
+								<option value="${level.id}" #{if user?.expMarketing?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
+							#{/list}
+						</select>
+						<textarea name="currentUser.expMarketing.description" placeholder="Опишите подробнее свой опыт в рекламе" class="mt15">${user?.expMarketing?.description}</textarea>
+					</div>
+					<div class="profile-item clearFix">
+						<label for="">Опыт в продажах<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<select name="currentUser.expSale.level.id" class="cSelect" style="width:321px;">
+							#{list items:models.UserLevel.findAll(), as:'level'}
+								<option value="${level.id}" #{if user?.expSale?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
+							#{/list}
+						</select>
+						<textarea name="currentUser.expSale.description" placeholder="Опишите подробнее свой опыт в продажах" class="mt15">${user?.expSale?.description}</textarea>
+					</div>
+					<div class="profile-item clearFix">
+						<label for="">Опыт в менеджменте<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<select name="currentUser.expManagement.level.id" class="cSelect" style="width:321px;">
+							#{list items:models.UserLevel.findAll(), as:'level'}
+								<option value="${level.id}" #{if user?.expManagement?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
+							#{/list}
+						</select>
+						<textarea name="currentUser.expManagement.description" placeholder="Опишите подробнее свой опыт в менеджменте" class="mt15">${user?.expManagement?.description}</textarea>
+					</div>
+					
+					<div class="profile-item clearFix">
+						<label for="">Опыт в юриспруденции<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<select name="currentUser.expLegal.level.id" class="cSelect" style="width:321px;">
+							#{list items:models.UserLevel.findAll(), as:'level'}
+								<option value="${level.id}" #{if user?.expLegal?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
+							#{/list}
+						</select>
+						<textarea name="currentUser.expLegal.description" placeholder="Опишите подробнее свой опыт в юриспруденции" class="mt15">${user?.expLegal?.description}</textarea>
+					</div>
+					
+					<div class="profile-item clearFix">
+						<label for="">Опыт в финансах<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<select name="currentUser.expFinance.level.id" class="cSelect" style="width:321px;">
+							#{list items:models.UserLevel.findAll(), as:'level'}
+									<option value="${level.id}" #{if user?.expFinance?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
+							#{/list}
+						</select>
+						<textarea name="currentUser.expFinance.description" placeholder="Опишите подробнее свой опыт в финансах" class="mt15">${user?.expFinance?.description}</textarea>
+					</div>
+					
+					<div class="profile-item clearFix">
+						<label for="">Опыт в программировании<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<select name="currentUser.expIT.level.id" class="cSelect" style="width:321px;">
+							#{list items:models.UserLevel.findAll(), as:'level'}
+								<option value="${level.id}" #{if user?.expIT?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
+							#{/list}
+						</select>
+						<textarea name="currentUser.expIT.description" placeholder="Опишите подробнее свой опыт в программировании" class="mt15">${user?.expIT?.description}</textarea>
+					</div>
+					
+					<div class="profile-item clearFix">
+						<label for="">Опыт в других направлениях<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<select name="currentUser.expOther.level.id" class="cSelect" style="width:321px;">
+							#{list items:models.UserLevel.findAll(), as:'level'}
+								<option value="${level.id}" #{if user?.expOther?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
+							#{/list}
+						</select>
+						<textarea name="currentUser.expOther.description" placeholder="Опишите подробнее свой опыт в других направлениях" class="mt15">${user?.expOther?.description}</textarea>
+					</div>
+					
+					<div class="profile-item">
+						<label for="">Персональная характеристика<span class="small">Опишите свои качества.<br> Преимущества и недостатки своего характера</span></label>
+						<textarea name="currentUser.personalCV" placeholder="Опишите подробнее свои качества">${user.personalCV}</textarea>
+					</div>
+                    <button class="profile-btn">Сохранить изменения</button>
+                    </div>
+                    #{/form}
+
+#{/else}

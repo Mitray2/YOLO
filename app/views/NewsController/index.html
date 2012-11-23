@@ -1,0 +1,29 @@
+#{extends 'main_markup.html' /}
+#{set title:'main' /}
+<h1>Новости проекта</h1>
+<div class="page-news">
+	<div class="news">
+#{list items:newsList, as:'news'}
+
+		<div class="news-item">
+	         <a href="/news/${news?.id}"><img width="242" height="172" src="${news?.previewImageURL}" alt="${news?.title}" class="news-pic"></a>
+	         <div class="news-date">#{common.formattedDate date:news?.creationDate/}</div>
+	         <h2><a href="/news/${news?.id}">${news?.title}</a></h2>
+	         <p>${news?.preview}</p>
+		</div>
+<!-- <div class="pages"> -->
+<!-- <a href="" class="prev">Предыдущая</a> -->
+<!-- 	<div> -->
+<!-- 	    <a href="">1</a> -->
+<!-- 	    <a href="">2</a> -->
+<!-- 	    <a href="">3</a> -->
+<!-- 	    <a href="" class="current">4</a> -->
+<!-- 	    <a href="">5</a> -->
+<!-- 	    <a href="">...</a> -->
+<!-- 	    <a href="">65</a> -->
+<!-- 	</div> -->
+<!-- 	<a href="" class="next">Следующая</a> -->
+<!-- </div> -->
+#{/list}
+</div>
+</div>

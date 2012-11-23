@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>#{get 'title' /}</title>	
+    <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}" />
+	<script src="@{'/public/javascripts/jquery.js'}" type="text/javascript" charset="utf-8"></script>
+    <script src="@{'/public/javascripts/bootstrap/bootstrap.js'}" type="text/javascript" charset="utf-8"></script>
+    <script src="@{'/public/javascripts/bootstrap/bootstrap-dropdown.js'}" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/bootstrap/bootstrap.css'}" />
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/bootstrap/responsive.css'}" />
+<style type="text/css">
+ body {
+   padding-top: 60px;
+   padding-bottom: 40px;
+ }
+ .sidebar-nav {
+   padding: 9px 0;
+ }
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.dropdown').dropdown();
+});
+</script>    
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a> 
+          <a class="brand" href="/">social groups</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              #{if !utils.SessionHelper.getCurrentUser(session)}
+              	<li class="" data-original-title="">
+	            </li>
+              #{/if}
+              #{else}
+	              <li class="" data-original-title="">
+	                <a href="/">My Profile</a>
+	              </li>
+              #{/else}
+	            <li class="dropdown" data-original-title="">
+	              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info<b class="caret"></b></a>
+	              <ul class="dropdown-menu">
+	              	<li onclick="window.location.href = $(this).find('a').attr('href'); return false;">
+               			<a href="@{ContactsController.index()}">Contacts</a>
+	            	</li>
+	             	<li onclick="window.location.href = $(this).find('a').attr('href'); return false;">
+	               		<a href="@{NewsController.index()}">News</a>
+		            </li>
+	             	<li onclick="window.location.href = $(this).find('a').attr('href'); return false;">
+	               		<a href="@{AboutController.index()}">About</a>
+		            </li>
+	             	<li onclick="window.location.href = $(this).find('a').attr('href'); return false;">
+	               		<a href="@{OrganizatorsController.index()}">Organizators</a>
+		            </li>
+	             	<li onclick="window.location.href = $(this).find('a').attr('href'); return false;">
+	               		<a href="@{PartnersController.index()}">Partners</a>
+		            </li>
+	             	<li onclick="window.location.href = $(this).find('a').attr('href'); return false;">
+	               		<a href="@{SponsorsController.index()}">Sponsors</a>
+		            </li>
+	              </ul>
+	            </li>
+            </ul>
+            <p class="navbar-text pull-right">
+	            #{if utils.SessionHelper.getCurrentUser(session) == null}
+	            	#{form @LoginController.login()}
+	            		<input type="text" name="email" placeholder="Email"/>
+	            		<input type="password" name="password" placeholder="Password"/>
+	            		<input type="submit" class="btn btn-primary" value="Enter"/>
+		            	<a href="@{LoginController.recoverPassword}">Forgot password</a>
+	            	#{/form}
+	            #{/if}
+	            #{else}
+	            	<a href="/${utils.SessionHelper.getCurrentUser(session).id}">${utils.SessionHelper.getCurrentUser(session).email}</a>
+	            	<a href="@{LoginController.logout()}">Exit</a>
+	            #{/else}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    #{if utils.SessionHelper.getCurrentUser(session) && utils.SessionHelper.getCurrentUser(session).role == models.User.ROLE_USER}
+    	#{doLayout /}
+    #{/if}
+    #{else}
+	   <div class="container">
+	   	<div class="hero-unit">
+			#{doLayout /}
+	   	</div>
+	   </div>
+	#{/else}
+</body>
+</html>

@@ -1,0 +1,31 @@
+#{extends 'group_templeate.html' /} #{set title:'Create Topic' /} 
+
+<div class="tabs clearFix">
+	<a href="@{GroupController.index(group.id)}" >Описание</a> <a href="@{GroupController.groupTopics(group.id)}" class="act">Обсуждения</a> <a
+		href="@{GroupController.groupUsers(group.id)}" >Участники</a>
+</div>
+
+
+<a href="@{GroupController.createTopic(group.id)}" class="new-theme-btn"><img src="@{'public/images/boilerplate/ico-new-theme.gif'}" alt="">Создать новую тему</a>
+#{form @GroupController.saveTopic()} 
+#{showError errors:errors /}
+<div class="new-theme-ttl">Создание новой темы</div>
+                <div class="create-theme">
+                	<input type="text" name="topic.name" id="" placeholder="Заголовок темы для обсуждения" />
+                    <textarea name="topic.description" cols="" rows=""></textarea>
+                   
+                    <div class="create-form">
+                     <label for="">Сделать тему публичной</label> 
+                    <div class="box-radio">
+						<input type="radio" name="topic.publicTopic" id="publicTopicY" class="radio" value="true"/>
+						<label for="publicTopicY" class="radio-btn">Да</label>
+						<input type="radio" name="topic.publicTopic" id="publicTopicN" class="radio" value="false" checked="checked"/>
+						<label for="publicTopicN" class="radio-btn">Нет</label>
+	                </div>
+	                </div>
+                    <button type="submit" class="create-theme-btn">Создать тему</button>
+                    
+                </div>
+
+
+#{/form}

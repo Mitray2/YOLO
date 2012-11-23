@@ -1,0 +1,19 @@
+#{extends 'main.html' /}
+#{set title:'Изменение электронной почты' /}
+
+#{form @UserController.doChangeEmail()}
+#{submenu2/}
+<div class="content_block">
+	<div class="page_ttl">	
+		<h1>Сменить почту</h1>
+	</div>
+	#{showError errors:errors /}
+	Пароль<br/>
+	<input type="password" name="password" class="input" value="">
+	Новая почта<br/>
+	<input type="text" name="newMail" class="input" value="">
+	<input type="button" name="name" class="button" value="Сменить почту" onclick="this.form.submit();">
+</div>	
+
+#{/form}
+

@@ -1,0 +1,14 @@
+#{extends 'main.html' /}
+#{set title:'Ошибка' /}
+<div>
+	<p class="red">
+		#{if error}
+			#{if error == "error.security"}
+				У вас недостаточно прав для данного действия.
+			#{/if}
+			#{if error == "error.unauthorized_user"}
+				Сначала вы должны войти в систему.
+			#{/if}
+		#{/if}
+	</p>
+</div>

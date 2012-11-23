@@ -1,0 +1,75 @@
+@CHARSET "UTF-8";
+.overlay {
+	display: none;
+}
+
+.popup-enter{
+	display: none;
+}
+
+#recoverEmailForm {
+	display: none;
+}
+
+#userMessagePopup {
+	display: none;
+}
+
+.inputerror {
+  border: 1px solid #BC3030 !important;
+}
+
+.entry .error .man{
+	border-color:#bc3030;
+}
+
+.entry .error .woman{
+	border-color:#bc3030;
+}
+
+.entry .error .jquery-selectbox{
+	border-color:#bc3030;
+}
+
+.entry .alert{
+	background:#fff4d1;
+	font:11px/18px Arial, Helvetica, sans-serif;
+	color:#bc3030;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	padding:15px 20px;
+	margin:10px 0 -4px;
+}
+
+.firstTest {
+  padding: 25px 30px;
+  border-top: none;
+}
+
+.blankForm {
+  padding: 25px 30px;
+  margin-top: -30px;	
+  border-top: none;
+}
+
+.blankForm .alert, .firstTest .alert {
+	background:#fff4d1;
+	font:11px/18px Arial, Helvetica, sans-serif;
+	color:#bc3030;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	padding:15px 20px;
+	margin:10px 0 -4px;
+}
+
+.form-item.clearFix.error > .jquery-selectbox.jquery-custom-selectboxes-replaced {
+	color:#bc3030;
+	border-color:#bc3030; 
+} 
+
+h3.index {
+	font: 20px/25px "MyriadPro-Cond", Arial, sans-serif;
+  	color: #e6b000;
+}

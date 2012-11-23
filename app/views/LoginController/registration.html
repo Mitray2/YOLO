@@ -1,0 +1,21 @@
+#{extends 'main.html' /}
+#{set title:'Регистрация' /}
+#{submenu2/}
+<div class="content_block">
+#{form @Login.doRegister()}
+	<div class="page_ttl">
+		<h1>Регистрация</h1>
+	</div>
+	#{showError errors:errors /}
+	Логин<br/>
+	<input type="text" name="user.login" class="profile_input" value="${user?.login}">
+	Email<br/>
+	<input type="text" name="user.email" class="profile_input" value="${user?.email}">
+	Пароль<br/>
+	<input type="password" name="password" class="profile_input" value="">
+	Повторите пароль<br/>
+	<input type="password" name="passwordRepeat" class="profile_input" value="">
+	<input type="button" class="button" value="Регистрация" onclick="this.form.submit();"/>
+#{/form}
+</div>
+

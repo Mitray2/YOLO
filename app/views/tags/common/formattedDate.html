@@ -1,0 +1,6 @@
+#{if _date}
+${_date?.getDate()} &{'date.monthName.' + utils.DateUtils.MONTH_NAMES[_date?.getMonth()]} ${_date?.getYear() + 1900}
+#{/if}
+#{else}
+null date 
+#{/else}

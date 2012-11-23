@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/stl.css'}" />
+	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/custom_stl.css'}" />
+	<link rel="stylesheet" href="@{'public/stylesheets/jquery.selectbox.css'}" />
+	<!--[if IE]>	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>	<![endif]-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="@{'public/javascripts/jquery.selectbox.js'}"></script>
+<script src="@{'public/javascripts/jquery.placeholder.min.js'}"></script>
+<script src="@{'/public/javascripts/controllers/LoginController.js'}" type="text/javascript" charset="utf-8"></script> 
+<script src="@{'/public/javascripts/controllers/Common.js'}" type="text/javascript" charset="utf-8"></script> 
+<script>
+%{
+	def currentUser = utils.SessionHelper.getCurrentUser(session);
+	def currentValidation = play.data.validation.Validation.current();
+}%
+$(document).ready(function() {
+	/*placeholder*/
+	$('input[placeholder], textarea[placeholder]').placeholder();
+// 	$('[name="user.name"]').val('Женя');
+// 	$('[name="user.email"]').val('zhenya-yadlovskij@yandex.ru');
+// 	$('#rad1').attr('checked', true);
+	
+	#{if currentValidation?.hasError('recoverEmail')}
+		$('#enterForm').hide();
+		$('#recoverEmailForm').show();
+		$('#overlay').show();
+		$('#popup-enter').show();
+	#{/if}
+	#{if currentValidation?.hasError('loginEmail') || currentValidation?.hasError('loginPassword') || currentValidation?.hasError('emailPassword') || currentValidation?.hasError(utils.ApplicationConstants.VALIDATION_LOGIN_CONTROLLER_APPROVE_REGISTRATION)}
+		$('#overlay').show();
+		$('#popup-enter').show();
+	#{/if}
+	//show 2000 selected at first
+	$($('[name="birthYear"]').parent().find('div')[2]).show();
+	$('[name="birthYear"]').parent().find('div')[2].scrollTop = 2500;
+	$($('[name="birthYear"]').parent().find('div')[2]).hide();
+	
+	$('#password').keypress(function (e) {
+		  if (e.which == 13) {
+		    $('#loginForm').submit();
+		    return false; 
+		  }
+		});
+});
+</script> 
+</head>
+<body>
+	<div class="wrapper">
+		<header class="hdr-page">
+			<div class="inner">
+				<a href="/"><img src="@{'public/images/boilerplate/logo-1.png'}" alt="" class="logo" /></a>
+				#{if !currentUser}
+				
+				#{form @LoginController.login(), id:'loginForm', class:'login_form'}
+					<table cellspacing="0">
+						<tbody>
+							<tr>
+								<td><label for="text">Логин</label></td>
+								<td><label for="passwod">Пароль</label></td>
+							</tr>
+							<tr>
+								<td><input type="text" name="loginEmail" id="text" autofocus="autofocus"/></td>
+								<td><input type="password" name="loginPassword" id="password" /></td>
+							</tr>
+							<tr>
+								<td><a href="" onclick="$('#regName').focus(); return false;">Регистрация</a></td>
+								<td><a href="" onClick="$('#popup-enter').fadeIn(1000); $('#overlay').fadeIn(1000);$('#popup-enter-ttl').html('Восстановление пароля');$('#enterForm').hide();$('#recoverEmailForm').show(); return false;">Забыли пароль?</a></td>
+							</tr>
+						</tbody>
+					</table>
+				
+				#{/form}
+				<a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">Войти</a>
+				#{/if}
+				#{if currentUser}
+					<a href="@{LoginController.logout()}" class="sign-in">Выйти</a>
+				#{/if}
+			</div>
+		</header>
+		<div class="content clearFix">
+			<div class="index-main">
+				<h1>TeamPusher – это место, где ты сможешь найти единомышленников и начать свой бизнес!</h1>
+				<p>Ты находишься на сайте, который поможет тебе определить твои навыки, найти единовмышленников с недостающими характеристиками и начать новый бизнес совместно с ними!</p>
+				<p>TeamPusher – образовано от английских слов team – команда, и pusher – толкать, двигать. Таким образом, это место где все начинают шевелиться.</p>
+				<p>TeamPusher – это не только информационный ресурс, но и живая платформа. Известная задача «кадры решают все» может быть решена для твоей идеи по средствам проекта TeamPusher.</p>
+				<ol><h3 class="index">Здесь ты сможешь:</h3>
+					<li>1) Пройти тестирование для выявления предпринимательских способностей;</li>
+					<li>2) Обменяться идеями;</li>
+					<li>3) Найти единомышленников; </li>
+					<li>4) Собрать свою команду для реализации проекта или найти интересный проект и присоединиться к команде;</li>
+					<li>5) Узнать информацию о предстоящих событиях в своем регионе;</li>
+					<li>6) Получить дополнительную информацию по различным бизнес-тематикам.</li>
+				</ol>
+				<ul class="about-list">
+					<li>
+						<img src="@{'public/images/boilerplate/icon1.png'}" alt="" class="list-icon" />
+						<div class="list-cont">
+							<h3 class="list-ttl">Общайся с интересными личностями</h3>
+							<p>Ты можешь начать общаться с уже преуспевшими бизнесменами уже сегодня! Найди себе ментора, инвестора или партнера.</p>
+						</div>
+					</li>
+					<li>
+						<img src="@{'public/images/boilerplate/icon2.png'}" alt="" class="list-icon" />
+						<div class="list-cont">
+							<h3 class="list-ttl">Работай в команде, создавай новый бизнес</h3>
+							<p>Хорошая команда – это уже половина дела! Найди единомышленников и отраслевых специалистов, недостающих для успеха.</p>
+						</div>
+					</li>
+					<li>
+						<img src="@{'public/images/boilerplate/icon3.png'}" alt="" class="list-icon" />
+						<div class="list-cont">
+							<h3 class="list-ttl">Развивай себя</h3>
+							<p>Участвуй в наших проектах, читай новости и получай новые знания через общениях в группах; работай над собой совместно с нами и развивай свой потенциал!</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<aside class="home-secondary">
+				<h2>Присоединиться к нам</h2>
+					#{form @LoginController.firstTest(), class:'entry'}
+						<input type="text" #{if currentValidation?.hasError('user.name')}class="inputerror"#{/if} name="user.name" id="regName" onfocus="this.value=''; this.placeholder=''" onblur="this.placeholder='Введите ваше имя'" placeholder="Введите ваше имя" value="${user?.name}"/>
+						<input type="text" #{if currentValidation?.hasError('user.email')}class="inputerror"#{/if} name="user.email" id="" onfocus="this.value=''; this.placeholder=''" onblur="this.placeholder='Электронный адрес'" placeholder="Электронный адрес" value="${user?.email}"/>
+						#{if currentValidation?.hasError('user.sex')}
+							<span class="error">
+								<input type="radio" name="user.sex" id="rad1" class="radio" #{if user?.sex == true}checked#{/if} value="true"/><label for="rad1" class="man">парень</label><input type="radio" name="user.sex" id="rad2" value="false" class="radio" #{if user?.sex == false}checked#{/if}/><label for="rad2" class="woman">девушка</label>
+							</span>
+						#{/if}
+						#{else}
+							<input type="radio" name="user.sex" id="rad1" class="radio" #{if user?.sex == true}checked#{/if} value="true"/><label for="rad1" class="man">парень</label><input type="radio" name="user.sex" id="rad2" value="false" class="radio" #{if user?.sex == false}checked#{/if}/><label for="rad2" class="woman">девушка</label>
+						#{/else}
+						#{models.user.birthdayComponent day:birthDay, month:birthMonth, year:birthYear/}
+						<div class="cl"></div>
+						#{if currentValidation?.hasError('user.sex') || currentValidation?.hasError('user.email') || currentValidation?.hasError('user.name')}
+				            <div class="alert">
+				            	#{errors}
+				            		#{if errors_isLast}
+				            			${error}
+				            		#{/if}
+									#{else}
+										${error}<br/>
+									#{/else}		            		
+				            	#{/errors}
+				            </div>
+			            #{/if}
+						<a href="" class="go" id="firstTest">Пройти первый тест</a>
+					#{/form}
+				<div class="about-test">
+					<h3><img src="@{'public/images/boilerplate/icon4.png'}" alt="" /><span>Большое количетсво участников</span></h3>
+					<h3><img src="@{'public/images/boilerplate/icon5.png'}" alt="" /><span>Мотивированные команды</span></h3>
+					<h3><img src="@{'public/images/boilerplate/icon6.png'}" alt="" /><span>Креативные стартапы</span></h3>
+				</div>
+			</aside>
+		</div>
+	</div>
+	<footer class="ftr-page">
+		<div class="inner">
+			<p>&copy; 2012 Все права защищены. TeamPusher</p>
+			<nav class="ftr-nav">
+				<ul>
+					<li><a href="/">Главная</a></li>
+					<li><a href="/news">Новости</a></li>
+					<li><a href="/about/">О проекте</a></li>
+					<li><a href="/contacts/">Контакты</a></li>
+					<li><a href="/partners/">Партнеры</a></li>
+				</ul>
+			</nav>
+		</div>
+	</footer>
+	<div id="overlay" class="overlay"></div>
+	<div id="popup-enter" class="popup-enter">
+		<a href="" id="close" class="close"><img src="@{'/public/images/boilerplate/popup-close.gif'}" alt=""></a>
+    	<div class="popup-enter-ttl" id="popup-enter-ttl">Вход в систему</div>
+    		#{form @LoginController.login(), id:'enterForm'}
+	        	<input type="text" name="loginEmail" id="" placeholder="Электронная почта"> 
+				<input type="password" name="loginPassword" id="" placeholder="Пароль для входа">
+				<a href="#" id="forget-password" class="forget-password">Забыли пароль?</a>
+	            <button class="enter-btn" onclick="this.form.submit();">Войти на сайт</button>
+	            #{if currentValidation?.hasError('loginEmail') || currentValidation?.hasError('loginPassword') || currentValidation?.hasError('emailPassword') || currentValidation?.hasError(utils.ApplicationConstants.VALIDATION_LOGIN_CONTROLLER_APPROVE_REGISTRATION)}
+		            <div class="alert">
+		            	#{errors}
+		            		#{if errors_isLast}
+		            			${error}
+		            		#{/if}
+							#{else}
+								${error}<br/>
+							#{/else}		            		
+		            	#{/errors}
+		            </div>
+	            #{/if}
+	        #{/form}
+	        #{form @LoginController.recoverPassword(), id:'recoverEmailForm'}
+	        	<input type="text" name="recoverEmail" placeholder="Электронная почта"> 
+				<a href="#" id="showEnterForm" class="forget-password">Войти</a>
+	            <button class="enter-btn" onclick="this.form.submit();">Отправить письмо</button>
+	            #{if currentValidation?.hasError('recoverEmail')}
+		            <div class="alert">
+		            	#{errors}
+		            		#{if errors_isLast}
+		            			- ${error}
+		            		#{/if}
+							#{else}
+								- ${error}<br/>
+							#{/else}		            		
+		            	#{/errors}
+		            </div>
+	            #{/if}
+	        #{/form}
+    </div>
+    #{userPopup/}
+</body>
+</html>

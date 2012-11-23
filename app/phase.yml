@@ -1,0 +1,11 @@
+ProjectPhase(ProjectPhase_1):
+    name:         start
+    description:         group creating
+   
+ProjectPhase(ProjectPhase_2):
+    name:         planning
+    description:         bissines plan
+    
+ProjectPhase(ProjectPhase_3):
+    name:         developing
+    description:         implementation

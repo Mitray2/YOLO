@@ -1,0 +1,348 @@
+#{extends 'main.html' /} 
+#{set title:'Testing' /}
+<script src="@{'/public/javascripts/controllers/LoginController.js'}" type="text/javascript" charset="utf-8"></script>
+#{if test?.number == 1}
+	#{form @LoginController.testPassed()}
+		<table class="table table-striped table-bordered table-condensed">
+			<thead>
+				<tr>
+					<th>${test.description}</th>
+				</tr>
+			</thead>
+			<tbody>
+				#{list items:test.questions, as:'question'}
+					<input name="test.questions[${question_index}].id" type="hidden" value="${question.id}">
+					<tr>
+						<td>
+							${question_index}. ${question.value} #{error utils.ApplicationConstants.VALIDATION_MODEL_TEST_QUESTION_ANSWER_REQUIRED + question_index /}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							#{list items:question.answers, as:'answer'}
+									#{if question?.answer?.id.equals(answer.id)}
+										<input type="radio" value="${answer.id}" name="test.questions[${question_index}].answer.id" id="answer${answer.id}" checked="checked">
+									#{/if}
+									#{else}
+										<input type="radio" value="${answer.id}" name="test.questions[${question_index}].answer.id" id="answer${answer.id}">
+<!-- 										<input type="radio" value="${answer.id}" name="test.questions[${question_index}].answer.id" id="answer${answer.id}" #{if answer_isFirst}checked#{/if}> -->
+									#{/else}						
+<!-- 								<label for="answer${answer.id}"> -->
+									${answer.value}
+<!-- 								</label> -->
+							#{/list}
+						</td>
+					</tr>
+				#{/list}
+				#{if test.id == 1}
+					<tr>
+						<td>
+							Birthday
+							#{models.user.birthdayComponent day:birthDay, month:birthMonth, year:birthYear/}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Sex: <input type="radio" name="user.sex" value="true" checked="checked" id="male">
+							Male
+							<input type="radio" name="user.sex" value="false" id="female">
+							Female
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Email: <input name="user.email" value="${user?.email}"> #{error 'user.email'/}
+						</td>
+					</tr>
+				#{/if}
+				<tr>
+					<td>
+						<input class="btn" type="submit" value="Submit">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	#{/form}
+#{/if}
+#{elseif test?.number == 2}
+	#{form @LoginController.testPassed()}
+		<input name="test.id" type="hidden" value="${test?.id}">
+		<input name="user.id" type="hidden" value="${user?.id}">
+		<table class="table table-striped table-bordered table-condensed">
+			<thead>
+				<tr>
+					<th>${test?.description}</th>
+				</tr>
+			</thead>
+			<tbody>
+				#{list items:test.questions, as:'question'}
+					<input type="hidden" name="test.questions[${question_index}].id" value="${question.id}">
+					<tr>
+						<td>
+							${question_index}. ${question?.value} #{error utils.ApplicationConstants.VALIDATION_MODEL_TEST_QUESTION_INNER_QUESTION_ANSWER_REQUIRED + question_index /}
+						</td>
+						<td>Наиболее соответствует</td>
+						<td>Среднее из этого</td>
+						<td>Менее соответствует</td>
+					</tr>
+					#{list items:question.questions, as:'innerQuestion'}
+						<input type="hidden" name="test.questions[${question_index}].questions[${innerQuestion_index}].id" value="${innerQuestion.id}">
+						<tr>
+							<td>${innerQuestion?.value}</td>
+							#{list items:innerQuestion?.answers, as:'answer'}
+								<td><input column="${answer_index}" value="${answer?.id}" type="radio" name="test.questions[${question_index}].questions[${innerQuestion_index}].answer.id" #{if innerQuestion_index == answer_index}checked#{/if} #{if innerQuestion?.answer?.id.equals(answer.id)}checked#{/if}></td>
+<!-- 								<td><input column="${answer_index}" value="${answer?.id}" type="radio" name="test.questions[${question_index}].questions[${innerQuestion_index}].answer.id" #{if innerQuestion?.answer?.id.equals(answer.id)}checked#{/if}></td> -->
+							#{/list}
+						</tr>
+					#{/list}
+				#{/list}
+				<tr>
+					<td colspan="3">
+						<input type="submit" value="Submit" id="submitTest">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	#{/form}
+#{/elseif}
+#{else}
+	#{form @LoginController.testPassed()}
+		<input name="user.id" type="hidden" value="${user?.id}">
+		<table class="table table-striped table-bordered table-condensed">
+			<thead>
+				<tr>
+					<th>${test?.description}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						Email	
+					</td>
+					<td>
+						<input type="text" name="user.email" value="${user?.email}">#{error 'user.email'/}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Birthday
+					</td>
+					<td>	
+						birthday
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Sex
+					</td>
+					<td>
+						#{if user?.sex == true}
+							<input type="radio" name="user.sex" value="true" checked>Male
+							<input type="radio" name="user.sex" value="false">Female
+						#{/if}
+						#{else}
+							<input type="radio" name="user.sex" value="true">Male
+							<input type="radio" name="user.sex" value="false" checked>Female
+						#{/else}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Password
+					</td>
+					<td colspan="2">
+						<input type="password" name="password">#{error 'password'/}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Pasword repeating
+					</td>
+					<td colspan="2">
+						<input type="password" name="passwordRepeating">#{error 'passwordRepeating'/}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Name
+					</td>
+					<td colspan="2">
+						<input type="text" name="user.name" value="${user?.name}">#{error 'user.name'/}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Last name
+					</td>
+					<td colspan="2">
+						<input type="text" name="user.lastName" value="${user?.lastName}">#{error 'user.lastName'/}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Country  
+					</td>
+					<td colspan="2">
+						<select name="user.country.id">
+							#{list items:services.CountryService.getSortedCountries(), as:'country'}
+								<option value="${country?.id}" #{if user?.country?.id == country?.id}selected#{/if}#{elseif country_index == 1}selected#{/elseif}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country?.name)}</option>
+							#{/list}
+						</select>#{error 'user.country'/}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						City
+					</td>
+					<td colspan="2">
+						<input type="text" name="user.city" value="${user?.city}">#{error 'user.city'/}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Interesting Business Type
+					</td>
+					<td colspan="2">
+						<select name="user.businessType.id">
+							<option value=""></option>
+							#{list items:models.BType.findAll(), as:'bType'}
+								<option value="${bType?.id}" #{if user?.businessType?.id == bType?.id}selected#{/if}>&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(bType?.name)}</option>
+							#{/list}
+						</select>  #{error 'user.businessType'/}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Interesting Business Sphere
+					</td>
+					<td colspan="2">
+						<select name="user.businessSphere.id">
+							<option value=""></option>
+						 	#{list items:models.BSphere.findAll(), as:'bSphere'}
+								<option value="${bSphere?.id}" #{if user?.businessSphere?.id == bSphere?.id}selected#{/if}>&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(bSphere?.name)}</option>
+							#{/list}	
+						</select>#{error 'user.businessSphere'/}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Experience in Marketing/Advertising
+					</td>
+					<td>
+						<textarea rows="3" cols="50" name="user.expMarketing.description">${user?.expMarketing?.description}</textarea>#{error 'user.expMarketing'/}
+					</td>
+					<td colspan="2">
+						 <select name="user.expMarketing.level.id">
+							 #{list items:models.UserLevel.findAll(), as:'userLevel'}
+							 	<option value="${userLevel?.id}" #{if user?.expMarketing?.level?.id == userLevel?.id}selected#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(userLevel?.userLevel)}</option>
+							 #{/list}
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Experience in Sales/Communications
+					</td>
+					<td> 
+						<textarea rows="3" cols="50" name="user.expSale.description">${user?.expSale?.description}</textarea>#{error 'user.expSale'/}
+					</td>
+					<td>
+						<select name="user.expSale.level.id">
+							#{list items:models.UserLevel.findAll(), as:'userLevel'}
+								<option value="${userLevel?.id}" #{if user?.expSale?.level?.id == userLevel?.id}selected#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(userLevel?.userLevel)}</option>
+							#{/list}
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Experience in Management
+					</td>
+					<td>
+						<textarea rows="3" cols="50" name="user.expManagement.description">${user?.expManagement?.description}</textarea>#{error 'user.expManagement'/}
+					</td>
+					<td>
+						<select name="user.expManagement.level.id">
+							#{list items:models.UserLevel.findAll(), as:'userLevel'}
+								<option value="${userLevel?.id}" #{if user?.expManagement?.level?.id == userLevel?.id}selected#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(userLevel?.userLevel)}</option>
+							#{/list}
+						</select>	
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Experience in Finances
+					</td>
+					<td>
+						<textarea rows="3" cols="50" name="user.expFinance.description">${user?.expFinance?.description}</textarea>#{error 'user.expFinance'/}
+					</td>
+					<td>
+						<select name="user.expFinance.level.id">
+							#{list items:models.UserLevel.findAll(), as:'userLevel'}
+								<option value="${userLevel?.id}" #{if user?.expFinance?.level?.id == userLevel?.id}selected#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(userLevel?.userLevel)}</option>
+							#{/list}
+						</select>	
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Experience in Legal
+					</td>
+					<td>
+						<textarea rows="3" cols="50" name="user.expLegal.description">${user?.expLegal?.description}</textarea>#{error 'user.expLegal'/}
+					</td>
+					<td>
+						<select name="user.expLegal.level.id">
+							#{list items:models.UserLevel.findAll(), as:'userLevel'}
+								<option value="${userLevel?.id}" #{if user?.expLegal?.level?.id == userLevel?.id}selected#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(userLevel?.userLevel)}</option>
+							#{/list}
+						</select>	
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Experience in IT
+					</td>
+					<td>
+						<textarea rows="3" cols="50" name="user.expIT.description">${user?.expIT?.description}</textarea>#{error 'user.expIT'/}
+					</td>
+					<td>
+						<select name="user.expIT.level.id">
+							#{list items:models.UserLevel.findAll(), as:'userLevel'}
+								<option value="${userLevel?.id}" #{if user?.expIT?.level?.id == userLevel?.id}selected#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(userLevel?.userLevel)}</option>
+							#{/list}
+						</select>	
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Experience in Other
+					</td>
+					<td>
+						<textarea rows="3" cols="50" name="user.expOther.description">${user?.expOther?.description}</textarea>#{error 'user.expOther'/}
+					</td>
+					<td>
+						<select name="user.expOther.level.id">
+							#{list items:models.UserLevel.findAll(), as:'userLevel'}
+								<option value="${userLevel?.id}" #{if user?.expOther?.level?.id == userLevel?.id}selected#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(userLevel?.userLevel)}</option>
+							#{/list}
+						</select>	
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Personal CV
+					</td>
+					<td colspan="2">
+						<textarea rows="3" cols="50" name="user.personalCV">${user?.personalCV}</textarea>#{error 'user.personalCV'/}
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<input type="submit" value="Submit" id="submitTest">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	#{/form}
+#{/else}

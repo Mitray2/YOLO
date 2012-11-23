@@ -1,0 +1,59 @@
+#{field 'object.' + _name}
+    <label for="${field.id}">
+        &{_name}
+    </label>
+    
+    <script type="text/javascript" charset="utf-8">
+		$(document).ready(function() {
+			//textEditor initializing.
+			elRTE.prototype.options.panels.myPanel = [
+				'copy', 'cut', 'paste', 'pastetext', 'pasteformattext', 'removeformat', 'docstructure',
+				'undo', 'redo', 'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', 
+				'forecolor', 'hilitecolor', 'justifyleft', 'justifycenter', 'justifyright', 'justifyfull',
+				'outdent', 'indent', 'formatblock', 'fontsize', 'fontname', 'insertorderedlist', 'insertunorderedlist',
+				'horizontalrule', 'blockquote', 'div', 'stopfloat', 'css', 'nbsp', 'smiley', 'pagebreak', 'ltr', 'rtl',
+				'link', 'unlink', 'anchor', 'table', 'tableprops', 'tablerm',  'tbrowbefore', 
+				'tbrowafter', 'tbrowrm', 'tbcolbefore', 'tbcolafter', 'tbcolrm', 'tbcellprops', 'tbcellsmerge', 'tbcellsplit',
+				'elfinder', 'fullscreen' ];
+			elRTE.prototype.options.toolbars.myToolbar = ['myPanel'];
+			var opts = {
+				textarea : '${field.id}',
+				cssClass : 'el-rte',
+				lang     : 'ru',
+				#{if _width != null}
+					width: ${_width},
+				#{/if}
+				#{if _height != null}
+					height: ${_height},
+				#{/if}	
+				toolbar  : 'myToolbar',
+				cssfiles : ['css/elrte-inner.css'],
+// 				fmOpen : function(callback) {
+// 					        $('<div id="myelfinder" />').elfinder({
+// 					           url : '/filemanager/connector',
+// 					           lang : 'ru',
+// 					           dialog : { width : 900, modal : true, title : 'Files' }, // открываем в диалоговом окне
+// 					           closeOnEditorCallback : true, // закрываем после выбора файла
+// 					           editorCallback : callback, // передаем callback файловому менеджеру
+// 					           toolbar : 		[['back', 'reload'],
+// 												['select', 'open'],
+// 												['mkdir', 'mkfile', 'upload'],
+// 												['copy', 'paste', 'rm'],
+// 												['rename', 'edit'],
+// 												['info', 'quicklook', 'resize'],
+// 												['icons', 'list']]
+// 					        })
+// 					     }
+			}
+			
+			$('textarea#${field.id}').elrte(opts);
+		})
+	</script>
+	
+   	<div id="myelfinder" />
+   	
+    <textarea id="${field.id}" cols="48" rows="5" class="${field.errorClass}" name="${field.name}" style="display: none;">${params[field.name]?.escape()?.raw() ?: field.error?.message == 'validation.required' ? '' : _value?.escape()?.raw()}</textarea>
+    #{ifError field.name}
+        <span class="error">${field.error.raw()}</span>
+    #{/ifError}
+#{/field}

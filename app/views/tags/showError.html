@@ -1,0 +1,7 @@
+#{if _errors}
+<p class="error_mes">
+		#{list items:_errors, as:'error'}
+			&{error.message}<br/>
+		#{/list}
+</p>
+#{/if}

@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'Вход' /}
+#{submenu2/}
+<div class="content_block">
+#{form @Login.doLogin()}
+	<div class="page_ttl">
+		<h1>Вход</h1>
+	</div>
+		#{showError errors:errors /}
+		Логин<br/>
+		<input type="text" name="login" class="profile_input" value="${login}">
+		Пароль<br/>
+		<input type="password" name="password" class="profile_input" value="${password}" style="float: left;"><a href="/recoverPassword" class="remember">Забыли пароль или не пришло<br/>письмо подтверждения регистрации?</a>
+		<input type="submit" class="button" value="Вход" style="clear: both;" onclick="this.form.submit();">
+#{/form}
+</div>
+

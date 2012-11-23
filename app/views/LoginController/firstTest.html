@@ -1,0 +1,45 @@
+#{extends 'main_markup.html'/}
+%{
+	def currentValidation = play.data.validation.Validation.current();
+}%
+<h1>Здравствуйте, ${user?.name}! Необходимо пройти первый тест.</h1>
+	#{form @LoginController.firstTestPassed()}
+		<div class="test main-test">
+		#{ifErrors}
+			<div class="firstTest">
+				<div class="alert">
+		            Вы не ответили на несколько вопрососв.<br>
+		            Необходимо ответить на вопросы выделенные красным<br>
+	            </div>
+	        </div>
+        #{/ifErrors}
+				#{list items:test.questions, as:'question'}
+					<div class="test-item #{if currentValidation?.hasError(utils.ApplicationConstants.VALIDATION_MODEL_TEST_QUESTION_ANSWER_REQUIRED + question?.id)}error#{/if}">
+						<p class="question"><span>—</span>${question.value}</p>
+						<div class="reply">
+							<span class="reply-txt">Ваш ответ:</span>
+								#{list items:question.answers, as:'answer'}
+									<input type="radio" name="test.questions[${question_index}].answer.id" id="answer${answer.id}" class="radio" value="${answer.id}" #{if question?.answer?.id.equals(answer.id)}checked#{/if}>
+<!-- 									<input type="radio" name="test.questions[${question_index}].answer.id" id="answer${answer.id}" class="radio" value="${answer.id}" checked> -->
+									<label for="answer${answer?.id}" class="radio-btn">${answer.value}</label>
+								#{/list}
+						</div>
+					</div>
+					<input name="test.questions[${question_index}].id" type="hidden" value="${question.id}">
+				#{/list}
+				<input type="hidden" name="test.id" value="${test?.id}">
+				<input type="hidden" name="user.name" value="${user?.name}">
+				<input type="hidden" name="birthDay" value="${birthDay}">
+				<input type="hidden" name="birthMonth" value="${birthMonth}">
+				<input type="hidden" name="birthYear" value="${birthYear}">
+				<input type="hidden" name="user.email" value="${user?.email}">
+				<input type="hidden" name="user.sex" value="${user?.sex}">
+				<div class="test-btm">
+					<a href="" class="test-btn" onclick="this.parentElement.parentElement.parentElement.submit(); return false;">Покажите результаты</a>
+				</div>
+		</div>
+	#{/form}
+<aside class="secondary-test">
+	<h2>Цель первого теста</h2>
+	<p>Мотивация достижения — стремление к улучшению результатов, неудовлетворенность достигнутым, настойчивость в достижении своих целей, стремление добиться своего во что бы то ни стало — является одним из главных свойств личности, оказывающих влияние на всю человеческую жизнь. Многочисленные исследования показали тесную связь между уровнем мотивации достижения и успехом в жизнедеятельности. Данный психологический тест позволит Вам выяснить свой уровень мотивации.</p>
+</aside>

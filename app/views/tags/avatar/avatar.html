@@ -1,0 +1,11 @@
+#{if !_user.haveAvatar}	
+	#{if _user.sex}
+		<img src="/public/images/boilerplate/${_maleImg}" alt=""  class="${_cssClass}">
+	#{/if}
+	#{else}
+		<img src="/public/images/boilerplate/${_femaleImg}" alt=""  class="${_cssClass}">
+	#{/else}
+#{/if}
+#{else}
+	<img src="${play.Play.configuration.getProperty("filestoteURL")}/avatars/${_user.id}/avatar_${_avatarSize}.jpg" alt="" class="${_cssClass}">
+#{/else}

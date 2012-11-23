@@ -1,0 +1,8 @@
+BType(BType_1):
+    name:         On-line
+    
+BType(BType_2):
+    name:         Off-line
+    
+BType(BType_3):
+    name:         On-line + Off-line

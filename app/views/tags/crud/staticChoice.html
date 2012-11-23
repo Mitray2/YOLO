@@ -1,0 +1,4 @@
+<label for="object.&{_field.name}">
+	&{_field.name}
+</label>
+#{select name:'object.' + _field.name, items:_field.staticChoiceItems, valueProperty:'id', labelProperty:'label' , value:'' + _currentObject[_field.name] /}
