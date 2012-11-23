@@ -236,7 +236,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 /* line 207, ../scss/stl.scss */
 .hdr-page .sign-in {
-  padding: 10px 20px;
+  padding: 10px 30px;
   text-shadow: 0 -1px 0 #d5ab26;
   border-bottom: 1px solid #fcdd79;
   background:#ffd13d;
@@ -253,7 +253,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   text-decoration: none;
   border-radius: 4px;
   position: absolute;
-  top: 26px;
+  top: 22px;
   right: 0;
 }
 
@@ -305,6 +305,8 @@ a, input, input:hover, input:active, input:focus, textarea {
   font: 20px/25px Arial, sans-serif;
   margin-bottom: 14px;
   color: #626262;
+  margin-left: 30px;
+  text-align: left;
 }
 
 /* line 257, ../scss/stl.scss */
@@ -2129,23 +2131,6 @@ a, input, input:hover, input:active, input:focus, textarea {
   box-shadow: inset #fbfbfb 0 0 5px;
   color: #666;
 }
-
-.popup-formtxt textarea {
-  border: 1px solid #d4d4d4;
-  padding: 7px 9px 6px;
-  font: 14px/22px Arial, sans-serif;
-  border-radius: 5px;
-  width: 270px;
-  -webkit-box-shadow: inset #fbfbfb 0 0 5px;
-  -moz-box-shadow: inset #fbfbfb 0 0 5px;
-  box-shadow: inset #fbfbfb 0 0 5px;
-  color: #666;
-   height: 87px;
-  resize: none;
-  line-height:18px;
-  font-size:13px;
-  color:#aea9a9;
-}
 .profile-form .error input[type="text"],
 .profile-form .error input[type="password"],
 .profile-form .error textarea{
@@ -2169,7 +2154,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   margin-bottom: 20px;
 }
 .profile-form textarea {
-/*   display: block; fix for Mozila*/ 
+  display: block;
   height: 87px;
   resize: none;
   line-height:18px;

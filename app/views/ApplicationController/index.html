@@ -40,11 +40,11 @@ $(document).ready(function() {
 	$($('[name="birthYear"]').parent().find('div')[2]).hide();
 	
 	$('#password').keypress(function (e) {
-		  if (e.which == 13) {
+        if (e.which == 13) {
 		    $('#loginForm').submit();
-		    return false; 
-		  }
-		});
+		    return false;
+		}
+    });
 });
 </script> 
 </head>
@@ -54,27 +54,25 @@ $(document).ready(function() {
 			<div class="inner">
 				<a href="/"><img src="@{'public/images/boilerplate/logo-1.png'}" alt="" class="logo" /></a>
 				#{if !currentUser}
-				
-				#{form @LoginController.login(), id:'loginForm', class:'login_form'}
-					<table cellspacing="0">
-						<tbody>
-							<tr>
-								<td><label for="text">Логин</label></td>
-								<td><label for="passwod">Пароль</label></td>
-							</tr>
-							<tr>
-								<td><input type="text" name="loginEmail" id="text" autofocus="autofocus"/></td>
-								<td><input type="password" name="loginPassword" id="password" /></td>
-							</tr>
-							<tr>
-								<td><a href="" onclick="$('#regName').focus(); return false;">Регистрация</a></td>
-								<td><a href="" onClick="$('#popup-enter').fadeIn(1000); $('#overlay').fadeIn(1000);$('#popup-enter-ttl').html('Восстановление пароля');$('#enterForm').hide();$('#recoverEmailForm').show(); return false;">Забыли пароль?</a></td>
-							</tr>
-						</tbody>
-					</table>
-				
-				#{/form}
-				<a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">Войти</a>
+                    #{form @LoginController.login(), id:'loginForm', class:'login_form'}
+                        <table cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td><label for="text">Логин</label></td>
+                                    <td><label for="password">Пароль</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="loginEmail" id="text" autofocus="autofocus"/></td>
+                                    <td><input type="password" name="loginPassword" id="password" /></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="" onclick="$('#regName').focus(); return false;">Регистрация</a></td>
+                                    <td><a href="" onClick="$('#popup-enter').fadeIn(1000); $('#overlay').fadeIn(1000);$('#popup-enter-ttl').html('Восстановление пароля');$('#enterForm').hide();$('#recoverEmailForm').show(); return false;">Забыли пароль?</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    #{/form}
+				    <a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">Войти</a>
 				#{/if}
 				#{if currentUser}
 					<a href="@{LoginController.logout()}" class="sign-in">Выйти</a>

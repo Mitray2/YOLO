@@ -15,10 +15,18 @@
 }%
 
 <script type="text/javascript">
-$(document).ready(function() {
+    $(document).ready(function() {
 	/*placeholder*/
 	$('input[placeholder], textarea[placeholder]').placeholder();
+
+    $('#password').keypress(function (e) {
+        if (e.which == 13) {
+            $('#loginForm').submit();
+            return false;
+        }
+    });
 });
+
 </script>
 </head>
 <body>
@@ -26,16 +34,30 @@ $(document).ready(function() {
 		<header class="hdr-page">
 			<div class="inner">
 				<a href="/"><img src="@{'public/images/boilerplate/logo.png'}" alt="" class="logo" /></a>
-				<nav class="main-nav">
-					<ul>
-						<li><a href="/">Главная</a></li>
-						<li><a href="/news">Новости</a></li>
-						<li><a href="/about/">О проекте</a></li>
-						<li><a href="/contacts/">Контакты</a></li>
-						<li><a href="/partners/">Партнеры</a></li>
-					</ul>
-				</nav>
-				<a href="#{if currentUser}@{LoginController.logout()}#{/if}" id="#{if !currentUser}sign-in#{/if}" class="sign-in">#{if currentUser}Выйти#{/if}#{else}Войти на сайт#{/else}</a>
+                #{if !currentUser}
+                    #{form @LoginController.login(), id:'loginForm', class:'login_form'}
+                        <table cellspacing="0">
+                            <tbody>
+                            <tr>
+                                <td><label for="text">Логин</label></td>
+                                <td><label for="password">Пароль</label></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="loginEmail" id="text" autofocus="autofocus"/></td>
+                                <td><input type="password" name="loginPassword" id="password" /></td>
+                            </tr>
+                            <tr>
+                                <td><a href="" onclick="$('#regName').focus(); return false;">Регистрация</a></td>
+                                <td><a href="" onClick="$('#popup-enter').fadeIn(1000); $('#overlay').fadeIn(1000);$('#popup-enter-ttl').html('Восстановление пароля');$('#enterForm').hide();$('#recoverEmailForm').show(); return false;">Забыли пароль?</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    #{/form}
+                    <a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">Войти</a>
+                #{/if}
+                #{if currentUser}
+                    <a href="@{LoginController.logout()}" class="sign-in">Выйти</a>
+                #{/if}
 			</div>
 		</header>
 		<div class="content wrap-inner clearFix">
