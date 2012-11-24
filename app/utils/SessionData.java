@@ -1,6 +1,7 @@
 package utils;
 
 import java.util.List;
+import java.util.Map;
 
 import models.User;
 
@@ -10,16 +11,6 @@ public class SessionData {
 
 	public SessionUserMessage userMessage;
 
-	public List<Long> testsNotPassed = null;
-
-	public int indexCurrentTest;
-
-	public int cap1;
-
-	public int cap2;
-
-	public String capMsg;
-	
 	public static class SessionUserMessage {
 //		int type;
 		public SessionUserMessage(String value){

@@ -374,6 +374,11 @@ public class LoginController extends Controller implements ApplicationConstants 
 		}
 	}
 
+    public static void register() {
+        flash("registration", true);
+        redirect(request.getBase());
+    }
+
 	private static boolean userPassedTest(User user) {
 		return user.communicant > 0 || user.pragmatist > 0 || user.idealist > 0;
 	}

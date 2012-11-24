@@ -33,7 +33,7 @@
 	<div class="wrapper inner-page">
 		<header class="hdr-page">
 			<div class="inner">
-				<a href="/"><img src="@{'public/images/boilerplate/logo.png'}" alt="" class="logo" /></a>
+				<a href="/"><img src="@{'public/images/boilerplate/logo-1.png'}" alt="" class="logo" /></a>
                 #{if !currentUser}
                     #{form @LoginController.login(), id:'loginForm', class:'login_form'}
                         <table cellspacing="0">
@@ -47,7 +47,7 @@
                                 <td><input type="password" name="loginPassword" id="password" /></td>
                             </tr>
                             <tr>
-                                <td><a href="" onclick="$('#regName').focus(); return false;">Регистрация</a></td>
+                                <td><a href="@{LoginController.register()}" >Регистрация</a></td>
                                 <td><a href="" onClick="$('#popup-enter').fadeIn(1000); $('#overlay').fadeIn(1000);$('#popup-enter-ttl').html('Восстановление пароля');$('#enterForm').hide();$('#recoverEmailForm').show(); return false;">Забыли пароль?</a></td>
                             </tr>
                             </tbody>

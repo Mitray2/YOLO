@@ -18,12 +18,8 @@
 	def currentValidation = play.data.validation.Validation.current();
 }%
 $(document).ready(function() {
-	/*placeholder*/
 	$('input[placeholder], textarea[placeholder]').placeholder();
-// 	$('[name="user.name"]').val('Женя');
-// 	$('[name="user.email"]').val('zhenya-yadlovskij@yandex.ru');
-// 	$('#rad1').attr('checked', true);
-	
+
 	#{if currentValidation?.hasError('recoverEmail')}
 		$('#enterForm').hide();
 		$('#recoverEmailForm').show();
@@ -35,16 +31,20 @@ $(document).ready(function() {
 		$('#popup-enter').show();
 	#{/if}
 	//show 2000 selected at first
-	$($('[name="birthYear"]').parent().find('div')[2]).show();
-	$('[name="birthYear"]').parent().find('div')[2].scrollTop = 2500;
-	$($('[name="birthYear"]').parent().find('div')[2]).hide();
-	
-	$('#password').keypress(function (e) {
-        if (e.which == 13) {
-		    $('#loginForm').submit();
-		    return false;
-		}
-    });
+        $($('[name="birthYear"]').parent().find('div')[2]).show();
+        $('[name="birthYear"]').parent().find('div')[2].scrollTop = 2500;
+        $($('[name="birthYear"]').parent().find('div')[2]).hide();
+
+        $('#password').keypress(function (e) {
+            if (e.which == 13) {
+                $('#loginForm').submit();
+                return false;
+            }
+        });
+    //made for focus when clicking registration on the pages excepts main
+    #{if flash.get("registration")}
+        $('#regName').focus();
+    #{/if}
 });
 </script> 
 </head>

@@ -48,7 +48,8 @@ POST		/login/?									LoginController.login
 GET			/logout/?									LoginController.logout
 GET 		/confirmRegistration/?						LoginController.confirmRegistration
 POST		/recoverPassword/?							LoginController.recoverPassword
-														
+GET         /register/?                                 LoginController.register
+
 #UserController
 GET 		/changePassword								UserController.changePassword
 POST 		/doChangePassword							UserController.doChangePassword
