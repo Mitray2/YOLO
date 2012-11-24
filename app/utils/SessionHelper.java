@@ -25,22 +25,6 @@ public class SessionHelper {
 		return new Long(System.currentTimeMillis()).toString();
 	}
 
-	public static String generateCaptcha(Session session) {
-		checkInitialised(session);
-		SessionData data = sessionStore.get(session.get(SESSION_ID));
-		data.cap1 = rand.nextInt(10);
-		data.cap2 = rand.nextInt(10);
-		data.capMsg = data.cap1 + " + " + data.cap2;
-		return data.capMsg;
-	}
-
-	public static boolean validateCaptcha(Session session, String cap) {
-		checkInitialised(session);
-		SessionData data = sessionStore.get(session.get(SESSION_ID));
-		return cap != null
-				&& cap.equals(new Integer(data.cap1 + data.cap2).toString());
-	}
-
 	public static void setUserMessage(Session session, SessionUserMessage message) {
 		checkInitialised(session);
 		sessionStore.get(session.get(SESSION_ID)).userMessage = message;
@@ -61,35 +45,6 @@ public class SessionHelper {
 	public static void setCurrentUser(Session session, User user) {
 		checkInitialised(session);
 		sessionStore.get(session.get(SESSION_ID)).user = user;
-	}
-
-	public static List<Long> getTestsNotPassed(Session session) {
-		checkInitialised(session);
-		List<Long> testsPassed = sessionStore.get(session.get(SESSION_ID)).testsNotPassed;
-		return testsPassed;
-	}
-
-	public static void setTestsNotPassed(Session session, Long id) {
-		checkInitialised(session);
-		if (sessionStore.get(session.get(SESSION_ID)).testsNotPassed == null) {
-			sessionStore.get(session.get(SESSION_ID)).testsNotPassed = new ArrayList<Long>();
-		}
-		sessionStore.get(session.get(SESSION_ID)).testsNotPassed.add(id);
-	}
-
-	public static void removeTestPassed(Session session, int id) {
-		checkInitialised(session);
-		sessionStore.get(session.get(SESSION_ID)).testsNotPassed.remove(id);
-	}
-
-	public static void setIndexCurrentTest(Session session, int index) {
-		checkInitialised(session);
-		sessionStore.get(session.get(SESSION_ID)).indexCurrentTest = index;
-	}
-
-	public static int getIndexCurrentTest(Session session) {
-		checkInitialised(session);
-		return sessionStore.get(session.get(SESSION_ID)).indexCurrentTest;
 	}
 
 	private static void checkInitialised(Session session) {
