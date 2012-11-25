@@ -82,11 +82,11 @@ models.test.number1.result3=Поздравляем, твой результат 
 models.test.number1.result4=Поздравляем, твой результат - <span class="rating">%s баллов</span>! У тебя огромные предпринимательские задатки! Тебе необходимо как можно скорее собрать сильную команду единомышленников и создать собственный успешный бизнес международного масштаба! Кто сможет, если не ты?
 
 #first test passed social texts
-models.test.number1.social.text=Я прошел тест на предпринимательство. Мой результат - %s. А кто ты? Может мы можем вместе основать новый бизнес? Узнай на www.teampusher.com
+models.test.number1.social.text=Мои предпринимательские способности оценены в %s баллов. Пора начинать свое дело! Кто со мной?
 models.test.number1.social.title=Я прошёл первый тест
 
 #second test passed
-models.test.number2.social.text=Я прошел второй тест. Узнай подробности на www.teampusher.com
+models.test.number2.social.text=Мой тип предпринимателя: %s .Ищу партнеров в команду.
 models.test.number2.social.title=Я прошёл второй тест
 
 
@@ -295,7 +295,6 @@ models.country.name.South_Sudan=Южный Судан
 models.country.name.Spain=Испания
 models.country.name.Sri_Lanka=Шри-Ланка
 models.country.name.Sudan=Судан
-models.country.name.South_Sudan=Южный Судан
 models.country.name.Suriname=Суринам
 models.country.name.Swaziland=Свазиленд
 models.country.name.Sweden=Швеция

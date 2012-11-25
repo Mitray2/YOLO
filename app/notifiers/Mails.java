@@ -20,9 +20,9 @@ public class Mails extends Mailer {
 	// }
 
 	public static void firstTestPassed(User user, String base) {
-		setSubject("Рады приветствовать вас на сайте " + base);
+		setSubject("Предварительная регистрация");
 		addRecipient(user.email);
-		setFrom("welcome@teampusher.com");
+		setFrom("success@startnewteam.com");
 		String password = PasswordGenerator.generate();
 		String hash = user.mailTicket = user.passwordHash = SecurityHelper.createPasswordHash(password);
 		user.save();
@@ -30,9 +30,9 @@ public class Mails extends Mailer {
 	}
 
 	public static void secondTestPassed(User user, String base) {
-		setSubject("Рады приветствовать вас на сайте " + base);
+		setSubject("Подтверждение регистрации");
 		addRecipient(user.email);
-		setFrom("welcome@teampusher.com");
+		setFrom("success@startnewteam.com");
 		String password = PasswordGenerator.generate();
 		String hash = user.mailTicket = user.passwordHash = SecurityHelper.createPasswordHash(password);
 		user.save();
@@ -40,9 +40,9 @@ public class Mails extends Mailer {
 	}
 
 	public static void blankFormPassed(User user, String base) {
-		setSubject("Рады приветствовать вас на сайте " + base);
+		setSubject("Подтверждение регистрации");
 		addRecipient(user.email);
-		setFrom("welcome@teampusher.com");
+		setFrom("success@startnewteam.com");
 		String hash = user.mailTicket = SecurityHelper.createPasswordHash(user.email);
 		user.save();
 		send(user, hash, base);

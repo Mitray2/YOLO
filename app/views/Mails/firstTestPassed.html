@@ -1,15 +1,16 @@
 <html>
 	<body>
 		<p>
-			Доброго времени суток ${user?.name} !<br>
+            Добрый день, ${user?.name}!<br>
 			<br>
-			Спасибо за первичную регистрацию. Добро пожаловать на сайт <a href="http://www.teampusher.com">teampusher.com</a>. В данном письме указаны Ваши логин и пароль для дальнейшего доступа в систему.
+            Предварительная регистрация на <a href="${base}">StartNewTeam</a> прошла успешно.
 			<br>
 			<br>
 			Логин: ${user.email}<br>
 			Пароль: ${password}<br>
-			Для прохождения 2-го теста пройдите по <a href="${base}/confirmRegistration?ticket=${hash}">ссылке</a><br>
-			С уважением, команда <a href="http://www.teampusher.com">teampusher.com</a>
+            Для завершения тестирования и прохождения полной регистрации можно авторизоваться на сайте, используя логин и пароль, или пройти по данной <a href="${base}/confirmRegistration?ticket=${hash}">ссылке</a>
+            <br>
+			С уважением, команда <a href="${base}">StartNewTeam</a>
 		</p>
 	</body>
 </html>

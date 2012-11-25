@@ -9,7 +9,10 @@
 		Прагаматик = #{models.user.processedParameter parameter:currentUser?.pragmatist/}<br>
 		Коммуникат = #{models.user.processedParameter parameter:currentUser?.communicant/}<br>
 		Идеалист&nbsp;&nbsp; = #{models.user.processedParameter parameter:currentUser?.idealist/}<br>
-		<ul class="social-likes" data-title="&{'models.test.number2.social.title'}" data-twit="&{'models.test.number2.social.text', result}" data-description="&{'models.test.number1.social.text', result}" data-url="${request.getBase()}" >
+        %{
+            def socialResult = "Идеалист " + currentUser?.idealist + ", Коммуникант " + currentUser?.communicant + ", Прагматик " + currentUser?.pragmatist;
+        }%
+		<ul class="social-likes" data-title="&{'models.test.number2.social.title'}" data-twit="&{'models.test.number2.social.text', socialResult} www.startnewteam.ru" data-description="&{'models.test.number1.social.text', socialResult}" data-url="${request.getBase()}" >
 			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
 			<li class="twitter"  title="Опубликовать ссылку в Твиттере">Twitter</li>
 			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
