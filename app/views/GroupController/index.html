@@ -31,70 +31,70 @@
 	</div>
 	<div class="group-info-rate-help">* на основе данных об
 		участниках команды</div>
-	<p>
+	<pre>
 		${group.description}
-	</p>
+	</pre>
 </div>
 <div class="group-vacancies-ttl">Нам необходимы специалисты</div>
 <div class="group-vacancies">
 	#{if (group.marketing != null) && (group.marketing?.active)}
 		<div class="group-vacancies-item">
 			<div class="group-vacancies-name">Маркетинг/Реклама/PR</div>
-			<p>${group.marketing.descrition}</p>
+			<pre>${group.marketing.descrition}</pre>
 		</div>
 	#{/if}
 	#{if (group.trade != null) && (group.trade?.active)}
 		<div class="group-vacancies-item">
 			<div class="group-vacancies-name">Продажи/Переговоры</div>
-			<p>${group.trade.descrition}</p>
+			<pre>${group.trade.descrition}</pre>
 		</div>
 	#{/if}
 	#{if (group.management != null) && (group.management?.active)}
 		<div class="group-vacancies-item">
 			<div class="group-vacancies-name">Менеджмент</div>
-			<p>${group.management.descrition}</p>
+			<pre>${group.management.descrition}</pre>
 		</div>
 	#{/if}
 	#{if (group.finance != null) && (group.finance?.active)}
 		<div class="group-vacancies-item">
 			<div class="group-vacancies-name">Финансы/Бух.учет</div>
-			<p>${group.finance.descrition}</p>
+			<pre>${group.finance.descrition}</pre>
 		</div>
 	#{/if}
 	#{if (group.legal != null) && (group.legal?.active)}
 		<div class="group-vacancies-item">
 			<div class="group-vacancies-name">Право/Налоги</div>
-			<p>${group.legal.descrition}</p>
+			<pre>${group.legal.descrition}</pre>
 		</div>
 	#{/if}
 	#{if (group.programming != null) && (group.programming?.active)}
 		<div class="group-vacancies-item">
 			<div class="group-vacancies-name">IT/Программирование</div>
-			<p>${group.programming.descrition}</p>
+			<pre>${group.programming.descrition}</pre>
 		</div>
 	#{/if}
 	#{if (group.otherSkill != null) && (group.otherSkill?.active)}
 		<div class="group-vacancies-item">
 			<div class="group-vacancies-name">Другое: ${group.otherSkill.skillName}</div>
-			<p>${group.otherSkill.descrition}</p>
+			<pre>${group.otherSkill.descrition}</pre>
 		</div>
 	#{/if}
 	#{if (group.pragmatica != null) && (group.pragmatica?.active)}
 		<div class="group-vacancies-item">
 			<div class="group-vacancies-name">Прагматичность</div>
-			<p>${group.pragmatica.descrition}</p>
+			<pre>${group.pragmatica.descrition}</pre>
 		</div>
 	#{/if}
 	#{if (group.idealize != null) && (group.idealize?.active)}
 		<div class="group-vacancies-item">
 			<div class="group-vacancies-name">Идеалистичность</div>
-			<p>${group.idealize.descrition}</p>
+			<pre>${group.idealize.descrition}</pre>
 		</div>
 	#{/if}
 	#{if (group.communication != null) && (group.communication?.active)}
 		<div class="group-vacancies-item">
 			<div class="group-vacancies-name">Комуникабельность</div>
-			<p>${group.communication.descrition}</p>
+			<pre>${group.communication.descrition}</pre>
 		</div>
 	#{/if}
 </div>

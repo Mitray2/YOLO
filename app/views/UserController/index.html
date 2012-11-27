@@ -60,7 +60,7 @@
                 </div>
                 <div class="user-info-ttl">Персональная характеристика</div>
                 <div class="user-info">
-                    <p>${user.personalCV}</p>
+                    <pre>${user.personalCV}</pre>
                 </div>
                 <div class="group-consist-ttl">Состоит в группе</div>
                 <div class="group-consist">
@@ -73,27 +73,27 @@
                 <div class="group-vacancies">
                 	<div class="group-vacancies-item">
                     	<div class="group-vacancies-name">Маркетинг <span>&#8594;</span>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expMarketing?.level?.userLevel)}</div>
-                        <p>${user?.expMarketing?.description}</p>
+                        <pre>${user?.expMarketing?.description}</pre>
                     </div>
                     <div class="group-vacancies-item">
                     	<div class="group-vacancies-name">Продажи <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expSale?.level?.userLevel)}</div>
-                        <p>${user?.expSale?.description}</p>
+                        <pre>${user?.expSale?.description}</pre>
                     </div>
                     <div class="group-vacancies-item">
                     	<div class="group-vacancies-name">Финансы<span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expFinance?.level?.userLevel)}</div>
-                        <p>${user?.expFinance?.description}</p>
+                        <pre>${user?.expFinance?.description}</pre>
                     </div>
                     <div class="group-vacancies-item">
                     	<div class="group-vacancies-name">Право <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expLegal?.level?.userLevel)}</div>
-                        <p>${user?.expLegal?.description}</p>
+                        <pre>${user?.expLegal?.description}</pre>
                     </div>
                     <div class="group-vacancies-item">
                     	<div class="group-vacancies-name">Программирование / IT <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expIT?.level?.userLevel)}</div>
-                        <p>${user?.expIT?.description}</p>
+                        <pre>${user?.expIT?.description}</pre>
                     </div>
                     <div class="group-vacancies-item">
                     	<div class="group-vacancies-name">Другое <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expOther?.level?.userLevel)}</div>
-                        <p>${user?.expOther?.description}</p>
+                        <pre>${user?.expOther?.description}</pre>
                     </div>
                 </div>
 #{/if}
