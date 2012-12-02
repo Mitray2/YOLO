@@ -85,7 +85,6 @@ public class RssHelper {
 
             entries.add(entry);
             outputFeed.setEntries(entries);
-//            outputFeed.setEncoding(RSS_ENCODING);
             SyndFeedOutput output = new SyndFeedOutput();
             output.output(outputFeed, new FileWriterWithEncoding(FileStoreHelper.getRssFile(), RSS_ENCODING));
         } catch (Exception e) {
@@ -96,7 +95,6 @@ public class RssHelper {
     public String getRss() {
         try {
             outputFeed.setEntries(entries);
-//            outputFeed.setEncoding("UTF-8");
             return new SyndFeedOutput().outputString(outputFeed);
         } catch (FeedException e) {
             Logger.error("Cannot convert to xml", e);
