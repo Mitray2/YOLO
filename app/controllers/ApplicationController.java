@@ -2,6 +2,7 @@ package controllers;
 
 import models.User;
 import play.mvc.Controller;
+import utils.RssHelper;
 import utils.SessionHelper;
 
 public class ApplicationController extends Controller {
@@ -17,5 +18,9 @@ public class ApplicationController extends Controller {
 		}
 		render();
 	}
+
+    public static void rss(){
+        renderText(RssHelper.getInstance().getRss());
+    }
 
 }

@@ -1,9 +1,10 @@
 package utils;
 
-import java.io.File;
-
 import play.Logger;
 import play.Play;
+
+import java.io.File;
+import java.io.IOException;
 
 public class FileStoreHelper {
 
@@ -19,5 +20,18 @@ public class FileStoreHelper {
 		}
 		return fileStore;
 	}
+
+    public static File getRssFile() {
+        try {
+            File rssFolder = new File(getFileStoreFile(), "other/");
+            rssFolder.mkdir();
+            File rssXml = new File(rssFolder, "rss.xml");
+            rssXml.createNewFile();
+            return rssXml;
+        } catch (IOException e) {
+            Logger.error("Cannot find rss.xml", e);
+        }
+        return null;
+    }
 
 }

@@ -1,25 +1,9 @@
 package controllers;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import controllers.crud.annotation.*;
 import models.User;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
-
 import play.Logger;
 import play.Play;
 import play.data.binding.Binder;
@@ -35,14 +19,16 @@ import play.mvc.Http;
 import play.mvc.Router;
 import play.utils.Java;
 import utils.SessionHelper;
-import controllers.crud.annotation.ChoiceFilter;
-import controllers.crud.annotation.ChoiceItem;
-import controllers.crud.annotation.ChoiceList;
-import controllers.crud.annotation.DateTime;
-import controllers.crud.annotation.HTML;
-import controllers.crud.annotation.Readonly;
-import controllers.crud.annotation.TextEditor;
-import controllers.crud.annotation.TextEditorProperty;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.*;
 
 public abstract class CRUD_2 extends Controller {
 
@@ -61,7 +47,7 @@ public abstract class CRUD_2 extends Controller {
 				return;
 			else
 				// redirect(request.getBase() + "/admin"); // this row is block
-				// all actions wich is not post Action
+				// all actions which is not post Action
 				return;
 		} else {
 			CommonController.error(CommonController.ERROR_SECURITY);
@@ -75,39 +61,16 @@ public abstract class CRUD_2 extends Controller {
 	}
 
 	public static void index() {
-		// User currentUser = SessionHelper.getCurrentUser(session);
-		// if (currentUser != null &&
-		// (currentUser.role.equals(User.ROLE_ALIEN_AUTHOR) ||
-		// currentUser.role.equals(User.ROLE_COACHMEN_AUTHOR) ||
-		// currentUser.role.equals(User.ROLE_ADMIN))) {
-		// if (getControllerClass() == CRUD_2.class) {
-		// forbidden();
-		// }
 		render("CRUD_2/index.html");
-		// } else {
-		// Common.error(Common.ERROR_SECURITY);
-		// }
 	}
 
 	public static void list(int page, String search, String searchFields, String orderBy, String order) {
-		// User currentUser = SessionHelper.getCurrentUser(session);
 		ObjectType type = ObjectType.get(getControllerClass());
 		notFoundIfNull(type);
 		if (page < 1) {
 			page = 1;
 		}
 		String where = (String) request.args.get("where");
-		// if (currentUser != null && !currentUser.role.equals(User.ROLE_ADMIN))
-		// {
-		// if (type.modelName.equals("Post")) {
-		// if (where != null && where.length() != 0) {
-		// where += " and ";
-		// } else {
-		// where = "";
-		// }
-		// where += " author = " + currentUser.id;
-		// }
-		// }
 		List<Model> objects = type.findPage(page, search, searchFields, orderBy, order, where);
 		Long count = type.count(search, searchFields, where);
 		Long totalCount = type.count(null, null, where);
@@ -118,7 +81,7 @@ public abstract class CRUD_2 extends Controller {
 		}
 	}
 
-	public static void show(String id) {
+	public static void show(Long id) {
 		ObjectType type = ObjectType.get(getControllerClass());
 		notFoundIfNull(type);
 		Model object = type.findById(id);
@@ -156,7 +119,7 @@ public abstract class CRUD_2 extends Controller {
 		notFound();
 	}
 
-	public static void save(String id) throws Exception {
+	public static void save(Long id) throws Exception {
 		ObjectType type = ObjectType.get(getControllerClass());
 		notFoundIfNull(type);
 		Model object = type.findById(id);
@@ -219,7 +182,7 @@ public abstract class CRUD_2 extends Controller {
 		redirect(request.controller + ".show", object._key());
 	}
 
-	public static void delete(String id) {
+	public static void delete(Long id) {
 		ObjectType type = ObjectType.get(getControllerClass());
 		notFoundIfNull(type);
 		Model object = type.findById(id);
@@ -581,8 +544,4 @@ public abstract class CRUD_2 extends Controller {
 
 		}
 	}
-	// for tests
-	// public static void main(String[] args) {
-	//
-	// }
 }

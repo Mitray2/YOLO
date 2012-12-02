@@ -11,6 +11,8 @@ GET		/organizators/?							OrganizatorsController.index
 GET		/partners/?								PartnersController.index
 GET		/sponsors/?								SponsorsController.index
 
+#services
+GET     /rss                                    ApplicationController.rss
 
 
 
