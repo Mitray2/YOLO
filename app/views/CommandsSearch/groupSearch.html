@@ -187,7 +187,7 @@
     	
 					<li class="search-result-item">
 						<h4><a href="@{GroupController.index(command.id)}">${command.name}</a></h4>
-						<p>${utils.StringUtilsDisplay.getSubString(command.description, 0, 300)}</p>
+						<pre>${utils.StringUtilsDisplay.getSubString(command.description, 0, 300)}</pre>
 						<div class="founder">Основатель: <a href="@{UserController.index(command.founderUser?.id)}" class="man">${command.founderUser?.name + " " + command.founderUser?.lastName}</a><span class="numb-user">${command.users?.size()} участника</span>
 						</div>
 					</li>

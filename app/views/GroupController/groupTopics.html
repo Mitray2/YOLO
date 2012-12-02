@@ -41,7 +41,7 @@ function editDisabled(element){
 		#{if (topic.publicTopic || groupMember) && (!topic.mainTopic)}
 		<li class="search-result-item clearFix">
 			<h4><a href="@{GroupController.indexTopic(topic.id, group.id)}">${topic.name}</a></h4>
-			<p>${topic.description}</p>
+			<pre>${topic.description}</pre>
 			<div class="search-result-list-date"> <strong>${topic.msg?.size()} ответов <br/>${utils.DateUtils.getFormatedStringDate(topic.lastUpdateDate, true)}</strong></div>
             <a href="@{GroupController.indexTopic(topic.id, group.id)}" class="search-result-list-more">Перейти к обсуждению <span>&nbsp;&#8594;</span></a>
 		</li>
@@ -77,11 +77,9 @@ function editDisabled(element){
                         		<span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">Редактировать сообщение</span></span>
                         	#{/if}
                         </div>
-                        <p class="msgRead">
-                        <div class="msg group-theme-dialog-form">
-                        	<textarea style="border: none" readonly="readonly" cols="" rows="" >${msg.text} </textarea>
-                        </div>
-                        </p>
+                        <pre class="msgRead">
+                        ${msg.text}
+                        </pre>
                         <div style="display: none" class="msg group-theme-dialog-form">
 			            	<textarea name="msg.text" cols="" rows="">${msg.text} </textarea>
 			                <button type="submit" class="group-theme-btn">Сохранить</button>
