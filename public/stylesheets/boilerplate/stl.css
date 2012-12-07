@@ -265,7 +265,6 @@ a, input, input:hover, input:active, input:focus, textarea {
 
 /* line 220, ../scss/stl.scss */
 .about-list li {
-  border-top: 2px dashed #e1e1e1;
   padding: 23px 0 10px;
 }
 /* line 223, ../scss/stl.scss */
