@@ -53,4 +53,7 @@ public interface ApplicationConstants {
 	public static final String SECOND_TEST_PATH = "/secondTest/";
 	public static final String BLANK_FORM_PATH = "/blankform/";
 	public static final String CITY_PATTERN = "[А-Яа-я\\-\\s]+";
+	
+	public static final String CACHE_USERS_COUNT = "cacheUsersCount";
+	public static final String CACHE_COMMANDS_COUNT = "cacheCommandsCount";
 }

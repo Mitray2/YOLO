@@ -1,5 +1,7 @@
 package models;
 
+import static utils.ApplicationConstants.*;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,8 +16,10 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Formula;
 
+import play.cache.EhCacheImpl;
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
+import play.db.jpa.JPABase;
 import play.db.jpa.Model;
 
 @Entity
@@ -276,6 +280,18 @@ public class Command extends Model {
 
 	public void setUsersForAprove(List<User> usersForAprove) {
 		this.usersForAprove = usersForAprove;
+	}
+	
+	@Override
+	public <T extends JPABase> T delete() {
+		EhCacheImpl.getInstance().delete(CACHE_COMMANDS_COUNT);
+		return super.delete();
+	}
+	
+	@Override
+	public <T extends JPABase> T save() {
+		EhCacheImpl.getInstance().delete(CACHE_COMMANDS_COUNT);
+		return super.save();
 	}
 
 }

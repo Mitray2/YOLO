@@ -4,6 +4,7 @@
 package models;
 
 import java.util.ArrayList;
+import static utils.ApplicationConstants.*;
 import java.util.Date;
 import java.util.List;
 
@@ -14,9 +15,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import play.cache.EhCacheImpl;
 import play.data.validation.Email;
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
+import play.db.jpa.JPABase;
 import play.db.jpa.Model;
 
 /**
@@ -129,4 +132,17 @@ public class User extends Model {
 	public List<Command> commandsForAprove = new ArrayList<Command>();
 	
 	public Boolean haveAvatar = false;
+	
+	@Override
+	public <T extends JPABase> T delete() {
+		EhCacheImpl.getInstance().delete(CACHE_USERS_COUNT);
+		return super.delete();
+	}
+	
+	@Override
+	public <T extends JPABase> T save() {
+		EhCacheImpl.getInstance().delete(CACHE_USERS_COUNT);
+		return super.save();
+	}
+	
 }
