@@ -2,6 +2,13 @@
 %{
 	def currentValidation = play.data.validation.Validation.current();
 }%
+<style>
+<!--
+	#loginForm, .sign-in, .ftr-nav {
+		display: none;
+	}
+-->
+</style>
 <h1>Здравствуйте, ${user?.name}! Необходимо пройти первый тест.</h1>
 	#{form @LoginController.firstTestPassed()}
 		<div class="test main-test">

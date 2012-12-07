@@ -3,6 +3,13 @@
 %{
 	def currentValidation = play.data.validation.Validation.current();
 }% 
+<style>
+<!--
+	.logged, .main-nav, .ftr-nav {
+		display: none;
+	}
+-->
+</style>
 <h1>Вы прошли первый тест! Последний рывок перед регистрацией</h1>
 #{form @LoginController.secondTestPassed()}
 	<div class="test">
