@@ -31,7 +31,7 @@ import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
 import utils.TopicComparator;
 
-public class GroupController extends Controller implements ApplicationConstants{
+public class GroupController extends Controller implements ApplicationConstants {
 
 	@Before
 	public static void checkSecutiry() {
@@ -484,5 +484,31 @@ public class GroupController extends Controller implements ApplicationConstants{
 			SessionHelper.setCurrentUser(session, userState);
 		}
 		UserController.index(user.id);
+	}
+
+	public static void removeMessage(Long msgId, Long groupId) {
+		TopicMessage message = TopicMessage.findById(msgId);
+		Long topicId = message.topic.id;
+		Topic topic = Topic.findById(topicId);
+		topic.msg.remove(message);
+		topic.save();
+		message.from = null;
+		message.topic = null;
+		message.save();
+		message.delete();
+		indexTopic(topicId, groupId);
+	}
+
+	public static void removeMainMessage(Long msgId, Long groupId) {
+		TopicMessage message = TopicMessage.findById(msgId);
+		Long topicId = message.topic.id;
+		Topic topic = Topic.findById(topicId);
+		topic.msg.remove(message);
+		topic.save();
+		message.from = null;
+		message.topic = null;
+		message.save();
+		message.delete();
+		groupTopics(groupId);
 	}
 }

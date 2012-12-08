@@ -75,6 +75,7 @@ function editDisabled(element){
                         	<a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${msg.createDate}
                         	#{if (userId == msg.from.id) || (isAdmin)}
                         		<span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">Редактировать сообщение</span></span>
+                        		<a href="@{GroupController.removeMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить тему</span></span></a>
                         	#{/if}
                         </div>
                         <pre class="msgRead">

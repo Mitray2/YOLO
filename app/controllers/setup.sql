@@ -30,3 +30,19 @@ create table dpss_pt_priceapproval (
   constraint fk_dpss_pt_cfg_2 foreign key (promotion_run_id, pricing_type_id)
     references dpss_pricing_type (promotion_run_id, dpss_pricing_type)
 );
+
+DECLARE
+  h1 NUMBER;              
+  v_date varchar2(20);
+  v_date_started date;
+BEGIN
+    v_date_started := sysdate;
+    v_date := to_char(v_date_started,'YYYYMMDD-HH24MISS');
+    h1 := DBMS_DATAPUMP.OPEN('EXPORT', 'TABLE', null, 'job2'||v_date, 'COMPATIBLE'); 
+	DBMS_DATAPUMP.add_file(h1,'exp_dp.dmp', 'DATA_PUMP_DIR'); 
+    DBMS_DATAPUMP.METADATA_FILTER(h1,'SCHEMA_EXPR','IN (''ECMUSER_epbyminw2300_gp'')');
+	DBMS_DATAPUMP.METADATA_FILTER(h1,'NAME_EXPR','=''GP_PRICING_TYPE''');
+    DBMS_DATAPUMP.start_job(h1); 
+    DBMS_DATAPUMP.detach(h1); 
+END;
+/
