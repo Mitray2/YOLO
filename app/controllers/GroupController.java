@@ -375,6 +375,9 @@ public class GroupController extends Controller implements ApplicationConstants 
 		}
 		topic.msg.add(msg);
 		topic.lastUpdateDate = msg.createDate;
+		topic.lastUpdateUserId = user.id;
+		topic.lastUpdateUserName = user.name;
+		topic.lastUpdateUserLastName = user.lastName;
 		topic.save();
 		indexTopic(topic.id, group.id);
 	}
@@ -492,10 +495,26 @@ public class GroupController extends Controller implements ApplicationConstants 
 		Topic topic = Topic.findById(topicId);
 		topic.msg.remove(message);
 		topic.save();
+		int length = topic.msg.size() - 1;
+		if (length < 0) {
+			topic.lastUpdateDate = null;
+			topic.lastUpdateUserId = null;
+			topic.lastUpdateUserName = null;
+			topic.lastUpdateUserLastName = null;
+			topic.save();
+		} else {
+			TopicMessage msg = topic.msg.get(length);
+			topic.lastUpdateDate = msg.createDate;
+			topic.lastUpdateUserId = msg.from.id;
+			topic.lastUpdateUserName = msg.from.name;
+			topic.lastUpdateUserLastName = msg.from.lastName;
+			topic.save();
+		}
 		message.from = null;
 		message.topic = null;
 		message.save();
 		message.delete();
+
 		indexTopic(topicId, groupId);
 	}
 
