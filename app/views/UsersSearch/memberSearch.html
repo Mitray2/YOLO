@@ -24,7 +24,7 @@
 			<label for="">Страна</label> <select class="cSelect"
 				name="member.country" style="width: 276px;">
 				<option value="">&{'unimportant'}</option> 
-				#{list items:services.CountryService.getSortedCountries(), as:'country'}
+				#{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
 				<option value="${country.name}" #{if country.name==member?.country}selected="selected"#{/if}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country?.name)}</option> #{/list}
 			</select>
 		</div>

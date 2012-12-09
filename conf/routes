@@ -12,7 +12,7 @@ GET		/partners/?								PartnersController.index
 GET		/sponsors/?								SponsorsController.index
 
 #services
-GET     /rss                                    ApplicationController.rss
+GET     /rss/?                                  ApplicationController.rss
 
 
 

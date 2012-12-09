@@ -1,26 +1,8 @@
 package controllers;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Query;
-
 import modelDTO.CommandDTO;
-import models.BSphere;
-import models.BType;
-import models.Command;
-import models.Country;
-import models.LastUserData;
-import models.ProjectPhase;
-import models.Topic;
-import models.TopicMessage;
-import models.User;
+import models.*;
+import models.comparators.TopicComparator;
 import notifiers.Mails;
 import play.db.DB;
 import play.db.jpa.JPA;
@@ -29,7 +11,16 @@ import play.mvc.Controller;
 import utils.ApplicationConstants;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
-import utils.TopicComparator;
+
+import javax.persistence.Query;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 public class GroupController extends Controller implements ApplicationConstants {
 

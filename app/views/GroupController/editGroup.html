@@ -93,7 +93,7 @@
                     <textarea name="group.description" placeholder="Описание проекта">${group.description}</textarea>
                     <label for="" class="fl">Страна</label>
 					<select name="group.country.id" class="cSelect" style="width:181px;">
-					#{list items:services.CountryService.getSortedCountries(), as:'country'}
+					#{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
 							<option value="${country.id}" #{if country.id == group.country.id} selected="selected" #{/if}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country.name)}</option>
 					#{/list}
 					</select>

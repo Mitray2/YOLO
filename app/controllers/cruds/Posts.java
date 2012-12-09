@@ -73,7 +73,7 @@ public class Posts extends CRUD_2 {
     private static void afterSave(Post post) {
         //rss publication
         if(post.state.equals(Post.STATE_WORK) && post.type.equals(Post.TYPE_NEWS) && !post.published) {
-            RssHelper.getInstance().addNews(post, request.getBase());
+            RssHelper.getInstance(request.getBase()).addNews(post);
         }
     }
 }

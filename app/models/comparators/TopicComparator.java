@@ -1,9 +1,9 @@
-package utils;
+package models.comparators;
+
+import models.Topic;
 
 import java.util.Comparator;
 import java.util.Date;
-
-import models.Topic;
 
 public class TopicComparator {
 

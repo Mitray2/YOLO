@@ -141,7 +141,7 @@ $(document).ready(function() {
 			
 			#{if groupAdmin}
 				<div class="user-group">
-					
+
 					<div class="user-group-cont">
 						<p>
 							Вы должны сначала передать права администратора участнику группы, прежде чем выйти и создать новую группу
@@ -151,11 +151,10 @@ $(document).ready(function() {
 							свою команду</a>
 					</div>
 					</div>
-          		
+
           	#{/if}
           	#{if groupMember}
           		<div class="user-group">
-					
 					<div class="user-group-cont">
 						<p>
 							Вы состоите в команде, при создании своей команды вы автоматически будете удалены из текущей.
@@ -177,7 +176,6 @@ $(document).ready(function() {
          	#{/if}
           	#{if notInGroup && !wasInviteToGroup}
           		<div class="user-group">
-					
 					<div class="user-group-cont">
 						<p>
 							Вы пока не состоите ни в одной из созданных команд. Вы можете
@@ -224,19 +222,17 @@ $(document).ready(function() {
 					</div>
 				</div>
           	#{/if}
-<!-- 			<div class="share"> -->
-<!-- 				<div class="ttl-block"> -->
-<!-- 					<h3>Расскажи друзьям</h3> -->
-<!-- 				</div> -->
-<!-- 				<div class="share-cont"> -->
-<!-- 					<p>Пригласи друзей на проект, расскажи им о нем - работать -->
-<!-- 						вместе будет веселее.</p> -->
-<!-- 					<a href="" class="twitter">Рассказать в Twitter</a> -->
-<!-- 					<a href="" class="facebook">Рассказать в Facebook</a> -->
-<!-- 					<a href="" class="vk">Рассказать -->
-<!-- 						Вконтакте</a> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+ 			<div class="share">
+				<div class="ttl-block">
+ 					<h3>Расскажи друзьям</h3>
+ 				</div>
+ 				<div class="share-cont">
+ 					<p>Пригласи друзей на проект, расскажи им о нем - работать вместе будет веселее.</p>
+                     <a href="" class="twitter" onclick="window.open('https://twitter.com/share?text=&{'models.group.social.title', utils.URLUtils.getApplicationName(request.getBase())}&url=${request.getBase()}/register', 'facebook', 'width=626, height=436');">Рассказать в Twitter</a>
+                     <a href="" class="facebook" onclick="window.open('http://www.facebook.com/sharer.php?s=100&p[url]=${request.getBase()}/register&p[title]=&{'models.group.social.title', utils.URLUtils.getApplicationName(request.getBase())}&p[summary]=&{'models.group.social.description', utils.URLUtils.getApplicationName(request.getBase())}&p[images][0]=${request.getBase()}/public/images/boilerplate/socials-logo.jpg', 'facebook', 'width=626, height=436'); return false;">Рассказать в Facebook</a>
+                     <a href="" class="vk" onclick="window.open('http://vkontakte.ru/share.php?url=${request.getBase()}/register&title=&{'models.group.social.title', utils.URLUtils.getApplicationName(request.getBase())}&description=&{'models.group.social.description', utils.URLUtils.getApplicationName(request.getBase())}&image=${request.getBase()}/public/images/boilerplate/socials-logo.jpg', 'vkontakte', 'width=626, height=436'); return false;">Рассказать Вконтакте</a>
+ 				</div>
+ 			</div>
 		</aside>
 		<div class="inner-main" onclick="$('.event-popup').hide('slow'); $('.logged-user-menu').hide('slow');">
 			#{doLayout/}
