@@ -30,7 +30,7 @@
 			<div class="form-item clearFix">
 				<label for="">Страна</label>
 				<select name="user.country.id" id="" class="cSelect" style="width:258px;">
-					#{list items:services.CountryService.getSortedCountries(), as:'country'}
+					#{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
 						<option value="${country?.id}" #{if user?.country?.id == country?.id}selected#{/if}#{elseif country_index == 1}selected#{/elseif}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country?.name)}</option>
 					#{/list}
 				</select>

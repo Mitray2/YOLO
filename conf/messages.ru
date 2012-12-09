@@ -68,7 +68,7 @@ models.bSphere.name.Trade=Торговля
 models.userLevel.userLevel.None=Нет
 models.userLevel.userLevel.Theoretical_Knowledge=Теоретические Знания
 models.userLevel.userLevel.Brief_Experience=Небольшой Опыт
-models.userLevel.userLevel.Considerable_Experience=Значительный Опыт  
+models.userLevel.userLevel.Considerable_Experience=Значительный Опыт
 
 #project phases\
 models.ProjectPhase.name.start=Начальная стадия
@@ -89,6 +89,9 @@ models.test.number1.social.title=Я прошёл первый тест
 models.test.number2.social.text=Мой тип предпринимателя: %s .Ищу партнеров в команду.
 models.test.number2.social.title=Я прошёл второй тест
 
+#Tell about groups
+models.group.social.title=Подключайся к коммандам %s
+models.group.social.description=Подключайся к коммандам %s. Описание.
 
 #monthes
 monthName.January=Январь

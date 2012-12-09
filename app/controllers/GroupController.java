@@ -1,5 +1,18 @@
 package controllers;
 
+import modelDTO.CommandDTO;
+import models.*;
+import models.comparators.TopicComparator;
+import notifiers.Mails;
+import play.db.DB;
+import play.db.jpa.JPA;
+import play.mvc.Before;
+import play.mvc.Controller;
+import utils.ApplicationConstants;
+import utils.SessionData.SessionUserMessage;
+import utils.SessionHelper;
+
+import javax.persistence.Query;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -9,29 +22,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Query;
-
-import modelDTO.CommandDTO;
-import models.BSphere;
-import models.BType;
-import models.Command;
-import models.Country;
-import models.LastUserData;
-import models.ProjectPhase;
-import models.Topic;
-import models.TopicMessage;
-import models.User;
-import notifiers.Mails;
-import play.db.DB;
-import play.db.jpa.JPA;
-import play.mvc.Before;
-import play.mvc.Controller;
-import utils.ApplicationConstants;
-import utils.SessionData.SessionUserMessage;
-import utils.SessionHelper;
-import utils.TopicComparator;
-
-public class GroupController extends Controller implements ApplicationConstants{
+public class GroupController extends Controller implements ApplicationConstants {
 
 	@Before
 	public static void checkSecutiry() {
@@ -375,6 +366,9 @@ public class GroupController extends Controller implements ApplicationConstants{
 		}
 		topic.msg.add(msg);
 		topic.lastUpdateDate = msg.createDate;
+		topic.lastUpdateUserId = user.id;
+		topic.lastUpdateUserName = user.name;
+		topic.lastUpdateUserLastName = user.lastName;
 		topic.save();
 		indexTopic(topic.id, group.id);
 	}
@@ -484,5 +478,47 @@ public class GroupController extends Controller implements ApplicationConstants{
 			SessionHelper.setCurrentUser(session, userState);
 		}
 		UserController.index(user.id);
+	}
+
+	public static void removeMessage(Long msgId, Long groupId) {
+		TopicMessage message = TopicMessage.findById(msgId);
+		Long topicId = message.topic.id;
+		Topic topic = Topic.findById(topicId);
+		topic.msg.remove(message);
+		topic.save();
+		int length = topic.msg.size() - 1;
+		if (length < 0) {
+			topic.lastUpdateDate = null;
+			topic.lastUpdateUserId = null;
+			topic.lastUpdateUserName = null;
+			topic.lastUpdateUserLastName = null;
+			topic.save();
+		} else {
+			TopicMessage msg = topic.msg.get(length);
+			topic.lastUpdateDate = msg.createDate;
+			topic.lastUpdateUserId = msg.from.id;
+			topic.lastUpdateUserName = msg.from.name;
+			topic.lastUpdateUserLastName = msg.from.lastName;
+			topic.save();
+		}
+		message.from = null;
+		message.topic = null;
+		message.save();
+		message.delete();
+
+		indexTopic(topicId, groupId);
+	}
+
+	public static void removeMainMessage(Long msgId, Long groupId) {
+		TopicMessage message = TopicMessage.findById(msgId);
+		Long topicId = message.topic.id;
+		Topic topic = Topic.findById(topicId);
+		topic.msg.remove(message);
+		topic.save();
+		message.from = null;
+		message.topic = null;
+		message.save();
+		message.delete();
+		groupTopics(groupId);
 	}
 }

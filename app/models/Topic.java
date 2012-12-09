@@ -21,6 +21,12 @@ public class Topic extends Model {
 
 	public Date lastUpdateDate;
 
+	public Long lastUpdateUserId;
+
+	public String lastUpdateUserName;
+
+	public String lastUpdateUserLastName;
+
 	@Lob
 	@MaxSize(value = 2000)
 	public String description;

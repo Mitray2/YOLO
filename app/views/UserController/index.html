@@ -176,7 +176,7 @@
                     <div class="profile-item clearFix">
 						<label for="">Страна</label>
 						<select name="countryId" class="cSelect" style="width:321px;">
-							#{list items:services.CountryService.getSortedCountries(), as:'country'}
+							#{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
 								<option value="${country.id}" #{if user?.country?.id == country.id}selected="selected"#{/if}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country.name)}</option>
 							#{/list}
 						</select>

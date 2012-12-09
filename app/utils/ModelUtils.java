@@ -1,35 +1,17 @@
 package utils;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import models.Answer;
-import models.BSphere;
-import models.BType;
-import models.ExpFinance;
-import models.ExpIT;
-import models.ExpLegal;
-import models.ExpManagement;
-import models.ExpMarketing;
-import models.ExpOther;
-import models.ExpSale;
-import models.Question;
-import models.Test;
-import models.User;
-import models.UserLevel;
-import models.predicate.FindAnswerByIdPredicate;
-import models.predicate.FindAnswerByQuestionIdPredicate;
-
+import models.*;
+import models.comparators.CountryComparator;
+import models.predicate.FindCountryByNamePredicate;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.time.DateUtils;
 import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.joda.time.Years;
-
-import play.data.validation.Validation;
 import play.i18n.Lang;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ModelUtils {
 	
@@ -81,42 +63,28 @@ public class ModelUtils {
 		to.expSale.level = none;
 		to.expOther = new ExpOther();
 		to.expOther.level = none;
-		//------
-//		if(from.expMarketing.level.id != null) {
-//			to.expMarketing.level = UserLevel.findById(from.expMarketing.level.id);
-//		} else {
-//			to.expMarketing.level = null;
-//		}
-//		if(from.expFinance.level.id != null) {
-//			to.expFinance.level = UserLevel.findById(from.expFinance.level.id);
-//		} else {
-//			to.expFinance.level = null;
-//		}
-//		if(from.expIT.level.id != null) {
-//			to.expIT.level = UserLevel.findById(from.expIT.level.id);;
-//		} else {
-//			to.expIT.level = null;
-//		}
-//		if(from.expLegal.level.id != null) {
-//			to.expLegal.level = UserLevel.findById(from.expLegal.level.id);
-//		} else {
-//			to.expLegal.level = null;
-//		}
-//		if(from.expManagement.level.id != null) {
-//			to.expManagement.level = UserLevel.findById(from.expManagement.level.id);
-//		} else {
-//			to.expManagement.level = null;
-//		}
-//		if(from.expSale.level.id != null){
-//			to.expSale.level = UserLevel.findById(from.expSale.level.id);
-//		} else {
-//			to.expSale.level = null;
-//		}
-//		if(from.expOther.level.id != null) {
-//			to.expOther.level = UserLevel.findById(from.expOther.level.id);
-//		} else {
-//			to.expOther.level = null;
-//		}
 		return to;
 	}
+
+    /**
+     * Used to render countries in right order on view
+     * @return
+     */
+    public static List<Country> getSortedCountries(){
+        List<Country> countries = Country.findAll();
+        List<Country> result = new ArrayList<Country>(countries);
+
+        Collections.sort(result, new CountryComparator());
+
+        FindCountryByNamePredicate findCountryPredicate = new FindCountryByNamePredicate("Ukraine");
+        result.add(0, result.remove(result.indexOf(CollectionUtils.find(result, findCountryPredicate))));
+        findCountryPredicate.setCountryName("Kazakhstan");
+        result.add(0, result.remove(result.indexOf(CollectionUtils.find(result, findCountryPredicate))));
+        findCountryPredicate.setCountryName("Belarus");
+        result.add(0, result.remove(result.indexOf(CollectionUtils.find(result, findCountryPredicate))));
+        findCountryPredicate.setCountryName("Russia");
+        result.add(0, result.remove(result.indexOf(CollectionUtils.find(result, findCountryPredicate))));
+
+        return result;
+    }
 }

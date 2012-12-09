@@ -42,7 +42,16 @@ function editDisabled(element){
 		<li class="search-result-item clearFix">
 			<h4><a href="@{GroupController.indexTopic(topic.id, group.id)}">${topic.name}</a></h4>
 			<pre>${topic.description}</pre>
-			<div class="search-result-list-date"> <strong>${topic.msg?.size()} ответов <br/>${utils.DateUtils.getFormatedStringDate(topic.lastUpdateDate, true)}</strong></div>
+			<div class="search-result-list-date"> 
+				<strong>
+				
+					${topic.msg?.size()} ответов <br/>
+					#{if topic.msg?.size() > 0 }
+						Последний <a href="@{UserController.index(topic.lastUpdateUserId)}">${topic.lastUpdateUserLastName} ${topic.lastUpdateUserName}</a>	
+							${utils.DateUtils.getFormatedStringDate(topic.lastUpdateDate, true)}
+					#{/if}
+				</strong>
+			</div>
             <a href="@{GroupController.indexTopic(topic.id, group.id)}" class="search-result-list-more">Перейти к обсуждению <span>&nbsp;&#8594;</span></a>
 		</li>
 		#{/if}
@@ -75,6 +84,7 @@ function editDisabled(element){
                         	<a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${msg.createDate}
                         	#{if (userId == msg.from.id) || (isAdmin)}
                         		<span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">Редактировать сообщение</span></span>
+                        		<a href="@{GroupController.removeMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить тему</span></span></a>
                         	#{/if}
                         </div>
                         <pre class="msgRead">
