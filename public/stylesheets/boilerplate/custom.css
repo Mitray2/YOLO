@@ -1,0 +1,255 @@
+
+/*------Find-and replace-in-stl.css----------------------------*/
+
+/*line 1298*/
+.search-result-list .search-result-item h4 a {
+    color: #E48F20;
+    text-decoration: none;
+    padding-right: 60px;
+}
+
+/*-------------------------------------------------------------*/
+
+.group-theme-dialog-ttl-color {
+	background: none repeat scroll 0 0 #edf5f8; /*d2e3ec*/
+    border-bottom: 1px solid #DDDDDD;
+    padding: 4px 0 4px 10px;
+    color: #434240;
+    font: bold 14px/24px Arial,Helvetica,sans-serif;
+    margin-bottom: 13px;
+}
+
+.new-themes-btn{
+	margin: 12px 10px 0;
+	border-bottom: 1px solid #E48F20;
+    color: #E48F20;
+    display: block;
+    float: right;
+    font: bold 12px/15px Arial,Helvetica,sans-serif;
+    position: relative;
+    text-decoration: none;
+}
+
+.new-themes-btn img{
+	vertical-align:top;
+	margin:5px 5px 0 0;
+}
+.new-themes-btn:hover{
+	border:0;
+	margin-bottom:1px;
+}
+
+.edit-select {
+    float: right;
+    margin: -10px 0 5px;
+}
+
+.answer-collapse{
+    background-color: #fbfbfb;
+    border: 1px solid #D4D4D4;
+    border-radius: 5px 5px 5px 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.answer-collapse .group-theme-dialog-form li {
+    padding: 0 0 0 10px;
+    position: relative;
+}
+
+.answer-collapse .group-theme-dialog-form textarea{
+    margin: 10px 0 !important;
+	border-radius: 0 !important;
+    height: 18px;
+    width: 540px;
+}
+
+.answer-expand {
+    background-color: #fbfbfb;
+    border: 1px solid #D4D4D4;
+    border-radius: 5px 5px 5px 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.answer-expand .group-theme-dialog-form li {
+    padding: 0 0 12px 80px;
+    position: relative;
+}
+
+.answer-expand .group-theme-dialog-form textarea{
+    margin: 10px 0!important;
+	border-radius: 0 !important;
+    height: 38px;
+    width: 469px;
+}
+
+.answer-expand .group-theme-dialog-form .group-theme-dialog-pic {
+    border-radius: 4px 4px 4px 4px;
+    left: 12px;
+    position: absolute;
+    top: 0;
+}
+
+.search-result-item  h4{
+	position: relative;
+}
+
+.search-result-list .search-result-item .theme-delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.search-result-list .search-result-item .theme-edit {
+    position: absolute;
+    right: 15px;
+    top: 0;
+}
+
+.search-result-list .search-result-list-last {
+    color: #7B7B7B;
+    float: left;
+    font: normal 11px/16px Arial,Helvetica,sans-serif;
+    padding: 6px 0 0;
+}
+
+.theme_description {
+    color: #A0A0A0;
+    font: oblique 12px/16px Arial,Helvetica,sans-serif;
+}
+
+.theme_description_l {
+	float: left;
+	width: 60px;
+	margin-right: 10px;
+}
+
+.theme_description_r {
+	float: left;
+	width: 510px;
+	margin-bottom: 15px;
+}
+
+.edit-theme-btn {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: linear-gradient(#FFD13D, #FAC003) repeat scroll 0 0 transparent;
+    border-color: -moz-use-text-color -moz-use-text-color #FCDD79;
+    border-image: none;
+    border-radius: 4px 4px 4px 4px;
+    border-style: none none solid;
+    border-width: 0 0 1px;
+    box-shadow: 0 2px 0 #D7A70D;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font: bold 13px/23px Arial,sans-serif;
+    padding: 5px 0 4px;
+    text-align: center;
+    text-shadow: 0 -1px 0 #D4AA21;
+    width: 120px;
+	margin-right: 15px
+}
+
+.search-result-name {
+	background-color: #fbfbfb;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.ttl-search-result2-color {
+    color: #434240;
+    font: 18px/24px Arial,Helvetica,sans-serif;
+	background: none repeat scroll 0 0 #edf5f8;
+    border: 1px solid #DDDDDD;
+    padding: 8px 0 8px 10px;
+	border-radius: 5px;
+}
+
+.search-result-list {
+ 	margin-right: 10px;
+	margin-left: 10px;
+}
+
+/*--------------text-------------------------------------------------------------*/
+
+h3.index {
+    color: #E6B000;
+    border-bottom: 2px dashed #E1E1E1;
+	padding-bottom: 10px;
+}
+
+.padding-20{
+	padding-top: 20px;
+}
+
+.list-cont {
+    position: relative;
+    top: 5px;
+}
+
+.wrap-test h1 p {
+    margin: 10px 0 13px !important;
+    font: 18px/24px Arial,sans-serif;
+	color: #555555;
+}
+
+.about-list li .list-cont{
+    font: 14px/22px Arial,sans-serif;
+}
+
+.message-item {
+    border-top: 1px solid #D4D4D4;
+    color: #434240;
+    font: 14px/21px Arial,Helvetica,sans-serif;
+	font-style: oblique;
+    left: -30px;
+    margin: 30px -60px 0 0;
+    padding: 15px 30px 0;
+    position: relative;
+}
+
+.popup-enter-text {
+    color: #626262;
+    font: 14px/21px Arial,Helvetica,sans-serif;
+	font-style: oblique;
+    margin: 15px 0 0;
+    text-align: left;
+}
+
+.popup-enter-text .color {
+	font: 17px/21px Arial,Helvetica,sans-serif;
+	color: #2583BE;
+}
+
+.popup-enter-email {
+    background: none repeat scroll 0 0 #FBFBFB;
+    border: 1px solid #7FB9D7;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    left: 50%;
+    margin: -170px 0 0 -158px;
+    padding: 21px 24px 30px;
+    position: fixed;
+    top: 50%;
+    width: 300px;
+    z-index: 1100;
+}
+
+
+.popup-enter-email .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.find-colleague {
+    font: 14px/21px Arial,Helvetica,sans-serif;
+    left: -30px;
+    margin: 0px -60px 0 0;
+    padding: 0px 30px 15px;
+    position: relative;
+}

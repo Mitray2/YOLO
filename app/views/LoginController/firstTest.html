@@ -9,19 +9,19 @@
 	}
 -->
 </style>
-<h1>Здравствуйте, ${user?.name}! Необходимо пройти первый тест.</h1>
+<h1>Здравствуйте, ${user?.name}!<br />
+<p>Вот первый тест, который определит твою склонность к предпринимательству. Всего тестов два и их прохождение не займет много времени. Только не обманывай себя - отвечай честно.</p>
+</h1>
 	#{form @LoginController.firstTestPassed()}
-		<div class="test main-test">
-		#{ifErrors}
-			<div class="firstTest">
-				<div class="alert">
-		            Вы не ответили на несколько вопрососв.<br>
-		            Необходимо ответить на вопросы выделенные красным<br>
-	            </div>
-	        </div>
-        #{/ifErrors}
+		<div class="test">
 				#{list items:test.questions, as:'question'}
 					<div class="test-item #{if currentValidation?.hasError(utils.ApplicationConstants.VALIDATION_MODEL_TEST_QUESTION_ANSWER_REQUIRED + question?.id)}error#{/if}">
+					#{if question_isFirst}
+				        <div class="help">
+							<h3>Цель первого теста</h3>
+							<p>Мотивация достижения &mdash; стремление к улучшению результатов, неудовлетворенность достигнутым, настойчивость в достижении своих целей, стремление добиться своего во что бы то ни стало — является одним из главных свойств личности, оказывающих влияние на всю человеческую жизнь. Многочисленные исследования показали тесную связь между уровнем мотивации достижения и успехом в жизнедеятельности. Данный психологический тест позволит Вам выяснить свой уровень мотивации.</p>
+						</div>
+					#{/if}
 						<p class="question"><span>—</span>${question.value}</p>
 						<div class="reply">
 							<span class="reply-txt">Ваш ответ:</span>
@@ -42,11 +42,13 @@
 				<input type="hidden" name="user.email" value="${user?.email}">
 				<input type="hidden" name="user.sex" value="${user?.sex}">
 				<div class="test-btm">
+					#{ifErrors}
+							<div class="alert">
+					            Вы не ответили на несколько вопрососв.<br>
+					            Необходимо ответить на вопросы выделенные красным<br>
+				            </div>
+			        #{/ifErrors}
 					<a href="" class="test-btn" onclick="this.parentElement.parentElement.parentElement.submit(); return false;">Покажите результаты</a>
 				</div>
 		</div>
 	#{/form}
-<aside class="secondary-test">
-	<h2>Цель первого теста</h2>
-	<p>Мотивация достижения — стремление к улучшению результатов, неудовлетворенность достигнутым, настойчивость в достижении своих целей, стремление добиться своего во что бы то ни стало — является одним из главных свойств личности, оказывающих влияние на всю человеческую жизнь. Многочисленные исследования показали тесную связь между уровнем мотивации достижения и успехом в жизнедеятельности. Данный психологический тест позволит Вам выяснить свой уровень мотивации.</p>
-</aside>
