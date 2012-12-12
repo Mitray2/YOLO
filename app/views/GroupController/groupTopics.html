@@ -31,46 +31,55 @@ function editDisabled(element){
 }
 </script>
 
-#{if groupMember}
-<a href="@{GroupController.createTopic(group.id)}" class="new-theme-btn"><img src="@{'public/images/boilerplate/ico-new-theme.gif'}" alt="">Создать новую тему</a>
-#{/if}
-<div class="ttl-search-result2">Всего ${group.topics?.size()-1} тем для обсуждения</div>
-	<ul class="search-result-list">
-	
-	#{list items:topics, as:'topic'}
-		#{if (topic.publicTopic || groupMember) && (!topic.mainTopic)}
-		<li class="search-result-item clearFix">
-			<h4><a href="@{GroupController.indexTopic(topic.id, group.id)}">${topic.name}</a></h4>
-			<pre>${topic.description}</pre>
-			<div class="search-result-list-date"> 
-				<strong>
-				
-					${topic.msg?.size()} ответов <br/>
-					#{if topic.msg?.size() > 0 }
-						Последний <a href="@{UserController.index(topic.lastUpdateUserId)}">${topic.lastUpdateUserLastName} ${topic.lastUpdateUserName}</a>	
-							${utils.DateUtils.getFormatedStringDate(topic.lastUpdateDate, true)}
-					#{/if}
-				</strong>
-			</div>
-            <a href="@{GroupController.indexTopic(topic.id, group.id)}" class="search-result-list-more">Перейти к обсуждению <span>&nbsp;&#8594;</span></a>
-		</li>
-		#{/if}
-	#{/list}
-		
-	</ul>
 
-			<div class="group-theme-dialog-ttl">Написать ответ</div>
-               #{form @GroupController.addMsgToMainTopic()}
-               <input name="topicId" value="${mainTopic.id}" type="hidden"> 
-               <input name="groupId" value="${group.id}" type="hidden">
-                <ul class="group-theme-dialog-form">
-                	<li>
-						#{avatar.avatar user:utils.SessionHelper.getCurrentUser(session), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
-                        <textarea name="msg.text" cols="" rows=""></textarea>
-                        <button type="submit" class="group-theme-btn">Отправить</button>
-                    </li>
-                </ul>
-               #{/form}
+				<div class="search-result-name">
+				#{if groupMember}
+				    <a href="@{GroupController.createTopic(group.id)}" class="new-themes-btn"><img src="@{'public/images/boilerplate/ico-new-theme.gif'}" alt="">Создать новую тему</a>
+				#{/if}
+                    <div class="ttl-search-result2-color">В группе ${group.topics?.size()-1} темы</div>
+				</div>
+
+
+				<ul class="search-result-list">
+				#{list items:topics, as:'topic'}
+				#{if (topic.publicTopic || groupMember) && (!topic.mainTopic)}
+					<li class="search-result-item clearFix">
+						<h4>
+                        	<a href="@{GroupController.indexTopic(topic.id, group.id)}">${topic.name}</a>
+                        	#{if (userId == topic.createdUserId) || (isAdmin)}
+                            <a href="@{GroupController.editTopic(topic.id)}"><span class="theme-edit"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Редактировать тему</span></span></a>
+                            <a href="@{GroupController.removeTopic(topic.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить тему</span></span></a>
+                            #{/if}
+                        </h4>
+						<p>${topic.description}</p>
+						<div class="search-result-list-date"><strong>${topic.msg?.size()} ответов</strong></div>
+                        <br />
+                        #{if topic.msg?.size() > 0 }
+                        <div class="search-result-list-last">Последнее от <a href="@{UserController.index(topic.lastUpdateUserId)}">${topic.lastUpdateUserLastName} ${topic.lastUpdateUserName}</a>, <span class="topic_date">${utils.DateUtils.getFormatedStringDate(topic.lastUpdateDate, true)}</div>
+                        #{/if}
+						<a href="@{GroupController.indexTopic(topic.id, group.id)}" class="search-result-list-more">Перейти к обсуждению <span>&nbsp;&#8594;</span></a>
+					</li>
+				#{/if}
+				#{/list}
+				</ul>
+
+
+				<div class="answer-expand">
+					<div class="group-theme-dialog-ttl-color">Всего 23 записи</div>
+					#{form @GroupController.addMsgToMainTopic()}
+					<input name="topicId" value="${mainTopic.id}" type="hidden"> 
+               		<input name="groupId" value="${group.id}" type="hidden">
+					<ul class="group-theme-dialog-form">
+						<li>
+							#{avatar.avatar user:utils.SessionHelper.getCurrentUser(session), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
+							<textarea placeholder="Написать ответ..." name="msg.text" cols="" rows="2" autofocus></textarea>
+							<button type="submit" class="group-theme-btn">Отправить</button>
+						</li>
+					</ul>
+					#{/form}
+				</div>
+
+
 
 				<ul class="group-theme-dialog">
                 #{list items:mainTopic.msg, as:'msg'}

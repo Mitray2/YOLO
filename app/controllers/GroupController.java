@@ -1,7 +1,26 @@
 package controllers;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Query;
+
 import modelDTO.CommandDTO;
-import models.*;
+import models.BSphere;
+import models.BType;
+import models.Command;
+import models.Country;
+import models.LastUserData;
+import models.ProjectPhase;
+import models.Topic;
+import models.TopicMessage;
+import models.User;
 import models.comparators.TopicComparator;
 import notifiers.Mails;
 import play.db.DB;
@@ -11,16 +30,6 @@ import play.mvc.Controller;
 import utils.ApplicationConstants;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
-
-import javax.persistence.Query;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
 
 public class GroupController extends Controller implements ApplicationConstants {
 
@@ -320,9 +329,29 @@ public class GroupController extends Controller implements ApplicationConstants 
 		render(group);
 	}
 
+	public static void editTopic(Long topicId) {
+		Topic topic = Topic.findById(topicId);
+		Command group = Command.findById(topic.groupId);
+		render(topic, group);
+	}
+
+	public static void saveEditTopic(Topic topic) {
+		Topic currentTopic = Topic.findById(topic.id);
+		currentTopic.description = topic.description;
+		currentTopic.name = topic.name;
+		currentTopic.save();
+		indexTopic(currentTopic.id, topic.groupId);
+	}
+
 	public static void saveTopic(Topic topic) {
-		Long groupId = SessionHelper.getCurrentUser(session).command.id;
+		User user = SessionHelper.getCurrentUser(session);
+		Long groupId = user.command.id;
 		Command group = Command.findById(groupId);
+		topic.createdUserId = user.id;
+		topic.createdDateTime = new Date();
+		topic.groupId = groupId;
+		topic.createdUserName = user.name;
+		topic.createdUserLastName = user.lastName;
 		topic.save();
 		if (group.topics == null) {
 			group.topics = new ArrayList<Topic>();
@@ -519,6 +548,25 @@ public class GroupController extends Controller implements ApplicationConstants 
 		message.topic = null;
 		message.save();
 		message.delete();
+		groupTopics(groupId);
+	}
+
+	public static void removeTopic(Long topicId, Long groupId) {
+		Topic topic = Topic.findById(topicId);
+		Command command = Command.findById(groupId);
+		command.topics.remove(topic);
+		command.save();
+		for (TopicMessage msg : topic.msg) {
+			TopicMessage message = TopicMessage.findById(msg.id);
+			message.from = null;
+			message.topic = null;
+			message.save();
+		}
+		topic.msg = null;
+		topic.save();
+		topic.delete();
+		Query query = JPA.em().createQuery("delete from TopicMessage where topic_id IS NULL");
+		query.executeUpdate();
 		groupTopics(groupId);
 	}
 }

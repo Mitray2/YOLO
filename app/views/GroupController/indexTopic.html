@@ -27,15 +27,28 @@ function editDisabled(element){
 	return false;
 }
 </script>
-#{if groupMember}
-<a href="@{GroupController.createTopic(group.id)}" class="new-theme-btn"><img src="@{'public/images/boilerplate/ico-new-theme.gif'}" alt="">Создать новую тему</a>
-#{/if}
+
                 <a href="@{GroupController.groupTopics(group.id)}" class="back"><span>&#8592;&nbsp;</span> К списку всех тем</a>
-                <div class="group-theme">
-                    <h2>${topic.name}</h2>
-                    <pre>${topic.description}</pre>
+                #{if (userId == topic.createdUserId) || (isAdmin)}
+                <div style="float: right">
+                 <a href="@{GroupController.editTopic(topic.id)}"><span class="theme-edit"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Редактировать тему</span></span></a>
+                            <a href="@{GroupController.removeTopic(topic.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить тему</span></span></a>
+                </div>
+                #{/if}
+                  <div class="group-theme clearFix">
+                    <h2>${topic.name}
+					<span class="theme_description">Создана ${topic.createdUserName} ${topic.createdUserLastName}, ${utils.DateUtils.getFormatedStringDate(topic.createdDateTime, true)}</span>
+					</h2>
+					<div class="theme_description_l">
+						#{avatar.avatar user:models.User.findById(topic.createdUserId), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}<br />
+					</div>
+                    <div class="theme_description_r">${topic.description}</div>
 				</div>
-                <div class="group-theme-dialog-ttl">Всего ${topic?.msg?.size()} ответа:</div>
+                
+                
+                
+               
+                <div class="group-theme-dialog-ttl">Всего ${topic?.msg?.size()} записи:</div>
                 <ul class="group-theme-dialog">
                 #{list items:topic.msg, as:'msg'}
                		#{form @GroupController.editMsg()}
@@ -64,16 +77,18 @@ function editDisabled(element){
                     #{/form}
                 #{/list}
 				</ul>
+    <div class="answer-expand">
+					<div class="group-theme-dialog-ttl-color">Всего ${topic?.msg?.size()} записи</div>
+					#{form @GroupController.addMsgToTopic()}
+	               <input name="topicId" value="${topic.id}" type="hidden"> 
+	               <input name="groupId" value="${group.id}" type="hidden">
+					<ul class="group-theme-dialog-form">
+						<li>
+							#{avatar.avatar user:utils.SessionHelper.getCurrentUser(session), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
+							<textarea placeholder="Написать ответ..." name="msg.text" cols="" rows="2" autofocus></textarea>
+							<button type="submit" class="group-theme-btn">Отправить</button>
+						</li>
+					</ul>
+					#{/form}
+				</div>
 
-			<div class="group-theme-dialog-ttl">Написать ответ</div>
-               #{form @GroupController.addMsgToTopic()}
-               <input name="topicId" value="${topic.id}" type="hidden"> 
-               <input name="groupId" value="${group.id}" type="hidden">
-                <ul class="group-theme-dialog-form">
-                	<li>
-						#{avatar.avatar user:utils.SessionHelper.getCurrentUser(session), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
-                        <textarea name="msg.text" cols="" rows=""></textarea>
-                        <button type="submit" class="group-theme-btn">Отправить</button>
-                    </li>
-                </ul>
-               #{/form}
