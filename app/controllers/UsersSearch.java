@@ -56,6 +56,24 @@ public class UsersSearch extends AbstractSearch {
 		}
 
 	}
+	
+	public static void memberSearchAjax(MemberSearchDTO search) {
+		JsonArray res = new JsonArray();
+		List<User> users = User.findAll();
+		for (User user : users) {
+			JsonObject user_search = new JsonObject();
+			user_search.addProperty("id", user.id);
+			user_search.addProperty("lastName", user.lastName);
+			user_search.addProperty("name", user.name);
+			user_search.addProperty("country", user.country.name);
+			user_search.addProperty("city", user.city);
+			user_search.addProperty("name", user.name);
+			res.add(user_search);
+		}
+		JsonObject userss = new JsonObject();
+		userss.add("users", res);
+		renderJSON(userss);
+	}
 
 	public static void memberSearchTest(String memberJSON) {
 
