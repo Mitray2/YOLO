@@ -56,7 +56,7 @@ public class UsersSearch extends AbstractSearch {
 		}
 
 	}
-	
+
 	public static void memberSearchAjax(MemberSearchDTO search) {
 		JsonArray res = new JsonArray();
 		List<User> users = User.findAll();
@@ -73,10 +73,6 @@ public class UsersSearch extends AbstractSearch {
 		JsonObject userss = new JsonObject();
 		userss.add("users", res);
 		renderJSON(userss);
-	}
-
-	public static void memberSearchTest(String memberJSON) {
-
 	}
 
 	public static void memberSearch(MemberSearchDTO member) {
@@ -159,22 +155,8 @@ public class UsersSearch extends AbstractSearch {
 		List<User> users = User.find(statement, queryParams.toArray()).fetch();
 		ValuePaginator paginator = new ValuePaginator(users);
 		paginator.setPageSize(ITEMS_PER_PAGE);
-		JsonArray res = new JsonArray();
-		for (User user : users) {
-			JsonObject user_search = new JsonObject();
-			user_search.addProperty("id", user.id);
-			user_search.addProperty("lastName", user.lastName);
-			user_search.addProperty("name", user.name);
-			user_search.addProperty("country", user.country.name);
-			user_search.addProperty("city", user.city);
-			user_search.addProperty("name", user.name);
-			res.add(user_search);
-		}
-		JsonObject userss = new JsonObject();
-		userss.add("users", res);
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n \n" + userss.toString());
 
-		renderJSON(userss);
+		render(paginator, member);
 	}
 
 	public static void peopleSearch(FriendSearchDTO friend) {
