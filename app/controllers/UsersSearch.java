@@ -150,6 +150,8 @@ public class UsersSearch extends AbstractSearch {
 				user_search.put("country", user.country.name);
 				user_search.put("city", user.city);
 				user_search.put("sex", user.sex);
+				user_search.put("age", user.age);
+				user_search.put("haveAvatar", user.haveAvatar);
 				user_search.put("info", user.personalCV);
 				user_search.put("commandB", user.command == null ? false : true);
 				user_search.put("businessman", user.businessman);
@@ -160,8 +162,7 @@ public class UsersSearch extends AbstractSearch {
 				user_search.put("businessSphere", user.businessSphere.name);
 				user_search.put("international", "Yes"); // TODO not
 															// approved
-				user_search.put("status", "online"); // TODO not
-														// approved
+				user_search.put("status", "?");
 
 				list.add(user_search);
 			}
