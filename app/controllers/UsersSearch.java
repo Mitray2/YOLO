@@ -2,7 +2,9 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import modelDTO.FriendSearchDTO;
 import modelDTO.MemberSearchDTO;
@@ -17,8 +19,6 @@ import utils.ApplicationConstants;
 import utils.SessionHelper;
 
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 public class UsersSearch extends AbstractSearch {
 
@@ -135,32 +135,39 @@ public class UsersSearch extends AbstractSearch {
 			}
 		}
 		statement += orderBy.toString();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + statement);
-		List<User> usersOriginal = User.find(statement, queryParams.toArray()).fetch();
-		JsonArray users = new JsonArray();
+		// List<User> usersOriginal = User.find(statement,
+		// queryParams.toArray()).fetch();
+		List<User> usersOriginal = User.findAll();
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		for (User user : usersOriginal) {
-			JsonObject user_search = new JsonObject();
-			user_search.addProperty("id", user.id);
-			user_search.addProperty("lastName", user.lastName);
-			user_search.addProperty("name", user.name);
-			user_search.addProperty("country", user.country.name);
-			user_search.addProperty("city", user.city);
-			user_search.addProperty("sex", user.sex);
-			user_search.addProperty("info", user.personalCV);
-			user_search.addProperty("commandB", user.command == null ? false : true);
-			user_search.addProperty("businessman", user.businessman);
-			user_search.addProperty("idealist", user.idealist);
-			user_search.addProperty("communicant", user.communicant);
-			user_search.addProperty("pragmatist", user.pragmatist);
-			user_search.addProperty("businessType", user.businessType.name);
-			user_search.addProperty("businessSphere", user.businessSphere.name);
-			user_search.addProperty("international", "Yes"); // TODO not
-																// approved
-			user_search.addProperty("status", "online"); // TODO not approved
+			if (user.country != null) {
 
-			users.add(user_search);
+				Map<String, Object> user_search = new HashMap<String, Object>();
+
+				user_search.put("id", user.id);
+				user_search.put("lastName", user.lastName);
+				user_search.put("name", user.name);
+				user_search.put("country", user.country.name);
+				user_search.put("city", user.city);
+				user_search.put("sex", user.sex);
+				user_search.put("info", user.personalCV);
+				user_search.put("commandB", user.command == null ? false : true);
+				user_search.put("businessman", user.businessman);
+				user_search.put("idealist", user.idealist);
+				user_search.put("communicant", user.communicant);
+				user_search.put("pragmatist", user.pragmatist);
+				user_search.put("businessType", user.businessType.name);
+				user_search.put("businessSphere", user.businessSphere.name);
+				user_search.put("international", "Yes"); // TODO not
+															// approved
+				user_search.put("status", "online"); // TODO not
+														// approved
+
+				list.add(user_search);
+			}
+
 		}
-		renderJSON(users);
+		renderJSON(list);
 	}
 
 	public static void memberSearch(MemberSearchDTO member) {
