@@ -30,14 +30,21 @@ function Search() {
 			search.searchModel[index] = $(".private_item").find("#"+index+"").val();
 		});
 		console.log(search.searchModel);
-		$.getJSON('ajax/test.json', function(data) {
-			var table = $(".search-result-block");
-			table.find("tr:gt(0)").remove();
-			$.each(data, function(key, val) {
-				var row = $("tr");
-				table.append(row);
-				row.append("<td>xxx</td>");
-			});
+		$.ajax({
+			type: "POST",
+			url: "memberSearchAjax",
+			dataType: 'json',
+			async: false,
+			data: JSON.stringify(search.searchModel),
+			success: function(data) {
+				var table = $(".search-result-block");
+//				table.find("tr:gt(0)").remove();
+//				$.each(data, function(key, val) {
+//					var row = $("tr");
+//					table.append(row);
+//					row.append("<td>xxx</td>");
+//				});
+			}
 		});
 	}
 }

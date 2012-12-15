@@ -16,6 +16,7 @@ import play.mvc.Before;
 import utils.ApplicationConstants;
 import utils.SessionHelper;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -57,7 +58,8 @@ public class UsersSearch extends AbstractSearch {
 
 	}
 
-	public static void memberSearchAjax(MemberSearchDTO search) {
+	public static void memberSearchAjax() {
+		MemberSearchDTO search = new GsonBuilder().create().fromJson(request.params.get("body"), MemberSearchDTO.class);
 		JsonArray res = new JsonArray();
 		List<User> users = User.findAll();
 		for (User user : users) {
@@ -65,7 +67,7 @@ public class UsersSearch extends AbstractSearch {
 			user_search.addProperty("id", user.id);
 			user_search.addProperty("lastName", user.lastName);
 			user_search.addProperty("name", user.name);
-			user_search.addProperty("country", user.country.name);
+			user_search.addProperty("country", "country");
 			user_search.addProperty("city", user.city);
 			user_search.addProperty("name", user.name);
 			res.add(user_search);
