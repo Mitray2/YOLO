@@ -1,5 +1,5 @@
 
-.search_popup {
+.info_popup {
     background: none repeat scroll 0 0 #ffffff;
     border: 1px solid #eeeeee;
     border-radius: 15px 15px 15px 15px;
@@ -12,6 +12,21 @@
     top: 66%;
     width: 250px;
     z-index: 1100;
+	color: #949494;i
+}
+
+.icon_popup {
+    background: none repeat scroll 0 0 #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    font: 12px/21px Arial,Helvetica,sans-serif;
+    left: 50%;
+    margin: -100px 0 0 -178px;
+    padding: 5px 7px;
+    position: absolute;
+    top: 22%;
+	z-index: 1100;
 	color: #949494;i
 }
 
@@ -219,7 +234,7 @@
 }
 
 .ic_predpr_pas {
-	background: url(../images/boilerplate/img/search/search_icons.png) 0 -18px no-repeat;
+	background: url(../images/boilerplate/search/search_icons.png) 0 -18px no-repeat;
 	width: 17px;
 	height: 18px;
 	cursor: pointer;
@@ -258,6 +273,78 @@
 	margin: 0 2px 2px 0;
 }
 
+.ic_predpr_hover {
+	background: url(../images/boilerplate/search/search_icons.png) 0 -36px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.ic_ideal_hover {
+	background: url(../images/boilerplate/search/search_icons.png) -17px -36px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.ic_communic_hover{
+	background: url(../images/boilerplate/search/search_icons.png) -34px -36px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.ic_pragmatic_hover{
+	background: url(../images/boilerplate/search/search_icons.png) -51px -36px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.ic_predpr_active {
+	background: url(../images/boilerplate/search/search_icons.png) 0 -54px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.ic_ideal_active {
+	background: url(../images/boilerplate/search/search_icons.png) -17px -54px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.ic_communic_active{
+	background: url(../images/boilerplate/search/search_icons.png) -34px -54px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.ic_pragmatic_active{
+	background: url(../images/boilerplate/search/search_icons.png) -51px -54px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+}
+
 .cntr {
 	text-align: center;
 }
@@ -272,6 +359,318 @@
 .speak {
 	font: 12px/16px Arial, Helvetica, sans-serif;
 	color:#AEA9A9;
+}
+
+.ic_marketing {
+	background: url(../images/boilerplate/search/search_icons.png) -68px 0 no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_sale {
+	background: url(../images/boilerplate/search/search_icons.png) -85px 0 no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_management{
+	background: url(../images/boilerplate/search/search_icons.png) -102px 0 no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_right {
+	background: url(../images/boilerplate/search/search_icons.png) -119px 0 no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_finance{
+	background: url(../images/boilerplate/search/search_icons.png) -136px 0 no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_it {
+	background: url(../images/boilerplate/search/search_icons.png) -153px 0 no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_more{
+	background: url(../images/boilerplate/search/search_icons.png) -170px 0 no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_marketing_pas {
+	background: url(../images/boilerplate/search/search_icons.png) -68px -18px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_sale_pas {
+	background: url(../images/boilerplate/search/search_icons.png) -85px -18px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_management_pas{
+	background: url(../images/boilerplate/search/search_icons.png) -102px -18px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_right_pas {
+	background: url(../images/boilerplate/search/search_icons.png) -119px -18px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_finance_pas {
+	background: url(../images/boilerplate/search/search_icons.png) -136px -18px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_it_pas {
+	background: url(../images/boilerplate/search/search_icons.png) -153px -18px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_more_pas {
+	background: url(../images/boilerplate/search/search_icons.png) -170px -18px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_marketing_hover{
+	background: url(../images/boilerplate/search/search_icons.png) -68px -36px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_sale_hover {
+	background: url(../images/boilerplate/search/search_icons.png) -85px -36px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_management_hover{
+	background: url(../images/boilerplate/search/search_icons.png) -102px -36px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_right_hover {
+	background: url(../images/boilerplate/search/search_icons.png) -119px -36px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_finance_hover {
+	background: url(../images/boilerplate/search/search_icons.png) -136px -36px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_it_hover {
+	background: url(../images/boilerplate/search/search_icons.png) -153px -36px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_more_hover {
+	background: url(../images/boilerplate/search/search_icons.png) -170px -36px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_marketing_active {
+	background: url(../images/boilerplate/search/search_icons.png) -68px -53px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_sale_active {
+	background: url(../images/boilerplate/search/search_icons.png) -85px -53px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_management_active{
+	background: url(../images/boilerplate/search/search_icons.png) -102px -53px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_right_active {
+	background: url(../images/boilerplate/search/search_icons.png) -119px -53px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_finance_active {
+	background: url(../images/boilerplate/search/search_icons.png) -136px -53px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_it_active {
+	background: url(../images/boilerplate/search/search_icons.png) -153px -53px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_more_active {
+	background: url(../images/boilerplate/search/search_icons.png) -170px -53px no-repeat;
+	width: 17px;
+	height: 18px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
+.ic_one {
+	background: url(../images/boilerplate/search/diagram.png) 0 0 no-repeat;
+	width: 17px;
+	height: 16px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.ic_two {
+	background: url(../images/boilerplate/search/diagram.png) 0 -16px no-repeat;
+	width: 17px;
+	height: 16px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.ic_three {
+	background: url(../images/boilerplate/search/diagram.png) 0 -32px no-repeat;
+	width: 17px;
+	height: 16px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.ic_four {
+	background: url(../images/boilerplate/search/diagram.png) 0 -48px no-repeat;
+	width: 17px;
+	height: 16px;
+	cursor: pointer;
+	display: inline-block;
 }
 
 /*-----Right-column-------*/
@@ -304,12 +703,12 @@
     overflow: hidden;
 }
 
-.share-cont {
+.criterion_search .share-cont {
     font: 14px/18px Arial,sans-serif;
     padding: 10px;
 }
 
-.share-cont p {
+.criterion_search .share-cont p {
 	color: #434240;
 }
 
@@ -423,6 +822,21 @@
 .private_form .private_item {
     position: relative;
     margin: 10px 0;
+}
+
+.private_form input[type="text"], .private_form input[type="checkbox"], .private_form input[type="password"], .private_form textarea {
+	background:#fff;
+	-webkit-box-shadow: inset #fbfbfb 0 0 5px;
+  	-moz-box-shadow: inset #fbfbfb 0 0 5px;
+  	box-shadow: inset #fbfbfb 0 0 5px;
+	-webkit-border-radius:5px;
+  	-moz-border-radius:5px;
+  	border-radius:5px;
+	border:1px solid #d9d9d9;
+	text-align:left;
+	font:12px/17px Arial, Helvetica, sans-serif;
+	color:#AEA9A9;
+    padding: 7px 0px 7px 10px;
 }
 
 .private_form label{
