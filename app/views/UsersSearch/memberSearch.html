@@ -1,5 +1,256 @@
-#{extends 'main_templeate.html' /} #{set title:'search member' /} 
+#{extends 'search_templeate.html' /} #{set title:'search member' /} 
 #{form @UsersSearch.memberSearch()} #{showError errors:errors /}
+<div class="search_popup">
+        <p>Если вы - фанат приключений Алисы в Стране чудес, то этот ресторан в Токио наверняка вам понравится. Интерьер его сделан полностью по мотивам знаменитой сказки Льюиса Кэролла.</p>
+    </div>
+<div class="search_result">
+				<h2>Пользователи</h2>
+                <div class="shot_nav">
+                	<table>
+                      <tr>
+                        <td  class="active">
+     						<div class="group-shot">
+ 	                        	<a href="#">Личные данные</a>
+							</div>
+                        </td>
+                        <td>
+     						<div class="group-shot">						
+ 	                       		<a href="#">Склонности и интересы</a>
+							</div>
+                        </td>
+                        <td class="last">
+     						<div class="group-shot">						
+  	  	                        <a href="#">Профессиональные</a>
+							</div>
+                        </td>
+                      </tr>
+                    </table>
+                </div>
+				
+				<table class="search-result-block padding-7">
+					<tr class="search-name">
+						<td class="lft"><a href="#" class="current">Фамилия, Имя</a><span class="sort_up"></span></td>
+						<td>Аватар</td>
+						<td><a href="#">Страна</a><span class="sort"></span></td>
+						<td><a href="#">Город</a><span class="sort"></span></td>
+						<td><a href="#" class="current">Пол</a><span class="sort_down"></span></td>
+						<td><a href="#">Лет</a><span class="sort"></span></td>
+						<td><a href="#">Статус</a><span class="sort"></span></td>
+						<td class="cntr">Инфо</td>
+						<td class="cntr"><a href="#">Команда</a><span class="sort"></span></td>																															
+					</tr>
+					<tr class="search-result-item">
+						<td><a href="">Владимир Жуковский</a></td>
+						<td><a href=""><img src="@{'public/images/boilerplate/search/pic3.png'}" alt="" class="search-result-pic"></a></td>
+                        <td>Беларусь</td>
+						<td>Минск</td>
+						<td><img src="@{'public/images/boilerplate/ico-man.gif'}" alt="">M</td>
+						<td>23</td>
+						<td>Онлайн</td>
+						<td class="cntr"><span class="info"></span></td>
+						<td class="cntr"><span class="team"></span></td>
+					</tr>
+					<tr class="search-result-item color-item">
+						<td><a href="">Валентина Стрыкало</a></td>
+						<td><a href=""><img src="@{'public/images/boilerplate/search/pic3.png'}" alt="" class="search-result-pic"></a></td>
+                        <td>Беларусь</td>
+						<td>Минск</td>
+						<td><img src="@{'public/images/boilerplate/ico-woman.gif'}" alt="">F</td>
+						<td>23</td>
+						<td>Онлайн</td>
+						<td class="cntr"><span class="info"></span></td>
+						<td class="cntr"><span class="single"></span></td>
+					</tr>
+					
+				</table>
+
+				<br/>
+                <table class="search-result-block padding-15">
+					<tr class="search-name">
+						<td><a href="#" class="current">Фамилия, Имя</a><span class="sort_up"></span></td>
+						<td><span class="ic_predpr"></span><span class="sort"></span></td>
+						<td><span class="ic_ideal"></span><span class="sort"></span></td>
+						<td><span class="ic_communic"></span><span class="sort"></span></td>
+						<td><span class="ic_pragmatic"></span><span class="sort"></span></td>
+						<td><a href="#">Тип бизнеса</a><span class="sort"></span></td>
+						<td><a href="#">Сфера</a><span class="sort"></span></td>
+						<td class="cntr"><a href="#">Imternational</a><span class="sort"></span></td>
+						<td class="cntr"><a href="#">Команда</a><span class="sort"></span></td>																															
+					</tr>
+					<tr class="search-result-item">
+						<td><a href="">Владимир Жуковский</a></td>
+						<td>45</td>
+                        <td>77</td>
+						<td>12</td>
+						<td>0</td>
+						<td>Онлайн</td>
+						<td>Производство</td>
+						<td class="cntr">Yes</td>
+						<td class="cntr"><span class="team"></span></td>
+					</tr>
+					<tr class="search-result-item color-item">
+						<td><a href="">Валентина Стрыкало</a></td>
+						<td>45</td>
+                        <td>77</td>
+						<td>12</td>
+						<td>0</td>
+						<td>Неважно</td>
+						<td>Торговля</td>
+						<td class="cntr">No</td>
+						<td class="cntr"><span class="single"></span></td>
+					</tr>
+					<tr class="search-result-item">
+						<td><a href="">Владимир Жуковский</a></td>
+						<td>45</td>
+                        <td>77</td>
+						<td>12</td>
+						<td>0</td>
+						<td>Оффлайн</td>
+						<td>Услуги</td>
+						<td class="cntr">Yes</td>
+						<td class="cntr"><span class="team"></span></td>
+					</tr>
+					
+				</table>
+				
+			</div>
+			
+			<aside class="criterion_search">
+				<div class="criterion">
+					<div class="ttl-block">
+						<h3>Поиск участников</h3>
+					</div>
+					<div class="private_data">
+						<div class="private">
+							<a href="#">Личные данные</a><span class="dropdown_open"></span>
+						</div>
+						<div class="private-block" id="private-block">
+							<form action="" class="private_form">
+							<div class="private_form">
+							<div class="private_item clearFix">
+								<label for="">Страна</label>
+								<select name="" id="" class="cSelect" style="width:160px;">
+									<option value="">&{'unimportant'}</option> 
+									#{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
+									<option value="${country.name}" #{if country.name==member?.country}selected="selected"#{/if}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country?.name)}</option> 
+									#{/list}
+								</select>
+							</div>
+							<div class="private_item clearFix">
+								<label for="">Город</label>
+								<select name="" id="" class="cSelect" style="width:160px;">
+									<option value="">Выбрать</option>
+									<option value="">Выбрать</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+  								<label class="clearFix" for="">Возраст</label>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">От</option>
+								</select>
+								<span class="mdash fl">&mdash;</span>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">До</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+								<label for="">Пол</label>
+								<select name="" id="" class="cSelect" style="width:160px;">
+									<option value="">Выбрать</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+								<label for="">В команде</label>
+								<select name="" id="" class="cSelect" style="width:160px;">
+									<option value="">Неважно</option>
+								</select>
+							</div>
+							</div>
+							</form>
+						</div>
+					</div>
+					<div class="interest">
+						<a href="#">Склонности и интересы</a><span class="dropdown_open"></span>
+					</div>
+					<div class="private_data">
+					<div class="private-block" id="private-block">
+							<form action="" class="private_form">
+							<div class="private_item clearFix">
+								<label for=""><span class="ic_predpr_pas"></span>Предпринимательство</label>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">От</option>
+								</select>
+								<span class="mdash fl">&mdash;</span>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">До</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+								<label for=""><span class="ic_ideal_pas"></span>Идеализм</label>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">От</option>
+								</select>
+								<span class="mdash fl">&mdash;</span>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">До</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+  								<label class="clearFix" for=""><span class="ic_communic_pas"></span>Коммуникабельность</label>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">От</option>
+								</select>
+								<span class="mdash fl">&mdash;</span>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">До</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+								<label for=""><span class="ic_pragmatic_pas"></span>Прагматика</label>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">От</option>
+								</select>
+								<span class="mdash fl">&mdash;</span>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">До</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+								<label for="">Тип бизнеса</label>
+								<select name="" id="" class="cSelect" style="width:160px;">
+									<option value="">Выбрать</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+								<label for="">Сфера бизнеса</label>
+								<select name="" id="" class="cSelect" style="width:160px;">
+									<option value="">Неважно</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+								<input type="checkbox" name="" id="" class="check"/>
+								<span class="speak">Говорит на английском </span>
+							</div>
+							</form>
+						</div>
+						</div>
+					<div class="professional">
+						<a href="#">Профессиональные</a><span class="dropdown_close"></span>
+					</div>
+				</div>
+				<div class="share">
+					<div class="share-cont">
+						<p><strong>Поделится</strong></p>
+						<a href="" class="twitter">Twitter</a>
+						<a href="" class="facebook">Facebook</a>
+						<a href="" class="vk">Вконтакте</a>
+					</div>
+				</div>
+			</aside>
+
+
+
+
 <h2>Найти участника</h2>
 <script type="text/javascript">
 					$(document).ready(function () {

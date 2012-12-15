@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/stl.css'}" />
+	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/content.css'}" />
+	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/custom.css'}" />
+	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/search.css'}" />
+	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/jquery.selectbox.css'}" />
+	<!--[if IE]>	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>	<![endif]-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script src="@{'/public/javascripts/jquery.placeholder.min.js'}" type="text/javascript" charset="utf-8"></script>
+	<script src="@{'/public/javascripts/jquery.selectbox.js'}" type="text/javascript" charset="utf-8"></script>
+	<script src="@{'/public/javascripts/jquery.ocupload-1.1.2.js'}" type="text/javascript" charset="utf-8"></script>
+<script>
+$(document).ready(function() {
+	/*placeholder*/
+	$('input[placeholder], textarea[placeholder]').placeholder();
+});
+</script> 
+</head>
+<body>
+%{
+	boolean groupAdmin = utils.SessionHelper.getCurrentUser(session).role == models.User.ROLE_GROUP_ADMIN;
+	boolean groupMember = !groupAdmin && (utils.SessionHelper.getCurrentUser(session).command != null);
+	boolean notInGroup = utils.SessionHelper.getCurrentUser(session).command == null;
+	boolean wasInviteToGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null;
+	int countCommands = (models.User.findById(utils.SessionHelper.getCurrentUser(session).id).commandsForAprove == null)? 0 : models.User.findById(utils.SessionHelper.getCurrentUser(session).id).commandsForAprove.size();
+	int countUsers = ((models.User.findById(utils.SessionHelper.getCurrentUser(session).id).command?.usersForAprove == null) || (groupMember)) ? 0 : models.User.findById(utils.SessionHelper.getCurrentUser(session).id).command?.usersForAprove.size();
+	boolean haveGroupOrInviteJoin = groupMember || wasInviteToGroup;
+%}
+	<div class="wrapper inner-page">
+		<header class="hdr-page">
+			<div class="inner">
+				<a href="/">
+					<img src="@{'public/images/boilerplate/logo-1.png'}" alt="" class="logo" />
+				</a>
+				<nav class="main-nav">
+					<ul>
+						<li><a href="/">Главная</a></li>
+						<li><a href="/news">Новости</a></li>
+						<li><a href="/about/">О проекте</a></li>
+						<li><a href="/contacts/">Контакты</a></li>
+						<li><a href="/partners/">Партнеры</a></li>
+					</ul>
+				</nav>
+                <div class="logged clearFix">
+                	<div class="logged-message">
+                    	<a href="#" class="logged-message-ico"></a>
+                    </div>
+                    <div class="logged-event">
+                    	<a href="#" onclick="$('.logged-user-menu').hide('slow'); $('.event-popup').show('slow'); return false;" class="logged-event-ico act"></a>
+                    	#{if (countCommands + countUsers) > 0}
+                        <span class="event-num">${countCommands + countUsers}</span>
+                        #{/if}
+                        <div class="event-popup" style="display:none;">
+                        	<img src="@{'public/images/boilerplate/logged-arrow2.png'}" alt="">
+                        	События
+                            <ul>
+                            #{list items:models.User.findById(utils.SessionHelper.getCurrentUser(session).id).commandsForAprove, as:'group'}
+                            	<li>
+                                    <span><a href="@{GroupController.index(group.id)}">Приглашение в группу: ${group.name}</a></span>
+                                    #{if groupAdmin}
+										<div title="Вы должны сначала передать права администратора участнику группы, прежде чем выйти и вступить в новую группу">Согласен</div>
+									#{/if}
+									#{else}
+										#{if haveGroupOrInviteJoin}
+											<p><a href="" onclick="$('.approveInviteGroup').show(); return false;">Согласен</a></p>
+											<div class="approveInviteGroup"  style="display: none">
+												<div class="overlay"></div>
+												<div class="popup">
+												    	<h2>Вступить команду</h2>
+												        <p>Вы уверены, что хотите выйти из своей команды и отменить заявки на вступления и вступить в новую?</p>
+												        <a class="btn" href="@{UserController.approveInviteGroup(group.id)}">Вступить</a>
+												        <a href="" onclick="$('.approveInviteGroup').hide(); return false;" class="cancel">Отмена</a>
+												</div>
+											</div>
+										#{/if}
+										#{else}
+											<p><a href="@{UserController.approveInviteGroup(group.id)}">Согласен</a></p>
+										#{/else}
+									#{/else}
+                                    <p><a href="@{UserController.declineInviteGroup(group.id)}">Отклонить</a></p>
+                                </li>
+                             #{/list}   
+                             #{if groupAdmin}
+                             	#{list items:models.User.findById(utils.SessionHelper.getCurrentUser(session).id).command?.usersForAprove, as:'userForAprove'}
+								<li>
+									
+										<span><a href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session).command?.id)}">Заявка на вступление в вашу группу</a></span>
+											<p><a href="@{UserController.index(userForAprove.id)}">${userForAprove.name} ${userForAprove.lastName}</a></p>
+											<p><a href="@{GroupController.approveJoin(userForAprove.id, utils.SessionHelper.getCurrentUser(session).command.id)}">Добавить</a></p>
+											<p><a href="@{GroupController.declineJoin(userForAprove.id, utils.SessionHelper.getCurrentUser(session).command.id)}">Отклонить</a></p>
+										</tr>
+									
+								</li>
+								#{/list}
+							#{/if}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="logged-user">
+                    	<a href="#" onclick="$('.event-popup').hide('slow'); $('.logged-user-menu').show('slow'); return false;">
+						#{avatar.avatar user:utils.SessionHelper.getCurrentUser(session), cssClass:'user-pic', maleImg:'upm.png', femaleImg:'upf.png', avatarSize:27 /}
+						</a>
+                        <div class="logged-user-menu" style="display:none;">
+                        	<img src="@{'public/images/boilerplate/logged-arrow2.png'}" alt="">
+                            <ul>
+                            	<li><a href="@{UserController.index(utils.SessionHelper.getCurrentUser(session)?.id)}">Мой профиль</a></li>
+                            	#{if (utils.SessionHelper.getCurrentUser(session)?.command != null)}
+                                <li><a href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session)?.command?.id)}">Моя группа</a></li>
+                                #{/if}
+                                <li><a href="@{LoginController.logout()}" class="logged-user-exit">Выйти</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</header>
+	
+		<div class="content wrap-inner clearFix">
+			#{doLayout/}	
+		</div>
+	</div>
+	
+
+		
+		<footer class="ftr-page">
+			<div class="inner">
+				<p>&copy; © 2012 All rights reserved. StartNewTeam</p>
+				<nav class="ftr-nav">
+					<ul>
+						<li><a href="/">Главная</a></li>
+						<li><a href="/news">Новости</a></li>
+						<li><a href="/about/">О проекте</a></li>
+						<li><a href="/contacts/">Контакты</a></li>
+						<li><a href="/partners/">Партнеры</a></li>
+					</ul>
+				</nav>
+			</div>
+		</footer>
+		#{userPopup/}
+</body>
+</html>
