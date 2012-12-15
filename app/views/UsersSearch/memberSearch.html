@@ -1,11 +1,11 @@
 #{extends 'search_templeate.html' /} #{set title:'search member' /} 
 #{form @UsersSearch.memberSearch()} #{showError errors:errors /}
+
 <!-- 
-<div class="search_popup">
-        <p>Если вы - фанат приключений Алисы в Стране чудес, то этот ресторан в Токио наверняка вам понравится. Интерьер его сделан полностью по мотивам знаменитой сказки Льюиса Кэролла.</p>
-    </div>
+
  -->
 #{}
+
 <div class="search_result">
 				<h2>Пользователи</h2>
                 <div class="shot_nav">
@@ -116,6 +116,55 @@
 					
 				</table>
 				
+				<div class="icon_popup">
+        			Навык "Управление"
+    			</div>
+				<table class="search-result-block padding-15">
+					<tr class="search-name">
+						<td><a href="#" class="current">Фамилия, Имя</a><span class="sort_up"></span></td>
+						<td><span class="ic_marketing_active"></span><span class="sort_up"></span></td>
+						<td><span class="ic_sale"></span><span class="sort"></span></td>
+						<td><span class="ic_management_hover"></span><span class="sort"></span></td>
+						<td><span class="ic_right"></span><span class="sort"></span></td>
+						<td><span class="ic_finance"></span><span class="sort"></span></td>
+						<td><span class="ic_it"></span><span class="sort"></span></td>
+						<td><span class="ic_more"></span><span class="sort"></span></td>
+						<td class="cntr"><a href="#">Команда</a><span class="sort"></span></td>																															
+					</tr>
+					<tr class="search-result-item">
+						<td><a href="">Владимир Жуковский</a></td>
+						<td><span class="ic_one"></span></td>
+                        <td><span class="ic_two"></span></td>
+						<td><span class="ic_three"></span></td>
+						<td><span class="ic_four"></span></td>
+                        <td><span class="ic_one"></span></td>
+						<td><span class="ic_two"></span></td>
+						<td><span class="ic_three"></span></td>
+						<td class="cntr"><span class="team"></span></td>
+					</tr>
+					<tr class="search-result-item color-item">
+						<td><a href="">Валентина Стрыкало</a></td>
+						<td><span class="ic_one"></span></td>
+                        <td><span class="ic_two"></span></td>
+						<td><span class="ic_three"></span></td>
+						<td><span class="ic_four"></span></td>
+                        <td><span class="ic_one"></span></td>
+						<td><span class="ic_two"></span></td>
+						<td><span class="ic_three"></span></td>
+						<td class="cntr"><span class="single"></span></td>
+					</tr>
+					<tr class="search-result-item">
+						<td><a href="">Владимир Жуковский</a></td>
+						<td><span class="ic_one"></span></td>
+                        <td><span class="ic_two"></span></td>
+						<td><span class="ic_three"></span></td>
+						<td><span class="ic_four"></span></td>
+                        <td><span class="ic_one"></span></td>
+						<td><span class="ic_two"></span></td>
+						<td><span class="ic_three"></span></td>
+						<td class="cntr"><span class="team"></span></td>
+					</tr>
+				</table>
 			</div>
 			
 			<aside class="criterion_search">
@@ -141,10 +190,7 @@
 							</div>
 							<div class="private_item clearFix">
 								<label for="">Город</label>
-								<select name="" id="" class="cSelect" style="width:160px;">
-									<option value="">Выбрать</option>
-									<option value="">Выбрать</option>
-								</select>
+								<input id="" type="text" placeholder="Минск" value="Минск" name="city" style="width:150px;">
 							</div>
 							<div class="private_item clearFix">
   								<label class="clearFix" for="">Возраст</label>
@@ -237,8 +283,86 @@
 							</form>
 						</div>
 						</div>
+						
 					<div class="professional">
 						<a href="#">Профессиональные</a><span class="dropdown_close"></span>
+					</div>
+					<div class="private_data">
+					<div class="private-block" id="private-block">
+					
+							<form action="" class="private_form">
+							<div class="private_item clearFix">
+								<label for=""><span class="ic_marketing_pas"></span>Маркетинг / реклама</label>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">От</option>
+								</select>
+								<span class="mdash fl">&mdash;</span>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">До</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+								<label for=""><span class="ic_sale_pas"></span>Продажи</label>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">От</option>
+								</select>
+								<span class="mdash fl">&mdash;</span>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">До</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+  								<label class="clearFix" for=""><span class="ic_management_pas"></span>Управление</label>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">От</option>
+								</select>
+								<span class="mdash fl">&mdash;</span>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">До</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+								<label for=""><span class="ic_right_pas"></span>Право</label>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">От</option>
+								</select>
+								<span class="mdash fl">&mdash;</span>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">До</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+								<label for=""><span class="ic_finance_pas"></span>Финансы</label>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">От</option>
+								</select>
+								<span class="mdash fl">&mdash;</span>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">До</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+								<label for=""><span class="ic_it_pas"></span>ИТ / программирование</label>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">От</option>
+								</select>
+								<span class="mdash fl">&mdash;</span>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">До</option>
+								</select>
+							</div>
+							<div class="private_item clearFix">
+								<label for=""><span class="ic_more_pas"></span>Другое</label>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">От</option>
+								</select>
+								<span class="mdash fl">&mdash;</span>
+								<select name="" id="" class="cSelect" style="width:67px;">
+									<option value="">До</option>
+								</select>
+							</div>
+							</form>
+						</div>
 					</div>
 				</div>
 				<div class="share">
@@ -252,7 +376,9 @@
 			</aside>
 
 
-
+ <div class="info_popup">
+        <p>Если вы - фанат приключений Алисы в Стране чудес, то этот ресторан в Токио наверняка вам понравится. Интерьер его сделан полностью по мотивам знаменитой сказки Льюиса Кэролла.</p>
+    </div>
 
 <h2>Найти участника</h2>
 <script type="text/javascript">
