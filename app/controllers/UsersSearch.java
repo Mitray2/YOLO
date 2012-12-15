@@ -59,25 +59,7 @@ public class UsersSearch extends AbstractSearch {
 	}
 
 	public static void memberSearchAjax() {
-		MemberSearchDTO search = new GsonBuilder().create().fromJson(request.params.get("body"), MemberSearchDTO.class);
-		JsonArray res = new JsonArray();
-		List<User> users = User.findAll();
-		for (User user : users) {
-			JsonObject user_search = new JsonObject();
-			user_search.addProperty("id", user.id);
-			user_search.addProperty("lastName", user.lastName);
-			user_search.addProperty("name", user.name);
-			user_search.addProperty("country", "country");
-			user_search.addProperty("city", user.city);
-			user_search.addProperty("name", user.name);
-			res.add(user_search);
-		}
-		JsonObject userss = new JsonObject();
-		userss.add("users", res);
-		renderJSON(userss);
-	}
-
-	public static void memberSearch(MemberSearchDTO member) {
+		MemberSearchDTO member = new GsonBuilder().create().fromJson(request.params.get("body"), MemberSearchDTO.class);
 		statement = "select distinct u from User u left join u.country as c " + "left join u.businessType as type " + "left join u.businessSphere as s "
 				+ "left join u.expMarketing as m " + "left join m.level as marl " + "left join u.expManagement as man " + "left join man.level as manl "
 				+ "left join u.expSale as t " + "left join t.level as tl " + "left join u.expFinance as f " + "left join f.level as fl " + "left join u.expLegal as l "
@@ -154,11 +136,35 @@ public class UsersSearch extends AbstractSearch {
 		}
 		statement += orderBy.toString();
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + statement);
-		List<User> users = User.find(statement, queryParams.toArray()).fetch();
-		ValuePaginator paginator = new ValuePaginator(users);
-		paginator.setPageSize(ITEMS_PER_PAGE);
+		List<User> usersOriginal = User.find(statement, queryParams.toArray()).fetch();
+		JsonArray users = new JsonArray();
+		for (User user : usersOriginal) {
+			JsonObject user_search = new JsonObject();
+			user_search.addProperty("id", user.id);
+			user_search.addProperty("lastName", user.lastName);
+			user_search.addProperty("name", user.name);
+			user_search.addProperty("country", user.country.name);
+			user_search.addProperty("city", user.city);
+			user_search.addProperty("sex", user.sex);
+			user_search.addProperty("info", user.personalCV);
+			user_search.addProperty("commandB", user.command == null ? false : true);
+			user_search.addProperty("businessman", user.businessman);
+			user_search.addProperty("idealist", user.idealist);
+			user_search.addProperty("communicant", user.communicant);
+			user_search.addProperty("pragmatist", user.pragmatist);
+			user_search.addProperty("businessType", user.businessType.name);
+			user_search.addProperty("businessSphere", user.businessSphere.name);
+			user_search.addProperty("international", "Yes"); // TODO not
+																// approved
+			user_search.addProperty("status", "online"); // TODO not approved
 
-		render(paginator, member);
+			users.add(user_search);
+		}
+		renderJSON(users);
+	}
+
+	public static void memberSearch(MemberSearchDTO member) {
+		render();
 	}
 
 	public static void peopleSearch(FriendSearchDTO friend) {
