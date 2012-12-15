@@ -1,11 +1,6 @@
 #{extends 'search_templeate.html' /} #{set title:'search member' /} 
 #{form @UsersSearch.memberSearch()} #{showError errors:errors /}
 
-<!-- 
-
- -->
-#{}
-
 <div class="search_result">
 				<h2>Пользователи</h2>
                 <div class="shot_nav">
@@ -181,7 +176,7 @@
 							<div class="private_form">
 							<div class="private_item clearFix">
 								<label for="">Страна</label>
-								<select name="" id="" class="cSelect" style="width:160px;">
+								<select name="" id="country" class="cSelect" style="width:160px;">
 									<option value="">&{'unimportant'}</option> 
 									#{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
 									<option value="${country.name}" #{if country.name==member?.country}selected="selected"#{/if}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country?.name)}</option> 
@@ -190,7 +185,7 @@
 							</div>
 							<div class="private_item clearFix">
 								<label for="">Город</label>
-								<input id="" type="text" placeholder="Минск" value="Минск" name="city" style="width:150px;">
+								<input id="city" type="text" placeholder="Минск" value="Минск" name="city" style="width:150px;">
 							</div>
 							<div class="private_item clearFix">
   								<label class="clearFix" for="">Возраст</label>

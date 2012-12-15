@@ -51,4 +51,5 @@ public class MemberSearchDTO implements Serializable {
 	public String orderBy;
 
 	public boolean asc;
+	
 }
