@@ -16,6 +16,9 @@ import play.mvc.Before;
 import utils.ApplicationConstants;
 import utils.SessionHelper;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 public class UsersSearch extends AbstractSearch {
 
 	@Before
@@ -51,6 +54,10 @@ public class UsersSearch extends AbstractSearch {
 		if (currentUser.role.equals(User.ROLE_WITHOUT_BLANK)) {
 			redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
 		}
+
+	}
+
+	public static void memberSearchTest(String memberJSON) {
 
 	}
 
@@ -134,8 +141,22 @@ public class UsersSearch extends AbstractSearch {
 		List<User> users = User.find(statement, queryParams.toArray()).fetch();
 		ValuePaginator paginator = new ValuePaginator(users);
 		paginator.setPageSize(ITEMS_PER_PAGE);
+		JsonArray res = new JsonArray();
+		for (User user : users) {
+			JsonObject user_search = new JsonObject();
+			user_search.addProperty("id", user.id);
+			user_search.addProperty("lastName", user.lastName);
+			user_search.addProperty("name", user.name);
+			user_search.addProperty("country", user.country.name);
+			user_search.addProperty("city", user.city);
+			user_search.addProperty("name", user.name);
+			res.add(user_search);
+		}
+		JsonObject userss = new JsonObject();
+		userss.add("users", res);
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n \n" + userss.toString());
 
-		render(paginator, member);
+		renderJSON(userss);
 	}
 
 	public static void peopleSearch(FriendSearchDTO friend) {
