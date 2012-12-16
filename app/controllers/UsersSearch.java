@@ -60,6 +60,7 @@ public class UsersSearch extends AbstractSearch {
 
 	public static void memberSearchAjax() {
 		MemberSearchDTO member = new GsonBuilder().create().fromJson(request.params.get("body"), MemberSearchDTO.class);
+		System.out.println("/n /n/n/n/n/n/n" + member.toString());
 		statement = "select distinct u from User u left join u.country as c " + "left join u.businessType as type " + "left join u.businessSphere as s "
 				+ "left join u.expMarketing as m " + "left join m.level as marl " + "left join u.expManagement as man " + "left join man.level as manl "
 				+ "left join u.expSale as t " + "left join t.level as tl " + "left join u.expFinance as f " + "left join f.level as fl " + "left join u.expLegal as l "

@@ -15,8 +15,28 @@ function Search() {
 		searchTab3 : false
 	};
 	this.searchModel = {
-			country : null,
-			city : null
+			  country : null,
+			  city : null,
+			  ageMin : null,
+		      ageMax : null,
+			  sex : null,
+			  inCommand : null,
+			  bissnessType : null,
+			  bissnessSphere : null,
+			  marketing : null,
+			  sale : null,
+			  management : null,
+			  finance : null,
+			  legal : null,
+			  it : null,
+			  bmanMin : null,
+			  bmanMax : null,
+			  idealMin : null,
+			  idealMax : null,
+			  comutMin : null,
+			  comutMax : null,
+			  pragmatMin : null,
+			  pragmatMax : null
 	};
 	this.init = function init() {
 		_this = this;
