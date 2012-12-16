@@ -168,7 +168,10 @@ public class UsersSearch extends AbstractSearch {
 			}
 
 		}
-		renderJSON(list);
+		UserSearchAjaxResult result = new UserSearchAjaxResult();
+		result.users = list;
+		result.count = 256; //TODO: total search count
+		renderJSON(result);
 	}
 
 	public static void memberSearch(MemberSearchDTO member) {
@@ -214,5 +217,10 @@ public class UsersSearch extends AbstractSearch {
 		paginator.setPageSize(ITEMS_PER_PAGE);
 
 		render(paginator, friend);
+	}
+	
+	public static class UserSearchAjaxResult {
+		public List<Map<String, Object>> users;
+		public Integer count; 
 	}
 }
