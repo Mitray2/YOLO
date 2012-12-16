@@ -9,13 +9,17 @@ function Search() {
 		currentPage : 1,
 		searchPanel1 : true,
 		searchPanel2 : false,
-		searchPanel3 : false
+		searchPanel3 : false,
+		searchTab1 : true,
+		searchTab2 : false,
+		searchTab3 : false
 	};
 	this.searchModel = {
 			country : null,
 			city : null
 	};
 	this.init = function init() {
+		_this = this;
 		$(".private_item").find("select").each(function(index, item){
 			$(item).change(function() {
 				search.doSearch();
@@ -26,6 +30,9 @@ function Search() {
 				search.doSearch();
 			});
 		});
+		$("#searchTab1").click(function(){_this.activateTab(1)});
+		$("#searchTab2").click(function(){_this.activateTab(2)});
+		$("#searchTab3").click(function(){_this.activateTab(3)});
 //		if (search.uiModel.searchPanel1) {
 //			$("#searchPanel1Content").show();
 //			$("#searchPanel1").removeClass("dropdown_closed");
@@ -44,6 +51,16 @@ function Search() {
 //			$("#searchPanel3Content").hide();
 //		}
 	};
+	
+	this.activateTab = function activateTab(tabIndex) {
+		for (var i = 1; i <= 3; i++) {
+			if (i == tabIndex) {
+				$("#searchTab" + i).addClass("active");
+			} else {
+				$("#searchTab" + i).removeClass("active");
+			}
+		}
+	} 
 	
 	this.doSearch = function doSearch() {
 		$.each(search.searchModel, function(index, item) {
@@ -81,11 +98,11 @@ function Search() {
 					}
 					row.append("<td>"+user.age+"</td>");
 					row.append("<td>"+user.status+"</td>");
-					row.append("<td><span class='info'></span></td>");
+					row.append("<td class='cntr'><span class='info'></span></td>");
 					if (user.commandB) {
-						row.append("<td><span class='team'></span></td>");
+						row.append("<td class='cntr'><span class='team'></span></td>");
 					} else {
-						row.append("<td><span class='single'></span></td>");	
+						row.append("<td class='cntr'><span class='single'></span></td>");	
 					}
 				});
 			}
