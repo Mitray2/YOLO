@@ -135,9 +135,8 @@ public class UsersSearch extends AbstractSearch {
 			}
 		}
 		statement += orderBy.toString();
-		// List<User> usersOriginal = User.find(statement,
-		// queryParams.toArray()).fetch();
-		List<User> usersOriginal = User.findAll();
+		List<User> usersOriginal = User.find(statement, queryParams.toArray()).fetch();
+		// List<User> usersOriginal = User.findAll();
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		for (User user : usersOriginal) {
 			if (user.country != null) {
@@ -162,7 +161,7 @@ public class UsersSearch extends AbstractSearch {
 				user_search.put("businessSphere", user.businessSphere.name);
 				user_search.put("international", "Yes"); // TODO not
 															// approved
-				user_search.put("status", "?");
+				user_search.put("status", "Online");
 
 				list.add(user_search);
 			}
