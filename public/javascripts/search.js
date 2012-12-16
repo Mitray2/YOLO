@@ -101,7 +101,7 @@ function Search() {
 		console.log(search.searchModel);
 		$.ajax({
 			type: "POST",
-			url: "memberSearchAjax",
+			url: "memberSearchAjax?page=" + _this.uiModel.currentPage,
 			dataType: 'json',
 			async: false,
 			data: JSON.stringify(search.searchModel),
