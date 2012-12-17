@@ -65,9 +65,7 @@ function Search() {
 		_this.activateTab(1);
 		
 		//init order by
-		$("#column_country").click(function(){_this.doChangeOrder("country")});
-		$("#column_city").click(function(){_this.doChangeOrder("city")});
-		$("#column_sex").click(function(){_this.doChangeOrder("sex")});
+		_initOrderBy();
 		
 		//init seach accordion
 		//TODO:
@@ -89,6 +87,13 @@ function Search() {
 //			$("#searchPanel3Content").hide();
 //		}
 	};
+	
+	var _initOrderBy = function() {
+		$("#column_country").click(function(){_this.doChangeOrder("country")});
+		$("#column_city").click(function(){_this.doChangeOrder("city")});
+		$("#column_sex").click(function(){_this.doChangeOrder("sex")});
+		$("#column_age").click(function(){_this.doChangeOrder("age")});
+	}
 	
 	this.activateTab = function activateTab(tabIndex) {
 		for (var i = 1; i <= 3; i++) {
