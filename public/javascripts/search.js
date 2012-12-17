@@ -37,7 +37,9 @@ function Search() {
 			  comutMin : null,
 			  comutMax : null,
 			  pragmatMin : null,
-			  pragmatMax : null
+			  pragmatMax : null,
+			  orderBy : null,
+			  asc : false
 	};
 	this.init = function init() {
 		_this = this;
@@ -61,6 +63,11 @@ function Search() {
 		$("#searchTab2").click(function(){_this.activateTab(2)});
 		$("#searchTab3").click(function(){_this.activateTab(3)});
 		_this.activateTab(1);
+		
+		//init order by
+		$("#column_country").click(function(){_this.doChangeOrder("country")});
+		$("#column_city").click(function(){_this.doChangeOrder("city")});
+		$("#column_sex").click(function(){_this.doChangeOrder("sex")});
 		
 		//init seach accordion
 		//TODO:
@@ -95,13 +102,38 @@ function Search() {
 		}
 	}
 	
+	this.doChangeOrder = function doChangeOrder(columnName) {
+		_this = this;
+		if (_this.searchModel.orderBy == columnName) {
+			//column not changed. just change sort direction.
+			_this.searchModel.asc = !_this.searchModel.asc;
+			$("#column_" + columnName + " > span").removeClass(_this.searchModel.asc ? "sort_up" : "sort_down");
+			$("#column_" + columnName + " > span").addClass(!_this.searchModel.asc ? "sort_up" : "sort_down");
+		} else {
+			//column changed. set search direction to default
+			_this.searchModel.asc = false;
+			//change old column state
+			$("#column_" + _this.searchModel.orderBy + " > a").removeClass("current");
+			$("#column_" + _this.searchModel.orderBy + " > span").removeClass("sort_up");
+			$("#column_" + _this.searchModel.orderBy + " > span").removeClass("sort_down");
+			$("#column_" + _this.searchModel.orderBy + " > span").addClass("sort");
+			//change new column state
+			$("#column_" + columnName + " > a").addClass("current");
+			$("#column_" + columnName + " > span").addClass("sort_up");
+		}
+		_this.searchModel.orderBy = columnName;
+		//console.log("orderBy: " + _this.searchModel.orderBy + " asc: " + _this.searchModel.asc);
+		_this.uiModel.currentPage = 1;
+		_this.doSearch();
+	}
+	
 	this.doSearch = function doSearch() {
 		_this = this;
 		$.each(search.searchModel, function(index, item) {
+			if (index == "asc" || index == "orderBy") return;
 			search.searchModel[index] = $(".private_item").find("#"+index+"").val();
 		});
-		console.log(search.searchModel);
-		console.log("do load page " + _this.uiModel.currentPage);
+		//console.log(search.searchModel);
 		$("#searchLoader").show();
 		$.ajax({
 			type: "POST",
@@ -110,7 +142,7 @@ function Search() {
 			async: false,
 			data: JSON.stringify(search.searchModel),
 			success: function(data) {
-				console.log(data);
+				//console.log(data);
 				var table = $(".search-result-block");
 				if (_this.uiModel.currentPage == 1) {
 					//new search started.
@@ -125,7 +157,6 @@ function Search() {
 					appendThirdTabColumns(user, row);
 					row.fadeIn(500);
 				});
-				console.log("data loaded");
 				//check if need to continue scrolling
 				if (data.pagesCount > _this.uiModel.currentPage) {
 					_this.uiModel.currentPage++;
@@ -139,7 +170,6 @@ function Search() {
 	
 	var _isPageBottom = function() {
 		var result = _isScrolledIntoView($("#searchLoader")) || _isScrolledIntoView($("footer"));
-		console.log("_isPageBottom: " + result);
 	    if (result) {
 	    	_this.doSearch();
 	    } else {
