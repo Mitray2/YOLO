@@ -45,11 +45,13 @@ function Search() {
 		//init search panel
 		$(".private_item").find("select").each(function(index, item){
 			$(item).change(function() {
+				_this.uiModel.currentPage = 1;
 				search.doSearch();
 			});
 		});
 		$(".private_item > input").each(function(index, item){
 			$(item).change(function() {
+				_this.uiModel.currentPage = 1;
 				search.doSearch();
 			});
 		});
@@ -99,6 +101,8 @@ function Search() {
 			search.searchModel[index] = $(".private_item").find("#"+index+"").val();
 		});
 		console.log(search.searchModel);
+		console.log("do load page " + _this.uiModel.currentPage);
+		$("#searchLoader").show();
 		$.ajax({
 			type: "POST",
 			url: "memberSearchAjax?page=" + _this.uiModel.currentPage,
@@ -108,34 +112,47 @@ function Search() {
 			success: function(data) {
 				console.log(data);
 				var table = $(".search-result-block");
-				table.find("tr:gt(0)").remove();
+				if (_this.uiModel.currentPage == 1) {
+					//new search started.
+					table.find("tr:gt(0)").remove();
+				}
 				$.each(data.users, function(key, user) {
-					var row = $("<tr class='search-result-item'>");
+					var row = $("<tr class='search-result-item' style='display: none;'>");
 					table.append(row);
 					row.append("<td><a href=''>" + user.name + " " + user.lastName + "</a></td>");
 					appendFirstTabColumns(user, row);
 					appendSecondTabColumns(user, row);
 					appendThirdTabColumns(user, row);
+					row.fadeIn(500);
 				});
-				_this.uiModel.totalCount = data.count;
-				_this.updatePaging();
+				console.log("data loaded");
+				//check if need to continue scrolling
+				if (data.pagesCount > _this.uiModel.currentPage) {
+					_this.uiModel.currentPage++;
+					setTimeout(_isPageBottom, 1000);
+				} else {
+					$("#searchLoader").hide();
+				}
 			}
 		});
 	}
 	
-	this.doNavigateToPage = function doNavigateToPage() {
-		
-	}
+	var _isPageBottom = function() {
+		var result = _isScrolledIntoView($("#searchLoader")) || _isScrolledIntoView($("footer"));
+		console.log("_isPageBottom: " + result);
+	    if (result) {
+	    	_this.doSearch();
+	    } else {
+	    	setTimeout(_isPageBottom, 1000);
+	    }
+	};
 	
-	this.updatePaging = function updatePaging() {
-		if (_this.uiModel.totalCount > 0) {
-			$("#searchPaging").show();
-			for (var i = 1; i <= _this.uiModel.totalCount / 10; i++) {
-				//$("#searchPaging").append("<a href='#'>"+i+"</a>");
-			}
-		} else {
-			$("#searchPaging").hide();
-		}
+	var _isScrolledIntoView = function(elem) {
+	    var docViewTop = $(window).scrollTop();
+	    var docViewBottom = docViewTop + $(window).height();
+	    var elemTop = elem.offset().top;
+	    var elemBottom = elemTop + elem.height();
+	    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom));
 	}
 }
 
