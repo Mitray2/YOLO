@@ -13,7 +13,8 @@ function Search() {
 		searchTab1 : true,
 		searchTab2 : false,
 		searchTab3 : false,
-		totalCount : 0
+		totalCount : 0,
+		rowId : 0
 	};
 	this.searchModel = {
 			  country : null,
@@ -173,6 +174,12 @@ function Search() {
 		});
 	}
 	
+	this.showUserInfo = function showUserInfo(element) {
+		var popupDiv = $("<div class='info_popup'><p>blablabla</p></div>");
+		popup.position(element.position());
+		popupDiv.show();
+	}
+	
 	var _isPageBottom = function() {
 		var result = _isScrolledIntoView($("#searchLoader")) || _isScrolledIntoView($("footer"));
 	    if (result) {
@@ -189,6 +196,7 @@ function Search() {
 	    var elemBottom = elemTop + elem.height();
 	    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom));
 	}
+	
 }
 
 function appendThirdTabColumns(user, row) {
@@ -243,7 +251,17 @@ function appendFirstTabColumns(user, row) {
 	}
 	addCell(row, "searchResultColumn1", user.age, hidden);
 	addCell(row, "searchResultColumn1", user.status, hidden);
-	addCell(row, "searchResultColumn1", "<span class='info'></span>", hidden);
+	addCell(row, "searchResultColumn1", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-info='"+user.info+"'></span>", hidden);
+	$("#info_" + search.uiModel.rowId).hover(
+		function(e){
+			$(".info_popup > p").text($(this).data("info"));
+			$(".info_popup").fadeIn(200);
+			var h = $(".info_popup").height();
+			$(".info_popup").offset({left:$(this).offset().left + 28, top:$(this).offset().top - h / 2 - 4});
+		}, function(e){
+			$(".info_popup").fadeOut(100);
+		}
+	);
 	if (user.commandB) {
 		addCell(row, "searchResultColumn1 cntr", "<span class='team'></span>", hidden);
 	} else {
