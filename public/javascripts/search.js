@@ -68,6 +68,11 @@ function Search() {
 		//init order by
 		_initOrderBy();
 		
+		//init column toolips
+		$(".tip").each(function(index, item) {
+			_this.tipColumn($(item));
+		})
+		
 		//init seach accordion
 		//TODO:
 //		if (search.uiModel.searchPanel1) {
@@ -106,6 +111,7 @@ function Search() {
 				$(".searchResultColumn" + i).hide();
 			}
 		}
+		_this.uiModel.currentTab = tabIndex;
 	}
 	
 	this.doChangeOrder = function doChangeOrder(columnName) {
@@ -174,10 +180,33 @@ function Search() {
 		});
 	}
 	
-	this.showUserInfo = function showUserInfo(element) {
-		var popupDiv = $("<div class='info_popup'><p>blablabla</p></div>");
-		popup.position(element.position());
-		popupDiv.show();
+	this.tipInfo = function tipInfo(element) {
+		element.hover(
+				function(e){
+					$(".info_popup > p").text($(this).data("tip"));
+					$(".info_popup").fadeIn(200);
+					var h = $(".info_popup").height();
+					$(".info_popup").offset({left:$(this).offset().left + 28, top:$(this).offset().top - h / 2 - 4});
+				}, function(e){
+					$(".info_popup").fadeOut(100);
+				}
+			);
+	}
+	
+	this.tipColumn = function tipColumn(element) {
+		element.hover(
+				function(e){
+					var data = $(this).data("tip");
+					if (data && data != "") {
+						$(".icon_popup").html(data);
+						$(".icon_popup").fadeIn(200);
+						var w = $(".icon_popup").width();
+						$(".icon_popup").offset({left:$(this).offset().left - w/2, top:$(this).offset().top - 40});
+					}
+				}, function(e){
+					$(".icon_popup").hide();
+				}
+			);
 	}
 	
 	var _isPageBottom = function() {
@@ -251,17 +280,8 @@ function appendFirstTabColumns(user, row) {
 	}
 	addCell(row, "searchResultColumn1", user.age, hidden);
 	addCell(row, "searchResultColumn1", user.status, hidden);
-	addCell(row, "searchResultColumn1", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-info='"+user.info+"'></span>", hidden);
-	$("#info_" + search.uiModel.rowId).hover(
-		function(e){
-			$(".info_popup > p").text($(this).data("info"));
-			$(".info_popup").fadeIn(200);
-			var h = $(".info_popup").height();
-			$(".info_popup").offset({left:$(this).offset().left + 28, top:$(this).offset().top - h / 2 - 4});
-		}, function(e){
-			$(".info_popup").fadeOut(100);
-		}
-	);
+	addCell(row, "searchResultColumn1 cntr", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-tip='"+user.info+"'></span>", hidden);
+	search.tipInfo($("#info_" + search.uiModel.rowId));
 	if (user.commandB) {
 		addCell(row, "searchResultColumn1 cntr", "<span class='team'></span>", hidden);
 	} else {
