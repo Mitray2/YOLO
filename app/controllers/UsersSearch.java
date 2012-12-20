@@ -22,6 +22,9 @@ import com.google.gson.GsonBuilder;
 
 public class UsersSearch extends AbstractSearch {
 
+
+	
+
 	@Before
 	public static void checkSecutiry() {
 		// TODO warnings on page
@@ -61,11 +64,8 @@ public class UsersSearch extends AbstractSearch {
 	public static void memberSearchAjax() {
 		MemberSearchDTO member = new GsonBuilder().create().fromJson(request.params.get("body"), MemberSearchDTO.class);
 		
-		//TODO: use this param for paging results
-		//first page is 1.
 		Integer currentPage = Integer.valueOf(request.params.get("page"));
 		
-		System.out.println("/n /n/n/n/n/n/n" + member.toString());
 		statement = "select distinct u from User u left join u.country as c " + "left join u.businessType as type " + "left join u.businessSphere as s "
 				+ "left join u.expMarketing as m " + "left join m.level as marl " + "left join u.expManagement as man " + "left join man.level as manl "
 				+ "left join u.expSale as t " + "left join t.level as tl " + "left join u.expFinance as f " + "left join f.level as fl " + "left join u.expLegal as l "
@@ -92,7 +92,7 @@ public class UsersSearch extends AbstractSearch {
 			appendParam(member.marketing, "marl.userLevel", where, EQUAL, queryParams);
 			appendParam(member.sale, "tl.userLevel", where, EQUAL, queryParams);
 			appendParam(member.management, "manl.userLevel", where, EQUAL, queryParams);
-			appendParam(member.management, "fl.userLevel", where, EQUAL, queryParams);
+			appendParam(member.finance, "fl.userLevel", where, EQUAL, queryParams);
 			appendParam(member.legal, "ll.userLevel", where, EQUAL, queryParams);
 			appendParam(member.it, "prl.userLevel", where, EQUAL, queryParams);
 
@@ -131,8 +131,7 @@ public class UsersSearch extends AbstractSearch {
 		if (member != null) {
 			if (member.orderBy != null) {
 				orderBy.append(" ORDER BY ");
-				orderBy.append("u.");
-				orderBy.append(member.orderBy);
+				orderBy.append(sortOrders.get(member.orderBy));
 				if (member.asc) {
 					orderBy.append(" asc");
 				} else {
@@ -141,7 +140,8 @@ public class UsersSearch extends AbstractSearch {
 			}
 		}
 		statement += orderBy.toString();
-		List<User> usersOriginal = User.find(statement, queryParams.toArray()).fetch();
+		statement += "";
+		List<User> usersOriginal = User.find(statement, queryParams.toArray()).fetch(currentPage, ApplicationConstants.SEARCH_COUNT_ON_PAGE);
 		// List<User> usersOriginal = User.findAll();
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		for (User user : usersOriginal) {
@@ -180,7 +180,44 @@ public class UsersSearch extends AbstractSearch {
 	}
 
 	public static void memberSearch(MemberSearchDTO member) {
+		if (!sortOrders.isEmpty()){
+			String search = sortOrders.get("search");
+			if (!search.equals("members")){
+				sortOrders.clear();
+				addsortOrder();
+			}
+		}
+		else{
+			addsortOrder();
+		}
+		
+		
 		render();
+	}
+	
+	protected static void addsortOrder(){
+		sortOrders.put("search", "members");
+		
+		sortOrders.put("country", "c.name");
+		sortOrders.put("city", "u.city");
+		sortOrders.put("lastName", "u.lastName, u.name");
+		sortOrders.put("sex", "u.sex");
+		sortOrders.put("age", "u.age");
+		
+		
+		sortOrders.put("businessman", "u.businessman");
+		sortOrders.put("communicant", "u.communicant");
+		sortOrders.put("businessType", "type.name");
+		sortOrders.put("businessSphere", "s.name");
+
+
+		sortOrders.put("marketing", "marl.userLevel");
+		sortOrders.put("sale", "tl.userLevel");
+		sortOrders.put("management", "manl.userLevel");
+		sortOrders.put("finance", "fl.userLevel");
+		sortOrders.put("legal", "ll.userLevel");
+		sortOrders.put("it", "prl.userLevel");
+
 	}
 
 	public static void peopleSearch(FriendSearchDTO friend) {

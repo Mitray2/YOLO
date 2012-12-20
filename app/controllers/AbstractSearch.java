@@ -1,7 +1,9 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -21,7 +23,7 @@ public abstract class AbstractSearch extends Controller {
 	protected static String statement;
 	protected static List<Object> queryParams = new ArrayList<Object>();
 	protected static StringBuilder where = new StringBuilder();
-
+	protected static Map<String, String> sortOrders = new HashMap<String, String>();
 	protected static void appendParam(Object paramValue, String paramName, StringBuilder where, String operation, List<Object> queryParams) {
 		if (paramValue != null)
 			if (StringUtils.isNotEmpty(paramValue.toString())) {

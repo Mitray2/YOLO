@@ -99,6 +99,9 @@ function Search() {
 		$("#column_city").click(function(){_this.doChangeOrder("city")});
 		$("#column_sex").click(function(){_this.doChangeOrder("sex")});
 		$("#column_age").click(function(){_this.doChangeOrder("age")});
+		$("#column_marketing").click(function(){_this.doChangeOrder("marketing")});
+		
+
 	}
 	
 	this.activateTab = function activateTab(tabIndex) {
