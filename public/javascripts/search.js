@@ -40,7 +40,8 @@ function Search() {
 			  pragmatMin : null,
 			  pragmatMax : null,
 			  orderBy : null,
-			  asc : false
+			  asc : false,
+			  active_column : null
 	};
 	this.init = function init() {
 		_this = this;
@@ -99,9 +100,21 @@ function Search() {
 		$("#column_city").click(function(){_this.doChangeOrder("city")});
 		$("#column_sex").click(function(){_this.doChangeOrder("sex")});
 		$("#column_age").click(function(){_this.doChangeOrder("age")});
+		$("#column_predpr").click(function(){_this.doChangeOrder("predpr")});
+		$("#column_ideal").click(function(){_this.doChangeOrder("ideal")});
+		$("#column_communic").click(function(){_this.doChangeOrder("communic")});
+		$("#column_pragmatic").click(function(){_this.doChangeOrder("pragmatic")});
+		$("#column_businessType").click(function(){_this.doChangeOrder("businessType")});
+		$("#column_businessSphere").click(function(){_this.doChangeOrder("businessSphere")});
 		$("#column_marketing").click(function(){_this.doChangeOrder("marketing")});
-		
-
+		$("#column_sale").click(function(){_this.doChangeOrder("sale")});
+		$("#column_management").click(function(){_this.doChangeOrder("management")});
+		$("#column_right").click(function(){_this.doChangeOrder("right")});
+		$("#column_finance").click(function(){_this.doChangeOrder("finance")});
+		$("#column_lastName").click(function(){_this.doChangeOrder("lastName")});
+		$("#column_it").click(function(){_this.doChangeOrder("it")});
+		$("#column_more").click(function(){_this.doChangeOrder("more")});
+		$("#column_command").click(function(){_this.doChangeOrder("command")});
 	}
 	
 	this.activateTab = function activateTab(tabIndex) {
@@ -129,11 +142,15 @@ function Search() {
 			_this.searchModel.asc = false;
 			//change old column state
 			$("#column_" + _this.searchModel.orderBy + " > a").removeClass("current");
+			$("#column_" + _this.searchModel.orderBy + " span").first().removeClass("ic_" + _this.searchModel.orderBy + "_active");
+			$("#column_" + _this.searchModel.orderBy + " span").first().addClass("ic_" + _this.searchModel.orderBy + "_hover");
 			$("#column_" + _this.searchModel.orderBy + " > span").removeClass("sort_up");
 			$("#column_" + _this.searchModel.orderBy + " > span").removeClass("sort_down");
 			$("#column_" + _this.searchModel.orderBy + " > span").addClass("sort");
 			//change new column state
 			$("#column_" + columnName + " > a").addClass("current");
+			$("#column_" + columnName + " span").first().removeClass("ic_" + columnName + "_hover");
+			$("#column_" + columnName + " span").first().addClass("ic_" + columnName + "_active");
 			$("#column_" + columnName + " > span").addClass("sort_up");
 		}
 		_this.searchModel.orderBy = columnName;
@@ -230,16 +247,39 @@ function Search() {
 	}
 	
 }
+function addIcDiagram(value, row, hidden){
+	if (value == 1){
+		addCell(row, "searchResultColumn3", "<span class='ic_one'></span>", hidden);
+	}
+	else{
+		if (value == 2){
+			addCell(row, "searchResultColumn3", "<span class='ic_two'></span>", hidden);
+		}
+		else{
+			if (value == 3){
+				addCell(row, "searchResultColumn3", "<span class='ic_three'></span>", hidden);
+			}
+			else{
+				if (value == 4){
+					addCell(row, "searchResultColumn3", "<span class='ic_four'></span>", hidden);
+				}
+			}
+		}
+	}
+}
 
 function appendThirdTabColumns(user, row) {
 	var hidden = search.uiModel.currentTab != 3;
-	addCell(row, "searchResultColumn3", "<span class='ic_one'></span>", hidden);
-	addCell(row, "searchResultColumn3", "<span class='ic_one'></span>", hidden);
-	addCell(row, "searchResultColumn3", "<span class='ic_one'></span>", hidden);
-	addCell(row, "searchResultColumn3", "<span class='ic_one'></span>", hidden);
-	addCell(row, "searchResultColumn3", "<span class='ic_one'></span>", hidden);
-	addCell(row, "searchResultColumn3", "<span class='ic_one'></span>", hidden);
-	addCell(row, "searchResultColumn3", "<span class='ic_one'></span>", hidden);
+	
+	addIcDiagram(user.marketing, row, hidden);
+	addIcDiagram(user.sale, row, hidden);
+	addIcDiagram(user.management, row, hidden);
+	
+	addIcDiagram(user.legal, row, hidden);
+	addIcDiagram(user.finance, row, hidden);
+	addIcDiagram(user.it, row, hidden);
+	addIcDiagram(user.other, row, hidden);
+	
 	if (user.commandB) {
 		addCell(row, "searchResultColumn3 cntr", "<span class='team'></span>", hidden);
 	} else {
@@ -249,12 +289,12 @@ function appendThirdTabColumns(user, row) {
 
 function appendSecondTabColumns(user, row) {
 	var hidden = search.uiModel.currentTab != 2;
-	addCell(row, "searchResultColumn2", "45", hidden);
-	addCell(row, "searchResultColumn2", "45", hidden);
-	addCell(row, "searchResultColumn2", "45", hidden);
-	addCell(row, "searchResultColumn2", "45", hidden);
-	addCell(row, "searchResultColumn2", user.bissnessType, hidden);
-	addCell(row, "searchResultColumn2", user.bissnessSphere, hidden);
+	addCell(row, "searchResultColumn2", user.businessman, hidden);
+	addCell(row, "searchResultColumn2", user.idealist, hidden);
+	addCell(row, "searchResultColumn2", user.communicant, hidden);
+	addCell(row, "searchResultColumn2", user.pragmatist, hidden);
+	addCell(row, "searchResultColumn2", user.businessType, hidden);
+	addCell(row, "searchResultColumn2", user.businessSphere, hidden);
 	addCell(row, "searchResultColumn2 cntr", "Yes", hidden);
 	if (user.commandB) {
 		addCell(row, "searchResultColumn2 cntr", "<span class='team'></span>", hidden);

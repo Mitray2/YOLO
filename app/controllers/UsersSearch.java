@@ -69,7 +69,7 @@ public class UsersSearch extends AbstractSearch {
 		statement = "select distinct u from User u left join u.country as c " + "left join u.businessType as type " + "left join u.businessSphere as s "
 				+ "left join u.expMarketing as m " + "left join m.level as marl " + "left join u.expManagement as man " + "left join man.level as manl "
 				+ "left join u.expSale as t " + "left join t.level as tl " + "left join u.expFinance as f " + "left join f.level as fl " + "left join u.expLegal as l "
-				+ "left join l.level as ll " + "left join u.expIT as pr " + "left join pr.level as prl ";
+				+ "left join l.level as ll " + "left join u.expIT as pr " + "left join pr.level as prl " + "left join u.expOther as other " + "left join other.level as otherl ";
 		queryParams = new ArrayList<Object>();
 		where = new StringBuilder();
 		if (member != null) {
@@ -146,7 +146,7 @@ public class UsersSearch extends AbstractSearch {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		for (User user : usersOriginal) {
 			if (user.country != null) {
-
+				System.out.println("\n\n\n\n\n\n" + user.id);
 				Map<String, Object> user_search = new HashMap<String, Object>();
 
 				user_search.put("id", user.id);
@@ -159,23 +159,38 @@ public class UsersSearch extends AbstractSearch {
 				user_search.put("haveAvatar", user.haveAvatar);
 				user_search.put("info", user.personalCV);
 				user_search.put("commandB", user.command == null ? false : true);
+				
 				user_search.put("businessman", user.businessman);
 				user_search.put("idealist", user.idealist);
 				user_search.put("communicant", user.communicant);
 				user_search.put("pragmatist", user.pragmatist);
+				
 				user_search.put("businessType", user.businessType.name);
 				user_search.put("businessSphere", user.businessSphere.name);
 				user_search.put("international", "Yes"); // TODO not
 															// approved
 				user_search.put("status", "Online");
-
+				
+				user_search.put("marketing", user.expMarketing.level.id);
+				user_search.put("sale", user.expSale.level.id);
+				user_search.put("management", user.expManagement.level.id);
+				user_search.put("finance", user.expFinance.level.id);
+				user_search.put("legal", user.expLegal.level.id);
+				user_search.put("it",user.expIT.level.id);
+				user_search.put("other",user.expOther.level.id);
+				
 				list.add(user_search);
 			}
 
 		}
 		UserSearchAjaxResult result = new UserSearchAjaxResult();
 		result.users = list;
-		result.pagesCount = 5; //TODO: total pages count
+		if (usersOriginal.isEmpty()){
+			result.pagesCount = currentPage;
+		}
+		else{
+			result.pagesCount = currentPage + 1;
+		}
 		renderJSON(result);
 	}
 
@@ -200,13 +215,15 @@ public class UsersSearch extends AbstractSearch {
 		
 		sortOrders.put("country", "c.name");
 		sortOrders.put("city", "u.city");
-		sortOrders.put("lastName", "u.lastName, u.name");
+		sortOrders.put("lastName", "u.lastName");
 		sortOrders.put("sex", "u.sex");
 		sortOrders.put("age", "u.age");
 		
 		
-		sortOrders.put("businessman", "u.businessman");
-		sortOrders.put("communicant", "u.communicant");
+		sortOrders.put("predpr", "u.businessman");
+		sortOrders.put("ideal", "u.idealist");
+		sortOrders.put("communic", "u.communicant");
+		sortOrders.put("pragmatic", "u.pragmatist");
 		sortOrders.put("businessType", "type.name");
 		sortOrders.put("businessSphere", "s.name");
 
@@ -215,9 +232,10 @@ public class UsersSearch extends AbstractSearch {
 		sortOrders.put("sale", "tl.userLevel");
 		sortOrders.put("management", "manl.userLevel");
 		sortOrders.put("finance", "fl.userLevel");
-		sortOrders.put("legal", "ll.userLevel");
+		sortOrders.put("right", "ll.userLevel");
 		sortOrders.put("it", "prl.userLevel");
-
+		sortOrders.put("more", "otherl.userLevel");
+		sortOrders.put("command", "u.command");
 	}
 
 	public static void peopleSearch(FriendSearchDTO friend) {
