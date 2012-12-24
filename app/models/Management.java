@@ -17,7 +17,7 @@ public class Management extends Model {
 	public String descrition;
 
 	@ManyToOne
-	UserLevel level;
+	public UserLevel level;
 
 	public UserLevel getLevel() {
 		return level;

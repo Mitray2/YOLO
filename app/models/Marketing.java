@@ -16,7 +16,7 @@ public class Marketing extends Model {
 	@MaxSize(value = 2000)
 	public String descrition;
 	@ManyToOne
-	UserLevel level;
+	public UserLevel level;
 
 	public UserLevel getLevel() {
 		return level;

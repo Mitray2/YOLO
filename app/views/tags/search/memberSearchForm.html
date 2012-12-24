@@ -134,7 +134,7 @@
 								<select name="member.bissnessType" id="bissnessType" class="cSelect" style="width:160px;">
 									<option value="">&{'unimportant'}</option> 
 									#{list items:models.BType.findAll(), as:'type'}
-									<option value="${type.name}" #{if type.name==member?.bissnessType}selected="selected"#{/if}>&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(type.name)}</option> 
+									<option value="${type.name}">&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(type.name)}</option> 
 									#{/list}
 								</select>
 							</div>
@@ -143,7 +143,7 @@
 								<select name="member.bissnessSphere" id="bissnessSphere" class="cSelect" style="width:160px;">
 									<option value="">&{'unimportant'}</option> 
 									#{list items:models.BSphere.findAll(), as:'sphere'}
-									<option value="${sphere.name}" #{if sphere.name==member?.bissnessSphere} selected="selected"#{/if}>&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(sphere.name)}</option>
+									<option value="${sphere.name}">&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(sphere.name)}</option>
 									#{/list}
 								</select>
 							</div>
