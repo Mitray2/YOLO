@@ -1,231 +1,230 @@
-			<aside class="criterion_search">
-				<div class="criterion">
-					<div class="ttl-block">
-						<h3>Поиск участников</h3>
-					</div>
-					<div class="private_data">
-						<div class="private">
-							<a href="#" id="searchPanel1">Личные данные</a><span class="dropdown_open"></span>
-						</div>
-						<div class="private-block" id="private-block" id="searchPanel1Content">
-							<form action="" class="private_form">
-							<div class="private_form">
-							<div class="private_item clearFix">
-								<label for="">Страна</label>
-								<select name="member.country" id="country" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option> 
-									#{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
-									<option value="${country.name}">&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country?.name)}</option> 
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for="">Город</label>
-								<input id="city" type="text" placeholder="Неважно" value="" name="member.city" style="width:150px;">
-							</div>
-							<div class="private_item clearFix">
-  								<label class="clearFix" for="">Возраст</label>
-								<select name="member.ageMin" id="ageMin" class="cSelect" style="width:67px;">
-									<option value="0">От</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-								<span class="mdash fl">&mdash;</span>
-								<select name="member.ageMax" id="ageMax" class="cSelect" style="width:67px;">
-									<option value="100">До</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for="">Пол</label>
-								<select name="member.sex" id="sex" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option>
-									<option value="true">Мужской</option>
-									<option value="false">Женский</option>
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for="">В команде</label>
-								<select name="member.inCommand" id="inCommand" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option>
-									<option value="true">Да</option>
-									<option value="false">Нет</option>
-								</select>
-							</div>
-							</div>
-							</form>
-						</div>
-					</div>
-					<div class="interest">
-						<a href="#" id="searchPanel2">Склонности и интересы</a><span class="dropdown_open"></span>
-					</div>
-					<div class="private_data" id="searchPanel2Content">
-					<div class="private-block">
-							<form action="" class="private_form">
-							<div class="private_item clearFix">
-								<label for=""><span class="ic_predpr_pas"></span>Предпринимательство</label>
-								<select name="member.bmanMin" id="bmanMin" class="cSelect" style="width:67px;">
-									<option value="0">От</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-								<span class="mdash fl">&mdash;</span>
-								<select name="member.bmanMax" id="bmanMax" class="cSelect" style="width:67px;">
-									<option value="100">До</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for=""><span class="ic_ideal_pas"></span>Идеализм</label>
-								<select name="member.idealMin" id="idealMin" class="cSelect" style="width:67px;">
-									<option value="0">От</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-								<span class="mdash fl">&mdash;</span>
-								<select name="member.idealMax" id="idealMax" class="cSelect" style="width:67px;">
-									<option value="100">До</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-  								<label class="clearFix" for=""><span class="ic_communic_pas"></span>Коммуникабельность</label>
-								<select name="member.comutMin" id="comutMin" class="cSelect" style="width:67px;">
-									<option value="0">От</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-								<span class="mdash fl">&mdash;</span>
-								<select name="member.comutMax" id="comutMax" class="cSelect" style="width:67px;">
-									<option value="100">До</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for=""><span class="ic_pragmatic_pas"></span>Прагматика</label>
-								<select name="member.pragmatMin" id="pragmatMin" class="cSelect" style="width:67px;">
-									<option value="0">От</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-								<span class="mdash fl">&mdash;</span>
-								<select name="member.pragmatMax" id="pragmatMax" class="cSelect" style="width:67px;">
-									<option value="100">До</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for="">Тип бизнеса</label>
-								<select name="member.bissnessType" id="bissnessType" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option> 
-									#{list items:models.BType.findAll(), as:'type'}
-									<option value="${type.name}">&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(type.name)}</option> 
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for="">Сфера бизнеса</label>
-								<select name="member.bissnessSphere" id="bissnessSphere" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option> 
-									#{list items:models.BSphere.findAll(), as:'sphere'}
-									<option value="${sphere.name}">&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(sphere.name)}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<input type="checkbox" name="" id="" class="check"/>
-								<span class="speak">Говорит на английском</span>
-							</div>
-							</form>
-						</div>
-						</div>
-						
-					<div class="professional">
-						<a href="#" id="searchPanel3">Профессиональные</a><span class="dropdown_close"></span>
-					</div>
-					<div class="private_data" id="searchPanel3Content">
-					<div class="private-block">
+<aside class="criterion_search">
+	<div class="criterion">
+		<div class="ttl-block">
+			<h3>Поиск участников</h3>
+		</div>
+		<div class="private" id="searchTitle1">
+			<a href="" onclick="return false;">Личные данные</a>
+			<span class="dropdown_open"></span>
+		</div>
+		<div class="private-block private_data" id="searchPanel1">
+			<form action="" class="private_form">
+			<div class="private_form">
+			<div class="private_item clearFix">
+				<label for="">Страна</label>
+				<select name="member.country" id="country" class="cSelect" style="width:160px;">
+					<option value="">&{'unimportant'}</option> 
+					#{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
+					<option value="${country.name}">&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country?.name)}</option> 
+					#{/list}
+				</select>
+			</div>
+			<div class="private_item clearFix">
+				<label for="">Город</label>
+				<input id="city" type="text" placeholder="Неважно" value="" name="member.city" style="width:150px;">
+			</div>
+			<div class="private_item clearFix">
+						<label class="clearFix" for="">Возраст</label>
+				<select name="member.ageMin" id="ageMin" class="cSelect" style="width:67px;">
+					<option value="0">От</option>
+					#{list items:0..100, as:'i'}
+					    <option value="${i}">${i}</option>
+					#{/list}
+				</select>
+				<span class="mdash fl">&mdash;</span>
+				<select name="member.ageMax" id="ageMax" class="cSelect" style="width:67px;">
+					<option value="100">До</option>
+					#{list items:0..100, as:'i'}
+					    <option value="${i}">${i}</option>
+					#{/list}
+				</select>
+			</div>
+			<div class="private_item clearFix">
+				<label for="">Пол</label>
+				<select name="member.sex" id="sex" class="cSelect" style="width:160px;">
+					<option value="">&{'unimportant'}</option>
+					<option value="true">Мужской</option>
+					<option value="false">Женский</option>
+				</select>
+			</div>
+			<div class="private_item clearFix">
+				<label for="">В команде</label>
+				<select name="member.inCommand" id="inCommand" class="cSelect" style="width:160px;">
+					<option value="">&{'unimportant'}</option>
+					<option value="true">Да</option>
+					<option value="false">Нет</option>
+				</select>
+			</div>
+			</div>
+			</form>
+		</div>
 					
-							<div class="private_form">
-							<div class="private_item clearFix">
-								<label for=""><span class="ic_marketing_pas"></span>Маркетинг / реклама</label>
-								<select name="member.marketing" id="marketing" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option> 
-									#{list items:models.UserLevel.findAll(), as:'level'}
-									<option value="${level.userLevel}" #{if level.userLevel==member?.marketing }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for=""><span class="ic_sale_pas"></span>Продажи</label>
-								<select name="member.sale" id="sale" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option> 
-									#{list items:models.UserLevel.findAll(), as:'level'}
-									<option value="${level.userLevel}" #{if level.userLevel==member?.sale }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
-									#{/list}
-								</select>
-								
-							</div>
-							<div class="private_item clearFix">
-  								<label class="clearFix" for=""><span class="ic_management_pas"></span>Управление</label>
-								<select name="member.management" id="management" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option> 
-									#{list items:models.UserLevel.findAll(), as:'level'}
-									<option value="${level.userLevel}" #{if level.userLevel==member?.management }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for=""><span class="ic_right_pas"></span>Право</label>
-								<select name="member.legal" id="legal" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option> 
-									#{list items:models.UserLevel.findAll(), as:'level'}
-									<option value="${level.userLevel}" #{if level.userLevel==member?.legal }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for=""><span class="ic_finance_pas"></span>Финансы</label>
-								<select name="member.finance" id="finance" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option> 
-									#{list items:models.UserLevel.findAll(), as:'level'}
-									<option value="${level.userLevel}" #{if level.userLevel==member?.finance }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for=""><span class="ic_it_pas"></span>ИТ / программирование</label>
-								<select name="member.it" id="it" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option> 
-									#{list items:models.UserLevel.findAll(), as:'level'}
-									<option value="${level.userLevel}" #{if level.userLevel==member?.it}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option> 
-									#{/list}
-								</select>
-							</div>
-						</div>
-					</div>
+		<div class="interest" id="searchTitle2">
+			<a href="" onclick="return false;">Склонности и интересы</a>
+			<span class="dropdown_close"></span>
+		</div>
+		<div class="private-block private_data" id="searchPanel2">
+				<form action="" class="private_form">
+				<div class="private_item clearFix">
+					<label for=""><span class="ic_predpr_pas"></span>Предпринимательство</label>
+					<select name="member.bmanMin" id="bmanMin" class="cSelect" style="width:67px;">
+						<option value="0">От</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+					<span class="mdash fl">&mdash;</span>
+					<select name="member.bmanMax" id="bmanMax" class="cSelect" style="width:67px;">
+						<option value="100">До</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
 				</div>
-				<div class="share">
-					<div class="share-cont">
-						<p><strong>Поделится</strong></p>
-						<a href="" class="twitter">Twitter</a>
-						<a href="" class="facebook">Facebook</a>
-						<a href="" class="vk">Вконтакте</a>
-					</div>
+				<div class="private_item clearFix">
+					<label for=""><span class="ic_ideal_pas"></span>Идеализм</label>
+					<select name="member.idealMin" id="idealMin" class="cSelect" style="width:67px;">
+						<option value="0">От</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+					<span class="mdash fl">&mdash;</span>
+					<select name="member.idealMax" id="idealMax" class="cSelect" style="width:67px;">
+						<option value="100">До</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
 				</div>
-			</aside>
+				<div class="private_item clearFix">
+							<label class="clearFix" for=""><span class="ic_communic_pas"></span>Коммуникабельность</label>
+					<select name="member.comutMin" id="comutMin" class="cSelect" style="width:67px;">
+						<option value="0">От</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+					<span class="mdash fl">&mdash;</span>
+					<select name="member.comutMax" id="comutMax" class="cSelect" style="width:67px;">
+						<option value="100">До</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+				</div>
+				<div class="private_item clearFix">
+					<label for=""><span class="ic_pragmatic_pas"></span>Прагматика</label>
+					<select name="member.pragmatMin" id="pragmatMin" class="cSelect" style="width:67px;">
+						<option value="0">От</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+					<span class="mdash fl">&mdash;</span>
+					<select name="member.pragmatMax" id="pragmatMax" class="cSelect" style="width:67px;">
+						<option value="100">До</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+				</div>
+				<div class="private_item clearFix">
+					<label for="">Тип бизнеса</label>
+					<select name="member.bissnessType" id="bissnessType" class="cSelect" style="width:160px;">
+						<option value="">&{'unimportant'}</option> 
+						#{list items:models.BType.findAll(), as:'type'}
+						<option value="${type.name}">&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(type.name)}</option> 
+						#{/list}
+					</select>
+				</div>
+				<div class="private_item clearFix">
+					<label for="">Сфера бизнеса</label>
+					<select name="member.bissnessSphere" id="bissnessSphere" class="cSelect" style="width:160px;">
+						<option value="">&{'unimportant'}</option> 
+						#{list items:models.BSphere.findAll(), as:'sphere'}
+						<option value="${sphere.name}">&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(sphere.name)}</option>
+						#{/list}
+					</select>
+				</div>
+				<div class="private_item clearFix">
+					<input type="checkbox" name="" id="" class="check"/>
+					<span class="speak">Говорит на английском</span>
+				</div>
+				</form>
+			</div>
+						
+			<div class="professional" id="searchTitle3">
+				<a href="" onclick="return false;">Профессиональные</a>
+				<span class="dropdown_close"></span>
+			</div>
+			<div class="private-block private_data" id="searchPanel3">
+				<div class="private_form">
+					<div class="private_item clearFix">
+						<label for=""><span class="ic_marketing_pas"></span>Маркетинг / реклама</label>
+						<select name="member.marketing" id="marketing" class="cSelect" style="width:160px;">
+							<option value="">&{'unimportant'}</option> 
+							#{list items:models.UserLevel.findAll(), as:'level'}
+							<option value="${level.userLevel}" #{if level.userLevel==member?.marketing }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+							#{/list}
+						</select>
+					</div>
+					<div class="private_item clearFix">
+						<label for=""><span class="ic_sale_pas"></span>Продажи</label>
+						<select name="member.sale" id="sale" class="cSelect" style="width:160px;">
+							<option value="">&{'unimportant'}</option> 
+							#{list items:models.UserLevel.findAll(), as:'level'}
+							<option value="${level.userLevel}" #{if level.userLevel==member?.sale }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+							#{/list}
+						</select>
+						
+					</div>
+					<div class="private_item clearFix">
+								<label class="clearFix" for=""><span class="ic_management_pas"></span>Управление</label>
+						<select name="member.management" id="management" class="cSelect" style="width:160px;">
+							<option value="">&{'unimportant'}</option> 
+							#{list items:models.UserLevel.findAll(), as:'level'}
+							<option value="${level.userLevel}" #{if level.userLevel==member?.management }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+							#{/list}
+						</select>
+					</div>
+					<div class="private_item clearFix">
+						<label for=""><span class="ic_right_pas"></span>Право</label>
+						<select name="member.legal" id="legal" class="cSelect" style="width:160px;">
+							<option value="">&{'unimportant'}</option> 
+							#{list items:models.UserLevel.findAll(), as:'level'}
+							<option value="${level.userLevel}" #{if level.userLevel==member?.legal }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+							#{/list}
+						</select>
+					</div>
+					<div class="private_item clearFix">
+						<label for=""><span class="ic_finance_pas"></span>Финансы</label>
+						<select name="member.finance" id="finance" class="cSelect" style="width:160px;">
+							<option value="">&{'unimportant'}</option> 
+							#{list items:models.UserLevel.findAll(), as:'level'}
+							<option value="${level.userLevel}" #{if level.userLevel==member?.finance }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+							#{/list}
+						</select>
+					</div>
+					<div class="private_item clearFix">
+						<label for=""><span class="ic_it_pas"></span>ИТ / программирование</label>
+						<select name="member.it" id="it" class="cSelect" style="width:160px;">
+							<option value="">&{'unimportant'}</option> 
+							#{list items:models.UserLevel.findAll(), as:'level'}
+							<option value="${level.userLevel}" #{if level.userLevel==member?.it}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option> 
+							#{/list}
+						</select>
+					</div>
+			  </div>
+		</div>
+				
+	<div class="share">
+		<div class="share-cont">
+			<p><strong>Поделится</strong></p>
+			<a href="" class="twitter">Twitter</a>
+			<a href="" class="facebook">Facebook</a>
+			<a href="" class="vk">Вконтакте</a>
+		</div>
+	</div>
+	
+</aside>

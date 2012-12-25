@@ -7,9 +7,7 @@ function Search() {
 	this.uiModel = {
 		currentTab : 1,
 		currentPage : 1,
-		searchPanel1 : true,
-		searchPanel2 : false,
-		searchPanel3 : false,
+		currentSearchPanel : 0,
 		searchTab1 : true,
 		searchTab2 : false,
 		searchTab3 : false,
@@ -75,24 +73,10 @@ function Search() {
 		})
 		
 		//init seach accordion
-		//TODO:
-//		if (search.uiModel.searchPanel1) {
-//			$("#searchPanel1Content").show();
-//			$("#searchPanel1").removeClass("dropdown_closed");
-//			$("#searchPanel1").addClass("dropdown_open");
-//		} else {
-//			$("#searchPanel1Content").hide();
-//		}
-//		if (search.uiModel.searchPanel2) {
-//			$("#searchPanel2Content").show();
-//		} else {
-//			$("#searchPanel2Content").hide();
-//		}
-//		if (search.uiModel.searchPanel3) {
-//			$("#searchPanel3Content").show();
-//		} else {
-//			$("#searchPanel3Content").hide();
-//		}
+		$("#searchTitle1 > a").click(function() { _this.openSearchPanel(1); });
+		$("#searchTitle2 > a").click(function() { _this.openSearchPanel(2); });
+		$("#searchTitle3 > a").click(function() { _this.openSearchPanel(3); });
+		_this.openSearchPanel(1);
 	};
 	
 	var _initOrderBy = function() {
@@ -128,6 +112,32 @@ function Search() {
 			}
 		}
 		_this.uiModel.currentTab = tabIndex;
+	}
+	
+	this.openSearchPanel = function openSearchPanel(panelIndex) {
+		if (search.uiModel.currentSearchPanel == panelIndex) {
+			return;
+		}
+		//sorry for this code. it's result of bad page-proofs.
+		var inactiveClasses = ["interest", "professional"];
+		var j = 0;
+		for (var i = 1; i <= 3; i++) {
+			if (i == panelIndex) {
+				$("#searchPanel" + i).show();
+				$("#searchTitle" + i + " > span").removeClass("dropdown_closed");
+				$("#searchTitle" + i + " > span").addClass("dropdown_open");
+				$("#searchTitle" + i).addClass("private");
+				$("#searchTitle" + i).removeClass(inactiveClasses[0]);
+				$("#searchTitle" + i).removeClass(inactiveClasses[1]);
+			} else {
+				$("#searchPanel" + i).hide();
+				$("#searchTitle" + i + " > span").removeClass("dropdown_open");
+				$("#searchTitle" + i + " > span").addClass("dropdown_closed");
+				$("#searchTitle" + i).removeClass("private");
+				$("#searchTitle" + i).addClass(inactiveClasses[j++]);
+			}
+		}
+		search.uiModel.currentSearchPanel = panelIndex;
 	}
 	
 	this.doChangeOrder = function doChangeOrder(columnName) {
