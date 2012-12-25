@@ -124,8 +124,8 @@ public class CommandsSearch extends AbstractSearch {
 			}
 
 		}
-		UserSearchAjaxResult result = new UserSearchAjaxResult();
-		result.users = list;
+		GroupsSearchAjaxResult result = new GroupsSearchAjaxResult();
+		result.groups = list;
 		if (groups.isEmpty()){
 			result.pagesCount = currentPage;
 		}
@@ -179,8 +179,8 @@ public class CommandsSearch extends AbstractSearch {
 		sortOrders.put("command", "u.command");
 	}
 	
-	public static class UserSearchAjaxResult {
-		public List<Map<String, Object>> users;
+	public static class GroupsSearchAjaxResult {
+		public List<Map<String, Object>> groups;
 		public Integer pagesCount; 
 	}
 }

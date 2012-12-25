@@ -188,15 +188,28 @@ function Search() {
 					//new search started.
 					table.find("tr:gt(0)").remove();
 				}
-				$.each(data.users, function(key, user) {
-					var row = $("<tr class='search-result-item' style='display: none;'>");
-					table.append(row);
-					row.append("<td><a href=''>" + user.name + " " + user.lastName + "</a></td>");
-					appendFirstTabColumns(user, row);
-					appendSecondTabColumns(user, row);
-					appendThirdTabColumns(user, row);
-					row.fadeIn(500);
-				});
+				if (_this.type == Search.TYPE_USER) {
+					$.each(data.users, function(key, user) {
+						var row = $("<tr class='search-result-item' style='display: none;'>");
+						table.append(row);
+						row.append("<td><a href=''>" + user.name + " " + user.lastName + "</a></td>");
+						appendFirstTabColumns(user, row);
+						appendSecondTabColumns(user, row);
+						appendThirdTabColumns(user, row);
+						row.fadeIn(500);
+					});
+				} else {
+					$.each(data.groups, function(key, group) {
+						var row = $("<tr class='search-result-item' style='display: none;'>");
+						table.append(row);
+						row.append("<td><a href=''>" + group.info + "</a></td>");
+						appendFirstTabGroupColumns(group, row);
+						appendSecondTabGroupColumns(group, row);
+						appendThirdTabGroupColumns(group, row);
+						row.fadeIn(500);
+					});
+				}
+
 				//check if need to continue scrolling
 				if (data.pagesCount > _this.uiModel.currentPage) {
 					_this.uiModel.currentPage++;
@@ -275,6 +288,22 @@ function addIcDiagram(value, row, hidden){
 		}
 	}
 }
+
+
+function appendFirstTabGroupColumns(group, row) {
+	var hidden = search.uiModel.currentTab != 1;
+	addCell(row, "searchResultColumn1", group.country, hidden);
+	
+}
+function appendSecondTabGroupColumns(group, row) {
+	var hidden = search.uiModel.currentTab != 2;
+	addCell(row, "searchResultColumn2", group.country, hidden);
+}
+function appendThirdTabGroupColumns(group, row) {
+	var hidden = search.uiModel.currentTab != 3;
+	addCell(row, "searchResultColumn3", group.country, hidden);
+}
+
 
 function appendThirdTabColumns(user, row) {
 	var hidden = search.uiModel.currentTab != 3;
