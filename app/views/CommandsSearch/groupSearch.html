@@ -67,7 +67,15 @@
 	var search = new Search();
 	$(document).ready(function(){
 		search.type = Search.TYPE_GROUP;
+		//TODO: other params
+		search.searchModel = {
+				  country : null,
+				  city : null,
+				  orderBy : null,
+				  asc : false,
+				  active_column : null
+		};
 		search.init();
-		//search.doSearch();
+		search.doSearch();
 	});
 </script>

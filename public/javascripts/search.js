@@ -177,7 +177,7 @@ function Search() {
 		$("#searchLoader").show();
 		$.ajax({
 			type: "POST",
-			url: "memberSearchAjax?page=" + _this.uiModel.currentPage,
+			url: (_this.type == Search.TYPE_USER ? "memberSearchAjax?page=" : "groupSearchAjax?page=") + _this.uiModel.currentPage,
 			dataType: 'json',
 			async: false,
 			data: JSON.stringify(search.searchModel),

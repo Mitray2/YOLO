@@ -112,13 +112,13 @@ public class CommandsSearch extends AbstractSearch {
 				group_search.put("status", "Online");// TODO not
 				// approved
 				
-				group_search.put("marketing", command.marketing.level.id);
-				group_search.put("sale", command.trade.level.id);
-				group_search.put("management", command.management.level.id);
-				group_search.put("finance", command.finance.level.id);
-				group_search.put("legal", command.legal.level.id);
-				group_search.put("it",command.programming.level.id);
-				group_search.put("other",command.otherSkill.level.id);
+				group_search.put("marketing", command.marketing.level != null ? command.marketing.level.id : null);
+				group_search.put("sale", command.trade.level != null ? command.trade.level.id : null);
+				group_search.put("management", command.management.level != null ? command.management.level.id : null);
+				group_search.put("finance", command.finance.level != null ? command.finance.level.id : null);
+				group_search.put("legal", command.legal.level != null ? command.legal.level.id : null);
+				group_search.put("it", command.programming.level != null ? command.programming.level.id : null);
+				group_search.put("other", command.otherSkill.level != null ? command.otherSkill.level.id : null);
 				
 				list.add(group_search);
 			}
