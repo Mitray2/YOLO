@@ -63,3 +63,11 @@
 
 #{search.teamSearchForm/}
 
+<script>
+	var search = new Search();
+	$(document).ready(function(){
+		search.type = Search.TYPE_GROUP;
+		search.init();
+		//search.doSearch();
+	});
+</script>

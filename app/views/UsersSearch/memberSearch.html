@@ -65,3 +65,12 @@
 <div class="icon_popup" style="display: none;">
 </div>
 #{search.memberSearchForm/}
+
+<script>
+	var search = new Search();
+	$(document).ready(function(){
+		search.type = Search.TYPE_USER;
+		search.init();
+		search.doSearch();
+	});
+</script>

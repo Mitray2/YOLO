@@ -1,9 +1,7 @@
-var search = new Search();
-$(document).ready(function(){
-	search.init();
-	search.doSearch();
-});
+Search.TYPE_USER = 0;
+Search.TYPE_GROUP = 1;
 function Search() {
+	this.type = null;
 	this.uiModel = {
 		currentTab : 1,
 		currentPage : 1,
