@@ -119,14 +119,14 @@ function Search() {
 		for (var i = 1; i <= 3; i++) {
 			if (i == panelIndex) {
 				$("#searchPanel" + i).show();
-				$("#searchTitle" + i + " > span").removeClass("dropdown_closed");
+				$("#searchTitle" + i + " > span").removeClass("dropdown_close");
 				$("#searchTitle" + i + " > span").addClass("dropdown_open");
 				$("#searchTitle" + i).addClass("open");
 				$("#searchTitle" + i).removeClass("close");
 			} else {
 				$("#searchPanel" + i).hide();
 				$("#searchTitle" + i + " > span").removeClass("dropdown_open");
-				$("#searchTitle" + i + " > span").addClass("dropdown_closed");
+				$("#searchTitle" + i + " > span").addClass("dropdown_close");
 				$("#searchTitle" + i).removeClass("open");
 				$("#searchTitle" + i).addClass("close");
 			}

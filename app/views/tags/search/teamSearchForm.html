@@ -1,185 +1,189 @@
 <aside class="criterion_search">
-				<div class="criterion">
-					<div class="ttl-block">
-						<h3>Поиск участников</h3>
-					</div>
- 					<div>
-		           <div class="private">
-							<a href="#">Общие данные</a><span class="dropdown_open"></span>
-						</div>
-						<div class="private-block private_data" id="private-block">
-							<form action="" class="private_form">
-							<div class="private_item clearFix">
-								<label for="">Страна</label>
-								<select name="group.country" id="country" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option> 
-									#{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
-									<option value="${country.name}">&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country?.name)}</option> 
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for="">Город</label>
-								<input id="city" type="text" placeholder="&{'unimportant'}" value="" name="group.city" style="width:150px;">
-							</div>
-							<div class="private_item clearFix">
-  							<label class="clearFix" for="">Средний</label>
-								<select name="group.avgAgeMin" id="ageMin" class="cSelect" style="width:67px;">
-									<option value="0">От</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-								<span class="mdash fl">&mdash;</span>
-								<select name="group.avgAgeMax" id="ageMax" class="cSelect" style="width:67px;">
-									<option value="100">До</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for="">Людей в команде</label>
-								<select name="group.usersMin" id="countMin" class="cSelect" style="width:67px;">
-									<option value="0">От</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-								<span class="mdash fl">&mdash;</span>
-								<select name="group.usersMax" id="countMax" class="cSelect" style="width:67px;">
-									<option value="100">До</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for="">Потребность в людях</label>
-								<select name="group.vacancy" class="cSelect" style="width:160px;">
-								<option value="">&{'unimportant'}</option>
-								<option value="true" #{if group?.vacancy == "true"}selected="selected"#{/if}>Да</option>
-								<option value="false" #{if group?.vacancy == "false"}selected="selected"#{/if}>Нет</option>
-							</select>
-							</div>
-							</form>
-						</div>
-
-					  <div class="private">
-							<a href="#">Основные данные</a><span class="dropdown_open"></span>
-						</div>
-						<div class="private-block private_data" id="private-block">
-							<form action="" class="private_form">
-							<div class="private_item clearFix">
-								<label for=""><span class="ic_predpr_pas"></span>Предпринимательство</label>
-								<select name="group.bmanMin" id="bmanMin" class="cSelect" style="width:67px;">
-									<option value="0">От</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-								<span class="mdash fl">&mdash;</span>
-								<select name="group.bmanMax" id="bmanMax" class="cSelect" style="width:67px;">
-									<option value="100">До</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for=""><span class="ic_ideal_pas"></span>Идеализм</label>
-								<select name="group.idealMin" id="idealMin" class="cSelect" style="width:67px;">
-									<option value="0">От</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-								<span class="mdash fl">&mdash;</span>
-								<select name="group.idealMax" id="idealMax" class="cSelect" style="width:67px;">
-									<option value="100">До</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-  								<label class="clearFix" for=""><span class="ic_communic_pas"></span>Коммуникабельность</label>
-								<select name="group.comutMin" id="comutMin" class="cSelect" style="width:67px;">
-									<option value="0">От</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-								<span class="mdash fl">&mdash;</span>
-								<select name="group.comutMax" id="comutMax" class="cSelect" style="width:67px;">
-									<option value="100">До</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for=""><span class="ic_pragmatic_pas"></span>Прагматика</label>
-								<select name="group.pragmatMin" id="pragmatMin" class="cSelect" style="width:67px;">
-									<option value="0">От</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-								<span class="mdash fl">&mdash;</span>
-								<select name="group.pragmatMax" id="pragmatMax" class="cSelect" style="width:67px;">
-									<option value="100">До</option>
-									#{list items:0..100, as:'i'}
-									    <option value="${i}">${i}</option>
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for="">Тип бизнеса</label>
-								<select name="group.bissnessType" id="bissnessType" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option> 
-									#{list items:models.BType.findAll(), as:'type'}
-									<option value="${type.name}" #{if type.name==member?.bissnessType}selected="selected"#{/if}>&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(type.name)}</option> 
-									#{/list}
-								</select>
-							</div>
-							<div class="private_item clearFix">
-								<label for="">Сфера бизнеса</label>
-								<select name="group.bissnessSphere" id="bissnessSphere" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option> 
-									#{list items:models.BSphere.findAll(), as:'sphere'}
-									<option value="${sphere.name}">&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(sphere.name)}</option>
-									#{/list}
-								</select>
-							</div>
-              <div class="private_item clearFix">
-								<label for="">Стадия</label>
-								<select name="group.bissnessSphere" id="bissnessSphere" class="cSelect" style="width:160px;">
-									<option value="">&{'unimportant'}</option> 
-									#{list items:models.ProjectPhase.findAll(), as:'phase'}
-									<option value="${phase.name}">&{'models.ProjectPhase.name.' + utils.ModelUtils.replaceSpacesForI18n(phase?.name)}</option>
-									#{/list}
-								</select>
-								
-							</div>
-							</form>
-						</div>
-
-            <div class="professional">
-              <a href="#">Потребности команд</a><span class="dropdown_close"></span>
-            </div>
-          
-          </div>
-				
-        </div>
-				
-        <div class="share">
-					<div class="share-cont">
-						<p><strong>Поделится</strong></p>
-						<a href="" class="twitter">Twitter</a>
-						<a href="" class="facebook">Facebook</a>
-						<a href="" class="vk">Вконтакте</a>
-					</div>
+	<div class="criterion">
+	<div class="ttl-block">
+		<h3>Поиск участников</h3>
+	</div>
+ 	<div>
+		<div class="open" id="searchTitle1">
+			<a href="" onclick="return false;">Общие данные</a>
+			<span class="dropdown_open"></span>
+		</div>
+		<div class="private-block private_data" id="searchPanel1">
+			<form action="" class="private_form">
+				<div class="private_item clearFix">
+					<label for="">Страна</label>
+					<select name="group.country" id="country" class="cSelect" style="width:160px;">
+						<option value="">&{'unimportant'}</option> 
+						#{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
+						<option value="${country.name}">&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country?.name)}</option> 
+						#{/list}
+					</select>
 				</div>
-			</aside>
-			
+				<div class="private_item clearFix">
+					<label for="">Город</label>
+					<input id="city" type="text" placeholder="&{'unimportant'}" value="" name="group.city" style="width:150px;">
+				</div>
+				<div class="private_item clearFix">
+						<label class="clearFix" for="">Средний</label>
+					<select name="group.avgAgeMin" id="ageMin" class="cSelect" style="width:67px;">
+						<option value="0">От</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+					<span class="mdash fl">&mdash;</span>
+					<select name="group.avgAgeMax" id="ageMax" class="cSelect" style="width:67px;">
+						<option value="100">До</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+				</div>
+				<div class="private_item clearFix">
+					<label for="">Людей в команде</label>
+					<select name="group.usersMin" id="countMin" class="cSelect" style="width:67px;">
+						<option value="0">От</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+					<span class="mdash fl">&mdash;</span>
+					<select name="group.usersMax" id="countMax" class="cSelect" style="width:67px;">
+						<option value="100">До</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+				</div>
+				<div class="private_item clearFix">
+					<label for="">Потребность в людях</label>
+					<select name="group.vacancy" class="cSelect" style="width:160px;">
+						<option value="">&{'unimportant'}</option>
+						<option value="true" #{if group?.vacancy == "true"}selected="selected"#{/if}>Да</option>
+						<option value="false" #{if group?.vacancy == "false"}selected="selected"#{/if}>Нет</option>
+					</select>
+				</div>
+			</form>
+		</div>
+
+		<div class="close" id="searchTitle2">
+			<a href="" onclick="return false;">Основные данные</a>
+			<span class="dropdown_open"></span>
+		</div>
+		<div class="private-block private_data" id="searchPanel2">
+			<form action="" class="private_form">
+				<div class="private_item clearFix">
+					<label for=""><span class="ic_predpr_pas"></span>Предпринимательство</label>
+					<select name="group.bmanMin" id="bmanMin" class="cSelect" style="width:67px;">
+						<option value="0">От</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+					<span class="mdash fl">&mdash;</span>
+					<select name="group.bmanMax" id="bmanMax" class="cSelect" style="width:67px;">
+						<option value="100">До</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+				</div>
+				<div class="private_item clearFix">
+					<label for=""><span class="ic_ideal_pas"></span>Идеализм</label>
+					<select name="group.idealMin" id="idealMin" class="cSelect" style="width:67px;">
+						<option value="0">От</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+					<span class="mdash fl">&mdash;</span>
+					<select name="group.idealMax" id="idealMax" class="cSelect" style="width:67px;">
+						<option value="100">До</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+				</div>
+				<div class="private_item clearFix">
+							<label class="clearFix" for=""><span class="ic_communic_pas"></span>Коммуникабельность</label>
+					<select name="group.comutMin" id="comutMin" class="cSelect" style="width:67px;">
+						<option value="0">От</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+					<span class="mdash fl">&mdash;</span>
+					<select name="group.comutMax" id="comutMax" class="cSelect" style="width:67px;">
+						<option value="100">До</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+				</div>
+				<div class="private_item clearFix">
+					<label for=""><span class="ic_pragmatic_pas"></span>Прагматика</label>
+					<select name="group.pragmatMin" id="pragmatMin" class="cSelect" style="width:67px;">
+						<option value="0">От</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+					<span class="mdash fl">&mdash;</span>
+					<select name="group.pragmatMax" id="pragmatMax" class="cSelect" style="width:67px;">
+						<option value="100">До</option>
+						#{list items:0..100, as:'i'}
+						    <option value="${i}">${i}</option>
+						#{/list}
+					</select>
+				</div>
+				<div class="private_item clearFix">
+					<label for="">Тип бизнеса</label>
+					<select name="group.bissnessType" id="bissnessType" class="cSelect" style="width:160px;">
+						<option value="">&{'unimportant'}</option> 
+						#{list items:models.BType.findAll(), as:'type'}
+						<option value="${type.name}" #{if type.name==member?.bissnessType}selected="selected"#{/if}>&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(type.name)}</option> 
+						#{/list}
+					</select>
+				</div>
+				<div class="private_item clearFix">
+					<label for="">Сфера бизнеса</label>
+					<select name="group.bissnessSphere" id="bissnessSphere" class="cSelect" style="width:160px;">
+						<option value="">&{'unimportant'}</option> 
+						#{list items:models.BSphere.findAll(), as:'sphere'}
+						<option value="${sphere.name}">&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(sphere.name)}</option>
+						#{/list}
+					</select>
+				</div>
+				<div class="private_item clearFix">
+					<label for="">Стадия</label>
+					<select name="group.bissnessSphere" id="bissnessSphere" class="cSelect" style="width:160px;">
+						<option value="">&{'unimportant'}</option> 
+						#{list items:models.ProjectPhase.findAll(), as:'phase'}
+						<option value="${phase.name}">&{'models.ProjectPhase.name.' + utils.ModelUtils.replaceSpacesForI18n(phase?.name)}</option>
+						#{/list}
+					</select>
+								
+				</div>
+			</form>
+		</div>
+
+		<div class="close" id="searchTitle3">
+		  <a href="" onclick="return false;">Потребности команд</a>
+		  <span class="dropdown_close"></span>
+		</div>
+		<div class="private-block private_data" id="searchPanel3">
+			<form action="" class="private_form">
+				//TODO://
+			</form>
+		</div>
+		
+	</div>
+	<div class="share">
+		<div class="share-cont">
+			<p><strong>Поделится</strong></p>
+			<a href="" class="twitter">Twitter</a>
+			<a href="" class="facebook">Facebook</a>
+			<a href="" class="vk">Вконтакте</a>
+		</div>
+	</div>
+</aside>
