@@ -823,13 +823,13 @@
 	border-bottom: 1px solid #D4D4D4;
 }
 
-.private {
+.open {
     font: bold 12px/16px Arial,Helvetica,sans-serif;
     padding: 10px 20px 0px;
     text-align: left;
 }
 
-.private a {
+.open a {
 	border-bottom: 1px dotted #666666;
 	color: #666;
     display: inline-block;
@@ -897,13 +897,13 @@
     margin: 5px 6px 0;
 }
 
-.interest, .professional{
+.close, .close{
     font: 13px/18px Arial,sans-serif;
     padding: 20px;
 	border-bottom: 1px solid #D4D4D4;
 }
 
-.interest a, .professional a{
+.close a, .close a{
 	border-bottom: 1px dotted #2583BE;
     display: inline-block;
     text-decoration: none;
