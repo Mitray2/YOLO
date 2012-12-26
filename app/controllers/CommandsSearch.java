@@ -23,7 +23,7 @@ public class CommandsSearch extends AbstractSearch {
 	
 	public static void groupSearchAjax() {
 		GroupSearchDTO group = new GsonBuilder().create().fromJson(request.params.get("body"), GroupSearchDTO.class);
-		
+		System.out.println("/n/n/n/n/n/n/n" + group.toString());
 		Integer currentPage = Integer.valueOf(request.params.get("page"));
 		
 		statement = "select distinct c from Command c left join c.country as cc " + "left join c.type as type " + "left join c.sphere as s " + "left join c.marketing as m "
@@ -111,14 +111,15 @@ public class CommandsSearch extends AbstractSearch {
 															// approved
 				group_search.put("status", "Online");// TODO not
 				// approved
+				group_search.put("phase", command.phase.name);
 				
-				group_search.put("marketing", command.marketing.level != null ? command.marketing.level.id : null);
-				group_search.put("sale", command.trade.level != null ? command.trade.level.id : null);
-				group_search.put("management", command.management.level != null ? command.management.level.id : null);
-				group_search.put("finance", command.finance.level != null ? command.finance.level.id : null);
-				group_search.put("legal", command.legal.level != null ? command.legal.level.id : null);
-				group_search.put("it", command.programming.level != null ? command.programming.level.id : null);
-				group_search.put("other", command.otherSkill.level != null ? command.otherSkill.level.id : null);
+				group_search.put("marketing", command.marketing.active);
+				group_search.put("sale", command.trade.active);
+				group_search.put("management", command.management.active);
+				group_search.put("finance", command.finance.active);
+				group_search.put("legal", command.legal.active);
+				group_search.put("it", command.programming.active);
+				group_search.put("other", command.otherSkill.active);
 				
 				list.add(group_search);
 			}

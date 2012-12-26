@@ -4,6 +4,22 @@ import java.io.Serializable;
 
 public class GroupSearchDTO implements Serializable {
 
+	@Override
+	public String toString() {
+		return "GroupSearchDTO [usersMin=" + usersMin + ", usersMax="
+				+ usersMax + ", vacancy=" + vacancy + ", country=" + country
+				+ ", city=" + city + ", avgAgeMin=" + avgAgeMin
+				+ ", avgAgeMax=" + avgAgeMax + ", bissnessType=" + bissnessType
+				+ ", bissnessSphere=" + bissnessSphere + ", marketing="
+				+ marketing + ", sale=" + sale + ", management=" + management
+				+ ", finance=" + finance + ", legal=" + legal + ", it=" + it
+				+ ", bmanMin=" + bmanMin + ", bmanMax=" + bmanMax
+				+ ", idealMin=" + idealMin + ", idealMax=" + idealMax
+				+ ", comutMin=" + comutMin + ", comutMax=" + comutMax
+				+ ", pragmatMin=" + pragmatMin + ", pragmatMax=" + pragmatMax
+				+ ", orderBy=" + orderBy + ", asc=" + asc + "]";
+	}
+
 	public Integer usersMin;
 
 	public Integer usersMax;

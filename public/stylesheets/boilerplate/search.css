@@ -25,9 +25,9 @@
     margin: -100px 0 0 -178px;
     padding: 5px 7px;
     position: absolute;
-    top: 22%;
-	  z-index: 1100;
-	  color: #949494;
+    top: 19%;
+	z-index: 1100;
+	color: #949494;
 }
 
 .warning_popup {
@@ -213,7 +213,16 @@
 	cursor: pointer;
 	display: inline-block;
 	vertical-align: middle;
-	padding-bottom: 3px;
+/*	padding-bottom: 3px;*/
+}
+.attention{
+	background: url(../images/boilerplate/search/sprite.png) -19px -36px no-repeat;
+	width: 19px;
+	height: 17px;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+/*	padding-bottom: 3px;*/
 }
 .team {
 	background: url(../images/boilerplate/search/sprite.png) 0 -20px no-repeat;
@@ -814,13 +823,13 @@
 	border-bottom: 1px solid #D4D4D4;
 }
 
-.open {
+.private {
     font: bold 12px/16px Arial,Helvetica,sans-serif;
     padding: 10px 20px 0px;
     text-align: left;
 }
 
-.open a {
+.private a {
 	border-bottom: 1px dotted #666666;
 	color: #666;
     display: inline-block;
@@ -888,13 +897,13 @@
     margin: 5px 6px 0;
 }
 
-.close, .close{
+.interest, .professional{
     font: 13px/18px Arial,sans-serif;
     padding: 20px;
 	border-bottom: 1px solid #D4D4D4;
 }
 
-.close a, .close a{
+.interest a, .professional a{
 	border-bottom: 1px dotted #2583BE;
     display: inline-block;
     text-decoration: none;

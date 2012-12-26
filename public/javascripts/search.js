@@ -35,9 +35,11 @@ function Search() {
 			  comutMax : null,
 			  pragmatMin : null,
 			  pragmatMax : null,
+			  avgAgeMin : null,
 			  orderBy : null,
 			  asc : false,
 			  active_column : null
+			  
 	};
 	this.init = function init() {
 		_this = this;
@@ -188,7 +190,7 @@ function Search() {
 					$.each(data.users, function(key, user) {
 						var row = $("<tr class='search-result-item' style='display: none;'>");
 						table.append(row);
-						row.append("<td><a href=''>" + user.name + " " + user.lastName + "</a></td>");
+						row.append("<td><a href='/" + user.id + "'>" + user.name + " " + user.lastName + "</a></td>");
 						appendFirstTabColumns(user, row);
 						appendSecondTabColumns(user, row);
 						appendThirdTabColumns(user, row);
@@ -198,10 +200,11 @@ function Search() {
 					$.each(data.groups, function(key, group) {
 						var row = $("<tr class='search-result-item' style='display: none;'>");
 						table.append(row);
-						row.append("<td><a href=''>" + group.info + "</a></td>");
+						row.append("<td><a href='/groupcontroller/index?id=" + group.id + "'>" + group.name + "</a></td>");
 						appendFirstTabGroupColumns(group, row);
 						appendSecondTabGroupColumns(group, row);
 						appendThirdTabGroupColumns(group, row);
+						row.append("<td class='cntr'>" + group.count + "</td>");
 						row.fadeIn(500);
 					});
 				}
@@ -285,19 +288,49 @@ function addIcDiagram(value, row, hidden){
 	}
 }
 
+function addIcWarning(value, row, hidden){
+	if (value == true){
+		addCell(row, "searchResultColumn3", "<span class='warning'></span>", hidden);
+	}
+	else{
+		addCell(row, "searchResultColumn3", "<span class='attention'></span>", hidden);
+	}
+}
+
 
 function appendFirstTabGroupColumns(group, row) {
 	var hidden = search.uiModel.currentTab != 1;
+	addCell(row, "searchResultColumn1", "<a href=''><img src='/public/images/boilerplate/avam.png' alt='' class='search-result-pic'></a>", hidden);
 	addCell(row, "searchResultColumn1", group.country, hidden);
+	addCell(row, "searchResultColumn1", group.city, hidden);
+	addCell(row, "searchResultColumn1", group.age, hidden);
+	addCell(row, "searchResultColumn1", group.international, hidden);
+	addCell(row, "searchResultColumn1", group.status, hidden);
+	addCell(row, "searchResultColumn1 cntr", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-tip='"+group.info+"'></span>", hidden);
+	search.tipInfo($("#info_" + search.uiModel.rowId));
 	
 }
 function appendSecondTabGroupColumns(group, row) {
 	var hidden = search.uiModel.currentTab != 2;
-	addCell(row, "searchResultColumn2", group.country, hidden);
+	addCell(row, "searchResultColumn2", group.businessman, hidden);
+	addCell(row, "searchResultColumn2", group.idealist, hidden);
+	addCell(row, "searchResultColumn2", group.communicant, hidden);
+	addCell(row, "searchResultColumn2", group.pragmatist, hidden);
+	addCell(row, "searchResultColumn2", group.businessType, hidden);
+	addCell(row, "searchResultColumn2", group.businessSphere, hidden);
+	addCell(row, "searchResultColumn2", group.phase, hidden);
+
 }
+
 function appendThirdTabGroupColumns(group, row) {
 	var hidden = search.uiModel.currentTab != 3;
-	addCell(row, "searchResultColumn3", group.country, hidden);
+	addIcWarning(group.marketing, row, hidden);
+	addIcWarning(group.sale, row, hidden);
+	addIcWarning(group.management, row, hidden);
+	addIcWarning(group.legal, row, hidden);
+	addIcWarning(group.finance, row, hidden);
+	addIcWarning(group.it, row, hidden);
+	addIcWarning(group.other, row, hidden);
 }
 
 

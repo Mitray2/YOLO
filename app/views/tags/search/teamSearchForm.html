@@ -4,11 +4,11 @@
 		<h3>Поиск участников</h3>
 	</div>
  	<div>
-		<div class="open" id="searchTitle1">
+		<div class="interest" id="searchTitle1">
 			<a href="" onclick="return false;">Общие данные</a>
 			<span class="dropdown_open"></span>
 		</div>
-		<div class="private-block private_data" id="searchPanel1">
+		<div class="private-block private_data"  id="searchPanel1">
 			<form action="" class="private_form">
 				<div class="private_item clearFix">
 					<label for="">Страна</label>
@@ -25,14 +25,14 @@
 				</div>
 				<div class="private_item clearFix">
 						<label class="clearFix" for="">Средний</label>
-					<select name="group.avgAgeMin" id="ageMin" class="cSelect" style="width:67px;">
+					<select name="group.avgAgeMin" id="avgAgeMin" class="cSelect" style="width:67px;">
 						<option value="0">От</option>
 						#{list items:0..100, as:'i'}
 						    <option value="${i}">${i}</option>
 						#{/list}
 					</select>
 					<span class="mdash fl">&mdash;</span>
-					<select name="group.avgAgeMax" id="ageMax" class="cSelect" style="width:67px;">
+					<select name="group.avgAgeMax" id="avgAgeMax" class="cSelect" style="width:67px;">
 						<option value="100">До</option>
 						#{list items:0..100, as:'i'}
 						    <option value="${i}">${i}</option>
@@ -41,14 +41,14 @@
 				</div>
 				<div class="private_item clearFix">
 					<label for="">Людей в команде</label>
-					<select name="group.usersMin" id="countMin" class="cSelect" style="width:67px;">
+					<select name="group.usersMin" id="usersMin" class="cSelect" style="width:67px;">
 						<option value="0">От</option>
 						#{list items:0..100, as:'i'}
 						    <option value="${i}">${i}</option>
 						#{/list}
 					</select>
 					<span class="mdash fl">&mdash;</span>
-					<select name="group.usersMax" id="countMax" class="cSelect" style="width:67px;">
+					<select name="group.usersMax" id="usersMax" class="cSelect" style="width:67px;">
 						<option value="100">До</option>
 						#{list items:0..100, as:'i'}
 						    <option value="${i}">${i}</option>
@@ -57,7 +57,7 @@
 				</div>
 				<div class="private_item clearFix">
 					<label for="">Потребность в людях</label>
-					<select name="group.vacancy" class="cSelect" style="width:160px;">
+					<select name="group.vacancy" id="vacancy" class="cSelect" style="width:160px;">
 						<option value="">&{'unimportant'}</option>
 						<option value="true" #{if group?.vacancy == "true"}selected="selected"#{/if}>Да</option>
 						<option value="false" #{if group?.vacancy == "false"}selected="selected"#{/if}>Нет</option>
@@ -66,7 +66,7 @@
 			</form>
 		</div>
 
-		<div class="close" id="searchTitle2">
+		<div class="professional" id="searchTitle2">
 			<a href="" onclick="return false;">Основные данные</a>
 			<span class="dropdown_open"></span>
 		</div>
@@ -167,13 +167,61 @@
 			</form>
 		</div>
 
-		<div class="close" id="searchTitle3">
+		<div class="private" id="searchTitle3">
 		  <a href="" onclick="return false;">Потребности команд</a>
 		  <span class="dropdown_close"></span>
 		</div>
 		<div class="private-block private_data" id="searchPanel3">
 			<form action="" class="private_form">
-				//TODO://
+				<div class="private_item clearFix">
+						<label for=""><span class="ic_marketing_pas"></span>Маркетинг / реклама</label>
+						<select name="member.marketing" id="marketing" class="cSelect" style="width:160px;">
+							<option value="">&{'unimportant'}</option>
+							<option value="true">Да</option>
+							<option value="false">Нет</option>
+						</select>
+					</div>
+					<div class="private_item clearFix">
+						<label for=""><span class="ic_sale_pas"></span>Продажи</label>
+						<select name="member.sale" id="sale" class="cSelect" style="width:160px;">
+							<option value="">&{'unimportant'}</option>
+							<option value="true">Да</option>
+							<option value="false">Нет</option>
+						</select>
+						
+					</div>
+					<div class="private_item clearFix">
+								<label class="clearFix" for=""><span class="ic_management_pas"></span>Управление</label>
+						<select name="member.management" id="management" class="cSelect" style="width:160px;">
+							<option value="">&{'unimportant'}</option>
+							<option value="true">Да</option>
+							<option value="false">Нет</option>
+						</select>
+					</div>
+					<div class="private_item clearFix">
+						<label for=""><span class="ic_right_pas"></span>Право</label>
+						<select name="member.legal" id="legal" class="cSelect" style="width:160px;">
+							<option value="">&{'unimportant'}</option>
+							<option value="true">Да</option>
+							<option value="false">Нет</option>
+						</select>
+					</div>
+					<div class="private_item clearFix">
+						<label for=""><span class="ic_finance_pas"></span>Финансы</label>
+						<select name="member.finance" id="finance" class="cSelect" style="width:160px;">
+							<option value="">&{'unimportant'}</option>
+							<option value="true">Да</option>
+							<option value="false">Нет</option>
+						</select>
+					</div>
+					<div class="private_item clearFix">
+						<label for=""><span class="ic_it_pas"></span>ИТ / программирование</label>
+						<select name="member.it" id="it" class="cSelect" style="width:160px;">
+							<option value="">&{'unimportant'}</option>
+							<option value="true">Да</option>
+							<option value="false">Нет</option>
+						</select>
+					</div>
 			</form>
 		</div>
 		
