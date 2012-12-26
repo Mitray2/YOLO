@@ -116,23 +116,19 @@ function Search() {
 		if (search.uiModel.currentSearchPanel == panelIndex) {
 			return;
 		}
-		//sorry for this code. it's result of bad page-proofs.
-		var inactiveClasses = ["interest", "professional"];
-		var j = 0;
 		for (var i = 1; i <= 3; i++) {
 			if (i == panelIndex) {
 				$("#searchPanel" + i).show();
 				$("#searchTitle" + i + " > span").removeClass("dropdown_closed");
 				$("#searchTitle" + i + " > span").addClass("dropdown_open");
-				$("#searchTitle" + i).addClass("private");
-				$("#searchTitle" + i).removeClass(inactiveClasses[0]);
-				$("#searchTitle" + i).removeClass(inactiveClasses[1]);
+				$("#searchTitle" + i).addClass("open");
+				$("#searchTitle" + i).removeClass("close");
 			} else {
 				$("#searchPanel" + i).hide();
 				$("#searchTitle" + i + " > span").removeClass("dropdown_open");
 				$("#searchTitle" + i + " > span").addClass("dropdown_closed");
-				$("#searchTitle" + i).removeClass("private");
-				$("#searchTitle" + i).addClass(inactiveClasses[j++]);
+				$("#searchTitle" + i).removeClass("open");
+				$("#searchTitle" + i).addClass("close");
 			}
 		}
 		search.uiModel.currentSearchPanel = panelIndex;
