@@ -228,13 +228,13 @@ public class UsersSearch extends AbstractSearch {
 		sortOrders.put("businessSphere", "s.name");
 
 
-		sortOrders.put("marketing", "marl.userLevel");
-		sortOrders.put("sale", "tl.userLevel");
-		sortOrders.put("management", "manl.userLevel");
-		sortOrders.put("finance", "fl.userLevel");
-		sortOrders.put("right", "ll.userLevel");
-		sortOrders.put("it", "prl.userLevel");
-		sortOrders.put("more", "otherl.userLevel");
+		sortOrders.put("marketing", "marl.id");
+		sortOrders.put("sale", "tl.id");
+		sortOrders.put("management", "manl.id");
+		sortOrders.put("finance", "fl.id");
+		sortOrders.put("right", "ll.id");
+		sortOrders.put("it", "prl.id");
+		sortOrders.put("more", "otherl.id");
 		sortOrders.put("command", "u.command");
 	}
 
