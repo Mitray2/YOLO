@@ -29,7 +29,7 @@ public class CommandsSearch extends AbstractSearch {
 		statement = "select distinct c from Command c left join c.country as cc " + "left join c.type as type " + "left join c.sphere as s " + "left join c.marketing as m "
 				+ "left join m.level as marl " + "left join c.management as man " + "left join man.level as manl " + "left join c.trade as t " + "left join t.level as tl "
 				+ "left join c.finance as f " + "left join f.level as fl " + "left join c.legal as l " + "left join l.level as ll " + "left join c.programming as pr "
-				+ "left join pr.level as prl ";
+				+ "left join pr.level as prl " + "left join c.phase as phs ";
 		
 		queryParams = new ArrayList<Object>();
 		
@@ -66,6 +66,7 @@ public class CommandsSearch extends AbstractSearch {
 			appendParam(group.comutMax, "c.communicant", where, LESS, queryParams);
 			appendParam(group.pragmatMin, "c.pragmatist", where, MORE, queryParams);
 			appendParam(group.pragmatMax, "c.pragmatist", where, LESS, queryParams);
+			appendParam(group.phase, "phs.name", where, EQUAL, queryParams);
 			statement += where.toString();
 		}
 		StringBuilder orderBy = new StringBuilder();

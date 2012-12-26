@@ -35,7 +35,6 @@ function Search() {
 			  comutMax : null,
 			  pragmatMin : null,
 			  pragmatMax : null,
-			  avgAgeMin : null,
 			  orderBy : null,
 			  asc : false,
 			  active_column : null

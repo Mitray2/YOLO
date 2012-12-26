@@ -65,6 +65,8 @@ public class GroupSearchDTO implements Serializable {
 	public Integer pragmatMin;
 
 	public Integer pragmatMax;
+	
+	public String phase;
 
 	public String orderBy;
 
