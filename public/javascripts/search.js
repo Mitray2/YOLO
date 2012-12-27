@@ -193,10 +193,16 @@ function Search() {
 					$.each(data.users, function(key, user) {
 						var row = $("<tr class='search-result-item' style='display: none;'>");
 						table.append(row);
-						row.append("<td><a href='/" + user.id + "'>" + user.name + " " + user.lastName + "</a></td>");
+						row.append("<td><a href='/" + user.id + "'>" + user.lastName + " " + user.name  + "</a></td>");
 						appendFirstTabColumns(user, row);
 						appendSecondTabColumns(user, row);
 						appendThirdTabColumns(user, row);
+						if (user.commandB) {
+							row.append("<td class='cntr'><a href='/groupcontroller/index?id=" + user.commandId + "'><span class='team info' id='info_" + (++search.uiModel.rowId) + "' data-tip='" + user.commandName + "'></span></a></td>");
+							search.tipInfo($("#info_" + search.uiModel.rowId));
+						} else {
+							addCell("<td class='cntr'><span class='single'></span></td>");
+						}
 						row.fadeIn(500);
 					});
 				} else {
@@ -276,21 +282,25 @@ function Search() {
 	}
 	
 }
-function addIcDiagram(value, row, hidden){
+function addIcDiagram(value, info, row, hidden){
 	if (value == 1){
-		addCell(row, "searchResultColumn3", "<span class='ic_one'></span>", hidden);
+		addCell(row, "searchResultColumn3", "<span class='ic_one info' id='info_" + (++search.uiModel.rowId) + "' data-tip='" + info + "'></span>", hidden);
+		search.tipInfo($("#info_" + search.uiModel.rowId));
 	}
 	else{
 		if (value == 2){
-			addCell(row, "searchResultColumn3", "<span class='ic_two'></span>", hidden);
+			addCell(row, "searchResultColumn3", "<span class='ic_two info' id='info_" + (++search.uiModel.rowId) + "' data-tip='" + info + "'></span>", hidden);
+			search.tipInfo($("#info_" + search.uiModel.rowId));
 		}
 		else{
 			if (value == 3){
-				addCell(row, "searchResultColumn3", "<span class='ic_three'></span>", hidden);
+				addCell(row, "searchResultColumn3", "<span class='ic_three info' id='info_" + (++search.uiModel.rowId) + "' data-tip='" + info + "'></span>", hidden);
+				search.tipInfo($("#info_" + search.uiModel.rowId));
 			}
 			else{
 				if (value == 4){
-					addCell(row, "searchResultColumn3", "<span class='ic_four'></span>", hidden);
+					addCell(row, "searchResultColumn3", "<span class='ic_four info' id='info_" + (++search.uiModel.rowId) + "' data-tip='" + info + "'></span>", hidden);
+					search.tipInfo($("#info_" + search.uiModel.rowId));
 				}
 			}
 		}
@@ -362,20 +372,16 @@ function appendThirdTabGroupColumns(group, row) {
 function appendThirdTabColumns(user, row) {
 	var hidden = search.uiModel.currentTab != 3;
 	
-	addIcDiagram(user.marketing, row, hidden);
-	addIcDiagram(user.sale, row, hidden);
-	addIcDiagram(user.management, row, hidden);
+	addIcDiagram(user.marketing, user.marketingInfo, row, hidden);
+	addIcDiagram(user.sale, user.saleInfo,  row, hidden);
+	addIcDiagram(user.management, user.managementInfo, row, hidden);
+	 
+	addIcDiagram(user.legal, user.legalInfo, row, hidden);
+	addIcDiagram(user.finance, user.financeInfo, row, hidden);
+	addIcDiagram(user.it, user.itInfo, row, hidden);
+	addIcDiagram(user.other, user.otherInfo, row, hidden);
 	
-	addIcDiagram(user.legal, row, hidden);
-	addIcDiagram(user.finance, row, hidden);
-	addIcDiagram(user.it, row, hidden);
-	addIcDiagram(user.other, row, hidden);
-	
-	if (user.commandB) {
-		addCell(row, "searchResultColumn3 cntr", "<span class='team'></span>", hidden);
-	} else {
-		addCell(row, "searchResultColumn3 cntr", "<span class='single'></span>", hidden);
-	}
+
 }
 
 function appendSecondTabColumns(user, row) {
@@ -387,11 +393,7 @@ function appendSecondTabColumns(user, row) {
 	addCell(row, "searchResultColumn2", user.businessType, hidden);
 	addCell(row, "searchResultColumn2", user.businessSphere, hidden);
 	addCell(row, "searchResultColumn2 cntr", "Yes", hidden);
-	if (user.commandB) {
-		addCell(row, "searchResultColumn2 cntr", "<span class='team'></span>", hidden);
-	} else {
-		addCell(row, "searchResultColumn2 cntr", "<span class='single'></span>", hidden);
-	}
+
 }
 
 function appendFirstTabColumns(user, row) {
@@ -413,14 +415,10 @@ function appendFirstTabColumns(user, row) {
 		addCell(row, "searchResultColumn1", "<img src='/public/images/boilerplate/ico-woman.gif' alt=''>F", hidden);
 	}
 	addCell(row, "searchResultColumn1", user.age, hidden);
-	addCell(row, "searchResultColumn1", user.status, hidden);
+	addCell(row, "searchResultColumn1", user.lastSeen, hidden);
 	addCell(row, "searchResultColumn1 cntr", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-tip='"+user.info+"'></span>", hidden);
 	search.tipInfo($("#info_" + search.uiModel.rowId));
-	if (user.commandB) {
-		addCell(row, "searchResultColumn1 cntr", "<span class='team'></span>", hidden);
-	} else {
-		addCell(row, "searchResultColumn1 cntr", "<span class='single'></span>", hidden);
-	}
+
 }
 
 function addCell(row, cssClass, content, hidden) {

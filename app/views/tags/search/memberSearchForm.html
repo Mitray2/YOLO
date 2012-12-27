@@ -165,7 +165,7 @@
 						<select name="member.marketing" id="marketing" class="cSelect" style="width:160px;">
 							<option value="">&{'unimportant'}</option> 
 							#{list items:models.UserLevel.findAll(), as:'level'}
-							<option value="${level.userLevel}" #{if level.userLevel==member?.marketing }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+							<option value="${level.userLevel}">&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
 							#{/list}
 						</select>
 					</div>
@@ -174,7 +174,7 @@
 						<select name="member.sale" id="sale" class="cSelect" style="width:160px;">
 							<option value="">&{'unimportant'}</option> 
 							#{list items:models.UserLevel.findAll(), as:'level'}
-							<option value="${level.userLevel}" #{if level.userLevel==member?.sale }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+							<option value="${level.userLevel}">&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
 							#{/list}
 						</select>
 						
@@ -184,7 +184,7 @@
 						<select name="member.management" id="management" class="cSelect" style="width:160px;">
 							<option value="">&{'unimportant'}</option> 
 							#{list items:models.UserLevel.findAll(), as:'level'}
-							<option value="${level.userLevel}" #{if level.userLevel==member?.management }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+							<option value="${level.userLevel}">&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
 							#{/list}
 						</select>
 					</div>
@@ -193,7 +193,7 @@
 						<select name="member.legal" id="legal" class="cSelect" style="width:160px;">
 							<option value="">&{'unimportant'}</option> 
 							#{list items:models.UserLevel.findAll(), as:'level'}
-							<option value="${level.userLevel}" #{if level.userLevel==member?.legal }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+							<option value="${level.userLevel}">&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
 							#{/list}
 						</select>
 					</div>
@@ -202,7 +202,7 @@
 						<select name="member.finance" id="finance" class="cSelect" style="width:160px;">
 							<option value="">&{'unimportant'}</option> 
 							#{list items:models.UserLevel.findAll(), as:'level'}
-							<option value="${level.userLevel}" #{if level.userLevel==member?.finance }selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
+							<option value="${level.userLevel}">&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option>
 							#{/list}
 						</select>
 					</div>
@@ -211,7 +211,7 @@
 						<select name="member.it" id="it" class="cSelect" style="width:160px;">
 							<option value="">&{'unimportant'}</option> 
 							#{list items:models.UserLevel.findAll(), as:'level'}
-							<option value="${level.userLevel}" #{if level.userLevel==member?.it}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option> 
+							<option value="${level.userLevel}">&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level.userLevel)}</option> 
 							#{/list}
 						</select>
 					</div>

@@ -45,6 +45,7 @@ public interface ApplicationConstants {
 	public static final String MESSAGES_BUSINESS_TYPE = "models.bType.name.";
 	public static final String MESSAGES_SPHERE_NAME = "models.bSphere.name.";
 	public static final String MESSAGES_COUNTRY_NAME = "models.country.name.";
+	public static final String MESSAGES_USER_LEVEL = "models.userLevel.userLevel.";
 	
 	public static final String SLASH = "/";
 	public static final String UNDERLINING = "_";

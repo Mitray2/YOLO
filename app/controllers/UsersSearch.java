@@ -14,9 +14,11 @@ import models.User;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 
+import play.i18n.Messages;
 import play.modules.paginate.ValuePaginator;
 import play.mvc.Before;
 import utils.ApplicationConstants;
+import utils.DateUtils;
 import utils.SessionHelper;
 
 import com.google.gson.GsonBuilder;
@@ -148,35 +150,54 @@ public class UsersSearch extends AbstractSearch {
 				System.out.println("\n\n\n\n\n\n" + user.id);
 				Map<String, Object> user_search = new HashMap<String, Object>();
 
+				LastUserData lastSeenUserData = null;
+				String statement = "select l from LastUserData as l where l.userId=?";
+				List<LastUserData> lastSeenUserDatas = LastUserData.find(statement, user.id).fetch(1);
+				
+				lastSeenUserData = LastUserData.findById(lastSeenUserDatas.get(0).id);
+				
+				
+				
+				user_search.put("lastSeen", DateUtils.getFormatedStringDate(lastSeenUserData.lastSeen, true));
 				user_search.put("id", user.id);
 				user_search.put("lastName", user.lastName);
 				user_search.put("name", user.name);
-				user_search.put("country", user.country.name);
+				user_search.put("country", Messages.get(ApplicationConstants.MESSAGES_COUNTRY_NAME + utils.ModelUtils.replaceSpacesForI18n(user.country.name)));
 				user_search.put("city", user.city);
 				user_search.put("sex", user.sex);
 				user_search.put("age", user.age);
 				user_search.put("haveAvatar", user.haveAvatar);
 				user_search.put("info", user.personalCV);
 				user_search.put("commandB", user.command == null ? false : true);
+				user_search.put("commandId", user.command == null ? false : user.command.id);
+				
+				user_search.put("commandName", user.command == null ? false : user.command.name);
 				
 				user_search.put("businessman", user.businessman);
 				user_search.put("idealist", user.idealist);
 				user_search.put("communicant", user.communicant);
 				user_search.put("pragmatist", user.pragmatist);
 				
-				user_search.put("businessType", user.businessType.name);
-				user_search.put("businessSphere", user.businessSphere.name);
+				user_search.put("businessType", Messages.get(ApplicationConstants.MESSAGES_BUSINESS_TYPE + utils.ModelUtils.replaceSpacesForI18n(user.businessType.name)));
+				user_search.put("businessSphere", Messages.get(ApplicationConstants.MESSAGES_SPHERE_NAME + utils.ModelUtils.replaceSpacesForI18n(user.businessSphere.name)));
 				user_search.put("international", "Yes"); // TODO not
 															// approved
 				user_search.put("status", "Online");
 				
 				user_search.put("marketing", user.expMarketing.level.id);
+				user_search.put("marketingInfo", Messages.get(ApplicationConstants.MESSAGES_USER_LEVEL + utils.ModelUtils.replaceSpacesForI18n(user.expMarketing.level.userLevel)));
 				user_search.put("sale", user.expSale.level.id);
+				user_search.put("saleInfo", Messages.get(ApplicationConstants.MESSAGES_USER_LEVEL + utils.ModelUtils.replaceSpacesForI18n(user.expSale.level.userLevel)));
 				user_search.put("management", user.expManagement.level.id);
+				user_search.put("managementInfo", Messages.get(ApplicationConstants.MESSAGES_USER_LEVEL + utils.ModelUtils.replaceSpacesForI18n(user.expManagement.level.userLevel)));
 				user_search.put("finance", user.expFinance.level.id);
+				user_search.put("financeInfo", Messages.get(ApplicationConstants.MESSAGES_USER_LEVEL + utils.ModelUtils.replaceSpacesForI18n(user.expFinance.level.userLevel)));
 				user_search.put("legal", user.expLegal.level.id);
+				user_search.put("legalInfo", Messages.get(ApplicationConstants.MESSAGES_USER_LEVEL + utils.ModelUtils.replaceSpacesForI18n(user.expLegal.level.userLevel)));
 				user_search.put("it",user.expIT.level.id);
-				user_search.put("other",user.expOther.level.id);
+				user_search.put("itInfo", Messages.get(ApplicationConstants.MESSAGES_USER_LEVEL + utils.ModelUtils.replaceSpacesForI18n(user.expIT.level.userLevel)));
+				user_search.put("other", user.expOther.level.id);
+				user_search.put("otherInfo", Messages.get(ApplicationConstants.MESSAGES_USER_LEVEL + utils.ModelUtils.replaceSpacesForI18n(user.expOther.level.userLevel)));
 				
 				list.add(user_search);
 			}
