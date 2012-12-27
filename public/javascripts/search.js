@@ -196,7 +196,7 @@ function Search() {
 							row.append("<td class='cntr'><a href='/groupcontroller/index?id=" + user.commandId + "'><span class='team info' id='info_" + (++search.uiModel.rowId) + "' data-tip='" + user.commandName + "'></span></a></td>");
 							search.tipInfo($("#info_" + search.uiModel.rowId));
 						} else {
-							addCell("<td class='cntr'><span class='single'></span></td>");
+							row.append("<td class='cntr'><span class='single'></span></td>");
 						}
 						row.fadeIn(500);
 					});
