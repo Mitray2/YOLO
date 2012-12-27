@@ -10,6 +10,7 @@ import modelDTO.MemberSearchDTO;
 import models.Command;
 import models.User;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.google.gson.GsonBuilder;
@@ -27,9 +28,9 @@ public class CommandsSearch extends AbstractSearch {
 		Integer currentPage = Integer.valueOf(request.params.get("page"));
 		
 		statement = "select distinct c from Command c left join c.country as cc " + "left join c.type as type " + "left join c.sphere as s " + "left join c.marketing as m "
-				+ "left join m.level as marl " + "left join c.management as man " + "left join man.level as manl " + "left join c.trade as t " + "left join t.level as tl "
-				+ "left join c.finance as f " + "left join f.level as fl " + "left join c.legal as l " + "left join l.level as ll " + "left join c.programming as pr "
-				+ "left join pr.level as prl " + "left join c.phase as phs ";
+				+ "left join c.management as man " + "left join c.trade as t "
+				+ "left join c.finance as f " + "left join c.legal as l " + "left join c.programming as pr " + "left join c.otherSkill as other"
+				+ "left join c.phase as phs ";
 		
 		queryParams = new ArrayList<Object>();
 		
@@ -52,12 +53,27 @@ public class CommandsSearch extends AbstractSearch {
 			appendParam(sCity, "c.city", where, LIKE, queryParams);
 			appendParam(group.bissnessType, "type.name", where, EQUAL, queryParams);
 			appendParam(group.bissnessSphere, "s.name", where, EQUAL, queryParams);
-			appendParam(group.marketing, "marl.userLevel", where, EQUAL, queryParams);
-			appendParam(group.sale, "tl.userLevel", where, EQUAL, queryParams);
-			appendParam(group.management, "manl.userLevel", where, EQUAL, queryParams);
-			appendParam(group.finance, "fl.userLevel", where, EQUAL, queryParams);
-			appendParam(group.legal, "ll.userLevel", where, EQUAL, queryParams);
-			appendParam(group.it, "prl.userLevel", where, EQUAL, queryParams);
+			if (StringUtils.isNotEmpty(group.marketing)) {
+				appendParam(BooleanUtils.toBoolean(group.marketing), "m.active", where, EQUAL, queryParams);
+			}
+			if (StringUtils.isNotEmpty(group.sale)) {
+				appendParam(BooleanUtils.toBoolean(group.sale), "t.active", where, EQUAL, queryParams);
+			}
+			if (StringUtils.isNotEmpty(group.management)) {
+				appendParam(BooleanUtils.toBoolean(group.management), "man.active", where, EQUAL, queryParams);
+			}
+			if (StringUtils.isNotEmpty(group.finance)) {
+				appendParam(BooleanUtils.toBoolean(group.finance), "f.active", where, EQUAL, queryParams);
+			}
+			if (StringUtils.isNotEmpty(group.legal)) {
+				appendParam(BooleanUtils.toBoolean(group.legal), "l.active", where, EQUAL, queryParams);
+			}
+			if (StringUtils.isNotEmpty(group.it)) {
+				appendParam(BooleanUtils.toBoolean(group.it), "pr.active", where, EQUAL, queryParams);
+			}
+			if (StringUtils.isNotEmpty(group.other)) {
+				appendParam(BooleanUtils.toBoolean(group.other), "other.active", where, EQUAL, queryParams);
+			}
 			appendParam(group.bmanMin, "c.businessman", where, MORE, queryParams);
 			appendParam(group.bmanMax, "c.businessman", where, LESS, queryParams);
 			appendParam(group.idealMin, "c.idealist", where, MORE, queryParams);

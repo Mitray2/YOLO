@@ -11,6 +11,7 @@ import modelDTO.MemberSearchDTO;
 import models.LastUserData;
 import models.User;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 
 import play.modules.paginate.ValuePaginator;
@@ -95,14 +96,12 @@ public class UsersSearch extends AbstractSearch {
 			appendParam(member.finance, "fl.userLevel", where, EQUAL, queryParams);
 			appendParam(member.legal, "ll.userLevel", where, EQUAL, queryParams);
 			appendParam(member.it, "prl.userLevel", where, EQUAL, queryParams);
-
+			
+			
 			if (StringUtils.isNotEmpty(member.sex)) {
-				if (member.sex.equals("true")) {
-					appendParam(true, "u.sex", where, EQUAL, queryParams);
-				} else {
-					appendParam(false, "u.sex", where, EQUAL, queryParams);
-				}
+				appendParam(BooleanUtils.toBoolean(member.sex), "u.sex", where, EQUAL, queryParams);
 			}
+			
 			if (member.inCommand != null) {
 				if (member.inCommand.equals("true")) {
 					where.append(" and ");

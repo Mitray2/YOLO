@@ -49,6 +49,8 @@ public class GroupSearchDTO implements Serializable {
 	public String legal;
 
 	public String it;
+	
+	public String other;
 
 	public Integer bmanMin;
 
