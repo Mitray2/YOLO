@@ -141,7 +141,7 @@
 					<select name="group.bissnessType" id="bissnessType" class="cSelect" style="width:160px;">
 						<option value="">&{'unimportant'}</option> 
 						#{list items:models.BType.findAll(), as:'type'}
-						<option value="${type.name}" #{if type.name==member?.bissnessType}selected="selected"#{/if}>&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(type.name)}</option> 
+						<option value="${type.name}">&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(type.name)}</option> 
 						#{/list}
 					</select>
 				</div>

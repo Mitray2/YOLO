@@ -17,6 +17,7 @@ import com.google.gson.GsonBuilder;
 
 import controllers.UsersSearch.UserSearchAjaxResult;
 
+import play.i18n.Messages;
 import play.modules.paginate.ValuePaginator;
 import utils.ApplicationConstants;
 
@@ -24,12 +25,11 @@ public class CommandsSearch extends AbstractSearch {
 	
 	public static void groupSearchAjax() {
 		GroupSearchDTO group = new GsonBuilder().create().fromJson(request.params.get("body"), GroupSearchDTO.class);
-		System.out.println("/n/n/n/n/n/n/n" + group.toString());
 		Integer currentPage = Integer.valueOf(request.params.get("page"));
 		
 		statement = "select distinct c from Command c left join c.country as cc " + "left join c.type as type " + "left join c.sphere as s " + "left join c.marketing as m "
 				+ "left join c.management as man " + "left join c.trade as t "
-				+ "left join c.finance as f " + "left join c.legal as l " + "left join c.programming as pr " + "left join c.otherSkill as other"
+				+ "left join c.finance as f " + "left join c.legal as l " + "left join c.programming as pr " + "left join c.otherSkill as other "
 				+ "left join c.phase as phs ";
 		
 		queryParams = new ArrayList<Object>();
@@ -90,8 +90,7 @@ public class CommandsSearch extends AbstractSearch {
 		if (group != null) {
 			if (group.orderBy != null) {
 				orderBy.append(" ORDER BY ");
-				orderBy.append("c.");
-				orderBy.append(group.orderBy);
+				orderBy.append(sortOrders.get(group.orderBy));
 				if (group.asc) {
 					orderBy.append(" asc");
 				} else {
@@ -99,7 +98,9 @@ public class CommandsSearch extends AbstractSearch {
 				}
 			}
 		}
+		
 		statement += orderBy.toString();
+		System.out.println("\n\n\n\\n\n\n\n\n" + statement);
 		List<Command> groups = Command.find(statement, queryParams.toArray()).fetch(currentPage, ApplicationConstants.SEARCH_COUNT_ON_PAGE);
 
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -110,7 +111,7 @@ public class CommandsSearch extends AbstractSearch {
 
 				group_search.put("id", command.id);
 				group_search.put("name", command.name);
-				group_search.put("country", command.country.name);
+				group_search.put("country", Messages.get(ApplicationConstants.MESSAGES_COUNTRY_NAME + utils.ModelUtils.replaceSpacesForI18n(command.country.name)));
 				group_search.put("city", command.city);
 				group_search.put("count", command.countUser);
 				group_search.put("age", command.middleAge);
@@ -122,13 +123,19 @@ public class CommandsSearch extends AbstractSearch {
 				group_search.put("communicant", command.communicant);
 				group_search.put("pragmatist", command.pragmatist);
 				
-				group_search.put("businessType", command.type.name);
-				group_search.put("businessSphere", command.sphere.name);
+				group_search.put("idealize", command.idealize.active);
+				group_search.put("communication", command.communication.active);
+				group_search.put("pragmatica", command.pragmatica.active);
+				
+				group_search.put("vacancy", command.isVacancy);
+				
+				group_search.put("businessType", Messages.get(ApplicationConstants.MESSAGES_BUSINESS_TYPE + utils.ModelUtils.replaceSpacesForI18n(command.type.name)));
+				group_search.put("businessSphere", Messages.get(ApplicationConstants.MESSAGES_SPHERE_NAME + utils.ModelUtils.replaceSpacesForI18n(command.sphere.name)));
 				group_search.put("international", "Yes"); // TODO not
 															// approved
 				group_search.put("status", "Online");// TODO not
 				// approved
-				group_search.put("phase", command.phase.name);
+				group_search.put("phase", Messages.get(ApplicationConstants.MESSAGES_PROJECT_PHASE + utils.ModelUtils.replaceSpacesForI18n(command.phase.name)));
 				
 				group_search.put("marketing", command.marketing.active);
 				group_search.put("sale", command.trade.active);
@@ -172,29 +179,27 @@ public class CommandsSearch extends AbstractSearch {
 	protected static void addsortOrder(){
 		sortOrders.put("search", "group");
 		
-		sortOrders.put("country", "cs.name");
-		sortOrders.put("city", "u.city");
-		sortOrders.put("lastName", "u.lastName");
-		sortOrders.put("sex", "u.sex");
-		sortOrders.put("age", "u.age");
+		sortOrders.put("country", "cc.name");
+		sortOrders.put("city", "c.city");
+		sortOrders.put("name", "c.name");
+		sortOrders.put("age", "c.middleAge");
 		
-		
-		sortOrders.put("predpr", "u.businessman");
-		sortOrders.put("ideal", "u.idealist");
-		sortOrders.put("communic", "u.communicant");
-		sortOrders.put("pragmatic", "u.pragmatist");
+		sortOrders.put("count", "c.countUser");
+		sortOrders.put("predpr", "c.businessman");
+		sortOrders.put("ideal", "c.idealist");
+		sortOrders.put("communic", "c.communicant");
+		sortOrders.put("pragmatic", "c.pragmatist");
 		sortOrders.put("businessType", "type.name");
 		sortOrders.put("businessSphere", "s.name");
+		sortOrders.put("phase", "phs.name");
 
-
-		sortOrders.put("marketing", "marl.userLevel");
-		sortOrders.put("sale", "tl.userLevel");
-		sortOrders.put("management", "manl.userLevel");
-		sortOrders.put("finance", "fl.userLevel");
-		sortOrders.put("right", "ll.userLevel");
-		sortOrders.put("it", "prl.userLevel");
-		sortOrders.put("more", "otherl.userLevel");
-		sortOrders.put("command", "u.command");
+		sortOrders.put("marketing", "m.active");
+		sortOrders.put("sale", "t.active");
+		sortOrders.put("management", "man.active");
+		sortOrders.put("finance", "f.active");
+		sortOrders.put("right", "l.active");
+		sortOrders.put("it", "pr.active");
+		sortOrders.put("more", "other.active");
 	}
 	
 	public static class GroupsSearchAjaxResult {

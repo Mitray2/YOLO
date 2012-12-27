@@ -105,13 +105,13 @@ public class Command extends Model {
 	@Formula("(select avg(u.businessman) from User as u where u.command_id = id)")
 	public Integer businessman;
 
-	@Formula("(select avg(u.pragmatist) from User as u where u.command_id = id)")
+	@Formula("(select max(u.pragmatist) from User as u where u.command_id = id)")
 	public Integer pragmatist;
 
-	@Formula("(select avg(u.communicant) from User as u where u.command_id = id)")
+	@Formula("(select max(u.communicant) from User as u where u.command_id = id)")
 	public Integer communicant;
 
-	@Formula("(select avg(u.idealist) from User as u where u.command_id = id)")
+	@Formula("(select max(u.idealist) from User as u where u.command_id = id)")
 	public Integer idealist;
 
 	public Pragmatica getPragmatica() {

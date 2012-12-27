@@ -98,6 +98,10 @@ function Search() {
 		$("#column_it").click(function(){_this.doChangeOrder("it")});
 		$("#column_more").click(function(){_this.doChangeOrder("more")});
 		$("#column_command").click(function(){_this.doChangeOrder("command")});
+		$("#column_phase").click(function(){_this.doChangeOrder("phase")});
+		$("#column_name").click(function(){_this.doChangeOrder("name")});
+		$("#column_count").click(function(){_this.doChangeOrder("count")});
+		
 	}
 	
 	this.activateTab = function activateTab(tabIndex) {
@@ -203,7 +207,13 @@ function Search() {
 						appendFirstTabGroupColumns(group, row);
 						appendSecondTabGroupColumns(group, row);
 						appendThirdTabGroupColumns(group, row);
-						row.append("<td class='cntr'>" + group.count + "</td>");
+						if(group.vacancy){
+							row.append("<td class='cntr'>" + group.count + "<span class='warning'></span></td>");
+						}
+						else{
+							row.append("<td class='cntr'>" + group.count + "</td>");
+						}
+							
 						row.fadeIn(500);
 					});
 				}
@@ -312,9 +322,25 @@ function appendFirstTabGroupColumns(group, row) {
 function appendSecondTabGroupColumns(group, row) {
 	var hidden = search.uiModel.currentTab != 2;
 	addCell(row, "searchResultColumn2", group.businessman, hidden);
-	addCell(row, "searchResultColumn2", group.idealist, hidden);
-	addCell(row, "searchResultColumn2", group.communicant, hidden);
-	addCell(row, "searchResultColumn2", group.pragmatist, hidden);
+	if(group.idealize){
+		addCell(row, "searchResultColumn2", group.idealist + "<span class='warning'></span>", hidden);
+	}
+	else{
+		addCell(row, "searchResultColumn2", group.idealist, hidden);
+	}
+	if(group.communication){
+		addCell(row, "searchResultColumn2", group.communicant + "<span class='warning'></span>", hidden);
+	}
+	else{
+		addCell(row, "searchResultColumn2", group.communicant, hidden);
+	}
+	if(group.pragmatica){
+		addCell(row, "searchResultColumn2", group.pragmatist + "<span class='warning'></span>", hidden);
+	}
+	else{
+		addCell(row, "searchResultColumn2", group.pragmatist, hidden);
+	}
+	
 	addCell(row, "searchResultColumn2", group.businessType, hidden);
 	addCell(row, "searchResultColumn2", group.businessSphere, hidden);
 	addCell(row, "searchResultColumn2", group.phase, hidden);
