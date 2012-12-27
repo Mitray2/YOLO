@@ -72,10 +72,11 @@ function Search() {
 		})
 		
 		//init seach accordion
-		$("#searchTitle1 > a").click(function() { _this.openSearchPanel(1); });
-		$("#searchTitle2 > a").click(function() { _this.openSearchPanel(2); });
-		$("#searchTitle3 > a").click(function() { _this.openSearchPanel(3); });
-		_this.openSearchPanel(1);
+		$("#searchTitle1 > a").click(function() { _this.toggleSearchPanel(1); });
+		$("#searchTitle2 > a").click(function() { _this.toggleSearchPanel(2); });
+		$("#searchTitle3 > a").click(function() { _this.toggleSearchPanel(3); });
+		_this.toggleSearchPanel(2);
+		_this.toggleSearchPanel(3);
 	};
 	
 	var _initOrderBy = function() {
@@ -117,26 +118,20 @@ function Search() {
 		_this.uiModel.currentTab = tabIndex;
 	}
 	
-	this.openSearchPanel = function openSearchPanel(panelIndex) {
-		if (search.uiModel.currentSearchPanel == panelIndex) {
-			return;
+	this.toggleSearchPanel = function toggleSearchPanel(panelIndex) {
+		if (!$("#searchPanel" + panelIndex).is(":visible")) {
+			$("#searchPanel" + panelIndex).show();
+			$("#searchTitle" + panelIndex + " > span").removeClass("dropdown_close");
+			$("#searchTitle" + panelIndex + " > span").addClass("dropdown_open");
+			$("#searchTitle" + panelIndex).addClass("open");
+			$("#searchTitle" + panelIndex).removeClass("close");
+		} else {
+			$("#searchPanel" + panelIndex).hide();
+			$("#searchTitle" + panelIndex + " > span").removeClass("dropdown_open");
+			$("#searchTitle" + panelIndex + " > span").addClass("dropdown_close");
+			$("#searchTitle" + panelIndex).removeClass("open");
+			$("#searchTitle" + panelIndex).addClass("close");
 		}
-		for (var i = 1; i <= 3; i++) {
-			if (i == panelIndex) {
-				$("#searchPanel" + i).show();
-				$("#searchTitle" + i + " > span").removeClass("dropdown_close");
-				$("#searchTitle" + i + " > span").addClass("dropdown_open");
-				$("#searchTitle" + i).addClass("open");
-				$("#searchTitle" + i).removeClass("close");
-			} else {
-				$("#searchPanel" + i).hide();
-				$("#searchTitle" + i + " > span").removeClass("dropdown_open");
-				$("#searchTitle" + i + " > span").addClass("dropdown_close");
-				$("#searchTitle" + i).removeClass("open");
-				$("#searchTitle" + i).addClass("close");
-			}
-		}
-		search.uiModel.currentSearchPanel = panelIndex;
 	}
 	
 	this.doChangeOrder = function doChangeOrder(columnName) {
@@ -214,7 +209,8 @@ function Search() {
 						appendSecondTabGroupColumns(group, row);
 						appendThirdTabGroupColumns(group, row);
 						if(group.vacancy){
-							row.append("<td class='cntr'>" + group.count + "<span class='warning'></span></td>");
+							row.append("<td class='cntr'>" + group.count + "<span id='warn_" + (++search.uiModel.rowId) + "' class='warning' data-tip='Требуются участиники'></span></td>");
+							search.tipWarn($("#warn_" + search.uiModel.rowId));
 						}
 						else{
 							row.append("<td class='cntr'>" + group.count + "</td>");
@@ -244,6 +240,22 @@ function Search() {
 					$(".info_popup").offset({left:$(this).offset().left + 28, top:$(this).offset().top - h / 2 - 4});
 				}, function(e){
 					$(".info_popup").fadeOut(100);
+				}
+			);
+	}
+	
+	this.tipWarn = function tipWarn(element) {
+		element.hover(
+				function(e){
+					var data = $(this).data("tip");
+					if (data && data != "") {
+						$(".warning_popup").html(data);
+						$(".warning_popup").fadeIn(200);
+						var w = $(".warning_popup").width();
+						$(".warning_popup").offset({left:$(this).offset().left - w/2, top:$(this).offset().top - 40});
+					}
+				}, function(e){
+					$(".warning_popup").hide();
 				}
 			);
 	}
@@ -309,7 +321,8 @@ function addIcDiagram(value, info, row, hidden){
 
 function addIcWarning(value, row, hidden){
 	if (value == true){
-		addCell(row, "searchResultColumn3", "<span class='warning'></span>", hidden);
+		addCell(row, "searchResultColumn3", "<span id='warn_" + (++search.uiModel.rowId) + "' class='warning' data-tip='Требуются участиники'></span>", hidden);
+		search.tipWarn($("#warn_" + search.uiModel.rowId));
 	}
 	else{
 		addCell(row, "searchResultColumn3", "<span class='attention'></span>", hidden);
@@ -333,19 +346,22 @@ function appendSecondTabGroupColumns(group, row) {
 	var hidden = search.uiModel.currentTab != 2;
 	addCell(row, "searchResultColumn2", group.businessman, hidden);
 	if(group.idealize){
-		addCell(row, "searchResultColumn2", group.idealist + "<span class='warning'></span>", hidden);
+		addCell(row, "searchResultColumn2", group.idealist + "<span id='warn_" + (++search.uiModel.rowId) + "' class='warning' data-tip='Требуются участиники'></span>", hidden);
+		search.tipWarn($("#warn_" + search.uiModel.rowId));
 	}
 	else{
 		addCell(row, "searchResultColumn2", group.idealist, hidden);
 	}
 	if(group.communication){
-		addCell(row, "searchResultColumn2", group.communicant + "<span class='warning'></span>", hidden);
+		addCell(row, "searchResultColumn2", group.communicant + "<span id='warn_" + (++search.uiModel.rowId) + "' class='warning' data-tip='Требуются участиники'></span>", hidden);
+		search.tipWarn($("#warn_" + search.uiModel.rowId));
 	}
 	else{
 		addCell(row, "searchResultColumn2", group.communicant, hidden);
 	}
-	if(group.pragmatica){
-		addCell(row, "searchResultColumn2", group.pragmatist + "<span class='warning'></span>", hidden);
+	if(group.pragmatizca){
+		addCell(row, "searchResultColumn2", group.pragmatist + "<span id='warn_" + (++search.uiModel.rowId) + "' class='warning' data-tip='Требуются участиники'></span>", hidden);
+		search.tipWarn($("#warn_" + search.uiModel.rowId));
 	}
 	else{
 		addCell(row, "searchResultColumn2", group.pragmatist, hidden);
