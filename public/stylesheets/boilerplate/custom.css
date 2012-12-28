@@ -251,3 +251,8 @@ h3.index {
     padding: 0px 30px 15px;
     position: relative;
 }
+
+pre {
+	 font: 13px/20px Arial, Helvetica, sans-serif !important;
+	 white-space: pre-wrap;
+}

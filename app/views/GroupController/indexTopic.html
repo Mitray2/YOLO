@@ -64,9 +64,7 @@ function editDisabled(element){
                         		<a href="@{GroupController.removeMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить тему</span></span></a>
                         	#{/if}
                         </div>
-                        <pre class="msgRead">
-                        ${msg.text}
-                        </pre>
+                        <pre class="msgRead">${msg.text}</pre>
                         <div style="display: none" class="msg group-theme-dialog-form">
 			            	<textarea name="msg.text" cols="" rows="">${msg.text} </textarea>
 			                <button type="submit" class="group-theme-btn">Сохранить</button>
