@@ -188,7 +188,7 @@ function Search() {
 					$.each(data.users, function(key, user) {
 						var row = $("<tr class='search-result-item' style='display: none;'>");
 						table.append(row);
-						row.append("<td><a href='/" + user.id + "'>" + user.lastName + " " + user.name  + "</a></td>");
+						row.append("<td class='width-170'><span class='block-clip'><span class='block'><a href='/" + user.id + "'>" + user.lastName + " " + user.name  + "</a></span></span></td>");
 						appendFirstTabColumns(user, row);
 						appendSecondTabColumns(user, row);
 						appendThirdTabColumns(user, row);
@@ -204,7 +204,7 @@ function Search() {
 					$.each(data.groups, function(key, group) {
 						var row = $("<tr class='search-result-item' style='display: none;'>");
 						table.append(row);
-						row.append("<td><a href='/groupcontroller/index?id=" + group.id + "'>" + group.name + "</a></td>");
+						row.append("<td class='width-170'><span class='block-clip'><span class='block'><a href='/groupcontroller/index?id=" + group.id + "'>" + group.name + "</a></span></span></td>");
 						appendFirstTabGroupColumns(group, row);
 						appendSecondTabGroupColumns(group, row);
 						appendThirdTabGroupColumns(group, row);
@@ -332,12 +332,12 @@ function addIcWarning(value, row, hidden){
 
 function appendFirstTabGroupColumns(group, row) {
 	var hidden = search.uiModel.currentTab != 1;
-	addCell(row, "searchResultColumn1", "<a href=''><img src='/public/images/boilerplate/avam.png' alt='' class='search-result-pic'></a>", hidden);
+	addCell(row, "searchResultColumn1", "<a href=''><img src='/public/images/boilerplate/pic4.jpg' alt='' class='search-result-pic'></a>", hidden);
 	addCell(row, "searchResultColumn1", group.country, hidden);
-	addCell(row, "searchResultColumn1", group.city, hidden);
+	row.append("<td class='searchResultColumn1 width-70' "+getHiddenCss(hidden)+"><span class='block-clip'><span class='block'>"+group.city+"</span></span></td>");
 	addCell(row, "searchResultColumn1", group.age, hidden);
-	addCell(row, "searchResultColumn1", group.international, hidden);
-	addCell(row, "searchResultColumn1", group.status, hidden);
+	addCell(row, "searchResultColumn1 cntr", group.international, hidden);
+	addCell(row, "searchResultColumn1 cntr", group.status, hidden);
 	addCell(row, "searchResultColumn1 cntr", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-tip='"+group.info+"'></span>", hidden);
 	search.tipInfo($("#info_" + search.uiModel.rowId));
 	
@@ -367,8 +367,10 @@ function appendSecondTabGroupColumns(group, row) {
 		addCell(row, "searchResultColumn2", group.pragmatist, hidden);
 	}
 	
-	addCell(row, "searchResultColumn2", group.businessType, hidden);
-	addCell(row, "searchResultColumn2", group.businessSphere, hidden);
+	row.append("<td class='searchResultColumn2 width-90' "+getHiddenCss(hidden)+"><span class='block-clip'><span class='block'>"+group.businessType+"</span></span></td>");
+//	addCell(row, "searchResultColumn2", group.businessType, hidden);
+	row.append("<td class='searchResultColumn2 width-90' "+getHiddenCss(hidden)+">"+group.businessSphere+"</td>");
+//	addCell(row, "searchResultColumn2", group.businessSphere, hidden);
 	addCell(row, "searchResultColumn2", group.phase, hidden);
 
 }
@@ -406,8 +408,10 @@ function appendSecondTabColumns(user, row) {
 	addCell(row, "searchResultColumn2", user.idealist, hidden);
 	addCell(row, "searchResultColumn2", user.communicant, hidden);
 	addCell(row, "searchResultColumn2", user.pragmatist, hidden);
-	addCell(row, "searchResultColumn2", user.businessType, hidden);
-	addCell(row, "searchResultColumn2", user.businessSphere, hidden);
+	row.append("<td class='searchResultColumn2 width-90' "+getHiddenCss(hidden)+"><span class='block-clip'><span class='block'>"+user.businessType+"</span></span></td>");
+	row.append("<td class='searchResultColumn2 width-90' "+getHiddenCss(hidden)+">"+user.businessSphere+"</td>");
+//	addCell(row, "searchResultColumn2", user.businessType, hidden);
+//	addCell(row, "searchResultColumn2", user.businessSphere, hidden);
 	addCell(row, "searchResultColumn2 cntr", "Yes", hidden);
 
 }
@@ -424,14 +428,16 @@ function appendFirstTabColumns(user, row) {
 		}
 	}
 	addCell(row, "searchResultColumn1", user.country, hidden);
-	addCell(row, "searchResultColumn1", user.city, hidden);
+	row.append("<td class='searchResultColumn1 width-90' "+getHiddenCss(hidden)+"><span class='block-clip'><span class='block'>"+user.city+"</span></span></td>");
+//	addCell(row, "searchResultColumn1", user.city, hidden);
 	if (user.sex) {
 		addCell(row, "searchResultColumn1", "<img src='/public/images/boilerplate/ico-man.gif' alt=''>M", hidden);
 	} else {
 		addCell(row, "searchResultColumn1", "<img src='/public/images/boilerplate/ico-woman.gif' alt=''>F", hidden);
 	}
 	addCell(row, "searchResultColumn1", user.age, hidden);
-	addCell(row, "searchResultColumn1", user.lastSeen, hidden);
+	row.append("<td class='searchResultColumn1 width-80' "+getHiddenCss(hidden)+">"+user.lastSeen+"</td>");
+//	addCell(row, "searchResultColumn1", user.lastSeen, hidden);
 	addCell(row, "searchResultColumn1 cntr", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-tip='"+user.info+"'></span>", hidden);
 	search.tipInfo($("#info_" + search.uiModel.rowId));
 
