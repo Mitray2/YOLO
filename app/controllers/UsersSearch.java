@@ -185,19 +185,19 @@ public class UsersSearch extends AbstractSearch {
 				user_search.put("status", "Online");
 				
 				user_search.put("marketing", user.expMarketing.level.id);
-				user_search.put("marketingInfo", user.expMarketing.description);
+				user_search.put("marketingInfo", user.expMarketing.description == null ? "" : user.expMarketing.description);
 				user_search.put("sale", user.expSale.level.id);
-				user_search.put("saleInfo", user.expSale.description);
+				user_search.put("saleInfo", user.expSale.description == null ? "" : user.expSale.description);
 				user_search.put("management", user.expManagement.level.id);
-				user_search.put("managementInfo", user.expManagement.description);
+				user_search.put("managementInfo", user.expManagement.description == null ? "" : user.expManagement.description);
 				user_search.put("finance", user.expFinance.level.id);
-				user_search.put("financeInfo", user.expFinance.description);
+				user_search.put("financeInfo", user.expFinance.description == null ? "" : user.expFinance.description);
 				user_search.put("legal", user.expLegal.level.id);
-				user_search.put("legalInfo", user.expLegal.description);
+				user_search.put("legalInfo", user.expLegal.description == null ? "" : user.expLegal.description);
 				user_search.put("it",user.expIT.level.id);
-				user_search.put("itInfo", user.expIT.description);
+				user_search.put("itInfo", user.expIT.description == null ? "" : user.expIT.description);
 				user_search.put("other", user.expOther.level.id);
-				user_search.put("otherInfo", user.expOther.description);
+				user_search.put("otherInfo", user.expOther.description == null ? "" : user.expOther.description);
 				
 				list.add(user_search);
 			}

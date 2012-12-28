@@ -368,9 +368,7 @@ function appendSecondTabGroupColumns(group, row) {
 	}
 	
 	row.append("<td class='searchResultColumn2 width-90' "+getHiddenCss(hidden)+"><span class='block-clip'><span class='block'>"+group.businessType+"</span></span></td>");
-//	addCell(row, "searchResultColumn2", group.businessType, hidden);
 	row.append("<td class='searchResultColumn2 width-90' "+getHiddenCss(hidden)+">"+group.businessSphere+"</td>");
-//	addCell(row, "searchResultColumn2", group.businessSphere, hidden);
 	addCell(row, "searchResultColumn2", group.phase, hidden);
 
 }
@@ -410,8 +408,6 @@ function appendSecondTabColumns(user, row) {
 	addCell(row, "searchResultColumn2", user.pragmatist, hidden);
 	row.append("<td class='searchResultColumn2 width-90' "+getHiddenCss(hidden)+"><span class='block-clip'><span class='block'>"+user.businessType+"</span></span></td>");
 	row.append("<td class='searchResultColumn2 width-90' "+getHiddenCss(hidden)+">"+user.businessSphere+"</td>");
-//	addCell(row, "searchResultColumn2", user.businessType, hidden);
-//	addCell(row, "searchResultColumn2", user.businessSphere, hidden);
 	addCell(row, "searchResultColumn2 cntr", "Yes", hidden);
 
 }
@@ -429,7 +425,6 @@ function appendFirstTabColumns(user, row) {
 	}
 	addCell(row, "searchResultColumn1", user.country, hidden);
 	row.append("<td class='searchResultColumn1 width-90' "+getHiddenCss(hidden)+"><span class='block-clip'><span class='block'>"+user.city+"</span></span></td>");
-//	addCell(row, "searchResultColumn1", user.city, hidden);
 	if (user.sex) {
 		addCell(row, "searchResultColumn1", "<img src='/public/images/boilerplate/ico-man.gif' alt=''>M", hidden);
 	} else {
@@ -437,7 +432,6 @@ function appendFirstTabColumns(user, row) {
 	}
 	addCell(row, "searchResultColumn1", user.age, hidden);
 	row.append("<td class='searchResultColumn1 width-80' "+getHiddenCss(hidden)+">"+user.lastSeen+"</td>");
-//	addCell(row, "searchResultColumn1", user.lastSeen, hidden);
 	addCell(row, "searchResultColumn1 cntr", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-tip='"+user.info+"'></span>", hidden);
 	search.tipInfo($("#info_" + search.uiModel.rowId));
 
