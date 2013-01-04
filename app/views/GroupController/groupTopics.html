@@ -64,7 +64,7 @@ function writeEnabled(element){
                             <a href="@{GroupController.removeTopic(topic.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить тему</span></span></a>
                             #{/if}
                         </h4>
-						<p>${topic.description}</p>
+						<pre>${topic.description}</pre>
 						<div class="search-result-list-date"><strong>${topic.msg?.size()} ответов</strong></div>
                         <br />
                         #{if topic.msg?.size() > 0 }
