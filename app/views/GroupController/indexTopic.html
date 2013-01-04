@@ -37,12 +37,13 @@ function editDisabled(element){
                 #{/if}
                   <div class="group-theme clearFix">
                     <h2>${topic.name}
+                    <br/>
 					<span class="theme_description">Создана ${topic.createdUserName} ${topic.createdUserLastName}, ${utils.DateUtils.getFormatedStringDate(topic.createdDateTime, true)}</span>
 					</h2>
 					<div class="theme_description_l">
 						#{avatar.avatar user:models.User.findById(topic.createdUserId), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}<br />
 					</div>
-                    <div class="theme_description_r">${topic.description}</div>
+                    <div class="theme_description_r"><pre>${topic.description}</pre></div>
 				</div>
                 
                 
@@ -61,7 +62,7 @@ function editDisabled(element){
                         	<a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${msg.createDate}
                         	#{if (userId == msg.from.id) || (isAdmin)}
                         		<span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">Редактировать сообщение</span></span>
-                        		<a href="@{GroupController.removeMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить тему</span></span></a>
+                        		<a href="@{GroupController.removeMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить сообщение</span></span></a>
                         	#{/if}
                         </div>
                         <pre class="msgRead">${msg.text}</pre>

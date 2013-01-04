@@ -234,7 +234,7 @@ function Search() {
 	this.tipInfo = function tipInfo(element) {
 		element.hover(
 				function(e){
-					$(".info_popup > p").text($(this).data("tip"));
+					$(".info_popup > pre").text($(this).data("tip"));
 					$(".info_popup").fadeIn(200);
 					var h = $(".info_popup").height();
 					$(".info_popup").offset({left:$(this).offset().left + 28, top:$(this).offset().top - h / 2 - 4});
@@ -319,10 +319,10 @@ function addIcDiagram(value, info, row, hidden){
 	}
 }
 
-function addIcWarning(value, row, hidden){
+function addIcWarning(value, desc, row, hidden){
 	if (value == true){
-		addCell(row, "searchResultColumn3", "<span id='warn_" + (++search.uiModel.rowId) + "' class='warning' data-tip='Требуются участиники'></span>", hidden);
-		search.tipWarn($("#warn_" + search.uiModel.rowId));
+		addCell(row, "searchResultColumn3", "<span class='warning' info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + desc + "'></span>", hidden);
+		search.tipInfo($("#info_" + search.uiModel.rowId));
 	}
 	else{
 		addCell(row, "searchResultColumn3", "<span class='attention'></span>", hidden);
@@ -346,22 +346,22 @@ function appendSecondTabGroupColumns(group, row) {
 	var hidden = search.uiModel.currentTab != 2;
 	addCell(row, "searchResultColumn2", group.businessman, hidden);
 	if(group.idealize){
-		addCell(row, "searchResultColumn2", group.idealist + "<span id='warn_" + (++search.uiModel.rowId) + "' class='warning' data-tip='Требуются участиники'></span>", hidden);
-		search.tipWarn($("#warn_" + search.uiModel.rowId));
+		addCell(row, "searchResultColumn2", group.idealist + "<span class='warning' info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + group.idealize_desc + "'></span>", hidden);
+		search.tipInfo($("#info_" + search.uiModel.rowId));
 	}
 	else{
 		addCell(row, "searchResultColumn2", group.idealist, hidden);
 	}
 	if(group.communication){
-		addCell(row, "searchResultColumn2", group.communicant + "<span id='warn_" + (++search.uiModel.rowId) + "' class='warning' data-tip='Требуются участиники'></span>", hidden);
-		search.tipWarn($("#warn_" + search.uiModel.rowId));
+		addCell(row, "searchResultColumn2", group.communicant + "<span class='warning' info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + group.communication_desc + "'></span>", hidden);
+		search.tipInfo($("#info_" + search.uiModel.rowId));
 	}
 	else{
 		addCell(row, "searchResultColumn2", group.communicant, hidden);
 	}
-	if(group.pragmatizca){
-		addCell(row, "searchResultColumn2", group.pragmatist + "<span id='warn_" + (++search.uiModel.rowId) + "' class='warning' data-tip='Требуются участиники'></span>", hidden);
-		search.tipWarn($("#warn_" + search.uiModel.rowId));
+	if(group.pragmatica){
+		addCell(row, "searchResultColumn2", group.pragmatist + "<span class='warning' info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + group.pragmatica_desc + "'></span>", hidden);
+		search.tipInfo($("#info_" + search.uiModel.rowId));
 	}
 	else{
 		addCell(row, "searchResultColumn2", group.pragmatist, hidden);
@@ -375,13 +375,13 @@ function appendSecondTabGroupColumns(group, row) {
 
 function appendThirdTabGroupColumns(group, row) {
 	var hidden = search.uiModel.currentTab != 3;
-	addIcWarning(group.marketing, row, hidden);
-	addIcWarning(group.sale, row, hidden);
-	addIcWarning(group.management, row, hidden);
-	addIcWarning(group.legal, row, hidden);
-	addIcWarning(group.finance, row, hidden);
-	addIcWarning(group.it, row, hidden);
-	addIcWarning(group.other, row, hidden);
+	addIcWarning(group.marketing, group.marketing_desc, row, hidden);
+	addIcWarning(group.sale, group.sale_desc, row, hidden);
+	addIcWarning(group.management, group.management_desc, row, hidden);
+	addIcWarning(group.legal, group.legal_desc, row, hidden);
+	addIcWarning(group.finance, group.finance_desc, row, hidden);
+	addIcWarning(group.it, group.it_desc, row, hidden);
+	addIcWarning(group.other, group.other_desc, row, hidden);
 }
 
 
@@ -389,7 +389,7 @@ function appendThirdTabColumns(user, row) {
 	var hidden = search.uiModel.currentTab != 3;
 	
 	addIcDiagram(user.marketing, user.marketingInfo, row, hidden);
-	addIcDiagram(user.sale, user.saleInfo,  row, hidden);
+	addIcDiagram(user.sale, user.saleInfo, row, hidden);
 	addIcDiagram(user.management, user.managementInfo, row, hidden);
 	 
 	addIcDiagram(user.legal, user.legalInfo, row, hidden);
@@ -426,9 +426,9 @@ function appendFirstTabColumns(user, row) {
 	addCell(row, "searchResultColumn1", user.country, hidden);
 	row.append("<td class='searchResultColumn1 width-90' "+getHiddenCss(hidden)+"><span class='block-clip'><span class='block'>"+user.city+"</span></span></td>");
 	if (user.sex) {
-		addCell(row, "searchResultColumn1", "<img src='/public/images/boilerplate/ico-man.gif' alt=''>M", hidden);
+		addCell(row, "searchResultColumn1", "<img src='/public/images/boilerplate/ico-man.gif' alt=''>", hidden);
 	} else {
-		addCell(row, "searchResultColumn1", "<img src='/public/images/boilerplate/ico-woman.gif' alt=''>F", hidden);
+		addCell(row, "searchResultColumn1", "<img src='/public/images/boilerplate/ico-woman.gif' alt=''>", hidden);
 	}
 	addCell(row, "searchResultColumn1", user.age, hidden);
 	row.append("<td class='searchResultColumn1 width-80' "+getHiddenCss(hidden)+">"+user.lastSeen+"</td>");

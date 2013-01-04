@@ -124,8 +124,11 @@ public class CommandsSearch extends AbstractSearch {
 				group_search.put("pragmatist", command.pragmatist);
 				
 				group_search.put("idealize", command.idealize.active);
+				group_search.put("idealize_desc", command.idealize.descrition == null ? "" : command.idealize.descrition);
 				group_search.put("communication", command.communication.active);
+				group_search.put("communication_desc", command.communication.descrition == null ? "" : command.communication.descrition);
 				group_search.put("pragmatica", command.pragmatica.active);
+				group_search.put("pragmatica_desc", command.pragmatica.descrition == null ? "" : command.pragmatica.descrition);
 				
 				group_search.put("vacancy", command.isVacancy);
 				
@@ -138,12 +141,19 @@ public class CommandsSearch extends AbstractSearch {
 				group_search.put("phase", Messages.get(ApplicationConstants.MESSAGES_PROJECT_PHASE + utils.ModelUtils.replaceSpacesForI18n(command.phase.name)));
 				
 				group_search.put("marketing", command.marketing.active);
+				group_search.put("marketing_desc", command.marketing.descrition == null ? "" : command.marketing.descrition);
 				group_search.put("sale", command.trade.active);
+				group_search.put("sale_desc", command.trade.descrition == null ? "" : command.trade.descrition);
 				group_search.put("management", command.management.active);
+				group_search.put("management_desc", command.management.descrition == null ? "" : command.management.descrition);
 				group_search.put("finance", command.finance.active);
+				group_search.put("finance_desc", command.finance.descrition == null ? "" : command.finance.descrition);
 				group_search.put("legal", command.legal.active);
-				group_search.put("it", command.programming.active);
+				group_search.put("legal_desc", command.legal.descrition == null ? "" : command.legal.descrition);
+				group_search.put("it", command.programming.active );
+				group_search.put("it_desc", command.programming.descrition == null ? "" : command.programming.descrition);
 				group_search.put("other", command.otherSkill.active);
+				group_search.put("other_desc", command.otherSkill.descrition == null ? "" : command.otherSkill.descrition);
 				
 				list.add(group_search);
 			}
