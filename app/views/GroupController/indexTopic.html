@@ -76,18 +76,5 @@ function editDisabled(element){
                     #{/form}
                 #{/list}
 				</ul>
-    <div class="answer-expand">
-					<div class="group-theme-dialog-ttl-color">Всего ${topic?.msg?.size()} записи</div>
-					#{form @GroupController.addMsgToTopic()}
-	               <input name="topicId" value="${topic.id}" type="hidden"> 
-	               <input name="groupId" value="${group.id}" type="hidden">
-					<ul class="group-theme-dialog-form">
-						<li>
-							#{avatar.avatar user:utils.SessionHelper.getCurrentUser(session), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
-							<textarea placeholder="Написать ответ..." name="msg.text" cols="" rows="2" autofocus></textarea>
-							<button type="submit" class="group-theme-btn">Отправить</button>
-						</li>
-					</ul>
-					#{/form}
-				</div>
-
+				
+				#{group.reply topic:topic, group:group, action:'/groupcontroller/addmsgtotopic'/}
