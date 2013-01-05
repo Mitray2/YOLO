@@ -16,7 +16,6 @@ import models.BSphere;
 import models.BType;
 import models.Command;
 import models.Country;
-import models.LastUserData;
 import models.ProjectPhase;
 import models.Topic;
 import models.TopicMessage;
@@ -40,23 +39,9 @@ public class GroupController extends Controller implements ApplicationConstants 
 		if (currentUser == null)
 			CommonController.error(CommonController.ERROR_SECURITY);
 		if (currentUser != null) {
-			LastUserData lastSeenUserData = null;
-			String statement = "select l from LastUserData as l where l.userId=?";
-			List<LastUserData> lastSeenUserDatas = LastUserData.find(statement, currentUser.id).fetch();
-			if (lastSeenUserDatas.isEmpty()) {
-				lastSeenUserData = new LastUserData();
-				lastSeenUserData.userId = currentUser.id;
-				lastSeenUserData.name = currentUser.name;
-				lastSeenUserData.lastName = currentUser.lastName;
-			} else {
-				lastSeenUserData = LastUserData.findById(lastSeenUserDatas.get(0).id);
-			}
-
-			if (currentUser.command != null) {
-				lastSeenUserData.commandId = currentUser.command.id;
-			}
-			lastSeenUserData.lastSeen = new Date();
-			lastSeenUserData.save();
+			User user = User.findById(currentUser.id);
+			user.lastSeen = new Date();
+			user.save();
 		}
 		if (currentUser.role == User.ROLE_INPERFECT_USER) {
 			redirect(request.getBase() + ApplicationConstants.SECOND_TEST_PATH);
@@ -69,63 +54,63 @@ public class GroupController extends Controller implements ApplicationConstants 
 	public static void index(Long id) {
 		Command group = Command.findById(id);
 		User sessionUser = SessionHelper.getCurrentUser(session);
-		LastUserData lUserData = new LastUserData();
-		String statement = "select * from LastUserData as lUser where lUser.lastSeen=(select max(l.lastSeen) from LastUserData as l where l.commandId=" + group.id
-				+ " and l.userId<> " + sessionUser.id + ")";
-		ResultSet luData = DB.executeQuery(statement);
-		try {
-			if (luData != null) {
-				while (luData.next()) {
-
-					lUserData.userId = luData.getLong("userId");
-					lUserData.commandId = luData.getLong("commandId");
-					lUserData.name = luData.getString("name");
-					lUserData.lastName = luData.getString("lastName");
-					String strDate = luData.getString("lastSeen");
-					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					try {
-						lUserData.lastSeen = format.parse(strDate);
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		render(group, lUserData);
+//		LastUserData lUserData = new LastUserData();
+//		String statement = "select * from LastUserData as lUser where lUser.lastSeen=(select max(l.lastSeen) from LastUserData as l where l.commandId=" + group.id
+//				+ " and l.userId<> " + sessionUser.id + ")";
+//		ResultSet luData = DB.executeQuery(statement);
+//		try {
+//			if (luData != null) {
+//				while (luData.next()) {
+//
+//					lUserData.userId = luData.getLong("userId");
+//					lUserData.commandId = luData.getLong("commandId");
+//					lUserData.name = luData.getString("name");
+//					lUserData.lastName = luData.getString("lastName");
+//					String strDate = luData.getString("lastSeen");
+//					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//					try {
+//						lUserData.lastSeen = format.parse(strDate);
+//					} catch (ParseException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		render(group);
 	}
 
 	public static void editGroup(Long id) {
 		Command group = Command.findById(id);
 		User sessionUser = SessionHelper.getCurrentUser(session);
-		LastUserData lUserData = new LastUserData();
-		String statement = "select * from LastUserData as lUser where lUser.lastSeen=(select max(l.lastSeen) from LastUserData as l where l.commandId=" + group.id
-				+ " and l.userId<> " + sessionUser.id + ")";
-		ResultSet lastUserDatas = DB.executeQuery(statement);
-		try {
-			if (lastUserDatas != null) {
-				while (lastUserDatas.next()) {
-
-					lUserData.userId = lastUserDatas.getLong("userId");
-					lUserData.commandId = lastUserDatas.getLong("commandId");
-					lUserData.name = lastUserDatas.getString("name");
-					lUserData.lastName = lastUserDatas.getString("lastName");
-					String strDate = lastUserDatas.getString("lastSeen");
-					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					try {
-						lUserData.lastSeen = format.parse(strDate);
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		render(group, lUserData);
+//		LastUserData lUserData = new LastUserData();
+//		String statement = "select * from LastUserData as lUser where lUser.lastSeen=(select max(l.lastSeen) from LastUserData as l where l.commandId=" + group.id
+//				+ " and l.userId<> " + sessionUser.id + ")";
+//		ResultSet lastUserDatas = DB.executeQuery(statement);
+//		try {
+//			if (lastUserDatas != null) {
+//				while (lastUserDatas.next()) {
+//
+//					lUserData.userId = lastUserDatas.getLong("userId");
+//					lUserData.commandId = lastUserDatas.getLong("commandId");
+//					lUserData.name = lastUserDatas.getString("name");
+//					lUserData.lastName = lastUserDatas.getString("lastName");
+//					String strDate = lastUserDatas.getString("lastSeen");
+//					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//					try {
+//						lUserData.lastSeen = format.parse(strDate);
+//					} catch (ParseException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		render(group);
 	}
 
 	public static void createGroup() {
@@ -188,19 +173,19 @@ public class GroupController extends Controller implements ApplicationConstants 
 		command.topics.add(mainTopic);
 		command.save();
 		// user lastSeen
-		LastUserData lastSeenUserData = null;
-		String statement = "select l from LastUserData as l where l.userId=?";
-		List<LastUserData> lastSeenUserDatas = LastUserData.find(statement, currentUser.id).fetch();
-		if (lastSeenUserDatas.isEmpty()) {
-			lastSeenUserData = new LastUserData();
-		} else {
-			lastSeenUserData = LastUserData.findById(lastSeenUserDatas.get(0).id);
-		}
-		lastSeenUserData.userId = currentUser.id;
-		lastSeenUserData.name = currentUser.name;
-		lastSeenUserData.lastName = currentUser.lastName;
-		lastSeenUserData.commandId = group.id;
-		lastSeenUserData.save();
+//		LastUserData lastSeenUserData = null;
+//		String statement = "select l from LastUserData as l where l.userId=?";
+//		List<LastUserData> lastSeenUserDatas = LastUserData.find(statement, currentUser.id).fetch();
+//		if (lastSeenUserDatas.isEmpty()) {
+//			lastSeenUserData = new LastUserData();
+//		} else {
+//			lastSeenUserData = LastUserData.findById(lastSeenUserDatas.get(0).id);
+//		}
+//		lastSeenUserData.userId = currentUser.id;
+//		lastSeenUserData.name = currentUser.name;
+//		lastSeenUserData.lastName = currentUser.lastName;
+//		lastSeenUserData.commandId = group.id;
+//		lastSeenUserData.save();
 		SessionHelper.setCurrentUser(session, user);
 		index(command.id);
 	}

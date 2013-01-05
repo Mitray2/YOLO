@@ -100,7 +100,7 @@ function Search() {
 		$("#column_phase").click(function(){_this.doChangeOrder("phase")});
 		$("#column_name").click(function(){_this.doChangeOrder("name")});
 		$("#column_count").click(function(){_this.doChangeOrder("count")});
-		
+		$("#column_lastSeen").click(function(){_this.doChangeOrder("lastSeen")});
 	}
 	
 	this.activateTab = function activateTab(tabIndex) {

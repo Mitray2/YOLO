@@ -8,7 +8,6 @@ import java.util.Map;
 
 import modelDTO.FriendSearchDTO;
 import modelDTO.MemberSearchDTO;
-import models.LastUserData;
 import models.User;
 
 import org.apache.commons.lang.BooleanUtils;
@@ -37,23 +36,9 @@ public class UsersSearch extends AbstractSearch {
 		if (currentUser != null) {
 			if (currentUser.email.equals(ApplicationConstants.ADMIN_EMAIL) && !request.path.startsWith(ApplicationConstants.ADMIN_PATH_STARTS_WITH))
 				redirect(ApplicationConstants.ADMIN_PATH);
-			LastUserData lastSeenUserData = null;
-			String statement = "select l from LastUserData as l where l.userId=?";
-			List<LastUserData> lastSeenUserDatas = LastUserData.find(statement, currentUser.id).fetch();
-			if (lastSeenUserDatas.isEmpty()) {
-				lastSeenUserData = new LastUserData();
-				lastSeenUserData.userId = currentUser.id;
-				lastSeenUserData.name = currentUser.name;
-				lastSeenUserData.lastName = currentUser.lastName;
-			} else {
-				lastSeenUserData = LastUserData.findById(lastSeenUserDatas.get(0).id);
-			}
-
-			if (currentUser.command != null) {
-				lastSeenUserData.commandId = currentUser.command.id;
-			}
-			lastSeenUserData.lastSeen = new Date();
-			lastSeenUserData.save();
+			User user = User.findById(currentUser.id);
+			user.lastSeen = new Date();
+			user.save();
 		}
 		if (currentUser.role == User.ROLE_INPERFECT_USER) {
 			redirect(request.getBase() + ApplicationConstants.SECOND_TEST_PATH);
@@ -150,15 +135,7 @@ public class UsersSearch extends AbstractSearch {
 				System.out.println("\n\n\n\n\n\n" + user.id);
 				Map<String, Object> user_search = new HashMap<String, Object>();
 
-				LastUserData lastSeenUserData = null;
-				String statement = "select l from LastUserData as l where l.userId=?";
-				List<LastUserData> lastSeenUserDatas = LastUserData.find(statement, user.id).fetch(1);
-				
-				lastSeenUserData = LastUserData.findById(lastSeenUserDatas.get(0).id);
-				
-				
-				
-				user_search.put("lastSeen", DateUtils.getFormatedStringDate(lastSeenUserData.lastSeen, true));
+				user_search.put("lastSeen", DateUtils.getFormatedStringDate(user.lastSeen, true));
 				user_search.put("id", user.id);
 				user_search.put("lastName", user.lastName);
 				user_search.put("name", user.name);
@@ -256,6 +233,7 @@ public class UsersSearch extends AbstractSearch {
 		sortOrders.put("it", "prl.id");
 		sortOrders.put("more", "otherl.id");
 		sortOrders.put("command", "u.command");
+		sortOrders.put("lastSeen", "u.lastSeen");
 	}
 
 	public static void peopleSearch(FriendSearchDTO friend) {

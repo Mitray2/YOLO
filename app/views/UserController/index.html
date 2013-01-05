@@ -15,7 +15,7 @@
                 <div class="profile-user-info">
                 	#{avatar.avatar user:user, cssClass:'profile-user-info-pic', maleImg:'avabigm.jpg', femaleImg:'avabigf.jpg', avatarSize:123 /}
                     <div><a href="#">&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.country?.name)}</a> / <a href="#">${user?.city}</a></div>
-                    <div><span>На сайте:</span> <em>#{common.formattedDate date:lUserData?.lastSeen /}</em></div>
+                    <div><span>На сайте:</span> <em>#{common.formattedDate date:user?.lastSeen /}</em></div>
                     <div><span>Электронный адрес:</span> #{if user.showEmailForOthers} ${user.email} #{/if} #{else}Скрыт#{/else}</div>
                     <div><span>Интересуется бизнесом:</span> <a href="#">&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.businessType?.name)}</a> / <a href="#">&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.businessSphere?.name)}</a></div>
                     <div class="profile-user-info-btn">

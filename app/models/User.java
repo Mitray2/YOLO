@@ -133,6 +133,8 @@ public class User extends Model {
 	
 	public Boolean haveAvatar = false;
 	
+	public Date lastSeen;
+	
 	@Override
 	public <T extends JPABase> T delete() {
 		EhCacheImpl.getInstance().delete(CACHE_USERS_COUNT);

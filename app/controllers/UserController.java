@@ -9,7 +9,6 @@ import models.BSphere;
 import models.BType;
 import models.Command;
 import models.Country;
-import models.LastUserData;
 import models.User;
 import models.UserLevel;
 import notifiers.Mails;
@@ -31,23 +30,9 @@ public class UserController extends Controller implements ApplicationConstants {
 		if (currentUser != null) {
 			if (currentUser.email.equals(ApplicationConstants.ADMIN_EMAIL) && !request.path.startsWith(ApplicationConstants.ADMIN_PATH_STARTS_WITH))
 				redirect(ApplicationConstants.ADMIN_PATH);
-			LastUserData lastSeenUserData = null;
-			String statement = "select l from LastUserData as l where l.userId=?";
-			List<LastUserData> lastSeenUserDatas = LastUserData.find(statement, currentUser.id).fetch();
-			if (lastSeenUserDatas.isEmpty()) {
-				lastSeenUserData = new LastUserData();
-				lastSeenUserData.userId = currentUser.id;
-				lastSeenUserData.name = currentUser.name;
-				lastSeenUserData.lastName = currentUser.lastName;
-			} else {
-				lastSeenUserData = LastUserData.findById(lastSeenUserDatas.get(0).id);
-			}
-
-			if (currentUser.command != null) {
-				lastSeenUserData.commandId = currentUser.command.id;
-			}
-			lastSeenUserData.lastSeen = new Date();
-			lastSeenUserData.save();
+			User user = User.findById(currentUser.id);
+			user.lastSeen = new Date();
+			user.save();
 		}
 		if (currentUser.role == User.ROLE_INPERFECT_USER) {
 			redirect(request.getBase() + ApplicationConstants.SECOND_TEST_PATH);
@@ -70,13 +55,13 @@ public class UserController extends Controller implements ApplicationConstants {
 			user = User.findById(SessionHelper.getCurrentUser(session).id);
 			SessionHelper.setCurrentUser(session, user);
 		}
-		LastUserData lUserData = null;
-		String statement = "select l from LastUserData as l where l.userId=?";
-		List<LastUserData> lastSeenUserDatas = LastUserData.find(statement, user.id).fetch();
-		if (!lastSeenUserDatas.isEmpty()) {
-			lUserData = LastUserData.findById(lastSeenUserDatas.get(0).id);
-		}
-		render(user, lUserData);
+//		LastUserData lUserData = null;
+//		String statement = "select l from LastUserData as l where l.userId=?";
+//		List<LastUserData> lastSeenUserDatas = LastUserData.find(statement, user.id).fetch();
+//		if (!lastSeenUserDatas.isEmpty()) {
+//			lUserData = LastUserData.findById(lastSeenUserDatas.get(0).id);
+//		}
+		render(user);
 	}
 
 	public static void editContactData(Long countryId, String city, boolean showEmailForOthers) {
