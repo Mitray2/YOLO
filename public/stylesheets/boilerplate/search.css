@@ -233,11 +233,12 @@ span.block-clip span.block {
 }
 
 .info {
-	background: url(../images/boilerplate/search/sprite.png) 0 -1px no-repeat;
+	background: url(../images/boilerplate/search/sprite.png)  no-repeat scroll 0 -1px transparent;
 	width: 19px;
 	height: 19px;
 	cursor: pointer;
 	display: inline-block;
+	vertical-align: middle;
 }
 
 .info-active {
@@ -246,6 +247,7 @@ span.block-clip span.block {
 	height: 19px;
 	cursor: pointer;
 	display: inline-block;
+	
 }
 
 .warning{

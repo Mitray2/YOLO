@@ -6,20 +6,20 @@
 	}
 -->
 </style>
-<h1>Вы прошли первый тест! Последний рывок перед регистрацией</h1>
+<h1>Вы прошли первый тест! Последний рывок перед регистрацией </h1>
 <div class="test">
 	<div class="test-results">
-		<p>#{if alereadySavedUser.businessman < 26}
-			&{'models.test.number1.result1', alereadySavedUser.businessman} 
+		<p>#{if alereadySavedUser.businessman < 25}
+			&{'models.test.number1.result1', alereadySavedUser.name, alereadySavedUser.businessman} 
 		#{/if}
-		#{elseif alereadySavedUser.businessman < 51}
-			&{'models.test.number1.result2', alereadySavedUser.businessman}
+		#{elseif alereadySavedUser.businessman < 50}
+			&{'models.test.number1.result2', alereadySavedUser.name, alereadySavedUser.businessman}
 		#{/elseif}
-		#{elseif 76}
-			&{'models.test.number1.result3', alereadySavedUser.businessman}
+		#{elseif 75}
+			&{'models.test.number1.result3', alereadySavedUser.name, alereadySavedUser.businessman}
 		#{/elseif}
 		#{else}
-			&{'models.test.number1.result4', alereadySavedUser.businessman}
+			&{'models.test.number1.result4', alereadySavedUser.name, alereadySavedUser.businessman}
 		#{/else}Проверьте, пожалуйста, Ваш почтовый ящик. В письме указаны ваш логин и пароль, используйте их для авторизации на сайте для доступа к дальнейшей регистрации. </p>
 		<ul class="social-likes" data-title="&{'models.test.number1.social.title'}" data-twit="&{'models.test.number1.social.text', alereadySavedUser.businessman} www.startnewteam.ru" data-description="&{'models.test.number1.social.text', alereadySavedUser.businessman}" data-url="${request.getBase()}" >
 			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
@@ -27,5 +27,6 @@
 			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
 		</ul>
 	</div>
-	<div class="test-btm"><a href="${request.getBase()}/confirmRegistration?ticket=${alereadySavedUser.passwordHash}" class="test-btn">Перейти ко второму тесту</a></div>
+	<div class="test-btm"><a href="${request.getBase()}/confirmRegistration?ticket=${alereadySavedUser.passwordHash}" class="test-btn">Пройти итоговый тест.</a></div>
 </div>
+
