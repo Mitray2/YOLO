@@ -75,8 +75,6 @@ function Search() {
 		$("#searchTitle1 > a").click(function() { _this.toggleSearchPanel(1); });
 		$("#searchTitle2 > a").click(function() { _this.toggleSearchPanel(2); });
 		$("#searchTitle3 > a").click(function() { _this.toggleSearchPanel(3); });
-		_this.toggleSearchPanel(2);
-		_this.toggleSearchPanel(3);
 	};
 	
 	var _initOrderBy = function() {
@@ -110,9 +108,11 @@ function Search() {
 			if (i == tabIndex) {
 				$("#searchTab" + i).addClass("active");
 				$(".searchResultColumn" + i).show();
+				filterShow(i);
 			} else {
 				$("#searchTab" + i).removeClass("active");
 				$(".searchResultColumn" + i).hide();
+				filterHide(i);
 			}
 		}
 		_this.uiModel.currentTab = tabIndex;
@@ -120,18 +120,26 @@ function Search() {
 	
 	this.toggleSearchPanel = function toggleSearchPanel(panelIndex) {
 		if (!$("#searchPanel" + panelIndex).is(":visible")) {
-			$("#searchPanel" + panelIndex).show();
-			$("#searchTitle" + panelIndex + " > span").removeClass("dropdown_close");
-			$("#searchTitle" + panelIndex + " > span").addClass("dropdown_open");
-			$("#searchTitle" + panelIndex).addClass("open");
-			$("#searchTitle" + panelIndex).removeClass("close");
+			filterShow(panelIndex);
 		} else {
-			$("#searchPanel" + panelIndex).hide();
-			$("#searchTitle" + panelIndex + " > span").removeClass("dropdown_open");
-			$("#searchTitle" + panelIndex + " > span").addClass("dropdown_close");
-			$("#searchTitle" + panelIndex).removeClass("open");
-			$("#searchTitle" + panelIndex).addClass("close");
+			filterHide(panelIndex);
 		}
+	}
+	
+	function filterShow(panelIndex){
+		$("#searchPanel" + panelIndex).show();
+		$("#searchTitle" + panelIndex + " > span").removeClass("dropdown_close");
+		$("#searchTitle" + panelIndex + " > span").addClass("dropdown_open");
+		$("#searchTitle" + panelIndex).addClass("open");
+		$("#searchTitle" + panelIndex).removeClass("close");
+	}
+	
+	function filterHide(panelIndex){
+		$("#searchPanel" + panelIndex).hide();
+		$("#searchTitle" + panelIndex + " > span").removeClass("dropdown_open");
+		$("#searchTitle" + panelIndex + " > span").addClass("dropdown_close");
+		$("#searchTitle" + panelIndex).removeClass("open");
+		$("#searchTitle" + panelIndex).addClass("close");
 	}
 	
 	this.doChangeOrder = function doChangeOrder(columnName) {
@@ -321,7 +329,7 @@ function addIcDiagram(value, info, row, hidden){
 
 function addIcWarning(value, desc, row, hidden){
 	if (value == true){
-		addCell(row, "searchResultColumn3", "<span class='warning' info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + desc + "'></span>", hidden);
+		addCell(row, "searchResultColumn3", "<span class='warning info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + desc + "'></span>", hidden);
 		search.tipInfo($("#info_" + search.uiModel.rowId));
 	}
 	else{
@@ -346,21 +354,21 @@ function appendSecondTabGroupColumns(group, row) {
 	var hidden = search.uiModel.currentTab != 2;
 	addCell(row, "searchResultColumn2", group.businessman, hidden);
 	if(group.idealize){
-		addCell(row, "searchResultColumn2", group.idealist + "<span class='warning' info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + group.idealize_desc + "'></span>", hidden);
+		addCell(row, "searchResultColumn2", group.idealist + "<span class='warning info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + group.idealize_desc + "'></span>", hidden);
 		search.tipInfo($("#info_" + search.uiModel.rowId));
 	}
 	else{
 		addCell(row, "searchResultColumn2", group.idealist, hidden);
 	}
 	if(group.communication){
-		addCell(row, "searchResultColumn2", group.communicant + "<span class='warning' info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + group.communication_desc + "'></span>", hidden);
+		addCell(row, "searchResultColumn2", group.communicant + "<span class='warning info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + group.communication_desc + "'></span>", hidden);
 		search.tipInfo($("#info_" + search.uiModel.rowId));
 	}
 	else{
 		addCell(row, "searchResultColumn2", group.communicant, hidden);
 	}
 	if(group.pragmatica){
-		addCell(row, "searchResultColumn2", group.pragmatist + "<span class='warning' info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + group.pragmatica_desc + "'></span>", hidden);
+		addCell(row, "searchResultColumn2", group.pragmatist + "<span class='warning info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + group.pragmatica_desc + "'></span>", hidden);
 		search.tipInfo($("#info_" + search.uiModel.rowId));
 	}
 	else{
