@@ -29,14 +29,6 @@ function editDisabled(element){
 	$(element).parent().parent().parent().find('.msgRead').show(); 
 	return false;
 }
-function writeEnabled(element){
-	$('.answer-expand').show(); 
-	$('.answer-collapse').hide();
-	$('.writeComment').focus();
-	return false;
-}
-
-
 </script>
 
 
@@ -75,33 +67,9 @@ function writeEnabled(element){
 				#{/if}
 				#{/list}
 				</ul>
-
-				<div class="answer-collapse">
-					<div class="group-theme-dialog-ttl-color">Всего ${mainTopic.msg.size()} записи</div>
-					<ul class="group-theme-dialog-form">
-						<li>
-							<textarea onClick="writeEnabled(this);" placeholder="Написать ответ..." name="" cols="" rows="1"></textarea>
-						</li>
-					</ul>
-				</div>
 				
-				<div class="answer-expand" style="display: none">
-					<div class="group-theme-dialog-ttl-color">Всего ${mainTopic.msg.size()} записи</div>
-					#{form @GroupController.addMsgToMainTopic()}
-					<input name="topicId" value="${mainTopic.id}" type="hidden"> 
-               		<input name="groupId" value="${group.id}" type="hidden">
-					<ul class="group-theme-dialog-form">
-						<li>
-							#{avatar.avatar user:utils.SessionHelper.getCurrentUser(session), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
-							<textarea class="writeComment" placeholder="Написать ответ..." name="msg.text" cols="" rows="2"></textarea>
-							<button type="submit" class="group-theme-btn">Отправить</button>
-						</li>
-					</ul>
-					#{/form}
-				</div>
-
-
-
+				#{group.reply topic:mainTopic, group:group, action:'/groupcontroller/addmsgtomaintopic'/}
+				
 				<ul class="group-theme-dialog">
                 #{list items:mainTopic.msg, as:'msg'}
                		#{form @GroupController.editMainMsg()}
