@@ -343,7 +343,7 @@ function appendFirstTabGroupColumns(group, row) {
 	addCell(row, "searchResultColumn1", "<a href=''><img src='/public/images/boilerplate/pic4.jpg' alt='' class='search-result-pic'></a>", hidden);
 	addCell(row, "searchResultColumn1", group.country, hidden);
 	row.append("<td class='searchResultColumn1 width-70' "+getHiddenCss(hidden)+"><span class='block-clip'><span class='block'>"+group.city+"</span></span></td>");
-	addCell(row, "searchResultColumn1", group.age, hidden);
+	addCell(row, "searchResultColumn1 cntr", group.age, hidden);
 	addCell(row, "searchResultColumn1 cntr", group.international, hidden);
 	addCell(row, "searchResultColumn1 cntr", group.status, hidden);
 	addCell(row, "searchResultColumn1 cntr", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-tip='"+group.info+"'></span>", hidden);
@@ -439,7 +439,7 @@ function appendFirstTabColumns(user, row) {
 		addCell(row, "searchResultColumn1", "<img src='/public/images/boilerplate/ico-woman.gif' alt=''>", hidden);
 	}
 	addCell(row, "searchResultColumn1", user.age, hidden);
-	row.append("<td class='searchResultColumn1 width-80' "+getHiddenCss(hidden)+">"+user.lastSeen+"</td>");
+	row.append("<td class='searchResultColumn1 cntr width-80' "+getHiddenCss(hidden)+">"+user.lastSeen+"</td>");
 	addCell(row, "searchResultColumn1 cntr", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-tip='"+user.info+"'></span>", hidden);
 	search.tipInfo($("#info_" + search.uiModel.rowId));
 
