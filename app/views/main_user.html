@@ -12,7 +12,6 @@
         <ul class="nav nav-list">
           <li class="nav-header">User'a actions</li>
           <li #{if request.action == 'UserController.changePassword'}class="active"#{/if}><a href="@{UserController.changePassword()}">Изменить пароль</a></li>
-          <li #{if request.action == 'UserController.peopleSearch'}class="active"#{/if}><a href="@{UserController.peopleSearch()}">Поиск друга</a></li>
           <li #{if request.action == 'UserController.memberSearch'}class="active"#{/if}><a href="@{UserController.memberSearch()}">Поиск участника</a></li>
           <li #{if request.action == 'UserController.groupSearch'}class="active"#{/if}><a href="@{UserController.groupSearch()}">Поиск группы</a></li>
           #{if groupAdmin}
