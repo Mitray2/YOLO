@@ -10,7 +10,18 @@ function writeEnabled(isEnabled){
 	}
 	return false;
 }
+$(document).ready(function(){
+    $('.writeComment').autosize({append: "\n"});  
+});
 </script>
+<style>
+.writeComment {
+	vertical-align: top; 
+	transition: height 0.2s;
+	-webkit-transition: height 0.2s; 
+	-moz-transition: height 0.2s; 
+}
+</style>
 
 <div class="answer-collapse">
 	<div class="group-theme-dialog-ttl-color">Всего ${_topic?.msg?.size()} записи</div>
