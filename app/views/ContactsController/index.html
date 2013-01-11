@@ -1,4 +1,9 @@
-#{extends 'main_info.html' /} #{set title:'Contacts Page' /}
+#{if utils.SessionHelper.getCurrentUser(session) != null}
+	#{extends 'main_templeate.html' /} #{set title:'Contacts Page' /}
+#{/if}
+#{else}
+	#{extends 'main_info.html' /} #{set title:'Contacts Page' /}
+#{/else}
 <h1 class="about-h1">Контакты</h1>
 <div class="contacts">
 	<h3>Основные</h3>

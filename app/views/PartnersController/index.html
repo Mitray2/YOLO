@@ -1,4 +1,11 @@
-#{extends 'main_info.html' /} #{set title:'Partners Page' /}
+#{if utils.SessionHelper.getCurrentUser(session) != null}
+	#{extends 'main_templeate.html' /}
+#{/if}
+#{else}
+	#{extends 'main_info.html' /}
+#{/else}
+
+ #{set title:'Partners Page' /}
 <h1 class="about-h1">Благодаря им StartNewTeam существует и
 	развивается:</h1>
 <div class="partners">

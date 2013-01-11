@@ -305,22 +305,30 @@ function Search() {
 function addIcDiagram(value, info, row, hidden){
 	if (value == 1){
 		addCell(row, "searchResultColumn3", "<span class='ic_one info' id='info_" + (++search.uiModel.rowId) + "' data-tip='" + info + "'></span>", hidden);
-		search.tipInfo($("#info_" + search.uiModel.rowId));
+		if (info.length != 0){
+			search.tipInfo($("#info_" + search.uiModel.rowId));
+		}
 	}
 	else{
 		if (value == 2){
 			addCell(row, "searchResultColumn3", "<span class='ic_two info' id='info_" + (++search.uiModel.rowId) + "' data-tip='" + info + "'></span>", hidden);
-			search.tipInfo($("#info_" + search.uiModel.rowId));
+			if (info.length != 0){
+				search.tipInfo($("#info_" + search.uiModel.rowId));
+			}
 		}
 		else{
 			if (value == 3){
 				addCell(row, "searchResultColumn3", "<span class='ic_three info' id='info_" + (++search.uiModel.rowId) + "' data-tip='" + info + "'></span>", hidden);
-				search.tipInfo($("#info_" + search.uiModel.rowId));
+				if (info.length != 0){
+					search.tipInfo($("#info_" + search.uiModel.rowId));
+				}
 			}
 			else{
 				if (value == 4){
 					addCell(row, "searchResultColumn3", "<span class='ic_four info' id='info_" + (++search.uiModel.rowId) + "' data-tip='" + info + "'></span>", hidden);
-					search.tipInfo($("#info_" + search.uiModel.rowId));
+					if (info.length != 0){
+						search.tipInfo($("#info_" + search.uiModel.rowId));
+					}
 				}
 			}
 		}
@@ -330,7 +338,9 @@ function addIcDiagram(value, info, row, hidden){
 function addIcWarning(value, desc, row, hidden){
 	if (value == true){
 		addCell(row, "searchResultColumn3", "<span class='warning info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + desc + "'></span>", hidden);
-		search.tipInfo($("#info_" + search.uiModel.rowId));
+		if (desc.length != 0){
+			search.tipInfo($("#info_" + search.uiModel.rowId));
+		}
 	}
 	else{
 		addCell(row, "searchResultColumn3", "<span class='attention'></span>", hidden);
@@ -345,9 +355,12 @@ function appendFirstTabGroupColumns(group, row) {
 	row.append("<td class='searchResultColumn1 width-70' "+getHiddenCss(hidden)+"><span class='block-clip'><span class='block'>"+group.city+"</span></span></td>");
 	addCell(row, "searchResultColumn1 cntr", group.age, hidden);
 	addCell(row, "searchResultColumn1 cntr", group.international, hidden);
-	addCell(row, "searchResultColumn1 cntr", group.status, hidden);
+//	addCell(row, "searchResultColumn1 cntr", group.lastSeen, hidden);
+	row.append("<td class='searchResultColumn1 cntr width-80' "+getHiddenCss(hidden)+">"+group.lastSeen+"</td>");
 	addCell(row, "searchResultColumn1 cntr", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-tip='"+group.info+"'></span>", hidden);
-	search.tipInfo($("#info_" + search.uiModel.rowId));
+	if (group.info.length != 0){
+		search.tipInfo($("#info_" + search.uiModel.rowId));
+	}
 	
 }
 function appendSecondTabGroupColumns(group, row) {
@@ -355,21 +368,27 @@ function appendSecondTabGroupColumns(group, row) {
 	addCell(row, "searchResultColumn2", group.businessman, hidden);
 	if(group.idealize){
 		addCell(row, "searchResultColumn2", group.idealist + "<span class='warning info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + group.idealize_desc + "'></span>", hidden);
-		search.tipInfo($("#info_" + search.uiModel.rowId));
+		if (group.idealize_desc.length != 0){
+			search.tipInfo($("#info_" + search.uiModel.rowId));
+		}
 	}
 	else{
 		addCell(row, "searchResultColumn2", group.idealist, hidden);
 	}
 	if(group.communication){
 		addCell(row, "searchResultColumn2", group.communicant + "<span class='warning info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + group.communication_desc + "'></span>", hidden);
-		search.tipInfo($("#info_" + search.uiModel.rowId));
+		if (group.communication_desc.length != 0){
+			search.tipInfo($("#info_" + search.uiModel.rowId));
+		}
 	}
 	else{
 		addCell(row, "searchResultColumn2", group.communicant, hidden);
 	}
 	if(group.pragmatica){
 		addCell(row, "searchResultColumn2", group.pragmatist + "<span class='warning info' id='info_"  + (++search.uiModel.rowId) + "' data-tip='" + group.pragmatica_desc + "'></span>", hidden);
-		search.tipInfo($("#info_" + search.uiModel.rowId));
+		if (group.pragmatica_desc.length != 0){
+			search.tipInfo($("#info_" + search.uiModel.rowId));
+		}
 	}
 	else{
 		addCell(row, "searchResultColumn2", group.pragmatist, hidden);
@@ -441,7 +460,9 @@ function appendFirstTabColumns(user, row) {
 	addCell(row, "searchResultColumn1", user.age, hidden);
 	row.append("<td class='searchResultColumn1 cntr width-80' "+getHiddenCss(hidden)+">"+user.lastSeen+"</td>");
 	addCell(row, "searchResultColumn1 cntr", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-tip='"+user.info+"'></span>", hidden);
-	search.tipInfo($("#info_" + search.uiModel.rowId));
+	if(user.info.length != 0){
+		search.tipInfo($("#info_" + search.uiModel.rowId));
+	}
 
 }
 

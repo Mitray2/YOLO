@@ -42,6 +42,9 @@ public class Command extends Model {
 
 	@Formula("(select avg(u.age) from User as u where u.command_id = id)")
 	public Integer middleAge;
+	
+	@Formula("(select max(u.lastSeen) from User as u where u.command_id = id)")
+	public Date lastSeen;
 
 	@OneToOne
 	public User founderUser;

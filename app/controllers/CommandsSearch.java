@@ -20,6 +20,7 @@ import controllers.UsersSearch.UserSearchAjaxResult;
 import play.i18n.Messages;
 import play.modules.paginate.ValuePaginator;
 import utils.ApplicationConstants;
+import utils.DateUtils;
 
 public class CommandsSearch extends AbstractSearch {
 	
@@ -136,8 +137,8 @@ public class CommandsSearch extends AbstractSearch {
 				group_search.put("businessSphere", Messages.get(ApplicationConstants.MESSAGES_SPHERE_NAME + utils.ModelUtils.replaceSpacesForI18n(command.sphere.name)));
 				group_search.put("international", "Yes"); // TODO not
 															// approved
-				group_search.put("status", "Online");// TODO not
-				// approved
+				group_search.put("lastSeen", DateUtils.getFormatedStringDate(command.lastSeen, true)); // no money
+				
 				group_search.put("phase", Messages.get(ApplicationConstants.MESSAGES_PROJECT_PHASE + utils.ModelUtils.replaceSpacesForI18n(command.phase.name)));
 				
 				group_search.put("marketing", command.marketing.active);
@@ -210,6 +211,7 @@ public class CommandsSearch extends AbstractSearch {
 		sortOrders.put("right", "l.active");
 		sortOrders.put("it", "pr.active");
 		sortOrders.put("more", "other.active");
+		sortOrders.put("lastSeen", "c.lastSeen");
 	}
 	
 	public static class GroupsSearchAjaxResult {
