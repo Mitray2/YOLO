@@ -75,6 +75,10 @@ public class CommandsSearch extends AbstractSearch {
 			if (StringUtils.isNotEmpty(group.other)) {
 				appendParam(BooleanUtils.toBoolean(group.other), "other.active", where, EQUAL, queryParams);
 			}
+			
+			if (StringUtils.isNotEmpty(group.global)) {
+				appendParam(BooleanUtils.toBoolean(group.global), "c.global", where, EQUAL, queryParams);
+			}
 			appendParam(group.bmanMin, "c.businessman", where, MORE, queryParams);
 			appendParam(group.bmanMax, "c.businessman", where, LESS, queryParams);
 			appendParam(group.idealMin, "c.idealist", where, MORE, queryParams);
@@ -101,13 +105,11 @@ public class CommandsSearch extends AbstractSearch {
 		}
 		
 		statement += orderBy.toString();
-		System.out.println("\n\n\n\\n\n\n\n\n" + statement);
 		List<Command> groups = Command.find(statement, queryParams.toArray()).fetch(currentPage, ApplicationConstants.SEARCH_COUNT_ON_PAGE);
 
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		for (Command command : groups) {
 			if (command.country != null) {
-				System.out.println("\n\n\n\n\n\n" + command.id);
 				Map<String, Object> group_search = new HashMap<String, Object>();
 
 				group_search.put("id", command.id);
@@ -135,8 +137,7 @@ public class CommandsSearch extends AbstractSearch {
 				
 				group_search.put("businessType", Messages.get(ApplicationConstants.MESSAGES_BUSINESS_TYPE + utils.ModelUtils.replaceSpacesForI18n(command.type.name)));
 				group_search.put("businessSphere", Messages.get(ApplicationConstants.MESSAGES_SPHERE_NAME + utils.ModelUtils.replaceSpacesForI18n(command.sphere.name)));
-				group_search.put("international", "Yes"); // TODO not
-															// approved
+				group_search.put("global", (command.global != null)  ? (command.global == true ? "Да" : "Нет") : "Нет"); 
 				group_search.put("lastSeen", DateUtils.getFormatedStringDate(command.lastSeen, true)); // no money
 				
 				group_search.put("phase", Messages.get(ApplicationConstants.MESSAGES_PROJECT_PHASE + utils.ModelUtils.replaceSpacesForI18n(command.phase.name)));
@@ -194,6 +195,7 @@ public class CommandsSearch extends AbstractSearch {
 		sortOrders.put("city", "c.city");
 		sortOrders.put("name", "c.name");
 		sortOrders.put("age", "c.middleAge");
+		sortOrders.put("global", "c.global");
 		
 		sortOrders.put("count", "c.countUser");
 		sortOrders.put("predpr", "c.businessman");

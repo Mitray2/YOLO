@@ -1,4 +1,4 @@
-#{extends 'search_templeate.html' /} #{set title:'search team' /}
+#{extends 'search_templeate.html' /} #{set title:'StartNewTeam' /}
 
 
 <div class="search_result">
@@ -33,7 +33,7 @@
 			<td class="searchResultColumn1" id="column_country"><a href="#">Страна</a><span class="sort"></span></td>
 			<td class="searchResultColumn1" id="column_city"><a href="#">Город</a><span class="sort"></span></td>
 			<td class="searchResultColumn1 cntr" id="column_age"><a href="#">Возраст</a><span class="sort"></span></td>
-			<td class="searchResultColumn1 cntr"><a href="#">Языки</a><span class="sort"></span></td>
+			<td class="searchResultColumn1 cntr" id="column_global"><a href="#">Языки</a><span class="sort"></span></td>
 			<td class="searchResultColumn1 cntr" id="column_lastSeen"><a href="#">Статус</a><span class="sort"></span></td>
 			<td class="searchResultColumn1 cntr">Инфо</td>
 
@@ -100,6 +100,7 @@
 				  pragmatMin : null,
 				  pragmatMax : null,
 				  phase : null,
+				  global : null,
 				  orderBy : null,
 				  asc : false,
 				  active_column : null

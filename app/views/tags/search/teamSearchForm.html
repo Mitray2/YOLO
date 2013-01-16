@@ -63,6 +63,14 @@
 						<option value="false" #{if group?.vacancy == "false"}selected="selected"#{/if}>Нет</option>
 					</select>
 				</div>
+				<div class="private_item clearFix">
+					<label for="">Глобальность</label>
+					<select name="group.global" id="global" class="cSelect" style="width:160px;">
+						<option value="">&{'unimportant'}</option>
+						<option value="true">Да</option>
+						<option value="false">Нет</option>
+					</select>
+				</div>
 			</form>
 		</div>
 

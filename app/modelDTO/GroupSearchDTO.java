@@ -71,6 +71,8 @@ public class GroupSearchDTO implements Serializable {
 	public String phase;
 
 	public String orderBy;
+	
+	public String global;
 
 	public boolean asc;
 }

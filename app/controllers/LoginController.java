@@ -296,6 +296,7 @@ public class LoginController extends Controller implements ApplicationConstants 
 				} else {
 					user.mailTicket = null;
 					user.role = User.ROLE_USER;
+					user.english = false;
 					user.save();
 					SessionHelper.setCurrentUser(session, user);
 					redirect(request.getBase() + "/");

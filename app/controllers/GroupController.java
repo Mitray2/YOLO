@@ -243,7 +243,9 @@ public class GroupController extends Controller implements ApplicationConstants 
 
 		currentGroup.communication.setActive(group.communication.active);
 		currentGroup.communication.setDescrition(group.communication.descrition);
-
+		
+		currentGroup.global = group.global;
+		
 		currentGroup.save();
 		User userCurrent = User.findById(SessionHelper.getCurrentUser(session).id);
 		SessionHelper.setCurrentUser(session, userCurrent);

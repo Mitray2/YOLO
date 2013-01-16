@@ -32,6 +32,8 @@ public class CommandDTO implements Serializable {
 	public ProjectPhase phase;
 
 	public boolean isVacancy;
+	
+	public boolean global;
 
 	public BType type;
 

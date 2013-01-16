@@ -48,6 +48,8 @@ public class Command extends Model {
 
 	@OneToOne
 	public User founderUser;
+	
+	public Boolean global;
 
 	@OneToMany(cascade = { CascadeType.REMOVE })
 	public List<Topic> topics;

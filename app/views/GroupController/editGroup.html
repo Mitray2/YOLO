@@ -82,7 +82,8 @@
 					#{list items:models.BSphere.findAll(), as:'businessSphere'}
 							<option value="${businessSphere.id}" #{if businessSphere.id == group.sphere.id} selected="selected" #{/if}>&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(businessSphere.name)}</option>
 					#{/list}
-			</select>
+					</select>
+					
                     <label for="">Стадия проекта:</label>
                     <div class="box-radio">
                     #{list items:models.ProjectPhase.findAll(), as:'phase'}
@@ -90,6 +91,17 @@
 						<label for="${phase.id}" class="radio-btn">&{'models.ProjectPhase.name.' + utils.ModelUtils.replaceSpacesForI18n(phase?.name)}</label>
 					#{/list}
                     </div>
+                    
+                    <div class="create-form">
+						<label for="">Глобальность</label>
+						<div class="box-radio">
+							<input type="radio" name="group.global" id="globalY" class="radio" value="true"  #{if group?.global}checked#{/if}/>
+							<label for="globalY" class="radio-btn">Да</label>
+							<input type="radio" name="group.global" id="globalN" class="radio" value="false"  #{if !group?.global}checked#{/if}/>
+							<label for="globalN" class="radio-btn">Нет</label>
+	                   </div>
+                    </div>
+                    
                     <textarea name="group.description" placeholder="Описание проекта">${group.description}</textarea>
                     <label for="" class="fl">Страна</label>
 					<select name="group.country.id" class="cSelect" style="width:181px;">

@@ -103,6 +103,7 @@ function Search() {
 		$("#column_count").click(function(){_this.doChangeOrder("count")});
 		$("#column_lastSeen").click(function(){_this.doChangeOrder("lastSeen")});
 		$("#column_english").click(function(){_this.doChangeOrder("english")});
+		$("#column_global").click(function(){_this.doChangeOrder("global")});
 	}
 	
 	this.activateTab = function activateTab(tabIndex) {
@@ -356,8 +357,7 @@ function appendFirstTabGroupColumns(group, row) {
 	addCell(row, "searchResultColumn1", group.country, hidden);
 	row.append("<td class='searchResultColumn1 width-70' "+getHiddenCss(hidden)+"><span class='block-clip'><span class='block'>"+group.city+"</span></span></td>");
 	addCell(row, "searchResultColumn1 cntr", group.age, hidden);
-	addCell(row, "searchResultColumn1 cntr", group.international, hidden);
-//	addCell(row, "searchResultColumn1 cntr", group.lastSeen, hidden);
+	addCell(row, "searchResultColumn1 cntr", group.global, hidden);
 	row.append("<td class='searchResultColumn1 cntr width-80' "+getHiddenCss(hidden)+">"+group.lastSeen+"</td>");
 	addCell(row, "searchResultColumn1 cntr", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-tip='"+group.info+"'></span>", hidden);
 	if (group.info.length != 0){

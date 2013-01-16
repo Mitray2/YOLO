@@ -1,4 +1,4 @@
-#{extends 'main_templeate.html' /} 
+#{extends 'main_templeate.html' /} #{set title: group?.name /}
 %{
 	boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN; 
 	boolean currentGroupAdmin = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id) && (adminGroup); 
@@ -35,6 +35,9 @@
 						</div>
 						<div>
 							<span>Стадия проекта:</span> &{'models.ProjectPhase.name.' + utils.ModelUtils.replaceSpacesForI18n(group.phase?.name)}
+						</div>
+						<div>
+							<span>Языки:</span> #{if group.global} Да #{/if} #{else} Нет #{/else}
 						</div>
 					</div>
 				</td>
