@@ -12,8 +12,14 @@
 %}
 
 <div class="tabs clearFix">
-	<a href="@{GroupController.index(group.id)}" >Описание</a> <a href="@{GroupController.groupTopics(group.id)}" class="act">Обсуждения</a> <a
-		href="@{GroupController.groupUsers(group.id)}" >Участники</a>
+	<a href="@{GroupController.index(group.id)}" >Описание</a> 
+	
+		<a href="@{GroupController.publicTopics(group.id)}" #{if topic.publicTopic}  class="act" #{/if}>Открытые обсуждения</a> 
+	
+	#{if (groupMember) || (isAdmin)}
+		<a href="@{GroupController.groupTopics(group.id)}" #{if !topic.publicTopic}  class="act" #{/if}>Обсуждения</a> 
+	#{/if} 
+	<a href="@{GroupController.groupUsers(group.id)}" >Участники</a>
 </div>
 <script type="text/javascript">
 function editEnabled(element){

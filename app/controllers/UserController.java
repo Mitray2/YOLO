@@ -239,7 +239,7 @@ public class UserController extends Controller implements ApplicationConstants {
 		user.businessType = bType;
 		user.businessSphere = bSphere;
 		user.personalCV = currentUser.personalCV;
-
+		user.english= currentUser.english;
 		user.save();
 
 		SessionHelper.setCurrentUser(session, user);

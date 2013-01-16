@@ -55,6 +55,8 @@ public class User extends Model {
 	@Required
 	public Boolean sex;
 
+	public Boolean english;
+	
 	@Required
 	@MaxSize(value = 30)
 	public String name;

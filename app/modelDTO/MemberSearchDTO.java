@@ -13,6 +13,8 @@ public class MemberSearchDTO implements Serializable {
 	public Integer ageMax;
 
 	public String sex;
+	
+	public String english;
 
 	public String inCommand;
 

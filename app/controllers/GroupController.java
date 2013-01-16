@@ -162,15 +162,23 @@ public class GroupController extends Controller implements ApplicationConstants 
 		user.command = command;
 		user.role = user.ROLE_GROUP_ADMIN;
 		user.save();
-
+		//	creating main topic
 		Topic mainTopic = new Topic();
 		mainTopic.mainTopic = true;
-
+		mainTopic.publicTopic = false;
+		mainTopic.groupId = command.id;
 		mainTopic.save();
+		// creating public main topic
+		Topic mainPublicTopic = new Topic();
+		mainPublicTopic.mainTopic = true;
+		mainPublicTopic.publicTopic = true;
+		mainPublicTopic.groupId = command.id;
+		mainPublicTopic.save();
 		if (command.topics == null) {
 			command.topics = new ArrayList<Topic>();
 		}
 		command.topics.add(mainTopic);
+		command.topics.add(mainPublicTopic);
 		command.save();
 		// user lastSeen
 //		LastUserData lastSeenUserData = null;
@@ -353,6 +361,16 @@ public class GroupController extends Controller implements ApplicationConstants 
 	}
 
 	public static void addMsgToMainTopic(TopicMessage msg, Long topicId, Long groupId) {
+		addMainMsg(msg, topicId, groupId);
+		groupTopics(groupId);
+	}
+	
+	public static void addMsgToPublicMainTopic(TopicMessage msg, Long topicId, Long groupId) {
+		addMainMsg(msg, topicId, groupId);
+		publicTopics(groupId);
+	}
+	
+	protected static void addMainMsg(TopicMessage msg, Long topicId, Long groupId){
 		Topic topic = Topic.findById(topicId);
 		User user = User.findById(SessionHelper.getCurrentUser(session).id);
 		msg.from = user;
@@ -364,7 +382,6 @@ public class GroupController extends Controller implements ApplicationConstants 
 		}
 		topic.msg.add(msg);
 		topic.save();
-		groupTopics(groupId);
 	}
 
 	public static void addMsgToTopic(TopicMessage msg, Long topicId, Long groupId) {
@@ -389,8 +406,9 @@ public class GroupController extends Controller implements ApplicationConstants 
 
 	public static void groupTopics(Long groupId) {
 		Command group = Command.findById(groupId);
-		List<Topic> topics = group.topics;
-		Collections.sort(topics, TopicComparator.TOPIC_DATE_COMPARATOR);
+		Query tQuery = JPA.em().createQuery("select t from Topic t where t.groupId=" + groupId + " and t.publicTopic=" + false + " order by t.lastUpdateDate desc");
+		List<Topic> topics = tQuery.getResultList();
+		//Collections.sort(topics, TopicComparator.TOPIC_DATE_COMPARATOR);
 		Topic mainTopic = null;
 		for (Topic topic : topics) {
 			if (topic.mainTopic) {
@@ -399,6 +417,22 @@ public class GroupController extends Controller implements ApplicationConstants 
 		}
 		Query query = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=" + mainTopic.id + " order by t.createDate desc");
 		List<TopicMessage> msgs = query.getResultList();
+		mainTopic.msg = msgs;
+		render(topics, group, mainTopic);
+	}
+	
+	public static void publicTopics(Long groupId) {
+		Command group = Command.findById(groupId);
+		Query ptQuery = JPA.em().createQuery("select t from Topic t where t.groupId=" + groupId + " and t.publicTopic=" + true + " order by t.lastUpdateDate desc");
+		List<Topic> topics = ptQuery.getResultList();
+		Topic mainTopic = null;
+		for (Topic topic : topics) {
+			if (topic.mainTopic) {
+				mainTopic = topic;
+			}
+		}
+		Query ptmQuery = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=" + mainTopic.id + " order by t.createDate desc");
+		List<TopicMessage> msgs = ptmQuery.getResultList();
 		mainTopic.msg = msgs;
 		render(topics, group, mainTopic);
 	}
@@ -429,11 +463,20 @@ public class GroupController extends Controller implements ApplicationConstants 
 	}
 
 	public static void editMainMsg(TopicMessage msg, Long topicId, Long groupId) {
+		modifyMainMsg(msg, topicId, groupId);
+		groupTopics(groupId);
+	}
+	
+	public static void editPublicMainMsg(TopicMessage msg, Long topicId, Long groupId) {
+		modifyMainMsg(msg, topicId, groupId);
+		publicTopics(groupId);
+	}
+	
+	protected static void modifyMainMsg(TopicMessage msg, Long topicId, Long groupId){
 		TopicMessage topicMsg = TopicMessage.findById(msg.id);
 		topicMsg.text = msg.text;
 		msg.createDate = new Date();
 		topicMsg.save();
-		groupTopics(groupId);
 	}
 
 	public static void editMsg(TopicMessage msg, Long topicId, Long groupId) {
@@ -524,6 +567,16 @@ public class GroupController extends Controller implements ApplicationConstants 
 	}
 
 	public static void removeMainMessage(Long msgId, Long groupId) {
+		deleteMainMsg(msgId, groupId);
+		groupTopics(groupId);
+	}
+	
+	public static void removePublicMainMessage(Long msgId, Long groupId) {
+		deleteMainMsg(msgId, groupId);
+		publicTopics(groupId);
+	}
+	
+	protected static void deleteMainMsg(Long msgId, Long groupId) {
 		TopicMessage message = TopicMessage.findById(msgId);
 		Long topicId = message.topic.id;
 		Topic topic = Topic.findById(topicId);
@@ -533,7 +586,6 @@ public class GroupController extends Controller implements ApplicationConstants 
 		message.topic = null;
 		message.save();
 		message.delete();
-		groupTopics(groupId);
 	}
 
 	public static void removeTopic(Long topicId, Long groupId) {

@@ -14,8 +14,11 @@
 
 
 <div class="tabs clearFix">
-	<a href="@{GroupController.index(group.id)}" >Описание</a> <a href="@{GroupController.publicTopics(group.id)}">Открытые обсуждения</a> <a href="@{GroupController.groupTopics(group.id)}" class="act">Обсуждения</a> <a
-		href="@{GroupController.groupUsers(group.id)}" >Участники</a>
+	<a href="@{GroupController.index(group.id)}" >Описание</a> <a href="@{GroupController.publicTopics(group.id)}"  class="act">Открытые обсуждения</a> 
+	#{if (groupMember) || (isAdmin)}
+		<a href="@{GroupController.groupTopics(group.id)}">Обсуждения</a> 
+	#{/if}
+	<a href="@{GroupController.groupUsers(group.id)}" >Участники</a>
 </div>
 
 <script type="text/javascript">
@@ -33,7 +36,7 @@ function editDisabled(element){
 
 
 				<div class="search-result-name">
-				#{if groupMember}
+				#{if (groupMember) || (isAdmin)}
 				    <a href="@{GroupController.createTopic(group.id)}" class="new-themes-btn"><img src="@{'public/images/boilerplate/ico-new-theme.gif'}" alt="">Создать новую тему</a>
 				#{/if}
                     <div class="ttl-search-result2-color">В группе ${topics?.size()-1} темы</div>
@@ -68,11 +71,11 @@ function editDisabled(element){
 				#{/list}
 				</ul>
 				
-				#{group.reply topic:mainTopic, group:group, action:'/groupcontroller/addmsgtomaintopic'/}
+				#{group.reply topic:mainTopic, group:group, action:'/groupcontroller/addmsgtopublicmaintopic'/}
 				
 				<ul class="group-theme-dialog">
                 #{list items:mainTopic.msg, as:'msg'}
-               		#{form @GroupController.editMainMsg()}
+               		#{form @GroupController.editPublicMainMsg()}
 	                <input name="msg.id" value="${msg.id}" type="hidden">
 					<input name="topicId" value="${mainTopic.id}" type="hidden">
 					<input name="groupId" value="${group.id}" type="hidden">
@@ -80,9 +83,12 @@ function editDisabled(element){
                     	#{avatar.avatar user:msg.from, cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
                         <div class="group-theme-dialog-name">
                         	<a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${msg.createDate}
-                        	#{if (userId == msg.from.id) || (isAdmin)}
+                        	#{if (userId == msg.from.id)}
                         		<span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">Редактировать сообщение</span></span>
-                        		<a href="@{GroupController.removeMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить сообщение</span></span></a>
+                        		<a href="@{GroupController.removePublicMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить сообщение</span></span></a>
+                        	#{/if}
+                        	#{if (isAdmin)}
+                        		<a href="@{GroupController.removePublicMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить сообщение</span></span></a>
                         	#{/if}
                         </div>
                         <pre class="msgRead">${msg.text}</pre>

@@ -71,6 +71,10 @@
                 </div>
                 <div class="group-vacancies-ttl">Профессиональные навыки</div>
                 <div class="group-vacancies">
+                
+                	<div class="group-vacancies-item">
+                    	<div class="group-vacancies-name">Знание английского <span>&#8594;</span>#{if user.english} Да #{/if} #{else} Нет #{/else}</div>
+                    </div>
                 	<div class="group-vacancies-item">
                     	<div class="group-vacancies-name">Маркетинг <span>&#8594;</span>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expMarketing?.level?.userLevel)}</div>
                         <pre>${user?.expMarketing?.description}</pre>
@@ -228,6 +232,18 @@
 							#{/list}
 						</select>
 					</div>
+				</div>
+				
+					<div class="create-form">
+						<label for="">Знание английского</label>
+						<div class="box-radio">
+							<input type="radio" name="currentUser.english" id="englishY" class="radio" value="true"  #{if user?.english}checked#{/if}/>
+							<label for="englishY" class="radio-btn">Да</label>
+							<input type="radio" name="currentUser.english" id="englishN" class="radio" value="false"  #{if !user?.english}checked#{/if}/>
+							<label for="englishN" class="radio-btn">Нет</label>
+	                   </div>
+                    </div>
+					<div class="profile-form" style="padding-bottom:10px;">
 					<div class="profile-item clearFix">
 						<label for="">Опыт в маркетинге/рекламе<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
 						<select name="currentUser.expMarketing.level.id" class="cSelect" style="width:321px;">

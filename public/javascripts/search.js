@@ -35,6 +35,7 @@ function Search() {
 			  comutMax : null,
 			  pragmatMin : null,
 			  pragmatMax : null,
+			  english : null,
 			  orderBy : null,
 			  asc : false,
 			  active_column : null
@@ -101,6 +102,7 @@ function Search() {
 		$("#column_name").click(function(){_this.doChangeOrder("name")});
 		$("#column_count").click(function(){_this.doChangeOrder("count")});
 		$("#column_lastSeen").click(function(){_this.doChangeOrder("lastSeen")});
+		$("#column_english").click(function(){_this.doChangeOrder("english")});
 	}
 	
 	this.activateTab = function activateTab(tabIndex) {
@@ -435,7 +437,7 @@ function appendSecondTabColumns(user, row) {
 	addCell(row, "searchResultColumn2", user.pragmatist, hidden);
 	row.append("<td class='searchResultColumn2 width-90' "+getHiddenCss(hidden)+"><span class='block-clip'><span class='block'>"+user.businessType+"</span></span></td>");
 	row.append("<td class='searchResultColumn2 width-90' "+getHiddenCss(hidden)+">"+user.businessSphere+"</td>");
-	addCell(row, "searchResultColumn2 cntr", "Yes", hidden);
+	addCell(row, "searchResultColumn2 cntr", user.english, hidden);
 
 }
 

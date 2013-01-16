@@ -89,6 +89,10 @@ public class UsersSearch extends AbstractSearch {
 				appendParam(BooleanUtils.toBoolean(member.sex), "u.sex", where, EQUAL, queryParams);
 			}
 			
+			if (StringUtils.isNotEmpty(member.english)) {
+				appendParam(BooleanUtils.toBoolean(member.english), "u.english", where, EQUAL, queryParams);
+			}
+			
 			if (member.inCommand != null) {
 				if (member.inCommand.equals("true")) {
 					where.append(" and ");
@@ -157,7 +161,7 @@ public class UsersSearch extends AbstractSearch {
 				
 				user_search.put("businessType", Messages.get(ApplicationConstants.MESSAGES_BUSINESS_TYPE + utils.ModelUtils.replaceSpacesForI18n(user.businessType.name)));
 				user_search.put("businessSphere", Messages.get(ApplicationConstants.MESSAGES_SPHERE_NAME + utils.ModelUtils.replaceSpacesForI18n(user.businessSphere.name)));
-				user_search.put("international", "Yes"); // TODO not
+				user_search.put("english", user.english ? "Да" : "Нет"); // TODO not
 															// approved
 				user_search.put("status", "Online");
 				
@@ -223,7 +227,7 @@ public class UsersSearch extends AbstractSearch {
 		sortOrders.put("pragmatic", "u.pragmatist");
 		sortOrders.put("businessType", "type.name");
 		sortOrders.put("businessSphere", "s.name");
-
+		sortOrders.put("english", "u.english");
 
 		sortOrders.put("marketing", "marl.id");
 		sortOrders.put("sale", "tl.id");
@@ -234,6 +238,7 @@ public class UsersSearch extends AbstractSearch {
 		sortOrders.put("more", "otherl.id");
 		sortOrders.put("command", "u.command");
 		sortOrders.put("lastSeen", "u.lastSeen");
+		
 	}
 
 	public static void peopleSearch(FriendSearchDTO friend) {

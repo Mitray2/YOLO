@@ -13,8 +13,12 @@
 #{if currentGroupAdmin}
 
 <div class="tabs clearFix">
-	<a href="@{GroupController.index(group.id)}" >Описание</a> <a href="@{GroupController.groupTopics(group.id)}">Обсуждения</a> <a
-		href="@{GroupController.groupUsers(group.id)}" class="act">Участники</a>
+	<a href="@{GroupController.index(group.id)}" >Описание</a>
+	<a href="@{GroupController.publicTopics(group.id)}">Открытые обсуждения</a>
+	#{if (groupMember) || (isAdmin)}
+		<a href="@{GroupController.groupTopics(group.id)}">Обсуждения</a> 
+	#{/if} 
+	<a href="@{GroupController.groupUsers(group.id)}" class="act">Участники</a>
 </div>
 	<div class="ttl-search-result2">Всего ${users?.size()} участников</div>
 	<ul class="search-result-list">

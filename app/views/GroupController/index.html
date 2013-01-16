@@ -10,8 +10,11 @@
 %}
 
 <div class="tabs clearFix">
-	<a href="@{GroupController.index(group.id)}" class="act">Описание</a> <a href="@{GroupController.groupTopics(group.id)}">Обсуждения</a> <a
-		href="@{GroupController.groupUsers(group.id)}">Участники</a>
+	<a href="@{GroupController.index(group.id)}" class="act">Описание</a> <a href="@{GroupController.publicTopics(group.id)}">Открытые обсуждения</a> 
+	#{if (groupMember) || (isAdmin)}
+	<a href="@{GroupController.groupTopics(group.id)}">Обсуждения</a>
+	#{/if}
+	<a href="@{GroupController.groupUsers(group.id)}">Участники</a>
 </div>
 <div class="group-info">
 	<div class="group-info-ttl">Описание команды</div>

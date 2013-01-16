@@ -33,4 +33,6 @@ public class UserSkillDTO implements Serializable {
 	public ExpOther expOther;
 
 	public String personalCV;
+	
+	public boolean english;
 }
