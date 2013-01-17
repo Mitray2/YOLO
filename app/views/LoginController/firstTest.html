@@ -9,8 +9,7 @@
 	}
 -->
 </style>
-<h1>Здравствуйте, ${user?.name}!<br />
-<p>Вот первый тест, который определит твою склонность к предпринимательству. Всего тестов два и их прохождение не займет много времени. Только не обманывай себя - отвечай честно.</p>
+<h1>&{'page.test1.title', user?.name}</p>
 </h1>
 	#{form @LoginController.firstTestPassed()}
 		<div class="test">
@@ -18,13 +17,13 @@
 					<div class="test-item #{if currentValidation?.hasError(utils.ApplicationConstants.VALIDATION_MODEL_TEST_QUESTION_ANSWER_REQUIRED + question?.id)}error#{/if}">
 					#{if question_isFirst}
 				        <div class="help">
-							<h3>Цель первого теста</h3>
-							<p>Мотивация достижения &mdash; стремление к улучшению результатов, неудовлетворенность достигнутым, настойчивость в достижении своих целей, стремление добиться своего во что бы то ни стало — является одним из главных свойств личности, оказывающих влияние на всю человеческую жизнь. Многочисленные исследования показали тесную связь между уровнем мотивации достижения и успехом в жизнедеятельности. Данный психологический тест позволит Вам выяснить свой уровень мотивации.</p>
+							<h3>&{'page.test1.aim.title'}</h3>
+							<p>&{'page.test1.aim.text'}</p>
 						</div>
 					#{/if}
 						<p class="question"><span>—</span>${question.value}</p>
 						<div class="reply">
-							<span class="reply-txt">Ваш ответ:</span>
+							<span class="reply-txt">&{'page.test1.answer'}:</span>
 								#{list items:question.answers, as:'answer'}
 									<input type="radio" name="test.questions[${question_index}].answer.id" id="answer${answer.id}" class="radio" value="${answer.id}" #{if question?.answer?.id.equals(answer.id)}checked#{/if}>
 <!-- 									<input type="radio" name="test.questions[${question_index}].answer.id" id="answer${answer.id}" class="radio" value="${answer.id}" checked> -->
@@ -48,7 +47,7 @@
 					            Необходимо ответить на вопросы выделенные красным<br>
 				            </div>
 			        #{/ifErrors}
-					<a href="" class="test-btn" onclick="this.parentElement.parentElement.parentElement.submit(); return false;">Покажите результаты</a>
+					<a href="" class="test-btn" onclick="this.parentElement.parentElement.parentElement.submit(); return false;">&{'page.test1.show_results'}</a>
 				</div>
 		</div>
 	#{/form}

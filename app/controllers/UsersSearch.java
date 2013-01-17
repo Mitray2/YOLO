@@ -1,18 +1,11 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.google.gson.GsonBuilder;
 import modelDTO.FriendSearchDTO;
 import modelDTO.MemberSearchDTO;
 import models.User;
-
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
-
 import play.i18n.Messages;
 import play.modules.paginate.ValuePaginator;
 import play.mvc.Before;
@@ -20,7 +13,7 @@ import utils.ApplicationConstants;
 import utils.DateUtils;
 import utils.SessionHelper;
 
-import com.google.gson.GsonBuilder;
+import java.util.*;
 
 public class UsersSearch extends AbstractSearch {
 
@@ -239,7 +232,6 @@ public class UsersSearch extends AbstractSearch {
 	}
 
 	public static void peopleSearch(FriendSearchDTO friend) {
-
 		String statement = "select distinct u from User u left join u.country as c";
 		queryParams = new ArrayList<Object>();
 		where = new StringBuilder();

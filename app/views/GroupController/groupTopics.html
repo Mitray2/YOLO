@@ -68,8 +68,7 @@ function editDisabled(element){
 				#{/list}
 				</ul>
 				
-				#{group.reply topic:mainTopic, group:group, action:'/groupcontroller/addmsgtomaintopic', total: mainTopicMsgCount/}
-				
+				#{group.reply topic:mainTopic, group:group, count:mainTopicMsgCount, action:'/groupcontroller/addmsgtomaintopic'/}
 				<ul class="group-theme-dialog">
                 #{list items:mainTopic.msg, as:'msg'}
                		#{form @GroupController.editMainMsg()}

@@ -38,11 +38,12 @@ $(document).ready(function() {
 				</a>
 				<nav class="main-nav">
 					<ul>
-						<li><a href="/">Главная</a></li>
-						<li><a href="/news">Новости</a></li>
-						<li><a href="/about/">О проекте</a></li>
-						<li><a href="/contacts/">Контакты</a></li>
-						<li><a href="/partners/">Партнеры</a></li>
+<!-- 						<li><a href="/">Главная</a></li> -->
+<!-- 						<li><a href="/news">Новости</a></li> -->
+							<li><a href="@{CrowdController.consulting()}">Консалтинг</a></li>
+							<li><a href="@{CrowdController.funding()}">Финансирование</a></li>
+<!-- 						<li><a href="/contacts/">Контакты</a></li> -->
+<!-- 						<li><a href="/partners/">Партнеры</a></li> -->
 					</ul>
 				</nav>
                 <div class="logged clearFix">
@@ -135,6 +136,11 @@ $(document).ready(function() {
 								участника</a></li>
 						<li><a href="@{CommandsSearch.groupSearch()}">Найти
 								команду</a></li>
+								<li><a href="/">Главная</a></li>
+						<li><a href="/news">Новости</a></li>
+						<li><a href="/about/">О проекте</a></li>
+						<li><a href="/contacts/">Контакты</a></li>
+						<li><a href="/partners/">Партнеры</a></li>
 					</ul>
 				</nav>
 			</div>

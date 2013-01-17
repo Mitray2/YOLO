@@ -1,4 +1,66 @@
-\# You can specialize this file for each language.
+#MARKUP_MESSAGES
+page.main.content=<h1 class="main">StartNewTeam – is an innovative tool for communication and finding like-minded people for joint creation of a successful business.</h1>\
+                    <p>Do you have a desire, but something is missing for a creation of a successful business?</p>\
+                    <p>Perhaps, you don’t have experience, knowledge, great ideas, money or the right connections.</p>\
+                    <p>One man seldom has its all – to be successful you need a team.</p>
+page.main.content.try.head=Try StartNewTeam method!
+page.main.content.try.line1=Complete a simple test which will reveal your entrepreneurial abilities and propensities.
+page.main.content.try.line2=Find like-minded people which will fit into your team on the basis of the results of test.
+page.main.content.try.line3=Work together as a real team, using special features on StartNewTeam platform, and succeed.
+page.main.enter_name=Please enter your First name
+page.main.enter_address=email
+page.main.sex.male=male
+page.main.sex.female=female
+page.main.start_the_test=Start the test
+page.main.site.people_count=Lot's of motivated people
+page.main.site.team_count=Motivated teams
+page.about.text=<p>Technology and science are developing very fast; the world has become\
+   so complex that it is not possible to cover all aspects of it for one person. These \
+  conditions require complex ideas and for businesses, combining a set of knowledge and \
+  skills in different areas. These ideas can be developed and implemented only by effective \
+  business team, consisting of people which complement each other. Entrepreneur in the modern \
+  world, "Entrepreneur of the 2.0" –is not an stand-alone individual, but a well-organized team.</p>\
+                <p>\
+                    <strong>StartNewTeam</strong> &ndash; is a unique online platform for the\
+   development of business  ideas in a team format. It allows people from around the world to\
+   find like-minded people, create effective teams and implement business ideas.\
+                </p>\
+                <p>\
+                    <ul>\
+                        <span>The mechanics of StartNewTeam is very simple:</span>\
+                        <li><strong>1)</strong> Check your entrepreneurial skills, passing a special test.</li>\
+                        <li><strong>2)</strong> Develop effective teams on the basis of test results: join to existing teams, or create your own!</li>\
+                        <li><strong>3)</strong> Achieve success using specials tools for team-collaboration, feature by StartNewTeam.</li>\
+                    </ul>\
+                </p>\
+                <p>The project is open to all – anyone from around the world can join us for free!</p>
+page.test1.title=Hi, %s!<br />\
+                 Here is the first test which will determine your propensity for entrepreneurship.\
+                 We have prepared only two tests for you – it will not take long to pass both of them. \
+                 Please, don’t cheat yourself - answer honestly.
+page.test1.aim.title=
+page.test1.aim.text=
+page.test1.answer=Your answer
+page.test1.show_results=Show results
+link.registration=Регистрация<br /><span>это бесплатно</span>
+link.main=Main
+link.news=News
+link.about=About
+link.contacts=Contacts
+link.partners=Partners
+link.=
+
+page.common.rights=2012 All rights reserved. StartNewTeam
+
+popup.enter.title=
+popup.forgot_password=
+popup.enter_the_site=
+popup.email=
+popup.enter=
+popup.send_email=
+popup.password=
+
+# You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
 validation.required=Введите %s
@@ -65,3 +127,36 @@ play-paginate.summary.display=Displaying rows
 play-paginate.summary.to=to
 play-paginate.summary.from=out of
 play-paginate.summary.entries=entries
+
+#monthes
+monthName.January=January
+monthName.February=February
+monthName.March=March
+monthName.April=April
+monthName.May=May
+monthName.June=June
+monthName.July=July
+monthName.August=August
+monthName.September=September
+monthName.October=October
+monthName.November=November
+monthName.December=December
+
+#first test passed texts
+models.test.number1.result1=%s, your test result is %s points!\
+                            For instance you have limited entrepreneurial propensity. However, if you feel a desire to proceed – try and learn! Gather a team of similar people, jointly try out first on small business projects, gain experience and you will succeed.\
+                            Share your results in social networks - your friends might be interested to pass this test as well. Maybe you will even find your future business partners among them! You will never know unless you try.<br/>\
+                            Now we need to assess your key business skills, in order to gather future team in most effective way. The final test will help you with it.
+
+models.test.number1.result2=%s, your test result is <span class="rating">%s</span> points.\
+                            Definitely you have some entrepreneurial propensity, which can be quickly develop within practice. Gather a team of similar people, jointly try out first on small business projects, gain experience and you will succeed.\
+                            Share your results in social networks - your friends might be interested to pass this test as well. Maybe you will even find your future business partners among them! You will never know unless you try.<br/>\
+                            Now we need to assess your key business skills, in order to gather future team in most effective way. The final test will help you with it.
+models.test.number1.result3=Congratulations, %s, your test result is <span class="rating">%s</span> points!<br/>\
+                            You have big entrepreneurial propensity! You need to gather a team of like-minded people and start building a successful business.\
+                            Share your results in social networks - your friends might be interested to pass this test as well. Maybe you will even find your future business partners among them! You will never know unless you try.\
+                            Now we need to assess your key business skills, in order to gather future team in most effective way. The final test will help you with it.
+models.test.number1.result4=Congratulations, %s, your test result is <span class="rating">%s</span> points!<br/>\
+                            You have huge entrepreneurial propensity! You need to start gathering your business team as soon as possible and proceed to real business.\
+                            Share your results in social networks - your friends might be interested to pass this test as well. Maybe you will even find your future business partners among them! You will never know unless you try.<br/>\
+                            Now we need to assess your key business skills, in order to gather future team in most effective way. The final test will help you with it.
