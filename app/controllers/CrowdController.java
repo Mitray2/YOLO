@@ -18,12 +18,14 @@ import utils.SessionHelper;
 
 public class CrowdController extends Controller implements ApplicationConstants {
 
-	
-
 	public static void consulting() {
 		Query tQuery = JPA.em().createQuery("select t from CrowdConsulting t order by t.createDate desc");
+		tQuery.setMaxResults(10);
 		List<CrowdConsulting> crowdConsulting = tQuery.getResultList();
-		render(crowdConsulting);
+		Query tQueryCount = JPA.em().createQuery("select count(cf.id) from CrowdConsulting cf");
+		Integer messagesCount = ((Long) tQueryCount.getResultList().get(0)).intValue();
+		Boolean isAdmin = SessionHelper.getCurrentUser(session).role.equals(User.ROLE_ADMIN);
+		render(crowdConsulting, isAdmin, messagesCount);
 	}
 	
 	public static void addmsg(CrowdConsulting msg){
@@ -50,12 +52,27 @@ public class CrowdController extends Controller implements ApplicationConstants 
 		consulting();
 	}
 	
-	
+	public static void more(Integer page, int type) {
+		String entName = type == 1 ? "CrowdFunding" : "CrowdConsulting";
+		Query tQuery = JPA.em().createQuery("select t from " + entName + " t order by t.createDate desc");
+		tQuery.setMaxResults(10);
+		tQuery.setFirstResult(page * 10);
+		List<CrowdFunding> crowdMessages = tQuery.getResultList();
+		User user = SessionHelper.getCurrentUser(session);
+		Boolean isAdmin = user.role.equals(User.ROLE_ADMIN);
+		String removeAction = type == 1 ? "removemessagef" : "removemessage";
+		String editAction = type == 1 ? "editmsgf" : "editmsg";
+		render(crowdMessages, isAdmin, user, removeAction, editAction);
+	}
 	
 	public static void funding() {
 		Query tQuery = JPA.em().createQuery("select t from CrowdFunding t order by t.createDate desc");
+		tQuery.setMaxResults(10);
 		List<CrowdFunding> crowdFunding = tQuery.getResultList();
-		render(crowdFunding);
+		Query tQueryCount = JPA.em().createQuery("select count(cf.id) from CrowdFunding cf");
+		Integer messagesCount = ((Long) tQueryCount.getResultList().get(0)).intValue();
+		Boolean isAdmin = SessionHelper.getCurrentUser(session).role.equals(User.ROLE_ADMIN);
+		render(crowdFunding, messagesCount, isAdmin);
 	}
 	
 	public static void addmsgF(CrowdFunding msg){

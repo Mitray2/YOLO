@@ -5,9 +5,6 @@
 	#{extends 'main_info.html' /}
 #{/else}
 #{set title: StartNewTeam /}
-%{
-	long userId = utils.SessionHelper.getCurrentUser(session)?.id;
-%}
 <script type="text/javascript">
 function editEnabled(element){
 	$(element).parent().parent().parent().find('.msg').show(); 
@@ -21,32 +18,10 @@ function editDisabled(element){
 }
 </script>
 
-#{group.reply count:crowdConsulting?.size(), action:'/crowdcontroller/addmsg'/}
+#{group.reply count:messagesCount, action:'/crowdcontroller/addmsg'/}
 				
 <ul class="group-theme-dialog">
-	#{list crowdConsulting, as:'msg'}
-		#{form @CrowdController.editMsg()}
-			<input name="msg.id" value="${msg.id}" type="hidden">
-			<li>
-				#{avatar.avatar user:msg.from, cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
-				<div class="group-theme-dialog-name">
-					<a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${msg.createDate}
-					#{if (userId == msg.from.id) || (isAdmin)}
-						<span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">Редактировать сообщение</span></span>
-						<a href="@{CrowdController.removeMessage(msg.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить сообщение</span></span></a>
-					#{/if}
-				</div>
-				<pre class="msgRead">${msg.text}</pre>
-
-				<div style="display: none" class="msg">
-					<div class="group-theme-dialog-form">
-						<textarea name="msg.text" style="height: 20px" class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);">${msg.text} </textarea>
-						<button type="submit" class="group-theme-btn">Сохранить</button>
-						<button type="button" onclick="editDisabled(this);" class="group-theme-btn">Отменить</button>
-					</div>
-				</div>
-
-			</li>
-		#{/form}
-	#{/list}
+	#{crowd.messages removeAction:'removeMessage', editAction:'editMsg', crowdMessages:crowdConsulting, user:utils.SessionHelper.getCurrentUser(session), isAdmin:isAdmin /}
 </ul>
+
+#{crowd.pagination messagesCount:messagesCount, type:2/}
