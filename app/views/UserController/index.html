@@ -1,4 +1,4 @@
-#{extends 'main_templeate.html' /} #{set title:'Profile' /}
+#{extends 'main_templeate.html' /} #{set title: user.name + " " + user.lastName /}
 %{
 	boolean currentAdminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN;
 	boolean otherUser = utils.SessionHelper.getCurrentUser(session)?.id != user?.id;
