@@ -1,0 +1,27 @@
+               	#{list items:topicMessages, as:'msg'}
+               		<form action="/groupcontroller/${formAction}" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded"><input type="hidden" name="authenticityToken" value="f514e639954629f502f9e45550d4908345953bfb">
+	                <input name="msg.id" value="${msg.id}" type="hidden">
+					<input name="topicId" value="${mainTopicId}" type="hidden">
+					<input name="groupId" value="${groupId}" type="hidden">
+                	<li>
+                    	#{avatar.avatar user:msg.from, cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
+                        <div class="group-theme-dialog-name">
+                        	<a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${msg.createDate}
+                        	#{if (userId == msg.from.id || isAdmin)}
+                        		<span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">Редактировать сообщение</span></span>
+                        		<a href="/groupcontroller/${removeAction}?groupId=${groupId}&msgId=${msg.id}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить сообщение</span></span></a>
+                        	#{/if}
+                        </div>
+                        <pre class="msgRead">${msg.text}</pre>
+						
+						 <div style="display: none" class="msg">
+	                        <div class="group-theme-dialog-form">
+				            	<textarea name="msg.text" style="height: 20px" class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);">${msg.text} </textarea>
+				                <button type="submit" class="group-theme-btn">Сохранить</button>
+				                <button type="button" onclick="editDisabled(this);" class="group-theme-btn">Отменить</button>
+							</div>
+						</div>
+						
+                    </li>
+                    </form>
+                #{/list}

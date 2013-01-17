@@ -407,25 +407,18 @@ public class GroupController extends Controller implements ApplicationConstants 
 	}
 
 	public static void groupTopics(Long groupId) {
-		Command group = Command.findById(groupId);
-		Query tQuery = JPA.em().createQuery("select t from Topic t where t.groupId=" + groupId + " and t.publicTopic=" + false + " order by t.lastUpdateDate desc");
-		List<Topic> topics = tQuery.getResultList();
-		//Collections.sort(topics, TopicComparator.TOPIC_DATE_COMPARATOR);
-		Topic mainTopic = null;
-		for (Topic topic : topics) {
-			if (topic.mainTopic) {
-				mainTopic = topic;
-			}
-		}
-		Query query = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=" + mainTopic.id + " order by t.createDate desc");
-		List<TopicMessage> msgs = query.getResultList();
-		mainTopic.msg = msgs;
-		render(topics, group, mainTopic);
+		topics(groupId, false);
 	}
 	
 	public static void publicTopics(Long groupId) {
+		topics(groupId, true);
+	}
+
+	private static void topics(Long groupId, Boolean isPublic) {
 		Command group = Command.findById(groupId);
-		Query ptQuery = JPA.em().createQuery("select t from Topic t where t.groupId=" + groupId + " and t.publicTopic=" + true + " order by t.lastUpdateDate desc");
+		Query ptQuery = JPA.em().createQuery("select t from Topic t where t.groupId=? and t.publicTopic=? order by t.lastUpdateDate desc");
+		ptQuery.setParameter(1, groupId);
+		ptQuery.setParameter(2, isPublic);
 		List<Topic> topics = ptQuery.getResultList();
 		Topic mainTopic = null;
 		for (Topic topic : topics) {
@@ -433,10 +426,25 @@ public class GroupController extends Controller implements ApplicationConstants 
 				mainTopic = topic;
 			}
 		}
-		Query ptmQuery = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=" + mainTopic.id + " order by t.createDate desc");
+		Query ptmQuery = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=? order by t.createDate desc");
+		ptmQuery.setParameter(1, mainTopic.id);
+		ptmQuery.setMaxResults(10);
 		List<TopicMessage> msgs = ptmQuery.getResultList();
 		mainTopic.msg = msgs;
-		render(topics, group, mainTopic);
+		Query mainTopicMsgCountQuery = JPA.em().createQuery("select count(t.id) from TopicMessage t where t.topic.id = ?");
+		mainTopicMsgCountQuery.setParameter(1, mainTopic.id);
+		Integer mainTopicMsgCount = ((Long) mainTopicMsgCountQuery.getResultList().get(0)).intValue();
+		render(topics, group, mainTopic, mainTopicMsgCount);
+	}
+	
+	public static void loadMoreMessages(Long mainTopicId, Long groupId, String formAction, String removeAction) {
+		Query ptmQuery = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=? order by t.createDate desc");
+		ptmQuery.setParameter(1, mainTopicId);
+		ptmQuery.setFirstResult(10);
+		List<TopicMessage> topicMessages = ptmQuery.getResultList();
+		Long userId = SessionHelper.getCurrentUser(session).getId();
+		Boolean isAdmin = SessionHelper.getCurrentUser(session).role.equals(User.ROLE_ADMIN);
+		render(topicMessages, mainTopicId, userId, isAdmin, groupId, formAction, removeAction);
 	}
 
 	public static void groupUsers(Long groupId) {

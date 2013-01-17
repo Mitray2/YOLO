@@ -24,7 +24,7 @@ $(document).ready(function(){
 </style>
 
 <div class="answer-collapse">
-	<div class="group-theme-dialog-ttl-color">Всего ${_topic?.msg?.size()} записи</div>
+	<div class="group-theme-dialog-ttl-color">Всего ${_total} записи</div>
 	<ul class="group-theme-dialog-form">
 		<li>
 			<textarea onClick="writeEnabled(true);" placeholder="Написать ответ..." name="" cols="" rows="1"></textarea>
@@ -33,7 +33,7 @@ $(document).ready(function(){
 </div>
 
 <div class="answer-expand" style="display: none">
-	<div class="group-theme-dialog-ttl-color">Всего ${_topic?.msg?.size()} записи</div>
+	<div class="group-theme-dialog-ttl-color">Всего ${_total} записи</div>
 	<form action="${_action}" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded">
 	<input name="topicId" value="${_topic.id}" type="hidden"> 
            		<input name="groupId" value="${_group.id}" type="hidden">

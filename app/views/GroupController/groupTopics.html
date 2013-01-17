@@ -68,7 +68,7 @@ function editDisabled(element){
 				#{/list}
 				</ul>
 				
-				#{group.reply topic:mainTopic, group:group, action:'/groupcontroller/addmsgtomaintopic'/}
+				#{group.reply topic:mainTopic, group:group, action:'/groupcontroller/addmsgtomaintopic', total: mainTopicMsgCount/}
 				
 				<ul class="group-theme-dialog">
                 #{list items:mainTopic.msg, as:'msg'}
@@ -99,6 +99,7 @@ function editDisabled(element){
                     #{/form}
                 #{/list}
 				</ul>
+				#{group.loadMore formAction: 'editmainmsg', removeAction: 'removemainmessage', mainTopicMsgCount:mainTopicMsgCount, mainTopic:mainTopic, group:group/}
 
 
 

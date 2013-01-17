@@ -1,0 +1,19 @@
+#{if (_mainTopicMsgCount > 10)}
+	<a id="loadMore" href="" style="cursor: pointer;" onclick="loadMoreMessages(${_mainTopic.id}, ${_group.id}, '${_formAction}', '${_removeAction}'); return false;">main=${_mainTopic.id}</a>
+	<div id="searchLoader" class="cntr" style="display: none;">
+		<img src="/public/img/ajax-loader.gif">
+	</div>
+	<script>
+		function loadMoreMessages(mainTopicId, groupId, formAction, removeAction) {
+			$("#loadMore").hide();
+			$("#searchLoader").show();
+			$.ajax({
+				  url: "loadMoreMessages?mainTopicId=" + mainTopicId + "&groupId=" + groupId + "&formAction=" + formAction + "&removeAction=" + removeAction,
+				  cache: false
+				}).done(function( html ) {
+					$("#searchLoader").hide();
+					$(".group-theme-dialog").append(html);
+				});
+		}
+	</script>
+#{/if}

@@ -59,7 +59,7 @@ $(document).ready(function(){
                 
                 
                
-                <div class="group-theme-dialog-ttl">Всего ${topic?.msg?.size()} записи:</div>
+                <div class="group-theme-dialog-ttl">Всего ${mainTopicMsgCount} записи:</div>
                 <ul class="group-theme-dialog">
                 #{list items:topic.msg, as:'msg'}
                		#{form @GroupController.editMsg()}
@@ -88,4 +88,4 @@ $(document).ready(function(){
                 #{/list}
 				</ul>
 				
-				#{group.reply topic:topic, group:group, action:'/groupcontroller/addmsgtotopic'/}
+				#{group.reply topic:topic, group:group, action:'/groupcontroller/addmsgtotopic', total: mainTopicMsgCount/}
