@@ -53,6 +53,7 @@ $(document).ready(function() {
 	<div class="wrapper">
 		<header class="hdr-page">
 			<div class="inner">
+				#{lang.langSwitcher/}
 				<a href="/"><img src="@{'public/images/boilerplate/logo-1.png'}" alt="" class="logo" /></a>
 				#{if !currentUser}
                     #{form @LoginController.login(), id:'loginForm', class:'login_form'}
