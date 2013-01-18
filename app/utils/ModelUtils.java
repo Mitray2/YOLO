@@ -28,6 +28,9 @@ public class ModelUtils {
 			if(Lang.get().equals("ru")){
 				return word.replaceAll(ApplicationConstants.BLANKSPACE, ApplicationConstants.UNDERLINING);
 			}
+			if(Lang.get().equals("en")){
+				return word.replaceAll(ApplicationConstants.BLANKSPACE, ApplicationConstants.UNDERLINING);
+			}
 		}
 		return word;
 	}
