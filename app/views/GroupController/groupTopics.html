@@ -98,7 +98,7 @@ function editDisabled(element){
                     #{/form}
                 #{/list}
 				</ul>
-				#{group.loadMore formAction: 'editmainmsg', removeAction: 'removemainmessage', mainTopicMsgCount:mainTopicMsgCount, mainTopic:mainTopic, group:group/}
+				#{common.pagination messagesCount:mainTopicMsgCount, extraParams:'&formAction=editmainmsg&removeAction=removemainmessage&mainTopicId='+mainTopic.id+'&groupId='+group.id, type:0/}
 
 
 

@@ -438,10 +438,11 @@ public class GroupController extends Controller implements ApplicationConstants 
 		render(topics, group, mainTopic, mainTopicMsgCount);
 	}
 	
-	public static void loadMoreMessages(Long mainTopicId, Long groupId, String formAction, String removeAction) {
+	public static void more(Integer page, Long mainTopicId, Long groupId, String formAction, String removeAction) {
 		Query ptmQuery = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=? order by t.createDate desc");
 		ptmQuery.setParameter(1, mainTopicId);
-		ptmQuery.setFirstResult(10);
+		ptmQuery.setFirstResult(page * 10);
+		ptmQuery.setMaxResults(10);
 		List<TopicMessage> topicMessages = ptmQuery.getResultList();
 		Long userId = SessionHelper.getCurrentUser(session).getId();
 		Boolean isAdmin = SessionHelper.getCurrentUser(session).role.equals(User.ROLE_ADMIN);

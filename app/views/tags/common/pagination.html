@@ -1,0 +1,40 @@
+<div id="searchLoader" class="cntr" style="display: none;"><img src="/public/img/ajax-loader.gif"/></div>
+<script>
+var messagesCount = ${_messagesCount};
+var currentPage = 0;
+$(document).ready(function() {
+	if (messagesCount > 10) {
+		$("#searchLoader").show();
+		setTimeout(isPageBottom, 1000);
+	}
+});
+function loadMoreMessages() {
+	currentPage++;
+	$.ajax({
+		  url: "more?page=" + currentPage + "&type=${_type}${_extraParams.raw()}",
+		  cache: false
+		}).done(function( html ) {
+			$(".group-theme-dialog").append(html);
+			if ((currentPage + 1) * 10 >= messagesCount) {
+				$("#searchLoader").hide();				
+			} else {
+				setTimeout(isPageBottom, 1000);
+			}
+		});
+}
+function isPageBottom() {
+	var result = isScrolledIntoView($("#searchLoader")) || isScrolledIntoView($("footer"));
+    if (result) {
+    	loadMoreMessages();
+    } else {
+    	setTimeout(isPageBottom, 1000);
+    }
+};
+function isScrolledIntoView(elem) {
+    var docViewTop = $(window).scrollTop();
+    var docViewBottom = docViewTop + $(window).height();
+    var elemTop = elem.offset().top;
+    var elemBottom = elemTop + elem.height();
+    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom));
+}
+</script>
