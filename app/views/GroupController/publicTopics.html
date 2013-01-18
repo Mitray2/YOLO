@@ -14,11 +14,11 @@
 
 
 <div class="tabs clearFix">
-	<a href="@{GroupController.index(group.id)}" >Описание</a> <a href="@{GroupController.publicTopics(group.id)}"  class="act">Открытые обсуждения</a> 
+	<a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a> <a href="@{GroupController.publicTopics(group.id)}"  class="act">&{'page.team.public_discussion'}</a> 
 	#{if (groupMember) || (isAdmin)}
-		<a href="@{GroupController.groupTopics(group.id)}">Обсуждения</a> 
+		<a href="@{GroupController.groupTopics(group.id)}">&{'page.team.discussion'}</a> 
 	#{/if}
-	<a href="@{GroupController.groupUsers(group.id)}" >Участники</a>
+	<a href="@{GroupController.groupUsers(group.id)}" >&{'page.team.members'}</a>
 </div>
 
 <script type="text/javascript">

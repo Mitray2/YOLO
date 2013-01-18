@@ -12,7 +12,7 @@
 <h2>${group?.name}</h2>
 #{if currentGroupAdmin}
 				<div class="links">
-                	<a href="@{GroupController.editGroup(group.id)}">Редактировать описание</a>
+                	<a href="@{GroupController.editGroup(group.id)}">&{'page.team.head.edit'}</a>
                 </div>
 	#{/if}
 	<div class="group-shot-info">
@@ -31,96 +31,95 @@
 					<div class="group-shot-info-place">
 						<div>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(group?.country.name)} / ${group?.city}</div>
 						<div>
-							<span>Бизнес:</span> &{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(group.type?.name)} / &{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(group.sphere.name)}
+							<span>&{'page.team.head.business'}:</span> &{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(group.type?.name)} / &{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(group.sphere.name)}
 						</div>
 						<div>
-							<span>Стадия проекта:</span> &{'models.ProjectPhase.name.' + utils.ModelUtils.replaceSpacesForI18n(group.phase?.name)}
+							<span>&{'page.team.head.stage'}:</span> &{'models.ProjectPhase.name.' + utils.ModelUtils.replaceSpacesForI18n(group.phase?.name)}
 						</div>
 						<div>
-							<span>Языки:</span> #{if group.global} Да #{/if} #{else} Нет #{/else}
+							<span>&{'page.team.head.globality'}:</span> #{if group.global} &{'page.common.yes'} #{/if} #{else} &{'page.common.no'} #{/else}
 						</div>
 					</div>
 				</td>
 				<td>
 					<div class="group-shot-info-people">
-						<strong>${group?.users?.size()}</strong> участников
+						<strong>${group?.users?.size()}</strong> &{'page.team.head.members'}
 						#{if group?.isVacancy} 
 						<span class="tooltip">
-							<span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Требуются участники</span>
+							<span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.head.need_members'}</span>
 						</span>
 						#{/if}
 						<br/>
 						 
 						#{if adminGroup }
 							#{if !currentGroupMember}
-								<a	href="" onclick="return false;" title="Вы должны сначала передать права администратора участнику группы, прежде чем выйти и подать заявку на вступление в группу">Вступить в группу</a>
+								<a	href="" onclick="return false;" title="&{'page.team.head.submit_administrator'}">&{'page.team.head.add'}</a>
 							#{/if}
 						#{/if}
 						
 						#{if notInGroup && wasNotInviteToGroup} 
-							<a	href=""  onclick="$('.sendNotif').show(); return false;">Вступить в группу</a> 
+							<a	href=""  onclick="$('.sendNotif').show(); return false;">&{'page.team.head.add'}</a> 
 						#{/if} 
 						#{if !notInGroup && !currentGroupMember && !adminGroup}
-								<a href="" onclick="$('.joinGroup').show(); return false;">Вступить в группу</a>
+								<a href="" onclick="$('.joinGroup').show(); return false;">&{'page.team.head.add'}</a>
 								<div class="joinGroup"  style="display: none">
 								<div class="overlay"></div>
 								<div class="popup">
-								    	<h2>Вступить в команду</h2>
-								        <p>Вы уверены, что хотите выйти из своей команды и вступить в новую?</p>
-								        <a class="btn" href=""  onclick="$('.joinGroup').hide(); $('.sendNotif').show(); return false;">Да</a>
-								        <a href="" onclick="$('.joinGroup').hide(); return false;" class="cancel">Нет</a>
+								    	<h2>&{'page.team.head.add'}</h2>
+								        <p>&{'page.team.head.leave_team'}</p>
+								        <a class="btn" href=""  onclick="$('.joinGroup').hide(); $('.sendNotif').show(); return false;">&{'page.common.yes'}</a>
+								        <a href="" onclick="$('.joinGroup').hide(); return false;" class="cancel">&{'page.common.no'}</a>
 								</div>
 							</div>
 						#{/if}
 						<div class="sendNotif"  style="display: none">
 							<div class="overlay"></div>
 							<div class="popup">
-								<h2>Добавить в свою команду</h2>
+								<h2>&{'page.team.head.add_to_team'}</h2>
 								#{form @UserController.joinGroup()}
 								 <input name="groupId" value="${group.id}" type="hidden"> 
 								 <div class="profile-item clearFix popup-formtxt">
 								 	<textarea name="text" cols="30" rows="5" class="mt15"></textarea>
 								 </div>
-								 <input type="submit" value="Вступить">
-								 <a href=""  onclick="$('.sendNotif').hide(); return false;" class="cancel">Отмена</a>
+								 <input type="submit" value="&{'page.team.head.join'}">
+								 <a href=""  onclick="$('.sendNotif').hide(); return false;" class="cancel">&{'page.team.head.cancel'}</a>
 								#{/form}
 							</div>
 						</div>
-						#{if wasInviteToThisGroup} Ваша заявка на
-						вступление на рассмотрении у администратора 
+						#{if wasInviteToThisGroup} &{'page.team.head.requst_consideration'}
 						<a	href=""
-							onclick="$('.cancelJoinGroup').show(); return false">Отменить</a>
+							onclick="$('.cancelJoinGroup').show(); return false">&{'page.team.head.unsubscribe'}</a>
 							<div class="cancelJoinGroup"  style="display: none">
 								<div class="overlay"></div>
 								<div class="popup">
-								    	<h2>Отмена заявки</h2>
-								        <p>Вы уверены что хотите отменить заявку?</p>
-								        <a class="btn" href="@{UserController.cancelJoinGroup(group.id)}">Да</a>
-								        <a href="" onclick="$('.cancelJoinGroup').hide(); return false;" class="cancel">Нет</a>
+								    	<h2>&{'page.team.head.cancel_request'}</h2>
+								        <p>&{'page.team.head.cancel_sure'}</p>
+								        <a class="btn" href="@{UserController.cancelJoinGroup(group.id)}">&{'page.common.yes'}</a>
+								        <a href="" onclick="$('.cancelJoinGroup').hide(); return false;" class="cancel">&{'page.common.no'}</a>
 								</div>
 							</div>
 						#{/if}
 						#{if !currentGroupAdmin && currentGroupMember}
-							<a href="" onclick="$('.exitGroup').show();return false;">Выйти из группы</a>
+							<a href="" onclick="$('.exitGroup').show();return false;">&{'page.team.head.leave_team'}</a>
 							<div class="exitGroup"  style="display: none">
 								<div class="overlay"></div>
 								<div class="popup">
-								    	<h2>Выйти из команды</h2>
-								        <p>Вы уверены что хотите выйти из команды?</p>
-								        <a class="btn" href="@{UserController.exitGroup()}">Выйти</a>
-								        <a href="" onclick="$('.exitGroup').hide(); return false;" class="cancel">Отмена</a>
+								    	<h2>&{'page.team.head.leave_team'}</h2>
+								        <p>&{'page.team.head.leave_sure'}</p>
+								        <a class="btn" href="@{UserController.exitGroup()}">&{'page.team.head.leave'}</a>
+								        <a href="" onclick="$('.exitGroup').hide(); return false;" class="cancel">&{'page.team.head.cancel'}</a>
 								</div>
 							</div>
 						#{/if}
 						#{if (group?.users?.size() == 1) && currentGroupAdmin && (group?.usersForAprove?.isEmpty())}
-							<a href="" onclick="$('.removeGroup').show(); return false;">Удалить команду!</a>
+							<a href="" onclick="$('.removeGroup').show(); return false;">&{'page.team.head.remove_team'}!</a>
 							<div class="removeGroup"  style="display: none">
 								<div class="overlay"></div>
 								<div class="popup">
-								    	<h2>Удалить команду</h2>
-								        <p>Вы уверены что хотите удалить вашу команду?</p>
-								        <a class="btn" href="@{GroupController.removeGroup(group.id)}">Удалить</a>
-								        <a href="" onclick="$('.removeGroup').hide(); return false;" class="cancel">Отмена</a>
+								    	<h2>&{'page.team.head.remove_team'}</h2>
+								        <p>&{'page.team.head.remove_sure'}</p>
+								        <a class="btn" href="@{GroupController.removeGroup(group.id)}">&{'page.team.head.remove'}</a>
+								        <a href="" onclick="$('.removeGroup').hide(); return false;" class="cancel">&{'page.team.head.cancel'}</a>
 								</div>
 							</div>
 						#{/if}

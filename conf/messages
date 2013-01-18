@@ -50,7 +50,90 @@ link.contacts=Contacts
 link.partners=Partners
 link.=
 
+page.create.team.create=Create a team
+page.create.team.head=Tell briefly about your idea or a project. Don't be afraid to share - it will help you to gather a team as soon as possible and start the real action.
+page.create.team.characteristics=Team characteristics
+page.create.team.name=Project name
+page.create.team.type_business=Type of business
+page.create.team.sphere=Sphere
+page.create.team.stage=Stage of the project
+page.create.team.globality=Globality
+page.create.team.need_members=We need team members
+page.create.team.project_desc=Description of Project
+page.create.team.need_prof_skills=Need in professionals with a experience in
+page.create.team.marketing_advertising=Marketing/advertising
+page.create.team.desc_experience=Describe an experience
+page.create.team.management_experience=Management
+page.create.team.sales_experience=Sales/Negotiations
+page.create.team.finance_experience=Finance
+page.create.team.law_experience=Law
+page.create.team.it_experience=IT
+page.create.team.others_experience=Others
+page.create.team.idealism_experience=Idealism
+page.create.team.communications_experience=Communications
+page.create.team.pragmatism_experience=Pragmatism
+page.create.team.save=Save changes
+
+
+page.edit.team.create_date=Create Date
+page.edit.team.count_members=Number of members
+page.edit.team.admin_team=Team administrator
+page.edit.team.team_desc=Team description
+page.edit.team.businessman=Enterpreneurship
+page.edit.team.idealist=Idealism
+page.edit.team.communicant=Communicative skills
+page.edit.team.pragmatist=Pragmatism
+page.edit.team.res_basis=* on the basis of the results of team members
+
+
+
+
+
+page.team.head.edit=Edit team
+page.team.head.business=Business
+page.team.head.stage=Stage of the project
+page.team.head.globality=Globality
+page.team.head.members=members
+page.team.head.need_members=We need team members
+page.team.head.submit_administrator=You must first ubmit an administrator of the group, before going out and apply for membership in the group
+page.team.head.add=Add to the team
+page.team.head.leave_team=Are you sure you want to leave team and join the new one?
+page.team.head.add_to_team=Add to my team
+page.team.head.join=Join
+page.team.head.cancel=Cancel
+page.team.head.requst_consideration=Your request for membership under consideration the administrator
+page.team.head.unsubscribe=Unsubscribe
+page.team.head.cancel_request=Cancel request
+page.team.head.cancel_sure=Are you sure want to cancel request?
+page.team.head.leave_team=Leave the team
+page.team.head.leave_sure=Are you sure want to leave the team?
+page.team.head.leave=Leave
+page.team.head.remove_team=Remove team
+page.team.head.remove_sure=Are you sure want to remove the team?
+page.team.head.remove=Remove
+
+
+page.team.members.members_size=Total %s members
+page.team.members.age=Age
+page.team.members.assign_admin=Assign an administrator role
+page.team.members.remove_from_team=Remove from team
+page.team.members.assign_sure1=Are you sure you want to assign the user
+page.team.members.assign_sure2=as administrator of your team?
+page.team.members.assign=Assign
+page.team.members.remove_sure1=Are you sure you want to remove the user
+page.team.members.remove_sure2= from your team?
+
+page.team.description=Description
+page.team.discussion=Discussion
+page.team.public_discussion=Public discussion
+page.team.members=Team members
+
 page.common.rights=2012 All rights reserved. StartNewTeam
+page.common.yes=Yes
+page.common.no=No
+page.common.country=Country
+page.common.city=City
+
 
 popup.enter.title=
 popup.forgot_password=
@@ -188,9 +271,9 @@ models.userLevel.userLevel.Brief_Experience=Brief Experience
 models.userLevel.userLevel.Considerable_Experience=Considerable Experience
 
 #project phases\
-models.ProjectPhase.name.start=Start
+models.ProjectPhase.name.start=Idea stage
 models.ProjectPhase.name.planning=Planning
-models.ProjectPhase.name.developing=Developing
+models.ProjectPhase.name.developing=Development
 
 
 

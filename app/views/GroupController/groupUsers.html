@@ -10,17 +10,19 @@
  	boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
 %}
 
-#{if currentGroupAdmin}
+
 
 <div class="tabs clearFix">
-	<a href="@{GroupController.index(group.id)}" >Описание</a>
-	<a href="@{GroupController.publicTopics(group.id)}">Открытые обсуждения</a>
+	<a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a>
+	<a href="@{GroupController.publicTopics(group.id)}">&{'page.team.public_discussion'}</a>
 	#{if (groupMember) || (isAdmin)}
-		<a href="@{GroupController.groupTopics(group.id)}">Обсуждения</a> 
+		<a href="@{GroupController.groupTopics(group.id)}">&{'page.team.discussion'}</a> 
 	#{/if} 
-	<a href="@{GroupController.groupUsers(group.id)}" class="act">Участники</a>
+	<a href="@{GroupController.groupUsers(group.id)}" class="act">&{'page.team.members'}</a>
 </div>
-	<div class="ttl-search-result2">Всего ${users?.size()} участников</div>
+
+#{if currentGroupAdmin}
+	<div class="ttl-search-result2">&{'page.team.members.members_size', users?.size()}</div>
 	<ul class="search-result-list">
 	#{list items:users, as:'user'}
 		<li class="search-result-item">
@@ -29,35 +31,35 @@
 			</a>
 			<div class="list-cont">
 				<div class="search-profile-info">
-					<h4 class="search-profile-name"><img src="@{'public/images/boilerplate/ico-man-big.png'}" alt=""><a href="@{UserController.index(user?.id)}">${user.name + " " + user.lastName}</a><span>${user.age} лет</span></h4>
+					<h4 class="search-profile-name"><img src="@{'public/images/boilerplate/ico-man-big.png'}" alt=""><a href="@{UserController.index(user?.id)}">${user.name + " " + user.lastName}</a><span>&{'page.team.members.age'} ${user.age}</span></h4>
 					<p>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.country?.name)} / ${user.city}</p>
 				</div>
 				<ul class="search-profile-test">
-					<li><span>${user.businessman}</span> &mdash; Предпринимательство</li>
-					<li><span>${user.idealist}</span> &mdash; Идеализм</li>
-					<li><span>${user.communicant}</span> &mdash; Комуникабельность</li>
-					<li><span>${user.pragmatist}</span> &mdash; Прагматика</li>
+					<li><span>${user.businessman}</span> &mdash; &{'page.edit.team.businessman'}</li>
+					<li><span>${user.idealist}</span> &mdash; &{'page.edit.team.idealist'}</li>
+					<li><span>${user.communicant}</span> &mdash; &{'page.edit.team.communicant'}</li>
+					<li><span>${user.pragmatist}</span> &mdash; &{'page.edit.team.pragmatist'}</li>
 					#{if currentGroupAdmin && (user.role != models.User.ROLE_GROUP_ADMIN)}
 					<div class="search-profile-links">
-					<a href="" onclick="$('.transferRights${user.id}').show(); return false;">Назначить администратором</a>
-					<a href="" onclick="$('.remove${user.id}').show(); return false;">Удалить из группы</a>
+					<a href="" onclick="$('.transferRights${user.id}').show(); return false;">&{'page.team.members.assign_admin'}</a>
+					<a href="" onclick="$('.remove${user.id}').show(); return false;">&{'page.team.members.remove_from_team'}</a>
 					</div>
 					<div class="transferRights${user.id}"  style="display: none">
 						<div class="overlay"></div>
 						<div class="popup">
-						    	<h2>Передать права</h2>
-						        <p>Вы уверены что хотите назначить пользователя <a href="@{UserController.index(user.id)}">${user.name} ${user.lastName}</a> администратором вашей команды?</p>
-						        <a class="btn" href="@{GroupController.makeAdmin(user?.id)}">Назначить</a>
-						        <a href="" onclick="$('.transferRights${user.id}').hide(); return false;" class="cancel">Отмена</a>
+						    	<h2>&{'page.team.members.assign_admin'}</h2>
+						        <p>&{'page.team.members.assign_sure1'} <a href="@{UserController.index(user.id)}">${user.name} ${user.lastName}</a> &{'page.team.members.assign_sure2'}</p>
+						        <a class="btn" href="@{GroupController.makeAdmin(user?.id)}">&{'page.team.members.assign'}</a>
+						        <a href="" onclick="$('.transferRights${user.id}').hide(); return false;" class="cancel">&{'page.team.head.cancel'}</a>
 						</div>
 					</div>
 					<div class="remove${user.id}"  style="display: none">
 						<div class="overlay"></div>
 						<div class="popup">
-						    	<h2>Удалить из группы</h2>
-						        <p>Вы уверены что хотите удалить пользователя <a href="@{UserController.index(user.id)}">${user.name} ${user.lastName}</a> из вашей команды?</p>
-						        <a class="btn" href="@{GroupController.removeUser(user?.id)}">Удалить</a>
-						        <a href="" onclick="$('.remove${user.id}').hide(); return false;" class="cancel">Отмена</a>
+						    	<h2>&{'page.team.members.remove_from_team'}</h2>
+						        <p>&{'page.team.members.remove_sure1'} <a href="@{UserController.index(user.id)}">${user.name} ${user.lastName}</a> &{'page.team.members.remove_sure2'}</p>
+						        <a class="btn" href="@{GroupController.removeUser(user?.id)}">&{'page.team.head.remove'}</a>
+						        <a href="" onclick="$('.remove${user.id}').hide(); return false;" class="cancel">&{'page.team.head.cancel'}</a>
 						</div>
 					</div>
 					#{/if}
@@ -72,11 +74,8 @@
 #{/if}
 #{else}
 
-<div class="tabs clearFix">
-	<a href="@{GroupController.index(group.id)}" >Описание</a> <a href="@{GroupController.groupTopics(group.id)}">Обсуждения</a> <a
-		href="@{GroupController.groupUsers(group.id)}" class="act">Участники</a>
-</div>
-	<div class="ttl-search-result2">Всего ${users?.size()} участников</div>
+
+	<div class="ttl-search-result2">&{'page.team.members.members_size', users?.size()}</div>
 	<ul class="search-result-list">
 	#{list items:users, as:'user'}
 		<li class="search-result-item">
@@ -85,14 +84,14 @@
 			</a>
 			<div class="list-cont">
 				<div class="search-profile-info">
-					<h4 class="search-profile-name"><img src="@{'public/images/boilerplate/ico-man-big.png'}" alt=""><a href="@{UserController.index(user?.id)}">${user.name + " " + user.lastName}</a><span>${user.age} лет</span></h4>
+					<h4 class="search-profile-name"><img src="@{'public/images/boilerplate/ico-man-big.png'}" alt=""><a href="@{UserController.index(user?.id)}">${user.name + " " + user.lastName}</a><span>&{'page.team.members.age'} ${user.age}</span></h4>
 					<p>${user?.country?.name} / ${user.city}</p>
 				</div>
 				<ul class="search-profile-test">
-					<li><span>${user.businessman}</span> &mdash; Предпринимательство</li>
-					<li><span>${user.idealist}</span> &mdash; Идеализм</li>
-					<li><span>${user.communicant}</span> &mdash; Комуникабельность</li>
-					<li><span>${user.pragmatist}</span> &mdash; Прагматика</li>
+					<li><span>${user.businessman}</span> &mdash; &{'page.edit.team.businessman'}</li>
+					<li><span>${user.idealist}</span> &mdash; &{'page.edit.team.idealist'}</li>
+					<li><span>${user.communicant}</span> &mdash; &{'page.edit.team.communicant'}</li>
+					<li><span>${user.pragmatist}</span> &mdash; &{'page.edit.team.pragmatist'}</li>
 				</ul>
 			</div>
 		</li>

@@ -57,7 +57,98 @@ link.contacts=Контакты
 link.partners=Партнеры
 link.=
 
+
+
+
+page.create.team.create=Создать команду
+page.create.team.head=Расскажи о своей идее или проекте как можно больше подробностей, чтобы найти подходящих единомышленников в минимальные сроки. Больше информации – короче путь к успеху.
+page.create.team.characteristics=Характеристики команды
+page.create.team.name=Название проекта
+page.create.team.type_business=Тип бизнеса
+page.create.team.sphere=Сфера
+page.create.team.stage=Стадия проекта
+page.create.team.globality=Глобальность
+page.create.team.need_members=Требуются участники
+page.create.team.project_desc=Описание проекта
+page.create.team.need_prof_skills=Потребность в участниках
+page.create.team.marketing_advertising=Опыт в маркетинге/рекламе
+page.create.team.desc_experience=Какой опыт вам необходим в команду
+page.create.team.management_experience=Опыт в менеджменте
+page.create.team.sales_experience=Продажи\Переговоры
+page.create.team.finance_experience=Финансы
+page.create.team.law_experience=Право
+page.create.team.it_experience=Программирование
+page.create.team.others_experience=Другое
+page.create.team.idealism_experience=Идеализм
+page.create.team.communications_experience=Комуникабельность
+page.create.team.pragmatism_experience=Прагматизм
+page.create.team.save=Сохранить изменения
+
+
+
+page.edit.team.create_date=Дата создания
+page.edit.team.count_members=Количество участников
+page.edit.team.admin_team=Администратор
+page.edit.team.team_desc=Описание команды
+page.edit.team.businessman=Предпринимательство
+page.edit.team.idealist=Идеализм
+page.edit.team.communicant=Комуникабельность
+page.edit.team.pragmatist=Прагматика
+page.edit.team.res_basis=* на основе данных об участниках команды
+
+
+
+page.team.head.edit=Редактировать описание
+page.team.head.business=Бизнес
+page.team.head.stage=Стадия проекта
+page.team.head.globality=Глобальность
+page.team.head.members=участников
+page.team.head.need_members=Требуются участники
+page.team.head.submit_administrator=Вы должны сначала передать права администратора участнику группы, прежде чем выйти и подать заявку на вступление в группу
+page.team.head.add=Вступить в группу
+page.team.head.leave_team=Вы уверены, что хотите выйти из своей команды и вступить в новую?
+page.team.head.add_to_team=Добавить в свою команду
+page.team.head.join=Вступить
+page.team.head.cancel=Отмена
+page.team.head.requst_consideration=Ваша заявка на вступление на рассмотрении у администратора 
+page.team.head.unsubscribe=Отменить
+page.team.head.cancel_request=Отмена заявки
+page.team.head.cancel_sure=Вы уверены что хотите отменить заявку?
+page.team.head.leave_team=Выйти из команды
+page.team.head.leave_sure=Вы уверены что хотите выйти из команды?
+page.team.head.leave=Выйти
+page.team.head.remove_team=Удалить команду
+page.team.head.remove_sure=Вы уверены что хотите удалить вашу команду?
+page.team.head.remove=Удалить
+
+
+page.team.members.members_size=Всего %s участников
+page.team.members.age=Возраст
+page.team.members.assign_admin=Назначить администратором
+page.team.members.remove_from_team=Удалить из команды
+page.team.members.assign_sure1=Вы уверены что хотите назначить пользователя
+page.team.members.assign_sure2=администратором вашей команды?
+page.team.members.assign=Назначить
+page.team.members.remove_sure1=Вы уверены что хотите удалить пользователя 
+page.team.members.remove_sure2= из вашей команды?
+
+
+
+page.team.description=Описание
+page.team.discussion=Обсуждения
+page.team.public_discussion=Открытые обсуждения
+page.team.members=Участники
+
+
+
 page.common.rights=2012 All rights reserved. StartNewTeam
+page.common.yes=Да
+page.common.no=Нет
+page.common.country=Страна
+page.common.city=Город
+
+
+
 
 popup.enter.title=Вход в систему
 popup.forgot_password=Забыли пароль?

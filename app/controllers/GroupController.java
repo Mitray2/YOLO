@@ -128,6 +128,7 @@ public class GroupController extends Controller implements ApplicationConstants 
 		User user = User.findById(currentUser.id);
 
 		Command command = new Command();
+		command.global = group.global;
 		command.name = group.name;
 		command.city = group.city;
 		group.country = Country.findById(group.country.id);
