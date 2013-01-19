@@ -173,6 +173,16 @@ page.team.discuss.edit_msg=Edit message
 page.team.discuss.del_msg=Delete message
 page.team.discuss.save=Save
 page.team.discuss.cancel=Cancel
+page.team.discuss.total_msgs=Total: %s messages
+page.team.discuss.latest_from=Latest from
+page.team.discuss.discussion=Go to discussion
+page.team.discuss.show_all=Show all
+page.team.discuss.total_msgs_in=Total: %s messages
+page.team.discuss.send_msg=Send a message...
+page.team.discuss.send=Send
+page.team.discuss.to_list=List of all discussions
+page.team.discuss.created_by=Created by
+
 
 
 page.profile.age=Age
@@ -327,8 +337,8 @@ crud.help.range=Between %d and %d
 #play-paginate.name=play-paginate
 
 play-paginate.first=&laquo;&nbsp;First
-play-paginate.prev=&lsaquo;&nbsp;Previous
-play-paginate.next=Next&nbsp;&rsaquo;
+play-paginate.prev=Previous
+play-paginate.next=Next
 play-paginate.last=Last&nbsp;&raquo;
 
 play-paginate.summary.display=Displaying rows

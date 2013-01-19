@@ -23,7 +23,7 @@ String __lastURL = __hasNext ? _items.getCallbackURL(__maxPage) : "#";
 %}
 	 <div class="pages">
 	 	#{if __hasPrev}
-			<a class="prev" href="${__prevURL}">Предыдущая</a>
+			<a class="prev" href="${__prevURL}">&{'play-paginate.prev'}</a>
 		#{/if}
 		<div>
 %{
@@ -44,6 +44,6 @@ boolean __active = __currentPage == __idx;
 
 </div>
 	 	#{if __hasNext}
-			<a class="next" href="${__nextURL}">Следующая</a>
+			<a class="next" href="${__nextURL}">&{'play-paginate.next'}</a>
 		#{/if}
 	</div>

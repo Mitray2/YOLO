@@ -171,8 +171,22 @@ page.team.create.topic.create_topic=Создать тему
 page.team.discuss.create_team=Создать новую тему
 page.team.discuss.count_topics=В группе %s темы
 page.team.discuss.edit_disc=Редактировать тему
+page.team.discuss.del_disc=Удалить тему
+page.team.discuss.edit_msg=Редактировать сообщение
+page.team.discuss.del_msg=Удалить сообщение
 page.team.discuss.save=Сохранить
 page.team.discuss.cancel=Отменить
+page.team.discuss.total_msgs=%s ответов
+page.team.discuss.latest_from=Последнее от
+page.team.discuss.discussion=Перейти к обсуждению
+page.team.discuss.show_all=Показать все
+page.team.discuss.total_msgs_in=Всего %s записей
+page.team.discuss.send_msg=Написать ответ...
+page.team.discuss.send=Отправить
+page.team.discuss.to_list=К списку всех тем
+page.team.discuss.created_by=Создана
+
+
 
 page.team.description=Описание
 page.team.discussion=Обсуждения
@@ -228,9 +242,6 @@ page.profile.current.proff_skills=Профессиональные навыки
 page.profile.current.business=Интересующий тип бизнеса
 page.profile.current.sphere=Интересующая сфера бизнеса
 page.profile.current.en_skill=Знание английского
-page.profile.current.business=Type of business I'm interested in
-page.profile.current.sphere=Sphere of business I'm interested in
-page.profile.current.en_skill=Knowledge of English
 page.profile.current.exp_marketing=Опыт в маркетинге/рекламе 
 page.profile.current.exp_sales=Опыт в продажах 
 page.profile.current.exp_management=Опыт в менеджменте
@@ -259,6 +270,10 @@ page.common.no=Нет
 page.common.country=Страна
 page.common.city=Город
 page.common.social.vk=Вконтакте
+
+play-paginate.prev=Предыдущая
+play-paginate.next=Следующая
+
 
 
 

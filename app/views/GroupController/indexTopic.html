@@ -12,14 +12,14 @@
 %}
 
 <div class="tabs clearFix">
-	<a href="@{GroupController.index(group.id)}" >Описание</a> 
+	<a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a> 
 	
-		<a href="@{GroupController.publicTopics(group.id)}" #{if topic.publicTopic}  class="act" #{/if}>Открытые обсуждения</a> 
+		<a href="@{GroupController.publicTopics(group.id)}" #{if topic.publicTopic}  class="act" #{/if}>&{'page.team.public_discussion'}</a> 
 	
 	#{if (groupMember) || (isAdmin)}
-		<a href="@{GroupController.groupTopics(group.id)}" #{if !topic.publicTopic}  class="act" #{/if}>Обсуждения</a> 
+		<a href="@{GroupController.groupTopics(group.id)}" #{if !topic.publicTopic}  class="act" #{/if}>&{'page.team.discussion'}</a> 
 	#{/if} 
-	<a href="@{GroupController.groupUsers(group.id)}" >Участники</a>
+	<a href="@{GroupController.groupUsers(group.id)}" >&{'page.team.members'}</a>
 </div>
 <script type="text/javascript">
 function editEnabled(element){
@@ -40,21 +40,21 @@ $(document).ready(function(){
 
 
 			#{if topic.publicTopic}
-				<a href="@{GroupController.publicTopics(group.id)}" class="back"><span>&#8592;&nbsp;</span> К списку всех тем</a>
+				<a href="@{GroupController.publicTopics(group.id)}" class="back"><span>&#8592;&nbsp;</span> &{'page.team.discuss.to_list'}</a>
 			#{/if}
 			#{else}
-                <a href="@{GroupController.groupTopics(group.id)}" class="back"><span>&#8592;&nbsp;</span> К списку всех тем</a>
+                <a href="@{GroupController.groupTopics(group.id)}" class="back"><span>&#8592;&nbsp;</span> &{'page.team.discuss.to_list'}</a>
             #{/else}
                 #{if (userId == topic.createdUserId) || (isAdmin)}
                 <div style="float: right">
-                 <a href="@{GroupController.editTopic(topic.id)}"><span class="theme-edit"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Редактировать тему</span></span></a>
-                            <a href="@{GroupController.removeTopic(topic.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить тему</span></span></a>
+                 <a href="@{GroupController.editTopic(topic.id)}"><span class="theme-edit"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.edit_disc'}</span></span></a>
+                            <a href="@{GroupController.removeTopic(topic.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_disc'}</span></span></a>
                 </div>
                 #{/if}
                   <div class="group-theme clearFix">
                     <h2>${topic.name}
                     <br/>
-					<span class="theme_description">Создана ${topic.createdUserName} ${topic.createdUserLastName}, ${utils.DateUtils.getFormatedStringDate(topic.createdDateTime, true)}</span>
+					<span class="theme_description">&{'page.team.discuss.created_by'} ${topic.createdUserName} ${topic.createdUserLastName}, ${utils.DateUtils.getFormatedStringDate(topic.createdDateTime, true)}</span>
 					</h2>
 					<div class="theme_description_l">
 						#{avatar.avatar user:models.User.findById(topic.createdUserId), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}<br />
@@ -65,7 +65,7 @@ $(document).ready(function(){
                 
                 
                
-                <div class="group-theme-dialog-ttl">Всего ${topicMessagesCount} записи:</div>
+                <div class="group-theme-dialog-ttl">&{'page.team.discuss.total_msgs_in',topicMessagesCount}</div>
                 <ul class="group-theme-dialog">
                 #{paginate.list items:topicMessages, as:'msg'}
                		#{form @GroupController.editMsg()}
@@ -77,16 +77,16 @@ $(document).ready(function(){
                         <div class="group-theme-dialog-name">
                         	<a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${msg.createDate}
                         	#{if (userId == msg.from.id) || (isAdmin)}
-                        		<span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">Редактировать сообщение</span></span>
-                        		<a href="@{GroupController.removeMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить сообщение</span></span></a>
+                        		<span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
+                        		<a href="@{GroupController.removeMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
                         	#{/if}
                         </div>
                         <pre class="msgRead">${msg.text}</pre>
                         <div style="display: none" class="msg">
 	                        <div class="group-theme-dialog-form">
 				            	<textarea name="msg.text" style="height: 20px" class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);">${msg.text} </textarea>
-				                <button type="submit" class="group-theme-btn">Сохранить</button>
-				                <button type="button" onclick="editDisabled(this);" class="group-theme-btn">Отменить</button>
+				                <button type="submit" class="group-theme-btn">&{'page.team.discuss.save'}</button>
+				                <button type="button" onclick="editDisabled(this);" class="group-theme-btn">&{'page.team.discuss.cancel'}</button>
 							</div>
 						</div>
                     </li>

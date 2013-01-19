@@ -24,24 +24,24 @@ $(document).ready(function(){
 </style>
 
 <div class="answer-collapse">
-	<div class="group-theme-dialog-ttl-color">Всего ${_count} записи</div>
+	<div class="group-theme-dialog-ttl-color">&{'page.team.discuss.total_msgs_in',_count}</div>
 	<ul class="group-theme-dialog-form">
 		<li>
-			<textarea onClick="writeEnabled(true);" placeholder="Написать ответ..." name="" cols="" rows="1"></textarea>
+			<textarea onClick="writeEnabled(true);" placeholder="&{'page.team.discuss.send_msg'}" name="" cols="" rows="1"></textarea>
 		</li>
 	</ul>
 </div>
 
 <div class="answer-expand" style="display: none">
-	<div class="group-theme-dialog-ttl-color">Всего ${_count} записи</div>
+	<div class="group-theme-dialog-ttl-color">&{'page.team.discuss.total_msgs_in',_count}</div>
 	<form action="${_action}" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded">
 	<input name="topicId" value="${_topic?.id}" type="hidden"> 
            		<input name="groupId" value="${_group?.id}" type="hidden">
 	<ul class="group-theme-dialog-form">
 		<li>
 			#{avatar.avatar user:utils.SessionHelper.getCurrentUser(session), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
-			<textarea class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);" placeholder="Написать ответ..." name="msg.text" cols="" rows="2"></textarea>
-			<button type="submit" class="group-theme-btn">Отправить</button>
+			<textarea class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);" placeholder="&{'page.team.discuss.send_msg'}" name="msg.text" cols="" rows="2"></textarea>
+			<button type="submit" class="group-theme-btn">&{'page.team.discuss.send'}</button>
 		</li>
 	</ul>
 	</form>
