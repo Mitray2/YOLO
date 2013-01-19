@@ -5,7 +5,6 @@
 	<title>#{get 'title'}#{/}</title>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 	<script src="@{'public/javascripts/jquery.add.min.js'}"></script>
-	<script src="@{'/public/javascripts/controllers/Common.js'}" type="text/javascript" charset="utf-8"></script>
 	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/stl.css'}" />
 	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/custom_stl.css'}" />
 	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/content.css'}" />
@@ -50,30 +49,8 @@
 		<header class="hdr-page">
 			<div class="inner">
 				#{lang.langSwitcher/}
-                #{if !currentUser}
-                <a href="/"><img src="@{'public/images/boilerplate/logo-1.png'}" alt="" class="logo" /></a>
-                    #{form @LoginController.login(), id:'loginForm', class:'login_form'}
-                    
-                        <table cellspacing="0">
-                            <tbody>
-                            <tr>
-                                <td><label for="text">Логин</label></td>
-                                <td><label for="password">Пароль</label></td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="loginEmail" id="text" autofocus="autofocus"/></td>
-                                <td><input type="password" name="loginPassword" id="password" /></td>
-                            </tr>
-                            <tr>
-                                <td><a href="@{LoginController.register()}" >Регистрация</a></td>
-                                <td><a href="" onClick="$('#popup-enter').fadeIn(1000); $('#overlay').fadeIn(1000);$('#popup-enter-ttl').html('Восстановление пароля');$('#enterForm').hide();$('#recoverEmailForm').show(); return false;">Забыли пароль?</a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    #{/form}
-                    <a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">Войти</a>
-                #{/if}
-                </div>
+                #{common.loginForm /}
+            </div>
                 
                 #{if currentUser}
 			<div class="inner">
@@ -178,22 +155,6 @@
 		</div>
 	</div>
 	#{common.footer/}
-	<div id="overlay" class="overlay"></div>
-	<div id="popup-enter" class="popup-enter">
-		<a href="" id="close" class="close"><img src="@{'/public/images/boilerplate/popup-close.gif'}" alt=""></a>
-    	<div class="popup-enter-ttl" id="popup-enter-ttl">Вход в систему</div>
-    		#{form @LoginController.login(), id:'enterForm'}
-	        	<input type="text" name="loginEmail" id="" placeholder="Электронная почта"> 
-				<input type="password" name="loginPassword" id="" placeholder="Пароль для входа">
-				<a href="#" id="forget-password" class="forget-password">Забыли пароль?</a>
-	            <button class="enter-btn" onclick="this.form.submit();">Войти на сайт</button>
-	        #{/form}
-	        #{form @LoginController.recoverPassword(), id:'recoverEmailForm'}
-	        	<input type="text" name="recoverEmail" placeholder="Электронная почта"> 
-				<a href="#" id="showEnterForm" class="forget-password">Войти</a>
-	            <button class="enter-btn" onclick="this.form.submit();">Отправить письмо</button>
-	        #{/form}
-    </div>
     #{userPopup/}
 </body>
 </html>
