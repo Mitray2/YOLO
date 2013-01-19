@@ -10,14 +10,14 @@
 	}
 -->
 </style>
-<h1>Вы прошли первый тест! Последний рывок перед регистрацией</h1>
+<h1>&{'page.test2.head'}</h1>
 #{form @LoginController.secondTestPassed()}
 	<div class="test">
 		#{list items:test.questions, as:'question'}
 			<div class="test-item">
 				#{if question_isFirst}
 					<div class="help">
-						<h3>Как проходить тест</h3>
+						<h3>&{'page.test2.aim.title'}</h3>
 						<p>&{'page.test2.aim.text'}</p>
 					</div>
 				#{ifErrors}

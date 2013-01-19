@@ -20,17 +20,6 @@
 }%
 $(document).ready(function() {
 	$('input[placeholder], textarea[placeholder]').placeholder();
-
-	#{if currentValidation?.hasError('recoverEmail')}
-		$('#enterForm').hide();
-		$('#recoverEmailForm').show();
-		$('#overlay').show();
-		$('#popup-enter').show();
-	#{/if}
-	#{if currentValidation?.hasError('loginEmail') || currentValidation?.hasError('loginPassword') || currentValidation?.hasError('emailPassword') || currentValidation?.hasError(utils.ApplicationConstants.VALIDATION_LOGIN_CONTROLLER_APPROVE_REGISTRATION)}
-		$('#overlay').show();
-		$('#popup-enter').show();
-	#{/if}
 	//show 2000 selected at first
         $($('[name="birthYear"]').parent().find('div')[2]).show();
         $('[name="birthYear"]').parent().find('div')[2].scrollTop = 2500;
@@ -74,7 +63,7 @@ $(document).ready(function() {
                             </tbody>
                         </table>
                     #{/form}
-				    <a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">Войти</a>
+				    <a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">&{'page.common.enter'}</a>
 				#{/if}
 				#{if currentUser}
 					<a href="@{LoginController.logout()}" class="sign-in">Выйти</a>
@@ -107,7 +96,7 @@ $(document).ready(function() {
 				</ul>
 			</div>
 			<aside class="home-secondary">
-				<h2>&{'link.registration'}</h2>
+				<h2>&{'page.common.registration'}<br/><span>&{'page.main.its_free'}</span></h2>
 					#{form @LoginController.firstTest(), class:'entry'}
 						<input type="text" #{if currentValidation?.hasError('user.name')}class="inputerror"#{/if} name="user.name" id="regName" onfocus="this.value=''; this.placeholder=''" onblur="this.placeholder='&{'page.main.enter_name'}'" placeholder="&{'page.main.enter_name'}" value="${user?.name}"/>
 						<input type="text" #{if currentValidation?.hasError('user.email')}class="inputerror"#{/if} name="user.email" id="" onfocus="this.value=''; this.placeholder=''" onblur="this.placeholder='&{'page.main.enter_address'}'" placeholder="&{'page.main.enter_address'}" value="${user?.email}"/>
@@ -143,46 +132,7 @@ $(document).ready(function() {
 		</div>
 	</div>
 	#{common.footer/}
-	<div id="overlay" class="overlay"></div>
-	<div id="popup-enter" class="popup-enter">
-		<a href="" id="close" class="close"><img src="@{'/public/images/boilerplate/popup-close.gif'}" alt=""></a>
-    	<div class="popup-enter-ttl" id="popup-enter-ttl">&{'popup.enter.title'}</div>
-    		#{form @LoginController.login(), id:'enterForm'}
-	        	<input type="text" name="loginEmail" id="" placeholder="&{'popup.email'}">
-				<input type="password" name="loginPassword" id="" placeholder="&{'popup.password'}">
-				<a href="#" id="forget-password" class="forget-password">&{'popup.forgot_password'}</a>
-	            <button class="enter-btn" onclick="this.form.submit();">&{'popup.enter_the_site'}</button>
-	            #{if currentValidation?.hasError('loginEmail') || currentValidation?.hasError('loginPassword') || currentValidation?.hasError('emailPassword') || currentValidation?.hasError(utils.ApplicationConstants.VALIDATION_LOGIN_CONTROLLER_APPROVE_REGISTRATION)}
-		            <div class="alert">
-		            	#{errors}
-		            		#{if errors_isLast}
-		            			${error}
-		            		#{/if}
-							#{else}
-								${error}<br/>
-							#{/else}		            		
-		            	#{/errors}
-		            </div>
-	            #{/if}
-	        #{/form}
-	        #{form @LoginController.recoverPassword(), id:'recoverEmailForm'}
-	        	<input type="text" name="recoverEmail" placeholder="&{'popup.email'}">
-				<a href="#" id="showEnterForm" class="forget-password">&{'popup.enter'}</a>
-	            <button class="enter-btn" onclick="this.form.submit();">&{'popup.send_email'}</button>
-	            #{if currentValidation?.hasError('recoverEmail')}
-		            <div class="alert">
-		            	#{errors}
-		            		#{if errors_isLast}
-		            			- ${error}
-		            		#{/if}
-							#{else}
-								- ${error}<br/>
-							#{/else}		            		
-		            	#{/errors}
-		            </div>
-	            #{/if}
-	        #{/form}
-    </div>
+    #{common.popup.enterPopup /}
     #{userPopup/}
 </body>
 </html>

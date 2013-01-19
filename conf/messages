@@ -14,6 +14,8 @@ page.main.sex.female=female
 page.main.start_the_test=Start the test
 page.main.site.people_count=Lot's of motivated people
 page.main.site.team_count=Motivated teams
+page.main.its_free=it's free
+
 page.about.text=<p>Technology and science are developing very fast; the world has become\
    so complex that it is not possible to cover all aspects of it for one person. These \
   conditions require complex ideas and for businesses, combining a set of knowledge and \
@@ -38,17 +40,22 @@ page.test1.title=Hi, %s!<br />\
                  Here is the first test which will determine your propensity for entrepreneurship.\
                  We have prepared only two tests for you – it will not take long to pass both of them. \
                  Please, don’t cheat yourself - answer honestly.
-page.test1.aim.title=
-page.test1.aim.text=
+page.test1.aim.title=Цель первого теста
+page.test1.aim.text=Мотивация достижения &mdash; стремление к улучшению результатов, неудовлетворенность достигнутым, настойчивость в достижении своих целей, стремление добиться своего во что бы то ни стало — является одним из главных свойств личности, оказывающих влияние на всю человеческую жизнь. Многочисленные исследования показали тесную связь между уровнем мотивации достижения и успехом в жизнедеятельности. Данный психологический тест позволит Вам выяснить свой уровень мотивации.
 page.test1.answer=Your answer
 page.test1.show_results=Show results
 page.test1.pass_test=Pass the final test.
-page.test2.aim.text=Regardless of your entrepreneurial propensity, your personality has its strengths and weaknesses. Let's learn about them. Choose in each question the answer which matches the best for you.
-page.test2.show_results=Show results
 
 #first test passed social texts
 page.test1.passed.social.text=I have scored %s points in the entrepreneurial skills test. I wonder how many points you can get! Try now on www.startnewteam.com
 page.test1.passed.social.title=I've passed the first test
+page.test1.passed.head=You passed the first test! Last push before signing
+page.test1.passed.see_mail=You passed the first test! Last push before signing
+
+page.test2.aim.text=Regardless of your entrepreneurial propensity, your personality has its strengths and weaknesses. Let's learn about them. Choose in each question the answer which matches the best for you.
+page.test2.show_results=Show results
+page.test2.aim.title=How to take the test
+page.test2.head=You passed the first test! Last push before signing
 
 #second test passed
 page.test2.passed.social.text=My entrepreneurial type: Idealist %s, Communicant %s, Pragmatist %s. У вас другие? Давайте дополним друг друга на
@@ -73,6 +80,7 @@ page.test2.passed.recommendation=<p>You need to concentrate on the features with
 page.test2.passed.final_step=Final step
 
 #blank form
+page.blankform.head=Congratulations, %s! You have successfully passed the two tests. It remains to fill in the questionnaire
 page.blankform.surname=Surname
 page.blankform.country=Country
 page.blankform.city=City
@@ -83,6 +91,18 @@ page.blankform.interesting_btype=Type of business I'm interested in
 page.blankform.interesting_bsphere=Sphere of business I'm interested in
 page.blankform.personal_data=Personal data
 page.blankform.register=Register
+page.blankform.personal_characteristics=Personal characteristics
+page.blankform.personal_characteristics.description=Describe your quality. The advantages and disadvantages of their nature
+page.blankform.personal_characteristics.placeholer=Please describe the qualities
+
+page.blankform.passed=Congratulations to you! You are now a full member of our community and have \
+                        full access to all the functionality of our project. We will be happy if \
+                        you become the initiator of a new start-up or join an existing one. You can \
+                        also find all of the latest news in the field of business and get the wise \
+                        advice of our mentors. In order to begin full-scale operation with our \
+                        portal please verify your registration, sleduyuya instructions in the letter \
+                        you naydte in my mailbox. Good luck!
+
 
 #emails
 email.firstTestPassed=Hello, %s!\
@@ -106,7 +126,6 @@ email.blankfformpassed=To complete the registration on <a href="%s">StartNewTeam
                           Entrepreneurially yours,<br/>\
                           <a href="%s">StartNewTeam</a> squad
 
-link.registration=Регистрация<br /><span>это бесплатно</span>
 link.main=Main
 link.news=News
 link.about=About the project
@@ -285,12 +304,7 @@ page.profile.current.desc_it=Please describe your experience in IT
 page.profile.current.desc_other=Please describe your experience in Other
 page.profile.current.desc_cv=Please describe your characteristics
 
-
 page.news.title=Project news
-
-
-
-
 
 page.search.members.title=Members
 page.search.members.personal_data=Personal
@@ -335,11 +349,9 @@ page.search.members.filter.share=Share
 
 
 
-page.common.from=From
-page.common.to=To
-page.common.sex=Sex
-page.common.age=Age
+
 page.common.rights=2012 All rights reserved. StartNewTeam
+page.common.enter=Enter
 page.common.yes=Yes
 page.common.no=No
 page.common.male=Male
@@ -347,6 +359,9 @@ page.common.female=Female
 page.common.country=Country
 page.common.city=City
 page.common.social.vk=Vkontakte
+page.common.social.public.vk=
+page.common.social.public.twitter=
+page.common.social.public.fb=
 page.common.login=Login
 page.common.password=Password
 page.common.registration=Registration
@@ -448,7 +463,6 @@ models.test.number1.result1=%s, your test result is %s points!\
                             For instance you have limited entrepreneurial propensity. However, if you feel a desire to proceed – try and learn! Gather a team of similar people, jointly try out first on small business projects, gain experience and you will succeed.\
                             Share your results in social networks - your friends might be interested to pass this test as well. Maybe you will even find your future business partners among them! You will never know unless you try.<br/>\
                             Now we need to assess your key business skills, in order to gather future team in most effective way. The final test will help you with it.
-
 models.test.number1.result2=%s, your test result is <span class="rating">%s</span> points.\
                             Definitely you have some entrepreneurial propensity, which can be quickly develop within practice. Gather a team of similar people, jointly try out first on small business projects, gain experience and you will succeed.\
                             Share your results in social networks - your friends might be interested to pass this test as well. Maybe you will even find your future business partners among them! You will never know unless you try.<br/>\

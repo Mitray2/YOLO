@@ -3,7 +3,7 @@
 %{
 	def currentValidation = play.data.validation.Validation.current();
 }%
-<h1>&{''}Поздравляем, ${user?.name}! Вы успешно прошли два теста. Осталось заполнить анкету</h1>
+<h1>&{'page.blankform.head', user?.name}</h1>
 #{form @LoginController.blankFormPassed()}
 	<input type="hidden" name="user.id" value="${user.id}">
 	<div class="test">
@@ -69,8 +69,8 @@
 				</select>
 			</div>
 			<div class="form-item">
-				<label for="">&{''}Персональная характеристика<span class="small">&{''}Опишите свои качества. Преимущества и недостатки своего характера</span></label>
-				<textarea name="user.personalCV" placeholder="&{''}Опишите подробнее свои качества">${user?.personalCV}</textarea>
+				<label for="">&{'page.blankform.personal_characteristics'}<span class="small">&{'page.blankform.personal_characteristics.description'}</span></label>
+				<textarea name="user.personalCV" placeholder="&{'page.blankform.personal_characteristics.placeholer'}">${user?.personalCV}</textarea>
 			</div>
 		</div>
 		<div class="test-btm">

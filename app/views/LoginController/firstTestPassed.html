@@ -6,7 +6,7 @@
 	}
 -->
 </style>
-<h1>Вы прошли первый тест! Последний рывок перед регистрацией </h1>
+<h1>&{'page.test1.passed.head'}</h1>
 <div class="test">
 	<div class="test-results">
 		<p>#{if alereadySavedUser.businessman < 25}
@@ -20,11 +20,11 @@
 		#{/elseif}
 		#{else}
 			&{'models.test.number1.result4', alereadySavedUser.name, alereadySavedUser.businessman}
-		#{/else}Проверьте, пожалуйста, Ваш почтовый ящик. В письме указаны ваш логин и пароль, используйте их для авторизации на сайте для доступа к дальнейшей регистрации. </p>
+		#{/else} &{'page.test1.passed.see_mail'} </p>
 		<ul class="social-likes" data-title="&{'page.test1.passed.social.title'}" data-twit="&{'page.test1.passed.social.text', alereadySavedUser.businessman} www.startnewteam.ru" data-description="&{'page.test1.passed.social.text', alereadySavedUser.businessman}" data-url="${request.getBase()}" >
-			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-			<li class="twitter"  title="Опубликовать ссылку в Твиттере">Twitter</li>
-			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">&{'page.common.social.vk'}</li>
+			<li class="facebook" title="&{'page.common.social.public.fb'}">Facebook</li>
+			<li class="twitter"  title="&{'page.common.social.public.twitter'}">Twitter</li>
+			<li class="vkontakte" title="&{'page.common.social.public.vk'}">&{'page.common.social.vk'}</li>
 		</ul>
 	</div>
 	<div class="test-btm"><a href="${request.getBase()}/confirmRegistration?ticket=${alereadySavedUser.passwordHash}" class="test-btn">&{'page.test1.pass_test'}</a></div>
