@@ -335,6 +335,7 @@ public class GroupController extends Controller implements ApplicationConstants 
 		Topic currentTopic = Topic.findById(topic.id);
 		currentTopic.description = topic.description;
 		currentTopic.name = topic.name;
+		currentTopic.lastUpdateDate = new Date();
 		currentTopic.save();
 		indexTopic(currentTopic.id, topic.groupId);
 	}
@@ -345,6 +346,7 @@ public class GroupController extends Controller implements ApplicationConstants 
 		Command group = Command.findById(groupId);
 		topic.createdUserId = user.id;
 		topic.createdDateTime = new Date();
+		topic.lastUpdateDate = new Date();
 		topic.groupId = groupId;
 		topic.createdUserName = user.name;
 		topic.createdUserLastName = user.lastName;
@@ -417,25 +419,42 @@ public class GroupController extends Controller implements ApplicationConstants 
 
 	private static void topics(Long groupId, Boolean isPublic) {
 		Command group = Command.findById(groupId);
-		Query ptQuery = JPA.em().createQuery("select t from Topic t where t.groupId=? and t.publicTopic=? order by t.lastUpdateDate desc");
-		ptQuery.setParameter(1, groupId);
-		ptQuery.setParameter(2, isPublic);
-		List<Topic> topics = ptQuery.getResultList();
-		Topic mainTopic = null;
-		for (Topic topic : topics) {
-			if (topic.mainTopic) {
-				mainTopic = topic;
-			}
-		}
-		Query ptmQuery = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=? order by t.createDate desc");
-		ptmQuery.setParameter(1, mainTopic.id);
-		ptmQuery.setMaxResults(10);
-		List<TopicMessage> msgs = ptmQuery.getResultList();
+		
+		//find main topic
+		Query ptQueryMainTopic = JPA.em().createQuery("select t from Topic t where t.groupId=? and t.publicTopic=? and t.mainTopic=? order by t.lastUpdateDate desc");
+		ptQueryMainTopic.setParameter(1, groupId);
+		ptQueryMainTopic.setParameter(2, isPublic);
+		ptQueryMainTopic.setParameter(3, true);
+		List<Topic> mainTopics = ptQueryMainTopic.getResultList();
+		Topic mainTopic = mainTopics.size() > 0 ? mainTopics.get(0) : null;
+
+		//find top 10 all topics
+		Query ptQueryAllTopics = JPA.em().createQuery("select t from Topic t where t.groupId=? and t.publicTopic=? and t.mainTopic=? order by t.lastUpdateDate desc");
+		ptQueryAllTopics.setParameter(1, groupId);
+		ptQueryAllTopics.setParameter(2, isPublic);
+		ptQueryAllTopics.setParameter(3, false);
+		ptQueryAllTopics.setMaxResults(10);
+		List<Topic> topics = ptQueryAllTopics.getResultList();
+		
+		Query ptQueryAllTopicsCount = JPA.em().createQuery("select count(t.id) from Topic t where t.groupId=? and t.publicTopic=? and t.mainTopic=?");
+		ptQueryAllTopicsCount.setParameter(1, groupId);
+		ptQueryAllTopicsCount.setParameter(2, isPublic);
+		ptQueryAllTopicsCount.setParameter(3, false);
+		Integer topicsCount = ((Long) ptQueryAllTopicsCount.getResultList().get(0)).intValue();
+		
+		//find top 10 messages of main topic to show on wall
+		Query ptmQueryMainTopicMessages = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=? order by t.createDate desc");
+		ptmQueryMainTopicMessages.setParameter(1, mainTopic.id);
+		ptmQueryMainTopicMessages.setMaxResults(10);
+		List<TopicMessage> msgs = ptmQueryMainTopicMessages.getResultList();
 		mainTopic.msg = msgs;
+		
+		//get total count of main topic messages
 		Query mainTopicMsgCountQuery = JPA.em().createQuery("select count(t.id) from TopicMessage t where t.topic.id = ?");
 		mainTopicMsgCountQuery.setParameter(1, mainTopic.id);
 		Integer mainTopicMsgCount = ((Long) mainTopicMsgCountQuery.getResultList().get(0)).intValue();
-		render(topics, group, mainTopic, mainTopicMsgCount);
+		
+		render(topics, group, mainTopic, mainTopicMsgCount, topicsCount);
 	}
 	
 	public static void more(Integer page, Long mainTopicId, Long groupId, String formAction, String removeAction) {

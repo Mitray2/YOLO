@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
@@ -40,7 +41,7 @@ public class Topic extends Model {
 	@MaxSize(value = 2000)
 	public String description;
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY)
 	public List<TopicMessage> msg;
 
 }
