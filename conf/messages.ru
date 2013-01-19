@@ -10,9 +10,6 @@ common.login.error.email_empty=Вы не ввели email
 common.login.error.email_format_invalid=Неверный формат email
 common.login.password_sended=Новый пароль выслан на указанный email.
 
-client.side.password_repair=Восстановление пароля
-client.side.system_enter=Вход в систему
-client.side.need_participants=Требуются участники
 
 page.profile.change.password.mesage1=Вы не ввели старый пароль
 page.profile.change.password.mesage2=Вы не ввели новый пароль
@@ -385,67 +382,6 @@ page.search.members.filter.finance=Финансы
 page.search.members.filter.it=ИТ / программирование
 page.search.members.filter.share=Поделится
 page.search.members.filter=
-
-
-
-# Groups search table
-page.search.groups.filter.msg1=Команды
-page.search.groups.filter.msg2=Общие данные
-page.search.groups.filter.msg3=Основные данные
-page.search.groups.filter.msg4=Потребности команд
-page.search.groups.filter.msg5=Название команды
-page.search.groups.filter.msg6=Людей
-
-page.search.groups.filter.col1.msg1=Лого
-page.search.groups.filter.col1.msg2=Страна
-page.search.groups.filter.col1.msg3=Город
-page.search.groups.filter.col1.msg4=Возраст
-page.search.groups.filter.col1.msg5=Языки
-page.search.groups.filter.col1.msg6=Статус
-page.search.groups.filter.col1.msg7=Инфо
-
-page.search.groups.filter.col2.msg1=Навык "Предпринимательство"
-page.search.groups.filter.col2.msg2=Навык "Идеализм"
-page.search.groups.filter.col2.msg3=Навык "Коммуникабельность"
-page.search.groups.filter.col2.msg4=Навык "Прагматика"
-page.search.groups.filter.col2.msg5=Тип бизнеса
-page.search.groups.filter.col2.msg6=Сфера
-page.search.groups.filter.col2.msg7=Стадия
-
-page.search.groups.filter.col3.msg1=Навык "Маркетинг"
-page.search.groups.filter.col3.msg2=Навык "Продажи"
-page.search.groups.filter.col3.msg3=Навык "Управление"
-page.search.groups.filter.col3.msg4=Навык "Право"
-page.search.groups.filter.col3.msg5=Навык "Финансы"
-page.search.groups.filter.col3.msg6=Навык "ИТ"
-page.search.groups.filter.col3.msg7=Навык "Другое"
-
-# Groups search form
-page.search.groups.form1.msg1=Поиск групп
-page.search.groups.form1.msg2=Общие данные
-page.search.groups.form1.msg3=Страна
-page.search.groups.form1.msg4=Город
-page.search.groups.form1.msg5=Средний
-page.search.groups.form1.msg6=Людей в команде
-page.search.groups.form1.msg7=Потребность в людях
-page.search.groups.form1.msg8=Глобальность
-
-page.search.groups.form2.msg1=Основные данные
-page.search.groups.form2.msg2=Предпринимательство
-page.search.groups.form2.msg3=Идеализм
-page.search.groups.form2.msg4=Коммуникабельность
-page.search.groups.form2.msg5=Прагматика
-page.search.groups.form2.msg6=Тип бизнеса
-page.search.groups.form2.msg7=Сфера бизнеса
-page.search.groups.form2.msg8=Стадия
-
-page.search.groups.form3.msg1=Потребности команд
-page.search.groups.form3.msg2=Маркетинг / реклама
-page.search.groups.form3.msg3=Продажи
-page.search.groups.form3.msg4=Управление
-page.search.groups.form3.msg5=Право
-page.search.groups.form3.msg6=Финансы
-page.search.groups.form3.msg7=ИТ / программирование
 
 
 
