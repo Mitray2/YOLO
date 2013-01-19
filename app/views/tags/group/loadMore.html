@@ -1,19 +1,24 @@
-#{if (_mainTopicMsgCount > 10)}
-	<a id="loadMore" href="" style="cursor: pointer;" onclick="loadMoreMessages(${_mainTopic.id}, ${_group.id}, '${_formAction}', '${_removeAction}'); return false;">main=${_mainTopic.id}</a>
-	<div id="searchLoader" class="cntr" style="display: none;">
+#{if (_topicsCount > 10)}
+	<div style="text-align: center; padding-bottom: 10px;">
+		<a id="loadMore" style="cursor: pointer;" onclick="loadMoreTopics(${_group.id}, ${_isPublic});">показать все</a>
+	</div>
+	<div id="loadMoreLoader" class="cntr" style="display: none;">
 		<img src="/public/img/ajax-loader.gif">
 	</div>
 	<script>
-		function loadMoreMessages(mainTopicId, groupId, formAction, removeAction) {
+		function loadMoreTopics(groupId, isPublic) {
 			$("#loadMore").hide();
-			$("#searchLoader").show();
+			$("#loadMoreLoader").show();
 			$.ajax({
-				  url: "loadMoreMessages?mainTopicId=" + mainTopicId + "&groupId=" + groupId + "&formAction=" + formAction + "&removeAction=" + removeAction,
+				  url: "moreTopics?groupId=" + groupId + "&isPublic=" + isPublic,// + "&formAction=" + formAction + "&removeAction=" + removeAction,
 				  cache: false
 				}).done(function( html ) {
-					$("#searchLoader").hide();
-					$(".group-theme-dialog").append(html);
+					$("#loadMoreLoader").hide();
+					$(".search-result-list").append(html);
+				}).error(function( html ) {
+					$("#loadMoreLoader").hide();
 				});
+			return false;
 		}
 	</script>
 #{/if}
