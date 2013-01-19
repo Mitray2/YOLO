@@ -65,9 +65,9 @@ $(document).ready(function(){
                 
                 
                
-                <div class="group-theme-dialog-ttl">Всего ${mainTopicMsgCount} записи:</div>
+                <div class="group-theme-dialog-ttl">Всего ${topicMessagesCount} записи:</div>
                 <ul class="group-theme-dialog">
-                #{list items:topic.msg, as:'msg'}
+                #{paginate.list items:topicMessages, as:'msg'}
                		#{form @GroupController.editMsg()}
 	                <input name="msg.id" value="${msg.id}" type="hidden">
 					<input name="topicId" value="${topic.id}" type="hidden">
@@ -91,7 +91,8 @@ $(document).ready(function(){
 						</div>
                     </li>
                     #{/form}
-                #{/list}
+                #{/paginate.list}
 				</ul>
+				#{paginate.controls items:topicMessages /} 
 				
 				#{group.reply topic:topic, group:group, count:mainTopicMsgCount, action:'/groupcontroller/addmsgtotopic'/}

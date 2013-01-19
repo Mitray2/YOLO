@@ -24,6 +24,8 @@ import models.comparators.TopicComparator;
 import notifiers.Mails;
 import play.db.DB;
 import play.db.jpa.JPA;
+import play.modules.paginate.ModelPaginator;
+import play.modules.paginate.ValuePaginator;
 import play.mvc.Before;
 import play.mvc.Controller;
 import utils.ApplicationConstants;
@@ -362,7 +364,10 @@ public class GroupController extends Controller implements ApplicationConstants 
 	public static void indexTopic(Long topicId, Long groupId) {
 		Command group = Command.findById(groupId);
 		Topic topic = Topic.findById(topicId);
-		render(topic, group);
+		ModelPaginator<TopicMessage> topicMessages = new ModelPaginator<TopicMessage>(TopicMessage.class, "topic.id=?", topic.id).orderBy("createDate DESC");
+		topicMessages.setPageSize(10);
+		Integer topicMessagesCount = topicMessages.size();
+		render(topic, group, topicMessages, topicMessagesCount);
 	}
 
 	public static void addMsgToMainTopic(TopicMessage msg, Long topicId, Long groupId) {
