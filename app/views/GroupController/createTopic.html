@@ -14,21 +14,21 @@
 
 #{form @GroupController.saveTopic()} 
 #{showError errors:errors /}
-<div class="new-theme-ttl">Создание новой темы</div>
+<div class="new-theme-ttl">&{'page.team.create.topic.title'}</div>
                 <div class="create-theme">
-                	<input type="text" name="topic.name" id="" placeholder="Заголовок темы для обсуждения" />
+                	<input type="text" name="topic.name" id="" placeholder="&{'page.team.create.topic.name'}" />
                     <textarea name="topic.description" cols="" rows=""></textarea>
                    
                     <div class="create-form">
-                     <label for="">Сделать тему публичной</label> 
+                     <label for="">&{'page.team.create.topic.public'}</label> 
                     <div class="box-radio">
 						<input type="radio" name="topic.publicTopic" id="publicTopicY" class="radio" value="true"/>
-						<label for="publicTopicY" class="radio-btn">Да</label>
+						<label for="publicTopicY" class="radio-btn">&{'page.common.yes'}</label>
 						<input type="radio" name="topic.publicTopic" id="publicTopicN" class="radio" value="false" checked="checked"/>
-						<label for="publicTopicN" class="radio-btn">Нет</label>
+						<label for="publicTopicN" class="radio-btn">&{'page.common.no'}</label>
 	                </div>
 	                </div>
-                    <button type="submit" class="create-theme-btn">Создать тему</button>
+                    <button type="submit" class="create-theme-btn">&{'page.team.create.topic.create_topic'}</button>
                     
                 </div>
 

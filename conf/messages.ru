@@ -162,6 +162,10 @@ page.team.members.remove_sure1=Вы уверены что хотите удал�
 page.team.members.remove_sure2= из вашей команды?
 
 
+page.team.create.topic.title=Создание новой темы
+page.team.create.topic.name=Заголовок темы для обсуждения
+page.team.create.topic.public=Сделать тему публичной
+page.team.create.topic.create_topic=Создать тему
 
 page.team.description=Описание
 page.team.discussion=Обсуждения

@@ -158,7 +158,18 @@ page.team.discussion=Discussion
 page.team.public_discussion=Public discussion
 page.team.members=Team members
 
+
+page.team.create.topic.title=Create new topic
+page.team.create.topic.name=Title topics for discussion
+page.team.create.topic.public=Public
+page.team.create.topic.create_topic=Create topic
+
+
 page.common.rights=2012 All rights reserved. StartNewTeam
+page.common.yes=Yes
+page.common.no=No
+page.common.country=Country
+page.common.city=City
 page.common.social.vk=Vkontakte
 
 popup.enter.title=
