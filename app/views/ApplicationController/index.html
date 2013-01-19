@@ -12,10 +12,8 @@
 <script src="@{'public/javascripts/jquery.selectbox.js'}"></script>
 <script src="@{'public/javascripts/jquery.add.min.js'}"></script>
 <script src="@{'/public/javascripts/controllers/LoginController.js'}" type="text/javascript" charset="utf-8"></script> 
-<script src="@{'/public/javascripts/controllers/Common.js'}" type="text/javascript" charset="utf-8"></script> 
 <script>
 %{
-	def currentUser = utils.SessionHelper.getCurrentUser(session);
 	def currentValidation = play.data.validation.Validation.current();
 }%
 $(document).ready(function() {
@@ -43,31 +41,7 @@ $(document).ready(function() {
 		<header class="hdr-page">
 			<div class="inner">
 				#{lang.langSwitcher/}
-				<a href="/"><img src="@{'public/images/boilerplate/logo-1.png'}" alt="" class="logo" /></a>
-				#{if !currentUser}
-                    #{form @LoginController.login(), id:'loginForm', class:'login_form'}
-                        <table cellspacing="0">
-                            <tbody>
-                                <tr>
-                                    <td><label for="text">&{'page.common.login'}</label></td>
-                                    <td><label for="password">&{'page.common.password'}</label></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="text" name="loginEmail" id="text" autofocus="autofocus"/></td>
-                                    <td><input type="password" name="loginPassword" id="password" /></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="" onclick="$('#regName').focus(); return false;">&{'page.common.registration'}</a></td>
-                                    <td><a href="" onClick="$('#popup-enter').fadeIn(1000); $('#overlay').fadeIn(1000);$('#popup-enter-ttl').html('&{'popup.password_recovering'}');$('#enterForm').hide();$('#recoverEmailForm').show(); return false;">&{'page.common.forgot_password'}</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    #{/form}
-				    <a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">&{'page.common.enter'}</a>
-				#{/if}
-				#{if currentUser}
-					<a href="@{LoginController.logout()}" class="sign-in">Выйти</a>
-				#{/if}
+                #{common.loginForm /}
 			</div>
 		</header>
 		<div class="content clearFix">
@@ -132,7 +106,6 @@ $(document).ready(function() {
 		</div>
 	</div>
 	#{common.footer/}
-    #{common.popup.enterPopup /}
     #{userPopup/}
 </body>
 </html>

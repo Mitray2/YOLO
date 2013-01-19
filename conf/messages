@@ -396,6 +396,7 @@ page.common.social.public.vk=
 page.common.social.public.twitter=
 page.common.social.public.fb=
 page.common.login=Login
+page.common.logout=Logout
 page.common.password=Password
 page.common.registration=Registration
 page.common.forgot_password=Forgot password?

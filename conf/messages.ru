@@ -403,6 +403,7 @@ page.common.social.public.vk=Опубликовать ссылку во Вкон
 page.common.social.public.twitter=Опубликовать ссылку в Твиттере
 page.common.social.public.fb=Опубликовать ссылку на Фейсбуке
 page.common.login=Логин
+page.common.logout=Выйти
 page.common.password=Пароль
 page.common.registration=Регистрация
 page.common.forgot_password=Забыли пароль?
