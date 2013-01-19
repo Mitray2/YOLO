@@ -14,7 +14,7 @@
 <script>
 function changeLocale(locale) {
 	$.ajax({
-		  url: "locale/change?locale=" + locale,
+		  url: "/locale/change?locale=" + locale,
 		  success: function(data) {
 			  window.location.reload();
 		  }
