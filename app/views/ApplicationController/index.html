@@ -60,16 +60,16 @@ $(document).ready(function() {
                         <table cellspacing="0">
                             <tbody>
                                 <tr>
-                                    <td><label for="text">Логин</label></td>
-                                    <td><label for="password">Пароль</label></td>
+                                    <td><label for="text">&{'page.common.login'}</label></td>
+                                    <td><label for="password">&{'page.common.password'}</label></td>
                                 </tr>
                                 <tr>
                                     <td><input type="text" name="loginEmail" id="text" autofocus="autofocus"/></td>
                                     <td><input type="password" name="loginPassword" id="password" /></td>
                                 </tr>
                                 <tr>
-                                    <td><a href="" onclick="$('#regName').focus(); return false;">Регистрация</a></td>
-                                    <td><a href="" onClick="$('#popup-enter').fadeIn(1000); $('#overlay').fadeIn(1000);$('#popup-enter-ttl').html('Восстановление пароля');$('#enterForm').hide();$('#recoverEmailForm').show(); return false;">Забыли пароль?</a></td>
+                                    <td><a href="" onclick="$('#regName').focus(); return false;">&{'page.common.registration'}</a></td>
+                                    <td><a href="" onClick="$('#popup-enter').fadeIn(1000); $('#overlay').fadeIn(1000);$('#popup-enter-ttl').html('&{'popup.password_recovering'}');$('#enterForm').hide();$('#recoverEmailForm').show(); return false;">&{'page.common.forgot_password'}</a></td>
                                 </tr>
                             </tbody>
                         </table>

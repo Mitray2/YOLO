@@ -55,8 +55,8 @@ page.test2.passed.social.text=My entrepreneurial type: Idealist %s, Communicant 
 page.test2.passed.social.title=I've passed the second test
 page.test2.passed.results=Here are the results of test, assessing your affections
 page.test2.passed.idealist_result=<strong>Idealist</strong> &ndash; <span class="rating">%s points</span> &ndash; this number indicate your propensity for reflections, generation of new ideas, and search of effective solutions.
-page.test2.passed.communicant_result=<strong>Communicant</strong> &ndash; <span class="rating">%s points &ndash; is the propensity for promotion, negotiation and sales.
-page.test2.passed.pragmatist_result=<strong>Pragmatist<strong> &ndash; <span class="rating">%s points</span> &ndash; is the propensity for action, practicing and implementation.
+page.test2.passed.communicant_result=<strong>Communicant</strong> &ndash; <span class="rating">%s points</span> &ndash; is the propensity for promotion, negotiation and sales.
+page.test2.passed.pragmatist_result=<strong>Pragmatist</strong> &ndash; <span class="rating">%s points</span> &ndash; is the propensity for action, practicing and implementation.
 page.test2.passed.recommendation=<p>You need to concentrate on the features with the highest scores - \
                                     relying on them you can bring maximum benefit to the team, and find \
                                     people who will complement you on other affections which are less developed.\
@@ -72,13 +72,46 @@ page.test2.passed.recommendation=<p>You need to concentrate on the features with
                                     need to fill in just few more things. Congratulations!</p>
 page.test2.passed.final_step=Final step
 
+#blank form
+page.blankform.surname=Surname
+page.blankform.country=Country
+page.blankform.city=City
+page.blankform.password=Password
+page.blankform.repeat_password=Repeat password
+page.blankform.professional_skills=Professinal skills
+page.blankform.interesting_btype=Type of business I'm interested in
+page.blankform.interesting_bsphere=Sphere of business I'm interested in
+page.blankform.personal_data=Personal data
+page.blankform.register=Register
+
+#emails
+email.firstTestPassed=Hello, %s!\
+                        <br/>\
+                            You have successfully passed first step of registration on <a href="%s">StartNewTeam</a>.\
+                        <br/>\
+                            Excellent, keep going and for sure you will succeed! \
+                        <br/>\
+                            Your credentials for access are:\
+                        <br/>\
+                            Login: %s<br>\
+                            Password: %s<br>\
+                            In order to complete the test and registration, you can login to the site using the username \
+                            and password, or follow this <a href="%s/confirmRegistration?ticket=%s">link</a>.\
+                        <br/>\
+                            Entrepreneurially yours,<br/>\
+                            <a href="%s">StartNewTeam</a> squad
+email.blankfformpassed=To complete the registration on <a href="%s">StartNewTeam</a> please confirm\
+                         the email address by clicking the following <a href="%s/confirmRegistration?ticket=%s">link</a>.<br/>.\
+                          <br>\
+                          Entrepreneurially yours,<br/>\
+                          <a href="%s">StartNewTeam</a> squad
+
 link.registration=Регистрация<br /><span>это бесплатно</span>
 link.main=Main
 link.news=News
-link.about=About
+link.about=About the project
 link.contacts=Contacts
 link.partners=Partners
-link.=
 
 page.create.team.create=Create a team
 page.create.team.head=Tell briefly about your idea or a project. Don't be afraid to share - it will help you to gather a team as soon as possible and start the real action.
@@ -104,7 +137,6 @@ page.create.team.communications_experience=Communications
 page.create.team.pragmatism_experience=Pragmatism
 page.create.team.save=Save changes
 
-
 page.edit.team.create_date=Create Date
 page.edit.team.count_members=Number of members
 page.edit.team.admin_team=Team administrator
@@ -114,10 +146,6 @@ page.edit.team.idealist=Idealism
 page.edit.team.communicant=Communicative skills
 page.edit.team.pragmatist=Pragmatism
 page.edit.team.res_basis=* on the basis of the results of team members
-
-
-
-
 
 page.team.head.edit=Edit team
 page.team.head.business=Business
@@ -182,8 +210,6 @@ page.team.discuss.send_msg=Send a message...
 page.team.discuss.send=Send
 page.team.discuss.to_list=List of all discussions
 page.team.discuss.created_by=Created by
-
-
 
 page.profile.age=Age
 page.profile.lastseen=Last seen
@@ -251,32 +277,25 @@ page.profile.current.desc_it=Please describe your experience in IT
 page.profile.current.desc_other=Please describe your experience in Other
 page.profile.current.desc_cv=Please describe your characteristics
 
-
-
-
-
-
-
-
-
-
-
-
-
 page.common.rights=2012 All rights reserved. StartNewTeam
 page.common.yes=Yes
 page.common.no=No
 page.common.country=Country
 page.common.city=City
 page.common.social.vk=Vkontakte
+page.common.login=Login
+page.common.password=Password
+page.common.registration=Registration
+page.common.forgot_password=Forgot password?
 
-popup.enter.title=
-popup.forgot_password=
-popup.enter_the_site=
-popup.email=
-popup.enter=
-popup.send_email=
-popup.password=
+popup.enter.title=Login
+popup.forgot_password=Forgot password?
+popup.enter_the_site=Log in
+popup.email=Email
+popup.enter=Log in
+popup.send_email=Send email
+popup.password=Password to login
+popup.password_recovering=Password recovering
 
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
@@ -412,7 +431,48 @@ models.ProjectPhase.name.start=Idea stage
 models.ProjectPhase.name.planning=Planning
 models.ProjectPhase.name.developing=Development
 
+#should be corrected by Dmitriy
+validation.model.user.email.required=Введите email
+validation.model.user.email.invalid=Неправильный email
+validation.model.user.email.dublicated=Пользователь с таким email уже существует в системе
+validation.model.user.sex.required=Выберите пол
+validation.model.user.sex.invalid=Неправильный пол
+validation.model.user.birthday.required=Введите дату рождения
+validation.model.user.birthday.invalid=Неправильная дата рождения
+validation.model.user.password.required=Введите пароль
+validation.model.user.password.invalid=Пароль может содержать только цифры и символы английского алфавита
+validation.model.user.password.minLength=Минимальная длина поля - 8 символов
+validation.model.user.password.maxLength=Максимальная длина поля - 16 символов
+validation.model.user.passwordRepeating.required=Введите подтверждение пароля
+validation.model.user.passwordRepeating.invalid=Пароли не совпадают
+validation.model.user.name.required=Введите имя
+validation.model.user.name.maxLength=Максимальная длина поля - 30 символов
+validation.model.user.name.invalid=Только символы русского алфавита
+validation.model.user.lastName.required=Введите фамилию
+validation.model.user.lastName.maxLength=Максимальная длина поля - 30 символов
+validation.model.user.lastName.invalid=Фамилия может содержать только символы русского алфавита
+validation.model.user.city.required=Введите город
+validation.model.user.city.maxLength=Максимальная длина поля - 30 символов
+validation.model.user.city.invalid=Город может содержать только символы русского алфавита
+validation.model.user.expMarketing.maxLength=Максимальная длина поля - 30 символов
+validation.model.user.expSale.maxLength=Максимальная длина поля - 30 символов
+validation.model.user.expManagement.maxLength=Максимальная длина поля - 30 символов
+validation.model.user.expFinance.maxLength=Максимальная длина поля - 30 символов
+validation.model.user.expLegal.maxLength=Максимальная длина поля - 30 символов
+validation.model.user.expIT.maxLength=Максимальная длина поля - 30 символов
+validation.model.user.expOther.maxLength=Максимальная длина поля - 30 символов
+validation.model.user.personalCV.maxLength=Максимальная длина поля - 30 символов
+validation.model.user.personalCV.required=Введите персональную характеристику
+validation.model.user.businessType.required=Выберите интересующий тип бизнеса
+validation.model.user.businessSphere.required=Выберите интересующую сферу бизнеса
+validation.model.test.question.answer.required=Выберите вариант ответа
+validation.model.test.question.innerQuestion.answer.required=Выберите вариант ответа во всех строка
 
+#custom controllers
+validation.loginController.registrationHasBeenApproved=Неверный код подтверждения регистрации, или вы уже подтвердили регистрацию
+validation.loginController.incorrectLoginOrPassword=Неверный email или пароль
+validation.loginController.approveRegistration=Подтвердите регистрацию
+validation.loginController.nonexistentUser=Пользователя с таким email не существует. Проверьте правильность введённых данных
 
 #monthes of date
 date.monthName.January=January

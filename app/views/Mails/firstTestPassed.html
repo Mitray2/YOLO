@@ -1,20 +1,7 @@
 <html>
 	<body>
 		<p>
-            Добрый день, ${user?.name}!<br>
-			<br>
-            Предварительная регистрация на <a href="${base}">StartNewTeam</a> прошла успешно.
-			<br>
-			Отлично, продолжай в том же духе и наверняка добьешься успеха!
-			<br>
-			Логин: ${user.email}<br>
-			Пароль: ${password}<br>
-            Для завершения тестирования и прохождения полной регистрации можно авторизоваться
-				на сайте, используя логин и пароль, или пройти по данной <a href="${base}/confirmRegistration?ticket=${hash}">ссылке</a>
-            <br>
-			С уважением, </br> 
-			
-			команда <a href="${base}">StartNewTeam</a>
+            &{'email.firstTestPassed', user?.name, base, user.email, password, base, hash, base}
 		</p>
 	</body>
 </html>
