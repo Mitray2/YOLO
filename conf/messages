@@ -195,6 +195,49 @@ page.profile.current.sex=Sex
 page.profile.current.male=Male
 page.profile.current.female=Female
 page.profile.current.birthday=Birthday
+page.profile.current.characteristics=Characteristics
+page.profile.current.based_on_test=* Based on test data
+page.profile.current.email=Email address
+page.profile.current.email_show=Show to all
+page.profile.current.email_hide=Hide from all
+page.profile.current.ava=My avatar
+page.profile.current.browse=Browse
+page.profile.current.max_img_size=Maximum image size
+page.profile.current.save_changes=Save changes
+page.profile.current.change_pwd=Change password
+page.profile.current.old_pwd=Current password
+page.profile.current.new_pwd=New password
+page.profile.current.repeate_pwd=Repeat new password
+page.profile.current.proff_skills=Professional skills
+page.profile.current.business=Type of business I'm interested in
+page.profile.current.sphere=Sphere of business I'm interested in
+page.profile.current.en_skill=Knowledge of English
+page.profile.current.exp_marketing=Experience in Marketing/advertising 
+page.profile.current.exp_sales=Experience in Sales 
+page.profile.current.exp_management=Experience in Management
+page.profile.current.exp_law=Experience in Law
+page.profile.current.exp_finance=Experience in Finances
+page.profile.current.exp_it=Experience in IT
+page.profile.current.exp_other=Experience in Other 
+page.profile.current.personal_cv=Personal characteristics
+page.profile.current.skill_meta=Experience in Marketing/advertising Please choose the level of the given skills and please describe your experience briefly
+page.profile.current.cv_meta=Strong and weak sides of your character
+page.profile.current.desc_marketing=Please describe your experience in Marketing/advertising
+page.profile.current.desc_sales=Please describe your experience in Sales
+page.profile.current.desc_management=Please describe your experience in Management
+page.profile.current.desc_law=Please describe your experience in Law
+page.profile.current.desc_finance=Please describe your experience in Finances
+page.profile.current.desc_it=Please describe your experience in IT
+page.profile.current.desc_other=Please describe your experience in Other
+page.profile.current.desc_cv=Please describe your characteristics
+
+
+
+
+
+
+
+
 
 
 

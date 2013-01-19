@@ -137,7 +137,7 @@
 					</div>
 					
 					<div class="group-info">
-						<div class="group-info-ttl">Характеристика</div>
+						<div class="group-info-ttl">&{'page.profile.current.characteristics'}</div>
 						<div class="group-info-rate clearFix">
 							<div>
 		                        <strong>${user.businessman}</strong>
@@ -156,33 +156,33 @@
 		                         &{'pragmatist'}
 		                    </div>
 						</div>
-						<div class="group-info-rate-help">* на основе данных теста</div>
+						<div class="group-info-rate-help">&{'page.profile.current.based_on_test'}</div>
 					</div>
 					</div>
 					
 					#{form @UserController.editContactData()} #{showError errors:errors /}
 					<div class="create-form">
-					<label for="">Электронный адрес</label>
+					<label for="">&{'page.profile.current.email'}:</label>
 						 ${user.email} 
 						<div class="box-radio">
 							<input type="radio" name="showEmailForOthers" id="showEmailForOthersY" class="radio" value="true"  #{if user?.showEmailForOthers}checked#{/if}/>
-							<label for="showEmailForOthersY" class="radio-btn">Показать всем</label>
+							<label for="showEmailForOthersY" class="radio-btn">&{'page.profile.current.email_show'}</label>
 							<input type="radio" name="showEmailForOthers" id="showEmailForOthersN" class="radio" value="false"  #{if !user?.showEmailForOthers}checked#{/if}/>
-							<label for="showEmailForOthersN" class="radio-btn">Скрыть от всех</label>
+							<label for="showEmailForOthersN" class="radio-btn">&{'page.profile.current.email_hide'}</label>
 	                   </div>
                     </div>
                     <div class="profile-form">
                      <div class="profile-item">
- 						<label for="">Мой аватар</label>
+ 						<label for="">&{'page.profile.current.ava'}</label>
                          <div class="profile-pic">
 							#{avatar.avatar user:user, cssClass:'profile-pic-img', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
-                         	<div class="profile-pic-btn" id="changeAvatar">Обзор<input name="" type="file"></div>
+                         	<div class="profile-pic-btn" id="changeAvatar">&{'page.profile.current.browse'}<input name="" type="file"></div>
                          	#{avatar.changeAvatar user:user/}
-                         	<div class="profile-pic-type">Максимальный размер изображения 800х600 px 2Мб (.jpg, .jpeg, .png, .gif, .bmp)</div>
+                         	<div class="profile-pic-type">&{'page.profile.current.max_img_size'} 800х600 px 2Мб (.jpg, .jpeg, .png, .gif, .bmp)</div>
                          </div>
  					</div>
                     <div class="profile-item clearFix">
-						<label for="">Страна</label>
+						<label for="">&{'page.common.country'}</label>
 						<select name="countryId" class="cSelect" style="width:321px;">
 							#{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
 								<option value="${country.id}" #{if user?.country?.id == country.id}selected="selected"#{/if}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country.name)}</option>
@@ -190,38 +190,38 @@
 						</select>
 					</div>
                     <div class="profile-item">
-						<label for="">Город</label>
+						<label for="">&{'page.common.city'}</label>
 						<input type="text" name="city" value="${user.city}" id="" placeholder="${user.city}" />
 					</div>
-                    <button type="submit" class="profile-btn">Сохранить изменения</button>
+                    <button type="submit" class="profile-btn">&{'page.profile.current.save_changes'}</button>
                     </div>
                     #{/form}
                 
-                <h2 class="profile-h2">Сменить пароль</h2>
+                <h2 class="profile-h2">&{'page.profile.current.change_pwd'}</h2>
                 <div class="profile-form">
                 #{form @UserController.doChangePassword()}
                 #{showError errors:errors /}
                     <div class="profile-item">
-						<label for="">Старый пароль</label>
+						<label for="">&{'page.profile.current.old_pwd'}</label>
 						<input type="password" name="oldPassword" id="" />
 					</div>
                     <div class="profile-item">
-						<label for="">Введите новый пароль</label>
+						<label for="">&{'page.profile.current.new_pwd'}</label>
 						<input type="password" name="newPassword" id="" />
 					</div>
                     <div class="profile-item">
-						<label for="">Повторите новый пароль</label>
+						<label for="">&{'page.profile.current.repeate_pwd'}</label>
 						<input type="password" name="newPasswordRepeat" id="" />
 					</div>
-                    <button type="submit" class="profile-btn">Сохранить изменения</button>
+                    <button type="submit" class="profile-btn">&{'page.profile.current.save_changes'}</button>
                  #{/form}
                 </div>
-                <h2 class="profile-h2">Профессиональные навыки</h2>
+                <h2 class="profile-h2">&{'page.profile.current.proff_skills'}</h2>
                
                 #{form @UserController.editSkill()}
                  <div class="profile-form" style="padding-bottom:10px;">
 					<div class="profile-item clearFix">
-						<label for="">Интересующий тип бизнеса</label>
+						<label for="">&{'page.profile.current.business'}</label>
 						<select name="currentUser.businessType.id" class="cSelect" style="width:321px;">
 							#{list items:models.BType.findAll(), as:'businessType'}
 								<option value="${businessType.id}" #{if user?.businessType?.id == businessType.id}selected="selected"#{/if}>&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(businessType.name)}</option>
@@ -229,7 +229,7 @@
 						</select>
 					</div>
 					<div class="profile-item clearFix">
-						<label for="">Интересующая сфера бизнеса</label>
+						<label for="">&{'page.profile.current.sphere'}</label>
 						<select name="currentUser.businessSphere.id" class="cSelect" style="width:321px;">
 							#{list items:models.BSphere.findAll(), as:'businessSphere'}
 								<option value="${businessSphere.id}" #{if user?.businessSphere?.id == businessSphere.id}selected="selected"#{/if}>&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(businessSphere.name)}</option>
@@ -239,88 +239,88 @@
 				</div>
 				
 					<div class="create-form">
-						<label for="">Знание английского</label>
+						<label for="">&{'page.profile.current.en_skill'}</label>
 						<div class="box-radio">
 							<input type="radio" name="currentUser.english" id="englishY" class="radio" value="true"  #{if user?.english}checked#{/if}/>
-							<label for="englishY" class="radio-btn">Да</label>
+							<label for="englishY" class="radio-btn">&{'page.common.yes'}</label>
 							<input type="radio" name="currentUser.english" id="englishN" class="radio" value="false"  #{if !user?.english}checked#{/if}/>
-							<label for="englishN" class="radio-btn">Нет</label>
+							<label for="englishN" class="radio-btn">&{'page.common.no'}</label>
 	                   </div>
                     </div>
 					<div class="profile-form" style="padding-bottom:10px;">
 					<div class="profile-item clearFix">
-						<label for="">Опыт в маркетинге/рекламе<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<label for="">&{'page.profile.current.exp_marketing'}<span class="small">&{'page.profile.current.skill_meta'}</span></label>
 						<select name="currentUser.expMarketing.level.id" class="cSelect" style="width:321px;">
 							#{list items:models.UserLevel.findAll(), as:'level'}
 								<option value="${level.id}" #{if user?.expMarketing?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
 							#{/list}
 						</select>
-						<textarea name="currentUser.expMarketing.description" placeholder="Опишите подробнее свой опыт в рекламе" class="mt15">${user?.expMarketing?.description}</textarea>
+						<textarea name="currentUser.expMarketing.description" placeholder="&{'page.profile.current.desc_marketing'}" class="mt15">${user?.expMarketing?.description}</textarea>
 					</div>
 					<div class="profile-item clearFix">
-						<label for="">Опыт в продажах<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<label for="">&{'page.profile.current.exp_sales'}<span class="small">&{'page.profile.current.skill_meta'}</span></label>
 						<select name="currentUser.expSale.level.id" class="cSelect" style="width:321px;">
 							#{list items:models.UserLevel.findAll(), as:'level'}
 								<option value="${level.id}" #{if user?.expSale?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
 							#{/list}
 						</select>
-						<textarea name="currentUser.expSale.description" placeholder="Опишите подробнее свой опыт в продажах" class="mt15">${user?.expSale?.description}</textarea>
+						<textarea name="currentUser.expSale.description" placeholder="&{'page.profile.current.desc_sales'}" class="mt15">${user?.expSale?.description}</textarea>
 					</div>
 					<div class="profile-item clearFix">
-						<label for="">Опыт в менеджменте<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<label for="">&{'page.profile.current.exp_management'}<span class="small">&{'page.profile.current.skill_meta'}</span></label>
 						<select name="currentUser.expManagement.level.id" class="cSelect" style="width:321px;">
 							#{list items:models.UserLevel.findAll(), as:'level'}
 								<option value="${level.id}" #{if user?.expManagement?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
 							#{/list}
 						</select>
-						<textarea name="currentUser.expManagement.description" placeholder="Опишите подробнее свой опыт в менеджменте" class="mt15">${user?.expManagement?.description}</textarea>
+						<textarea name="currentUser.expManagement.description" placeholder="&{'page.profile.current.desc_management'}" class="mt15">${user?.expManagement?.description}</textarea>
 					</div>
 					
 					<div class="profile-item clearFix">
-						<label for="">Опыт в юриспруденции<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<label for="">&{'page.profile.current.exp_law'}<span class="small">&{'page.profile.current.skill_meta'}</span></label>
 						<select name="currentUser.expLegal.level.id" class="cSelect" style="width:321px;">
 							#{list items:models.UserLevel.findAll(), as:'level'}
 								<option value="${level.id}" #{if user?.expLegal?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
 							#{/list}
 						</select>
-						<textarea name="currentUser.expLegal.description" placeholder="Опишите подробнее свой опыт в юриспруденции" class="mt15">${user?.expLegal?.description}</textarea>
+						<textarea name="currentUser.expLegal.description" placeholder="&{'page.profile.current.desc_law'}" class="mt15">${user?.expLegal?.description}</textarea>
 					</div>
 					
 					<div class="profile-item clearFix">
-						<label for="">Опыт в финансах<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<label for="">&{'page.profile.current.exp_finance'}<span class="small">&{'page.profile.current.skill_meta'}</span></label>
 						<select name="currentUser.expFinance.level.id" class="cSelect" style="width:321px;">
 							#{list items:models.UserLevel.findAll(), as:'level'}
 									<option value="${level.id}" #{if user?.expFinance?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
 							#{/list}
 						</select>
-						<textarea name="currentUser.expFinance.description" placeholder="Опишите подробнее свой опыт в финансах" class="mt15">${user?.expFinance?.description}</textarea>
+						<textarea name="currentUser.expFinance.description" placeholder="&{'page.profile.current.desc_finance'}" class="mt15">${user?.expFinance?.description}</textarea>
 					</div>
 					
 					<div class="profile-item clearFix">
-						<label for="">Опыт в программировании<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<label for="">&{'page.profile.current.exp_it'}<span class="small">&{'page.profile.current.skill_meta'}</span></label>
 						<select name="currentUser.expIT.level.id" class="cSelect" style="width:321px;">
 							#{list items:models.UserLevel.findAll(), as:'level'}
 								<option value="${level.id}" #{if user?.expIT?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
 							#{/list}
 						</select>
-						<textarea name="currentUser.expIT.description" placeholder="Опишите подробнее свой опыт в программировании" class="mt15">${user?.expIT?.description}</textarea>
+						<textarea name="currentUser.expIT.description" placeholder="&{'page.profile.current.desc_it'}" class="mt15">${user?.expIT?.description}</textarea>
 					</div>
 					
 					<div class="profile-item clearFix">
-						<label for="">Опыт в других направлениях<span class="small">Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт</span></label>
+						<label for="">&{'page.profile.current.exp_other'}<span class="small">&{'page.profile.current.skill_meta'}</span></label>
 						<select name="currentUser.expOther.level.id" class="cSelect" style="width:321px;">
 							#{list items:models.UserLevel.findAll(), as:'level'}
 								<option value="${level.id}" #{if user?.expOther?.level?.id == level.id}selected="selected"#{/if}>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(level?.userLevel)}</option>
 							#{/list}
 						</select>
-						<textarea name="currentUser.expOther.description" placeholder="Опишите подробнее свой опыт в других направлениях" class="mt15">${user?.expOther?.description}</textarea>
+						<textarea name="currentUser.expOther.description" placeholder="&{'page.profile.current.desc_other'}" class="mt15">${user?.expOther?.description}</textarea>
 					</div>
 					
 					<div class="profile-item">
-						<label for="">Персональная характеристика<span class="small">Опишите свои качества.<br> Преимущества и недостатки своего характера</span></label>
-						<textarea name="currentUser.personalCV" placeholder="Опишите подробнее свои качества">${user.personalCV}</textarea>
+						<label for="">&{'page.profile.current.personal_cv'}<span class="small">&{'page.profile.current.cv_meta'}</span></label>
+						<textarea name="currentUser.personalCV" placeholder="&{'page.profile.current.desc_cv'}">${user.personalCV}</textarea>
 					</div>
-                    <button class="profile-btn">Сохранить изменения</button>
+                    <button class="profile-btn">&{'page.profile.current.save_changes'}</button>
                     </div>
                     #{/form}
 
