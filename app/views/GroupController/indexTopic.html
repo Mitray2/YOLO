@@ -38,7 +38,13 @@ $(document).ready(function(){
 });
 </script>
 
+
+			#{if topic.publicTopic}
+				<a href="@{GroupController.publicTopics(group.id)}" class="back"><span>&#8592;&nbsp;</span> К списку всех тем</a>
+			#{/if}
+			#{else}
                 <a href="@{GroupController.groupTopics(group.id)}" class="back"><span>&#8592;&nbsp;</span> К списку всех тем</a>
+            #{/else}
                 #{if (userId == topic.createdUserId) || (isAdmin)}
                 <div style="float: right">
                  <a href="@{GroupController.editTopic(topic.id)}"><span class="theme-edit"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Редактировать тему</span></span></a>

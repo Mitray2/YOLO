@@ -1,12 +1,17 @@
-#{extends 'group_templeate.html' /} #{set title:'Create Topic' /} 
-
+#{extends 'group_templeate.html' /} #{set title:'StartNewTeam' /} 
+%{
+	boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
+%}
 <div class="tabs clearFix">
-	<a href="@{GroupController.index(group.id)}" >Описание</a> <a href="@{GroupController.groupTopics(group.id)}" class="act">Обсуждения</a> <a
-		href="@{GroupController.groupUsers(group.id)}" >Участники</a>
+	<a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a>
+	<a href="@{GroupController.publicTopics(group.id)}">&{'page.team.public_discussion'}</a>
+	#{if (groupMember) || (isAdmin)}
+		<a href="@{GroupController.groupTopics(group.id)} "class="act">&{'page.team.discussion'}</a> 
+	#{/if} 
+	<a href="@{GroupController.groupUsers(group.id)}">&{'page.team.members'}</a>
 </div>
 
 
-<a href="@{GroupController.createTopic(group.id)}" class="new-theme-btn"><img src="@{'public/images/boilerplate/ico-new-theme.gif'}" alt="">Создать новую тему</a>
 #{form @GroupController.saveTopic()} 
 #{showError errors:errors /}
 <div class="new-theme-ttl">Создание новой темы</div>
