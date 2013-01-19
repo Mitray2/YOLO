@@ -137,7 +137,7 @@ public class CommandsSearch extends AbstractSearch {
 				
 				group_search.put("businessType", Messages.get(ApplicationConstants.MESSAGES_BUSINESS_TYPE + utils.ModelUtils.replaceSpacesForI18n(command.type.name)));
 				group_search.put("businessSphere", Messages.get(ApplicationConstants.MESSAGES_SPHERE_NAME + utils.ModelUtils.replaceSpacesForI18n(command.sphere.name)));
-				group_search.put("global", (command.global != null)  ? (command.global == true ? "Да" : "Нет") : "Нет"); 
+				group_search.put("global", (command.global != null)  ? (command.global == true ? Messages.get("common.yes") : Messages.get("common.no")) : Messages.get("common.no")); 
 				group_search.put("lastSeen", DateUtils.getFormatedStringDate(command.lastSeen, true)); // no money
 				
 				group_search.put("phase", Messages.get(ApplicationConstants.MESSAGES_PROJECT_PHASE + utils.ModelUtils.replaceSpacesForI18n(command.phase.name)));

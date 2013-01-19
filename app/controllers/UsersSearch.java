@@ -153,7 +153,7 @@ public class UsersSearch extends AbstractSearch {
 				
 				user_search.put("businessType", Messages.get(ApplicationConstants.MESSAGES_BUSINESS_TYPE + utils.ModelUtils.replaceSpacesForI18n(user.businessType.name)));
 				user_search.put("businessSphere", Messages.get(ApplicationConstants.MESSAGES_SPHERE_NAME + utils.ModelUtils.replaceSpacesForI18n(user.businessSphere.name)));
-				user_search.put("english", user.english ? "Да" : "Нет");
+				user_search.put("english", user.english ? Messages.get("common.yes") : Messages.get("common.no"));
 				
 				user_search.put("marketing", user.expMarketing.level.id);
 				user_search.put("marketingInfo", user.expMarketing.description == null ? "" : user.expMarketing.description);

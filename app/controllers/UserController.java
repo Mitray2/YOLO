@@ -12,6 +12,7 @@ import models.Country;
 import models.User;
 import models.UserLevel;
 import notifiers.Mails;
+import play.i18n.Messages;
 import play.mvc.Before;
 import play.mvc.Controller;
 import utils.ApplicationConstants;
@@ -249,23 +250,23 @@ public class UserController extends BasicController  implements ApplicationConst
 	public static void doChangePassword(String oldPassword, String newPassword,
 			String newPasswordRepeat) {
 		User currentUser = null;
-		validation.required(oldPassword).message("Вы не ввели старый пароль");
-		validation.required(newPassword).message("Вы не ввели новый пароль");
+		validation.required(oldPassword).message(Messages.get("page.profile.change.password.mesage1"));
+		validation.required(newPassword).message(Messages.get("page.profile.change.password.mesage2"));
 		if (!validation.hasError("newPassword"))
-			validation.required(newPasswordRepeat).message("Вы не повторили новый пароль");
+			validation.required(newPasswordRepeat).message(Messages.get("page.profile.change.password.mesage3"));
 		if (!validation.hasError("oldPassword")) {
 			currentUser = SessionHelper.getCurrentUser(session);
-			validation.equals(SecurityHelper.createPasswordHash(oldPassword), currentUser.passwordHash).message("Неверный старый пароль");
+			validation.equals(SecurityHelper.createPasswordHash(oldPassword), currentUser.passwordHash).message(Messages.get("page.profile.change.password.mesage4"));
 		}
 		if (!validation.hasError("newPassword")) {
-			validation.minSize(newPassword, 6).message("Минимальная длина пароля - 6 символов.");
-			validation.maxSize(newPassword, 12).message("Максимальная длина пароля - 12 символов.");
+			validation.minSize(newPassword, 6).message(Messages.get("page.profile.change.password.mesage5"));
+			validation.maxSize(newPassword, 12).message(Messages.get("page.profile.change.password.mesage6"));
 		}
 		if (!validation.hasError("newPassword")) {
-			validation.match(newPassword, "[A-Za-z0-9\\.\\-\\_]+").message("Пароль может " + "содержать только цифры и символы латинского алфавита");
+			validation.match(newPassword, "[A-Za-z0-9\\.\\-\\_]+").message(Messages.get("page.profile.change.password.mesage7"));
 		}
 		if (!validation.hasError("newPassword") && !validation.hasError("newPasswordRepeat"))
-			validation.equals(newPassword, newPasswordRepeat).message("Пароли не совпадают");
+			validation.equals(newPassword, newPasswordRepeat).message(Messages.get("page.profile.change.password.mesage8"));
 		if (!validation.hasErrors()) {
 			User user = User.findById(currentUser.id);
 			user.passwordHash = SecurityHelper.createPasswordHash(newPassword);

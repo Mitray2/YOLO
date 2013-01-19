@@ -1,4 +1,33 @@
 #MARKUP_MESSAGES
+
+common.yes=Да
+common.no=Нет
+common.error.undefined=Произошла неизвестная ошибка.
+common.error.access=У вас недостаточно прав для данного действия.
+common.error.need_login=Сначала вы должны войти в систему.
+common.login.error.password_empty=Вы не ввели пароль
+common.login.error.email_empty=Вы не ввели email
+common.login.error.email_format_invalid=Неверный формат email
+common.login.password_sended=Новый пароль выслан на указанный email.
+
+
+page.profile.change.password.mesage1=Вы не ввели старый пароль
+page.profile.change.password.mesage2=Вы не ввели новый пароль
+page.profile.change.password.mesage3=Вы не повторили новый пароль
+page.profile.change.password.mesage4=Неверный старый пароль
+page.profile.change.password.mesage5=Минимальная длина пароля - 6 символов.
+page.profile.change.password.mesage6=Максимальная длина пароля - 12 символов.
+page.profile.change.password.mesage7=Пароль может содержать только цифры и символы латинского алфавита
+page.profile.change.password.mesage8=Пароли не совпадают
+
+mail.subject.type1=Предварительная регистрация
+mail.subject.type2=Подтверждение регистрации
+mail.subject.type3=Подтверждение регистрации
+mail.subject.type4=Приглашение в группу
+mail.subject.type5=Кто то хочет вступить в вашу группу
+mail.subject.type6=Восстановление пароля на сайте
+
+
 page.main.content=<h1 class="main">StartNewTeam - это инструмент коммуникации и поиска единомышленников для создания успешного бизнеса.</h1>\
                     <p>У тебя есть желание, но чего-то не хватает для создания успешного бизнеса?</p>\
                     <p>Возможно, опыта, знаний, классных идей, нужных связей или денег.</p>\

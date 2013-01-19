@@ -1,4 +1,32 @@
 #MARKUP_MESSAGES
+
+common.yes=Yes
+common.no=No
+common.error.undefined=An unknown error occurred.
+common.error.access=You do not have permission for this action.
+common.error.need_login=First, you must log in.
+common.login.error.password_empty=You did not enter your password
+common.login.error.email_empty=You have not entered an email
+common.login.error.email_format_invalid=Invalid email format
+common.login.password_sended=A new password was sent to the specified email.
+
+page.profile.change.password.mesage1=You did not enter the old password
+page.profile.change.password.mesage2=You did not enter a new password
+page.profile.change.password.mesage3=you do not repeat your new password
+page.profile.change.password.mesage4=Incorrect password
+page.profile.change.password.mesage5=Minimum Password Length - 6 characters.
+page.profile.change.password.mesage6=maximum password length - 12 characters.
+page.profile.change.password.mesage7=password can contain only numbers and Latin letters
+page.profile.change.password.mesage8=Passwords do not match
+
+mail.subject.type1=Pre-registration
+mail.subject.type2=Confirmation of registration
+mail.subject.type3=Confirmation of registration
+mail.subject.type4=Group Invite
+mail.subject.type5=Someone wants to join your group
+mail.subject.type6=Password Recovery Online
+
+
 page.main.content=<h1 class="main">StartNewTeam – is an innovative tool for communication and finding like-minded people for joint creation of a successful business.</h1>\
                     <p>Do you have a desire, but something is missing for a creation of a successful business?</p>\
                     <p>Perhaps, you don’t have experience, knowledge, great ideas, money or the right connections.</p>\

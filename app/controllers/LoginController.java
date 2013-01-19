@@ -19,6 +19,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import play.data.validation.Required;
+import play.i18n.Messages;
 import play.mvc.Controller;
 import utils.ApplicationConstants;
 import utils.ModelUtils;
@@ -312,8 +313,8 @@ public class LoginController extends BasicController implements ApplicationConst
 	}
 
 	public static void login(String loginEmail, String loginPassword) {
-		validation.required("loginEmail", loginEmail).message("Вы не ввели email");
-		validation.required("loginPassword", loginPassword).message("Вы не ввели пароль");
+		validation.required("loginEmail", loginEmail).message(Messages.get("common.login.error.email_empty"));
+		validation.required("loginPassword", loginPassword).message(Messages.get("common.login.error.password_empty"));
 		if (!validation.hasErrors()) {
 			User user = User.find("email = ? and passwordHash = ?", loginEmail, SecurityHelper.createPasswordHash(loginPassword)).first();
 			if (user != null) {
@@ -343,9 +344,9 @@ public class LoginController extends BasicController implements ApplicationConst
 
 	public static void recoverPassword(String recoverEmail) {
 		User user = null;
-		validation.required("recoverEmail", recoverEmail).message("Вы не ввели email");
+		validation.required("recoverEmail", recoverEmail).message(Messages.get("common.login.error.email_empty"));
 		if (!validation.hasError("recoverEmail"))
-			validation.email("recoverEmail", recoverEmail).message("Неверный формат email");
+			validation.email("recoverEmail", recoverEmail).message(Messages.get("common.login.error.email_format_invalid"));
 		if (!validation.hasError("recoverEmail")) {
 			user = User.find(" email = ?", recoverEmail).first();
 			validation.isTrue("recoverEmail", user != null).message(VALIDATION_LOGIN_CONTROLLER_NONEXISTENT_USER);
@@ -368,7 +369,7 @@ public class LoginController extends BasicController implements ApplicationConst
 				// registered user
 				Mails.lostPassword(user, request.getBase());
 			}
-			SessionHelper.setUserMessage(session, new SessionUserMessage("Новый пароль выслан на указанный email."));
+			SessionHelper.setUserMessage(session, new SessionUserMessage(Messages.get("common.login.password_sended")));
 			ApplicationController.index();
 		} else {
 			render("ApplicationController/index.html", validation.errors());

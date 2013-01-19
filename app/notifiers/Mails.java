@@ -1,6 +1,7 @@
 package notifiers;
 
 import models.User;
+import play.i18n.Messages;
 import play.mvc.Mailer;
 import utils.PasswordGenerator;
 import utils.SecurityHelper;
@@ -20,7 +21,7 @@ public class Mails extends Mailer {
 	// }
 
 	public static void firstTestPassed(User user, String base) {
-		setSubject("Предварительная регистрация");
+		setSubject(Messages.get("mail.subject.type1"));
 		addRecipient(user.email);
 		setFrom("noreply@startnewteam.com");
 		String password = PasswordGenerator.generate();
@@ -30,7 +31,7 @@ public class Mails extends Mailer {
 	}
 
 	public static void secondTestPassed(User user, String base) {
-		setSubject("Подтверждение регистрации");
+		setSubject(Messages.get("mail.subject.type2"));
 		addRecipient(user.email);
 		setFrom("noreply@startnewteam.com");
 		String password = PasswordGenerator.generate();
@@ -40,7 +41,7 @@ public class Mails extends Mailer {
 	}
 
 	public static void blankFormPassed(User user, String base) {
-		setSubject("Подтверждение регистрации");
+		setSubject(Messages.get("mail.subject.type3"));
 		addRecipient(user.email);
 		setFrom("noreply@startnewteam.com");
 		String hash = user.mailTicket = SecurityHelper.createPasswordHash(user.email);
@@ -49,14 +50,14 @@ public class Mails extends Mailer {
 	}
 
 	public static void groupRequest(User user, String base, String name, String text) {
-		setSubject("Приглашение в группу");
+		setSubject(Messages.get("mail.subject.type4"));
 		addRecipient(user.email);
 		setFrom("noreply@startnewteam.com");
 		send(user, name, base, text);
 	}
 
 	public static void memberRequest(User user, String base, String name, String text) {
-		setSubject("Кто то хочешь вступить в вашу группу");
+		setSubject(Messages.get("mail.subject.type5"));
 		addRecipient(user.email);
 		setFrom("noreply@startnewteam.com");
 		send(user, base, name, text);
@@ -72,7 +73,7 @@ public class Mails extends Mailer {
 	// }
 
 	public static void lostPassword(User user, String base) {
-		setSubject("Восстановление пароля на сайте " + base);
+		setSubject(Messages.get("mail.subject.type6") + " " + base);
 		addRecipient(user.email);
 		setFrom("noreply@startnewteam.com");
 		String newpassword = PasswordGenerator.generate();

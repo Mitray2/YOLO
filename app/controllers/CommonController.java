@@ -1,5 +1,6 @@
 package controllers;
 
+import play.i18n.Messages;
 import play.mvc.Controller;
 import utils.SessionHelper;
 
@@ -10,12 +11,12 @@ public class CommonController extends BasicController {
 	public static final String ERROR_UNAUTHORIZED_USER = "error.unauthorized_user";
 
 	public static void error(String error) {
-		String message = "Произошла неизвестная ошибка.";
+		String message = Messages.get("common.error.undefined");
 		if (ERROR_SECURITY.equals(error)) {
-			message = "У вас недостаточно прав для данного действия.";
+			message = Messages.get("common.error.access");
 		}
 		if (ERROR_UNAUTHORIZED_USER.equals(error)) {
-			message = "Сначала вы должны войти в систему.";
+			message = Messages.get("common.error.need_login");
 		}
 //		SessionHelper.setUserMessage(session, message);
 		ApplicationController.index();
