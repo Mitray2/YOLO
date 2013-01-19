@@ -36,7 +36,7 @@ $(document).ready(function() {
 				<a href="/">
 					<img src="@{'public/images/boilerplate/logo-1.png'}" alt="" class="logo" />
 				</a>
-				#{menu.nav/}
+				#{common.menu.nav/}
                 <div class="logged clearFix">
                 	<div class="logged-message">
                     	<a href="#" class="logged-message-ico"></a>
@@ -236,21 +236,7 @@ $(document).ready(function() {
 		</div>
 		</div>
 		</div>
-		
-		<footer class="ftr-page">
-			<div class="inner">
-				<p>&copy; 2012 All rights reserved. StartNewTeam</p>
-				<nav class="ftr-nav">
-					<ul>
-						<li><a href="/">Главная</a></li>
-						<li><a href="/news">Новости</a></li>
-						<li><a href="/about/">О проекте</a></li>
-						<li><a href="/contacts/">Контакты</a></li>
-						<li><a href="/partners/">Партнеры</a></li>
-					</ul>
-				</nav>
-			</div>
-		</footer>
+		#{common.footer/}
 		#{userPopup/}
 </body>
 </html>
