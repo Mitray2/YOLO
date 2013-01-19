@@ -26,7 +26,7 @@ import utils.SecurityHelper;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
 
-public class LoginController extends Controller implements ApplicationConstants {
+public class LoginController extends BasicController implements ApplicationConstants {
 
 	public static void firstTest(User user) {
 		Integer birthYear = Integer.parseInt(params.get("birthYear"));

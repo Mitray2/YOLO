@@ -19,7 +19,7 @@ import utils.SecurityHelper;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
 
-public class UserController extends Controller implements ApplicationConstants {
+public class UserController extends BasicController  implements ApplicationConstants {
 
 	@Before
 	public static void checkSecutiry() {
