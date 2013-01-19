@@ -11,7 +11,7 @@
 			<form action="" class="private_form">
 			<div class="private_form">
 			<div class="private_item clearFix">
-				<label for="">Страна</label>
+				<label for="">&{'page.common.country'}</label>
 				<select name="member.country" id="country" class="cSelect" style="width:160px;">
 					<option value="">&{'unimportant'}</option> 
 					#{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
@@ -20,20 +20,20 @@
 				</select>
 			</div>
 			<div class="private_item clearFix">
-				<label for="">Город</label>
+				<label for="">&{'page.common.city'}</label>
 				<input id="city" type="text" placeholder="Неважно" value="" name="member.city" style="width:150px;">
 			</div>
 			<div class="private_item clearFix">
-						<label class="clearFix" for="">Возраст</label>
+						<label class="clearFix" for="">&{'page.common.age'}</label>
 				<select name="member.ageMin" id="ageMin" class="cSelect" style="width:67px;">
-					<option value="0">От</option>
+					<option value="0">&{'page.common.from'}</option>
 					#{list items:0..100, as:'i'}
 					    <option value="${i}">${i}</option>
 					#{/list}
 				</select>
 				<span class="mdash fl">&mdash;</span>
 				<select name="member.ageMax" id="ageMax" class="cSelect" style="width:67px;">
-					<option value="100">До</option>
+					<option value="100">&{'page.common.to'}</option>
 					#{list items:0..100, as:'i'}
 					    <option value="${i}">${i}</option>
 					#{/list}
@@ -68,14 +68,14 @@
 				<div class="private_item clearFix">
 					<label for=""><span class="ic_predpr_pas"></span>Предпринимательство</label>
 					<select name="member.bmanMin" id="bmanMin" class="cSelect" style="width:67px;">
-						<option value="0">От</option>
+						<option value="0">&{'page.common.from'}</option>
 						#{list items:0..100, as:'i'}
 						    <option value="${i}">${i}</option>
 						#{/list}
 					</select>
 					<span class="mdash fl">&mdash;</span>
 					<select name="member.bmanMax" id="bmanMax" class="cSelect" style="width:67px;">
-						<option value="100">До</option>
+						<option value="100">&{'page.common.to'}</option>
 						#{list items:0..100, as:'i'}
 						    <option value="${i}">${i}</option>
 						#{/list}
@@ -84,14 +84,14 @@
 				<div class="private_item clearFix">
 					<label for=""><span class="ic_ideal_pas"></span>Идеализм</label>
 					<select name="member.idealMin" id="idealMin" class="cSelect" style="width:67px;">
-						<option value="0">От</option>
+						<option value="0">&{'page.common.from'}</option>
 						#{list items:0..100, as:'i'}
 						    <option value="${i}">${i}</option>
 						#{/list}
 					</select>
 					<span class="mdash fl">&mdash;</span>
 					<select name="member.idealMax" id="idealMax" class="cSelect" style="width:67px;">
-						<option value="100">До</option>
+						<option value="100">&{'page.common.to'}</option>
 						#{list items:0..100, as:'i'}
 						    <option value="${i}">${i}</option>
 						#{/list}
@@ -100,14 +100,14 @@
 				<div class="private_item clearFix">
 							<label class="clearFix" for=""><span class="ic_communic_pas"></span>Коммуникабельность</label>
 					<select name="member.comutMin" id="comutMin" class="cSelect" style="width:67px;">
-						<option value="0">От</option>
+						<option value="0">&{'page.common.from'}</option>
 						#{list items:0..100, as:'i'}
 						    <option value="${i}">${i}</option>
 						#{/list}
 					</select>
 					<span class="mdash fl">&mdash;</span>
 					<select name="member.comutMax" id="comutMax" class="cSelect" style="width:67px;">
-						<option value="100">До</option>
+						<option value="100">&{'page.common.to'}</option>
 						#{list items:0..100, as:'i'}
 						    <option value="${i}">${i}</option>
 						#{/list}
@@ -116,14 +116,14 @@
 				<div class="private_item clearFix">
 					<label for=""><span class="ic_pragmatic_pas"></span>Прагматика</label>
 					<select name="member.pragmatMin" id="pragmatMin" class="cSelect" style="width:67px;">
-						<option value="0">От</option>
+						<option value="0">&{'page.common.from'}</option>
 						#{list items:0..100, as:'i'}
 						    <option value="${i}">${i}</option>
 						#{/list}
 					</select>
 					<span class="mdash fl">&mdash;</span>
 					<select name="member.pragmatMax" id="pragmatMax" class="cSelect" style="width:67px;">
-						<option value="100">До</option>
+						<option value="100">&{'page.common.to'}</option>
 						#{list items:0..100, as:'i'}
 						    <option value="${i}">${i}</option>
 						#{/list}

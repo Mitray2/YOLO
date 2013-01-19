@@ -3,23 +3,23 @@
 	var fileStoreURL = '${play.Play.configuration.getProperty("filestoteURL")}';
 </script>
 <div class="search_result">
-	<h2>Пользователи</h2>
+	<h2>&{'page.search.members.title'}</h2>
 	<div class="shot_nav">
 		<table>
 			<tr>
 				<td id="searchTab1" class="active">
 					<div class="group-shot">
-						<a href="#">Личные данные</a>
+						<a href="#">&{'page.search.members.personal_data'}</a>
 					</div>
 				</td>
 				<td id="searchTab2">
 					<div class="group-shot">
-						<a href="#">Склонности и интересы</a>
+						<a href="#">&{'page.search.members.aptitudes'}</a>
 					</div>
 				</td>
 				<td id="searchTab3" class="last">
 					<div class="group-shot">
-						<a href="#">Профессиональные</a>
+						<a href="#">&{'page.search.members.professional'}</a>
 					</div>
 				</td>
 			</tr>
@@ -27,33 +27,33 @@
 	</div>
 	<table class="search-result-block padding-7">
 		<tr class="search-name">
-			<td class="lft" id="column_lastName"><a href="#">Фамилия, Имя</a><span class="sort"></span></td>
+			<td class="lft" id="column_lastName"><a href="#">&{'page.search.members.name'}</a><span class="sort"></span></td>
 			
-			<td class="searchResultColumn1">Аватар</td>
-			<td class="searchResultColumn1" id="column_country"><a href="#">Страна</a><span class="sort"></span></td>
-			<td class="searchResultColumn1" id="column_city"><a href="#">Город</a><span class="sort"></span></td>
-			<td class="searchResultColumn1" id="column_sex"><a href="#">Пол</a><span class="sort"></span></td>
-			<td class="searchResultColumn1" id="column_age"><a href="#">Лет</a><span class="sort"></span></td>
-			<td class="searchResultColumn1 cntr" id="column_lastSeen"><a href="#">Статус</a><span class="sort"></span></td>
-			<td class="searchResultColumn1 cntr">Инфо</td>
+			<td class="searchResultColumn1">&{'page.search.members.ava'}</td>
+			<td class="searchResultColumn1" id="column_country"><a href="#">&{'page.common.country'}</a><span class="sort"></span></td>
+			<td class="searchResultColumn1" id="column_city"><a href="#">&{'page.common.city'}</a><span class="sort"></span></td>
+			<td class="searchResultColumn1" id="column_sex"><a href="#">&{'page.common.sex'}</a><span class="sort"></span></td>
+			<td class="searchResultColumn1" id="column_age"><a href="#">&{'page.common.age'}</a><span class="sort"></span></td>
+			<td class="searchResultColumn1 cntr" id="column_lastSeen"><a href="#">&{'page.search.members.status'}</a><span class="sort"></span></td>
+			<td class="searchResultColumn1 cntr">&{'page.search.members.info'}</td>
 			
-			<td class="searchResultColumn2" id="column_predpr" style="display: none;"><span class="ic_predpr_hover tip" data-tip='Навык "Предпринимательство"'></span><span class="sort"></span></td>
-			<td class="searchResultColumn2" id="column_ideal" style="display: none;"><span class="ic_ideal_hover tip"  data-tip='Навык "Идеализм"'></span><span class="sort"></span></td>
-			<td class="searchResultColumn2" id="column_communic" style="display: none;"><span class="ic_communic_hover tip"  data-tip='Навык "Коммуникабельность"'></span><span class="sort"></span></td>
-			<td class="searchResultColumn2" id="column_pragmatic" style="display: none;"><span class="ic_pragmatic_hover tip"  data-tip='Навык "Прагматика"'></span><span class="sort"></span></td>
-			<td class="searchResultColumn2" id="column_businessType" style="display: none;"><a href="#">Тип бизнеса</a><span class="sort"></span></td>
-			<td class="searchResultColumn2" id="column_businessSphere" style="display: none;"><a href="#">Сфера</a><span class="sort"></span></td>
-			<td class="searchResultColumn2 cntr" id="column_english" style="display: none;"><a href="#">Языки</a><span class="sort"></span></td>
+			<td class="searchResultColumn2" id="column_predpr" style="display: none;"><span class="ic_predpr_hover tip" data-tip='&{'page.search.members.title_enterpreneurship'}'></span><span class="sort"></span></td>
+			<td class="searchResultColumn2" id="column_ideal" style="display: none;"><span class="ic_ideal_hover tip"  data-tip='&{'page.search.members.title_idealist'}'></span><span class="sort"></span></td>
+			<td class="searchResultColumn2" id="column_communic" style="display: none;"><span class="ic_communic_hover tip"  data-tip='&{'page.search.members.title_communicant'}'></span><span class="sort"></span></td>
+			<td class="searchResultColumn2" id="column_pragmatic" style="display: none;"><span class="ic_pragmatic_hover tip"  data-tip='&{'page.search.members.title_pragmatist'}'></span><span class="sort"></span></td>
+			<td class="searchResultColumn2" id="column_businessType" style="display: none;"><a href="#">&{'page.search.members.business'}</a><span class="sort"></span></td>
+			<td class="searchResultColumn2" id="column_businessSphere" style="display: none;"><a href="#">&{'page.search.members.sphere'}</a><span class="sort"></span></td>
+			<td class="searchResultColumn2 cntr" id="column_english" style="display: none;"><a href="#">&{'page.search.members.lang'}</a><span class="sort"></span></td>
 			
-			<td class="searchResultColumn3" id="column_marketing" style="display: none;"><span class="ic_marketing_hover tip" data-tip='Навык "Маркетинг"'></span><span class="sort"></span></td>
-			<td class="searchResultColumn3" id="column_sale" style="display: none;"><span class="ic_sale_hover tip" data-tip='Навык "Продажи"'></span><span class="sort"></span></td>
-			<td class="searchResultColumn3" id="column_management" style="display: none;"><span class="ic_management_hover tip" data-tip='Навык "Управление"'></span><span class="sort"></span></td>
-			<td class="searchResultColumn3" id="column_right" style="display: none;"><span class="ic_right_hover tip" data-tip='Навык "Право"'></span><span class="sort"></span></td>
-			<td class="searchResultColumn3" id="column_finance" style="display: none;"><span class="ic_finance_hover tip" data-tip='Навык "Финансы"'></span><span class="sort"></span></td>
-			<td class="searchResultColumn3" id="column_it" style="display: none;"><span class="ic_it_hover tip" data-tip='Навык "ИТ"'></span><span class="sort"></span></td>
-			<td class="searchResultColumn3" id="column_more" style="display: none;"><span class="ic_more_hover tip" data-tip='Навык "Другое"'></span><span class="sort"></span></td>
+			<td class="searchResultColumn3" id="column_marketing" style="display: none;"><span class="ic_marketing_hover tip" data-tip='&{'page.search.members.title_marketing'}'></span><span class="sort"></span></td>
+			<td class="searchResultColumn3" id="column_sale" style="display: none;"><span class="ic_sale_hover tip" data-tip='&{'page.search.members.title_sales'}'></span><span class="sort"></span></td>
+			<td class="searchResultColumn3" id="column_management" style="display: none;"><span class="ic_management_hover tip" data-tip='&{'page.search.members.title_management'}'></span><span class="sort"></span></td>
+			<td class="searchResultColumn3" id="column_right" style="display: none;"><span class="ic_right_hover tip" data-tip='&{'page.search.members.title_law'}'></span><span class="sort"></span></td>
+			<td class="searchResultColumn3" id="column_finance" style="display: none;"><span class="ic_finance_hover tip" data-tip='&{'page.search.members.title_finance'}'></span><span class="sort"></span></td>
+			<td class="searchResultColumn3" id="column_it" style="display: none;"><span class="ic_it_hover tip" data-tip='&{'page.search.members.title_it'}'></span><span class="sort"></span></td>
+			<td class="searchResultColumn3" id="column_more" style="display: none;"><span class="ic_more_hover tip" data-tip='&{'page.search.members.title_other'}'></span><span class="sort"></span></td>
 			
-			<td class="lft cntr"  id="column_command"><a href="#" >Команда</a><span class="sort"></span></td>																																		
+			<td class="lft cntr"  id="column_command"><a href="#" >&{'page.search.members.team'}</a><span class="sort"></span></td>																																		
 		</tr>
 	</table>
 	<div id="searchLoader" class="cntr"><img src="/public/img/ajax-loader.gif"/></div>

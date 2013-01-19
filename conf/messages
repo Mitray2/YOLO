@@ -284,11 +284,45 @@ page.news.title=Project news
 
 
 
+page.search.members.title=Members
+page.search.members.personal_data=Personal
+page.search.members.aptitudes=Aptitudes and interests
+page.search.members.professional=Professional
+page.search.members.name=Surname, Name
+page.search.members.ava=Avatar
+page.search.members.status=Status
+page.search.members.info=Info
+page.search.members.title_enterpreneurship=Skill "Entrepreneurship"
+page.search.members.title_idealist=Skill "Idealism"
+page.search.members.title_communicant=Skill "Communicative"
+page.search.members.title_pragmatist=Skill "Pragmatism"
+page.search.members.title_marketing=Skill "Marketing/advertising"
+page.search.members.title_sales=Skill "Sales"
+page.search.members.title_management=Skill "Management"
+page.search.members.title_law=Skill "Law"
+page.search.members.title_finance=Skill "Finances"
+page.search.members.title_it=Skill "IT"
+page.search.members.title_other=Skill "Other"
+page.search.members.business=Business type
+page.search.members.sphere=Sphere
+page.search.members.lang=Lang
+page.search.members.team=Team
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
 
 
 
-
-
+page.common.sex=Sex
+page.common.age=Age
 page.common.rights=2012 All rights reserved. StartNewTeam
 page.common.yes=Yes
 page.common.no=No

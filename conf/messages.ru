@@ -278,6 +278,55 @@ page.profile.current.desc_cv=Персональная характеристик
 page.profile.current.desc_skill_meta=Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт
 page.profile.current.desc_cv_meta=Опишите подробнее свои качества.
 
+
+
+
+
+
+
+page.search.members.title=Пользователи
+page.search.members.personal_data=Личные данные
+page.search.members.aptitudes=Склонности и интересы
+page.search.members.professional=Профессиональные
+page.search.members.name=Фамилия, Имя
+page.search.members.ava=Аватар
+page.search.members.status=Статус
+page.search.members.info=Инфо
+page.search.members.title_enterpreneurship=Навык "Предпринимательство"
+page.search.members.title_idealist=Навык "Идеализм"
+page.search.members.title_communicant=Навык "Коммуникабельность"
+page.search.members.title_pragmatist=Навык "Прагматика"
+page.search.members.title_marketing=Навык "Маркетинг"
+page.search.members.title_sales=Навык "Продажи"
+page.search.members.title_management=Навык "Управление"
+page.search.members.title_law=Навык "Право"
+page.search.members.title_finance=Навык "Финансы"
+page.search.members.title_it=Навык "ИТ"
+page.search.members.title_other=Навык "Другое"
+page.search.members.business=Тип бизнеса
+page.search.members.sphere=Сфера
+page.search.members.lang=Языки
+page.search.members.team=Команда
+page.search.members.filter.title=Поиск участников
+page.search.members.filter.personal_data=Личные данные
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+
+
+
+
+
+page.common.from=От
+page.common.to=До
+page.common.sex=Пол
+page.common.age=Возраст
 page.common.rights=2012 All rights reserved. StartNewTeam
 page.common.yes=Да
 page.common.no=Нет
