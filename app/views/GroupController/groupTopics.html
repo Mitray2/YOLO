@@ -47,6 +47,7 @@ function editDisabled(element){
 					#{/if}
 				#{/list}
 				</ul>
+				#{group.loadMore mainTopic:mainTopic, group:group, topicsCount:topicsCount, isPublic:false/}
 				
 				#{group.reply topic:mainTopic, group:group, count:mainTopicMsgCount, action:'/groupcontroller/addmsgtomaintopic'/}
 				<ul class="group-theme-dialog">

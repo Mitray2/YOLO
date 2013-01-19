@@ -457,6 +457,25 @@ public class GroupController extends Controller implements ApplicationConstants 
 		render(topics, group, mainTopic, mainTopicMsgCount, topicsCount);
 	}
 	
+	public static void moreTopics(Long groupId, Boolean isPublic) {
+		Command group = Command.findById(groupId);
+		
+		if (!SessionHelper.getCurrentUser(session).command.id.equals(group.id)) {
+			render("access error");
+		}
+
+		//find remain all topics
+		Query ptQueryAllTopics = JPA.em().createQuery("select t from Topic t where t.groupId=? and t.publicTopic=? and t.mainTopic=? order by t.lastUpdateDate desc");
+		ptQueryAllTopics.setParameter(1, groupId);
+		ptQueryAllTopics.setParameter(2, isPublic);
+		ptQueryAllTopics.setParameter(3, false);
+		ptQueryAllTopics.setFirstResult(10);
+		List<Topic> topics = ptQueryAllTopics.getResultList();
+		Long userId = SessionHelper.getCurrentUser(session).getId();
+		Boolean isAdmin = SessionHelper.getCurrentUser(session).role.equals(User.ROLE_ADMIN);
+		render(topics, group, userId, isAdmin);
+	}
+	
 	public static void more(Integer page, Long mainTopicId, Long groupId, String formAction, String removeAction) {
 		Query ptmQuery = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=? order by t.createDate desc");
 		ptmQuery.setParameter(1, mainTopicId);
@@ -621,6 +640,7 @@ public class GroupController extends Controller implements ApplicationConstants 
 
 	public static void removeTopic(Long topicId, Long groupId) {
 		Topic topic = Topic.findById(topicId);
+		Boolean isPublic = topic.publicTopic;
 		Command command = Command.findById(groupId);
 		command.topics.remove(topic);
 		command.save();
@@ -635,6 +655,10 @@ public class GroupController extends Controller implements ApplicationConstants 
 		topic.delete();
 		Query query = JPA.em().createQuery("delete from TopicMessage where topic_id IS NULL");
 		query.executeUpdate();
-		groupTopics(groupId);
+		if (isPublic) {
+			publicTopics(groupId);
+		} else {
+			groupTopics(groupId);			
+		}
 	}
 }
