@@ -65,5 +65,8 @@ GET			/{userId}/?									UserController.index
 GET			/news/?										NewsController.index
 GET			/news/{id}/?								NewsController.showNews
 
+#LocaleController
+GET			/locale/change								LocaleController.change
+
 # Catch all
 *       /{controller}/{action}                  			{controller}.{action}

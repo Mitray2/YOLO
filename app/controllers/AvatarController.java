@@ -16,7 +16,7 @@ import utils.ImageUtil;
 import utils.ImageUtil.ImageConvertException;
 import utils.SessionHelper;
 
-public class AvatarController extends Controller {
+public class AvatarController extends BasicController {
 
 	private static final Integer[] sizes = {27, 36, 55, 85, 123};
 	
