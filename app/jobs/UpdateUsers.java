@@ -2,6 +2,7 @@ package jobs;
 
 import java.util.List;
 
+import models.Command;
 import models.User;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
@@ -17,6 +18,11 @@ public class UpdateUsers extends Job {
 				user.english = false;
 				user.save();
 			}
+		}
+		List<Command> commandsWithEmptyGlobal = Command.find("global is NULL").fetch();
+		for (Command c : commandsWithEmptyGlobal) {
+			c.global = false;
+			c.save();
 		}
 	}
 
