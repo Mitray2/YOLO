@@ -16,26 +16,46 @@
         });
 
         $('#forget-password').click(showRecoverPasswordForm);
+        $('#forget-password-link').click(function(e){
+            showRecoverPasswordForm(e, true);
+        });
         $('#showEnterForm').click(showEnterForm);
+        $('#showEnterForm-link').click(function(e) {
+            showEnterForm(e, true);
+        });
 
-        function showRecoverPasswordForm(e){
+        function showRecoverPasswordForm(e, firstTime){
             e.preventDefault();
-            $('#popup-enter, #popup-enter-ttl').slideUp(500, function(){
-                $('#popup-enter-ttl').html(internationalization.password_repair)
+            if(firstTime){
                 $('#enterForm').hide();
                 $('#recoverEmailForm').show();
-            });
-            $('#popup-enter, #popup-enter-ttl').slideDown(500);
+                $($('#popup-enter-ttl')[0]).html(internationalization.password_repair);
+                $('#popup-enter').fadeIn(1000);
+                $('#overlay').fadeIn(1000);
+            } else {
+                $('#popup-enter, #popup-enter-ttl').slideUp(500, function(){
+                    $('#popup-enter-ttl').html(internationalization.password_repair);
+                    $('#enterForm').hide();
+                    $('#recoverEmailForm').show();
+                });
+                $('#popup-enter, #popup-enter-ttl').slideDown(500);
+            }
         }
 
-        function showEnterForm(e){
+        function showEnterForm(e, firstTime){
             e.preventDefault();
-            $('#popup-enter, #popup-enter-ttl').slideUp(500, function(){
-                $('#popup-enter-ttl').html(internationalization.system_enter)
-                $('#recoverEmailForm').hide();
-                $('#enterForm').show();
-            });
-            $($('#popup-enter, #popup-enter-ttl')).slideDown(500);
+            if(firstTime){
+                $($('#popup-enter-ttl')[0]).html(internationalization.system_enter);
+                $('#popup-enter').fadeIn(1000);
+                $('#overlay').fadeIn(1000);
+            } else {
+                $('#popup-enter, #popup-enter-ttl').slideUp(500, function(){
+                    $('#popup-enter-ttl').html(internationalization.system_enter);
+                    $('#recoverEmailForm').hide();
+                    $('#enterForm').show();
+                });
+                $($('#popup-enter, #popup-enter-ttl')).slideDown(500);
+            }
         }
 
         function showCloseEnterDialog(e, show){
@@ -121,15 +141,13 @@
         </tr>
         <tr>
             <td><a href="" onclick="$('#regName').focus(); return false;">&{'page.common.registration'}</a></td>
-            <td><a href="" onClick="$('#popup-enter').fadeIn(1000); $('#overlay').fadeIn(1000);
-                    $('#popup-enter-ttl').html('&{'popup.password_recovering'}');$('#enterForm').hide();
-                    $('#recoverEmailForm').show(); return false;">&{'page.common.forgot_password'}</a></td>
+            <td><a href="" id="forget-password-link" >&{'page.common.forgot_password'}</a></td>
         </tr>
         </tbody>
     </table>
     #{/form}
-<a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">&{'page.common.enter'}</a>
+<a href="" id="showEnterForm-link" class="sign-in">&{'page.common.enter'}</a>
 #{/if}
 #{if currentUser}
-<a href="@{LoginController.logout()}" class="sign-in">&{'page.common.logout'}</a>
+    <a href="@{LoginController.logout()}" class="sign-in">&{'page.common.logout'}</a>
 #{/if}
