@@ -6,7 +6,10 @@
 #{/else}
 #{set title: StartNewTeam /}
 <div class="newsLangSwitch">
-	<a style="float: right; cursor: pointer;" href="/crowdfunding?lang=${newsLang == 'ru' ? 'en' : 'ru'}">читать ${newsLang == 'ru' ? 'английский' : 'русский'} отчет</a>
+	<a style="float: right; cursor: pointer;" href="/crowdfunding?lang=${newsLang == 'ru' ? 'en' : 'ru'}">
+		#{if newsLang == 'ru'}&{'page.crowd.funding.report.translate.en'}#{/if}
+		#{if newsLang == 'en'}&{'page.crowd.funding.report.translate.ru'}#{/if}
+	</a>
 </div>
 <div class="page-news">
 	<div class="news">

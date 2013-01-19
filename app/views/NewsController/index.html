@@ -7,7 +7,10 @@
 #{set title:'StartNewTeam' /}
 <h1>&{'page.news.title'}</h1>
 <div class="newsLangSwitch">
-	<a style="float: right; cursor: pointer;" href="/news?lang=${newsLang == 'ru' ? 'en' : 'ru'}">читать ${newsLang == 'ru' ? 'английские' : 'русские'} новости</a>
+	<a style="float: right; cursor: pointer;" href="/news?lang=${newsLang == 'ru' ? 'en' : 'ru'}">
+		#{if newsLang == 'ru'}&{'page.news.translate.en'}#{/if}
+		#{if newsLang == 'en'}&{'page.news.translate.ru'}#{/if}
+	</a>
 </div>
 <div class="page-news">
 	<div class="news">

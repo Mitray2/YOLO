@@ -19,7 +19,7 @@ GET			/crowdconsulting/							CrowdController.consulting
 GET			/crowddeveloping/							CrowdController.developing
 GET			/crowdconsulting/more						CrowdController.more
 GET			/crowddeveloping/more						CrowdController.more
-GET			/crowdfunding/								CrowdController.funding
+GET			/crowdfunding/?								CrowdController.funding
 GET			/crowdfunding/{id}							CrowdController.showFundingReport
 
 
