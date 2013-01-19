@@ -9,30 +9,19 @@
 <h1>Вы прошли второй тест!</h1>
 <div class="test">
 	<div class="test-results">
-		<p>Вот оценка твоих наклонностей по результатам тестирования:</p>
-		
-		<strong>Идеалист</strong> &ndash; <span class="rating">${currentUser?.idealist} баллов</span>, &ndash; это склонность к размышлениям, генерированию новых идей, поиску эффективных решений. <br><br>
-		<strong>Коммуникант</strong> &ndash; <span class="rating">${currentUser?.communicant} баллов</span>, &ndash; это склонность к продвижению, переговорам, продажам.<br><br>
-		<strong>Прагматик</strong> &ndash; <span class="rating">${currentUser?.pragmatist} баллов</span>, &ndash; это склонность к практике, реализации, действию. <br><br>
-		
-		<p>Тебе необходимо концентрироваться на функциях с наивысшими баллами – делая ставку именно на них, ты сможешь принести максимальную пользу команде, и найти людей, которые будут дополнять тебя по менее развитым характеристикам.
-Для успешного бизнеса необходима развитость всех направлений: думать, делать
-придуманное, продвигать придуманное и сделанное. Но в одном человеке редко
-сочетается всё, поэтому шансы на успех становятся значительно выше в эффективно
-сформированной команде, сочетающей в себе все нужные качества.</p>
-					<p>Поделись своим результатом в социальных сетях, возможно, этот тест будет полезен
-кому-то из твоих знакомых, и, вероятно, среди них могут обнаружиться нужные тебе
-бизнес-партнеры. Но, как и в прошлый раз, ты этого не узнаешь, если не попробуешь.</p>
-					<p>Для финальной регистрации и доступа к внутреннему функционалу сайта осталось
-заполнить анкету из нескольких пунктов. Поздравляем!</p>
-        %{
-            def socialResult = "Идеалист " + currentUser?.idealist + ", Коммуникант " + currentUser?.communicant + ", Прагматик " + currentUser?.pragmatist;
-        }%
-		<ul class="social-likes" data-title="&{'models.test.number2.social.title'}" data-twit="&{'models.test.number2.social.text', socialResult} www.startnewteam.ru" data-description="&{'models.test.number1.social.text', socialResult}" data-url="${request.getBase()}" >
+		<p>&{'page.test2.passed.results'}:</p>
+		&{'page.test2.passed.idealist_result', currentUser?.idealist}<br><br>
+        &{'page.test2.passed.communicant_result', currentUser?.communicant}<br><br>
+        &{'page.test2.passed.pragmatist_result', currentUser?.pragmatist}<br><br>
+
+        &{'page.test2.passed.recommendation'}
+		<ul class="social-likes" data-title="&{'models.test.number2.social.title'}"
+            data-twit="&{'page.test2.passed.social.text', currentUser?.idealist, currentUser?.communicant, currentUser?.pragmatist} www.startnewteam.ru"
+            data-description="&{'page.test2.passed.social.text', currentUser?.idealist, currentUser?.communicant, currentUser?.pragmatist}" data-url="${request.getBase()}" >
 			<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
 			<li class="twitter"  title="Опубликовать ссылку в Твиттере">Twitter</li>
-			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
+			<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">&{'page.common.social.vk'}</li>
 		</ul>
 	</div>
-	<div class="test-btm"><a href="/blankform/" class="test-btn">Финальная регистрация</a></div>
+	<div class="test-btm"><a href="/blankform/" class="test-btn">&{'page.test2.passed.final_step'}</a></div>
 </div>
