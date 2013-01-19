@@ -16,7 +16,7 @@ $(document).ready(function() {
 	function showRecoverPasswordForm(e){
 		e.preventDefault();
 		$('#popup-enter, #popup-enter-ttl').slideUp(500, function(){
-			$('#popup-enter-ttl').html('Восстановление пароля')
+			$('#popup-enter-ttl').html(internationalization.password_repair)
 			$('#enterForm').hide();
 			$('#recoverEmailForm').show();
 		});
@@ -26,7 +26,7 @@ $(document).ready(function() {
 	function showEnterForm(e){
 		e.preventDefault();
 		$('#popup-enter, #popup-enter-ttl').slideUp(500, function(){
-			$('#popup-enter-ttl').html('Вход в систему')
+			$('#popup-enter-ttl').html(internationalization.system_enter)
 			$('#recoverEmailForm').hide();
 			$('#enterForm').show();
 		});

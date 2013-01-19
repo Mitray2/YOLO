@@ -10,6 +10,9 @@ common.login.error.email_empty=Вы не ввели email
 common.login.error.email_format_invalid=Неверный формат email
 common.login.password_sended=Новый пароль выслан на указанный email.
 
+client.side.password_repair=Восстановление пароля
+client.side.system_enter=Вход в систему
+client.side.need_participants=Требуются участники
 
 page.profile.change.password.mesage1=Вы не ввели старый пароль
 page.profile.change.password.mesage2=Вы не ввели новый пароль
@@ -403,6 +406,7 @@ page.common.social.public.vk=Опубликовать ссылку во Вкон
 page.common.social.public.twitter=Опубликовать ссылку в Твиттере
 page.common.social.public.fb=Опубликовать ссылку на Фейсбуке
 page.common.login=Логин
+page.common.logout=Выйти
 page.common.password=Пароль
 page.common.registration=Регистрация
 page.common.forgot_password=Забыли пароль?

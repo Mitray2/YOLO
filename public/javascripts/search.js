@@ -220,7 +220,7 @@ function Search() {
 						appendSecondTabGroupColumns(group, row);
 						appendThirdTabGroupColumns(group, row);
 						if(group.vacancy){
-							row.append("<td class='cntr'>" + group.count + "<span id='warn_" + (++search.uiModel.rowId) + "' class='warning' data-tip='Требуются участиники'></span></td>");
+							row.append("<td class='cntr'>" + group.count + "<span id='warn_" + (++search.uiModel.rowId) + "' class='warning' data-tip='"+internationalization.need_participants+"'></span></td>");
 							search.tipWarn($("#warn_" + search.uiModel.rowId));
 						}
 						else{
