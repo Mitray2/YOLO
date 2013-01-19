@@ -428,12 +428,12 @@ public class GroupController extends Controller implements ApplicationConstants 
 		List<Topic> mainTopics = ptQueryMainTopic.getResultList();
 		Topic mainTopic = mainTopics.size() > 0 ? mainTopics.get(0) : null;
 
-		//find top 10 all topics
+		//find top 3 all topics
 		Query ptQueryAllTopics = JPA.em().createQuery("select t from Topic t where t.groupId=? and t.publicTopic=? and t.mainTopic=? order by t.lastUpdateDate desc");
 		ptQueryAllTopics.setParameter(1, groupId);
 		ptQueryAllTopics.setParameter(2, isPublic);
 		ptQueryAllTopics.setParameter(3, false);
-		ptQueryAllTopics.setMaxResults(10);
+		ptQueryAllTopics.setMaxResults(3);
 		List<Topic> topics = ptQueryAllTopics.getResultList();
 		
 		Query ptQueryAllTopicsCount = JPA.em().createQuery("select count(t.id) from Topic t where t.groupId=? and t.publicTopic=? and t.mainTopic=?");
@@ -469,7 +469,7 @@ public class GroupController extends Controller implements ApplicationConstants 
 		ptQueryAllTopics.setParameter(1, groupId);
 		ptQueryAllTopics.setParameter(2, isPublic);
 		ptQueryAllTopics.setParameter(3, false);
-		ptQueryAllTopics.setFirstResult(10);
+		ptQueryAllTopics.setFirstResult(3);
 		List<Topic> topics = ptQueryAllTopics.getResultList();
 		Long userId = SessionHelper.getCurrentUser(session).getId();
 		Boolean isAdmin = SessionHelper.getCurrentUser(session).role.equals(User.ROLE_ADMIN);
