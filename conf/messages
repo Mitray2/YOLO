@@ -165,7 +165,7 @@ page.team.create.topic.public=Public
 page.team.create.topic.create_topic=Create topic
 
 
-
+page.profile.age=Age
 page.profile.lastseen=Last seen
 page.profile.email=Email address
 page.profile.business=Business
@@ -178,6 +178,7 @@ page.profile.personal_characteristics=Personal characteristics
 page.profile.team=Team
 page.profile.founder=Founder
 page.profile.prof_skills=Professional skills
+page.profile.en_skill=Knowledge of English
 page.profile.marketing_advertising=Marketing/advertising
 page.profile.management_experience=Management
 page.profile.sales_experience=Sales/Negotiations
@@ -185,6 +186,16 @@ page.profile.finance_experience=Finance
 page.profile.law_experience=Law
 page.profile.it_experience=IT
 page.profile.others_experience=Others
+
+page.profile.current.title=My profile
+page.profile.current.personal_data=Personal data
+page.profile.current.name=Name
+page.profile.current.surname=Surname
+page.profile.current.sex=Sex
+page.profile.current.male=Male
+page.profile.current.female=Female
+page.profile.current.birthday=Birthday
+
 
 
 

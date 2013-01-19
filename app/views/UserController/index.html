@@ -9,7 +9,7 @@
 <div class="profile-user-name"> 
 
                     ${user.name + " " + user.lastName}
-                    <em>${user.age} лет</em>
+                    <em>&{'page.profile.age'} ${user.age}</em>
                 </div>
 
                 <div class="profile-user-info">
@@ -73,30 +73,34 @@
                 <div class="group-vacancies">
                 
                 	<div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">Знание английского <span>&#8594;</span>#{if user.english} Да #{/if} #{else} Нет #{/else}</div>
+                    	<div class="group-vacancies-name">&{'page.profile.en_skill'} <span>&#8594;</span>#{if user.english} &{'page.common.yes'} #{/if} #{else} &{'page.common.no'} #{/else}</div>
                     </div>
                 	<div class="group-vacancies-item">
                     	<div class="group-vacancies-name">&{'page.profile.marketing_advertising'} <span>&#8594;</span>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expMarketing?.level?.userLevel)}</div>
                         <pre>${user?.expMarketing?.description}</pre>
                     </div>
                     <div class="group-vacancies-item">
+                    	<div class="group-vacancies-name">&{'page.profile.management_experience'} <span>&#8594;</span>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expManagement?.level?.userLevel)}</div>
+                        <pre>${user?.expManagement?.description}</pre>
+                    </div>
+                    <div class="group-vacancies-item">
                     	<div class="group-vacancies-name">&{'page.profile.sales_experience'} <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expSale?.level?.userLevel)}</div>
                         <pre>${user?.expSale?.description}</pre>
                     </div>
                     <div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">&{}<span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expFinance?.level?.userLevel)}</div>
+                    	<div class="group-vacancies-name">&{'page.profile.finance_experience'}<span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expFinance?.level?.userLevel)}</div>
                         <pre>${user?.expFinance?.description}</pre>
                     </div>
                     <div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">Право <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expLegal?.level?.userLevel)}</div>
+                    	<div class="group-vacancies-name">&{'page.profile.law_experience'} <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expLegal?.level?.userLevel)}</div>
                         <pre>${user?.expLegal?.description}</pre>
                     </div>
                     <div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">Программирование / IT <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expIT?.level?.userLevel)}</div>
+                    	<div class="group-vacancies-name">&{'page.profile.it_experience'} <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expIT?.level?.userLevel)}</div>
                         <pre>${user?.expIT?.description}</pre>
                     </div>
                     <div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">Другое <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expOther?.level?.userLevel)}</div>
+                    	<div class="group-vacancies-name">&{'page.profile.others_experience'} <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expOther?.level?.userLevel)}</div>
                         <pre>${user?.expOther?.description}</pre>
                     </div>
                 </div>
@@ -105,30 +109,30 @@
 
 #{else}
 
-<h1 class="profile-h1">Мой профиль</h1>
-                <h2 class="profile-h2" style="margin-bottom:9px;">Личные данные</h2>
+<h1 class="profile-h1">&{'page.profile.current.title'}</h1>
+                <h2 class="profile-h2" style="margin-bottom:9px;">&{'page.profile.current.personal_data'}</h2>
                 <div class="profile-form">
                
                 	<div class="profile-item mb3">
-						<label for="">Имя</label>
+						<label for="">&{'page.profile.current.name'}</label>
 						${user.name}
 					</div>
                     <div class="profile-item mb3">
-						<label for="">Фамилия</label>
+						<label for="">&{'page.profile.current.surname'}</label>
 						${user.lastName}
 					</div>
                     <div class="profile-item mb3">
-						<label for="">Пол</label>
+						<label for="">&{'page.profile.current.sex'}</label>
 						#{if user.sex}
-							мужской
+							&{'page.profile.current.male'}
 						#{/if}
 						#{else}
-							женский
+							&{'page.profile.current.female'}
 						#{/else}
 					</div>
 					
 					<div class="profile-item">
-						<label for="">День рождения</label>
+						<label for="">&{'page.profile.current.birthday'}</label>
 						#{common.formattedDate date:user.birthday /}
 					</div>
 					

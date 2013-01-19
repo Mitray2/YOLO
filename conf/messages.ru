@@ -174,7 +174,7 @@ page.team.members=Участники
 
 
 
-
+page.profile.age=Возраст
 page.profile.lastseen=На сайте
 page.profile.email=Электронный адрес
 page.profile.business=Интересуется бизнесом
@@ -187,6 +187,7 @@ page.profile.personal_characteristics=Персональная характер�
 page.profile.team=Состоит в группе
 page.profile.founder=Основатель
 page.profile.prof_skills=Профессиональные навыки
+page.profile.en_skill=Знание английского
 page.profile.marketing_advertising=Опыт в маркетинге/рекламе
 page.profile.management_experience=Опыт в менеджменте
 page.profile.sales_experience=Продажи/Переговоры
@@ -195,8 +196,14 @@ page.profile.law_experience=Право
 page.profile.it_experience=Программирование
 page.profile.others_experience=Другое
 
-
-
+page.profile.current.title=Мой профиль
+page.profile.current.personal_data=Личные данные
+page.profile.current.name=Имя
+page.profile.current.surname=Фамилия
+page.profile.current.sex=Пол
+page.profile.current.male=Мужской
+page.profile.current.female=Женский
+page.profile.current.birthday=День рождения
 
 
 page.common.rights=2012 All rights reserved. StartNewTeam
