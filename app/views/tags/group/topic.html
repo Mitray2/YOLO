@@ -1,0 +1,21 @@
+<li class="search-result-item clearFix">
+	<h4>
+    	<a href="@{GroupController.indexTopic(_topic.id, _group.id)}">
+    		#{if _topic.publicTopic}
+    		<img src="@{'public/images/boilerplate/public1.png'}" alt="public theme" />
+    		#{/if}
+    		${_topic.name}
+    	</a>
+    	#{if (_userId == _topic.createdUserId) || (_isAdmin)}
+        <a href="@{GroupController.editTopic(_topic.id)}"><span class="theme-edit"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Редактировать тему</span></span></a>
+        <a href="@{GroupController.removeTopic(_topic.id, _group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить тему</span></span></a>
+        #{/if}
+    </h4>
+	<pre>${_topic.description}</pre>
+	<div class="search-result-list-date"><strong>${_topic.msg?.size()} ответов</strong></div>
+	    <br />
+	    #{if _topic.msg?.size() > 0 }
+	    <div class="search-result-list-last">Последнее от <a href="@{UserController.index(_topic.lastUpdateUserId)}">${_topic.lastUpdateUserLastName} ${_topic.lastUpdateUserName}</a>, <span class="topic_date">${utils.DateUtils.getFormatedStringDate(_topic.lastUpdateDate, true)}</div>
+	    #{/if}
+	<a href="@{GroupController.indexTopic(_topic.id, _group.id)}" class="search-result-list-more">Перейти к обсуждению <span>&nbsp;&#8594;</span></a>
+</li>
