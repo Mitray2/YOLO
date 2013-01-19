@@ -9,7 +9,7 @@ import org.apache.commons.lang.StringUtils;
 
 import play.mvc.Controller;
 
-public abstract class AbstractSearch extends Controller {
+public abstract class AbstractSearch extends BasicController {
 
 	public static int ITEMS_PER_PAGE = 5;
 	public static String EQUAL = " = ";

@@ -16,7 +16,7 @@ import play.mvc.Controller;
 import utils.ApplicationConstants;
 import utils.SessionHelper;
 
-public class CrowdController extends Controller implements ApplicationConstants {
+public class CrowdController extends BasicController implements ApplicationConstants {
 
 	public static void consulting() {
 		Query tQuery = JPA.em().createQuery("select t from CrowdConsulting t order by t.createDate desc");

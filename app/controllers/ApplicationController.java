@@ -11,10 +11,9 @@ import utils.SessionHelper;
 import static utils.ApplicationConstants.CACHE_COMMANDS_COUNT;
 import static utils.ApplicationConstants.CACHE_USERS_COUNT;
 
-public class ApplicationController extends Controller {
+public class ApplicationController extends BasicController {
 
     public static void index() {
-        Lang.change("en");
         User user = SessionHelper.getCurrentUser(session);
         if (user != null) {
             UserController.index(user.id);

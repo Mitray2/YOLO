@@ -3,7 +3,7 @@ package controllers;
 import play.mvc.Controller;
 import utils.SessionHelper;
 
-public class CommonController extends Controller {
+public class CommonController extends BasicController {
 
 	public static final String ERROR_UNDEFINED = "error.undefined";
 	public static final String ERROR_SECURITY = "error.security";

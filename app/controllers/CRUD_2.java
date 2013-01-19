@@ -30,7 +30,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.*;
 
-public abstract class CRUD_2 extends Controller {
+public abstract class CRUD_2 extends BasicController {
 
 	@Before(priority = 1)
 	public static void checkSecutiry() {

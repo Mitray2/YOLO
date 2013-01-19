@@ -32,7 +32,7 @@ import utils.ApplicationConstants;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
 
-public class GroupController extends Controller implements ApplicationConstants {
+public class GroupController extends BasicController implements ApplicationConstants {
 
 	@Before
 	public static void checkSecutiry() {
