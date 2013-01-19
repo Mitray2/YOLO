@@ -115,6 +115,14 @@ link.about=О проекте
 link.contacts=Контакты
 link.partners=Партнеры
 
+link.crowd.consalting=КраудКонсалтинг
+link.crowd.developig=КраудДевелопинг
+link.crowd.funding=КраудФандинг
+
+page.crowd.consalting.head=Давай совместно создадим удобный инструмент, с помощью которого сможем быстро находить единомышленников и эффективно работать в командах над созданием успешных бизнесов. Есть идеи на этот счет? Предлагай ниже! Лучшие идеи будут реализованы, а их авторы навсегда помещены на специальную страницу почета за вклад в развитие проекта. 
+page.crowd.developing.head=Есть желание принять практическое участие в развитии проекта? Напиши ниже, что полезного ты можеш и хочеш сделать, а также что тебе для этого необходимо. 
+page.crowd.funding.head=Здесь можно внести свой посильный вклад в развитие проекта или поблагодарить, если он уже помог найти единомышленников и стартовать бизнес.<br/>Ежемесячно будет публиковаться отчет о полученных страдствах и расходах. Наибольшие благотворители будут навсегда помещены на специальную страницу почета за вклад в развитие проекта.<br/><br/>Реквизиты для пожертвований:<br/>Яндекс кошелек: 123241235151<br/>Киви кошелек: 123123231<br/>Вебмани: 132136245624<br/>Другие средства оплаты... 
+
 page.create.team.create=Создать команду
 page.create.team.head=Расскажи о своей идее или проекте как можно больше подробностей, чтобы найти подходящих единомышленников в минимальные сроки. Больше информации – короче путь к успеху.
 page.create.team.characteristics=Характеристики команды
@@ -278,6 +286,55 @@ page.profile.current.desc_cv=Персональная характеристик
 page.profile.current.desc_skill_meta=Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт
 page.profile.current.desc_cv_meta=Опишите подробнее свои качества.
 
+
+
+
+
+
+
+page.search.members.title=Пользователи
+page.search.members.personal_data=Личные данные
+page.search.members.aptitudes=Склонности и интересы
+page.search.members.professional=Профессиональные
+page.search.members.name=Фамилия, Имя
+page.search.members.ava=Аватар
+page.search.members.status=Статус
+page.search.members.info=Инфо
+page.search.members.title_enterpreneurship=Навык "Предпринимательство"
+page.search.members.title_idealist=Навык "Идеализм"
+page.search.members.title_communicant=Навык "Коммуникабельность"
+page.search.members.title_pragmatist=Навык "Прагматика"
+page.search.members.title_marketing=Навык "Маркетинг"
+page.search.members.title_sales=Навык "Продажи"
+page.search.members.title_management=Навык "Управление"
+page.search.members.title_law=Навык "Право"
+page.search.members.title_finance=Навык "Финансы"
+page.search.members.title_it=Навык "ИТ"
+page.search.members.title_other=Навык "Другое"
+page.search.members.business=Тип бизнеса
+page.search.members.sphere=Сфера
+page.search.members.lang=Языки
+page.search.members.team=Команда
+page.search.members.filter.title=Поиск участников
+page.search.members.filter.personal_data=Личные данные
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+page.search.members.filter=
+
+
+
+
+
+page.common.from=От
+page.common.to=До
+page.common.sex=Пол
+page.common.age=Возраст
 page.common.rights=2012 All rights reserved. StartNewTeam
 page.common.yes=Да
 page.common.no=Нет
