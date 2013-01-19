@@ -5,6 +5,7 @@
 	#{extends 'main_info.html' /}
 #{/else}
 #{set title: StartNewTeam /}
+<h3>&{'page.crowd.funding.head'}</h3>
 <div class="newsLangSwitch">
 	<a style="float: right; cursor: pointer;" href="/crowdfunding?lang=${newsLang == 'ru' ? 'en' : 'ru'}">
 		#{if newsLang == 'ru'}&{'page.crowd.funding.report.translate.en'}#{/if}
