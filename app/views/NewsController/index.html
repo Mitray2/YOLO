@@ -4,28 +4,19 @@
 #{else}
 	#{extends 'main_info.html' /}
 #{/else}
-#{set title:'StartNewTeam' /}
-<style>
-.newsLangSwitch {
-	padding-right: 8px;
-}
-.newsLangSwitch a {
-	font: 14px/21px "MyriadPro-Regular", Arial, sans-serif;
-}
-</style>
+ #{set title:'StartNewTeam' /}
 <h1>Новости проекта</h1>
-<div class="newsLangSwitch">
-	<a style="float: right; cursor: pointer;" href="/news?lang=${newsLang == 'ru' ? 'en' : 'ru'}">читать ${newsLang == 'ru' ? 'английские' : 'русские'} новости</a>
-</div>
 <div class="page-news">
 	<div class="news">
-		#{list items:newsList, as:'news'}
-			<div class="news-item">
-		         <a href="/news/${news?.id}"><img width="242" height="172" src="${news?.previewImageURL}" alt="${news?.title}" class="news-pic"></a>
-		         <div class="news-date">#{common.formattedDate date:news?.creationDate/}</div>
-		         <h2><a href="/news/${news?.id}">${news?.title}</a></h2>
-		         <p>${news?.preview}</p>
-			</div>
-		#{/list}
-	</div>
+#{list items:newsList, as:'news'}
+
+		<div class="news-item">
+	         <a href="/news/${news?.id}"><img width="242" height="172" src="${news?.previewImageURL}" alt="${news?.title}" class="news-pic"></a>
+	         <div class="news-date">#{common.formattedDate date:news?.creationDate/}</div>
+	         <h2><a href="/news/${news?.id}">${news?.title}</a></h2>
+	         <p>${news?.preview}</p>
+		</div>
+
+#{/list}
+</div>
 </div>

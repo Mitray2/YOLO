@@ -127,7 +127,7 @@ page.team.head.members=members
 page.team.head.need_members=We need team members
 page.team.head.submit_administrator=You must first ubmit an administrator of the group, before going out and apply for membership in the group
 page.team.head.add=Add to the team
-page.team.head.leave_team=Are you sure you want to leave team and join the new one?
+page.team.head.leave_team_join=Are you sure you want to leave team and join the new one?
 page.team.head.add_to_team=Add to my team
 page.team.head.join=Join
 page.team.head.cancel=Cancel
@@ -252,7 +252,7 @@ page.profile.current.desc_other=Please describe your experience in Other
 page.profile.current.desc_cv=Please describe your characteristics
 
 
-
+page.news.title=Project news
 
 
 
@@ -277,6 +277,11 @@ popup.email=
 popup.enter=
 popup.send_email=
 popup.password=
+
+
+
+
+social.populate.link=Post a link
 
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file

@@ -12,7 +12,7 @@
 		twit = twit.subSequence(0, 135) + '...';
 	}
 }%
-<h1><a href="@{NewsController.index()}">Новости проекта</a></h1>
+<h1><a href="@{NewsController.index()}">&{'page.news.title'}</a></h1>
 <div class="page-news">
 	<div class="news-txt">
 	<div class="news-txt-date">#{common.formattedDate date:news?.creationDate /}</div>
@@ -21,10 +21,11 @@
 			${news?.value}
 		#{/verbatim}
 </div>
+</div>
 <div class="news-social">
 	<ul class="social-likes" data-title="${news?.title}" data-twit="${twit}" #{if news?.previewImageURL}data-image="${news.previewImageURL}"#{/if} data-description="#{if news?.preview?.length() > 140}${news?.preview?.subSequence(0, 135) + '...'}#{/if}#{else}${news?.preview}#{/else}" data-url="${pageUrl}" >
-		<li class="facebook" title="Опубликовать ссылку на Фейсбуке">Facebook</li>
-		<li class="twitter"  title="Опубликовать ссылку в Твиттере">Twitter</li>
-		<li class="vkontakte" title="Опубликовать ссылку во Вконтакте">Вконтакте</li>
+		<li class="facebook" title="&{'social.populate.link'}">Facebook</li>
+		<li class="twitter"  title="&{'social.populate.link'}">Twitter</li>
+		<li class="vkontakte" title="&{'social.populate.link'}">VK</li>
 	</ul>
 </div>
