@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.Command;
 import models.Post;
+import models.Topic;
 import models.User;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
@@ -32,6 +33,26 @@ public class UpdateDataModel extends Job {
 		for (Post post : postsWithEmptyLang) {
 			post.lang = 0;
 			post.save();
+		}
+		
+		List<Command> commands = Command.findAll();
+		for (Command command : commands) {
+			for (Topic topic : command.topics) {
+				if (topic.mainTopic) {
+					topic.publicTopic = false;
+					topic.groupId = command.id;
+					topic.save();
+				}
+			}
+			// creating public main topic
+			Topic mainPublicTopic = new Topic();
+			mainPublicTopic.mainTopic = true;
+			mainPublicTopic.publicTopic = true;
+			mainPublicTopic.groupId = command.id;
+			mainPublicTopic.save();
+			
+			command.topics.add(mainPublicTopic);
+			command.save();
 		}
 		
 	}

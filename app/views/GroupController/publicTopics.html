@@ -55,7 +55,7 @@ function editDisabled(element){
 				#{group.reply topic:mainTopic, group:group, count:mainTopicMsgCount, action:'/groupcontroller/addmsgtopublicmaintopic'/}
 				
 				<ul class="group-theme-dialog">
-                #{list items:mainTopic.msg, as:'msg'}
+                #{list items:mainTopic?.msg, as:'msg'}
                		#{form @GroupController.editPublicMainMsg()}
 	                <input name="msg.id" value="${msg.id}" type="hidden">
 					<input name="topicId" value="${mainTopic.id}" type="hidden">
