@@ -386,7 +386,72 @@ page.search.members.filter.share=Share
 
 
 
+# Groups search
+page.search.groups.filter.msg1 = Teams
+page.search.groups.filter.msg2 = General Data
+page.search.groups.filter.msg3 = Basic data
+page.search.groups.filter.msg4 = Needs teams
+page.search.groups.filter.msg5 = Team Name
+page.search.groups.filter.msg6 = People
 
+page.search.groups.filter.col1.msg1 = Logo
+page.search.groups.filter.col1.msg2 = Country
+page.search.groups.filter.col1.msg3 = City
+page.search.groups.filter.col1.msg4 = Age
+page.search.groups.filter.col1.msg5 = Languages
+page.search.groups.filter.col1.msg6 = Position
+page.search.groups.filter.col1.msg7 = Info
+
+page.search.groups.filter.col2.msg1 = Skill "Entrepreneurship"
+page.search.groups.filter.col2.msg2 = Skill "Idealism"
+page.search.groups.filter.col2.msg3 = skill "Sociability"
+page.search.groups.filter.col2.msg4 = skill "Pragmatist"
+page.search.groups.filter.col2.msg5 = Business Type
+page.search.groups.filter.col2.msg6 = Scope
+page.search.groups.filter.col2.msg7 = Stage
+
+page.search.groups.filter.col3.msg1=Skill "Marketing"
+page.search.groups.filter.col3.msg2=Skill "Sales"
+page.search.groups.filter.col3.msg3=Skill "Control"
+page.search.groups.filter.col3.msg4=Skill "Right"
+page.search.groups.filter.col3.msg5=Skill "Finance"
+page.search.groups.filter.col3.msg6=Skill "IT"
+page.search.groups.filter.col3.msg7=Skill "Other"
+
+
+# Groups search form
+page.search.groups.form1.msg1 = Search Groups
+page.search.groups.form1.msg2 = General Data
+page.search.groups.form1.msg3 = Country
+page.search.groups.form1.msg4 = City
+page.search.groups.form1.msg5 = Medium
+page.search.groups.form1.msg6 = people in the team
+page.search.groups.form1.msg7 = need for people
+page.search.groups.form1.msg8 = Globality
+
+page.search.groups.form2.msg1 = Basic data
+page.search.groups.form2.msg2 = Entrepreneurship
+page.search.groups.form2.msg3 = Idealism
+page.search.groups.form2.msg4 = Sociability
+page.search.groups.form2.msg5 = Pragmatics
+page.search.groups.form2.msg6 = Type of Business
+page.search.groups.form2.msg7 = Core Business
+page.search.groups.form2.msg8 = Stage
+
+page.search.groups.form3.msg1 = Needs teams
+page.search.groups.form3.msg2 = Marketing / Advertising
+page.search.groups.form3.msg3 = Sales
+page.search.groups.form3.msg4 = Control
+page.search.groups.form3.msg5 = right
+page.search.groups.form3.msg6 = Finance
+page.search.groups.form3.msg7 = IT / Programming
+
+
+page.common.from = From
+page.common.enter = Login
+page.common.to = To
+page.common.sex = Sex
+page.common.age = Age
 page.common.rights=2012 All rights reserved. StartNewTeam
 page.common.enter=Enter
 page.common.yes=Yes
@@ -481,6 +546,12 @@ play-paginate.summary.display=Displaying rows
 play-paginate.summary.to=to
 play-paginate.summary.from=out of
 play-paginate.summary.entries=entries
+
+social.populate.link = Post link
+
+# Tell about groups
+models.group.social.title = Connect to commands listed %s
+models.group.social.description = Connect to commands listed %s. Description.
 
 #monthes
 monthName.January=January
