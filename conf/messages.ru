@@ -317,16 +317,22 @@ page.search.members.lang=Языки
 page.search.members.team=Команда
 page.search.members.filter.title=Поиск участников
 page.search.members.filter.personal_data=Личные данные
+page.search.members.filter.command=В команде
+page.search.members.filter.enterpreneurship=Предпринимательство
+page.search.members.filter.idealist=Идеализм
+page.search.members.filter.communicant=Коммуникабельность
+page.search.members.filter.pragmatist=Прагматика
+page.search.members.filter.business=Тип бизнеса
+page.search.members.filter.sphere=Сфера бизнеса
+page.search.members.filter.lang=Говорит на английском
+page.search.members.filter.marketing=Маркетинг / реклама
+page.search.members.filter.sales=Продажи
+page.search.members.filter.management=Управление
+page.search.members.filter.law=Право
+page.search.members.filter.finance=Финансы
+page.search.members.filter.it=ИТ / программирование
+page.search.members.filter.share=Поделится
 page.search.members.filter=
-page.search.members.filter=
-page.search.members.filter=
-page.search.members.filter=
-page.search.members.filter=
-page.search.members.filter=
-page.search.members.filter=
-page.search.members.filter=
-page.search.members.filter=
-
 
 
 
@@ -338,6 +344,8 @@ page.common.age=Возраст
 page.common.rights=2012 All rights reserved. StartNewTeam
 page.common.yes=Да
 page.common.no=Нет
+page.common.male=Мужской
+page.common.female=Женский
 page.common.country=Страна
 page.common.city=Город
 page.common.social.vk=Вконтакте
