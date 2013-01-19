@@ -5,22 +5,4 @@
 	#{extends 'main_info.html' /}
 #{/else}
 #{set title: StartNewTeam /}
-<script type="text/javascript">
-function editEnabled(element){
-	$(element).parent().parent().parent().find('.msg').show(); 
-	$(element).parent().parent().parent().find('.msgRead').hide(); 
-	return false;
-}
-function editDisabled(element){
-	$(element).parent().parent().parent().find('.msg').hide(); 
-	$(element).parent().parent().parent().find('.msgRead').show(); 
-	return false;
-}
-</script>
-
-#{group.reply count:messagesCount, action:'/crowdcontroller/addmsgF'/}
-				
-<ul class="group-theme-dialog">
-	#{crowd.messages removeAction:'removemessagef', editAction:'editmsgf', crowdMessages:crowdFunding, user:utils.SessionHelper.getCurrentUser(session), isAdmin:isAdmin /}
-</ul>
-#{common.pagination messagesCount:messagesCount, type:1/}
+<h3>&{'page.crowd.funding.head'}</h3>

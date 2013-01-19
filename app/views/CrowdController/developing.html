@@ -17,12 +17,10 @@ function editDisabled(element){
 	return false;
 }
 </script>
-
-<h3>&{'page.crowd.consalting.head'}</h3>
-#{group.reply count:messagesCount, action:'/crowdcontroller/addmsg'/}
-
+<h3>&{'page.crowd.developing.head'}</h3>
+#{group.reply count:messagesCount, action:'/crowdcontroller/addmsgF'/}
+				
 <ul class="group-theme-dialog">
-	#{crowd.messages removeAction:'removeMessage', editAction:'editMsg', crowdMessages:crowdConsulting, user:utils.SessionHelper.getCurrentUser(session), isAdmin:isAdmin /}
+	#{crowd.messages removeAction:'removemessagef', editAction:'editmsgf', crowdMessages:crowdDeveloping, user:utils.SessionHelper.getCurrentUser(session), isAdmin:isAdmin /}
 </ul>
-
-#{common.pagination messagesCount:messagesCount, type:2/}
+#{common.pagination messagesCount:messagesCount, type:1/}

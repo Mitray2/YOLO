@@ -113,6 +113,14 @@ link.about=About the project
 link.contacts=Contacts
 link.partners=Partners
 
+link.crowd.consalting=CrowdConsulting
+link.crowd.developig=CrowdDeveloping
+link.crowd.funding=CrowdFunding
+
+page.crowd.consalting.head = Let's create together a handy tool with which we can easily find like-minded people and work effectively in teams to build successful businesses. Any idea on this? Offer below! The best ideas will be implemented, and their authors are all placed on a special page of honor for his contribution to the project.
+page.crowd.developing.head = There is a desire to take a practical part in the development of the project? Write below what good you can and want to do, and what you need for this.
+page.crowd.funding.head = You can make a contribution to the project or to thank, if it has already helped to find like-minded people and start a business. <br/> monthly report will be issued on received stradstvah and expenses. The biggest benefactors will be permanently placed on a special page of honor for his contribution to the project. <br/> <br/> Details for donations: <br/> Yandex purse: 123241235151 <br/> Kiwi purse: 123123231 <br/> Webmoney: 132136245624 <br/> Other means of payment ...
+
 page.create.team.create=Create a team
 page.create.team.head=Tell briefly about your idea or a project. Don't be afraid to share - it will help you to gather a team as soon as possible and start the real action.
 page.create.team.characteristics=Team characteristics

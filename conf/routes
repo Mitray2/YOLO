@@ -14,6 +14,10 @@ GET		/sponsors/?								SponsorsController.index
 #services
 GET     /rss/?                                  ApplicationController.rss
 
+#Crowd
+GET			/crowdconsulting							CrowdController.consulting
+GET			/crowddeveloping							CrowdController.developing
+GET			/crowdfunding								CrowdController.funding
 
 
 # Map static resources from the /app/public folder to the /public path

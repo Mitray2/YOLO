@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 import models.CrowdConsulting;
-import models.CrowdFunding;
+import models.CrowdDeveloping;
 import models.Topic;
 import models.TopicMessage;
 import models.User;
@@ -18,6 +18,10 @@ import utils.SessionHelper;
 
 public class CrowdController extends BasicController implements ApplicationConstants {
 
+	public static void funding() {
+		render();
+	}
+	
 	public static void consulting() {
 		Query tQuery = JPA.em().createQuery("select t from CrowdConsulting t order by t.createDate desc");
 		tQuery.setMaxResults(10);
@@ -53,11 +57,11 @@ public class CrowdController extends BasicController implements ApplicationConst
 	}
 	
 	public static void more(Integer page, int type) {
-		String entName = type == 1 ? "CrowdFunding" : "CrowdConsulting";
+		String entName = type == 1 ? "CrowdDeveloping" : "CrowdConsulting";
 		Query tQuery = JPA.em().createQuery("select t from " + entName + " t order by t.createDate desc");
 		tQuery.setMaxResults(10);
 		tQuery.setFirstResult(page * 10);
-		List<CrowdFunding> crowdMessages = tQuery.getResultList();
+		List<CrowdDeveloping> crowdMessages = tQuery.getResultList();
 		User user = SessionHelper.getCurrentUser(session);
 		Boolean isAdmin = user.role.equals(User.ROLE_ADMIN);
 		String removeAction = type == 1 ? "removemessagef" : "removemessage";
@@ -65,38 +69,38 @@ public class CrowdController extends BasicController implements ApplicationConst
 		render(crowdMessages, isAdmin, user, removeAction, editAction);
 	}
 	
-	public static void funding() {
-		Query tQuery = JPA.em().createQuery("select t from CrowdFunding t order by t.createDate desc");
+	public static void developing() {
+		Query tQuery = JPA.em().createQuery("select t from CrowdDeveloping t order by t.createDate desc");
 		tQuery.setMaxResults(10);
-		List<CrowdFunding> crowdFunding = tQuery.getResultList();
-		Query tQueryCount = JPA.em().createQuery("select count(cf.id) from CrowdFunding cf");
+		List<CrowdDeveloping> crowdDeveloping = tQuery.getResultList();
+		Query tQueryCount = JPA.em().createQuery("select count(cf.id) from CrowdDeveloping cf");
 		Integer messagesCount = ((Long) tQueryCount.getResultList().get(0)).intValue();
 		Boolean isAdmin = SessionHelper.getCurrentUser(session).role.equals(User.ROLE_ADMIN);
-		render(crowdFunding, messagesCount, isAdmin);
+		render(crowdDeveloping, messagesCount, isAdmin);
 	}
 	
-	public static void addmsgF(CrowdFunding msg){
+	public static void addmsgF(CrowdDeveloping msg){
 		User user = User.findById(SessionHelper.getCurrentUser(session).id);
 		msg.from = user;
 		msg.createDate = new Date();
 		msg.save();
-		funding();
+		developing();
 	}
 	
-	public static void editMsgF(CrowdFunding msg){
-		CrowdFunding crowdFunding = CrowdFunding.findById(msg.id);
-		crowdFunding.text = msg.text;
-		crowdFunding.createDate = new Date();
-		crowdFunding.save();
-		funding();
+	public static void editMsgF(CrowdDeveloping msg){
+		CrowdDeveloping crowdDeveloping = CrowdDeveloping.findById(msg.id);
+		crowdDeveloping.text = msg.text;
+		crowdDeveloping.createDate = new Date();
+		crowdDeveloping.save();
+		developing();
 	}
 	
 	public static void removeMessageF(Long msgId){
-		CrowdFunding crowdFunding = CrowdFunding.findById(msgId);
-		crowdFunding.from = null;
-		crowdFunding.save();
-		crowdFunding.delete();
-		funding();
+		CrowdDeveloping crowdDeveloping = CrowdDeveloping.findById(msgId);
+		crowdDeveloping.from = null;
+		crowdDeveloping.save();
+		crowdDeveloping.delete();
+		developing();
 	}
 	
 }

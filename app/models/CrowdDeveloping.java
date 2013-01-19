@@ -10,7 +10,7 @@ import play.data.validation.MaxSize;
 import play.db.jpa.Model;
 
 @Entity
-public class CrowdFunding extends Model{
+public class CrowdDeveloping extends Model{
 
 	@Lob
 	@MaxSize(value = 2000)
