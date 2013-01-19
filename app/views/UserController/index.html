@@ -62,29 +62,29 @@
                 <div class="user-info">
                     <pre>${user.personalCV}</pre>
                 </div>
-                <div class="group-consist-ttl">Состоит в группе</div>
+                <div class="group-consist-ttl">&{'page.profile.team'}</div>
                 <div class="group-consist">
                     <h4><a href="@{GroupController.index(user.command?.id)}">${user.command?.name}</a></h4>
                     #{if user.command != null}
-                    <div class="founder">Основатель: <a href="@{UserController.index(user.command?.founderUser?.id)}" class="man">${user.command?.founderUser?.name + " " + user.command?.founderUser?.lastName}</a></div>
+                    <div class="founder">&{'page.profile.founder'}: <a href="@{UserController.index(user.command?.founderUser?.id)}" class="man">${user.command?.founderUser?.name + " " + user.command?.founderUser?.lastName}</a></div>
                     #{/if}
                 </div>
-                <div class="group-vacancies-ttl">Профессиональные навыки</div>
+                <div class="group-vacancies-ttl">&{'page.profile.prof_skills'}</div>
                 <div class="group-vacancies">
                 
                 	<div class="group-vacancies-item">
                     	<div class="group-vacancies-name">Знание английского <span>&#8594;</span>#{if user.english} Да #{/if} #{else} Нет #{/else}</div>
                     </div>
                 	<div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">Маркетинг <span>&#8594;</span>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expMarketing?.level?.userLevel)}</div>
+                    	<div class="group-vacancies-name">&{'page.profile.marketing_advertising'} <span>&#8594;</span>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expMarketing?.level?.userLevel)}</div>
                         <pre>${user?.expMarketing?.description}</pre>
                     </div>
                     <div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">Продажи <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expSale?.level?.userLevel)}</div>
+                    	<div class="group-vacancies-name">&{'page.profile.sales_experience'} <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expSale?.level?.userLevel)}</div>
                         <pre>${user?.expSale?.description}</pre>
                     </div>
                     <div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">Финансы<span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expFinance?.level?.userLevel)}</div>
+                    	<div class="group-vacancies-name">&{}<span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expFinance?.level?.userLevel)}</div>
                         <pre>${user?.expFinance?.description}</pre>
                     </div>
                     <div class="group-vacancies-item">

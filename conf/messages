@@ -175,6 +175,17 @@ page.profile.hide_email=Hidden
 page.profile.add_button=Add
 page.profile.cancel=Cancel
 page.profile.personal_characteristics=Personal characteristics
+page.profile.team=Team
+page.profile.founder=Founder
+page.profile.prof_skills=Professional skills
+page.profile.marketing_advertising=Marketing/advertising
+page.profile.management_experience=Management
+page.profile.sales_experience=Sales/Negotiations
+page.profile.finance_experience=Finance
+page.profile.law_experience=Law
+page.profile.it_experience=IT
+page.profile.others_experience=Others
+
 
 
 

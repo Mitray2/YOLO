@@ -184,6 +184,19 @@ page.profile.hide_email=Скрыт
 page.profile.add_button=Пригласить
 page.profile.cancel=Отмена
 page.profile.personal_characteristics=Персональная характеристика
+page.profile.team=Состоит в группе
+page.profile.founder=Основатель
+page.profile.prof_skills=Профессиональные навыки
+page.profile.marketing_advertising=Опыт в маркетинге/рекламе
+page.profile.management_experience=Опыт в менеджменте
+page.profile.sales_experience=Продажи/Переговоры
+page.profile.finance_experience=Финансы
+page.profile.law_experience=Право
+page.profile.it_experience=Программирование
+page.profile.others_experience=Другое
+
+
+
 
 
 page.common.rights=2012 All rights reserved. StartNewTeam
