@@ -77,6 +77,36 @@ page.test2.passed.recommendation=<p>Тебе необходимо концент
                                  заполнить анкету из нескольких пунктов. Поздравляем!</p>
 page.test2.passed.final_step=Финальная регистрация
 
+#blank form
+page.blankform.surname=Ваша фамилия
+page.blankform.country=Страна
+page.blankform.city=Город
+page.blankform.password=Пароль
+page.blankform.repeat_password=Повторите пароль
+page.blankform.professional_skills=Профессиональные навыки
+page.blankform.interesting_btype=Интересующий тип бизнеса
+page.blankform.interesting_bsphere=Интересующая сфера бизнеса
+page.blankform.personal_data=Личные данные
+page.blankform.register=Зарегистрироваться
+
+#emails
+email.firstTestPassed=Добрый день, %s!<br>\
+                        <br>\
+                            Предварительная регистрация на <a href="%s">StartNewTeam</a> прошла успешно.\
+                        <br>\
+                            Отлично, продолжай в том же духе и наверняка добьешься успеха!\
+                        <br>\
+                            Логин: %s<br>\
+                            Пароль: %s<br>\
+                            Для завершения тестирования и прохождения полной регистрации можно авторизоваться\
+                            на сайте, используя логин и пароль, или пройти по данной <a href="%s/confirmRegistration?ticket=%s">ссылке</a>\
+                        <br>\
+                            С уважением, </br>\
+                            команда <a href="%s">StartNewTeam</a>
+email.blankfformpassed=Для завершения регистрации на <a href="%s">StartNewTeam</a> необходимо \
+                        подтвердить электронный адрес, пройдя по  <a href="%s/confirmRegistration?ticket=%s">ссылке</a>.<br/>.\
+                           <br>\
+                           С уважением, команда <a href="%s">StartNewTeam</a>
 
 link.registration=Регистрация<br /><span>это бесплатно</span>
 link.main=Главная
@@ -84,10 +114,6 @@ link.news=Новости
 link.about=О проекте
 link.contacts=Контакты
 link.partners=Партнеры
-link.=
-
-
-
 
 page.create.team.create=Создать команду
 page.create.team.head=Расскажи о своей идее или проекте как можно больше подробностей, чтобы найти подходящих единомышленников в минимальные сроки. Больше информации – короче путь к успеху.
@@ -113,8 +139,6 @@ page.create.team.communications_experience=Комуникабельность
 page.create.team.pragmatism_experience=Прагматизм
 page.create.team.save=Сохранить изменения
 
-
-
 page.edit.team.create_date=Дата создания
 page.edit.team.count_members=Количество участников
 page.edit.team.admin_team=Администратор
@@ -124,8 +148,6 @@ page.edit.team.idealist=Идеализм
 page.edit.team.communicant=Комуникабельность
 page.edit.team.pragmatist=Прагматика
 page.edit.team.res_basis=* на основе данных об участниках команды
-
-
 
 page.team.head.edit=Редактировать описание
 page.team.head.business=Бизнес
@@ -150,7 +172,6 @@ page.team.head.remove_team=Удалить команду
 page.team.head.remove_sure=Вы уверены что хотите удалить вашу команду?
 page.team.head.remove=Удалить
 
-
 page.team.members.members_size=Всего %s участников
 page.team.members.age=Возраст
 page.team.members.assign_admin=Назначить администратором
@@ -161,12 +182,10 @@ page.team.members.assign=Назначить
 page.team.members.remove_sure1=Вы уверены что хотите удалить пользователя 
 page.team.members.remove_sure2= из вашей команды?
 
-
 page.team.create.topic.title=Создание новой темы
 page.team.create.topic.name=Заголовок темы для обсуждения
 page.team.create.topic.public=Сделать тему публичной
 page.team.create.topic.create_topic=Создать тему
-
 
 page.team.discuss.create_team=Создать новую тему
 page.team.discuss.count_topics=В группе %s темы
@@ -186,14 +205,10 @@ page.team.discuss.send=Отправить
 page.team.discuss.to_list=К списку всех тем
 page.team.discuss.created_by=Создана
 
-
-
 page.team.description=Описание
 page.team.discussion=Обсуждения
 page.team.public_discussion=Открытые обсуждения
 page.team.members=Участники
-
-
 
 page.profile.age=Возраст
 page.profile.lastseen=На сайте
@@ -263,13 +278,16 @@ page.profile.current.desc_cv=Персональная характеристик
 page.profile.current.desc_skill_meta=Необходимо выбрать уровень ваших знаний в этой сфере и описать подробнее ваш опыт
 page.profile.current.desc_cv_meta=Опишите подробнее свои качества.
 
-
 page.common.rights=2012 All rights reserved. StartNewTeam
 page.common.yes=Да
 page.common.no=Нет
 page.common.country=Страна
 page.common.city=Город
 page.common.social.vk=Вконтакте
+page.common.login=Логин
+page.common.password=Пароль
+page.common.registration=Регистрация
+page.common.forgot_password=Забыли пароль?
 
 
 
@@ -284,10 +302,6 @@ page.news.title=Новости проекта
 play-paginate.prev=Предыдущая
 play-paginate.next=Следующая
 
-
-
-
-
 popup.enter.title=Вход в систему
 popup.forgot_password=Забыли пароль?
 popup.enter_the_site=Войти на сайт
@@ -295,7 +309,7 @@ popup.email=Электронная почта
 popup.enter=Войти
 popup.send_email=Отправить письмо
 popup.password=Пароль для входа
-popup.=
+popup.password_recovering=Восстановление пароля
 
 #custom models
 validation.model.user.email.required=Введите email
