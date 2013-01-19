@@ -386,6 +386,39 @@ page.search.members.filter.share=Share
 
 
 
+# Groups search
+page.search.groups.filter.msg1 = Teams
+page.search.groups.filter.msg2 = General Data
+page.search.groups.filter.msg3 = Basic data
+page.search.groups.filter.msg4 = Needs teams
+page.search.groups.filter.msg5 = Team Name
+page.search.groups.filter.msg6 = People
+
+page.search.groups.filter.col1.msg1 = Logo
+page.search.groups.filter.col1.msg2 = Country
+page.search.groups.filter.col1.msg3 = City
+page.search.groups.filter.col1.msg4 = Age
+page.search.groups.filter.col1.msg5 = Languages
+page.search.groups.filter.col1.msg6 = Position
+page.search.groups.filter.col1.msg7 = Info
+
+page.search.groups.filter.col2.msg1 = Skill "Entrepreneurship"
+page.search.groups.filter.col2.msg2 = Skill "Idealism"
+page.search.groups.filter.col2.msg3 = skill "Sociability"
+page.search.groups.filter.col2.msg4 = skill "Pragmatist"
+page.search.groups.filter.col2.msg5 = Business Type
+page.search.groups.filter.col2.msg6 = Scope
+page.search.groups.filter.col2.msg7 = Stage
+
+page.search.groups.filter.col3.msg1=Skill "Marketing"
+page.search.groups.filter.col3.msg2=Skill "Sales"
+page.search.groups.filter.col3.msg3=Skill "Control"
+page.search.groups.filter.col3.msg4=Skill "Right"
+page.search.groups.filter.col3.msg5=Skill "Finance"
+page.search.groups.filter.col3.msg6=Skill "IT"
+page.search.groups.filter.col3.msg7=Skill "Other"
+
+
 
 page.common.rights=2012 All rights reserved. StartNewTeam
 page.common.enter=Enter

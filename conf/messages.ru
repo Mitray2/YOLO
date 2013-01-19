@@ -388,6 +388,42 @@ page.search.members.filter=
 
 
 
+# Groups search
+page.search.groups.filter.msg1=Команды
+page.search.groups.filter.msg2=Общие данные
+page.search.groups.filter.msg3=Основные данные
+page.search.groups.filter.msg4=Потребности команд
+page.search.groups.filter.msg5=Название команды
+page.search.groups.filter.msg6=Людей
+
+page.search.groups.filter.col1.msg1=Лого
+page.search.groups.filter.col1.msg2=Страна
+page.search.groups.filter.col1.msg3=Город
+page.search.groups.filter.col1.msg4=Возраст
+page.search.groups.filter.col1.msg5=Языки
+page.search.groups.filter.col1.msg6=Статус
+page.search.groups.filter.col1.msg7=Инфо
+
+page.search.groups.filter.col2.msg1=Навык "Предпринимательство"
+page.search.groups.filter.col2.msg2=Навык "Идеализм"
+page.search.groups.filter.col2.msg3=Навык "Коммуникабельность"
+page.search.groups.filter.col2.msg4=Навык "Прагматика"
+page.search.groups.filter.col2.msg5=Тип бизнеса
+page.search.groups.filter.col2.msg6=Сфера
+page.search.groups.filter.col2.msg7=Стадия
+
+page.search.groups.filter.col3.msg1=Навык "Маркетинг"
+page.search.groups.filter.col3.msg2=Навык "Продажи"
+page.search.groups.filter.col3.msg3=Навык "Управление"
+page.search.groups.filter.col3.msg4=Навык "Право"
+page.search.groups.filter.col3.msg5=Навык "Финансы"
+page.search.groups.filter.col3.msg6=Навык "ИТ"
+page.search.groups.filter.col3.msg7=Навык "Другое"
+
+
+
+
+
 
 page.common.from=От
 page.common.enter=Войти
