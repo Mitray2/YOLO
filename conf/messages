@@ -165,6 +165,19 @@ page.team.create.topic.public=Public
 page.team.create.topic.create_topic=Create topic
 
 
+
+page.profile.lastseen=Last seen
+page.profile.email=Email address
+page.profile.business=Business
+page.profile.sendmsg=Send message
+page.profile.add_to_team=Add to my team
+page.profile.hide_email=Hidden
+page.profile.add_button=Add
+page.profile.cancel=Cancel
+page.profile.personal_characteristics=Personal characteristics
+
+
+
 page.common.rights=2012 All rights reserved. StartNewTeam
 page.common.yes=Yes
 page.common.no=No

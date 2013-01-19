@@ -15,27 +15,27 @@
                 <div class="profile-user-info">
                 	#{avatar.avatar user:user, cssClass:'profile-user-info-pic', maleImg:'avabigm.jpg', femaleImg:'avabigf.jpg', avatarSize:123 /}
                     <div><a href="#">&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.country?.name)}</a> / <a href="#">${user?.city}</a></div>
-                    <div><span>На сайте:</span> <em>#{common.formattedDate date:user?.lastSeen /}</em></div>
-                    <div><span>Электронный адрес:</span> #{if user.showEmailForOthers} ${user.email} #{/if} #{else}Скрыт#{/else}</div>
-                    <div><span>Интересуется бизнесом:</span> <a href="#">&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.businessType?.name)}</a> / <a href="#">&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.businessSphere?.name)}</a></div>
+                    <div><span>&{'page.profile.lastseen'}:</span> <em>#{common.formattedDate date:user?.lastSeen /}</em></div>
+                    <div><span>&{'page.profile.email'}:</span> #{if user.showEmailForOthers} ${user.email} #{/if} #{else}&{'page.profile.hide_email'}#{/else}</div>
+                    <div><span>&{'page.profile.business'}:</span> <a href="#">&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.businessType?.name)}</a> / <a href="#">&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.businessSphere?.name)}</a></div>
                     <div class="profile-user-info-btn">
-                        <a href="#">Отправить сообщение</a>
+                        <a href="#">&{'page.profile.sendmsg'}</a>
                         #{if currentAdminGroup}
-                        	<a href="" onclick="$('.sendNotif').show(); return false;">Пригласить в команду</a>
+                        	<a href="" onclick="$('.sendNotif').show(); return false;">&{'page.profile.add_to_team'}</a>
                         #{/if}
                     </div>
                     <div class="sendNotif"  style="display: none">
 						<div class="overlay"></div>
 						<div class="popup">
-							<h2>Добавить в свою команду</h2>
+							<h2>&{'page.profile.add_to_team'}</h2>
 							#{form @GroupController.joinMyGroup()}
 							 <input name="userForJoinId" value="${user.id}" type="hidden"> 
 							 <input name="groupId" value="${utils.SessionHelper.getCurrentUser(session).command?.id}" type="hidden"> 
 							 <div class="profile-item clearFix popup-formtxt ">
 								 	<textarea name="text" cols="30" rows="5" class="mt15"></textarea>
 								 </div>
-								 <input type="submit" value="Пригласить">
-							<a href=""  onclick="$('.sendNotif').hide(); return false;" class="cancel">Отмена</a>
+								 <input type="submit" value="&{'page.profile.add_button'}">
+							<a href=""  onclick="$('.sendNotif').hide(); return false;" class="cancel">&{'page.profile.cancel'}</a>
 							#{/form}
 						</div>
 					</div>
@@ -58,7 +58,7 @@
                          &{'pragmatist'}
                     </div>
                 </div>
-                <div class="user-info-ttl">Персональная характеристика</div>
+                <div class="user-info-ttl">&{'page.profile.personal_characteristics'}</div>
                 <div class="user-info">
                     <pre>${user.personalCV}</pre>
                 </div>

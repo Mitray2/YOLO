@@ -38,5 +38,6 @@ public class ApplicationController extends Controller {
     public static void rss() {
         renderText(RssHelper.getInstance(request.getBase()).getRss());
     }
+    
 
 }

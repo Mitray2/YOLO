@@ -174,6 +174,18 @@ page.team.members=Участники
 
 
 
+
+page.profile.lastseen=На сайте
+page.profile.email=Электронный адрес
+page.profile.business=Интересуется бизнесом
+page.profile.sendmsg=Отправить сообщение
+page.profile.add_to_team=Пригласить в команду
+page.profile.hide_email=Скрыт
+page.profile.add_button=Пригласить
+page.profile.cancel=Отмена
+page.profile.personal_characteristics=Персональная характеристика
+
+
 page.common.rights=2012 All rights reserved. StartNewTeam
 page.common.yes=Да
 page.common.no=Нет
