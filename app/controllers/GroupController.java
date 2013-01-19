@@ -447,17 +447,20 @@ public class GroupController extends BasicController implements ApplicationConst
 		ptQueryAllTopicsCount.setParameter(3, false);
 		Integer topicsCount = ((Long) ptQueryAllTopicsCount.getResultList().get(0)).intValue();
 		
-		//find top 10 messages of main topic to show on wall
-		Query ptmQueryMainTopicMessages = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=? order by t.createDate desc");
-		ptmQueryMainTopicMessages.setParameter(1, mainTopic.id);
-		ptmQueryMainTopicMessages.setMaxResults(10);
-		List<TopicMessage> msgs = ptmQueryMainTopicMessages.getResultList();
-		mainTopic.msg = msgs;
-		
-		//get total count of main topic messages
-		Query mainTopicMsgCountQuery = JPA.em().createQuery("select count(t.id) from TopicMessage t where t.topic.id = ?");
-		mainTopicMsgCountQuery.setParameter(1, mainTopic.id);
-		Integer mainTopicMsgCount = ((Long) mainTopicMsgCountQuery.getResultList().get(0)).intValue();
+		Integer mainTopicMsgCount = 0;
+		if (mainTopic != null) {
+			//find top 10 messages of main topic to show on wall
+			Query ptmQueryMainTopicMessages = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=? order by t.createDate desc");
+			ptmQueryMainTopicMessages.setParameter(1, mainTopic.id);
+			ptmQueryMainTopicMessages.setMaxResults(10);
+			List<TopicMessage> msgs = ptmQueryMainTopicMessages.getResultList();
+			mainTopic.msg = msgs;
+			
+			//get total count of main topic messages
+			Query mainTopicMsgCountQuery = JPA.em().createQuery("select count(t.id) from TopicMessage t where t.topic.id = ?");
+			mainTopicMsgCountQuery.setParameter(1, mainTopic.id);
+			mainTopicMsgCount = ((Long) mainTopicMsgCountQuery.getResultList().get(0)).intValue();
+		}
 		
 		render(topics, group, mainTopic, mainTopicMsgCount, topicsCount);
 	}
