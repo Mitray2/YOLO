@@ -9,7 +9,7 @@ import play.jobs.OnApplicationStart;
 import utils.ModelUtils;
 
 @OnApplicationStart
-public class UpdateUsers extends Job {
+public class UpdateDataModel extends Job {
 
 	public void doJob() {
 		List<User> users = User.findAll();
