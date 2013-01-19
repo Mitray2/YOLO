@@ -256,3 +256,10 @@ pre {
 	 font: 13px/20px Arial, Helvetica, sans-serif !important;
 	 white-space: pre-wrap;
 }
+
+.newsLangSwitch {
+	padding-right: 8px;
+}
+.newsLangSwitch a {
+	font: 14px/21px "MyriadPro-Regular", Arial, sans-serif;
+}

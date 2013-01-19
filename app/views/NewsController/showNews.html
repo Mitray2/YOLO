@@ -4,7 +4,7 @@
 #{else}
 	#{extends 'main_info.html' /}
 #{/else}
- #{set title:'StartNewTeam' /}
+#{set title:'StartNewTeam' /}
 %{
 	def pageUrl = request.getBase() + request.path;
 	def twit = pageUrl + ' ' + news?.title;

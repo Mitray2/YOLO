@@ -19,6 +19,7 @@ public class Post extends Model {
     public static final Integer STATE_WORK = 1;
 
     public static final Integer TYPE_NEWS = 1;
+    public static final Integer TYPE_CROWD_FUNDING = 2;
 
     @Required
     public Date creationDate = new Date();
@@ -51,6 +52,6 @@ public class Post extends Model {
     @Hidden
     public Boolean published = false;
 
-    @Hidden
+    @ChoiceList(choices = "1^Новость,2^КраудФандин отчет")
     public Integer type = TYPE_NEWS;
 }

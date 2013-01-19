@@ -5,4 +5,18 @@
 	#{extends 'main_info.html' /}
 #{/else}
 #{set title: StartNewTeam /}
-<h3>&{'page.crowd.funding.head'}</h3>
+<div class="newsLangSwitch">
+	<a style="float: right; cursor: pointer;" href="/crowdfunding?lang=${newsLang == 'ru' ? 'en' : 'ru'}">читать ${newsLang == 'ru' ? 'английский' : 'русский'} отчет</a>
+</div>
+<div class="page-news">
+	<div class="news">
+		#{list items:fundingNews, as:'news'}
+			<div class="news-item">
+		         <a href="/crowdfunding/${news?.id}"><img width="242" height="172" src="${news?.previewImageURL}" alt="${news?.title}" class="news-pic"></a>
+		         <div class="news-date">#{common.formattedDate date:news?.creationDate/}</div>
+		         <h2><a href="/crowdfunding/${news?.id}">${news?.title}</a></h2>
+		         <p>${news?.preview}</p>
+			</div>
+		#{/list}
+	</div>
+</div>

@@ -5,23 +5,39 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.apache.commons.lang.StringUtils;
+
 import models.CrowdConsulting;
 import models.CrowdDeveloping;
+import models.Post;
 import models.Topic;
 import models.TopicMessage;
 import models.User;
 import play.db.jpa.JPA;
+import play.i18n.Lang;
 import play.mvc.Before;
 import play.mvc.Controller;
+import play.mvc.Http.Cookie;
 import utils.ApplicationConstants;
+import utils.LangUtils;
 import utils.SessionHelper;
 
 public class CrowdController extends BasicController implements ApplicationConstants {
 
-	public static void funding() {
-		render();
+	private static final String FUNDING_LANG = "fundingLang";
+	
+	public static void funding(String lang) {
+		String newsLang = LangUtils.getNewsLang(lang, request, response, FUNDING_LANG);
+		Integer langId = LangUtils.langToId(newsLang);
+		List<Post> fundingNews = Post.find("select p from Post p where p.type = ? and p.state = ? and lang = ? order by p.creationDate DESC", Post.TYPE_CROWD_FUNDING, Post.STATE_WORK, langId).fetch();
+		render(fundingNews, newsLang);
 	}
 	
+	public static void showFundingReport(Long id){
+		Post report = Post.findById(id);
+		render(report);
+	}
+
 	public static void consulting() {
 		Query tQuery = JPA.em().createQuery("select t from CrowdConsulting t order by t.createDate desc");
 		tQuery.setMaxResults(10);
