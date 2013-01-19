@@ -36,35 +36,15 @@ function editDisabled(element){
 				#{if groupMember}
 				    <a href="@{GroupController.createTopic(group.id)}" class="new-themes-btn"><img src="@{'public/images/boilerplate/ico-new-theme.gif'}" alt="">Создать новую тему</a>
 				#{/if}
-                    <div class="ttl-search-result2-color">В группе ${topics?.size()-1} темы</div>
+                    <div class="ttl-search-result2-color">В группе ${topicsCount} темы</div>
 				</div>
 
 
 				<ul class="search-result-list">
 				#{list items:topics, as:'topic'}
-				#{if (topic.publicTopic || groupMember) && (!topic.mainTopic)}
-					<li class="search-result-item clearFix">
-						<h4>
-                        	<a href="@{GroupController.indexTopic(topic.id, group.id)}">
-                        		#{if topic.publicTopic}
-                        		<img src="@{'public/images/boilerplate/public1.png'}" alt="public theme" />
-                        		#{/if}
-                        		${topic.name}
-                        	</a>
-                        	#{if (userId == topic.createdUserId) || (isAdmin)}
-                            <a href="@{GroupController.editTopic(topic.id)}"><span class="theme-edit"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Редактировать тему</span></span></a>
-                            <a href="@{GroupController.removeTopic(topic.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить тему</span></span></a>
-                            #{/if}
-                        </h4>
-						<pre>${topic.description}</pre>
-						<div class="search-result-list-date"><strong>${topic.msg?.size()} ответов</strong></div>
-                        <br />
-                        #{if topic.msg?.size() > 0 }
-                        <div class="search-result-list-last">Последнее от <a href="@{UserController.index(topic.lastUpdateUserId)}">${topic.lastUpdateUserLastName} ${topic.lastUpdateUserName}</a>, <span class="topic_date">${utils.DateUtils.getFormatedStringDate(topic.lastUpdateDate, true)}</div>
-                        #{/if}
-						<a href="@{GroupController.indexTopic(topic.id, group.id)}" class="search-result-list-more">Перейти к обсуждению <span>&nbsp;&#8594;</span></a>
-					</li>
-				#{/if}
+					#{if groupMember && !topic.mainTopic}
+						#{group.topic topic:topic, group:group, userId:userId, isAdmin:isAdmin/}
+					#{/if}
 				#{/list}
 				</ul>
 				
