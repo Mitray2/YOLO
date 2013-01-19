@@ -25,6 +25,9 @@ public class Post extends Model {
 
     @ChoiceList(choices = "0^Черновик,1^Готово")
     public Integer state = 0;
+    
+    @ChoiceList(choices = "0^Русский,1^Английский")
+    public Integer lang = 0;
 
     @Required
     public String title;

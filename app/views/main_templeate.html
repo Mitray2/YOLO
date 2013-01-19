@@ -36,16 +36,7 @@ $(document).ready(function() {
 				<a href="/">
 					<img src="@{'public/images/boilerplate/logo-1.png'}" alt="" class="logo" />
 				</a>
-				<nav class="main-nav">
-					<ul>
-<!-- 						<li><a href="/">Главная</a></li> -->
-<!-- 						<li><a href="/news">Новости</a></li> -->
-							<li><a href="@{CrowdController.consulting()}">Консалтинг</a></li>
-							<li><a href="@{CrowdController.funding()}">Финансирование</a></li>
-<!-- 						<li><a href="/contacts/">Контакты</a></li> -->
-<!-- 						<li><a href="/partners/">Партнеры</a></li> -->
-					</ul>
-				</nav>
+				#{menu.nav/}
                 <div class="logged clearFix">
                 	<div class="logged-message">
                     	<a href="#" class="logged-message-ico"></a>
