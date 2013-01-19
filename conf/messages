@@ -165,6 +165,16 @@ page.team.create.topic.public=Public
 page.team.create.topic.create_topic=Create topic
 
 
+page.team.discuss.create_team=Create new team
+page.team.discuss.count_topics=There is %s discussion(s) in the group
+page.team.discuss.edit_disc=Edit discussion
+page.team.discuss.del_disc=Delete discussion
+page.team.discuss.edit_msg=Edit message
+page.team.discuss.del_msg=Delete message
+page.team.discuss.save=Save
+page.team.discuss.cancel=Cancel
+
+
 page.profile.age=Age
 page.profile.lastseen=Last seen
 page.profile.email=Email address

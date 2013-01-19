@@ -167,6 +167,13 @@ page.team.create.topic.name=Заголовок темы для обсужден�
 page.team.create.topic.public=Сделать тему публичной
 page.team.create.topic.create_topic=Создать тему
 
+
+page.team.discuss.create_team=Создать новую тему
+page.team.discuss.count_topics=В группе %s темы
+page.team.discuss.edit_disc=Редактировать тему
+page.team.discuss.save=Сохранить
+page.team.discuss.cancel=Отменить
+
 page.team.description=Описание
 page.team.discussion=Обсуждения
 page.team.public_discussion=Открытые обсуждения
