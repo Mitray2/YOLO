@@ -1,5 +1,10 @@
-#{extends 'main_markup.html' /}
-#{set title:'main' /}
+#{if utils.SessionHelper.getCurrentUser(session) != null}
+	#{extends 'main_templeate.html' /}
+#{/if}
+#{else}
+	#{extends 'main_info.html' /}
+#{/else}
+ #{set title:'StartNewTeam' /}
 <h1>Новости проекта</h1>
 <div class="page-news">
 	<div class="news">
@@ -11,19 +16,7 @@
 	         <h2><a href="/news/${news?.id}">${news?.title}</a></h2>
 	         <p>${news?.preview}</p>
 		</div>
-<!-- <div class="pages"> -->
-<!-- <a href="" class="prev">Предыдущая</a> -->
-<!-- 	<div> -->
-<!-- 	    <a href="">1</a> -->
-<!-- 	    <a href="">2</a> -->
-<!-- 	    <a href="">3</a> -->
-<!-- 	    <a href="" class="current">4</a> -->
-<!-- 	    <a href="">5</a> -->
-<!-- 	    <a href="">...</a> -->
-<!-- 	    <a href="">65</a> -->
-<!-- 	</div> -->
-<!-- 	<a href="" class="next">Следующая</a> -->
-<!-- </div> -->
+
 #{/list}
 </div>
 </div>

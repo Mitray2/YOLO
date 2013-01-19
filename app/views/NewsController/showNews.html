@@ -1,5 +1,10 @@
-#{extends 'main_markup.html' /}
-#{set title:'main' /}
+#{if utils.SessionHelper.getCurrentUser(session) != null}
+	#{extends 'main_templeate.html' /}
+#{/if}
+#{else}
+	#{extends 'main_info.html' /}
+#{/else}
+ #{set title:'StartNewTeam' /}
 %{
 	def pageUrl = request.getBase() + request.path;
 	def twit = pageUrl + ' ' + news?.title;
