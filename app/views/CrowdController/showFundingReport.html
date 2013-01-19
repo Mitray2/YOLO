@@ -1,0 +1,31 @@
+#{if utils.SessionHelper.getCurrentUser(session) != null}
+	#{extends 'main_templeate.html' /}
+#{/if}
+#{else}
+	#{extends 'main_info.html' /}
+#{/else}
+#{set title:'StartNewTeam' /}
+%{
+	def pageUrl = request.getBase() + request.path;
+	def twit = pageUrl + ' ' + news?.title;
+	if(twit?.length() > 140){
+		twit = twit.subSequence(0, 135) + '...';
+	}
+}%
+<h1><a href="@{CrowdController.funding()}">&{'link.crowd.funding'}</a></h1>
+<div class="page-news">
+	<div class="news-txt">
+		<div class="news-txt-date">#{common.formattedDate date:report?.creationDate /}</div>
+		<h1>${report?.title}</h1>
+		#{verbatim}
+			${report?.value}
+		#{/verbatim}
+	</div>
+	<div class="news-social">
+		<ul class="social-likes" data-title="${news?.title}" data-twit="${twit}" #{if report?.previewImageURL}data-image="${report.previewImageURL}"#{/if} data-description="#{if report?.preview?.length() > 140}${report?.preview?.subSequence(0, 135) + '...'}#{/if}#{else}${report?.preview}#{/else}" data-url="${pageUrl}" >
+			<li class="facebook" title="&{'social.populate.link'}">Facebook</li>
+			<li class="twitter"  title="&{'social.populate.link'}">Twitter</li>
+			<li class="vkontakte" title="&{'social.populate.link'}">VK</li>
+		</ul>
+	</div>
+</div>
