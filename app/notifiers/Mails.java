@@ -8,17 +8,6 @@ import utils.SecurityHelper;
 
 public class Mails extends Mailer {
 
-	// public static void newsEmail(User user, Post post) {
-	// setSubject(post.title);
-	// addRecipient(user.email);
-	// setFrom("info@coachmen.ru");
-	// // for attachment some files
-	// // EmailAttachment attachment = new EmailAttachment();
-	// // attachment.setDescription("A pdf document");
-	// // attachment.setPath(Play.getFile("rules.pdf").getPath());
-	// // addAttachment(attachment);
-	// send(user, post);
-	// }
 
 	public static void firstTestPassed(User user, String base) {
 		setSubject(Messages.get("mail.subject.type1"));
