@@ -55,9 +55,9 @@ $(document).ready(function() {
                             <ul>
                             #{list items:models.User.findById(utils.SessionHelper.getCurrentUser(session).id).commandsForAprove, as:'group'}
                             	<li>
-                                    <span><a href="@{GroupController.index(group.id)}">&{'page.profile.group_invite'}Приглашение в группу: ${group.name}</a></span>
+                                    <span><a href="@{GroupController.index(group.id)}">&{'page.profile.group_invite'}: ${group.name}</a></span>
                                     #{if groupAdmin}
-										<div title="&{'page.profile.warning1'}Вы должны сначала передать права администратора участнику группы, прежде чем выйти и вступить в новую группу">Согласен</div>
+										<div title="&{'page.profile.warning1'}">Согласен</div>
 									#{/if}
 									#{else}
 										#{if haveGroupOrInviteJoin}
@@ -65,27 +65,27 @@ $(document).ready(function() {
 											<div class="approveInviteGroup"  style="display: none">
 												<div class="overlay"></div>
 												<div class="popup">
-												    	<h2>&{'page.profile.join_command'}Вступить команду</h2>
-												        <p>&{'page.profile.question_leave_command'}Вы уверены, что хотите выйти из своей команды и отменить заявки на вступления и вступить в новую?</p>
-												        <a class="btn" href="@{UserController.approveInviteGroup(group.id)}">&{'page.profile.join'}Вступить</a>
+												    	<h2>&{'page.profile.join_command'}</h2>
+												        <p>&{'page.profile.question_leave_command'}?</p>
+												        <a class="btn" href="@{UserController.approveInviteGroup(group.id)}">&{'page.profile.join'}</a>
 												        <a href="" onclick="$('.approveInviteGroup').hide(); return false;" class="cancel">&{'page.profile.cancel'}Отмена</a>
 												</div>
 											</div>
 										#{/if}
 										#{else}
-											<p><a href="@{UserController.approveInviteGroup(group.id)}">&{'page.profile.accepted'}Согласен</a></p>
+											<p><a href="@{UserController.approveInviteGroup(group.id)}">&{'page.profile.accepted'}</a></p>
 										#{/else}
 									#{/else}
-                                    <p><a href="@{UserController.declineInviteGroup(group.id)}">&{'page.profile.refuse'}Отклонить</a></p>
+                                    <p><a href="@{UserController.declineInviteGroup(group.id)}">&{'page.profile.refuse'}</a></p>
                                 </li>
                              #{/list}   
                              #{if groupAdmin}
                              	#{list items:models.User.findById(utils.SessionHelper.getCurrentUser(session).id).command?.usersForAprove, as:'userForAprove'}
 								<li>
 									
-										<span><a href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session).command?.id)}">&{'page.profile.request_join_group'}Заявка на вступление в вашу группу</a></span>
+										<span><a href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session).command?.id)}">&{'page.profile.request_join_group'}</a></span>
 											<p><a href="@{UserController.index(userForAprove.id)}">${userForAprove.name} ${userForAprove.lastName}</a></p>
-											<p><a href="@{GroupController.approveJoin(userForAprove.id, utils.SessionHelper.getCurrentUser(session).command.id)}">&{'page.profile.add'}Добавить</a></p>
+											<p><a href="@{GroupController.approveJoin(userForAprove.id, utils.SessionHelper.getCurrentUser(session).command.id)}">&{'page.profile.add'}</a></p>
 											<p><a href="@{GroupController.declineJoin(userForAprove.id, utils.SessionHelper.getCurrentUser(session).command.id)}">&{'page.profile.refuse'}Отклонить</a></p>
 										</tr>
 									
@@ -102,11 +102,11 @@ $(document).ready(function() {
                         <div class="logged-user-menu" style="display:none;">
                         	<img src="@{'public/images/boilerplate/logged-arrow2.png'}" alt="">
                             <ul>
-                            	<li><a href="@{UserController.index(utils.SessionHelper.getCurrentUser(session)?.id)}">&{'page.profile.my_profile'}Мой профиль</a></li>
+                            	<li><a href="@{UserController.index(utils.SessionHelper.getCurrentUser(session)?.id)}">&{'page.profile.my_profile'}</a></li>
                             	#{if (utils.SessionHelper.getCurrentUser(session)?.command != null)}
-                                <li><a href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session)?.command?.id)}">&{'page.profile.my_group'}Моя группа</a></li>
+                                <li><a href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session)?.command?.id)}">&{'page.profile.my_group'}</a></li>
                                 #{/if}
-                                <li><a href="@{LoginController.logout()}" class="logged-user-exit">&{'page.profile.exit'}Выйти</a></li>
+                                <li><a href="@{LoginController.logout()}" class="logged-user-exit">&{'page.profile.exit'}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -126,11 +126,9 @@ $(document).ready(function() {
 				<br/>
 				<nav class="user-menu">
 					<ul>
-						<li><a href="@{UsersSearch.memberSearch()}">&{'page.profile.find_participant'}Найти
-								участника</a></li>
-						<li><a href="@{CommandsSearch.groupSearch()}">&{'page.profile.find_command'}Найти
-								команду</a></li>
-                    #{common.menu.footerItems /}
+						<li><a href="@{UsersSearch.memberSearch()}">&{'page.profile.find_participant'}</a></li>
+						<li><a href="@{CommandsSearch.groupSearch()}">&{'page.profile.find_command'}</a></li>
+                    #{common.menu.footerItems withoutMain:true /}
 					</ul>
 				</nav>
 			</div>
@@ -153,7 +151,7 @@ $(document).ready(function() {
           		<div class="user-group">
 					<div class="user-group-cont">
 						<p>
-							&{'page.profile.warning2'}Вы состоите в команде, при создании своей команды вы автоматически будете удалены из текущей.
+							&{'page.profile.warning2'}
 						</p>
 						<a href="" onclick="$('.createGroup').show(); return false;" class="add-group"><img
 							src="@{'public/images/boilerplate/ico-plus.gif'}" alt="">&{'page.profile.create_command'}Создать
@@ -162,8 +160,8 @@ $(document).ready(function() {
 												<div class="overlay"></div>
 												<div class="popup">
 												    	<h2>&{'page.profile.create_command'}Создать команду</h2>
-												        <p>&{'page.profile.warning3'}Вы уверены, что хотите выйти из своей команды и создать в новую?</p>
-												        <a class="btn" href="@{GroupController.createGroup()}">&{'page.profile.create'}Создать</a>
+												        <p>&{'page.profile.warning3'}?</p>
+												        <a class="btn" href="@{GroupController.createGroup()}">&{'page.profile.create'}</a>
 												        <a href="" onclick="$('.createGroup').hide(); return false;" class="cancel">&{'page.profile.cancel'}Отмена</a>
 												</div>
 											</div>
@@ -174,14 +172,10 @@ $(document).ready(function() {
           		<div class="user-group">
 					<div class="user-group-cont">
 						<p>
-							&{'page.profile.warning4', CommandsSearch.groupSearch()}Вы пока не состоите ни в одной из созданных команд. Вы можете
-						вступить в группу, подходящую вашим интересам, для этого
-						необходимо <a href="@{CommandsSearch.groupSearch()}">подобрать
-							команду</a> либо создать свою
+							&{'page.profile.warning4', '/commandssearch/groupsearch'}
 						</p>
 						<a href="@{GroupController.createGroup()}" class="add-group"><img
-							src="@{'public/images/boilerplate/ico-plus.gif'}" alt="">&{'page.profile.create_own_command'}Создать
-							свою команду</a>
+							src="@{'public/images/boilerplate/ico-plus.gif'}" alt="">&{'page.profile.create_own_command'}</a>
 					</div>
 				</div>
          	#{/if}
@@ -189,16 +183,15 @@ $(document).ready(function() {
           		<div class="user-group">
 					<div class="user-group-cont">
 						<p>
-							&{'page.profile.warnnig5'}Вы выслали заявку на вступление в одну из групп, при создании группы, заявка автоматически отклонится.
+							&{'page.profile.warnnig5'}
 						</p>
 						<a href="" onclick="$('.createGroupD').show(); return false;" class="add-group"><img
-							src="@{'public/images/boilerplate/ico-plus.gif'}" alt="">&{'page.profile.create_own_command'}Создать
-							свою команду</a>
+							src="@{'public/images/boilerplate/ico-plus.gif'}" alt="">&{'page.profile.create_own_command'}</a>
 							<div class="createGroupD"  style="display: none">
 												<div class="overlay"></div>
 												<div class="popup">
-												    	<h2>&{'page.profile.create_command'}Создать команду</h2>
-												        <p>&{'page.profile.warning6'}Вы уверены, что хотите отменить заявку на вступление в команду и создать новую?</p>
+												    	<h2>&{'page.profile.create_command'}</h2>
+												        <p>&{'page.profile.warning6'}?</p>
 												        <a class="btn" href="@{GroupController.createGroup()}">&{'page.profile.create'}Создать</a>
 												        <a href="" onclick="$('.createGroupD').hide(); return false;" class="cancel">&{'page.profile.cancel'}Отмена</a>
 												</div>
@@ -219,13 +212,13 @@ $(document).ready(function() {
           	#{/if}
  			<div class="share">
 				<div class="ttl-block">
- 					<h3>&{'page.profile.tell_friends'}Расскажи друзьям</h3>
+ 					<h3>&{'page.profile.tell_friends'}</h3>
  				</div>
  				<div class="share-cont">
- 					<p>&{'page.profile.tell_friends.description'}Пригласи друзей на проект, расскажи им о нем - работать вместе будет веселее.</p>
-                     <a href="" class="twitter" onclick="window.open('https://twitter.com/share?text=&{'models.group.social.title', utils.URLUtils.getApplicationName(request.getBase())}&url=${request.getBase()}/register', 'facebook', 'width=626, height=436');">&{'page.profile.tell_friends_tw'}Рассказать в Twitter</a>
-                     <a href="" class="facebook" onclick="window.open('http://www.facebook.com/sharer.php?s=100&p[url]=${request.getBase()}/register&p[title]=&{'models.group.social.title', utils.URLUtils.getApplicationName(request.getBase())}&p[summary]=&{'models.group.social.description', utils.URLUtils.getApplicationName(request.getBase())}&p[images][0]=${request.getBase()}/public/images/boilerplate/socials-logo.jpg', 'facebook', 'width=626, height=436'); return false;">&{'page.profile.tell_friends_fb'}Рассказать в Facebook</a>
-                     <a href="" class="vk" onclick="window.open('http://vk.com/share.php?url=${request.getBase()}/register&title=&{'models.group.social.title', utils.URLUtils.getApplicationName(request.getBase())}&description=&{'models.group.social.description', utils.URLUtils.getApplicationName(request.getBase())}&image=${request.getBase()}/public/images/boilerplate/socials-logo.jpg', 'vkontakte', 'width=626, height=436'); return false;">&{'page.profile.tell_friends_vk'}Рассказать Вконтакте</a>
+ 					<p>&{'page.profile.tell_friends.description'}</p>
+                     <a href="" class="twitter" onclick="window.open('https://twitter.com/share?text=&{'models.group.social.title', utils.URLUtils.getApplicationName(request.getBase())}&url=${request.getBase()}/register', 'facebook', 'width=626, height=436');">&{'page.profile.tell_friends_tw'}</a>
+                     <a href="" class="facebook" onclick="window.open('http://www.facebook.com/sharer.php?s=100&p[url]=${request.getBase()}/register&p[title]=&{'models.group.social.title', utils.URLUtils.getApplicationName(request.getBase())}&p[summary]=&{'models.group.social.description', utils.URLUtils.getApplicationName(request.getBase())}&p[images][0]=${request.getBase()}/public/images/boilerplate/socials-logo.jpg', 'facebook', 'width=626, height=436'); return false;">&{'page.profile.tell_friends_fb'}</a>
+                     <a href="" class="vk" onclick="window.open('http://vk.com/share.php?url=${request.getBase()}/register&title=&{'models.group.social.title', utils.URLUtils.getApplicationName(request.getBase())}&description=&{'models.group.social.description', utils.URLUtils.getApplicationName(request.getBase())}&image=${request.getBase()}/public/images/boilerplate/socials-logo.jpg', 'vkontakte', 'width=626, height=436'); return false;">&{'page.profile.tell_friends_vk'}</a>
  				</div>
  			</div>
 		</aside>

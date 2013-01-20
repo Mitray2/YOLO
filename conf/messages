@@ -48,6 +48,7 @@ page.main.site.people_count=Lot's of motivated people
 page.main.site.team_count=Motivated teams
 page.main.its_free=it's free
 
+page.about.title=About the project
 page.about.text=<p>Technology and science are developing very fast; the world has become\
    so complex that it is not possible to cover all aspects of it for one person. These \
   conditions require complex ideas and for businesses, combining a set of knowledge and \
@@ -168,6 +169,24 @@ link.crowd.consalting=CrowdConsulting
 link.crowd.developig=CrowdDeveloping
 link.crowd.funding=CrowdFunding
 
+page.partners.title=Thanks to them, StartNewTeam exists and develops
+page.partners.skolkovo.title=Skolkovo foundation
+page.partners.skolkovo.text=Skolkovo Foundation is the principal agency responsible for the Russian \
+                            Skolkovo Innovation Center, a scientific and technological centre for \
+                            the development and commercialisation of advanced technologies.
+page.partners.asi.title=Agency for Strategic Initiatives
+page.partners.asi.text=Government body, created for development and promotion of innovative project and general development of entrepreneurship in Russia.
+page.partners.microsoft.title=Microsoft
+page.partners.microsoft.text=Largest software company in the World.
+page.partners.text=We will be happy to make enlarge our pool of partners with companies, \
+                    organizations and individuals willing to change the world for the best through \
+                    the development of entrepreneurship. Please write us about your desire to \
+                    cooperate to %s, and we will find something interesting.
+
+page.contacts.title=Contacts
+page.contacts.general=General
+page.contacts.for_partnership=For partnership
+
 page.crowd.consalting.head = Let's create together a handy tool with which we can easily find like-minded people and work effectively in teams to build successful businesses. Any idea on this? Offer below! The best ideas will be implemented, and their authors are all placed on a special page of honor for his contribution to the project.
 page.crowd.developing.head = There is a desire to take a practical part in the development of the project? Write below what good you can and want to do, and what you need for this.
 page.crowd.funding.head = You can make a contribution to the project or to thank, if it has already helped to find like-minded people and start a business. <br/> monthly report will be issued on received stradstvah and expenses. The biggest benefactors will be permanently placed on a special page of honor for his contribution to the project. <br/> <br/> Details for donations: <br/> Yandex purse: 123241235151 <br/> Kiwi purse: 123123231 <br/> Webmoney: 132136245624 <br/> Other means of payment ...
@@ -272,6 +291,35 @@ page.team.discuss.send=Send
 page.team.discuss.to_list=List of all discussions
 page.team.discuss.created_by=Created by
 
+page.profile.group_invite=Group Invite
+page.profile.warning1=You must first submit an administrator member of the group, before going out and join the new group
+page.profile.accepted=agree
+page.profile.join_command=join the team
+page.profile.question_leave_command=Are you sure you want to get out of your team and cancel the application for entry and enter the new
+page.profile.join=join
+page.profile.refuse=Refuse
+page.profile.request_join_group=Application for membership in your group
+page.profile.add=Add
+page.profile.my_profile=My profile
+page.profile.my_group=My group
+page.profile.exit=Exit
+page.profile.find_participant=Find a participant
+page.profile.find_command=Find a team
+page.profile.warning2=You are in a team, to create your team you will automatically be removed from the current.
+page.profile.create_own_command=Create a team
+page.profile.create_command=Create a team
+page.profile.warning3=Are you sure you want to get out of your team and create a new
+page.profile.create=Create
+page.profile.warning4=You have not joined any of the established teams. You can join the\
+                        group suitable to your interests, it is necessary <a href="%s">\
+                        pick a team </a> or you can create your
+page.profile.warnnig5=You have sent a request to join one of the groups at the group, the application is automatically rejected.
+page.profile.warning6=Are you sure you want to cancel a request to join a team and create a new
+page.profile.tell_friends=Tell a friend
+page.profile.tell_friends.description=Пригласи друзей на проект, расскажи им о нем - работать вместе будет веселее.
+page.profile.tell_friends_vk=tell in Vkontakte
+page.profile.tell_friends_tw=tell in Twitter
+page.profile.tell_friends_fb=tell in Facebook
 page.profile.age=Age
 page.profile.lastseen=Last seen
 page.profile.email=Email address
@@ -293,7 +341,6 @@ page.profile.finance_experience=Finance
 page.profile.law_experience=Law
 page.profile.it_experience=IT
 page.profile.others_experience=Others
-
 page.profile.current.title=My profile
 page.profile.current.personal_data=Personal data
 page.profile.current.name=Name
