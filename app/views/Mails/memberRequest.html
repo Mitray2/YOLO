@@ -1,16 +1,7 @@
 <html>
 	<body>
 		<p>
-			Добрый день, ${user.name}!
-			<br>
-			 Твой проект не остался незамеченным! ${name} хочет вступить в команду.
-			<br>
-			${text}
-			<br>
-			<br>
-			С уважением,
-			<br>
-			 команда <a href="http://www.startnewteam.com">StartNewTeam</a><br/>
+			&{'email.memberRequest', user.name, name, text, request.getBase()}
 		</p>
 	</body>
 </html>
