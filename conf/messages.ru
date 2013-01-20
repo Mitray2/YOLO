@@ -195,6 +195,15 @@ email.lostPassword=Добрый день!<br/>\
                    <br>\
                    <br>\
                    С уважением,<br> команда <a href="%s">StartNewTeam</a>
+email.secondTestPassed=Добрый день, %s!\
+                       <br>\
+                       <br>\
+                       Для завершения регистрации на\
+                        StartNewTeam необходимо подтвердить электронный адрес, пройдя по <a\
+                        href="%s/confirmRegistration?ticket=%s">ссылке</a>.<br />.\
+                        <br>\
+                        С уважением, команда <a href="%s">StartNewTeam</a>
+
 
 link.main=Главная
 link.news=Новости

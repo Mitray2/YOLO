@@ -191,6 +191,15 @@ email.lostPassword=Hi!<br/>\
                   <br>\
                   <br>\
                   Entrepreneurially yours,<br> <a href="%s">StartNewTeam</a> squad.
+email.secondTestPassed=Hello,%s! \
+                        <br> \
+                        <br> \
+                        To complete the registration on the \
+                        StartNewTeam must confirm the email address by clicking the <a \
+                        href="%s/confirmRegistration?ticket=%s">here</a>. <br/>. \
+                        <br> \
+                        Entrepreneurially yours, <a href="%s">StartNewTeam</a> squad.
+
 
 link.main=Main
 link.news=News
