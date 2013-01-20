@@ -111,6 +111,8 @@ page.test1.aim.text=Мотивация достижения &mdash; стремл
 page.test1.answer=Ваш ответ
 page.test1.show_results=Покажите результаты
 page.test1.pass_test=Пройти итоговый тест.
+page.test1.error1=Вы не ответили на несколько вопросов.
+page.test1.error2=Необходимо ответить на вопросы выделенные красным
 
 #first test passed social texts
 page.test1.passed.social.text=Мои предпринимательские способности оценены в %s баллов. Интересно, сколько баллов получилось у вас?
@@ -123,6 +125,8 @@ page.test2.aim.text=Независимо от склонности к предп
 page.test2.show_results=Покажите результаты
 page.test2.aim.title=Как проходить тест
 page.test2.head=Вы прошли первый тест! Последний рывок перед регистрацией
+page.test2.error1=Вы не ответили на несколько вопросов.
+page.test2.error2=Необходимо ответить на вопросы выделенные красным.
 
 page.test2.passed.social.text=Мой тип предпринимателя: Идеалист %s, Коммуникант %s, Прагматик %s. У вас другие? Давайте дополним друг друга на
 page.test2.passed.social.title=Я прошёл второй тест
