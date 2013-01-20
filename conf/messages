@@ -2,6 +2,7 @@
 
 common.yes=Yes
 common.no=No
+common.cancel=Cancel
 common.error.undefined=An unknown error occurred.
 common.error.access=You do not have permission for this action.
 common.error.need_login=First, you must log in.
@@ -13,6 +14,17 @@ common.login.password_sended=A new password was sent to the specified email.
 client.side.password_repair=Password Recovery
 client.side.system_enter=Login
 client.side.need_participants=participants need
+
+page.avatar.change.error1 = size over the image. Use the file size of 2 MB.
+page.avatar.change.error2 = Invalid file format. Use images png or jpeg.
+page.avatar.change.error3 = Failed to create an avatar. Contact your administrator.
+page.avatar.change.error4 = Failed to save the avatar. Contact your administrator.
+page.avatar.change.error5 = Error!
+page.avatar.change.loading1 = Loading image to the server
+page.avatar.change.loading2 = Please wait ...
+page.avatar.change.approve1 = Change Confirmation avatar
+page.avatar.change.approve2 = Use this image as your new avatar?
+page.avatar.change.success = Picture changed successfully
 
 page.profile.change.password.mesage1=You did not enter the old password
 page.profile.change.password.mesage2=You did not enter a new password
