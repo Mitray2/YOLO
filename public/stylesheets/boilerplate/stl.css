@@ -765,7 +765,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 
 /* line 571, ../scss/stl.scss */
 .user-block .user-menu {
-  margin-top: 15px;
+  margin-top: 30px;
 }
 /* line 573, ../scss/stl.scss */
 .user-block .user-menu a {
@@ -1424,13 +1424,12 @@ a, input, input:hover, input:active, input:focus, textarea {
 .search-result-list .search-profile-info a:hover{
 	text-decoration:underline;
 }
-.search-result-list .search-profile-test{
-	float:right;
-	color:#b8b8b8;
-	font:12px/14px Arial, Helvetica, sans-serif;
-	border-left:1px solid #e7e7e7;
-	padding:0 0 0 10px;
-	width:170px;
+.search-result-list .search-profile-test {
+    border-left: 1px solid #E7E7E7;
+    color: #B8B8B8;
+    float: right;
+    font: 12px/14px Arial,Helvetica,sans-serif;
+    width: 170px;
 }
 .search-result-list .search-profile-test li{
 	margin:8px 0 0;
@@ -1692,10 +1691,13 @@ a, input, input:hover, input:active, input:focus, textarea {
 	color:#7d7d7d;
 	font:13px/21px Arial, Helvetica, sans-serif;
 }
-.group-info .group-info-ttl{
-	color:#434240;
-	font:18px/24px Arial, Helvetica, sans-serif;
-	margin-bottom:15px;
+.group-info .group-info-ttl {
+    border-bottom: 1px solid #E9E9E9;
+    color: #434240;
+    font: 18px/24px Arial,Helvetica,sans-serif;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 0 0 9px;
 }
 .group-info .group-info-rate-help{
 	font:italic 13px/20px Arial, Helvetica, sans-serif;
@@ -1903,9 +1905,9 @@ a, input, input:hover, input:active, input:focus, textarea {
 	padding-bottom:4px;
 }
 .group-theme h2{
-	font:18px/24px Arial, Helvetica, sans-serif;
-	color:#434240;
-	margin:0 0 15px;
+    color: #E48F20;
+    font: 18px/24px Arial,Helvetica,sans-serif;
+    margin: 0 0 15px;
 }
 .group-theme-dialog-ttl{
 	font:bold 14px/24px Arial, Helvetica, sans-serif;
@@ -1990,20 +1992,17 @@ a, input, input:hover, input:active, input:focus, textarea {
 	color:#a0a0a0;
 }
 .group-theme-dialog-form textarea {
-	border: 1px solid #d4d4d4;
-	padding: 7px 9px;
-	font: 12px/17px Arial, sans-serif;
- 	border-radius: 5px;
-	width: 240px;
-	-webkit-box-shadow: inset #fbfbfb 0 0 5px;
-	-moz-box-shadow: inset #fbfbfb 0 0 5px;
-	box-shadow: inset #fbfbfb 0 0 5px;
-	color: #aea9a9;
-	display: block;
-	width: 493px;
-	height: 89px;
-	resize: none;
-	margin:9px 0 11px;
+    border: 1px solid #D4D4D4;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 5px #FBFBFB inset;
+    color: #666666;
+    display: block;
+    font: 12px/17px Arial,sans-serif;
+    height: 89px;
+    margin: 9px 0 11px;
+    padding: 7px 9px;
+    resize: none;
+    width: 493px;
 }
 .group-theme-dialog-form textarea:focus {
   	border: 1px solid #7fb9d7;
@@ -2299,13 +2298,13 @@ a, input, input:hover, input:active, input:focus, textarea {
 .create-form input[type="password"],
 .create-form textarea {
   border: 1px solid #d4d4d4;
+  border-radius: 5px 5px 5px 5px;
   padding: 7px 9px 6px;
-  font: 14px/22px Arial, sans-serif;
-  border-radius: 5px;
+  font: 12px/17 Arial,Helvetica,sans-serif;
   width: 303px;
   -webkit-box-shadow: inset #fbfbfb 0 0 5px;
   -moz-box-shadow: inset #fbfbfb 0 0 5px;
-  box-shadow: inset #fbfbfb 0 0 5px;
+  box-shadow: 0 0 5px #FBFBFB inset;
   color: #666;
 }
 .create-form .error input[type="text"],
@@ -2449,13 +2448,13 @@ a, input, input:hover, input:active, input:focus, textarea {
 	padding: 4px 0;
 }
 .create-theme textarea {
-  display: block;
-  width:563px;
-  height: 147px;
-  resize: none;
-  line-height:18px;
-  font-size:13px;
-  color:#aea9a9;
+    color: #666666;
+    display: block;
+    font-size: 13px;
+    height: 147px;
+    line-height: 18px;
+    resize: none;
+    width: 563px;
 }
 .create-theme .create-theme-btn{
 	padding: 5px 0 4px;
