@@ -4,10 +4,10 @@
 	<p class="red">
 		#{if error}
 			#{if error == "error.security"}
-				У вас недостаточно прав для данного действия.
+				&{'common.error.access'}
 			#{/if}
 			#{if error == "error.unauthorized_user"}
-				Сначала вы должны войти в систему.
+				&{'common.error.need_login'}
 			#{/if}
 		#{/if}
 	</p>
