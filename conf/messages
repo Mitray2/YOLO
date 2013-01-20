@@ -90,7 +90,7 @@ page.test2.aim.title=How to take the test
 page.test2.head=You passed the first test! Last push before signing
 
 #second test passed
-page.test2.passed.social.text=My entrepreneurial type: Idealist %s, Communicant %s, Pragmatist %s. У вас другие? Давайте дополним друг друга на
+page.test2.passed.social.text=My entrepreneurial type: Idealist %s, Communicant %s, Pragmatist %s. Do you have others? Let us complement each other on
 page.test2.passed.social.title=I've passed the second test
 page.test2.passed.results=Here are the results of test, assessing your affections
 page.test2.passed.idealist_result=<strong>Idealist</strong> &ndash; <span class="rating">%s points</span> &ndash; this number indicate your propensity for reflections, generation of new ideas, and search of effective solutions.
@@ -448,7 +448,6 @@ page.search.groups.form3.msg7 = IT / Programming
 
 
 page.common.from = From
-page.common.enter = Login
 page.common.to = To
 page.common.sex = Sex
 page.common.age = Age
