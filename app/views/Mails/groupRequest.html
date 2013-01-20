@@ -1,17 +1,7 @@
 <html>
 	<body>
 		<p>
-			Добрый день, ${user.name}!
-			<br>
-			Поздравляем, тебя приглашают в команду ${name}! 
-			<br>
-			${text}
-			<br>
-			
-
-			
-			<br>
-			С уважением,<br> команда <a href="http://www.startnewteam.com">StartNewTeam</a><br/>
+			&{'email.groupRequest', user.name, name, text, request.getBase()}
 		</p>
 	</body>
 </html>

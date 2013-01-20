@@ -128,13 +128,10 @@ page.blankform.personal_characteristics=Personal characteristics
 page.blankform.personal_characteristics.description=Describe your quality. The advantages and disadvantages of their nature
 page.blankform.personal_characteristics.placeholer=Please describe the qualities
 
-page.blankform.passed=Congratulations to you! You are now a full member of our community and have \
-                        full access to all the functionality of our project. We will be happy if \
-                        you become the initiator of a new start-up or join an existing one. You can \
-                        also find all of the latest news in the field of business and get the wise \
-                        advice of our mentors. In order to begin full-scale operation with our \
-                        portal please verify your registration, sleduyuya instructions in the letter \
-                        you naydte in my mailbox. Good luck!
+page.blankform.passed=Congratulations, now you are a full member of our community. \
+                        You can initiate a new team, or join an existing one – chose your way \
+                        to success. Invite your friends to the project - together you can do much more!
+
 
 
 #emails
@@ -158,6 +155,30 @@ email.blankfformpassed=To complete the registration on <a href="%s">StartNewTeam
                           <br>\
                           Entrepreneurially yours,<br/>\
                           <a href="%s">StartNewTeam</a> squad
+email.groupRequest=Hi, %s!\
+                  <br>\
+                  Congratulations, you are invited to join the team %s!\
+                  <br>\
+                  %s\
+                  <br>\
+                  <br>\
+                  Entrepreneurially yours,<br> <a href="%s">StartNewTeam</a> squad<br/>
+email.memberRequest=Hi, %s!\
+                    <br>\
+                     Your project has been noticed! %s wants to join your team.\
+                    <br>\
+                    %s\
+                    <br>\
+                    <br>\
+                    Entrepreneurially yours,\
+                    <br>\
+                    <a href="%s">StartNewTeam</a> squad<br/>
+email.lostPassword=Hi!<br/>\
+                  We have received a request to reset the password for your StartNewTeam account. Here’s your new password! : %s\
+                  We strongly recommend you to change the password immediately after you login into the system using this password.\
+                  <br>\
+                  <br>\
+                  Entrepreneurially yours,<br> <a href="%s">StartNewTeam</a> squad.
 
 link.main=Main
 link.news=News
