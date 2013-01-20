@@ -168,6 +168,20 @@ link.crowd.consalting=CrowdConsulting
 link.crowd.developig=CrowdDeveloping
 link.crowd.funding=CrowdFunding
 
+page.partners.title=Thanks to them, StartNewTeam exists and develops
+page.partners.skolkovo.title=Skolkovo foundation
+page.partners.skolkovo.text=Skolkovo Foundation is the principal agency responsible for the Russian \
+                            Skolkovo Innovation Center, a scientific and technological centre for \
+                            the development and commercialisation of advanced technologies.
+page.partners.asi.title=Agency for Strategic Initiatives
+page.partners.asi.text=Government body, created for development and promotion of innovative project and general development of entrepreneurship in Russia.
+page.partners.microsoft.title=Microsoft
+page.partners.microsoft.text=Largest software company in the World.
+page.partners.text=We will be happy to make enlarge our pool of partners with companies, \
+                    organizations and individuals willing to change the world for the best through \
+                    the development of entrepreneurship. Please write us about your desire to \
+                    cooperate to %s, and we will find something interesting.
+
 page.crowd.consalting.head = Let's create together a handy tool with which we can easily find like-minded people and work effectively in teams to build successful businesses. Any idea on this? Offer below! The best ideas will be implemented, and their authors are all placed on a special page of honor for his contribution to the project.
 page.crowd.developing.head = There is a desire to take a practical part in the development of the project? Write below what good you can and want to do, and what you need for this.
 page.crowd.funding.head = You can make a contribution to the project or to thank, if it has already helped to find like-minded people and start a business. <br/> monthly report will be issued on received stradstvah and expenses. The biggest benefactors will be permanently placed on a special page of honor for his contribution to the project. <br/> <br/> Details for donations: <br/> Yandex purse: 123241235151 <br/> Kiwi purse: 123123231 <br/> Webmoney: 132136245624 <br/> Other means of payment ...
