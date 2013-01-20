@@ -48,6 +48,7 @@ page.main.site.people_count=Lot's of motivated people
 page.main.site.team_count=Motivated teams
 page.main.its_free=it's free
 
+page.about.title=About the project
 page.about.text=<p>Technology and science are developing very fast; the world has become\
    so complex that it is not possible to cover all aspects of it for one person. These \
   conditions require complex ideas and for businesses, combining a set of knowledge and \
@@ -181,6 +182,10 @@ page.partners.text=We will be happy to make enlarge our pool of partners with co
                     organizations and individuals willing to change the world for the best through \
                     the development of entrepreneurship. Please write us about your desire to \
                     cooperate to %s, and we will find something interesting.
+
+page.contacts.title=Contacts
+page.contacts.general=General
+page.contacts.for_partnership=For partnership
 
 page.crowd.consalting.head = Let's create together a handy tool with which we can easily find like-minded people and work effectively in teams to build successful businesses. Any idea on this? Offer below! The best ideas will be implemented, and their authors are all placed on a special page of honor for his contribution to the project.
 page.crowd.developing.head = There is a desire to take a practical part in the development of the project? Write below what good you can and want to do, and what you need for this.
