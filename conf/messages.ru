@@ -26,6 +26,21 @@ page.avatar.change.approve1=Подтверждение изменения ава
 page.avatar.change.approve2=Использовать данное изображение как ваш новый аватар?
 page.avatar.change.success=Аватар изменен успешно
 
+page.main.home.events=События
+page.main.home.exit=Выйти
+page.main.home.about_project=О проекте StartNewTeam
+page.main.home.agree=Согласен
+page.main.home.reject=Отклонить
+page.main.home.add=Добавить
+page.main.home.my_profile=Мой профиль
+page.main.home.my_group=Моя группа
+page.main.home.group_invite=Приглашение в группу
+page.main.home.group_join=Вступить
+page.main.home.group_request=Заявка на вступление в вашу группу
+page.main.home.msg1=Вы должны сначала передать права администратора участнику группы, прежде чем выйти и вступить в новую группу
+page.main.home.msg2=Вступить в команду
+page.main.home.msg3=Вы уверены, что хотите выйти из своей команды и отменить заявки на вступления и вступить в новую?
+
 page.profile.change.password.mesage1=Вы не ввели старый пароль
 page.profile.change.password.mesage2=Вы не ввели новый пароль
 page.profile.change.password.mesage3=Вы не повторили новый пароль

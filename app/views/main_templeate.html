@@ -57,18 +57,18 @@ $(document).ready(function() {
                             	<li>
                                     <span><a href="@{GroupController.index(group.id)}">&{'page.profile.group_invite'}: ${group.name}</a></span>
                                     #{if groupAdmin}
-										<div title="&{'page.profile.warning1'}">Согласен</div>
+										<div title="&{'page.profile.warning1'}">&{'page.main.home.agree'}</div>
 									#{/if}
 									#{else}
 										#{if haveGroupOrInviteJoin}
-											<p><a href="" onclick="$('.approveInviteGroup').show(); return false;">&{'page.profile.'}Согласен</a></p>
+											<p><a href="" onclick="$('.approveInviteGroup').show(); return false;">&{'page.main.home.agree'}</a></p>
 											<div class="approveInviteGroup"  style="display: none">
 												<div class="overlay"></div>
 												<div class="popup">
 												    	<h2>&{'page.profile.join_command'}</h2>
 												        <p>&{'page.profile.question_leave_command'}?</p>
 												        <a class="btn" href="@{UserController.approveInviteGroup(group.id)}">&{'page.profile.join'}</a>
-												        <a href="" onclick="$('.approveInviteGroup').hide(); return false;" class="cancel">&{'page.profile.cancel'}Отмена</a>
+												        <a href="" onclick="$('.approveInviteGroup').hide(); return false;" class="cancel">&{'page.profile.cancel'}</a>
 												</div>
 											</div>
 										#{/if}
@@ -133,20 +133,6 @@ $(document).ready(function() {
 				</nav>
 			</div>
 			
-			#{if groupAdmin}
-<!-- 				<div class="user-group"> -->
-
-<!-- 					<div class="user-group-cont"> -->
-<!-- 						<p> -->
-<!-- 							Вы должны сначала передать права администратора участнику группы, прежде чем выйти и создать новую группу -->
-<!-- 						</p> -->
-<!-- 						<a href="" class="add-group" ><img -->
-<!-- 							src="@{'public/images/boilerplate/ico-plus.gif'}" alt="">Создать -->
-<!-- 							свою команду</a> -->
-<!-- 					</div> -->
-<!-- 					</div> -->
-
-          	#{/if}
           	#{if groupMember}
           		<div class="user-group">
 					<div class="user-group-cont">
@@ -154,15 +140,14 @@ $(document).ready(function() {
 							&{'page.profile.warning2'}
 						</p>
 						<a href="" onclick="$('.createGroup').show(); return false;" class="add-group"><img
-							src="@{'public/images/boilerplate/ico-plus.gif'}" alt="">&{'page.profile.create_command'}Создать
-							свою команду</a>
+							src="@{'public/images/boilerplate/ico-plus.gif'}" alt="">&{'page.profile.create_command'}</a>
 							<div class="createGroup"  style="display: none">
 												<div class="overlay"></div>
 												<div class="popup">
-												    	<h2>&{'page.profile.create_command'}Создать команду</h2>
+												    	<h2>&{'page.profile.create_command'}</h2>
 												        <p>&{'page.profile.warning3'}?</p>
 												        <a class="btn" href="@{GroupController.createGroup()}">&{'page.profile.create'}</a>
-												        <a href="" onclick="$('.createGroup').hide(); return false;" class="cancel">&{'page.profile.cancel'}Отмена</a>
+												        <a href="" onclick="$('.createGroup').hide(); return false;" class="cancel">&{'page.profile.cancel'}</a>
 												</div>
 											</div>
 					</div>
@@ -192,8 +177,8 @@ $(document).ready(function() {
 												<div class="popup">
 												    	<h2>&{'page.profile.create_command'}</h2>
 												        <p>&{'page.profile.warning6'}?</p>
-												        <a class="btn" href="@{GroupController.createGroup()}">&{'page.profile.create'}Создать</a>
-												        <a href="" onclick="$('.createGroupD').hide(); return false;" class="cancel">&{'page.profile.cancel'}Отмена</a>
+												        <a class="btn" href="@{GroupController.createGroup()}">&{'page.profile.create'}</a>
+												        <a href="" onclick="$('.createGroupD').hide(); return false;" class="cancel">&{'page.profile.cancel'}</a>
 												</div>
 											</div>
 					</div>
@@ -202,7 +187,7 @@ $(document).ready(function() {
           	#{if groupMember || groupAdmin}
           		<div class="user-group">
 					<div class="ttl-block">
-						<h3>&{'page.profile.my_group'}Моя группа</h3>
+						<h3>&{'page.profile.my_group'}</h3>
 					</div>
 					<div class="user-group-cont">
 						<a

@@ -2300,7 +2300,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   border: 1px solid #d4d4d4;
   border-radius: 5px 5px 5px 5px;
   padding: 7px 9px 6px;
-  font: 12px/17 Arial,Helvetica,sans-serif;
+  font: 12px/17px Arial,Helvetica,sans-serif;
   width: 303px;
   -webkit-box-shadow: inset #fbfbfb 0 0 5px;
   -moz-box-shadow: inset #fbfbfb 0 0 5px;

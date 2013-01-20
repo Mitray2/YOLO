@@ -26,6 +26,21 @@ page.avatar.change.approve1 = Change Confirmation avatar
 page.avatar.change.approve2 = Use this image as your new avatar?
 page.avatar.change.success = Picture changed successfully
 
+page.main.home.events=Events
+page.main.home.exit=Exit
+page.main.home.about_project=About StartNewTeam
+page.main.home.agree=Agree
+page.main.home.reject=Decline
+page.main.home.add=Add
+page.main.home.my_profile=My Profile
+page.main.home.my_group=My Group
+page.main.home.group_invite=Group Invite
+Become page.main.home.group_join=Join
+page.main.home.group_request=application to join your group
+page.main.home.msg1=You must first submit an administrator member of the group, before going out and join the new group
+page.main.home.msg2=Join the team
+page.main.home.msg3=Are you sure you want to get out of your team and cancel the application for entry and enter into a new one?
+
 page.profile.change.password.mesage1=You did not enter the old password
 page.profile.change.password.mesage2=You did not enter a new password
 page.profile.change.password.mesage3=you do not repeat your new password

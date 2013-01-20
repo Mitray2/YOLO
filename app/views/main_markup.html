@@ -84,38 +84,38 @@ $(document).ready(function() {
                             <ul>
                             #{list items:models.User.findById(utils.SessionHelper.getCurrentUser(session).id).commandsForAprove, as:'group'}
                             	<li>
-                                    <span><a href="@{GroupController.index(group.id)}">Приглашение в группу: ${group.name}</a></span>
+                                    <span><a href="@{GroupController.index(group.id)}">&{'page.main.home.group_invite'}: ${group.name}</a></span>
                                     #{if groupAdmin}
-										<div title="Вы должны сначала передать права администратора участнику группы, прежде чем выйти и вступить в новую группу">Согласен</div>
+										<div title="&{'page.main.home.msg1'}">&{'page.main.home.agree'}</div>
 									#{/if}
 									#{else}
 										#{if haveGroupOrInviteJoin}
-											<p><a href="" onclick="$('.approveInviteGroup').show(); return false;">Согласен</a></p>
+											<p><a href="" onclick="$('.approveInviteGroup').show(); return false;">&{'page.main.home.agree'}</a></p>
 											<div class="approveInviteGroup"  style="display: none">
 												<div class="overlay"></div>
 												<div class="popup">
-												    	<h2>Вступить команду</h2>
-												        <p>Вы уверены, что хотите выйти из своей команды и отменить заявки на вступления и вступить в новую?</p>
-												        <a class="btn" href="@{UserController.approveInviteGroup(group.id)}">Вступить</a>
-												        <a href="" onclick="$('.approveInviteGroup').hide(); return false;" class="cancel">Отмена</a>
+												    	<h2>&{'page.main.home.msg2'}</h2>
+												        <p>&{'page.main.home.msg3'}</p>
+												        <a class="btn" href="@{UserController.approveInviteGroup(group.id)}">&{'page.main.home.group_join'}</a>
+												        <a href="" onclick="$('.approveInviteGroup').hide(); return false;" class="cancel">&{'common.cancel'}</a>
 												</div>
 											</div>
 										#{/if}
 										#{else}
-											<p><a href="@{UserController.approveInviteGroup(group.id)}">Согласен</a></p>
+											<p><a href="@{UserController.approveInviteGroup(group.id)}">&{'page.main.home.agree'}</a></p>
 										#{/else}
 									#{/else}
-                                    <p><a href="@{UserController.declineInviteGroup(group.id)}">Отклонить</a></p>
+                                    <p><a href="@{UserController.declineInviteGroup(group.id)}">&{'page.main.home.reject'}</a></p>
                                 </li>
                              #{/list}   
                              #{if groupAdmin}
                              	#{list items:models.User.findById(utils.SessionHelper.getCurrentUser(session).id).command?.usersForAprove, as:'userForAprove'}
 								<li>
 									
-										<span><a href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session).command?.id)}">Заявка на вступление в вашу группу</a></span>
+										<span><a href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session).command?.id)}">&{'page.main.home.group_request'}</a></span>
 											<p><a href="@{UserController.index(userForAprove.id)}">${userForAprove.name} ${userForAprove.lastName}</a></p>
-											<p><a href="@{GroupController.approveJoin(userForAprove.id, utils.SessionHelper.getCurrentUser(session).command.id)}">Добавить</a></p>
-											<p><a href="@{GroupController.declineJoin(userForAprove.id, utils.SessionHelper.getCurrentUser(session).command.id)}">Отклонить</a></p>
+											<p><a href="@{GroupController.approveJoin(userForAprove.id, utils.SessionHelper.getCurrentUser(session).command.id)}">&{'page.main.home.add'}</a></p>
+											<p><a href="@{GroupController.declineJoin(userForAprove.id, utils.SessionHelper.getCurrentUser(session).command.id)}">&{'page.main.home.reject'}</a></p>
 										</tr>
 									
 								</li>
@@ -131,11 +131,11 @@ $(document).ready(function() {
                         <div class="logged-user-menu" style="display:none;">
                         	<img src="@{'public/images/boilerplate/logged-arrow2.png'}" alt="">
                             <ul>
-                            	<li><a href="@{UserController.index(utils.SessionHelper.getCurrentUser(session)?.id)}">Мой профиль</a></li>
+                            	<li><a href="@{UserController.index(utils.SessionHelper.getCurrentUser(session)?.id)}">&{'page.main.home.my_profile'}</a></li>
                             	#{if (utils.SessionHelper.getCurrentUser(session)?.command != null)}
-                                <li><a href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session)?.command?.id)}">Моя группа</a></li>
+                                <li><a href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session)?.command?.id)}">&{'page.main.home.my_group'}</a></li>
                                 #{/if}
-                                <li><a href="@{LoginController.logout()}" class="logged-user-exit">Выйти</a></li>
+                                <li><a href="@{LoginController.logout()}" class="logged-user-exit">&{'page.main.home.exit'}</a></li>
                             </ul>
                         </div>
                     </div>
