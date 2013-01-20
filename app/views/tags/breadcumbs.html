@@ -1,9 +1,0 @@
-<div class="breadcumbs" id="breadcumbs"></div>
-<script>
-function addBreadCumb(breadTitle, breadHref) {
-	if ($("#breadcumbs").html() == "") {
-		$("#breadcumbs").append("<a href='@{Application.index}'>Главная</a>");
-	}
-	$("#breadcumbs").append(" > <a href='" + breadHref + "'>" + breadTitle + "</a>");
-}
-</script>
