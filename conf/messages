@@ -105,6 +105,8 @@ page.test1.aim.text=Мотивация достижения &mdash; стремл
 page.test1.answer=Your answer
 page.test1.show_results=Show results
 page.test1.pass_test=Pass the final test.
+page.test1.error1=You did not answer some questions.
+page.test1.error2=Necessary to answer the questions in red
 
 #first test passed social texts
 page.test1.passed.social.text=I have scored %s points in the entrepreneurial skills test. I wonder how many points you can get! Try now on www.startnewteam.com
@@ -116,6 +118,8 @@ page.test2.aim.text=Regardless of your entrepreneurial propensity, your personal
 page.test2.show_results=Show results
 page.test2.aim.title=How to take the test
 page.test2.head=You passed the first test! Last push before signing
+page.test2.error1=You did not answer some questions.
+page.test2.error2=Necessary to answer the questions in red.
 
 #second test passed
 page.test2.passed.social.text=My entrepreneurial type: Idealist %s, Communicant %s, Pragmatist %s. Do you have others? Let us complement each other on
@@ -373,7 +377,7 @@ page.profile.warning4=You have not joined any of the established teams. You can 
 page.profile.warnnig5=You have sent a request to join one of the groups at the group, the application is automatically rejected.
 page.profile.warning6=Are you sure you want to cancel a request to join a team and create a new
 page.profile.tell_friends=Tell a friend
-page.profile.tell_friends.description=Пригласи друзей на проект, расскажи им о нем - работать вместе будет веселее.
+page.profile.tell_friends.description=Invite your friends to the project, tell them about it - to work together will be fun.
 page.profile.tell_friends_vk=tell in Vkontakte
 page.profile.tell_friends_tw=tell in Twitter
 page.profile.tell_friends_fb=tell in Facebook
