@@ -42,8 +42,8 @@ public class LoginController extends BasicController implements ApplicationConst
 		validation.required("user.name", user.name).message(VALIDATION_MODEL_USER_NAME_REQUIRED);
 		if (!validation.hasError("user.name"))
 			validation.maxSize("user.name", user.name, 30).message(VALIDATION_MODEL_USER_NAME_MAX_LENGTH);
-		if (!validation.hasError("user.name"))
-			validation.match("user.name", user.name, "[А-Яа-я\\-\\s]+").message(VALIDATION_MODEL_USER_NAME_INVALID);
+//		if (!validation.hasError("user.name"))
+//			validation.match("user.name", user.name, "[А-Яа-я\\-\\s]+").message(VALIDATION_MODEL_USER_NAME_INVALID);
 		if (!validation.hasError("user.email"))
 			validation.email("user.email", user.email).message("validation.model.user.email.invalid");
 		if (!validation.hasError("user.email"))
@@ -239,13 +239,13 @@ public class LoginController extends BasicController implements ApplicationConst
 		validation.required("user.lastName", user.lastName).message(VALIDATION_MODEL_USER_LAST_NAME_REQUIRED);
 		if (!validation.hasError("user.lastName"))
 			validation.maxSize("user.lastName", user.lastName, 30).message(VALIDATION_MODEL_USER_LAST_NAME_MAX_LENGTH);
-		if (!validation.hasError("user.lastName"))
-			validation.match("user.lastName", user.lastName, "[А-Яа-я\\-\\s]+").message(VALIDATION_MODEL_USER_LAST_NAME_INVALID);
+//		if (!validation.hasError("user.lastName"))
+//			validation.match("user.lastName", user.lastName, "[А-Яа-я\\-\\s]+").message(VALIDATION_MODEL_USER_LAST_NAME_INVALID);
 		validation.required("user.city", user.city).message(VALIDATION_MODEL_USER_CITY_REQUIRED);
 		if (!validation.hasError("user.city"))
 			validation.maxSize("user.city", user.city, 30).message(VALIDATION_MODEL_USER_CITY_MAX_LENGTH);
-		if (!validation.hasError("user.city"))
-			validation.match("user.city", user.city, "[А-Яа-я\\-\\s]+").message(VALIDATION_MODEL_USER_CITY_INVALID);
+//		if (!validation.hasError("user.city"))
+//			validation.match("user.city", user.city, "[А-Яа-я\\-\\s]+").message(VALIDATION_MODEL_USER_CITY_INVALID);
 
 		// validation.required("user.personalCV",
 		// user.personalCV).message(VALIDATION_MODEL_USER_PERSONAL_CV_REQUIRED);

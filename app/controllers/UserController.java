@@ -70,8 +70,8 @@ public class UserController extends BasicController  implements ApplicationConst
 		validation.required("city", city).message(ApplicationConstants.VALIDATION_MODEL_USER_CITY_REQUIRED);
 		if (!validation.hasError("city"))
 			validation.maxSize("city", city, 30).message(ApplicationConstants.VALIDATION_MODEL_USER_CITY_MAX_LENGTH);
-		if (!validation.hasError("city"))
-			validation.match("city", city, ApplicationConstants.CITY_PATTERN).message(ApplicationConstants.VALIDATION_MODEL_USER_CITY_INVALID);
+//		if (!validation.hasError("city"))
+//			validation.match("city", city, ApplicationConstants.CITY_PATTERN).message(ApplicationConstants.VALIDATION_MODEL_USER_CITY_INVALID);
 		Country country = Country.findById(countryId);
 		currentUser.country = country;
 		currentUser.city = city;
