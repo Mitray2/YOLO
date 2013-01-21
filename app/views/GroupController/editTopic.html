@@ -1,0 +1,37 @@
+#{extends 'group_templeate.html' /} #{set title:'StartNewTeam' /} 
+%{
+	boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
+%}
+<div class="tabs clearFix">
+	<a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a>
+	<a href="@{GroupController.publicTopics(group.id)}">&{'page.team.public_discussion'}</a>
+	#{if (groupMember) || (isAdmin)}
+		<a href="@{GroupController.groupTopics(group.id)} "class="act">&{'page.team.discussion'}</a> 
+	#{/if} 
+	<a href="@{GroupController.groupUsers(group.id)}">&{'page.team.members'}</a>
+</div>
+
+
+#{form @GroupController.saveEditTopic()} 
+#{showError errors:errors /}
+<div class="new-theme-ttl">&{'page.team.create.topic.title'}</div>
+                <div class="create-theme">
+                	<input type="hidden" name="topic.id" value="${topic.id}" />
+                	<input type="text" name="topic.name" id="" placeholder="&{'page.team.create.topic.name'}" value="${topic.name}" />
+                    <textarea name="topic.description" cols="" rows="">${topic.description}</textarea>
+                   
+                    <div class="create-form">
+                     <label for="">&{'page.team.create.topic.public'}</label> 
+                    <div class="box-radio">
+						<input type="radio" name="topic.publicTopic" id="publicTopicY" class="radio" value="true" #{if topic.publicTopic == true}checked="checked"#{/if}/>
+						<label for="publicTopicY" class="radio-btn">&{'page.common.yes'}</label>
+						<input type="radio" name="topic.publicTopic" id="publicTopicN" class="radio" value="false" #{if topic.publicTopic != true}checked="checked"#{/if}/>
+						<label for="publicTopicN" class="radio-btn">&{'page.common.no'}</label>
+	                </div>
+	                </div>
+                    <button type="submit" class="create-theme-btn">OK</button>
+                    
+                </div>
+
+
+#{/form}

@@ -125,7 +125,7 @@
 }
 
 .theme_description_r {
-	float: left;
+	/*float: left;*/
 	width: 510px;
 	margin-bottom: 15px;
 }
@@ -260,5 +260,6 @@ pre {
 	padding-right: 8px;
 }
 .newsLangSwitch a {
-	font: 14px/21px "MyriadPro-Regular", Arial, sans-serif;
+	font: 15px/21px "MyriadPro-Regular", Arial, sans-serif;
+	padding-left: 4px;
 }

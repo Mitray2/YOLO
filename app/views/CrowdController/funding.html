@@ -7,10 +7,8 @@
 #{set title: StartNewTeam /}
 <h3>&{'page.crowd.funding.head'}</h3>
 <div class="newsLangSwitch">
-	<a style="float: right; cursor: pointer;" href="/crowdfunding?lang=${newsLang == 'ru' ? 'en' : 'ru'}">
-		#{if newsLang == 'ru'}&{'page.crowd.funding.report.translate.en'}#{/if}
-		#{if newsLang == 'en'}&{'page.crowd.funding.report.translate.ru'}#{/if}
-	</a>
+	<a style="float: left; cursor: pointer; #{if newsLang == 'en'}color: #ccc#{/if}" href="/crowdfunding?lang=en">ENGLISH</a>
+	<a style="float: left; cursor: pointer; #{if newsLang == 'ru'}color: #ccc#{/if}" href="/crowdfunding?lang=ru">Русский</a>
 </div>
 <div class="page-news">
 	<div class="news">

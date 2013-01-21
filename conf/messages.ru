@@ -579,7 +579,7 @@ page.common.forgot_password=Забыли пароль?
 
 
 
-page.news.title=Новости проекта
+page.news.title=Новости
 page.news.translate.ru=читать русские новости
 page.news.translate.en=читать английские новости
 
@@ -875,7 +875,7 @@ models.country.name.Saint_Lucia=Сент-Люсия
 models.country.name.Saint_Vincent_and_the_Grenadines=Сент-Винсент и Гренадины
 models.country.name.Samoa=Самоа
 models.country.name.San_Marino=Сан-Марино
-models.country.name.Sao_Tome_and_Principe=Сан-Томе и Принсипи
+models.country.name.São_Tomé_and_Príncipe=Сан-Томе и Принсипи
 models.country.name.Saudi_Arabia=Саудовская Аравия
 models.country.name.Senegal=Сенегал
 models.country.name.Serbia=Сербия

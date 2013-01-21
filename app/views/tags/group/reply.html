@@ -5,8 +5,10 @@ function writeEnabled(isEnabled){
 		$('.answer-collapse').hide();
 		$('.writeComment').focus();
 	} else {
-		$('.answer-expand').hide(); 
-		$('.answer-collapse').show();
+		if ($(".writeComment").val() == "") {
+			$('.answer-expand').hide(); 
+			$('.answer-collapse').show();	
+		}
 	}
 	return false;
 }
