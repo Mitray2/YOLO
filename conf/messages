@@ -100,8 +100,13 @@ page.test1.title=Hi, %s!<br />\
                  Here is the first test which will determine your propensity for entrepreneurship.\
                  We have prepared only two tests for you – it will not take long to pass both of them. \
                  Please, don’t cheat yourself - answer honestly.
-page.test1.aim.title=Цель первого теста
-page.test1.aim.text=Мотивация достижения &mdash; стремление к улучшению результатов, неудовлетворенность достигнутым, настойчивость в достижении своих целей, стремление добиться своего во что бы то ни стало — является одним из главных свойств личности, оказывающих влияние на всю человеческую жизнь. Многочисленные исследования показали тесную связь между уровнем мотивации достижения и успехом в жизнедеятельности. Данный психологический тест позволит Вам выяснить свой уровень мотивации.
+page.test1.aim.title=The purpose of the first test
+page.test1.aim.text=Achievement motivation - the desire to improve the results achieved \
+                    dissatisfaction, persistence in achieving their goals, the desire to get his at \
+                    all costs - is one of the major personality traits that affect the whole of \
+                    human life. Numerous studies have shown a close link between the level of \
+                    achievement motivation and success in life. This psychological test will allow \
+                    you to determine your level of motivation.
 page.test1.answer=Your answer
 page.test1.show_results=Show results
 page.test1.pass_test=Pass the final test.
@@ -122,6 +127,7 @@ page.test2.error1=You did not answer some questions.
 page.test2.error2=Necessary to answer the questions in red.
 
 #second test passed
+page.test2.passed.title=You've passed the second test
 page.test2.passed.social.text=My entrepreneurial type: Idealist %s, Communicant %s, Pragmatist %s. Do you have others? Let us complement each other on
 page.test2.passed.social.title=I've passed the second test
 page.test2.passed.results=Here are the results of test, assessing your affections
