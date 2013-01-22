@@ -12,7 +12,7 @@
     }
 }%
 *{TODO make better!}*
-##{if !(currentUser.role == models.User.ROLE_INPERFECT_USER || currentUser.role == models.User.ROLE_WITHOUT_BLANK)}
+#{if !(currentUser.role == models.User.ROLE_INPERFECT_USER || currentUser.role == models.User.ROLE_WITHOUT_BLANK)}
     <div class="logged clearFix">
         <div class="logged-message">
             <a href="#" class="logged-message-ico"></a>
