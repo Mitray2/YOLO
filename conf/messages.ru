@@ -198,6 +198,7 @@ email.groupRequest=Добрый день, %s!\
                    <br>\
                    Поздравляем, тебя приглашают в команду %s!\
                    <br>\
+                   <br>\
                    %s\
                    <br>\
                    <br>\
@@ -224,7 +225,7 @@ email.secondTestPassed=Добрый день, %s!\
                        <br>\
                        Для завершения регистрации на\
                         StartNewTeam необходимо подтвердить электронный адрес, пройдя по <a\
-                        href="%s/confirmRegistration?ticket=%s">ссылке</a>.<br />.\
+                        href="%s/confirmRegistration?ticket=%s">ссылке</a>.<br />\
                         <br>\
                         С уважением, команда <a href="%s">StartNewTeam</a>
 
