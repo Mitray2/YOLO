@@ -40,77 +40,7 @@ $(document).ready(function() {
 					<img src="@{'public/images/boilerplate/logo-1.png'}" alt="" class="logo" />
 				</a>
 				#{common.menu.nav/}
-                <div class="logged clearFix">
-                	<div class="logged-message">
-                    	<a href="#" class="logged-message-ico"></a>
-                    </div>
-                    <div class="logged-event">
-                    	<a href="#" onclick="$('.logged-user-menu').hide('slow'); $('.event-popup').show('slow'); return false;" class="logged-event-ico act"></a>
-                    	#{if (countCommands + countUsers) > 0}
-                        <span class="event-num">${countCommands + countUsers}</span>
-                        #{/if}
-                        <div class="event-popup" style="display:none;">
-                        	<img src="@{'public/images/boilerplate/logged-arrow2.png'}" alt="">
-                        	События
-                            <ul>
-                            #{list items:models.User.findById(utils.SessionHelper.getCurrentUser(session).id).commandsForAprove, as:'group'}
-                            	<li>
-                                    <span><a href="@{GroupController.index(group.id)}">&{'page.profile.group_invite'}: ${group.name}</a></span>
-                                    #{if groupAdmin}
-										<div title="&{'page.profile.warning1'}">&{'page.main.home.agree'}</div>
-									#{/if}
-									#{else}
-										#{if haveGroupOrInviteJoin}
-											<p><a href="" onclick="$('.approveInviteGroup').show(); return false;">&{'page.main.home.agree'}</a></p>
-											<div class="approveInviteGroup"  style="display: none">
-												<div class="overlay"></div>
-												<div class="popup">
-												    	<h2>&{'page.profile.join_command'}</h2>
-												        <p>&{'page.profile.question_leave_command'}?</p>
-												        <a class="btn" href="@{UserController.approveInviteGroup(group.id)}">&{'page.profile.join'}</a>
-												        <a href="" onclick="$('.approveInviteGroup').hide(); return false;" class="cancel">&{'page.profile.cancel'}</a>
-												</div>
-											</div>
-										#{/if}
-										#{else}
-											<p><a href="@{UserController.approveInviteGroup(group.id)}">&{'page.profile.accepted'}</a></p>
-										#{/else}
-									#{/else}
-                                    <p><a href="@{UserController.declineInviteGroup(group.id)}">&{'page.profile.refuse'}</a></p>
-                                </li>
-                             #{/list}   
-                             #{if groupAdmin}
-                             	#{list items:models.User.findById(utils.SessionHelper.getCurrentUser(session).id).command?.usersForAprove, as:'userForAprove'}
-								<li>
-									
-										<span><a href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session).command?.id)}">&{'page.profile.request_join_group'}</a></span>
-											<p><a href="@{UserController.index(userForAprove.id)}">${userForAprove.name} ${userForAprove.lastName}</a></p>
-											<p><a href="@{GroupController.approveJoin(userForAprove.id, utils.SessionHelper.getCurrentUser(session).command.id)}">&{'page.profile.add'}</a></p>
-											<p><a href="@{GroupController.declineJoin(userForAprove.id, utils.SessionHelper.getCurrentUser(session).command.id)}">&{'page.profile.refuse'}Отклонить</a></p>
-										</tr>
-									
-								</li>
-								#{/list}
-							#{/if}
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="logged-user">
-                    	<a href="#" onclick="$('.event-popup').hide('slow'); $('.logged-user-menu').show('slow'); return false;">
-						#{avatar.avatar user:utils.SessionHelper.getCurrentUser(session), cssClass:'user-pic', maleImg:'upm.png', femaleImg:'upf.png', avatarSize:27 /}
-						</a>
-                        <div class="logged-user-menu" style="display:none;">
-                        	<img src="@{'public/images/boilerplate/logged-arrow2.png'}" alt="">
-                            <ul>
-                            	<li><a href="@{UserController.index(utils.SessionHelper.getCurrentUser(session)?.id)}">&{'page.profile.my_profile'}</a></li>
-                            	#{if (utils.SessionHelper.getCurrentUser(session)?.command != null)}
-                                <li><a href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session)?.command?.id)}">&{'page.profile.my_group'}</a></li>
-                                #{/if}
-                                <li><a href="@{LoginController.logout()}" class="logged-user-exit">&{'page.profile.exit'}</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                #{common.workingPanel group: group, userForAprove:userForAprove/}
 			</div>
 		</header>
 	<div class="content wrap-inner clearFix" >

@@ -303,7 +303,7 @@ page.team.head.need_members=We need team members
 page.team.head.submit_administrator=You must first ubmit an administrator of the group, before going out and apply for membership in the group
 page.team.head.add=Add to the team
 page.team.head.leave_team_join=Are you sure you want to leave team and join the new one?
-page.team.head.add_to_team=Add to my team
+page.team.head.add_to_team=Join the group
 page.team.head.join=Join
 page.team.head.cancel=Cancel
 page.team.head.requst_consideration=Your request for membership under consideration the administrator
@@ -489,7 +489,7 @@ page.search.members.filter.communicant=Communicative
 page.search.members.filter.pragmatist=Pragmatism
 page.search.members.filter.business=Business type
 page.search.members.filter.sphere=Sphere
-page.search.members.filter.lang=Knowledge english
+page.search.members.filter.lang=Knowledge of English
 page.search.members.filter.marketing=Marketing / advertising
 page.search.members.filter.sales=Sales
 page.search.members.filter.management=Management
@@ -730,6 +730,10 @@ models.userLevel.userLevel.Considerable_Experience=Considerable Experience
 models.ProjectPhase.name.start=Idea stage
 models.ProjectPhase.name.planning=Planning
 models.ProjectPhase.name.developing=Development
+
+#messages
+message.userController.requestSent=application has been sent
+message.groupController.invitationSent=invitation has been sent
 
 # Should be corrected by Dmitriy
 validation.model.user.email.required = Enter email
