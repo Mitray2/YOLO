@@ -178,20 +178,24 @@ email.firstTestPassed=Hello, %s!\
                         <br/>\
                             Excellent, keep going and for sure you will succeed! \
                         <br/>\
+                        <br/>\
                             Your credentials for access are:\
                         <br/>\
                             Login: %s<br>\
                             Password: %s<br>\
+                        <br>\
                             In order to complete the test and registration, you can login to the site using the username \
                             and password, or follow this <a href="%s/confirmRegistration?ticket=%s">link</a>.\
                         <br/>\
+                        <br>\
                             Entrepreneurially yours,<br/>\
                             <a href="%s">StartNewTeam</a> squad
 email.blankfformpassed=To complete the registration on <a href="%s">StartNewTeam</a> please confirm\
-                         the email address by clicking the following <a href="%s/confirmRegistration?ticket=%s">link</a>.<br/>.\
-                          <br>\
-                          Entrepreneurially yours,<br/>\
-                          <a href="%s">StartNewTeam</a> squad
+                        the email address by clicking the following <a href="%s/confirmRegistration?ticket=%s">link</a>.<br/>.\
+                        <br>\
+                        <br>\
+                        Entrepreneurially yours,<br/>\
+                        <a href="%s">StartNewTeam</a> squad
 email.groupRequest=Hi, %s!\
                   <br>\
                   Congratulations, you are invited to join the team %s!\
@@ -203,6 +207,7 @@ email.groupRequest=Hi, %s!\
 email.memberRequest=Hi, %s!\
                     <br>\
                      Your project has been noticed! %s wants to join your team.\
+                    <br>\
                     <br>\
                     %s\
                     <br>\

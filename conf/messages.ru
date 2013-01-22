@@ -180,17 +180,20 @@ email.firstTestPassed=Добрый день, %s!<br>\
                         <br>\
                             Отлично, продолжай в том же духе и наверняка добьешься успеха!\
                         <br>\
+                        <br>\
                             Логин: %s<br>\
                             Пароль: %s<br>\
                             Для завершения тестирования и прохождения полной регистрации можно авторизоваться\
                             на сайте, используя логин и пароль, или пройти по данной <a href="%s/confirmRegistration?ticket=%s">ссылке</a>\
                         <br>\
+                        <br>\
                             С уважением, </br>\
                             команда <a href="%s">StartNewTeam</a>
 email.blankfformpassed=Для завершения регистрации на <a href="%s">StartNewTeam</a> необходимо \
                         подтвердить электронный адрес, пройдя по  <a href="%s/confirmRegistration?ticket=%s">ссылке</a>.<br/>.\
-                           <br>\
-                           С уважением, команда <a href="%s">StartNewTeam</a>
+                        <br>\
+                        <br>\
+                        С уважением, команда <a href="%s">StartNewTeam</a>
 email.groupRequest=Добрый день, %s!\
                    <br>\
                    Поздравляем, тебя приглашают в команду %s!\
@@ -202,6 +205,7 @@ email.groupRequest=Добрый день, %s!\
 email.memberRequest=Добрый день, %s!\
                     <br>\
                      Твой проект не остался незамеченным! %s хочет вступить в команду.\
+                    <br>\
                     <br>\
                     %s\
                     <br>\
