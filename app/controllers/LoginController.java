@@ -1,31 +1,21 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import models.Answer;
-import models.Question;
-import models.Test;
-import models.User;
+import models.*;
 import models.predicate.FindAnswerByIdPredicate;
 import models.predicate.FindAnswerByQuestionIdPredicate;
 import models.validators.UserUniqueEmailValidator;
 import notifiers.Mails;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
-
 import play.data.validation.Required;
 import play.i18n.Messages;
-import play.mvc.Controller;
 import utils.ApplicationConstants;
 import utils.ModelUtils;
 import utils.SecurityHelper;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
+
+import java.util.*;
 
 public class LoginController extends BasicController implements ApplicationConstants {
 
@@ -50,7 +40,9 @@ public class LoginController extends BasicController implements ApplicationConst
 			validation.isTrue("user.email", new UserUniqueEmailValidator().isSatisfied(user, user.email)).message("validation.model.user.email.dublicated");
 
 		if (validation.hasErrors()) {
-			render("ApplicationController/index.html", user, validation.errors(), birthDay, birthMonth, birthYear);
+            Long usersCount = User.count();
+            Long commandsCount = Command.count();
+			render("ApplicationController/index.html", user, validation.errors(), birthDay, birthMonth, birthYear, usersCount, commandsCount);
 		}
 
 		Test test = Test.findById(1l);

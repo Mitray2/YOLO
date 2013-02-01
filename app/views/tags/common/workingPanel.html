@@ -1,9 +1,9 @@
 %{
+    def currentUser = utils.SessionHelper.getCurrentUser(session);
     boolean groupAdmin = currentUser?.role == models.User.ROLE_GROUP_ADMIN;
     boolean groupMember = !groupAdmin && (currentUser?.command != null);
     boolean wasInviteToGroup = currentUser?.commandToInvite != null;
     boolean haveGroupOrInviteJoin = groupMember || wasInviteToGroup;
-    def currentUser = utils.SessionHelper.getCurrentUser(session);
     int countCommands = 0;
     int countUsers = 0;
     if(currentUser != null){
@@ -57,7 +57,7 @@
                         <li>
 
                             <span><a href="@{GroupController.index(currentUser.command?.id)}">&{'page.main.home.group_request'}</a></span>
-                            <p><a href="@{UserController.index(userForAprove.id)}">${_userForAprove.name} ${_userForAprove.lastName}</a></p>
+                            <p><a href="@{UserController.index(userForAprove.id)}">${userForAprove.name} ${userForAprove.lastName}</a></p>
                             <p><a href="@{GroupController.approveJoin(userForAprove.id, currentUser.command.id)}">&{'page.main.home.add'}</a></p>
                             <p><a href="@{GroupController.declineJoin(userForAprove.id, currentUser.command.id)}">&{'page.main.home.reject'}</a></p>
                             </tr>
