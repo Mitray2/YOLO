@@ -13,41 +13,43 @@
 </h1>
 	#{form @LoginController.firstTestPassed()}
 		<div class="test">
-				#{list items:test.questions, as:'question'}
-					<div class="test-item #{if currentValidation?.hasError(utils.ApplicationConstants.VALIDATION_MODEL_TEST_QUESTION_ANSWER_REQUIRED + question?.id)}error#{/if}">
-					#{if question_isFirst}
-				        <div class="help">
-							<h3>&{'page.test1.aim.title'}</h3>
-							<p>&{'page.test1.aim.text'}</p>
-						</div>
-					#{/if}
-						<p class="question"><span>—</span>${question.value}</p>
-						<div class="reply">
-							<span class="reply-txt">&{'page.test1.answer'}:</span>
-								#{list items:question.answers, as:'answer'}
-									<input type="radio" name="test.questions[${question_index}].answer.id" id="answer${answer.id}" class="radio" value="${answer.id}" #{if question?.answer?.id.equals(answer.id)}checked#{/if}>
+            #{ifErrors}
+                <div class="test_error">
+                    <div class="alert">
+                        &{'page.test1.error1'}<br>
+                        &{'page.test1.error2'}<br>
+                    </div>
+                </div>
+            #{/ifErrors}
+            #{list items:test.questions, as:'question'}
+                <div class="test-item #{if currentValidation?.hasError(utils.ApplicationConstants.VALIDATION_MODEL_TEST_QUESTION_ANSWER_REQUIRED + question?.id)}error#{/if}">
+                #{if question_isFirst}
+                    <div class="help">
+                        <h3>&{'page.test1.aim.title'}</h3>
+                        <p>&{'page.test1.aim.text'}</p>
+                    </div>
+                #{/if}
+                    <p class="question"><span>—</span>${question.value}</p>
+                    <div class="reply">
+                        <span class="reply-txt">&{'page.test1.answer'}:</span>
+                            #{list items:question.answers, as:'answer'}
+                                <input type="radio" name="test.questions[${question_index}].answer.id" id="answer${answer.id}" class="radio" value="${answer.id}" #{if question?.answer?.id.equals(answer.id)}checked#{/if}>
 <!-- 									<input type="radio" name="test.questions[${question_index}].answer.id" id="answer${answer.id}" class="radio" value="${answer.id}" checked> -->
-									<label for="answer${answer?.id}" class="radio-btn">${answer.value}</label>
-								#{/list}
-						</div>
-					</div>
-					<input name="test.questions[${question_index}].id" type="hidden" value="${question.id}">
-				#{/list}
-				<input type="hidden" name="test.id" value="${test?.id}">
-				<input type="hidden" name="user.name" value="${user?.name}">
-				<input type="hidden" name="birthDay" value="${birthDay}">
-				<input type="hidden" name="birthMonth" value="${birthMonth}">
-				<input type="hidden" name="birthYear" value="${birthYear}">
-				<input type="hidden" name="user.email" value="${user?.email}">
-				<input type="hidden" name="user.sex" value="${user?.sex}">
-				<div class="test-btm">
-					#{ifErrors}
-							<div class="alert">
-					            &{'page.test1.error1'}<br>
-					            &{'page.test1.error2'}<br>
-				            </div>
-			        #{/ifErrors}
-					<a href="" class="test-btn" onclick="this.parentElement.parentElement.parentElement.submit(); return false;">&{'page.test1.show_results'}</a>
-				</div>
+                                <label for="answer${answer?.id}" class="radio-btn">${answer.value}</label>
+                            #{/list}
+                    </div>
+                </div>
+                <input name="test.questions[${question_index}].id" type="hidden" value="${question.id}">
+            #{/list}
+            <input type="hidden" name="test.id" value="${test?.id}">
+            <input type="hidden" name="user.name" value="${user?.name}">
+            <input type="hidden" name="birthDay" value="${birthDay}">
+            <input type="hidden" name="birthMonth" value="${birthMonth}">
+            <input type="hidden" name="birthYear" value="${birthYear}">
+            <input type="hidden" name="user.email" value="${user?.email}">
+            <input type="hidden" name="user.sex" value="${user?.sex}">
+            <div class="test-btm">
+                <a href="" class="test-btn" onclick="this.parentElement.parentElement.parentElement.submit(); return false;">&{'page.test1.show_results'}</a>
+            </div>
 		</div>
 	#{/form}

@@ -1,11 +1,14 @@
 <footer class="ftr-page">
 	<div class="inner">
 		<p>&copy; &{'page.common.rights'}</p>
-		<nav class="ftr-nav">
-			<ul>
-                #{common.menu.footerItems /}
-			</ul>
-		</nav>
+        *{hiding for testing and registration proccess}*
+        #{if request.controller != 'LoginController'}
+            <nav class="ftr-nav">
+                <ul>
+                    #{common.menu.footerItems /}
+                </ul>
+            </nav>
+        #{/if}
 	</div>
 	<script>
 		var internationalization = {

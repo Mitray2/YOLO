@@ -650,6 +650,10 @@ a, input, input:hover, input:active, input:focus, textarea {
   float: right;
 }
 
+.test_error {
+    padding: 25px 30px;
+}
+
 /* line 509, ../scss/stl.scss */
 .test-btm {
   padding: 25px 30px;
@@ -675,7 +679,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   border-radius: 4px;
   display: inline-block;
 }
-.test-btm .alert{
+.test-btm .alert, .test_error .alert{
 	background:#fff4d1;
 	font:11px/22px Arial, Helvetica, sans-serif;
 	color:#bc3030;

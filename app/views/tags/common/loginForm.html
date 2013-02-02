@@ -1,6 +1,6 @@
 %{
-def currentValidation = play.data.validation.Validation.current();
-def currentUser = utils.SessionHelper.getCurrentUser(session);
+    def currentValidation = play.data.validation.Validation.current();
+    def currentUser = utils.SessionHelper.getCurrentUser(session);
 }%
 
 <script type="text/javascript">
@@ -78,10 +78,10 @@ def currentUser = utils.SessionHelper.getCurrentUser(session);
         <div class="alert">
             #{errors}
                 #{if errors_isLast}
-                ${error}
+                    ${error}
                 #{/if}
                 #{else}
-                ${error}<br/>
+                    ${error}<br/>
                 #{/else}
             #{/errors}
         </div>
@@ -137,7 +137,7 @@ def currentUser = utils.SessionHelper.getCurrentUser(session);
         </tbody>
     </table>
     #{/form}
-<a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">&{'page.common.enter'}</a>
+    <a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">&{'page.common.enter'}</a>
 #{/if}
 #{if currentUser}
 <a href="@{LoginController.logout()}" class="sign-in">&{'page.common.logout'}</a>
