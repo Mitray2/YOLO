@@ -28,7 +28,7 @@
                 <ul>
                 #{list items:models.User.findById(currentUser.id).commandsForAprove, as:'group'}
                     <li>
-                        <span><a href="@{GroupController.index(group.id)}">&{'page.main.home.group_invite'}: ${_group?.name}</a></span>
+                        <span><a href="@{GroupController.index(group.id)}">&{'page.main.home.group_invite'}: ${group?.name}</a></span>
                         #{if groupAdmin}
                             <div title="&{'page.main.home.msg1'}">&{'page.main.home.agree'}</div>
                         #{/if}
