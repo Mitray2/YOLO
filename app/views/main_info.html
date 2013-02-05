@@ -57,7 +57,7 @@
 					<nav class="user-menu">
 						<ul>
 							<li><a href="/">&{'link.main'}</a></li>
-							<li><a href="/news">&{'link.news'}</a></li>
+							<li><a href="/news" #{if request.controller.equals('NewsController')}class="act"#{/if}>&{'link.news'}</a></li>
 							<li><a href="/about/" #{if request.controller.equals('AboutController')}class="act"#{/if}>&{'link.about'}</a></li>
 							<li><a href="/contacts/" #{if request.controller.equals('ContactsController')}class="act"#{/if}>&{'link.contacts'}</a></li>
 							<li><a href="/partners/" #{if request.controller.equals('PartnersController')}class="act"#{/if}>&{'link.partners'}</a></li>
