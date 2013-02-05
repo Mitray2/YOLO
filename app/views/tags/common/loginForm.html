@@ -1,6 +1,6 @@
 %{
-def currentValidation = play.data.validation.Validation.current();
-def currentUser = utils.SessionHelper.getCurrentUser(session);
+    def currentValidation = play.data.validation.Validation.current();
+    def currentUser = utils.SessionHelper.getCurrentUser(session);
 }%
 
 <script type="text/javascript">
@@ -78,10 +78,10 @@ def currentUser = utils.SessionHelper.getCurrentUser(session);
         <div class="alert">
             #{errors}
                 #{if errors_isLast}
-                ${error}
+                    ${error}
                 #{/if}
                 #{else}
-                ${error}<br/>
+                    ${error}<br/>
                 #{/else}
             #{/errors}
         </div>
@@ -120,7 +120,16 @@ def currentUser = utils.SessionHelper.getCurrentUser(session);
             <td><input type="password" name="loginPassword" id="password" /></td>
         </tr>
         <tr>
-            <td><a href="" onclick="$('#regName').focus(); return false;">&{'page.common.registration'}</a></td>
+            <td>
+                #{if request.controller == 'ApplicationController'}
+                    <a href="#" onclick="$('#regName').focus(); return false;">
+                #{/if}
+                #{else}
+                    <a href="@{LoginController.register()}">
+                #{/else}
+                    &{'page.common.registration'}
+                </a>
+            </td>
             <td><a href="" onClick="$('#popup-enter').fadeIn(1000); $('#overlay').fadeIn(1000);
                     $('#popup-enter-ttl').html('&{'popup.password_recovering'}');$('#enterForm').hide();
                     $('#recoverEmailForm').show(); return false;">&{'page.common.forgot_password'}</a></td>
@@ -128,7 +137,7 @@ def currentUser = utils.SessionHelper.getCurrentUser(session);
         </tbody>
     </table>
     #{/form}
-<a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">&{'page.common.enter'}</a>
+    <a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">&{'page.common.enter'}</a>
 #{/if}
 #{if currentUser}
 <a href="@{LoginController.logout()}" class="sign-in">&{'page.common.logout'}</a>
