@@ -6,10 +6,7 @@
 #{/else}
 #{set title:'StartNewTeam' /}
 <h1>&{'page.news.title'}</h1>
-<div class="newsLangSwitch">
-	<a style="float: left; cursor: pointer; #{if newsLang == 'en'}color: #ccc#{/if}" href="/news?lang=en">ENGLISH</a>
-	<a style="float: left; cursor: pointer; #{if newsLang == 'ru'}color: #ccc#{/if}" href="/news?lang=ru">Русский</a>
-</div>
+#{lang.newsLangSwitcher newsLang:newsLang, href:"news"/}
 <div class="page-news">
 	<div class="news">
 		#{list items:newsList, as:'news'}
