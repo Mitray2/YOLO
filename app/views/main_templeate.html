@@ -44,7 +44,7 @@ $(document).ready(function() {
                 #{common.workingPanel group: group, userForAprove:userForAprove/}
 			</div>
 		</header>
-	<div class="content wrap-inner clearFix" >
+	<div class="content wrap-inner clearFix">
 		<aside class="user-block">
 			<div class="user-profile">
 				<a href="@{UserController.index(utils.SessionHelper.getCurrentUser(session)?.id)}" class="man">
@@ -138,7 +138,7 @@ $(document).ready(function() {
  				</div>
  			</div>
 		</aside>
-		<div class="inner-main" onclick="$('.event-popup').hide('slow'); $('.logged-user-menu').hide('slow');">
+		<div class="inner-main" onclick="$('.event-popup').hide('slow');">
 			#{doLayout/}
 		</div>
 		</div>
