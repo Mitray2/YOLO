@@ -3,576 +3,593 @@
 common.yes=Yes
 common.no=No
 common.cancel=Cancel
-common.error.undefined=An unknown error occurred.
-common.error.access=You do not have permission for this action.
-common.error.need_login=First, you must log in.
-common.login.error.password_empty=You did not enter your password
-common.login.error.email_empty=You have not entered an email
-common.login.error.email_format_invalid=Invalid email format
-common.login.password_sended=A new password was sent to the specified email.
+common.error.undefined=Sorry, we've faced unknown error.
+common.error.access=You don't have permission rights for this action.
+common.error.need_login=Please login to proceed. 
+common.login.error.password_empty=Please enter the password.
+common.login.error.email_empty=Please enter your email.
+common.login.error.email_format_invalid=Wrong email format
+common.login.password_sended=New password has been sent to your email.
 
-client.side.password_repair=Password Recovery
-client.side.system_enter=Login
-client.side.need_participants=participants need
+client.side.password_repair=Recover password
+client.side.system_enter=Enter to site
+client.side.need_participants=Team members needed
 
-page.avatar.change.error1 = size over the image. Use the file size of 2 MB.
-page.avatar.change.error2 = Invalid file format. Use images png or jpeg.
-page.avatar.change.error3 = Failed to create an avatar. Contact your administrator.
-page.avatar.change.error4 = Failed to save the avatar. Contact your administrator.
-page.avatar.change.error5 = Error!
-page.avatar.change.loading1 = Loading image to the server
-page.avatar.change.loading2 = Please wait ...
-page.avatar.change.approve1 = Change Confirmation avatar
-page.avatar.change.approve2 = Use this image as your new avatar?
-page.avatar.change.success = Picture changed successfully
+page.avatar.change.error1=The imagine you're trying to upload is too big. Please use files not bigger than 2 MB.
+page.avatar.change.error2=Unknown file format. Please use png or jpeg images.
+page.avatar.change.error3=Failed to create the photo. Please contact administrator. 
+page.avatar.change.error4=Failed to save the photo. Please contact administrator. 
+page.avatar.change.error5=Error!
+page.avatar.change.loading1=Uploading images to the server.
+page.avatar.change.loading2=Please wait...
+page.avatar.change.approve1=Photo change confirmation
+page.avatar.change.approve2=Do you want to use this photo as your profile picture?
+page.avatar.change.success=Photo has been successfully changed
 
 page.main.home.events=Events
-page.main.home.exit=Exit
-page.main.home.about_project=About StartNewTeam
-page.main.home.agree=Agree
+page.main.home.exit=Log out
+page.main.home.about_project=Navigation panel
+page.main.home.agree=Confirm
 page.main.home.reject=Decline
 page.main.home.add=Add
-page.main.home.my_profile=My Profile
-page.main.home.my_group=My Group
-page.main.home.group_invite=Group Invite
+page.main.home.my_profile=My profile
+page.main.home.my_group=My team
+page.main.home.group_invite=Invitation to the team
 page.main.home.group_join=Join
-page.main.home.group_request=application to join your group
-page.main.home.msg1=You must first submit an administrator member of the group, before going out and join the new group
+page.main.home.group_request=Request to join your team
+page.main.home.msg1=You need to transfer your team administrator rights, before you can join new team
 page.main.home.msg2=Join the team
-page.main.home.msg3=Are you sure you want to get out of your team and cancel the application for entry and enter into a new one?
+page.main.home.msg3=In order to join new team, you need to leave the one you're in now and cancel other requests. Are you sure you want to do this?
 
-page.profile.change.password.mesage1=You did not enter the old password
-page.profile.change.password.mesage2=You did not enter a new password
-page.profile.change.password.mesage3=you do not repeat your new password
-page.profile.change.password.mesage4=Incorrect password
-page.profile.change.password.mesage5=Minimum Password Length - 6 characters.
-page.profile.change.password.mesage6=maximum password length - 12 characters.
-page.profile.change.password.mesage7=password can contain only numbers and Latin letters
-page.profile.change.password.mesage8=Passwords do not match
+page.profile.change.password.mesage1=Please enter old password
+page.profile.change.password.mesage2=Please enter new password
+page.profile.change.password.mesage3=Please repeat new password
+page.profile.change.password.mesage4=Incorrect old password
+page.profile.change.password.mesage5=Minimal password lenght - 6 symbols
+page.profile.change.password.mesage6=Maximal password lenght - 12 symbols
+page.profile.change.password.mesage7=Password may contain only latin letters and numbers
+page.profile.change.password.mesage8=Passwords don't match
 
 mail.subject.type1=Pre-registration
 mail.subject.type2=Confirmation of registration
 mail.subject.type3=Confirmation of registration
-mail.subject.type4=Group Invite
-mail.subject.type5=Someone wants to join your group
-mail.subject.type6=Password Recovery Online
+mail.subject.type4=Invitation to join the team
+mail.subject.type5=Someone wants to join your team
+mail.subject.type6=Password recovery
 
 
-page.main.content=<h1 class="main">StartNewTeam – is an innovative tool for communication and finding like-minded people for joint creation of a successful business.</h1>\
-                    <p>Do you have a desire, but something is missing for a creation of a successful business?</p>\
-                    <p>Perhaps, you don’t have experience, knowledge, great ideas, money or the right connections.</p>\
-                    <p>One man seldom has its all – to be successful you need a team.</p>
+page.main.content=<h1 class="main">StartNewTeam - is an innovative tool for formation and development of entrepreneurial teams.</h1>\
+                    <p>You have a dream, but lack something for transforming it into successful business?</p>\
+                    <p>Experience, knowledge, good ideas, money or connections?</p>\
+                    <p>One person can't combine it all - you need a team.</p>
 page.main.content.try.head=Try StartNewTeam method!
-page.main.content.try.line1=Complete a simple test which will reveal your entrepreneurial abilities and propensities.
-page.main.content.try.line2=Find like-minded people which will fit into your team on the basis of the results of test.
-page.main.content.try.line3=Work together as a real team, using special features on StartNewTeam platform, and succeed.
-page.main.enter_name=Please enter your First name
-page.main.enter_address=email
-page.main.sex.male=male
-page.main.sex.female=female
-page.main.start_the_test=Start the test
-page.main.site.people_count=Lot's of motivated people
-page.main.site.team_count=Motivated teams
-page.main.its_free=it's free
+page.main.content.try.line1=Pass a unique test specially designed for identification of your key business skills and aptitudes.
+page.main.content.try.line2=Find right people on the basis of this test,<br> who will effectively complement you.
+page.main.content.try.line3=Work in team, use business tools of <br> StartNewTeam platform, and achieve success together.
+page.main.enter_name=Your name (For example: John)
+page.main.enter_address=Your email (john@success.com)
+page.main.sex.male=male.
+page.main.sex.female=female.
+page.main.start_the_test=Start test
+page.main.site.people_count=Active users
+page.main.site.team_count=Created teams
+page.main.its_free=(it's free)
 
-page.about.title=About the project
-page.about.text=<p>Technology and science are developing very fast; the world has become\
-   so complex that it is not possible to cover all aspects of it for one person. These \
-  conditions require complex ideas and for businesses, combining a set of knowledge and \
-  skills in different areas. These ideas can be developed and implemented only by effective \
-  business team, consisting of people which complement each other. Entrepreneur in the modern \
-  world, "Entrepreneur of the 2.0" –is not an stand-alone individual, but a well-organized team.</p>\
-                <p>\
-                    <strong>StartNewTeam</strong> &ndash; is a unique online platform for the\
-   development of business  ideas in a team format. It allows people from around the world to\
-   find like-minded people, create effective teams and implement business ideas.\
-                </p>\
-                <p>\
-                    <ul>\
-                        <span>The mechanics of StartNewTeam is very simple:</span>\
-                        <li><strong>1)</strong> Check your entrepreneurial skills, passing a special test.</li>\
-                        <li><strong>2)</strong> Develop effective teams on the basis of test results: join to existing teams, or create your own!</li>\
-                        <li><strong>3)</strong> Achieve success using specials tools for team-collaboration, feature by StartNewTeam.</li>\
-                    </ul>\
-                </p>\
-                <p>The project is open to all – anyone from around the world can join us for free!</p>
-page.test1.title=Hi, %s!<br />\
-                 Here is the first test which will determine your propensity for entrepreneurship.\
-                 We have prepared only two tests for you – it will not take long to pass both of them. \
-                 Please, don’t cheat yourself - answer honestly.
-page.test1.aim.title=The purpose of the first test
-page.test1.aim.text=Achievement motivation - the desire to improve the results achieved \
-                    dissatisfaction, persistence in achieving their goals, the desire to get his at \
-                    all costs - is one of the major personality traits that affect the whole of \
-                    human life. Numerous studies have shown a close link between the level of \
-                    achievement motivation and success in life. This psychological test will allow \
-                    you to determine your level of motivation.
+page.about.title=About project
+page.about.text=<p>Science and technology are developing very fast, the world became\
+                		so complex, that a standalone person can't cover all its\
+                		aspects. Complex world requires complex ideas for business, combining\
+                		knowledge and competences<br>\
+						from different fields. Only teams of like-minded people\
+                		are able to generate and realize such ideas,\
+                		effectively complementing each other. Entrepreneur<br> in the modern world\
+						is an "Entrepreneur 2.0" – it is andefficient\
+						team.</p>\
+                	<p>\
+                		<strong>StartNewTeam</strong> &ndash; is a unique technological platform\
+                		for development of entrepreneurship in team format, which allows\
+                		people from all over the world to understand their strengths and weaknesses in business,\
+						quickly find like-minded people and create\
+                		effective teams, in order to realize<br> in real life different business ideas.\
+                	</p>\
+                	<p>\
+                        <ul>\
+                            <span>StartNewTeam mechanics is very simple:</span>\
+                            <li><strong>1)</strong> Identify your key entrepreneurial\
+                                capabilities and propensities using our unique test.</li>\
+                            <li><strong>2)</strong> Find like-minded people and create\
+							effective entrepreneurial teams\
+                            on the basis of the test.</li>\
+                            <li><strong>3)</strong> Work in team, complement each other, and achieve joint success together,\
+							using StartNewTeam.</li>\
+                        </ul>\
+                	</p>\
+                	<p>Project is open to all – everyone can participate.</p>\
+					<p>We hope that this approach will provide as much people as possible an opportunity\
+					to find partners and create new successful businesses,\
+					which will benefit others</p>
+page.test1.title=Hello, %s!<br />\
+                     <p>This test will quickly determine your general entrepreneurial propensity<br>
+					 In total we have prepared 2 test for you. Don't worry, it will not take much time to pass both of them.
+page.test1.aim.title=How to pass the test
+page.test1.aim.text=Please choose in each question one answer, which describes you the best.
 page.test1.answer=Your answer
-page.test1.show_results=Show results
-page.test1.pass_test=Pass the final test.
-page.test1.error1=You did not answer some questions.
-page.test1.error2=Necessary to answer the questions in red
+page.test1.show_results=Show me results
+page.test1.pass_test=Pass final test.
+page.test1.error1=You have missed some questions.
+page.test1.error2=Please make your choice in the lines, marked in red.
 
 #first test passed social texts
-page.test1.passed.social.text=I have scored %s points in the entrepreneurial skills test. I wonder how many points you can get! Try now on www.startnewteam.com
-page.test1.passed.social.title=I've passed the first test
-page.test1.passed.head=You passed the first test! Last push before signing
-page.test1.passed.see_mail=You passed the first test! Last push before signing
-
-page.test2.aim.text=Regardless of your entrepreneurial propensity, your personality has its strengths and weaknesses. Let's learn about them. Choose in each question the answer which matches the best for you.
-page.test2.show_results=Show results
-page.test2.aim.title=How to take the test
-page.test2.head=You passed the first test! Last push before signing
-page.test2.error1=You did not answer some questions.
-page.test2.error2=Necessary to answer the questions in red.
+page.test1.passed.social.text=My entrepreneurial skills have been assessed and received %s points. Learn how much could you score!
+page.test1.passed.social.title=Business-test
+page.test1.passed.head=You have sucessfully completed the test!
+page.test1.passed.see_mail=
 
 #second test passed
-page.test2.passed.title=You've passed the second test
-page.test2.passed.social.text=My entrepreneurial type: Idealist %s, Communicant %s, Pragmatist %s. Do you have others? Let us complement each other on
-page.test2.passed.social.title=I've passed the second test
-page.test2.passed.results=Here are the results of test, assessing your affections
-page.test2.passed.idealist_result=<strong>Idealist</strong> &ndash; <span class="rating">%s points</span> &ndash; this number indicate your propensity for reflections, generation of new ideas, and search of effective solutions.
-page.test2.passed.communicant_result=<strong>Communicant</strong> &ndash; <span class="rating">%s points</span> &ndash; is the propensity for promotion, negotiation and sales.
-page.test2.passed.pragmatist_result=<strong>Pragmatist</strong> &ndash; <span class="rating">%s points</span> &ndash; is the propensity for action, practicing and implementation.
-page.test2.passed.recommendation=<p>You need to concentrate on the features with the highest scores - \
-                                    relying on them you can bring maximum benefit to the team, and find \
-                                    people who will complement you on other affections which are less developed.\
-                                    For a successful business development you need all these areas to be covered: \
-                                    the team should think, invent, promote ideas and bring them to life. It’s very \
-                                    rare that one person combines all the needed qualities - so the chances of success \
-                                    are much higher in the effectively formed team.\
-                                </p>\
-                                <p>Share your results in social networks - your friends might be interested to pass \
-                                    this test as well. Maybe you will even find your future business partners among \
-                                    them! But, like the last time - you will never know unless you try.</p>\
-                                <p>For final registration and access to the internal functional of the platform you \
-                                    need to fill in just few more things. Congratulations!</p>
-page.test2.passed.final_step=Final step
+page.test2.title=<p>Regardless of entrepreneurialism, you have other strengths and weaknesses.<br>\
+					The final test will help to understand where you can realize yourself the most. 
+                    
+page.test2.aim.text=Please choose in each question what is most appropriate for you.
+page.test2.show_results=Show me results
+page.test2.aim.title=How to pass the test
+page.test2.head=Regardless of entrepreneurialism, you have other strengths and weaknesses.<br>\
+				The final test will help to understand where you can realize yourself the most. 
+page.test2.error1=You have missed some questions.
+page.test2.error2=Please make your choice in the lines, marked in red.
+
+page.test2.passed.title=You have successfully completed the final test!
+page.test2.passed.social.text=My entrepreneurial type is: Idealist %s, Communicant %s, Pragmatic %s. Do you have different results? Let's complement each other and create effective team!
+page.test2.passed.social.title=The final business-test
+page.test2.passed.results=Here's the result of your entrepreneurial propensities on the basis of tests(max. = 100)
+page.test2.passed.idealist_result=<strong>Idealist </strong> &ndash; <span class="rating">%s points</span>, &ndash; propensity to generate new ideas and to find effective solutions.
+page.test2.passed.communicant_result=<strong>Communicant</strong> &ndash; <span class="rating">%s points </span>, &ndash; propensity to promotion, negotiations, sales.
+page.test2.passed.pragmatist_result=<strong>Pragmatic</strong> &ndash; <span class="rating">%s points </span>, &ndash; propensity to practice, realisation, action.
+page.test2.passed.recommendation=<p>Successful business requires simultaneous development of all three directions:<br>\
+									think, realize and promote the result. Quite rare when a single person \
+									combines all needed parts, thus the chances to succeed increase\
+									<br> in a team, which combines all needed\
+									parts and where each does what he likes.</p>\
+										<p>Doing what you like the most brings the best results<br>\
+									and provides you with an opportunity to fully realize your potential. That's why we suggest you \
+									to concenrate on functions with highest points and attract team members who\
+									will complement you within the functions which are less developped in you.</p>\
+										<p>We hope that you will find here like-minded people\
+									and form dream-team which will lead to you business success.</p>\
+										<p>In order to finish registration and get an access to inner pages and whole functionality of the project\
+									please fill in this short application form.</p>\
+										<p>We advice you to share this test with your friends in social networks - \
+									maybe you will find potential business partners among them!</p>\ 
+                                 					
+page.test2.passed.final_step=Final registration
 
 #blank form
-page.blankform.head=Congratulations, %s! You have successfully passed the two tests. It remains to fill in the questionnaire
-page.blankform.surname=Surname
+page.blankform.head=%s, you have successfully completed tests. Please fill in the application form in order to get an access to your potential business partners
+page.blankform.surname=Last name
 page.blankform.country=Country
 page.blankform.city=City
 page.blankform.password=Password
-page.blankform.repeat_password=Repeat password
-page.blankform.professional_skills=Professinal skills
-page.blankform.interesting_btype=Type of business I'm interested in
-page.blankform.interesting_bsphere=Sphere of business I'm interested in
+page.blankform.repeat_password=Please repeat password
+page.blankform.professional_skills=Base characteristic
+page.blankform.interesting_btype=Type of business you are interested in
+page.blankform.interesting_bsphere=Business sphere you are interested in
 page.blankform.personal_data=Personal data
 page.blankform.register=Register
-page.blankform.personal_characteristics=Personal characteristics
-page.blankform.personal_characteristics.description=Describe your quality. The advantages and disadvantages of their nature
-page.blankform.personal_characteristics.placeholer=Please describe the qualities
+page.blankform.personal_characteristics=Goals of the registration
+page.blankform.personal_characteristics.description=Please describe in few words your goals and expectations from the registration here
+page.blankform.personal_characteristics.placeholer=Describe in free form what you're looking for in order other users can identify you
 
-page.blankform.passed=Congratulations, now you are a full member of our community. \
-                        You can initiate a new team, or join an existing one – chose your way \
-                        to success. Invite your friends to the project - together you can do much more!
-
-
+page.blankform.passed=Congratulations, now you're a full member of our community and you can start actively creation of your\
+						team, or join one of existing teams.<br>\
+						Before you proceed, please confirm us your email address,\
+						by following the link provided in the email which has been just sent\
+						to your email.<br>\
+						Entrepreneurally yours,,<br>\
+						StartNewTeam.
+ 						
 
 #emails
-email.firstTestPassed=Hello, %s!\
-                        <br/>\
-                            You have successfully passed first step of registration on <a href="%s">StartNewTeam</a>.\
-                        <br/>\
-                            Excellent, keep going and for sure you will succeed! \
-                        <br/>\
-                        <br/>\
-                            Your credentials for access are:\
-                        <br/>\
+email.firstTestPassed=Hello, %s!<br>\
+                        <br>\
+                            You have sucesfully completed first test and pre-registration on <a href="%s">StartNewTeam</a>.\
+                        <br>\
+                            Here you can find your temporary login and password, using which you can finalize you registration\
+							on our platform from the moment you have reached now:\
+                        <br>\
+                        <br>\
                             Login: %s<br>\
-                            Password: %s<br>\
-                        <br>\
-                            In order to complete the test and registration, you can login to the site using the username \
-                            and password, or follow this <a href="%s/confirmRegistration?ticket=%s">link</a>.\
-                        <br/>\
-                        <br>\
-                            Entrepreneurially yours,<br/>\
-                            <a href="%s">StartNewTeam</a> squad
-email.blankfformpassed=To complete the registration on <a href="%s">StartNewTeam</a> please confirm\
-                        the email address by clicking the following <a href="%s/confirmRegistration?ticket=%s">link</a>.<br/>.\
+                            Passord: %s<br>\
+                            Or, use directly the following link: <a href="%s/confirmRegistration?ticket=%s">ссылку</a>\
                         <br>\
                         <br>\
-                        Entrepreneurially yours,<br/>\
-                        <a href="%s">StartNewTeam</a> squad
-email.groupRequest=Hi, %s!\
-                  <br>\
-                  Congratulations, you are invited to join the team %s!\
-                  <br>\
-                  <br>\
-                  %s\
-                  <br>\
-                  <br>\
-                  Entrepreneurially yours,<br> <a href="%s">StartNewTeam</a> squad<br/>
-email.memberRequest=Hi, %s!\
+                            Entrepreneurally yours, <br>\
+                            <a href="%s">StartNewTeam</a> crew
+email.blankfformpassed=In order to finish registration on <a href="%s">StartNewTeam</a> please \
+                        confirm your email, by following this link<a href="%s/confirmRegistration?ticket=%s">ссылке</a>.<br/>.\
+                        <br>\
+                        <br>\
+                        Entrepreneurally yours, <br>\
+                        <a href="%s">StartNewTeam</a> crew
+email.groupRequest=Hello, %s!\
+                   <br>\
+                   You have been invited to join the team %s!\
+                   <br>\
+                   <br>\
+                   %s\
+                   <br>\
+                   <br>\
+                  Entrepreneurally yours, <br>\
+                  <a href="%s">StartNewTeam</a> crew
+email.memberRequest=Hello, %s!\
                     <br>\
-                     Your project has been noticed! %s wants to join your team.\
+                     Your project has been noticed!<br>
+					 %s wants to join you team.\
                     <br>\
                     <br>\
                     %s\
                     <br>\
                     <br>\
-                    Entrepreneurially yours,\
-                    <br>\
-                    <a href="%s">StartNewTeam</a> squad<br/>
-email.lostPassword=Hi!<br/>\
-                  We have received a request to reset the password for your StartNewTeam account. Here’s your new password! : %s\
-                  We strongly recommend you to change the password immediately after you login into the system using this password.\
-                  <br>\
-                  <br>\
-                  Entrepreneurially yours,<br> <a href="%s">StartNewTeam</a> squad.
-email.secondTestPassed=Hello,%s! \
-                        <br> \
-                        <br> \
-                        To complete the registration on the \
-                        StartNewTeam must confirm the email address by clicking the <a \
-                        href="%s/confirmRegistration?ticket=%s">here</a>. <br/> \
-                        <br> \
-                        Entrepreneurially yours, <a href="%s">StartNewTeam</a> squad.
+                    Entrepreneurally yours, <br>\
+                    <a href="%s">StartNewTeam</a> crew
+email.lostPassword=Hello!<br/>\
+                   You, or someone else had requested a new password. Please use this password to access your account: %s\
+                   We strongly recommend you to change the password immediately.\
+                   <br>\
+                   <br>\
+                   Entrepreneurally yours, <br>\
+                  <a href="%s">StartNewTeam</a> crew
+email.secondTestPassed=Hello, %s!\
+                       <br>\
+                       <br>\
+                       To finalize the registration on\
+                        StartNewTeam, please confirm your email by folling this link <a\
+                        href="%s/confirmRegistration?ticket=%s">ссылке</a>.<br />\
+                        <br>\
+                        Entrepreneurally yours, <br>\
+                        <a href="%s">StartNewTeam</a> crew
 
 
 link.main=Main
 link.news=News
-link.about=About the project
+link.about=About project
 link.contacts=Contacts
 link.partners=Partners
 
 link.crowd.consalting=CrowdConsulting
-link.crowd.developig=CrowdDeveloping
+link.crowd.developig=CrowdDevelopment
 link.crowd.funding=CrowdFunding
 
-page.partners.title=Thanks to them, StartNewTeam exists and develops
-page.partners.skolkovo.title=Skolkovo foundation
-page.partners.skolkovo.text=Skolkovo Foundation is the principal agency responsible for the Russian \
-                            Skolkovo Innovation Center, a scientific and technological centre for \
-                            the development and commercialisation of advanced technologies.
-page.partners.asi.title=Agency for Strategic Initiatives
-page.partners.asi.text=Government body, created for development and promotion of innovative project and general development of entrepreneurship in Russia.
-page.partners.microsoft.title=Microsoft
-page.partners.microsoft.text=Largest software company in the World.
-page.partners.text=We will be happy to make enlarge our pool of partners with companies, \
-                    organizations and individuals willing to change the world for the best through \
-                    the development of entrepreneurship. Please write us about your desire to \
-                    cooperate to %s, and we will find something interesting.
-
+page.partners.title=Partners of StartNewTeam
+page.partners.skolkovo.title=We are looking forward to expand network of our partners. We are looking for both local and global partners. 
+page.partners.skolkovo.text=Please contact us to partners@startnewteam.com..
+page.partners.asi.title=Агентство стратегических инициатив
+page.partners.asi.text= \
+                         \
+                       
+page.partners.microsoft.title=
+page.partners.microsoft.text=
+                            
+page.partners.text=Let's growth together!
+					
+					
 page.contacts.title=Contacts
 page.contacts.general=General
-page.contacts.for_partnership=For partnership
+page.contacts.for_partnership=To partners
 
-page.crowd.consalting.head = Let's create together a handy tool with which we can easily find like-minded people and work effectively in teams to build successful businesses. Any idea on this? Offer below! The best ideas will be implemented, and their authors are all placed on a special page of honor for his contribution to the project.
-page.crowd.developing.head = There is a desire to take a practical part in the development of the project? Write below what good you can and want to do, and what you need for this.
-page.crowd.funding.head = You can make a contribution to the project or to thank, if it has already helped to find like-minded people and start a business. <br/> monthly report will be issued on received stradstvah and expenses. The biggest benefactors will be permanently placed on a special page of honor for his contribution to the project. <br/> <br/> Details for donations: <br/> Yandex purse: 123241235151 <br/> Kiwi purse: 123123231 <br/> Webmoney: 132136245624 <br/> Other means of payment ...
-page.crowd.funding.report.translate.en=read report in english
-page.crowd.funding.report.translate.ru=read report in russian
+page.crowd.consalting.head=Let's develop and improve together a tool, which will become useful for like-minded people and create sucessfull business with people met here. Share your ideas here.<br> \
+							Best ideas will be realised in the project, and its' authors will become members of our Hall of fame.
+page.crowd.developing.head=Do you like our project and would like help us in one way or another? Write us a short email, describing what you can help us with and we will talk to you directly.<br>\
+							In future we are planning to create a network of <br>partners\
+							and active members, who will conduct different <br> useful\
+							off-line events and meetings for entrepreneurs <br> in their cities.<br> 
+page.crowd.funding.head=Here you can make financial input in the <br> development of the project \
+						or thank us, if you have already found <br> right people\
+						and launched your own business.<br> Each month, we are publishing report on the funds received, expenditures made, and their results. <br> People, donated their contribution to the development of the project will be presented in the special Hall of Fame. <br><br><strong>Details for donations:</strong><br> Yandex: 410011726431112<br> QIWI: +7-926-051-8708<br> Webmoney: R878057632541<br><br>
+page.crowd.funding.report.translate.en=ENGLISH
+page.crowd.funding.report.translate.ru=РУССКИЕ
 
 page.create.team.create=Create a team
-page.create.team.head=Tell briefly about your idea or a project. Don't be afraid to share - it will help you to gather a team as soon as possible and start the real action.
-page.create.team.characteristics=Team characteristics
-page.create.team.name=Project name
-page.create.team.type_business=Type of business
+page.create.team.head=Tell some details about your projects in order to make users aware about your project and attract the right people.
+page.create.team.characteristics=Team description
+page.create.team.name=Team name
+page.create.team.type_business=Business type
 page.create.team.sphere=Sphere
-page.create.team.stage=Stage of the project
-page.create.team.globality=Globality
-page.create.team.need_members=We need team members
-page.create.team.project_desc=Description of Project
-page.create.team.need_prof_skills=Need in professionals with a experience in
-page.create.team.marketing_advertising=Marketing/advertising
-page.create.team.desc_experience=Describe an experience
+page.create.team.stage=Project stage
+page.create.team.globality=International team (possibility to use english)
+page.create.team.need_members=Looking for members
+age.create.team.project_desc=Please describe in free form key goals of your team, your project or idea(if you have any), present situation and other important information which you would like to share with your potential partners.
+page.create.team.need_prof_skills=Team needs
+page.create.team.marketing_advertising=Marketing and advertisment
+page.create.team.desc_experience=If you have specific need, please describe it
 page.create.team.management_experience=Management
-page.create.team.sales_experience=Sales/Negotiations
+page.create.team.sales_experience=Sales and negotiations
 page.create.team.finance_experience=Finance
-page.create.team.law_experience=Law
-page.create.team.it_experience=IT
-page.create.team.others_experience=Others
-page.create.team.idealism_experience=Idealism
-page.create.team.communications_experience=Communications
-page.create.team.pragmatism_experience=Pragmatism
-page.create.team.save=Save changes
+page.create.team.law_experience=Jurisprudence
+page.create.team.it_experience=IT and development
+page.create.team.others_experience=Other needs (for example: investments)
+page.create.team.idealism_experience="Idealism" (looking for people with ideas)
+page.create.team.communications_experience="Sociability" (looking for commuicative people with social network)
+page.create.team.pragmatism_experience="Pragmatism" (looking for doers and organisers)
+page.create.team.save=Save
 
-page.edit.team.create_date=Create Date
-page.edit.team.count_members=Number of members
-page.edit.team.admin_team=Team administrator
+page.edit.team.create_date=Date of creation
+page.edit.team.count_members=Number of participants
+page.edit.team.admin_team=Administrator
 page.edit.team.team_desc=Team description
-page.edit.team.businessman=Enterpreneurship
+page.edit.team.businessman=Entrepreneurship
 page.edit.team.idealist=Idealism
-page.edit.team.communicant=Communicative skills
+page.edit.team.communicant=Sociability
 page.edit.team.pragmatist=Pragmatism
-page.edit.team.res_basis=* on the basis of the results of team members
+page.edit.team.res_basis=* on the basis of tests of team members
 
-page.team.head.edit=Edit team
-page.team.head.business=Business
-page.team.head.stage=Stage of the project
-page.team.head.globality=Globality
+page.team.head.edit=Edit team description
+page.team.head.business=Business 
+page.team.head.stage=Stage
+page.team.head.globality=Internationality
 page.team.head.members=members
-page.team.head.need_members=We need team members
-page.team.head.submit_administrator=You must first ubmit an administrator of the group, before going out and apply for membership in the group
-page.team.head.add=Add to the team
-page.team.head.leave_team_join=Are you sure you want to leave team and join the new one?
-page.team.head.add_to_team=Join the group
+page.team.head.need_members=Looking for members
+page.team.head.submit_administrator=You need to transfer you rights of the administrator, before you can leave the team.
+page.team.head.add=Join the team
+page.team.head.leave_team_join=Are you sure, you want to leave the present team and join the new one?
+page.team.head.add_to_team=Join the team
 page.team.head.join=Join
 page.team.head.cancel=Cancel
-page.team.head.requst_consideration=Your request for membership under consideration the administrator
-page.team.head.unsubscribe=Unsubscribe
+page.team.head.requst_consideration=Your request is waiting for an approval of administrator. 
+page.team.head.unsubscribe=Cancel 
 page.team.head.cancel_request=Cancel request
-page.team.head.cancel_sure=Are you sure want to cancel request?
+page.team.head.cancel_sure=Are you sure you would like to cancel the request?
 page.team.head.leave_team=Leave the team
-page.team.head.leave_sure=Are you sure want to leave the team?
-page.team.head.leave=Leave
-page.team.head.remove_team=Remove team
-page.team.head.remove_sure=Are you sure want to remove the team?
-page.team.head.remove=Remove
+page.team.head.leave_sure=Are you sure you want to leave the team?
+page.team.head.leave=Exit
+page.team.head.remove_team=Delete the team
+page.team.head.remove_sure=Are you sure you want to delete the team?
+page.team.head.remove=Delete
 
-
-page.team.members.members_size=Total %s members
+page.team.members.members_size=We have %s members
 page.team.members.age=Age
-page.team.members.assign_admin=Assign an administrator role
-page.team.members.remove_from_team=Remove from team
-page.team.members.assign_sure1=Are you sure you want to assign the user
-page.team.members.assign_sure2=as administrator of your team?
-page.team.members.assign=Assign
-page.team.members.remove_sure1=Are you sure you want to remove the user
+page.team.members.assign_admin=Appoint administrator
+page.team.members.remove_from_team=Delete from the team
+page.team.members.assign_sure1=Are you sure you want to appoint this user 
+page.team.members.assign_sure2=as an administrator of your team?
+page.team.members.assign=Appoint
+page.team.members.remove_sure1=Are you sure you want to delete this users 
 page.team.members.remove_sure2= from your team?
 
-page.team.description=Description
-page.team.discussion=Discussion
-page.team.public_discussion=Public discussion
-page.team.members=Team members
-
-
-page.team.create.topic.title=Create new topic
-page.team.create.topic.name=Title topics for discussion
-page.team.create.topic.public=Public
+page.team.create.topic.title=Create topic
+page.team.create.topic.name=Topic name
+page.team.create.topic.public=Make topic public(accesible to all users)
 page.team.create.topic.create_topic=Create topic
 
-
-page.team.discuss.create_team=Create new team
-page.team.discuss.count_topics=There is %s discussion(s) in the group
-page.team.discuss.edit_disc=Edit discussion
-page.team.discuss.del_disc=Delete discussion
+page.team.discuss.create_team=Create topic
+page.team.discuss.count_topics=There are %s topic(s) in the group
+page.team.discuss.edit_disc=Edit topic
+page.team.discuss.del_disc=Delete topic
 page.team.discuss.edit_msg=Edit message
 page.team.discuss.del_msg=Delete message
 page.team.discuss.save=Save
 page.team.discuss.cancel=Cancel
-page.team.discuss.total_msgs=Total: %s messages
-page.team.discuss.latest_from=Latest from
-page.team.discuss.discussion=Go to discussion
-page.team.discuss.show_all=Show All Discussions
-page.team.discuss.total_msgs_in=Total: %s messages
-page.team.discuss.send_msg=Send a message...
+page.team.discuss.total_msgs=%s reply(ies)
+page.team.discuss.latest_from=Last from
+page.team.discuss.discussion=Proceed to the topic discussion
+page.team.discuss.show_all=Show all discussions
+page.team.discuss.total_msgs_in=Total %s entries
+page.team.discuss.send_msg=Write reply...
 page.team.discuss.send=Send
-page.team.discuss.to_list=List of all discussions
-page.team.discuss.created_by=Created by
+page.team.discuss.to_list=Get back to the list of all topics
+page.team.discuss.created_by=Created
 
-page.profile.group_invite=Group Invite
-page.profile.warning1=You must first submit an administrator member of the group, before going out and join the new group
-page.profile.accepted=agree
-page.profile.join_command=join the team
-page.profile.question_leave_command=Are you sure you want to get out of your team and cancel the application for entry and enter the new
-page.profile.join=join
-page.profile.refuse=Refuse
-page.profile.request_join_group=Application for membership in your group
+page.team.description=Description
+page.team.discussion=Internal discussion
+page.team.public_discussion=Public discussions
+page.team.members=Member
+
+
+page.profile.group_invite=Invite to the team
+page.profile.warning1=You need to transfer you rights of the administrator, before you can join other team
+page.profile.accepted=Agree
+page.profile.join_command=Join the team
+page.profile.question_leave_command=In order to join new team, you need to leave the one you're in now and cancel other requests. Are you sure you want to do this?
+page.profile.join=Join
+page.profile.refuse=Decline
+page.profile.request_join_group=Request to join your team
 page.profile.add=Add
 page.profile.my_profile=My profile
-page.profile.my_group=My group
+page.profile.my_group=My team
 page.profile.exit=Exit
-page.profile.find_participant=Find a participant
-page.profile.find_command=Find a team
-page.profile.warning2=You are in a team, to create your team you will automatically be removed from the current.
-page.profile.create_own_command=Create a team
-page.profile.create_command=Create a team
-page.profile.warning3=Are you sure you want to get out of your team and create a new
+page.profile.find_participant=Find partners
+page.profile.find_command=Find team
+page.profile.warning2=You're aleady a team member. By creating your own team you will be deleted from the existing team. 
+page.profile.create_own_command=Create your team
+page.profile.create_command=Create team
+page.profile.warning3=Are you sure you want to leave the existing team and create a new one?
 page.profile.create=Create
-page.profile.warning4=You have not joined any of the established teams. You can join the\
-                        group suitable to your interests, it is necessary <a href="%s">\
-                        pick a team </a> or you can create your
-page.profile.warnnig5=You have sent a request to join one of the groups at the group, the application is automatically rejected.
-page.profile.warning6=Are you sure you want to cancel a request to join a team and create a new
-page.profile.tell_friends=Tell a friend
-page.profile.tell_friends.description=Invite your friends to the project, tell them about it - to work together will be fun.
-page.profile.tell_friends_vk=tell in Vkontakte
-page.profile.tell_friends_tw=tell in Twitter
-page.profile.tell_friends_fb=tell in Facebook
+page.profile.warning4=You don't have a team now.<br>\
+						You can <a href="%s">find</a> appropriate,<br>\
+						or create one.
+page.profile.warnnig5=You have send a request to join a team. Once you create your own team this request will be automatically canceled.
+page.profile.warning6=Are you sure you want to cancel a request to join the team and want to create your own team?
+page.profile.tell_friends=Invite friends
+page.profile.tell_friends.description=More people - more opportunities<br>\
+										to find good partners.
+page.profile.tell_friends_vk=    -> Vkontakte
+page.profile.tell_friends_tw=    -> Twitter
+page.profile.tell_friends_fb=    -> Facebook
 page.profile.age=Age
-page.profile.lastseen=Last seen
-page.profile.email=Email address
-page.profile.business=Business
-page.profile.sendmsg=Send message
-page.profile.add_to_team=Add to my team
-page.profile.hide_email=Hidden
-page.profile.add_button=Add
+page.profile.lastseen=Last seen on
+page.profile.email=Email
+page.profile.business=Interested in
+page.profile.sendmsg=Send a message
+page.profile.add_to_team=Invite to the team
+page.profile.hide_email=Hide
+page.profile.add_button=Invite
 page.profile.cancel=Cancel
-page.profile.personal_characteristics=Personal characteristics
-page.profile.team=Team
-page.profile.founder=Founder
-page.profile.prof_skills=Professional skills
-page.profile.en_skill=Knowledge of English
-page.profile.marketing_advertising=Marketing/advertising
+page.profile.personal_characteristics=Goals of registration
+page.profile.team=I'm in the team
+page.profile.founder=Administrator
+page.profile.prof_skills=Professional characteristics
+page.profile.en_skill=Knowledge of English language(can participate in international teams)
+page.profile.marketing_advertising=Marketing and advertising
 page.profile.management_experience=Management
-page.profile.sales_experience=Sales/Negotiations
+page.profile.sales_experience=Sales and negotiations
 page.profile.finance_experience=Finance
-page.profile.law_experience=Law
-page.profile.it_experience=IT
-page.profile.others_experience=Others
+page.profile.law_experience=Jurisprudence
+page.profile.it_experience=IT and development
+page.profile.others_experience=Other
 page.profile.current.title=My profile
 page.profile.current.personal_data=Personal data
-page.profile.current.name=Name
-page.profile.current.surname=Surname
+page.profile.current.name=First name
+page.profile.current.surname=Last name
 page.profile.current.sex=Sex
 page.profile.current.male=Male
 page.profile.current.female=Female
 page.profile.current.birthday=Birthday
-page.profile.current.characteristics=Characteristics
-page.profile.current.based_on_test=* Based on test data
-page.profile.current.email=Email address
+page.profile.current.characteristics=Results of the test
+page.profile.current.based_on_test=
+page.profile.current.email=Email
 page.profile.current.email_show=Show to all
 page.profile.current.email_hide=Hide from all
-page.profile.current.ava=My avatar
+page.profile.current.ava=My photo
 page.profile.current.browse=Browse
-page.profile.current.max_img_size=Maximum image size
-page.profile.current.save_changes=Save changes
+page.profile.current.max_img_size=Maximal size of the photo
+page.profile.current.save_changes=Save
 page.profile.current.change_pwd=Change password
-page.profile.current.old_pwd=Current password
-page.profile.current.new_pwd=New password
+page.profile.current.old_pwd=Old password
+page.profile.current.new_pwd=Please enter the new password
 page.profile.current.repeate_pwd=Repeat new password
-page.profile.current.proff_skills=Professional skills
-page.profile.current.business=Type of business I'm interested in
-page.profile.current.sphere=Sphere of business I'm interested in
-page.profile.current.en_skill=Knowledge of English
-page.profile.current.exp_marketing=Experience in Marketing/advertising 
-page.profile.current.exp_sales=Experience in Sales 
-page.profile.current.exp_management=Experience in Management
-page.profile.current.exp_law=Experience in Law
-page.profile.current.exp_finance=Experience in Finances
-page.profile.current.exp_it=Experience in IT
-page.profile.current.exp_other=Experience in Other 
-page.profile.current.personal_cv=Personal characteristics
-page.profile.current.skill_meta=Experience in Marketing/advertising Please choose the level of the given skills and please describe your experience briefly
-page.profile.current.cv_meta=Strong and weak sides of your character
-page.profile.current.desc_marketing=Please describe your experience in Marketing/advertising
-page.profile.current.desc_sales=Please describe your experience in Sales
-page.profile.current.desc_management=Please describe your experience in Management
-page.profile.current.desc_law=Please describe your experience in Law
-page.profile.current.desc_finance=Please describe your experience in Finances
-page.profile.current.desc_it=Please describe your experience in IT
-page.profile.current.desc_other=Please describe your experience in Other
-page.profile.current.desc_cv=Please describe your characteristics
+page.profile.current.proff_skills=Professional characteristics
+page.profile.current.business=I'm interested in the following type of business
+page.profile.current.sphere=I'm interested in the following sphere of business
+page.profile.current.en_skill=Knowledge of English language(can participate in international teams)
+page.profile.current.exp_marketing=Experience in marketing and advertisement
+page.profile.current.exp_sales=Experience in sales and negotiations
+page.profile.current.exp_management=Experience in management
+page.profile.current.exp_law=Experience in jurisprudence
+page.profile.current.exp_finance=Experience in finances
+page.profile.current.exp_it=Experience in IT and development
+page.profile.current.exp_other=Experience in other spheres(please specify)
+page.profile.current.personal_cv=Goals of registration
+page.profile.current.skill_meta=Please indicate your level of knowledge and experience in the given sphere
+page.profile.current.cv_meta=Describe in few words your goals and expectations
+page.profile.current.desc_marketing=Describe more your experience in marketing and advertisement
+page.profile.current.desc_sales=Describe more your experience in sales and negotiations
+page.profile.current.desc_management=Describe more your experience in management
+page.profile.current.desc_law=Describe more your experience in jurisprudence
+page.profile.current.desc_finance=Describe more your experience in finances
+page.profile.current.desc_it=Describe more your experience in IT and development
+page.profile.current.desc_other=Describe more your experience in other spheres(please specify)
+page.profile.current.desc_cv=Describe in few words your goals and expectations from registration in the platform
+page.profile.current.desc_skill_meta=Indicate your level of knowledge and experience in this field
+page.profile.current.desc_cv_meta=Describe in few words your goals and expectations from registration
 
-page.news.title=News
-page.news.translate.ru=read news in russian
-page.news.translate.en=readn news in english
-
-
-page.search.members.title=Members
-page.search.members.personal_data=Personal
+page.search.members.title=Partners search system
+page.search.members.personal_data=Personal data
 page.search.members.aptitudes=Aptitudes and interests
 page.search.members.professional=Professional
-page.search.members.name=Surname, Name
-page.search.members.ava=Avatar
-page.search.members.status=Status
-page.search.members.info=Info
-page.search.members.title_enterpreneurship=Skill "Entrepreneurship"
-page.search.members.title_idealist=Skill "Idealism"
-page.search.members.title_communicant=Skill "Communicative"
-page.search.members.title_pragmatist=Skill "Pragmatism"
-page.search.members.title_marketing=Skill "Marketing/advertising"
-page.search.members.title_sales=Skill "Sales"
-page.search.members.title_management=Skill "Management"
-page.search.members.title_law=Skill "Law"
-page.search.members.title_finance=Skill "Finances"
-page.search.members.title_it=Skill "IT"
-page.search.members.title_other=Skill "Other"
-page.search.members.business=Business type
+page.search.members.name=Last name, First name
+page.search.members.ava=Photo
+page.search.members.status=On-line
+page.search.members.info=Goals
+page.search.members.title_enterpreneurship="Entrepreneurship"
+page.search.members.title_idealist="Idealism"
+page.search.members.title_communicant="Sociability"
+page.search.members.title_pragmatist="Pragmatics"
+page.search.members.title_marketing=Marketing and advertisement
+page.search.members.title_sales=Sales and negotiations
+page.search.members.title_management=Management
+page.search.members.title_law=Jurisprudence
+page.search.members.title_finance=Finances
+page.search.members.title_it=IT and development
+page.search.members.title_other=Other
+page.search.members.business=Type of the business
 page.search.members.sphere=Sphere
-page.search.members.lang=Lang
+page.search.members.lang=English
 page.search.members.team=Team
-page.search.members.filter.title=Search members
+page.search.members.filter.title=Search criteria
 page.search.members.filter.personal_data=Personal data
-page.search.members.filter.command=In command
-page.search.members.filter.enterpreneurship=Entrepreneurship
-page.search.members.filter.idealist=Idealism
-page.search.members.filter.communicant=Communicative
-page.search.members.filter.pragmatist=Pragmatism
-page.search.members.filter.business=Business type
-page.search.members.filter.sphere=Sphere
-page.search.members.filter.lang=Knowledge of English
-page.search.members.filter.marketing=Marketing / advertising
-page.search.members.filter.sales=Sales
+page.search.members.filter.command=In the team
+page.search.members.filter.enterpreneurship="Entrepreneurship"
+page.search.members.filter.idealist="Idealism"
+page.search.members.filter.communicant="Sociability"
+page.search.members.filter.pragmatist="Pragmatics"
+page.search.members.filter.business=Type of the business
+page.search.members.filter.sphere=Sphere of the business
+page.search.members.filter.lang=Speaks English
+page.search.members.filter.marketing=Marketing and advertisement
+page.search.members.filter.sales=Sales and negotiations
 page.search.members.filter.management=Management
-page.search.members.filter.law=Law
+page.search.members.filter.law=Jurisprudence
 page.search.members.filter.finance=Finances
-page.search.members.filter.it=IT
-page.search.members.filter.share=Share
+page.search.members.filter.it=IT and development
+page.search.members.filter.share=Invite your friends,<br> potential partners
+page.search.members.filter=
 
 
 
-# Groups search
-page.search.groups.filter.msg1 = Teams
-page.search.groups.filter.msg2 = General Data
-page.search.groups.filter.msg3 = Basic data
-page.search.groups.filter.msg4 = Needs teams
-page.search.groups.filter.msg5 = Team Name
-page.search.groups.filter.msg6 = People
+# Groups search table
+page.search.groups.filter.msg1=Teams search system
+page.search.groups.filter.msg2=General data
+page.search.groups.filter.msg3=Key information
+page.search.groups.filter.msg4=Teams' needs
+page.search.groups.filter.msg5=Team name
+page.search.groups.filter.msg6=People
 
-page.search.groups.filter.col1.msg1 = Logo
-page.search.groups.filter.col1.msg2 = Country
-page.search.groups.filter.col1.msg3 = City
-page.search.groups.filter.col1.msg4 = Age
-page.search.groups.filter.col1.msg5 = Languages
-page.search.groups.filter.col1.msg6 = Position
-page.search.groups.filter.col1.msg7 = Info
+page.search.groups.filter.col1.msg1=Logo
+page.search.groups.filter.col1.msg2=Country
+page.search.groups.filter.col1.msg3=City
+page.search.groups.filter.col1.msg4=Age
+page.search.groups.filter.col1.msg5=Global
+page.search.groups.filter.col1.msg6=On-line
+page.search.groups.filter.col1.msg7=Info
 
-page.search.groups.filter.col2.msg1 = Skill "Entrepreneurship"
-page.search.groups.filter.col2.msg2 = Skill "Idealism"
-page.search.groups.filter.col2.msg3 = skill "Sociability"
-page.search.groups.filter.col2.msg4 = skill "Pragmatist"
-page.search.groups.filter.col2.msg5 = Business Type
-page.search.groups.filter.col2.msg6 = Scope
-page.search.groups.filter.col2.msg7 = Stage
+page.search.groups.filter.col2.msg1="Entrepreneurship"
+page.search.groups.filter.col2.msg2="Idealism"
+page.search.groups.filter.col2.msg3="Sociability"
+page.search.groups.filter.col2.msg4="Pragmatics"
+page.search.groups.filter.col2.msg5=Type of business
+page.search.groups.filter.col2.msg6=Sphere
+page.search.groups.filter.col2.msg7=Stage
 
-page.search.groups.filter.col3.msg1=Skill "Marketing"
-page.search.groups.filter.col3.msg2=Skill "Sales"
-page.search.groups.filter.col3.msg3=Skill "Control"
-page.search.groups.filter.col3.msg4=Skill "Right"
-page.search.groups.filter.col3.msg5=Skill "Finance"
-page.search.groups.filter.col3.msg6=Skill "IT"
-page.search.groups.filter.col3.msg7=Skill "Other"
-
+page.search.groups.filter.col3.msg1=Marketing and advertisement
+page.search.groups.filter.col3.msg2=Sales and negotiations
+page.search.groups.filter.col3.msg3=Management
+page.search.groups.filter.col3.msg4=Jurisprudence
+page.search.groups.filter.col3.msg5=Finances
+page.search.groups.filter.col3.msg6=IT and development
+page.search.groups.filter.col3.msg7=Other
 
 # Groups search form
-page.search.groups.form1.msg1 = Search Groups
-page.search.groups.form1.msg2 = General Data
-page.search.groups.form1.msg3 = Country
-page.search.groups.form1.msg4 = City
-page.search.groups.form1.msg5 = Medium
-page.search.groups.form1.msg6 = people in the team
-page.search.groups.form1.msg7 = need for people
-page.search.groups.form1.msg8 = Globality
+page.search.groups.form1.msg1=Search criteria
+page.search.groups.form1.msg2=General data
+page.search.groups.form1.msg3=Country
+page.search.groups.form1.msg4=City
+page.search.groups.form1.msg5=Average age
+page.search.groups.form1.msg6=People in the team
+page.search.groups.form1.msg7=Need for team members
+page.search.groups.form1.msg8=Internanality<br>(speak English)
 
-page.search.groups.form2.msg1 = Basic data
-page.search.groups.form2.msg2 = Entrepreneurship
-page.search.groups.form2.msg3 = Idealism
-page.search.groups.form2.msg4 = Sociability
-page.search.groups.form2.msg5 = Pragmatics
-page.search.groups.form2.msg6 = Type of Business
-page.search.groups.form2.msg7 = Core Business
-page.search.groups.form2.msg8 = Stage
+page.search.groups.form2.msg1=Key data
+page.search.groups.form2.msg2="Entrepreneurship"
+page.search.groups.form2.msg3="Idealism"
+page.search.groups.form2.msg4="Sociability"
+page.search.groups.form2.msg5="Pragmatics"
+page.search.groups.form2.msg6=Type of business
+page.search.groups.form2.msg7=Sphere
+page.search.groups.form2.msg8=Stage
 
-page.search.groups.form3.msg1 = Needs teams
-page.search.groups.form3.msg2 = Marketing / Advertising
-page.search.groups.form3.msg3 = Sales
-page.search.groups.form3.msg4 = Control
-page.search.groups.form3.msg5 = right
-page.search.groups.form3.msg6 = Finance
-page.search.groups.form3.msg7 = IT / Programming
+page.search.groups.form3.msg1=We are looking for expertise in:
+page.search.groups.form3.msg2=Marketing and advertisement
+page.search.groups.form3.msg3=Sales and negotiations
+page.search.groups.form3.msg4=Management
+page.search.groups.form3.msg5=Jurisprudence
+page.search.groups.form3.msg6=Finances
+page.search.groups.form3.msg7=IT and development
 
 
-page.common.from = From
-page.common.to = To
-page.common.sex = Sex
-page.common.age = Age
-page.common.rights=2012 All rights reserved. StartNewTeam
+page.common.from=From
 page.common.enter=Enter
+page.common.to=To
+page.common.sex=Sex
+page.common.age=Age
+page.common.rights=2013 All rights reserved. StartNewTeam
 page.common.yes=Yes
 page.common.no=No
 page.common.male=Male
@@ -580,97 +597,126 @@ page.common.female=Female
 page.common.country=Country
 page.common.city=City
 page.common.social.vk=Vkontakte
-page.common.social.public.vk=
-page.common.social.public.twitter=
-page.common.social.public.fb=
+page.common.social.public.vk=Share the link in Vkontakte
+page.common.social.public.twitter=Share the link in Twitter
+page.common.social.public.fb=Share the link in Facebook
 page.common.login=Login
-page.common.logout=Logout
+page.common.logout=Exit
 page.common.password=Password
 page.common.registration=Registration
 page.common.forgot_password=Forgot password?
 
-popup.enter.title=Login
-popup.forgot_password=Forgot password?
-popup.enter_the_site=Log in
-popup.email=Email
-popup.enter=Log in
-popup.send_email=Send email
-popup.password=Password to login
-popup.password_recovering=Password recovering
 
-# You can specialize this file for each language.
-# For example, for French create a messages.fr file
-#
-validation.required=Введите %s
 
-# Default CRUD messages
-# ~~~~~~
 
-crud.title=Administration
-crud.home=Home
-crud.blank=New
-crud.index.title=Choose the object to edit
-crud.index.objectType=Object type
-crud.index.action=
-crud.index.add=Add
-crud.add=Add &{%s}
-crud.list.title=&{%s}
-crud.list.size=%d &{%s}
-crud.list.totalSize=%d total
-crud.pagination.previous=« Previous
-crud.pagination.next=Next »
-crud.pagination.last=Last »»
-crud.pagination.first=«« First
-crud.show.title=Edit &{%s}
-crud.save=Save
-crud.saveAndContinue=Save and continue editing
-crud.cancel=Cancel
-crud.hasErrors=Please correct errors
-crud.blank.title=Add &{%s}
-crud.saveAndAddAnother=Save and create another
-crud.delete=Delete &{%s}
-crud.created=The &{%s} has been created
-crud.saved=The &{%s} has been saved
-crud.deleted=The &{%s} has been deleted
-crud.delete.error=Cannot delete this object
-crud.search=Search
-crud.none=(None)
-crud.selectValue=(Please select a value)
+page.news.title=News
+page.news.translate.ru=РУССКИЕ
+page.news.translate.en=ENGLISH
 
-crud.help.required=Required.
-crud.help.minlength=Min length is %d.
-crud.help.maxlength=Max length is %d.
-crud.help.email=Valid email address.
-crud.help.dateformat=&{%s} format.
-crud.help.numeric=Numeric.
-crud.help.min=Must be greater than %d.
-crud.help.future=In the future.
-crud.help.past=In the past.
-crud.help.after=After %s.
-crud.help.before=Before %s.
-crud.help.range=Between %d and %d
 
-# Default play-paginate messages
-# You can specialize this file for each language.
-# For exemple, for french create a messages.fr file
 
-#play-paginate.name=play-paginate
-
-play-paginate.first=&laquo;&nbsp;First
 play-paginate.prev=Previous
 play-paginate.next=Next
-play-paginate.last=Last&nbsp;&raquo;
 
-play-paginate.summary.display=Displaying rows
-play-paginate.summary.to=to
-play-paginate.summary.from=out of
-play-paginate.summary.entries=entries
+popup.enter.title=Enter to site
+popup.forgot_password=Forgot password?
+popup.enter_the_site=Enter
+popup.email=Email
+popup.enter=Enter
+popup.send_email=Sent password
+popup.password=Password to login
+popup.password_recovering=Recover password
 
-social.populate.link = Post link
+#custom models
+validation.model.user.email.required=Enter email
+validation.model.user.email.invalid=Wrong email
+validation.model.user.email.dublicated=User with such email is aleady registred
+validation.model.user.sex.required=Select sex
+validation.model.user.sex.invalid=Wrong sex
+validation.model.user.birthday.required=Enter your birthday
+validation.model.user.birthday.invalid=Wrong birthday format
+validation.model.user.password.required=Enter password
+validation.model.user.password.invalid=Password may contain only numbers and symbols from latin alphabet
+validation.model.user.password.minLength=Minimal lenght of password - 8 symbols 
+validation.model.user.password.maxLength=Maximal lenght of password - 16 symbols 
+validation.model.user.passwordRepeating.required=Enter password confirmation
+validation.model.user.passwordRepeating.invalid=Passwords don't match
+validation.model.user.name.required=Enter First name
+validation.model.user.name.maxLength=Maximal lenght of First name - 30 letters
+validation.model.user.name.invalid=First name should be entered only in latin or cyrillic letters
+validation.model.user.lastName.required=Enter Last name
+validation.model.user.lastName.maxLength=Maximal lenght of Last name - 30 letters
+validation.model.user.lastName.invalid=Last name should be entered only in latin or cyrillic letters
+validation.model.user.city.required=Enter city
+validation.model.user.city.maxLength=Maximal lenght of City - 30 letters
+validation.model.user.city.invalid=City should be entered only in latin or cyrillic letters
+validation.model.user.expMarketing.maxLength=Maximal lenght of the field - 30 symbols
+validation.model.user.expSale.maxLength=Maximal lenght of the field - 30 symbols
+validation.model.user.expManagement.maxLength=Maximal lenght of the field - 30 symbols
+validation.model.user.expFinance.maxLength=Maximal lenght of the field - 30 symbols
+validation.model.user.expLegal.maxLength=Maximal lenght of the field - 30 symbols
+validation.model.user.expIT.maxLength=Maximal lenght of the field - 30 symbols
+validation.model.user.expOther.maxLength=Maximal lenght of the field - 30 symbols
+validation.model.user.personalCV.maxLength=Maximal lenght of the field - 30 symbols
+validation.model.user.personalCV.required=Mark your goals
+validation.model.user.businessType.required=Choose type of business you are interested in
+validation.model.user.businessSphere.required=Choose sphere of business you are interested in
+validation.model.test.question.answer.required=Choose the answer
+validation.model.test.question.innerQuestion.answer.required=Choose the answer in all fields
 
-# Tell about groups
-models.group.social.title = Connect to commands listed %s
-models.group.social.description = Connect to commands listed %s. Description.
+#custom controllers
+validation.loginController.registrationHasBeenApproved=Wrong confirmation code
+validation.loginController.incorrectLoginOrPassword=Wrong email or password
+validation.loginController.approveRegistration=Confirm registration
+validation.loginController.nonexistentUser=There's no user with such email in our database. Please check the data entered
+
+#messages
+message.userController.requestSent=Request sent
+message.groupController.invitationSent=Invitation sent
+
+name=First name
+lastName=Last name
+sex=Sex
+unimportant=Not important
+businessman="Entrepreneurship"
+idealist="Idealism"
+communicant="Sociability"
+pragmatist="Pragmatism"
+
+#business types
+models.bType.name.On-line=On-line
+models.bType.name.Off-line=Off-line
+models.bType.name.On-line_+_Off-line=Mixed
+
+#business sphere
+models.bSphere.name.Service=Services
+models.bSphere.name.Production=Production
+models.bSphere.name.Trade=Trade
+
+#user levels\
+models.userLevel.userLevel.None=No
+models.userLevel.userLevel.Theoretical_Knowledge=Theoretical Knowledge
+models.userLevel.userLevel.Brief_Experience=Small experience
+models.userLevel.userLevel.Considerable_Experience=Considerable experience
+
+#project phases\
+models.ProjectPhase.name.start=Greenfield
+models.ProjectPhase.name.planning=Planning/brownfield
+models.ProjectPhase.name.developing=Realisation
+
+#first test passed texts
+models.test.number1.result1=%s, your result is - <span class="rating">%s points</span>.<br/> For now it's difficult for you to become an entrepreneur. However, if you want to become one - you need to develop and try. Find like-minded people for joint business development. Start gradually with them from small projects and soon you will be ready for big challenges!<br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to asses type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
+models.test.number1.result2=%s, your result is - <span class="rating">%s points</span>.<br/> You have good entrepreneurial inclinations, which you need to develop. Gather a team of like-minded people, start on small projects and gain some experience and you will get the results soon. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to asses type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
+models.test.number1.result3=Congratulations, %s, your result is - <span class="rating">%s points</span>!<br/> You have very good entrepreneurial inclinations! You need to gather a team of like-minded people as soon as possible and proceed to the creation of successful business. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to asses type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
+models.test.number1.result4=Congratulations, %s, your result is - <span class="rating">%s points</span>!<br/> Huge entrepreneurial potential! You need to gather a team of like-minded people as soon as possible and proceed to the creation of successful business. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to asses type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
+
+
+
+social.populate.link=Post a link
+
+#Tell about groups
+models.group.social.title=Join teams %s
+models.group.social.description=Join teams %s. Description.
 
 #monthes
 monthName.January=January
@@ -685,104 +731,6 @@ monthName.September=September
 monthName.October=October
 monthName.November=November
 monthName.December=December
-
-#first test passed texts
-models.test.number1.result1=%s, your test result is %s points!\
-                            For instance you have limited entrepreneurial propensity. However, if you feel a desire to proceed – try and learn! Gather a team of similar people, jointly try out first on small business projects, gain experience and you will succeed.\
-                            Share your results in social networks - your friends might be interested to pass this test as well. Maybe you will even find your future business partners among them! You will never know unless you try.<br/>\
-                            Now we need to assess your key business skills, in order to gather future team in most effective way. The final test will help you with it.
-models.test.number1.result2=%s, your test result is <span class="rating">%s</span> points.\
-                            Definitely you have some entrepreneurial propensity, which can be quickly develop within practice. Gather a team of similar people, jointly try out first on small business projects, gain experience and you will succeed.\
-                            Share your results in social networks - your friends might be interested to pass this test as well. Maybe you will even find your future business partners among them! You will never know unless you try.<br/>\
-                            Now we need to assess your key business skills, in order to gather future team in most effective way. The final test will help you with it.
-models.test.number1.result3=Congratulations, %s, your test result is <span class="rating">%s</span> points!<br/>\
-                            You have big entrepreneurial propensity! You need to gather a team of like-minded people and start building a successful business.\
-                            Share your results in social networks - your friends might be interested to pass this test as well. Maybe you will even find your future business partners among them! You will never know unless you try.\
-                            Now we need to assess your key business skills, in order to gather future team in most effective way. The final test will help you with it.
-models.test.number1.result4=Congratulations, %s, your test result is <span class="rating">%s</span> points!<br/>\
-                            You have huge entrepreneurial propensity! You need to start gathering your business team as soon as possible and proceed to real business.\
-                            Share your results in social networks - your friends might be interested to pass this test as well. Maybe you will even find your future business partners among them! You will never know unless you try.<br/>\
-                            Now we need to assess your key business skills, in order to gather future team in most effective way. The final test will help you with it.
-
-
-
-name=Name
-lastName=Surname
-sex=Sex (male/female)
-unimportant=Unimportant
-businessman=Enterpreneurship
-idealist=Idealism
-communicant=Communicative skills
-pragmatist=Pragmatism
-
-#business types
-business_types=
-models.bType.name.On-line=On-line
-models.bType.name.Off-line=Off-line
-models.bType.name.On-line_+_Off-line=Combined
-
-#business sphere
-models.bSphere.name.Service=Services
-models.bSphere.name.Production=Production
-models.bSphere.name.Trade=Trade
-
-#user levels\
-models.userLevel.userLevel.None=None
-models.userLevel.userLevel.Theoretical_Knowledge=Theoretical Knowledge
-models.userLevel.userLevel.Brief_Experience=Brief Experience
-models.userLevel.userLevel.Considerable_Experience=Considerable Experience
-
-#project phases\
-models.ProjectPhase.name.start=Idea stage
-models.ProjectPhase.name.planning=Planning
-models.ProjectPhase.name.developing=Development
-
-#messages
-message.userController.requestSent=application has been sent
-message.groupController.invitationSent=invitation has been sent
-
-# Should be corrected by Dmitriy
-validation.model.user.email.required = Enter email
-validation.model.user.email.invalid = Invalid email
-validation.model.user.email.dublicated = user with this email already exists in the system
-validation.model.user.sex.required = Select your gender
-validation.model.user.sex.invalid = wrong sex
-validation.model.user.birthday.required = Enter the date of birth
-validation.model.user.birthday.invalid = wrong date of birth
-validation.model.user.password.required = Enter Password
-validation.model.user.password.invalid = The password can only contain numbers and English characters
-validation.model.user.password.minLength = minimum length of the field - 8 characters
-validation.model.user.password.maxLength = maximum length of the field - 16 characters
-validation.model.user.passwordRepeating.required = Enter the password confirmation
-validation.model.user.passwordRepeating.invalid = Passwords do not match
-validation.model.user.name.required = Enter
-validation.model.user.name.maxLength = maximum length of the field - 30 characters
-validation.model.user.name.invalid = Only characters of the Russian alphabet
-validation.model.user.lastName.required = Enter the last name
-validation.model.user.lastName.maxLength = maximum length of the field - 30 characters
-validation.model.user.lastName.invalid = name can contain only characters of the Russian alphabet
-validation.model.user.city.required = Enter a City
-validation.model.user.city.maxLength = maximum length of the field - 30 characters
-validation.model.user.city.invalid = City may only contain the characters of the Russian alphabet
-validation.model.user.expMarketing.maxLength = maximum length of the field - 30 characters
-validation.model.user.expSale.maxLength = maximum length of the field - 30 characters
-validation.model.user.expManagement.maxLength = maximum length of the field - 30 characters
-validation.model.user.expFinance.maxLength = maximum length of the field - 30 characters
-validation.model.user.expLegal.maxLength = maximum length of the field - 30 characters
-validation.model.user.expIT.maxLength = maximum length of the field - 30 characters
-validation.model.user.expOther.maxLength = maximum length of the field - 30 characters
-validation.model.user.personalCV.maxLength = maximum length of the field - 30 characters
-validation.model.user.personalCV.required = Enter the personal characteristics
-validation.model.user.businessType.required = Please select the type of business
-validation.model.user.businessSphere.required = Choose a business area
-validation.model.test.question.answer.required = Which option
-validation.model.test.question.innerQuestion.answer.required = Which option on all lines
-
-# Custom controllers
-validation.loginController.registrationHasBeenApproved = Invalid confirmation code registration, or you have already confirmed the registration
-validation.loginController.incorrectLoginOrPassword = Invalid email or password
-validation.loginController.approveRegistration = Confirm your registration
-validation.loginController.nonexistentUser = user with such email exists. Check the correctness of data
 
 #monthes of date
 date.monthName.January=January
@@ -1003,4 +951,3 @@ models.country.name.Venezuela=Venezuela
 models.country.name.Vietnam=Vietnam
 models.country.name.Yemen=Yemen
 models.country.name.Zambia=Zambia
-
