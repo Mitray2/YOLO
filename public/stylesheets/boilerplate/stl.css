@@ -837,6 +837,19 @@ a, input, input:hover, input:active, input:focus, textarea {
   border-radius: 4px;
   position:relative;
 }
+.user-block .add-group-inactive {
+    text-shadow: 0 -1px 0 #a4a4a4;
+    border-bottom: 1px solid #d9d9d9;
+    background:#ffd13d;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d4d4d4), color-stop(100%, #fac003));
+    background: -webkit-linear-gradient(#d4d4d4, #b7b7b7);
+    background: -moz-linear-gradient(#d4d4d4, #b7b7b7);
+    background: -o-linear-gradient(#d4d4d4, #b7b7b7);
+    background: linear-gradient(#d4d4d4, #b7b7b7);
+    -webkit-box-shadow: #a2a2a2 0 2px 0;
+    -moz-box-shadow: #a2a2a2 0 2px 0;
+    box-shadow: #a2a2a2 0 2px 0;
+}
 .user-block .add-group img{
 	position:absolute;
 	left:18px;
