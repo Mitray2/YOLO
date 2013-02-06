@@ -8,11 +8,13 @@ import utils.SecurityHelper;
 
 public class Mails extends Mailer {
 
+  private static final String EMAIL_FROM = "StartNewTeam <noreply@startnewteam.com>";
+
 
 	public static void firstTestPassed(User user, String base) {
 		setSubject(Messages.get("mail.subject.type1"));
 		addRecipient(user.email);
-		setFrom("noreply@startnewteam.com");
+		setFrom(EMAIL_FROM);
 		String password = PasswordGenerator.generate();
 		String hash = user.mailTicket = user.passwordHash = SecurityHelper.createPasswordHash(password);
 		user.save();
@@ -22,7 +24,7 @@ public class Mails extends Mailer {
 	public static void secondTestPassed(User user, String base) {
 		setSubject(Messages.get("mail.subject.type2"));
 		addRecipient(user.email);
-		setFrom("noreply@startnewteam.com");
+		setFrom(EMAIL_FROM);
 		String password = PasswordGenerator.generate();
 		String hash = user.mailTicket = user.passwordHash = SecurityHelper.createPasswordHash(password);
 		user.save();
@@ -32,7 +34,7 @@ public class Mails extends Mailer {
 	public static void blankFormPassed(User user, String base) {
 		setSubject(Messages.get("mail.subject.type3"));
 		addRecipient(user.email);
-		setFrom("noreply@startnewteam.com");
+		setFrom(EMAIL_FROM);
 		String hash = user.mailTicket = SecurityHelper.createPasswordHash(user.email);
 		user.save();
 		send(user, hash, base);
@@ -41,14 +43,14 @@ public class Mails extends Mailer {
 	public static void groupRequest(User user, String base, String name, String text) {
 		setSubject(Messages.get("mail.subject.type4"));
 		addRecipient(user.email);
-		setFrom("noreply@startnewteam.com");
+		setFrom(EMAIL_FROM);
 		send(user, name, base, text);
 	}
 
 	public static void memberRequest(User user, String base, String name, String text) {
 		setSubject(Messages.get("mail.subject.type5"));
 		addRecipient(user.email);
-		setFrom("noreply@startnewteam.com");
+		setFrom(EMAIL_FROM);
 		send(user, base, name, text);
 	}
 
@@ -64,7 +66,7 @@ public class Mails extends Mailer {
 	public static void lostPassword(User user, String base) {
 		setSubject(Messages.get("mail.subject.type6") + " " + base);
 		addRecipient(user.email);
-		setFrom("noreply@startnewteam.com");
+		setFrom(EMAIL_FROM);
 		String newpassword = PasswordGenerator.generate();
 		user.passwordHash = SecurityHelper.createPasswordHash(newpassword);
 		user.save();
