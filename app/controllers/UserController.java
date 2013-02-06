@@ -294,7 +294,7 @@ public class UserController extends BasicController  implements ApplicationConst
 			group.save();
 			SessionHelper.setCurrentUser(session, userCurrent);
 			User userAdmin = (User) User.find("role=? and command.id=?", 3, group.id).fetch().get(0);
-			Mails.memberRequest(userAdmin, request.getBase(), userCurrent.name + " " + userCurrent.lastName, text);
+			Mails.memberRequest(userAdmin, request.getBase(), userCurrent, text);
 			SessionHelper.setUserMessage(session, new SessionUserMessage(MESSAGE_USER_CONTROLLER_REQUEST_SENT));
 		}
 

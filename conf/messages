@@ -211,7 +211,7 @@ email.blankfformpassed=In order to finish registration on <a href="%s">StartNewT
                         <a href="%s">StartNewTeam</a> crew
 email.groupRequest=Hello, %s!\
                    <br>\
-                   You have been invited to join the team %s!\
+                   You have been invited to join the team <a href='%s'>%s</a>!\
                    <br>\
                    <br>\
                    %s\
@@ -221,8 +221,8 @@ email.groupRequest=Hello, %s!\
                   <a href="%s">StartNewTeam</a> crew
 email.memberRequest=Hello, %s!\
                     <br>\
-                     Your project has been noticed!<br>
-					 %s wants to join you team.\
+                     Your project has been noticed!<br> \
+					 <a href='%s'>%s</a> wants to join you team.\
                     <br>\
                     <br>\
                     %s\

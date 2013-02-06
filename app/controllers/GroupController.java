@@ -317,7 +317,7 @@ public class GroupController extends BasicController implements ApplicationConst
 			user.commandsForAprove.add(group);
 			user.save();
 		}
-		Mails.groupRequest(user, request.getBase(), group.name, text);
+		Mails.groupRequest(user, request.getBase(), group, text);
 		SessionHelper.setUserMessage(session, new SessionUserMessage(MESSAGE_GROUP_CONTROLLER_INVITATION_SENT));
 		UserController.index(user.id);
 	}

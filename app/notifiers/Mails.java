@@ -1,5 +1,6 @@
 package notifiers;
 
+import models.Command;
 import models.User;
 import play.i18n.Messages;
 import play.mvc.Mailer;
@@ -40,18 +41,18 @@ public class Mails extends Mailer {
 		send(user, hash, base);
 	}
 
-	public static void groupRequest(User user, String base, String name, String text) {
+	public static void groupRequest(User user, String base, Command group, String text) {
 		setSubject(Messages.get("mail.subject.type4"));
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
-		send(user, name, base, text);
+		send(user, group, base, text);
 	}
 
-	public static void memberRequest(User user, String base, String name, String text) {
+	public static void memberRequest(User user, String base, User joinUser, String text) {
 		setSubject(Messages.get("mail.subject.type5"));
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
-		send(user, base, name, text);
+		send(user, base, joinUser, text);
 	}
 
 	// public static void feedback(String email, String message) {
