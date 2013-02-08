@@ -28,7 +28,8 @@ $(document).ready(function() {
 	boolean groupAdmin = utils.SessionHelper.getCurrentUser(session).role == models.User.ROLE_GROUP_ADMIN;
 	boolean groupMember = !groupAdmin && (utils.SessionHelper.getCurrentUser(session).command != null);
 	boolean notInGroup = utils.SessionHelper.getCurrentUser(session).command == null;
-	boolean wasInviteToGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null;
+    models.Command commandToInvite = utils.SessionHelper.getCurrentUser(session)?.commandToInvite;
+	boolean wasInviteToGroup = commandToInvite != null;
 	int countCommands = (models.User.findById(utils.SessionHelper.getCurrentUser(session).id).commandsForAprove == null)? 0 : models.User.findById(utils.SessionHelper.getCurrentUser(session).id).commandsForAprove.size();
 	int countUsers = ((models.User.findById(utils.SessionHelper.getCurrentUser(session).id).command?.usersForAprove == null) || (groupMember)) ? 0 : models.User.findById(utils.SessionHelper.getCurrentUser(session).id).command?.usersForAprove.size();
 	boolean haveGroupOrInviteJoin = groupMember || wasInviteToGroup;
@@ -110,7 +111,7 @@ $(document).ready(function() {
           		<div class="user-group">
 					<div class="user-group-cont">
 						<p>
-							&{'page.profile.warnnig5'}
+							&{'page.profile.warnnig5', "/groupcontroller/index?id=" + commandToInvite.id}
 						</p>
 						<a href="" onclick="$('.createGroupD').show(); return false;" class="add-group"><img
 							src="@{'public/images/boilerplate/ico-plus.gif'}" alt="">&{'page.profile.create_own_command'}</a>

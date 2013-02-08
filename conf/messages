@@ -406,7 +406,7 @@ page.profile.create=Create
 page.profile.warning4=You don't have a team now.<br>\
 						You can <a href="%s">find</a> appropriate,<br>\
 						or create one.
-page.profile.warnnig5=You have send a request to join a team. Once you create your own team this request will be automatically canceled.
+page.profile.warnnig5=You have send a request to join a <a href="%s">team</a>. Once you create your own team this request will be automatically canceled.
 page.profile.warning6=Are you sure you want to cancel a request to join the team and want to create your own team?
 page.profile.tell_friends=Invite friends
 page.profile.tell_friends.description=More people - more opportunities<br>\
