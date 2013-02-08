@@ -1,38 +1,23 @@
 package controllers;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Query;
-
 import modelDTO.CommandDTO;
-import models.BSphere;
-import models.BType;
-import models.Command;
-import models.Country;
-import models.ProjectPhase;
-import models.Topic;
-import models.TopicMessage;
-import models.User;
-import models.comparators.TopicComparator;
+import models.*;
 import notifiers.Mails;
-import play.db.DB;
 import play.db.jpa.JPA;
 import play.modules.paginate.ModelPaginator;
-import play.modules.paginate.ValuePaginator;
 import play.mvc.Before;
-import play.mvc.Controller;
 import utils.ApplicationConstants;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
 
+import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class GroupController extends BasicController implements ApplicationConstants {
+
+    private static final Integer GROUP_TOPICS_PAGE_SIZE = 10;
 
 	@Before
 	public static void checkSecutiry() {
@@ -365,7 +350,8 @@ public class GroupController extends BasicController implements ApplicationConst
 		Command group = Command.findById(groupId);
 		Topic topic = Topic.findById(topicId);
 		ModelPaginator<TopicMessage> topicMessages = new ModelPaginator<TopicMessage>(TopicMessage.class, "topic.id=?", topic.id).orderBy("createDate");
-		topicMessages.setPageSize(10);
+		topicMessages.setPageSize(GROUP_TOPICS_PAGE_SIZE);
+        topicMessages.setPageNumber(topicMessages.getPageCount());
 		Integer topicMessagesCount = topicMessages.size();
 		render(topic, group, topicMessages, topicMessagesCount);
 	}
@@ -452,7 +438,7 @@ public class GroupController extends BasicController implements ApplicationConst
 			//find top 10 messages of main topic to show on wall
 			Query ptmQueryMainTopicMessages = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=? order by t.createDate desc");
 			ptmQueryMainTopicMessages.setParameter(1, mainTopic.id);
-			ptmQueryMainTopicMessages.setMaxResults(10);
+			ptmQueryMainTopicMessages.setMaxResults(GROUP_TOPICS_PAGE_SIZE);
 			List<TopicMessage> msgs = ptmQueryMainTopicMessages.getResultList();
 			mainTopic.msg = msgs;
 			
@@ -487,8 +473,8 @@ public class GroupController extends BasicController implements ApplicationConst
 	public static void more(Integer page, Long mainTopicId, Long groupId, String formAction, String removeAction) {
 		Query ptmQuery = JPA.em().createQuery("select t from TopicMessage t where t.topic.id=? order by t.createDate desc");
 		ptmQuery.setParameter(1, mainTopicId);
-		ptmQuery.setFirstResult(page * 10);
-		ptmQuery.setMaxResults(10);
+		ptmQuery.setFirstResult(page * GROUP_TOPICS_PAGE_SIZE);
+		ptmQuery.setMaxResults(GROUP_TOPICS_PAGE_SIZE);
 		List<TopicMessage> topicMessages = ptmQuery.getResultList();
 		Long userId = SessionHelper.getCurrentUser(session).getId();
 		Boolean isAdmin = SessionHelper.getCurrentUser(session).role.equals(User.ROLE_ADMIN);
