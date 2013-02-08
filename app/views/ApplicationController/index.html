@@ -35,9 +35,48 @@ $(document).ready(function() {
         $('#regName').focus();
     #{/if}
 });
-</script> 
+</script>
+
+<!-- beta stub -->
+<style>
+    .betaBlocker {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-color: #FFF;
+        width: 0px;
+        height: 0px;
+        z-index: 10;
+    }
+</style>
+<script>
+    function block_screen() {
+        $('#screenBlock').show();
+        $('#screenBlock').css( { opacity: 0.9, width: $(document).width(), height: $(document).height() + 30 } );
+        $('#screenBlock form').css( { opacity: 1 });
+    }
+    $(document).ready(function() {
+        #{if (request.cookies.get("validBeta")?.value?.equals("true") || validBeta)}
+
+        #{/if}
+        #{else}
+            block_screen();
+        #{/else}
+    });
+</script>
+
 </head>
 <body>
+    <div id="screenBlock" class="betaBlocker" style="display: none; text-align: center">
+        <div style="padding-top: 200px">
+            <form action="/" method="post" class="entry" style="text-align: center; border: 1px solid #d4d4d4; background-color: #fbfbfb; width: 400px; margin: 0 auto;">
+                <h2>Please, enter beta testing code</h2>
+                <h2>Пожалуйста, введите код для бета тестирования</h2>
+                <input type="text" name="betaCode" value="">
+                <a href="#" onclick="$('#screenBlock form').submit(); return false;" class="go">ENTER</a>
+            </form>
+        </div>
+    </div>
 	<div class="wrapper">
 		<header class="hdr-page">
 			<div class="inner">
