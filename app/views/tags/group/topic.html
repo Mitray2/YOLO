@@ -11,7 +11,7 @@
         <a href="@{GroupController.removeTopic(_topic.id, _group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_disc'}</span></span></a>
         #{/if}
     </h4>
-	<pre>${_topic.description}</pre>
+	<pre>#{common.reducedText text:_topic.description /}</pre>
 	<div class="search-result-list-date"><strong>&{'page.team.discuss.total_msgs',_topic.msg?.size()}</strong></div>
 	    <br />
 	    #{if _topic.msg?.size() > 0 }

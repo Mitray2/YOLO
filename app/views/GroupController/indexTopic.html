@@ -59,7 +59,7 @@ $(document).ready(function(){
 					<div class="theme_description_l">
 						#{avatar.avatar user:models.User.findById(topic.createdUserId), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}<br />
 					</div>
-                    <div class="theme_description_r"><pre>${topic.description}</pre></div>
+                    <div class="theme_description_r"><pre>#{common.reducedText text:topic.description /}</pre></div>
 				</div>
                 
                 
