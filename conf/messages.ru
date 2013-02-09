@@ -167,14 +167,17 @@ page.test2.passed.final_step=Финальная регистрация
 
 #blank form
 page.blankform.head=%s, вы успешно прошли тестирование. Осталось заполнить анкету
+page.blankform.name=Имя
 page.blankform.surname=Фамилия
 page.blankform.country=Страна
 page.blankform.city=Город
 page.blankform.password=Пароль
 page.blankform.repeat_password=Повторите пароль
+page.blankform.rules=С правилами ознакомлен и согласен
 page.blankform.professional_skills=Базовая характеристика
 page.blankform.interesting_btype=Интересующий тип бизнеса
 page.blankform.interesting_bsphere=Интересующая сфера бизнеса
+page.blankform.english=Знание англ. языка
 page.blankform.personal_data=Личные данные
 page.blankform.register=Зарегистрироваться
 page.blankform.personal_characteristics=Цели регистрации на сайте

@@ -165,14 +165,17 @@ page.test2.passed.final_step=Final registration
 
 #blank form
 page.blankform.head=%s, you have successfully completed tests. Please fill in the application form in order to get an access to your potential business partners
+page.blankform.name=Name
 page.blankform.surname=Last name
 page.blankform.country=Country
 page.blankform.city=City
 page.blankform.password=Password
 page.blankform.repeat_password=Please repeat password
+page.blankform.rules=Accepted with rules
 page.blankform.professional_skills=Base characteristic
 page.blankform.interesting_btype=Type of business you are interested in
 page.blankform.interesting_bsphere=Business sphere you are interested in
+page.blankform.english=Knowing of English
 page.blankform.personal_data=Personal data
 page.blankform.register=Register
 page.blankform.personal_characteristics=Goals of the registration
