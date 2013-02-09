@@ -3,8 +3,6 @@ package controllers;
 import models.Command;
 import models.User;
 import play.cache.EhCacheImpl;
-import play.i18n.Lang;
-import play.mvc.Controller;
 import utils.RssHelper;
 import utils.SessionHelper;
 
@@ -14,6 +12,11 @@ import static utils.ApplicationConstants.CACHE_USERS_COUNT;
 public class ApplicationController extends BasicController {
 
     public static void index() {
+      boolean validBeta = false;
+        if ("12345678".equals(request.params.get("betaCode"))) {
+          response.setCookie("validBeta", "true", "100d");
+          validBeta = true;
+        }
         User user = SessionHelper.getCurrentUser(session);
         if (user != null) {
             UserController.index(user.id);
@@ -29,14 +32,13 @@ public class ApplicationController extends BasicController {
                 commandsCount = Command.count();
                 EhCacheImpl.getInstance().add(CACHE_COMMANDS_COUNT, commandsCount, 60 * 60);
             }
-            render(user, usersCount, commandsCount);
+            render(user, usersCount, commandsCount, validBeta);
         }
-        render();
+        render(validBeta);
     }
 
     public static void rss() {
-        renderText(RssHelper.getInstance(request.getBase()).getRss());
+      renderText(RssHelper.getInstance(request.getBase()).getRss());
     }
-    
 
 }
