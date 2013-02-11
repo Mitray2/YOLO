@@ -43,7 +43,7 @@ function Search() {
 	};
 	this.init = function init() {
 		_this = this;
-		
+
 		//init search panel
 		$(".private_item").find("select").each(function(index, item){
 			$(item).change(function() {
@@ -178,7 +178,10 @@ function Search() {
 		_this = this;
 		$.each(search.searchModel, function(index, item) {
 			if (index == "asc" || index == "orderBy") return;
-			search.searchModel[index] = $(".private_item").find("#"+index+"").val();
+			search.searchModel[index] = $("#"+index+"").val();
+            if ($("#"+index)[0] != undefined && $("#"+index)[0].placeholder == search.searchModel[index]) {
+                search.searchModel[index] = "";
+            }
 		});
 		//console.log(search.searchModel);
 		$("#searchLoader").show();
