@@ -3,6 +3,7 @@ package controllers;
 import java.io.File;
 import java.io.IOException;
 
+import com.google.gson.Gson;
 import org.apache.commons.io.FileUtils;
 
 import modelDTO.AjaxResponse;
@@ -28,24 +29,24 @@ public class AvatarController extends BasicController {
 		test += "</form>";
 		renderHtml(test);
 	}
-	
+
 	public static void updateAvatar(Blob newAvatar) {
 		AjaxResponse response = new AjaxResponse();
 		checkUserLogged();
 		if (newAvatar == null) {
 			response.resultCode = 1;
 			response.errorDetails = "no.image";
-			renderJSON(response);
+      renderText(new Gson().toJson(response));
 		}
 		if (newAvatar.length() > 1024 * 1024 * 2) {
 			response.resultCode = 1;
 			response.errorDetails = "exceeded.image.size";
-			renderJSON(response);
+      renderText(new Gson().toJson(response));
 		}
 		if (!newAvatar.type().startsWith("image")) {
 			response.resultCode = 1;
 			response.errorDetails = "invalid.file.format";
-			renderJSON(response);
+      renderText(new Gson().toJson(response));
 		}
 		File avatarFolder = createAvatarFolder();
 		try {
@@ -61,9 +62,9 @@ public class AvatarController extends BasicController {
 			Logger.error(e, "can't create user avatar");
 			response.resultCode = 1;
 			response.errorDetails = "error.avatar.creation";
-			renderJSON(response);
+      renderText(new Gson().toJson(response));
 		}
-		renderJSON(response);
+    renderText(new Gson().toJson(response));
 	}
 
 	private static void createAvatar(File avatarFolder, File originalImageTemp, Integer size)
