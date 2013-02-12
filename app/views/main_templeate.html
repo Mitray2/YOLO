@@ -134,7 +134,7 @@ $(document).ready(function() {
 					</div>
 					<div class="user-group-cont">
 						<a
-						href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session)?.command?.id)}">${utils.SessionHelper.getCurrentUser(session)?.command.name}</a>
+						href="@{GroupController.index(utils.SessionHelper.getCurrentUser(session)?.command?.id)}">${utils.SessionHelper.getCurrentUser(session)?.command?.name}</a>
 					</div>
 				</div>
           	#{/if}

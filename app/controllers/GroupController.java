@@ -351,7 +351,8 @@ public class GroupController extends BasicController implements ApplicationConst
 		Topic topic = Topic.findById(topicId);
 		ModelPaginator<TopicMessage> topicMessages = new ModelPaginator<TopicMessage>(TopicMessage.class, "topic.id=?", topic.id).orderBy("createDate");
 		topicMessages.setPageSize(GROUP_TOPICS_PAGE_SIZE);
-        topicMessages.setPageNumber(topicMessages.getPageCount());
+        Integer currentPage = topicMessages.getPageCount();
+        topicMessages.setPageNumber(currentPage == 0 ? 1 : currentPage);
 		Integer topicMessagesCount = topicMessages.size();
 		render(topic, group, topicMessages, topicMessagesCount);
 	}
