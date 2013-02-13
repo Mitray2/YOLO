@@ -328,7 +328,7 @@ public class GroupController extends BasicController implements ApplicationConst
 	}
 
 	public static void saveTopic(Topic topic) {
-		User user = SessionHelper.getCurrentUser(session);
+        User user = SessionHelper.getCurrentUser(session);
 		Long groupId = user.command.id;
 		Command group = Command.findById(groupId);
 		topic.createdUserId = user.id;
