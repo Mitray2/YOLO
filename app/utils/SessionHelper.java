@@ -47,6 +47,14 @@ public class SessionHelper {
 		sessionStore.get(session.get(SESSION_ID)).user = user;
 	}
 
+  public static void updateUser(User user) {
+    for (Map.Entry<String, SessionData> entry : sessionStore.entrySet()) {
+      if (entry.getValue().user != null && user.id.equals(entry.getValue().user.id)) {
+        entry.getValue().user = user;
+      }
+    }
+  }
+
 	private static void checkInitialised(Session session) {
 		if (session.get(SESSION_ID) == null) {
 			String sessionId = SessionHelper.generateSessionId();

@@ -555,13 +555,14 @@ public class GroupController extends BasicController implements ApplicationConst
 	public static void makeAdmin(Long userId) {
 		User currentUser = User.findById(SessionHelper.getCurrentUser(session).id);
 		User user = User.findById(userId);
-    if (user.command == null || currentUser.command.id.equals(user.command.id)) {
+    if (user.command == null || !currentUser.command.id.equals(user.command.id)) {
       groupUsers(currentUser.command.id);
     }
     currentUser.role = User.ROLE_USER;
     currentUser.save();
 		user.role = User.ROLE_GROUP_ADMIN;
 		user.save();
+    SessionHelper.updateUser(user);
 		SessionHelper.setCurrentUser(session, currentUser);
 		index(user.command.id);
 	}
