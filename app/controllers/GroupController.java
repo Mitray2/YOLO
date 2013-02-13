@@ -38,6 +38,16 @@ public class GroupController extends BasicController implements ApplicationConst
 		}
 	}
 
+  private static boolean memberOfGroup(Long groupId) {
+    User user = User.findById(SessionHelper.getCurrentUser(session).id);
+    if (groupId.equals(user.command != null ? user.command.id : null)) {
+      return true;
+    } else {
+      SessionHelper.setCurrentUser(session, user);
+      return false;
+    }
+  }
+
 	public static void index(Long id) {
 		Command group = Command.findById(id);
 		User sessionUser = SessionHelper.getCurrentUser(session);
@@ -70,6 +80,9 @@ public class GroupController extends BasicController implements ApplicationConst
 	}
 
 	public static void editGroup(Long id) {
+    if (!memberOfGroup(id)) {
+      index(id);
+    }
 		Command group = Command.findById(id);
 		User sessionUser = SessionHelper.getCurrentUser(session);
 //		LastUserData lUserData = new LastUserData();
@@ -111,6 +124,9 @@ public class GroupController extends BasicController implements ApplicationConst
 	}
 
 	public static void saveGroup(CommandDTO group) {
+    if (!memberOfGroup(group.id)) {
+      index(group.id);
+    }
 		User currentUser = SessionHelper.getCurrentUser(session);
 		User user = User.findById(currentUser.id);
 
@@ -187,6 +203,9 @@ public class GroupController extends BasicController implements ApplicationConst
 	}
 
 	public static void updateGroup(CommandDTO group) {
+    if (!memberOfGroup(group.id)) {
+      index(group.id);
+    }
 		Command currentGroup = Command.findById(group.id);
 		currentGroup.city = group.city;
 		group.country = Country.findById(group.country.id);
@@ -314,12 +333,22 @@ public class GroupController extends BasicController implements ApplicationConst
 
 	public static void editTopic(Long topicId) {
 		Topic topic = Topic.findById(topicId);
+    if (!topic.publicTopic) {
+      if (!memberOfGroup(topic.groupId)) {
+        index(topic.groupId);
+      }
+    }
 		Command group = Command.findById(topic.groupId);
 		render(topic, group);
 	}
 
 	public static void saveEditTopic(Topic topic) {
 		Topic currentTopic = Topic.findById(topic.id);
+    if (!currentTopic.publicTopic) {
+      if (!memberOfGroup(currentTopic.groupId)) {
+        index(currentTopic.groupId);
+      }
+    }
 		currentTopic.description = topic.description;
 		currentTopic.name = topic.name;
 		currentTopic.lastUpdateDate = new Date();
@@ -328,8 +357,13 @@ public class GroupController extends BasicController implements ApplicationConst
 	}
 
 	public static void saveTopic(Topic topic) {
-        User user = SessionHelper.getCurrentUser(session);
+    User user = SessionHelper.getCurrentUser(session);
 		Long groupId = user.command.id;
+    if (!topic.publicTopic) {
+      if (!memberOfGroup(groupId)) {
+        index(groupId);
+      }
+    }
 		Command group = Command.findById(groupId);
 		topic.createdUserId = user.id;
 		topic.createdDateTime = new Date();
@@ -349,6 +383,11 @@ public class GroupController extends BasicController implements ApplicationConst
 	public static void indexTopic(Long topicId, Long groupId) {
 		Command group = Command.findById(groupId);
 		Topic topic = Topic.findById(topicId);
+    if (!topic.publicTopic) {
+      if (!memberOfGroup(groupId)) {
+        index(groupId);
+      }
+    }
 		ModelPaginator<TopicMessage> topicMessages = new ModelPaginator<TopicMessage>(TopicMessage.class, "topic.id=?", topic.id).orderBy("createDate");
 		topicMessages.setPageSize(GROUP_TOPICS_PAGE_SIZE);
         Integer currentPage = topicMessages.getPageCount();
@@ -358,6 +397,9 @@ public class GroupController extends BasicController implements ApplicationConst
 	}
 
 	public static void addMsgToMainTopic(TopicMessage msg, Long topicId, Long groupId) {
+    if (!memberOfGroup(groupId)) {
+      index(groupId);
+    }
 		addMainMsg(msg, topicId, groupId);
 		groupTopics(groupId);
 	}
@@ -369,6 +411,11 @@ public class GroupController extends BasicController implements ApplicationConst
 	
 	protected static void addMainMsg(TopicMessage msg, Long topicId, Long groupId){
 		Topic topic = Topic.findById(topicId);
+    if (!topic.publicTopic) {
+      if (!memberOfGroup(groupId)) {
+        index(groupId);
+      }
+    }
 		User user = User.findById(SessionHelper.getCurrentUser(session).id);
 		msg.from = user;
 		msg.createDate = new Date();
@@ -384,6 +431,11 @@ public class GroupController extends BasicController implements ApplicationConst
 	public static void addMsgToTopic(TopicMessage msg, Long topicId, Long groupId) {
 		Command group = Command.findById(groupId);
 		Topic topic = Topic.findById(topicId);
+    if (!topic.publicTopic) {
+      if (!memberOfGroup(groupId)) {
+        index(groupId);
+      }
+    }
 		User user = User.findById(SessionHelper.getCurrentUser(session).id);
 		msg.from = user;
 		msg.createDate = new Date();
@@ -402,6 +454,9 @@ public class GroupController extends BasicController implements ApplicationConst
 	}
 
 	public static void groupTopics(Long groupId) {
+    if (!memberOfGroup(groupId)) {
+      index(groupId);
+    }
 		topics(groupId, false);
 	}
 	
@@ -411,7 +466,11 @@ public class GroupController extends BasicController implements ApplicationConst
 
 	private static void topics(Long groupId, Boolean isPublic) {
 		Command group = Command.findById(groupId);
-		
+    if (!isPublic) {
+      if (!memberOfGroup(groupId)) {
+        index(groupId);
+      }
+    }
 		//find main topic
 		Query ptQueryMainTopic = JPA.em().createQuery("select t from Topic t where t.groupId=? and t.publicTopic=? and t.mainTopic=? order by t.lastUpdateDate desc");
 		ptQueryMainTopic.setParameter(1, groupId);
@@ -453,6 +512,11 @@ public class GroupController extends BasicController implements ApplicationConst
 	}
 	
 	public static void moreTopics(Long groupId, Boolean isPublic) {
+    if (!isPublic) {
+      if (!memberOfGroup(groupId)) {
+        index(groupId);
+      }
+    }
 		Command group = Command.findById(groupId);
 		
 		if (!SessionHelper.getCurrentUser(session).command.id.equals(group.id)) {
@@ -508,6 +572,9 @@ public class GroupController extends BasicController implements ApplicationConst
 	}
 
 	public static void editMainMsg(TopicMessage msg, Long topicId, Long groupId) {
+    if (!memberOfGroup(groupId)) {
+      index(groupId);
+    }
 		modifyMainMsg(msg, topicId, groupId);
 		groupTopics(groupId);
 	}
@@ -636,6 +703,11 @@ public class GroupController extends BasicController implements ApplicationConst
 	public static void removeTopic(Long topicId, Long groupId) {
 		Topic topic = Topic.findById(topicId);
 		Boolean isPublic = topic.publicTopic;
+    if (!isPublic) {
+      if (!memberOfGroup(groupId)) {
+        index(groupId);
+      }
+    }
 		Command command = Command.findById(groupId);
 		command.topics.remove(topic);
 		command.save();
