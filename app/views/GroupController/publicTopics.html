@@ -12,7 +12,7 @@
 
 <div class="tabs clearFix">
 	<a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a> <a href="@{GroupController.publicTopics(group.id)}"  class="act">&{'page.team.public_discussion'}</a> 
-	#{if (groupMember) || (isAdmin)}
+	#{if groupMember || adminGroup}
 		<a href="@{GroupController.groupTopics(group.id)}">&{'page.team.discussion'}</a> 
 	#{/if}
 	<a href="@{GroupController.groupUsers(group.id)}" >&{'page.team.members'}</a>
@@ -33,7 +33,7 @@ function editDisabled(element){
 
 
 <div class="search-result-name">
-#{if (groupMember) || (isAdmin)}
+#{if (groupMember) || adminGroup}
     <a href="@{GroupController.createTopic(group.id)}" class="new-themes-btn"><img src="@{'public/images/boilerplate/ico-new-theme.gif'}" alt="">&{'page.team.discuss.create_team'}</a>
 #{/if}
     <div class="ttl-search-result2-color">&{'page.team.discuss.count_topics', topicsCount}</div>
@@ -43,7 +43,7 @@ function editDisabled(element){
 <ul class="search-result-list">
     #{list items:topics, as:'topic'}
         #{if !topic.mainTopic}
-            #{group.topic topic:topic, group:group, userId:userId, isAdmin:isAdmin/}
+            #{group.topic topic:topic, group:group, userId:userId, isAdmin:adminGroup/}
         #{/if}
     #{/list}
 </ul>
@@ -61,16 +61,16 @@ function editDisabled(element){
                 #{avatar.avatar user:msg.from, cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
                 <div class="group-theme-dialog-name">
                     <a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${utils.DateUtils.getFormatedStringDate(msg.createDate, true)}
-                    #{if (userId == msg.from.id)}
+                    #{if userId == msg.from.id || adminGroup}
                         <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
                         <a href="@{GroupController.removePublicMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
                     #{/if}
-                    #{if (isAdmin)}
+                    #{if adminGroup}
                         <a href="@{GroupController.removePublicMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
                     #{/if}
                 </div>
                 <pre class="msgRead">${msg.text}</pre>
-                 <div style="display: none" class="msg">
+                <div style="display: none" class="msg">
                     <div class="group-theme-dialog-form">
                         <textarea name="msg.text" style="height: 20px" class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);">${msg.text} </textarea>
                         <button type="submit" class="group-theme-btn">&{'page.team.discuss.save'}</button>
