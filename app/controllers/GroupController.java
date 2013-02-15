@@ -124,9 +124,9 @@ public class GroupController extends BasicController implements ApplicationConst
     }
 
     public static void saveGroup(CommandDTO group) {
-        if (!memberOfGroup(group.id)) {
-            index(group.id);
-        }
+//        if (!memberOfGroup(group.id)) {
+//            index(group.id);
+//        }
         User currentUser = SessionHelper.getCurrentUser(session);
         User user = User.findById(currentUser.id);
 
