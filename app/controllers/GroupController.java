@@ -6,6 +6,7 @@ import notifiers.Mails;
 import play.db.jpa.JPA;
 import play.modules.paginate.ModelPaginator;
 import play.mvc.Before;
+import play.mvc.Catch;
 import utils.ApplicationConstants;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
@@ -18,6 +19,16 @@ import java.util.List;
 public class GroupController extends BasicController implements ApplicationConstants {
 
     private static final Integer GROUP_TOPICS_PAGE_SIZE = 10;
+
+  @Catch(value = Throwable.class, priority = 1)
+  public static void onError(Throwable throwable) {
+    User user = User.findById(SessionHelper.getCurrentUser(session).id);
+    if (user.command != null) {
+      index(user.command.id);
+    } else {
+      UserController.index(user.id);
+    }
+  }
 
 	@Before
 	public static void checkSecutiry() {
@@ -118,6 +129,7 @@ public class GroupController extends BasicController implements ApplicationConst
 		User user = User.findById(currentUser.id);
 		user.commandToInvite = null;
 		user.command = null;
+    user.role = User.ROLE_USER;
 		user.save();
 		SessionHelper.setCurrentUser(session, user);
 		render();
@@ -129,7 +141,9 @@ public class GroupController extends BasicController implements ApplicationConst
     }
 		User currentUser = SessionHelper.getCurrentUser(session);
 		User user = User.findById(currentUser.id);
-
+    if (group.id == null && user.role == User.ROLE_GROUP_ADMIN) {
+      UserController.index(user.id);
+    }
 		Command command = new Command();
 		command.global = group.global;
 		command.name = group.name;
@@ -359,10 +373,8 @@ public class GroupController extends BasicController implements ApplicationConst
 	public static void saveTopic(Topic topic) {
     User user = SessionHelper.getCurrentUser(session);
 		Long groupId = user.command.id;
-    if (!topic.publicTopic) {
-      if (!memberOfGroup(groupId)) {
-        index(groupId);
-      }
+    if (!memberOfGroup(groupId)) {
+      index(groupId);
     }
 		Command group = Command.findById(groupId);
 		topic.createdUserId = user.id;
@@ -606,8 +618,14 @@ public class GroupController extends BasicController implements ApplicationConst
 
 	public static void removeGroup(Long groupId) {
 		Command group = Command.findById(groupId);
+    if (group.users.size() > 1) {
+      index(groupId);
+    }
 		User user = group.users.get(0);
 		User userState = User.findById(user.id);
+    if (group.usersForAprove.size() != 0) {
+      index(groupId);
+    }
 		userState.command = null;
 		userState.role = User.ROLE_USER;
 		userState.save();
