@@ -127,6 +127,10 @@ public class GroupController extends BasicController implements ApplicationConst
   public static void createGroup() {
     User currentUser = SessionHelper.getCurrentUser(session);
     User user = User.findById(currentUser.id);
+    if (user.role == User.ROLE_GROUP_ADMIN) {
+      SessionHelper.setCurrentUser(session, user);
+      UserController.index(user.id);
+    }
     user.commandToInvite = null;
     user.command = null;
     user.role = User.ROLE_USER;
@@ -142,6 +146,7 @@ public class GroupController extends BasicController implements ApplicationConst
     User currentUser = SessionHelper.getCurrentUser(session);
     User user = User.findById(currentUser.id);
     if (group.id == null && user.role == User.ROLE_GROUP_ADMIN) {
+      SessionHelper.setCurrentUser(session, user);
       UserController.index(user.id);
     }
     Command command = new Command();
