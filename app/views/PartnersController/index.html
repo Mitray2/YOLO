@@ -1,14 +1,14 @@
 #{if utils.SessionHelper.getCurrentUser(session) != null}
-	#{extends 'main_templeate.html' /}
+    #{extends 'main_templeate.html' /}
 #{/if}
 #{else}
-	#{extends 'main_info.html' /}
+    #{extends 'main_info.html' /}
 #{/else}
 
- #{set title:'StartNewTeam' /}
+#{set title:'StartNewTeam' /}
 <h1 class="about-h1">&{'page.partners.title'}:</h1>
 <div class="partners">
-	<div class="partners-item">
+    <!--<div class="partners-item">
 		<a href="http://www.sk.ru/"><img src="@{'public/images/boilerplate/tmp/pic27.jpg'}" alt=""
 			class="partners-pic"></a>
 		<h3>&{'page.partners.skolkovo.title'}</h3>
@@ -25,8 +25,8 @@
 			src="@{'public/images/boilerplate/tmp/pic30.png'}" alt="" class="partners-pic"></a>
 		<h3>&{'page.partners.microsoft.title'}</h3>
 		<p>&{'page.partners.microsoft.text'}</p>
-	</div>
+	</div>-->
 </div>
 <div class="message-item">
-	&{'page.partners.text', '<a href="#">partners@startnewteam.com</a>'}
+&{'page.partners.text', '<a href="#">partners@startnewteam.com</a>'}
 </div>
