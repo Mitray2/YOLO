@@ -64,4 +64,7 @@ public interface ApplicationConstants {
 	public static final String CACHE_COMMANDS_COUNT = "cacheCommandsCount";
 	
 	public static final int SEARCH_COUNT_ON_PAGE = 10;
+    public static final Integer GROUP_TOPICS_PAGE_SIZE = 10;
+
+    public static final String PARAMS_PAGE = "page";
 }

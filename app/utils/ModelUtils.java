@@ -66,6 +66,7 @@ public class ModelUtils {
 		to.expSale.level = none;
 		to.expOther = new ExpOther();
 		to.expOther.level = none;
+        to.english = from.english;
 		return to;
 	}
 

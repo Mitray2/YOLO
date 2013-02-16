@@ -18,7 +18,7 @@ import java.util.List;
 
 public class GroupController extends BasicController implements ApplicationConstants {
 
-  private static final Integer GROUP_TOPICS_PAGE_SIZE = 10;
+
 
   @Catch(value = Throwable.class, priority = 1)
   public static void onError(Throwable throwable) {
@@ -402,7 +402,7 @@ public class GroupController extends BasicController implements ApplicationConst
     }
     ModelPaginator<TopicMessage> topicMessages = new ModelPaginator<TopicMessage>(TopicMessage.class, "topic.id=?", topic.id).orderBy("createDate");
     topicMessages.setPageSize(GROUP_TOPICS_PAGE_SIZE);
-    Integer currentPage = topicMessages.getPageCount();
+    Integer currentPage = request.params._contains(PARAMS_PAGE) ? Integer.valueOf(request.params.get(PARAMS_PAGE)) : topicMessages.getPageCount();
     topicMessages.setPageNumber(currentPage == 0 ? 1 : currentPage);
     Integer topicMessagesCount = topicMessages.size();
     render(topic, group, topicMessages, topicMessagesCount);
