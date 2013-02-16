@@ -1,30 +1,30 @@
 #{extends 'group_templeate.html' /} #{set title:'main' /}
 %{
-	long userId = utils.SessionHelper.getCurrentUser(session)?.id;
-	boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN; 
-	boolean currentGroupAdmin = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id) && (adminGroup); 
-	boolean notInGroup = utils.SessionHelper.getCurrentUser(session)?.command == null; 
-	boolean wasInviteToThisGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id == group.id;
-	boolean wasNotInviteToGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite == null;
-	boolean wasInviteToOtherGroup = (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null) && (utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id !=group.id);
- 	boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
+long userId = utils.SessionHelper.getCurrentUser(session)?.id;
+boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN;
+boolean currentGroupAdmin = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id) && (adminGroup);
+boolean notInGroup = utils.SessionHelper.getCurrentUser(session)?.command == null;
+boolean wasInviteToThisGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id == group.id;
+boolean wasNotInviteToGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite == null;
+boolean wasInviteToOtherGroup = (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null) && (utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id !=group.id);
+boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
 %}
 <div class="tabs clearFix">
-	<a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a> <a href="@{GroupController.publicTopics(group.id)}">&{'page.team.public_discussion'}</a> <a href="@{GroupController.groupTopics(group.id)}" class="act">&{'page.team.discussion'}</a> <a
-		href="@{GroupController.groupUsers(group.id)}" >&{'page.team.members'}</a>
+    <a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a> <a href="@{GroupController.publicTopics(group.id)}">&{'page.team.public_discussion'}</a> <a href="@{GroupController.groupTopics(group.id)}" class="act">&{'page.team.discussion'}</a> <a
+        href="@{GroupController.groupUsers(group.id)}" >&{'page.team.members'}</a>
 </div>
 
 <script type="text/javascript">
-function editEnabled(element){
-	$(element).parent().parent().parent().find('.msg').show(); 
-	$(element).parent().parent().parent().find('.msgRead').hide(); 
-	return false;
-}
-function editDisabled(element){
-	$(element).parent().parent().parent().find('.msg').hide(); 
-	$(element).parent().parent().parent().find('.msgRead').show(); 
-	return false;
-}
+    function editEnabled(element){
+        $(element).parent().parent().parent().find('.msg').show();
+        $(element).parent().parent().parent().find('.msgRead').hide();
+        return false;
+    }
+    function editDisabled(element){
+        $(element).parent().parent().parent().find('.msg').hide();
+        $(element).parent().parent().parent().find('.msgRead').show();
+        return false;
+    }
 </script>
 <div class="search-result-name">
 #{if groupMember}
@@ -35,8 +35,8 @@ function editDisabled(element){
 <ul class="search-result-list">
 #{list items:topics, as:'topic'}
     #{if groupMember && !topic.mainTopic}
-        #{group.topic topic:topic, group:group, userId:userId, isAdmin:adminGroup/}
-    #{/if}
+    #{group.topic topic:topic, group:group, userId:userId, isAdmin:adminGroup/}
+#{/if}
 #{/list}
 </ul>
 #{group.loadMore mainTopic:mainTopic, group:group, topicsCount:topicsCount, isPublic:false/}

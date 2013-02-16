@@ -1,34 +1,34 @@
 #{extends 'group_templeate.html' /} #{set title:'main' /}
 %{
-	long userId = utils.SessionHelper.getCurrentUser(session)?.id;
-	boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN; 
-	boolean currentGroupAdmin = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id) && (adminGroup); 
-	boolean notInGroup = utils.SessionHelper.getCurrentUser(session)?.command == null; 
-	boolean wasInviteToThisGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id == group.id;
-	boolean wasNotInviteToGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite == null;
-	boolean wasInviteToOtherGroup = (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null) && (utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id !=group.id);
- 	boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
+long userId = utils.SessionHelper.getCurrentUser(session)?.id;
+boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN;
+boolean currentGroupAdmin = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id) && (adminGroup);
+boolean notInGroup = utils.SessionHelper.getCurrentUser(session)?.command == null;
+boolean wasInviteToThisGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id == group.id;
+boolean wasNotInviteToGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite == null;
+boolean wasInviteToOtherGroup = (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null) && (utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id !=group.id);
+boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
 %}
 
 <div class="tabs clearFix">
-	<a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a> <a href="@{GroupController.publicTopics(group.id)}"  class="act">&{'page.team.public_discussion'}</a> 
-	#{if groupMember || adminGroup}
-		<a href="@{GroupController.groupTopics(group.id)}">&{'page.team.discussion'}</a> 
-	#{/if}
-	<a href="@{GroupController.groupUsers(group.id)}" >&{'page.team.members'}</a>
+    <a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a> <a href="@{GroupController.publicTopics(group.id)}"  class="act">&{'page.team.public_discussion'}</a>
+#{if groupMember || adminGroup}
+    <a href="@{GroupController.groupTopics(group.id)}">&{'page.team.discussion'}</a>
+#{/if}
+    <a href="@{GroupController.groupUsers(group.id)}" >&{'page.team.members'}</a>
 </div>
 
 <script type="text/javascript">
-function editEnabled(element){
-	$(element).parent().parent().parent().find('.msg').show(); 
-	$(element).parent().parent().parent().find('.msgRead').hide(); 
-	return false;
-}
-function editDisabled(element){
-	$(element).parent().parent().parent().find('.msg').hide(); 
-	$(element).parent().parent().parent().find('.msgRead').show(); 
-	return false;
-}
+    function editEnabled(element){
+        $(element).parent().parent().parent().find('.msg').show();
+        $(element).parent().parent().parent().find('.msgRead').hide();
+        return false;
+    }
+    function editDisabled(element){
+        $(element).parent().parent().parent().find('.msg').hide();
+        $(element).parent().parent().parent().find('.msgRead').show();
+        return false;
+    }
 </script>
 
 
@@ -41,10 +41,10 @@ function editDisabled(element){
 
 
 <ul class="search-result-list">
-    #{list items:topics, as:'topic'}
+#{list items:topics, as:'topic'}
         #{if !topic.mainTopic}
-            #{group.topic topic:topic, group:group, userId:userId, isAdmin:adminGroup/}
-        #{/if}
+    #{group.topic topic:topic, group:group, userId:userId, isAdmin:adminGroup/}
+#{/if}
     #{/list}
 </ul>
 #{group.loadMore mainTopic:mainTopic, group:group, topicsCount:topicsCount, isPublic:true/}
@@ -52,33 +52,33 @@ function editDisabled(element){
 #{group.reply topic:mainTopic, group:group, count:mainTopicMsgCount, action:'/groupcontroller/addmsgtopublicmaintopic'/}
 
 <ul class="group-theme-dialog">
-    #{list items:mainTopic?.msg, as:'msg'}
-        #{form @GroupController.editPublicMainMsg()}
-            <input name="msg.id" value="${msg.id}" type="hidden">
-            <input name="topicId" value="${mainTopic.id}" type="hidden">
-            <input name="groupId" value="${group.id}" type="hidden">
-            <li>
-                #{avatar.avatar user:msg.from, cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
-                <div class="group-theme-dialog-name">
-                    <a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${utils.DateUtils.getFormatedStringDate(msg.createDate, true)}
-                    #{if userId == msg.from.id || adminGroup}
-                        <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
-                        <a href="@{GroupController.removePublicMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
-                    #{/if}
-                    #{if adminGroup}
-                        <a href="@{GroupController.removePublicMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
-                    #{/if}
+#{list items:mainTopic?.msg, as:'msg'}
+    #{form @GroupController.editPublicMainMsg()}
+        <input name="msg.id" value="${msg.id}" type="hidden">
+        <input name="topicId" value="${mainTopic.id}" type="hidden">
+        <input name="groupId" value="${group.id}" type="hidden">
+        <li>
+            #{avatar.avatar user:msg.from, cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
+            <div class="group-theme-dialog-name">
+                <a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${utils.DateUtils.getFormatedStringDate(msg.createDate, true)}
+                #{if userId == msg.from.id || adminGroup}
+                    <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
+                    <a href="@{GroupController.removePublicMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
+                #{/if}
+                #{if adminGroup}
+                    <a href="@{GroupController.removePublicMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
+                #{/if}
+            </div>
+            <pre class="msgRead">${msg.text}</pre>
+            <div style="display: none" class="msg">
+                <div class="group-theme-dialog-form">
+                    <textarea name="msg.text" style="height: 20px" class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);">${msg.text} </textarea>
+                    <button type="submit" class="group-theme-btn">&{'page.team.discuss.save'}</button>
+                    <button type="button" onclick="editDisabled(this);" class="group-theme-btn">&{'page.team.discuss.cancel'}</button>
                 </div>
-                <pre class="msgRead">${msg.text}</pre>
-                <div style="display: none" class="msg">
-                    <div class="group-theme-dialog-form">
-                        <textarea name="msg.text" style="height: 20px" class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);">${msg.text} </textarea>
-                        <button type="submit" class="group-theme-btn">&{'page.team.discuss.save'}</button>
-                        <button type="button" onclick="editDisabled(this);" class="group-theme-btn">&{'page.team.discuss.cancel'}</button>
-                    </div>
-                </div>
-            </li>
-        #{/form}
-    #{/list}
+            </div>
+        </li>
+    #{/form}
+#{/list}
 </ul>
 #{common.pagination messagesCount:mainTopicMsgCount, extraParams:'&formAction=editpublicmainmsg&removeAction=removepublicmainmessage&mainTopicId='+mainTopic.id+'&groupId='+group.id, type:0/}

@@ -348,6 +348,12 @@ public class UserController extends BasicController  implements ApplicationConst
 
 	public static void exitGroup() {
 		User user = User.findById(SessionHelper.getCurrentUser(session).id);
+    if (user.command == null) {
+      index(user.id);
+    }
+    if (User.ROLE_GROUP_ADMIN == user.role) {
+      GroupController.index(user.command.id);
+    }
 		user.command = null;
 		user.save();
 		SessionHelper.setCurrentUser(session, user);

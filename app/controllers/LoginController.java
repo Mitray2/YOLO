@@ -289,7 +289,6 @@ public class LoginController extends BasicController implements ApplicationConst
 				} else {
 					user.mailTicket = null;
 					user.role = User.ROLE_USER;
-					user.english = false;
 					user.save();
 					SessionHelper.setCurrentUser(session, user);
 					redirect(request.getBase() + "/");
@@ -372,10 +371,6 @@ public class LoginController extends BasicController implements ApplicationConst
         flash("registration", true);
         redirect(request.getBase());
     }
-
-	private static boolean userPassedTest(User user) {
-		return user.communicant > 0 || user.pragmatist > 0 || user.idealist > 0;
-	}
 
 	private interface ParsingResult {
 		Integer getQuestionNumber();

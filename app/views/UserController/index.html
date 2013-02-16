@@ -163,7 +163,7 @@
 					#{form @UserController.editContactData()} #{showError errors:errors /}
 					<div class="create-form">
 					<label for="">&{'page.profile.current.email'}:</label>
-						 ${user.email} 
+						${user.email}
 						<div class="box-radio">
 							<input type="radio" name="showEmailForOthers" id="showEmailForOthersY" class="radio" value="true"  #{if user?.showEmailForOthers}checked#{/if}/>
 							<label for="showEmailForOthersY" class="radio-btn">&{'page.profile.current.email_show'}</label>
