@@ -318,6 +318,10 @@ public class UserController extends BasicController  implements ApplicationConst
 	public static void approveInviteGroup(Long groupId) {
 		Command group = Command.findById(groupId);
 		User user = User.findById(SessionHelper.getCurrentUser(session).id);
+    if (user.role == User.ROLE_GROUP_ADMIN) {
+      SessionHelper.setCurrentUser(session, user);
+      index(user.id);
+    }
 		user.command = group;
 		user.commandToInvite = null;
 		int lengthCommands = user.commandsForAprove.size();
