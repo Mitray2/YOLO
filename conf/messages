@@ -1,4 +1,4 @@
-#MARKUP_MESSAGES
+﻿#MARKUP_MESSAGES
 
 common.yes=Yes
 common.no=No
@@ -65,8 +65,8 @@ page.main.content=<h1 class="main">StartNewTeam - is an innovative tool for form
                     <p>One person can't combine it all - you need a team.</p>
 page.main.content.try.head=Try StartNewTeam method!
 page.main.content.try.line1=Pass a unique test specially designed for identification of your key business skills and aptitudes.
-page.main.content.try.line2=Find right people on the basis of this test,<br> who will effectively complement you.
-page.main.content.try.line3=Work in team, use business tools of <br> StartNewTeam platform, and achieve success together.
+page.main.content.try.line2=Find right people on the basis of this test, who will effectively complement you.
+page.main.content.try.line3=Work in team, use business tools of StartNewTeam platform, and achieve success together.
 page.main.enter_name=Your name (For example: John)
 page.main.enter_address=Your email (john@success.com)
 page.main.sex.male=male.
@@ -80,10 +80,9 @@ page.about.title=About project
 page.about.text=<p>Science and technology are developing very fast, the world became\
                 		so complex, that a standalone person can't cover all its\
                 		aspects. Complex world requires complex ideas for business, combining\
-                		knowledge and competences<br>\
-						from different fields. Only teams of like-minded people\
+                		knowledge and competences from different fields. Only teams of like-minded people\
                 		are able to generate and realize such ideas,\
-                		effectively complementing each other. Entrepreneur<br> in the modern world\
+                		effectively complementing each other. Entrepreneur in the modern world\
 						is an "Entrepreneur 2.0" – it is andefficient\
 						team.</p>\
                 	<p>\
@@ -91,7 +90,7 @@ page.about.text=<p>Science and technology are developing very fast, the world be
                 		for development of entrepreneurship in team format, which allows\
                 		people from all over the world to understand their strengths and weaknesses in business,\
 						quickly find like-minded people and create\
-                		effective teams, in order to realize<br> in real life different business ideas.\
+                		effective teams, in order to realize in real life different business ideas.\
                 	</p>\
                 	<p>\
                         <ul>\
@@ -171,11 +170,11 @@ page.blankform.country=Country
 page.blankform.city=City
 page.blankform.password=Password
 page.blankform.repeat_password=Please repeat password
-page.blankform.rules=Accepted with <a href="/public/images/rules_en.jpg" target="_blank">rules</a>
+page.blankform.rules=Accept the <a href="/public/rules_en.pdf" target="_blank">terms</a> of usage
 page.blankform.professional_skills=Base characteristic
-page.blankform.interesting_btype=Type of business you are interested in
-page.blankform.interesting_bsphere=Business sphere you are interested in
-page.blankform.english=Knowing of English
+page.blankform.interesting_btype=Desired type of business
+page.blankform.interesting_bsphere=Desired sphere of business
+page.blankform.english=Speak English
 page.blankform.personal_data=Personal data
 page.blankform.register=Register
 page.blankform.personal_characteristics=Goals of the registration
@@ -187,7 +186,7 @@ page.blankform.passed=Congratulations, now you're a full member of our community
 						Before you proceed, please confirm us your email address,\
 						by following the link provided in the email which has been just sent\
 						to your email.<br>\
-						Entrepreneurally yours,,<br>\
+						Entrepreneurally yours,<br>\
 						StartNewTeam.
 
 
@@ -202,17 +201,17 @@ email.firstTestPassed=Hello, %s!<br>\
                         <br>\
                             Login: %s<br>\
                             Passord: %s<br>\
-                            Or, use directly the following link: <a href="%s/confirmRegistration?ticket=%s">ссылку</a>\
+                            Or, use directly the following: <a href="%s/confirmRegistration?ticket=%s">link</a>\
                         <br>\
                         <br>\
                             Entrepreneurally yours, <br>\
-                            <a href="%s">StartNewTeam</a> crew
+                            <a href="%s">StartNewTeam</a> 
 email.blankfformpassed=In order to finish registration on <a href="%s">StartNewTeam</a> please \
-                        confirm your email, by following this link<a href="%s/confirmRegistration?ticket=%s">ссылке</a>.<br/>.\
+                        confirm your email, by following this <a href="%s/confirmRegistration?ticket=%s">link</a>.<br/>.\
                         <br>\
                         <br>\
                         Entrepreneurally yours, <br>\
-                        <a href="%s">StartNewTeam</a> crew
+                        <a href="%s">StartNewTeam</a> 
 email.groupRequest=Hello, %s!\
                    <br>\
                    You have been invited to join the team <a href='%s'>%s</a>!\
@@ -222,7 +221,7 @@ email.groupRequest=Hello, %s!\
                    <br>\
                    <br>\
                   Entrepreneurally yours, <br>\
-                  <a href="%s">StartNewTeam</a> crew
+                  <a href="%s">StartNewTeam</a>
 email.memberRequest=Hello, %s!\
                     <br>\
                      Your project has been noticed!<br> \
@@ -233,23 +232,23 @@ email.memberRequest=Hello, %s!\
                     <br>\
                     <br>\
                     Entrepreneurally yours, <br>\
-                    <a href="%s">StartNewTeam</a> crew
+                    <a href="%s">StartNewTeam</a> 
 email.lostPassword=Hello!<br/>\
                    You, or someone else had requested a new password. Please use this password to access your account: %s\
                    We strongly recommend you to change the password immediately.\
                    <br>\
                    <br>\
                    Entrepreneurally yours, <br>\
-                  <a href="%s">StartNewTeam</a> crew
+                  <a href="%s">StartNewTeam</a> 
 email.secondTestPassed=Hello, %s!\
                        <br>\
                        <br>\
                        To finalize the registration on\
-                        StartNewTeam, please confirm your email by folling this link <a\
-                        href="%s/confirmRegistration?ticket=%s">ссылке</a>.<br />\
+                        StartNewTeam, please confirm your email by folling this <a\
+                        href="%s/confirmRegistration?ticket=%s">link</a>.<br />\
                         <br>\
                         Entrepreneurally yours, <br>\
-                        <a href="%s">StartNewTeam</a> crew
+                        <a href="%s">StartNewTeam</a>
 
 
 link.main=Main
@@ -265,7 +264,7 @@ link.crowd.funding=CrowdFunding
 page.partners.title=Partners of StartNewTeam
 page.partners.skolkovo.title=We are looking forward to expand network of our partners. We are looking for both local and global partners.
 page.partners.skolkovo.text=Please contact us to partners@startnewteam.com..
-page.partners.asi.title=Агентство стратегических инициатив
+page.partners.asi.title=
 page.partners.asi.text= \
                          \
 
@@ -282,12 +281,12 @@ page.contacts.for_partnership=To partners
 page.crowd.consalting.head=Let's develop and improve together a tool, which will become useful for like-minded people and create sucessfull business with people met here. Share your ideas here.<br> \
 							Best ideas will be realised in the project, and its' authors will become members of our Hall of fame.
 page.crowd.developing.head=Do you like our project and would like help us in one way or another? Write us a short email, describing what you can help us with and we will talk to you directly.<br>\
-							In future we are planning to create a network of <br>partners\
+							In future we are planning to create a network of partners\
 							and active members, who will conduct different <br> useful\
 							off-line events and meetings for entrepreneurs <br> in their cities.<br>
-page.crowd.funding.head=Here you can make financial input in the <br> development of the project \
+page.crowd.funding.head=Here you can make financial input in the development of the project \
 						or thank us, if you have already found <br> right people\
-						and launched your own business.<br> Each month, we are publishing report on the funds received, expenditures made, and their results. <br> People, donated their contribution to the development of the project will be presented in the special Hall of Fame. <br><br><strong>Details for donations:</strong><br> Yandex: 410011726431112<br> QIWI: +7-926-051-8708<br> Webmoney: R878057632541<br><br>
+						and launched your own business.<br> Each month, we are publishing report on the in  received, expenditures made, and their results. <br> People, donated their contribution to the development of the project will be presented in the special Hall of Fame. <br><br><strong>Details for donations:</strong><br> Yandex: 410011726431112<br> QIWI: +7-926-051-8708<br> Webmoney: R878057632541<br><br>
 page.crowd.funding.report.translate.en=ENGLISH
 page.crowd.funding.report.translate.ru=РУССКИЕ
 
@@ -337,7 +336,7 @@ page.team.head.leave_team_join=Are you sure, you want to leave the present team 
 page.team.head.add_to_team=Join the team
 page.team.head.join=Join
 page.team.head.cancel=Cancel
-page.team.head.requst_consideration=Your request is waiting for an approval of administrator.
+page.team.head.requst_consideration=Your request is waiting for an approval.
 page.team.head.unsubscribe=Cancel
 page.team.head.cancel_request=Cancel request
 page.team.head.cancel_sure=Are you sure you would like to cancel the request?
@@ -384,7 +383,7 @@ page.team.discuss.created_by=Created
 page.team.description=Description
 page.team.discussion=Internal discussion
 page.team.public_discussion=Public discussions
-page.team.members=Member
+page.team.members=Members
 
 
 page.profile.group_invite=Invite to the team
@@ -460,8 +459,8 @@ page.profile.current.old_pwd=Old password
 page.profile.current.new_pwd=Please enter the new password
 page.profile.current.repeate_pwd=Repeat new password
 page.profile.current.proff_skills=Professional characteristics
-page.profile.current.business=I'm interested in the following type of business
-page.profile.current.sphere=I'm interested in the following sphere of business
+page.profile.current.business=I want to start this type of business
+page.profile.current.sphere=I want to start business in this sphere
 page.profile.current.en_skill=Knowledge of English language(can participate in international teams)
 page.profile.current.exp_marketing=Experience in marketing and advertisement
 page.profile.current.exp_sales=Experience in sales and negotiations
@@ -568,7 +567,7 @@ page.search.groups.form1.msg4=City
 page.search.groups.form1.msg5=Average age
 page.search.groups.form1.msg6=People in the team
 page.search.groups.form1.msg7=Need for team members
-page.search.groups.form1.msg8=Internanality<br>(speak English)
+page.search.groups.form1.msg8=Internationality<br>(speak English)
 
 page.search.groups.form2.msg1=Key data
 page.search.groups.form2.msg2="Entrepreneurship"
@@ -579,7 +578,7 @@ page.search.groups.form2.msg6=Type of business
 page.search.groups.form2.msg7=Sphere
 page.search.groups.form2.msg8=Stage
 
-page.search.groups.form3.msg1=We are looking for expertise in:
+page.search.groups.form3.msg1=Looking for an expertise in:
 page.search.groups.form3.msg2=Marketing and advertisement
 page.search.groups.form3.msg3=Sales and negotiations
 page.search.groups.form3.msg4=Management
