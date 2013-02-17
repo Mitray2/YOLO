@@ -22,14 +22,14 @@
 			    	</div>
 	            #{/ifErrors}
 				#{/if}
-				<p class="question"><span>—</span> ${question?.value}</p>
+				<p class="question"><span>—</span> &{question?.value}</p>
 					<ul class="reply-group">
 						#{list items:question.questions, as:'innerQuestion'}
 							<li #{if currentValidation?.hasError(utils.ApplicationConstants.VALIDATION_MODEL_TEST_QUESTION_INNER_QUESTION_ANSWER_REQUIRED + innerQuestion?.id)}class="error"#{/if}>
-								<span class="reply-txt">${innerQuestion?.value}</span>
+								<span class="reply-txt">&{innerQuestion?.value}</span>
 								#{list items:innerQuestion.answers, as:'answer'}
 									<input column="${answer_index}" type="radio" value="${answer?.id}" name="test.questions[${question_index}].questions[${innerQuestion_index}].answer.id" id="rad${(((innerQuestion_index - 1)*3) + answer_index) + ((question_index - 1)*9)}" class="radio" #{if innerQuestion?.answer?.id.equals(answer.id)}checked#{/if}>
-									<label for="rad${(((innerQuestion_index - 1)*3) + answer_index) + ((question_index - 1)*9)}" class="radio-btn">Наиболее</label>
+									<label for="rad${(((innerQuestion_index - 1)*3) + answer_index) + ((question_index - 1)*9)}" class="radio-btn">&{answer?.value}</label>
 								#{/list}
 							</li>
 						#{/list}

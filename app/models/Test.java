@@ -1,13 +1,11 @@
 package models;
 
-import java.util.List;
+import play.db.jpa.Model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-
-import play.db.jpa.Model;
+import java.util.List;
 
 @Entity
 public class Test extends Model {
@@ -17,7 +15,6 @@ public class Test extends Model {
 	@OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
 	public List<Question> questions;
 
-	@Lob
 	public String description;
 
 }

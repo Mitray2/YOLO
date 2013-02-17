@@ -4,755 +4,726 @@ Test(Test_1):
     
 Question(Question_1_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question1.value
         
 Answer(Answer_1_Question_1_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_1_Test_1
     score:          0
         
 Answer(Answer_2_Question_1_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_1_Test_1
     score:          1        
         
 Answer(Answer_3_Question_1_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_1_Test_1
     score:          2    
     
 Answer(Answer_4_Question_1_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_1_Test_1
     score:          3     
      
 Answer(Answer_5_Question_1_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_1_Test_1
     score:          4     
 
 Question(Question_2_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question2.value
         
 Answer(Answer_1_Question_2_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_2_Test_1
     score:          0
         
 Answer(Answer_2_Question_2_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_2_Test_1
     score:          1        
         
 Answer(Answer_3_Question_2_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_2_Test_1
     score:          2    
     
 Answer(Answer_4_Question_2_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_2_Test_1
     score:          3     
      
 Answer(Answer_5_Question_2_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_2_Test_1
     score:          4     
 
 Question(Question_3_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question3.value
         
 Answer(Answer_1_Question_3_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_3_Test_1
     score:          0
         
 Answer(Answer_2_Question_3_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_3_Test_1
     score:          1        
         
 Answer(Answer_3_Question_3_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_3_Test_1
     score:          2    
     
 Answer(Answer_4_Question_3_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_3_Test_1
     score:          3     
      
 Answer(Answer_5_Question_3_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_3_Test_1
     score:          4     
 
 Question(Question_4_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question4.value
         
 Answer(Answer_1_Question_4_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_4_Test_1
     score:          0
         
 Answer(Answer_2_Question_4_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_4_Test_1
     score:          1        
         
 Answer(Answer_3_Question_4_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_4_Test_1
     score:          2    
     
 Answer(Answer_4_Question_4_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_4_Test_1
     score:          3     
      
 Answer(Answer_5_Question_4_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_4_Test_1
     score:          4     
 
 Question(Question_5_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question5.value
         
 Answer(Answer_1_Question_5_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_5_Test_1
     score:          0
         
 Answer(Answer_2_Question_5_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_5_Test_1
     score:          1        
         
 Answer(Answer_3_Question_5_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_5_Test_1
     score:          2    
     
 Answer(Answer_4_Question_5_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_5_Test_1
     score:          3     
      
 Answer(Answer_5_Question_5_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_5_Test_1
     score:          4     
 
 Question(Question_6_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question6.value
         
 Answer(Answer_1_Question_6_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_6_Test_1
     score:          0
         
 Answer(Answer_2_Question_6_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_6_Test_1
     score:          1        
         
 Answer(Answer_3_Question_6_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_6_Test_1
     score:          2    
     
 Answer(Answer_4_Question_6_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_6_Test_1
     score:          3     
      
 Answer(Answer_5_Question_6_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_6_Test_1
     score:          4     
 
 Question(Question_7_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question7.value
         
 Answer(Answer_1_Question_7_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_7_Test_1
     score:          0
         
 Answer(Answer_2_Question_7_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_7_Test_1
     score:          1        
         
 Answer(Answer_3_Question_7_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_7_Test_1
     score:          2    
     
 Answer(Answer_4_Question_7_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_7_Test_1
     score:          3     
      
 Answer(Answer_5_Question_7_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_7_Test_1
     score:          4     
 
 Question(Question_8_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question8.value
         
 Answer(Answer_1_Question_8_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_8_Test_1
     score:          0
         
 Answer(Answer_2_Question_8_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_8_Test_1
     score:          1        
         
 Answer(Answer_3_Question_8_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_8_Test_1
     score:          2    
     
 Answer(Answer_4_Question_8_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_8_Test_1
     score:          3     
      
 Answer(Answer_5_Question_8_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_8_Test_1
     score:          4     
 
 Question(Question_9_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question9.value
         
 Answer(Answer_1_Question_9_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_9_Test_1
     score:          0
         
 Answer(Answer_2_Question_9_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_9_Test_1
     score:          1        
         
 Answer(Answer_3_Question_9_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_9_Test_1
     score:          2    
     
 Answer(Answer_4_Question_9_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_9_Test_1
     score:          3     
      
 Answer(Answer_5_Question_9_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_9_Test_1
     score:          4     
 
 Question(Question_10_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question10.value
         
 Answer(Answer_1_Question_10_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_10_Test_1
     score:          0
         
 Answer(Answer_2_Question_10_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_10_Test_1
     score:          1        
         
 Answer(Answer_3_Question_10_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_10_Test_1
     score:          2    
     
 Answer(Answer_4_Question_10_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_10_Test_1
     score:          3     
      
 Answer(Answer_5_Question_10_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_10_Test_1
     score:          4     
 
 Question(Question_11_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question11.value
         
 Answer(Answer_1_Question_11_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_11_Test_1
     score:          0
         
 Answer(Answer_2_Question_11_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_11_Test_1
     score:          1        
         
 Answer(Answer_3_Question_11_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_11_Test_1
     score:          2    
     
 Answer(Answer_4_Question_11_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_11_Test_1
     score:          3     
      
 Answer(Answer_5_Question_11_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_11_Test_1
     score:          4     
 
 Question(Question_12_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question12.value
         
 Answer(Answer_1_Question_12_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_12_Test_1
     score:          0
         
 Answer(Answer_2_Question_12_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_12_Test_1
     score:          1        
         
 Answer(Answer_3_Question_12_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_12_Test_1
     score:          2    
     
 Answer(Answer_4_Question_12_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_12_Test_1
     score:          3     
      
 Answer(Answer_5_Question_12_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_12_Test_1
     score:          4     
 
 Question(Question_13_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question13.value
         
 Answer(Answer_1_Question_13_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_13_Test_1
     score:          0
         
 Answer(Answer_2_Question_13_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_13_Test_1
     score:          1        
         
 Answer(Answer_3_Question_13_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_13_Test_1
     score:          2    
     
 Answer(Answer_4_Question_13_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_13_Test_1
     score:          3     
      
 Answer(Answer_5_Question_13_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_13_Test_1
     score:          4     
 
 Question(Question_14_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question14.value
         
 Answer(Answer_1_Question_14_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_14_Test_1
     score:          0
         
 Answer(Answer_2_Question_14_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_14_Test_1
     score:          1        
         
 Answer(Answer_3_Question_14_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_14_Test_1
     score:          2    
     
 Answer(Answer_4_Question_14_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_14_Test_1
     score:          3     
      
 Answer(Answer_5_Question_14_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_14_Test_1
     score:          4     
 
 Question(Question_15_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question15.value
         
 Answer(Answer_1_Question_15_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_15_Test_1
     score:          0
         
 Answer(Answer_2_Question_15_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_15_Test_1
     score:          1        
         
 Answer(Answer_3_Question_15_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_15_Test_1
     score:          2    
     
 Answer(Answer_4_Question_15_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_15_Test_1
     score:          3     
      
 Answer(Answer_5_Question_15_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_15_Test_1
     score:          4     
 
 Question(Question_16_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question16.value
         
 Answer(Answer_1_Question_16_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_16_Test_1
     score:          0
         
 Answer(Answer_2_Question_16_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_16_Test_1
     score:          1        
         
 Answer(Answer_3_Question_16_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_16_Test_1
     score:          2    
     
 Answer(Answer_4_Question_16_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_16_Test_1
     score:          3     
      
 Answer(Answer_5_Question_16_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_16_Test_1
     score:          4     
 
 Question(Question_17_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question17.value
         
 Answer(Answer_1_Question_17_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_17_Test_1
     score:          0
         
 Answer(Answer_2_Question_17_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_17_Test_1
     score:          1        
         
 Answer(Answer_3_Question_17_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_17_Test_1
     score:          2    
     
 Answer(Answer_4_Question_17_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_17_Test_1
     score:          3     
      
 Answer(Answer_5_Question_17_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_17_Test_1
     score:          4     
 
 Question(Question_18_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question18.value
         
 Answer(Answer_1_Question_18_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_18_Test_1
     score:          0
         
 Answer(Answer_2_Question_18_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_18_Test_1
     score:          1        
         
 Answer(Answer_3_Question_18_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_18_Test_1
     score:          2    
     
 Answer(Answer_4_Question_18_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_18_Test_1
     score:          3     
      
 Answer(Answer_5_Question_18_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_18_Test_1
     score:          4     
 
 Question(Question_19_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question19.value
         
 Answer(Answer_1_Question_19_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_19_Test_1
     score:          0
         
 Answer(Answer_2_Question_19_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_19_Test_1
     score:          1        
         
 Answer(Answer_3_Question_19_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_19_Test_1
     score:          2    
     
 Answer(Answer_4_Question_19_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_19_Test_1
     score:          3     
      
 Answer(Answer_5_Question_19_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_19_Test_1
     score:          4     
 
 Question(Question_20_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question20.value
         
 Answer(Answer_1_Question_20_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_20_Test_1
     score:          0
         
 Answer(Answer_2_Question_20_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_20_Test_1
     score:          1        
         
 Answer(Answer_3_Question_20_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_20_Test_1
     score:          2    
     
 Answer(Answer_4_Question_20_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_20_Test_1
     score:          3     
      
 Answer(Answer_5_Question_20_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_20_Test_1
     score:          4     
 
 Question(Question_21_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question21.value
         
 Answer(Answer_1_Question_21_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_21_Test_1
     score:          0
         
 Answer(Answer_2_Question_21_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_21_Test_1
     score:          1        
         
 Answer(Answer_3_Question_21_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_21_Test_1
     score:          2    
     
 Answer(Answer_4_Question_21_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_21_Test_1
     score:          3     
      
 Answer(Answer_5_Question_21_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_21_Test_1
-    score:          4     
-
-Question(Question_21_Test_1):
-    test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
-        
-Answer(Answer_1_Question_21_Test_1):
-    value:          Нет
-    question:       Question_21_Test_1
-    score:          0
-        
-Answer(Answer_2_Question_21_Test_1):
-    value:          Скорее нет
-    question:       Question_21_Test_1
-    score:          1        
-        
-Answer(Answer_3_Question_21_Test_1):
-    value:          Когда как
-    question:       Question_21_Test_1
-    score:          2    
-    
-Answer(Answer_4_Question_21_Test_1):
-    value:          Скорее да
-    question:       Question_21_Test_1
-    score:          3     
-     
-Answer(Answer_5_Question_21_Test_1):
-    value:          Да
-    question:       Question_21_Test_1
-    score:          4     
+    score:          4
 
 Question(Question_22_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question22.value
         
 Answer(Answer_1_Question_22_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_22_Test_1
     score:          0
         
 Answer(Answer_2_Question_22_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_22_Test_1
     score:          1        
         
 Answer(Answer_3_Question_22_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_22_Test_1
     score:          2    
     
 Answer(Answer_4_Question_22_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_22_Test_1
     score:          3     
      
 Answer(Answer_5_Question_22_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_22_Test_1
     score:          4     
 
 Question(Question_23_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question23.value
         
 Answer(Answer_1_Question_23_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_23_Test_1
     score:          0
         
 Answer(Answer_2_Question_23_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_23_Test_1
     score:          1        
         
 Answer(Answer_3_Question_23_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_23_Test_1
     score:          2    
     
 Answer(Answer_4_Question_23_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_23_Test_1
     score:          3     
      
 Answer(Answer_5_Question_23_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_23_Test_1
     score:          4     
 
 Question(Question_24_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question24.value
         
 Answer(Answer_1_Question_24_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_24_Test_1
     score:          0
         
 Answer(Answer_2_Question_24_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_24_Test_1
     score:          1        
         
 Answer(Answer_3_Question_24_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_24_Test_1
     score:          2    
     
 Answer(Answer_4_Question_24_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_24_Test_1
     score:          3     
      
 Answer(Answer_5_Question_24_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_24_Test_1
     score:          4     
 
 Question(Question_25_Test_1):
     test:           Test_1
-    value:          У тебя в голове постоянный поток идей как создать что-то новое или улучшить существующее?
+    value:          test1.question25.value
         
 Answer(Answer_1_Question_25_Test_1):
-    value:          Нет
+    value:          test1.answer1.value
     question:       Question_25_Test_1
     score:          0
         
 Answer(Answer_2_Question_25_Test_1):
-    value:          Скорее нет
+    value:          test1.answer2.value
     question:       Question_25_Test_1
     score:          1        
         
 Answer(Answer_3_Question_25_Test_1):
-    value:          Когда как
+    value:          test1.answer3.value
     question:       Question_25_Test_1
     score:          2    
     
 Answer(Answer_4_Question_25_Test_1):
-    value:          Скорее да
+    value:          test1.answer4.value
     question:       Question_25_Test_1
     score:          3     
      
 Answer(Answer_5_Question_25_Test_1):
-    value:          Да
+    value:          test1.answer5.value
     question:       Question_25_Test_1
     score:          4
 
@@ -764,1420 +735,1420 @@ Test(Test_2):
 #1
 Question(Question_1_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question1.value
 
 Question(InnerQuestion_1_Question_1_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question1.inner_question1.value
     question:       Question_1_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_1_Test_2):
     question:       InnerQuestion_1_Question_1_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
       
 Answer(Answer_2_InnerQuestion_1_Question_1_Test_2):
     question:       InnerQuestion_1_Question_1_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
     
 Answer(Answer_3_InnerQuestion_1_Question_1_Test_2):
     question:       InnerQuestion_1_Question_1_Test_2
     score:          1.5
     userParameter:  0
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_2_Question_1_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question1.inner_question2.value
     question:       Question_1_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_1_Test_2):
     question:       InnerQuestion_2_Question_1_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_2_Question_1_Test_2):
     question:       InnerQuestion_2_Question_1_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_1_Test_2):
     question:       InnerQuestion_2_Question_1_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_1_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question1.inner_question3.value
     question:       Question_1_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_1_Test_2):
     question:       InnerQuestion_3_Question_1_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_1_Test_2):
     question:       InnerQuestion_3_Question_1_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_1_Test_2):
     question:       InnerQuestion_3_Question_1_Test_2
     score:          1.5
     userParameter:  2
-    value:          Не подходит
+    value:          test2.answer3.value
 
 #2
 Question(Question_2_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question2.value
 
 Question(InnerQuestion_1_Question_2_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question2.inner_question1.value
     question:       Question_2_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_2_Test_2):
     question:       InnerQuestion_1_Question_2_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_2_Test_2):
     question:       InnerQuestion_1_Question_2_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_2_Test_2):
     question:       InnerQuestion_1_Question_2_Test_2
     score:          1.5
     userParameter:  0
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_2_Question_2_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question2.inner_question2.value
     question:       Question_2_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_2_Test_2):
     question:       InnerQuestion_2_Question_2_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_2_Test_2):
     question:       InnerQuestion_2_Question_2_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_2_Test_2):
     question:       InnerQuestion_2_Question_2_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_2_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question2.inner_question3.value
     question:       Question_2_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_2_Test_2):
     question:       InnerQuestion_3_Question_2_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_2_Test_2):
     question:       InnerQuestion_3_Question_2_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_2_Test_2):
     question:       InnerQuestion_3_Question_2_Test_2
     score:          1.5
     userParameter:  2
-    value:          Не подходит
+    value:          test2.answer3.value
 
 #3
 Question(Question_3_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question3.value
 
 Question(InnerQuestion_1_Question_3_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question3.inner_question1.value
     question:       Question_3_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_3_Test_2):
     question:       InnerQuestion_1_Question_3_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_3_Test_2):
     question:       InnerQuestion_1_Question_3_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_3_Test_2):
     question:       InnerQuestion_1_Question_3_Test_2
     score:          1.5
     userParameter:  0    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_2_Question_3_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question3.inner_question2.value
     question:       Question_3_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_3_Test_2):
     question:       InnerQuestion_2_Question_3_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_2_Question_3_Test_2):
     question:       InnerQuestion_2_Question_3_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_3_Test_2):
     question:       InnerQuestion_2_Question_3_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_3_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question3.inner_question3.value
     question:       Question_3_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_3_Test_2):
     question:       InnerQuestion_3_Question_3_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_3_Question_3_Test_2):
     question:       InnerQuestion_3_Question_3_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_3_Test_2):
     question:       InnerQuestion_3_Question_3_Test_2
     score:          1.5
     userParameter:  2
-    value:          Не подходит
+    value:          test2.answer3.value
 
 #4
 Question(Question_4_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question4.value
 
 Question(InnerQuestion_1_Question_4_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question4.inner_question1.value
     question:       Question_4_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_4_Test_2):
     question:       InnerQuestion_1_Question_4_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_1_Question_4_Test_2):
     question:       InnerQuestion_1_Question_4_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_4_Test_2):
     question:       InnerQuestion_1_Question_4_Test_2
     score:          1.5
     userParameter:  0    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_2_Question_4_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question4.inner_question2.value
     question:       Question_4_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_4_Test_2):
     question:       InnerQuestion_2_Question_4_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_4_Test_2):
     question:       InnerQuestion_2_Question_4_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_4_Test_2):
     question:       InnerQuestion_2_Question_4_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_4_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question4.inner_question3.value
     question:       Question_4_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_4_Test_2):
     question:       InnerQuestion_3_Question_4_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_4_Test_2):
     question:       InnerQuestion_3_Question_4_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_4_Test_2):
     question:       InnerQuestion_3_Question_4_Test_2
     score:          1.5
     userParameter:  2
-    value:          Не подходит
+    value:          test2.answer3.value
 
 #5
 Question(Question_5_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question5.value
 
 Question(InnerQuestion_1_Question_5_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question5.inner_question1.value
     question:       Question_5_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_5_Test_2):
     question:       InnerQuestion_1_Question_5_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_5_Test_2):
     question:       InnerQuestion_1_Question_5_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_5_Test_2):
     question:       InnerQuestion_1_Question_5_Test_2
     score:          1.5
     userParameter:  0    
-    value:          Не подходит
+    value:          test2.answer3.value
    
 Question(InnerQuestion_2_Question_5_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question5.inner_question2.value
     question:       Question_5_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_5_Test_2):
     question:       InnerQuestion_2_Question_5_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_5_Test_2):
     question:       InnerQuestion_2_Question_5_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_5_Test_2):
     question:       InnerQuestion_2_Question_5_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_5_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question5.inner_question3.value
     question:       Question_5_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_5_Test_2):
     question:       InnerQuestion_3_Question_5_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_5_Test_2):
     question:       InnerQuestion_3_Question_5_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_5_Test_2):
     question:       InnerQuestion_3_Question_5_Test_2
     score:          1.5
     userParameter:  2
-    value:          Не подходит
+    value:          test2.answer3.value
 
 #6
 Question(Question_6_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question6.value
 
 Question(InnerQuestion_1_Question_6_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question6.inner_question1.value
     question:       Question_6_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_6_Test_2):
     question:       InnerQuestion_1_Question_6_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_6_Test_2):
     question:       InnerQuestion_1_Question_6_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_6_Test_2):
     question:       InnerQuestion_1_Question_6_Test_2
     score:          1.5
     userParameter:  0    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_2_Question_6_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question6.inner_question2.value
     question:       Question_6_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_6_Test_2):
     question:       InnerQuestion_2_Question_6_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_6_Test_2):
     question:       InnerQuestion_2_Question_6_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_6_Test_2):
     question:       InnerQuestion_2_Question_6_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_6_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question6.inner_question3.value
     question:       Question_6_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_6_Test_2):
     question:       InnerQuestion_3_Question_6_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_6_Test_2):
     question:       InnerQuestion_3_Question_6_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_6_Test_2):
     question:       InnerQuestion_3_Question_6_Test_2
     score:          1.5
     userParameter:  2
-    value:          Не подходит
+    value:          test2.answer3.value
 
 #7
 Question(Question_7_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question7.value
 
 Question(InnerQuestion_1_Question_7_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question7.inner_question1.value
     question:       Question_7_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_7_Test_2):
     question:       InnerQuestion_1_Question_7_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_7_Test_2):
     question:       InnerQuestion_1_Question_7_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_7_Test_2):
     question:       InnerQuestion_1_Question_7_Test_2
     score:          1.5
     userParameter:  0
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_2_Question_7_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question7.inner_question2.value
     question:       Question_7_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_7_Test_2):
     question:       InnerQuestion_2_Question_7_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_7_Test_2):
     question:       InnerQuestion_2_Question_7_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_7_Test_2):
     question:       InnerQuestion_2_Question_7_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_7_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question7.inner_question3.value
     question:       Question_7_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_7_Test_2):
     question:       InnerQuestion_3_Question_7_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_7_Test_2):
     question:       InnerQuestion_3_Question_7_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_7_Test_2):
     question:       InnerQuestion_3_Question_7_Test_2
     score:          1.5
     userParameter:  2    
-    value:          Не подходит
+    value:          test2.answer3.value
 
 #8
 Question(Question_8_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question8.value
 
 Question(InnerQuestion_1_Question_8_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question8.inner_question1.value
     question:       Question_8_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_8_Test_2):
     question:       InnerQuestion_1_Question_8_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_8_Test_2):
     question:       InnerQuestion_1_Question_8_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_8_Test_2):
     question:       InnerQuestion_1_Question_8_Test_2
     score:          1.5
     userParameter:  0    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_2_Question_8_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question8.inner_question2.value
     question:       Question_8_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_8_Test_2):
     question:       InnerQuestion_2_Question_8_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_8_Test_2):
     question:       InnerQuestion_2_Question_8_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_8_Test_2):
     question:       InnerQuestion_2_Question_8_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_8_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question8.inner_question3.value
     question:       Question_8_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_8_Test_2):
     question:       InnerQuestion_3_Question_8_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_8_Test_2):
     question:       InnerQuestion_3_Question_8_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_8_Test_2):
     question:       InnerQuestion_3_Question_8_Test_2
     score:          1.5
     userParameter:  2
-    value:          Не подходит
+    value:          test2.answer3.value
 
 #9
 Question(Question_9_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question9.value
 
 Question(InnerQuestion_1_Question_9_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question9.inner_question1.value
     question:       Question_9_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_9_Test_2):
     question:       InnerQuestion_1_Question_9_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_9_Test_2):
     question:       InnerQuestion_1_Question_9_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_9_Test_2):
     question:       InnerQuestion_1_Question_9_Test_2
     score:          1.5
     userParameter:  0
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_2_Question_9_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question9.inner_question2.value
     question:       Question_9_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_9_Test_2):
     question:       InnerQuestion_2_Question_9_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_9_Test_2):
     question:       InnerQuestion_2_Question_9_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_9_Test_2):
     question:       InnerQuestion_2_Question_9_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_9_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question9.inner_question3.value
     question:       Question_9_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_9_Test_2):
     question:       InnerQuestion_3_Question_9_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_9_Test_2):
     question:       InnerQuestion_3_Question_9_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_9_Test_2):
     question:       InnerQuestion_3_Question_9_Test_2
     score:          1.5
     userParameter:  2    
-    value:          Не подходит
+    value:          test2.answer3.value
    
 #10
 Question(Question_10_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question10.value
 
 Question(InnerQuestion_1_Question_10_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question10.inner_question1.value
     question:       Question_10_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_10_Test_2):
     question:       InnerQuestion_1_Question_10_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_10_Test_2):
     question:       InnerQuestion_1_Question_10_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_10_Test_2):
     question:       InnerQuestion_1_Question_10_Test_2
     score:          1.5
     userParameter:  0    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_2_Question_10_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question10.inner_question2.value
     question:       Question_10_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_10_Test_2):
     question:       InnerQuestion_2_Question_10_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_10_Test_2):
     question:       InnerQuestion_2_Question_10_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_10_Test_2):
     question:       InnerQuestion_2_Question_10_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_10_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question10.inner_question3.value
     question:       Question_10_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_10_Test_2):
     question:       InnerQuestion_3_Question_10_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_10_Test_2):
     question:       InnerQuestion_3_Question_10_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_10_Test_2):
     question:       InnerQuestion_3_Question_10_Test_2
     score:          1.5
     userParameter:  2    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 #11
 Question(Question_11_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question11.value
 
 Question(InnerQuestion_1_Question_11_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question11.inner_question1.value
     question:       Question_11_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_11_Test_2):
     question:       InnerQuestion_1_Question_11_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_11_Test_2):
     question:       InnerQuestion_1_Question_11_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_11_Test_2):
     question:       InnerQuestion_1_Question_11_Test_2
     score:          1.5
     userParameter:  0
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_2_Question_11_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question11.inner_question2.value
     question:       Question_11_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_11_Test_2):
     question:       InnerQuestion_2_Question_11_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_11_Test_2):
     question:       InnerQuestion_2_Question_11_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_11_Test_2):
     question:       InnerQuestion_2_Question_11_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_11_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question11.inner_question3.value
     question:       Question_11_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_11_Test_2):
     question:       InnerQuestion_3_Question_11_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_11_Test_2):
     question:       InnerQuestion_3_Question_11_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_11_Test_2):
     question:       InnerQuestion_3_Question_11_Test_2
     score:          1.5
     userParameter:  2    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 #12
 Question(Question_12_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question12.value
 
 Question(InnerQuestion_1_Question_12_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question12.inner_question1.value
     question:       Question_12_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_12_Test_2):
     question:       InnerQuestion_1_Question_12_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_1_Question_12_Test_2):
     question:       InnerQuestion_1_Question_12_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_12_Test_2):
     question:       InnerQuestion_1_Question_12_Test_2
     score:          1.5
     userParameter:  0
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_2_Question_12_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question12.inner_question2.value
     question:       Question_12_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_12_Test_2):
     question:       InnerQuestion_2_Question_12_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_12_Test_2):
     question:       InnerQuestion_2_Question_12_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_12_Test_2):
     question:       InnerQuestion_2_Question_12_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_12_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question12.inner_question3.value
     question:       Question_12_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_12_Test_2):
     question:       InnerQuestion_3_Question_12_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_12_Test_2):
     question:       InnerQuestion_3_Question_12_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_12_Test_2):
     question:       InnerQuestion_3_Question_12_Test_2
     score:          1.5
     userParameter:  2
-    value:          Не подходит
+    value:          test2.answer3.value
     
 #13
 Question(Question_13_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question13.value
 
 Question(InnerQuestion_1_Question_13_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question13.inner_question1.value
     question:       Question_13_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_13_Test_2):
     question:       InnerQuestion_1_Question_13_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_13_Test_2):
     question:       InnerQuestion_1_Question_13_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_13_Test_2):
     question:       InnerQuestion_1_Question_13_Test_2
     score:          1.5
     userParameter:  0    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_2_Question_13_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question13.inner_question2.value
     question:       Question_13_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_13_Test_2):
     question:       InnerQuestion_2_Question_13_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_13_Test_2):
     question:       InnerQuestion_2_Question_13_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_13_Test_2):
     question:       InnerQuestion_2_Question_13_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_13_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question13.inner_question3.value
     question:       Question_13_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_13_Test_2):
     question:       InnerQuestion_3_Question_13_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_13_Test_2):
     question:       InnerQuestion_3_Question_13_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_13_Test_2):
     question:       InnerQuestion_3_Question_13_Test_2
     score:          1.5
     userParameter:  2    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 #14
 Question(Question_14_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question14.value
 
 Question(InnerQuestion_1_Question_14_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question14.inner_question1.value
     question:       Question_14_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_14_Test_2):
     question:       InnerQuestion_1_Question_14_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_14_Test_2):
     question:       InnerQuestion_1_Question_14_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_14_Test_2):
     question:       InnerQuestion_1_Question_14_Test_2
     score:          1.5
     userParameter:  0
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_2_Question_14_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question14.inner_question2.value
     question:       Question_14_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_14_Test_2):
     question:       InnerQuestion_2_Question_14_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
    
 Answer(Answer_2_InnerQuestion_2_Question_14_Test_2):
     question:       InnerQuestion_2_Question_14_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_14_Test_2):
     question:       InnerQuestion_2_Question_14_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_14_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question14.inner_question3.value
     question:       Question_14_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_14_Test_2):
     question:       InnerQuestion_3_Question_14_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_14_Test_2):
     question:       InnerQuestion_3_Question_14_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_14_Test_2):
     question:       InnerQuestion_3_Question_14_Test_2
     score:          1.5
     userParameter:  2    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 #15
 Question(Question_15_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question15.value
 
 Question(InnerQuestion_1_Question_15_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question15.inner_question1.value
     question:       Question_15_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_15_Test_2):
     question:       InnerQuestion_1_Question_15_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_1_Question_15_Test_2):
     question:       InnerQuestion_1_Question_15_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_15_Test_2):
     question:       InnerQuestion_1_Question_15_Test_2
     score:          1.5
     userParameter:  0    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_2_Question_15_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question15.inner_question2.value
     question:       Question_15_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_15_Test_2):
     question:       InnerQuestion_2_Question_15_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_2_Question_15_Test_2):
     question:       InnerQuestion_2_Question_15_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
     
 Answer(Answer_3_InnerQuestion_2_Question_15_Test_2):
     question:       InnerQuestion_2_Question_15_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_3_Question_15_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question15.inner_question3.value
     question:       Question_15_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_15_Test_2):
     question:       InnerQuestion_3_Question_15_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_15_Test_2):
     question:       InnerQuestion_3_Question_15_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_15_Test_2):
     question:       InnerQuestion_3_Question_15_Test_2
     score:          1.5
     userParameter:  2    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 #16
 Question(Question_16_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question16.value
 
 Question(InnerQuestion_1_Question_16_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question16.inner_question1.value
     question:       Question_16_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_16_Test_2):
     question:       InnerQuestion_1_Question_16_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_1_Question_16_Test_2):
     question:       InnerQuestion_1_Question_16_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
     
 Answer(Answer_3_InnerQuestion_1_Question_16_Test_2):
     question:       InnerQuestion_1_Question_16_Test_2
     score:          1.5
     userParameter:  0
-    value:          Не подходит
+    value:          test2.answer3.value
         
 Question(InnerQuestion_2_Question_16_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question16.inner_question2.value
     question:       Question_16_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_16_Test_2):
     question:       InnerQuestion_2_Question_16_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_2_Question_16_Test_2):
     question:       InnerQuestion_2_Question_16_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
     
 Answer(Answer_3_InnerQuestion_2_Question_16_Test_2):
     question:       InnerQuestion_2_Question_16_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_3_Question_16_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question16.inner_question3.value
     question:       Question_16_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_16_Test_2):
     question:       InnerQuestion_3_Question_16_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_3_Question_16_Test_2):
     question:       InnerQuestion_3_Question_16_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
     
 Answer(Answer_3_InnerQuestion_3_Question_16_Test_2):
     question:       InnerQuestion_3_Question_16_Test_2
     score:          1.5
     userParameter:  2
-    value:          Не подходит
+    value:          test2.answer3.value
         
 #17
 Question(Question_17_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question17.value
 
 Question(InnerQuestion_1_Question_17_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question17.inner_question1.value
     question:       Question_17_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_17_Test_2):
     question:       InnerQuestion_1_Question_17_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_1_Question_17_Test_2):
     question:       InnerQuestion_1_Question_17_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
     
 Answer(Answer_3_InnerQuestion_1_Question_17_Test_2):
     question:       InnerQuestion_1_Question_17_Test_2
     score:          1.5
     userParameter:  0    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_2_Question_17_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question17.inner_question2.value
     question:       Question_17_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_17_Test_2):
     question:       InnerQuestion_2_Question_17_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_17_Test_2):
     question:       InnerQuestion_2_Question_17_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_17_Test_2):
     question:       InnerQuestion_2_Question_17_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_3_Question_17_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question17.inner_question3.value
     question:       Question_17_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_17_Test_2):
     question:       InnerQuestion_3_Question_17_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_3_Question_17_Test_2):
     question:       InnerQuestion_3_Question_17_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_17_Test_2):
     question:       InnerQuestion_3_Question_17_Test_2
     score:          1.5
     userParameter:  2
-    value:          Не подходит
+    value:          test2.answer3.value
 
 #18
 Question(Question_18_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question18.value
 
 Question(InnerQuestion_1_Question_18_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question18.inner_question1.value
     question:       Question_18_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_18_Test_2):
     question:       InnerQuestion_1_Question_18_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_18_Test_2):
     question:       InnerQuestion_1_Question_18_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_18_Test_2):
     question:       InnerQuestion_1_Question_18_Test_2
     score:          1.5
     userParameter:  0
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_2_Question_18_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question18.inner_question2.value
     question:       Question_18_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_18_Test_2):
     question:       InnerQuestion_2_Question_18_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_18_Test_2):
     question:       InnerQuestion_2_Question_18_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_18_Test_2):
     question:       InnerQuestion_2_Question_18_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_18_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question18.inner_question3.value
     question:       Question_18_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_18_Test_2):
     question:       InnerQuestion_3_Question_18_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_18_Test_2):
     question:       InnerQuestion_3_Question_18_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_18_Test_2):
     question:       InnerQuestion_3_Question_18_Test_2
     score:          1.5
     userParameter:  2    
-    value:          Не подходит
+    value:          test2.answer3.value
     
 #19
 Question(Question_19_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question19.value
 
 Question(InnerQuestion_1_Question_19_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question19.inner_question1.value
     question:       Question_19_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_19_Test_2):
     question:       InnerQuestion_1_Question_19_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_19_Test_2):
     question:       InnerQuestion_1_Question_19_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_19_Test_2):
     question:       InnerQuestion_1_Question_19_Test_2
     score:          1.5
     userParameter:  0
-    value:          Не подходит
+    value:          test2.answer3.value
     
 Question(InnerQuestion_2_Question_19_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question19.inner_question2.value
     question:       Question_19_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_19_Test_2):
     question:       InnerQuestion_2_Question_19_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_2_Question_19_Test_2):
     question:       InnerQuestion_2_Question_19_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_19_Test_2):
     question:       InnerQuestion_2_Question_19_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_19_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question19.inner_question3.value
     question:       Question_19_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_19_Test_2):
     question:       InnerQuestion_3_Question_19_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
     
 Answer(Answer_2_InnerQuestion_3_Question_19_Test_2):
     question:       InnerQuestion_3_Question_19_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
     
 Answer(Answer_3_InnerQuestion_3_Question_19_Test_2):
     question:       InnerQuestion_3_Question_19_Test_2
     score:          1.5
     userParameter:  2    
-    value:          Не подходит
+    value:          test2.answer3.value
 
     
 #20
 Question(Question_20_Test_2):
     test:           Test_2
-    value:          Какой ты человек?
+    value:          test2.question20.value
 
 Question(InnerQuestion_1_Question_20_Test_2):
-    value:          Стремящийся перевести все идеи и договоренности в дело
+    value:          test2.question20.inner_question1.value
     question:       Question_20_Test_2
 
 Answer(Answer_1_InnerQuestion_1_Question_20_Test_2):
     question:       InnerQuestion_1_Question_20_Test_2
     score:          5
     userParameter:  0
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_1_Question_20_Test_2):
     question:       InnerQuestion_1_Question_20_Test_2
     score:          3.5
     userParameter:  0
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_1_Question_20_Test_2):
     question:       InnerQuestion_1_Question_20_Test_2
     score:          1.5
     userParameter:  0
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_2_Question_20_Test_2):
-    value:          Всегда хорошо выгляжу, респектабельный
+    value:          test2.question20.inner_question2.value
     question:       Question_20_Test_2
     
 Answer(Answer_1_InnerQuestion_2_Question_20_Test_2):
     question:       InnerQuestion_2_Question_20_Test_2
     score:          5
     userParameter:  1
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_2_Question_20_Test_2):
     question:       InnerQuestion_2_Question_20_Test_2
     score:          3.5
     userParameter:  1
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_2_Question_20_Test_2):
     question:       InnerQuestion_2_Question_20_Test_2
     score:          1.5
     userParameter:  1
-    value:          Не подходит
+    value:          test2.answer3.value
 
 Question(InnerQuestion_3_Question_20_Test_2):
-    value:          Легко удерживающий в голове сложные смысловые конструкции
+    value:          test2.question20.inner_question3.value
     question:       Question_20_Test_2
     
 Answer(Answer_1_InnerQuestion_3_Question_20_Test_2):
     question:       InnerQuestion_3_Question_20_Test_2
     score:          5
     userParameter:  2
-    value:          Наиболее
+    value:          test2.answer1.value
 
 Answer(Answer_2_InnerQuestion_3_Question_20_Test_2):
     question:       InnerQuestion_3_Question_20_Test_2
     score:          3.5
     userParameter:  2
-    value:          Наименее
+    value:          test2.answer2.value
 
 Answer(Answer_3_InnerQuestion_3_Question_20_Test_2):
     question:       InnerQuestion_3_Question_20_Test_2
     score:          1.5
     userParameter:  2
-    value:          Не подходит
+    value:          test2.answer3.value
