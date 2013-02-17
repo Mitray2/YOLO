@@ -1482,6 +1482,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 	color:#7b7b7b;
 	font:italic 11px/16px Arial, Helvetica, sans-serif;
 	padding:6px 0 0;
+	width: 573px;
 }
 .search-result-list .search-result-list-date span{
 	font-style:normal;
@@ -2169,7 +2170,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   margin-bottom: 20px;
 }
 .profile-form textarea {
-  display: block;
+  display: inline-block;
   height: 87px;
   resize: none;
   line-height:18px;

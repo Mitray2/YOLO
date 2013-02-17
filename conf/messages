@@ -171,7 +171,7 @@ page.blankform.country=Country
 page.blankform.city=City
 page.blankform.password=Password
 page.blankform.repeat_password=Please repeat password
-page.blankform.rules=Accepted with rules
+page.blankform.rules=Accepted with <a href="">rules</a>
 page.blankform.professional_skills=Base characteristic
 page.blankform.interesting_btype=Type of business you are interested in
 page.blankform.interesting_bsphere=Business sphere you are interested in
