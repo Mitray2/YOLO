@@ -173,7 +173,7 @@ page.blankform.country=Страна
 page.blankform.city=Город
 page.blankform.password=Пароль
 page.blankform.repeat_password=Повторите пароль
-page.blankform.rules=С <a href="/public/images/rules_ru.jpg">правилами</a> ознакомлен и согласен
+page.blankform.rules=С <a href="/public/images/rules_ru.jpg" target="_blank">правилами</a> ознакомлен и согласен
 page.blankform.professional_skills=Базовая характеристика
 page.blankform.interesting_btype=Интересующий тип бизнеса
 page.blankform.interesting_bsphere=Интересующая сфера бизнеса
