@@ -74,6 +74,8 @@ page.main.sex.female=жен.
 page.main.start_the_test=Начать тест
 page.main.site.people_count=Активных участников
 page.main.site.team_count=Созданных команд
+page.main.taketest=Пройти тест</br>\
+					 и присоедениться
 page.main.its_free=(это бесплатно)
 
 page.about.title=О проекте
@@ -620,6 +622,7 @@ page.common.forgot_password=Забыли пароль?
 
 
 page.news.title=Новости
+page.news.read=Читать:
 page.news.translate.ru=РУССКИЕ
 page.news.translate.en=ENGLISH
 
@@ -715,7 +718,7 @@ test1.answer5.value=Да
 #test2
 test2.question1.value=Какой вы человек?
 test2.question1.inner_question1.value=Стремящийся перевести все идеи и договоренности в дело
-test2.question1.inner_question2.value=Всегда хорошо выгляжу, респектабельный
+test2.question1.inner_question2.value=Всегда хорошо и презентабельно выгляжу
 test2.question1.inner_question3.value=Легко удерживающий в голове сложные смысловые конструкции
 test2.question2.value=Какой вы человек?
 test2.question2.inner_question1.value=Действующий последовательно, систематично

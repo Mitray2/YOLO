@@ -59,12 +59,12 @@ mail.subject.type5=Someone wants to join your team
 mail.subject.type6=Password recovery
 
 
-page.main.content=<h1 class="main">StartNewTeam - is an innovative tool for formation and development of entrepreneurial teams.</h1>\
-                    <p>You have a dream, but lack something for transforming it into successful business?</p>\
+page.main.content=<h1 class="main">StartNewTeam - is a tool for formation and development of entrepreneurial teams.</h1>\
+                    <p>You always wanted to something own, but lack something for transforming it into successful business?</p>\
                     <p>Experience, knowledge, good ideas, money or connections?</p>\
                     <p>One person can't combine it all - you need a team.</p>
 page.main.content.try.head=Try StartNewTeam method!
-page.main.content.try.line1=Pass a unique test specially designed for identification of your key business skills and aptitudes.
+page.main.content.try.line1=Asses yourself using our unique test specially designed for identification of your key business aptitudes.
 page.main.content.try.line2=Find right people on the basis of this test, who will effectively complement you.
 page.main.content.try.line3=Work in team, use business tools of StartNewTeam platform, and achieve success together.
 page.main.enter_name=Your name (For example: John)
@@ -74,6 +74,8 @@ page.main.sex.female=female.
 page.main.start_the_test=Start test
 page.main.site.people_count=Active users
 page.main.site.team_count=Created teams
+page.main.taketest=Test yourself</br>\
+					 and join
 page.main.its_free=(it's free)
 
 page.about.title=About project
@@ -96,10 +98,10 @@ page.about.text=<p>Science and technology are developing very fast, the world be
                         <ul>\
                             <span>StartNewTeam mechanics is very simple:</span>\
                             <li><strong>1)</strong> Identify your key entrepreneurial\
-                                capabilities and propensities using our unique test.</li>\
+                                 capabilities and propensities using our unique test.</li>\
                             <li><strong>2)</strong> Find like-minded people and create\
 							effective entrepreneurial teams\
-                            on the basis of the test.</li>\
+                             on the basis of the test.</li>\
                             <li><strong>3)</strong> Work in team, complement each other, and achieve joint success together,\
 							using StartNewTeam.</li>\
                         </ul>\
@@ -286,7 +288,7 @@ page.crowd.developing.head=Do you like our project and would like help us in one
 							off-line events and meetings for entrepreneurs <br> in their cities.<br>
 page.crowd.funding.head=Here you can make financial input in the development of the project \
 						or thank us, if you have already found <br> right people\
-						and launched your own business.<br> Each month, we are publishing report on the in  received, expenditures made, and their results. <br> People, donated their contribution to the development of the project will be presented in the special Hall of Fame. <br><br><strong>Details for donations:</strong><br> Yandex: 410011726431112<br> QIWI: +7-926-051-8708<br> Webmoney: R878057632541<br><br>
+						and launched your own business.<br> Each month, we are publishing report on the in  received, expenditures made, and their results. <br> People, donated their contribution to the development of the project will be presented in the special Hall of Fame. <br><br><strong>Details for donations:</strong><br> Webmoney (USD): Z390298024279<br> Webmoney (EUR): E126193926196<br> PayPal: CrowdFundingSNT@yandex.ru<br><br>
 page.crowd.funding.report.translate.en=ENGLISH
 page.crowd.funding.report.translate.ru=РУССКИЕ
 
@@ -613,7 +615,8 @@ page.common.forgot_password=Forgot password?
 
 
 page.news.title=News
-page.news.translate.ru=РУССКИЕ
+page.news.read=Read:
+page.news.translate.ru=RUSSIAN
 page.news.translate.en=ENGLISH
 
 
@@ -787,7 +790,7 @@ test2.question20.inner_question1.value=Continue till get the result
 test2.question20.inner_question2.value=Diplomatic
 test2.question20.inner_question3.value=Can spend a lot of time thinking
 test2.answer1.value=Least corresponds
-test2.answer2.value=Something in the middle
+test2.answer2.value=Average
 test2.answer3.value=Corresponds the most
 
 #messages
