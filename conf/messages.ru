@@ -77,6 +77,7 @@ page.main.site.team_count=Созданных команд
 page.main.taketest=Пройти тест</br>\
 					 и присоединиться
 page.main.its_free=(это бесплатно)
+page.main.birthday=Введите вашу дату рождения
 
 page.about.title=О проекте
 page.about.text=<p>Наука и техника развиваются ускоряющимися темпами, мир стал\
