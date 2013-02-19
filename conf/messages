@@ -59,12 +59,12 @@ mail.subject.type5=Someone wants to join your team
 mail.subject.type6=Password recovery
 
 
-page.main.content=<h1 class="main">StartNewTeam - is a tool for formation of effective entrepreneurial teams.</h1>\
+page.main.content=<h1 class="main">StartNewTeam - is a tool for formation<br> of effective entrepreneurial teams.</h1>\
                     <p>You want to have your business, but lack something for a successful start?</p>\
                     <p>Experience, knowledge, good ideas, money or connections?</p>\
                     <p>One person can't combine it all - you need a team.</p>
 page.main.content.try.head=Try StartNewTeam method
-page.main.content.try.line1=Evaluate yourself using our unique test specially designed for identification of your key business aptitudes.
+page.main.content.try.line1=Evaluate yourself using unique test for identification of your key business aptitudes.
 page.main.content.try.line2=Find right people on the basis of this test, who will effectively complement you.
 page.main.content.try.line3=Work in team, use StartNewTeam platform features, and achieve success together.
 page.main.enter_name=Your name (For example: John)
@@ -100,10 +100,8 @@ page.about.text=<p>Science and technology are developing very fast, the world be
                             <li><strong>1)</strong> Identify your key entrepreneurial \
                                  capabilities and propensities using our unique test.</li>\
                             <li><strong>2)</strong> Find like-minded people and create\
-							effective entrepreneurial team \
-                             on the basis of the test.</li>\
-                            <li><strong>3)</strong> Work in team, complement each other, and achieve joint success together,\
-							using StartNewTeam.</li>\
+							effective team on the basis of the test.</li>\
+                            <li><strong>3)</strong> Work in team, complement each other, and achieve joint success together.</li>\
                         </ul>\
                 	</p>\
                 	<p>Project is open to all – everyone can participate.</p>\
@@ -142,11 +140,11 @@ page.test2.error2=Please make your choice in the lines, marked in red.
 page.test2.passed.title=You have successfully completed the final test!
 page.test2.passed.social.text=My entrepreneurial type is: Idealist %s, Communicant %s, Pragmatic %s. Do you have different results? Let's complement each other and create effective team!
 page.test2.passed.social.title=The final business-test
-page.test2.passed.results=Here's the result of your entrepreneurial propensities on the basis of tests(max. = 100)
+page.test2.passed.results=Here's the result of your entrepreneurial propensities on the basis of tests (max. = 100)
 page.test2.passed.idealist_result=<strong>Idealist </strong> &ndash; <span class="rating">%s points</span>, &ndash; propensity to generate new ideas and to find effective solutions.
 page.test2.passed.communicant_result=<strong>Communicant</strong> &ndash; <span class="rating">%s points </span>, &ndash; propensity to promotion, negotiations, sales.
 page.test2.passed.pragmatist_result=<strong>Pragmatic</strong> &ndash; <span class="rating">%s points </span>, &ndash; propensity to practice, realisation, action.
-page.test2.passed.recommendation=<p>Successful business requires simultaneous development of all three directions:<br>\
+page.test2.passed.recommendation=<p>Successful business requires simultaneous development of all three directions:\
 									think, realize and promote the result. Quite rare when a single person \
 									combines all needed parts, thus the chances to succeed increase\
 									 in a team, which combines all needed\
@@ -281,7 +279,7 @@ page.contacts.general=General
 page.contacts.for_partnership=To partners
 
 page.crowd.consalting.head=Let's develop and improve together a tool, which will become useful for like-minded people and create sucessfull business with people met here. Share your ideas here.<br> \
-							Best ideas will be realised in the project, and its' authors will become members of our Hall of fame.
+							Best ideas will be realised in the project, and it's authors will become members of our Hall of fame.
 page.crowd.developing.head=Do you like our project and would like help us in one way or another? Write us a short email, describing what you can help us with and we will talk to you directly.<br>\
 							In future we are planning to create a network of partners\
 							and active members, who will conduct different useful\
@@ -515,8 +513,8 @@ page.search.members.filter.enterpreneurship="Entrepreneurship"
 page.search.members.filter.idealist="Idealism"
 page.search.members.filter.communicant="Sociability"
 page.search.members.filter.pragmatist="Pragmatics"
-page.search.members.filter.business=Type of the business
-page.search.members.filter.sphere=Sphere of the business
+page.search.members.filter.business=Business type
+page.search.members.filter.sphere=Sphere
 page.search.members.filter.lang=Speaks English
 page.search.members.filter.marketing=Marketing and advt
 page.search.members.filter.sales=Sales and negotiations
@@ -533,7 +531,7 @@ page.search.members.filter=
 page.search.groups.filter.msg1=Teams search system
 page.search.groups.filter.msg2=General data
 page.search.groups.filter.msg3=Key information
-page.search.groups.filter.msg4=Teams' needs
+page.search.groups.filter.msg4=Team's needs
 page.search.groups.filter.msg5=Team name
 page.search.groups.filter.msg6=People
 
@@ -571,7 +569,7 @@ page.search.groups.form1.msg6=People in the team
 page.search.groups.form1.msg7=Need for team members
 page.search.groups.form1.msg8=Internationality<br>(speak English)
 
-page.search.groups.form2.msg1=Key data
+page.search.groups.form2.msg1=Key information
 page.search.groups.form2.msg2="Entrepreneurship"
 page.search.groups.form2.msg3="Idealism"
 page.search.groups.form2.msg4="Sociability"
@@ -789,9 +787,9 @@ test2.question20.value=What type of person are you?
 test2.question20.inner_question1.value=Continue till get the result
 test2.question20.inner_question2.value=Diplomatic
 test2.question20.inner_question3.value=Can spend a lot of time thinking
-test2.answer1.value=Least corresponds
+test2.answer1.value=Least
 test2.answer2.value=Average
-test2.answer3.value=Corresponds the most
+test2.answer3.value=Most
 
 #messages
 message.userController.requestSent=Request sent
