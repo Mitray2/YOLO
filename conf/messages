@@ -154,7 +154,7 @@ page.test2.passed.recommendation=<p>Successful business requires simultaneous de
 									to concenrate on functions with highest points and attract team members who\
 									will complement you within the functions which are less developped in you.</p>\
 										<p>We hope that you will find here like-minded people\
-									and form dream-team which will lead to you business success.</p>\
+									and form dream-team which will lead to you success.</p>\
 										<p>In order to finish registration and get an access to inner pages and whole functionality of the project\
 									please fill in this short application form.</p>\
 										<p>We advice you to share this test with your friends in social networks - \
@@ -163,7 +163,7 @@ page.test2.passed.recommendation=<p>Successful business requires simultaneous de
 page.test2.passed.final_step=Final registration
 
 #blank form
-page.blankform.head=%s, you have successfully completed tests. Please fill in the application form in order to get an access to your potential business partners
+page.blankform.head=%s, you have successfully completed tests!<br> Please fill in the application form in order to get an access to your potential business partners.
 page.blankform.name=Name
 page.blankform.surname=Last name
 page.blankform.country=Country
@@ -787,9 +787,9 @@ test2.question20.value=What type of person are you?
 test2.question20.inner_question1.value=Continue till get the result
 test2.question20.inner_question2.value=Diplomatic
 test2.question20.inner_question3.value=Can spend a lot of time thinking
-test2.answer1.value=Least
+test2.answer1.value=Most
 test2.answer2.value=Average
-test2.answer3.value=Most
+test2.answer3.value=Least
 
 #messages
 message.userController.requestSent=Request sent
