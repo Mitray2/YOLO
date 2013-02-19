@@ -122,6 +122,7 @@ $(document).ready(function() {
 						#{else}
 							<input type="radio" name="user.sex" id="rad1" class="radio" #{if user?.sex == true}checked#{/if} value="true"/><label for="rad1" class="man">&{'page.main.sex.male'}</label><input type="radio" name="user.sex" id="rad2" value="false" class="radio" #{if user?.sex == false}checked#{/if}/><label for="rad2" class="woman">&{'page.main.sex.female'}</label>
 						#{/else}
+						&{'page.main.birthday'}</br>
 						#{models.user.birthdayComponent day:birthDay, month:birthMonth, year:birthYear/}
 						<div class="cl"></div>
 						#{if currentValidation?.hasError('user.sex') || currentValidation?.hasError('user.email') || currentValidation?.hasError('user.name')}
