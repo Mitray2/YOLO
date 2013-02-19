@@ -13,7 +13,7 @@ public class ApplicationController extends BasicController {
 
     public static void index() {
       boolean validBeta = false;
-        if ("12345678".equals(request.params.get("betaCode"))) {
+        if ("sntbeta".equals(request.params.get("betaCode"))) {
           response.setCookie("validBeta", "true", "100d");
           validBeta = true;
         }
