@@ -1,4 +1,4 @@
-﻿#MARKUP_MESSAGES
+#MARKUP_MESSAGES
 
 common.yes=Yes
 common.no=No
@@ -59,24 +59,24 @@ mail.subject.type5=Someone wants to join your team
 mail.subject.type6=Password recovery
 
 
-page.main.content=<h1 class="main">StartNewTeam - is a tool for formation and development of entrepreneurial teams.</h1>\
-                    <p>You always wanted to something own, but lack something for transforming it into successful business?</p>\
+page.main.content=<h1 class="main">StartNewTeam - is a tool for formation of effective entrepreneurial teams.</h1>\
+                    <p>You want to have your business, but lack something for a successful start?</p>\
                     <p>Experience, knowledge, good ideas, money or connections?</p>\
                     <p>One person can't combine it all - you need a team.</p>
-page.main.content.try.head=Try StartNewTeam method!
-page.main.content.try.line1=Asses yourself using our unique test specially designed for identification of your key business aptitudes.
+page.main.content.try.head=Try StartNewTeam method
+page.main.content.try.line1=Evaluate yourself using our unique test specially designed for identification of your key business aptitudes.
 page.main.content.try.line2=Find right people on the basis of this test, who will effectively complement you.
-page.main.content.try.line3=Work in team, use business tools of StartNewTeam platform, and achieve success together.
+page.main.content.try.line3=Work in team, use StartNewTeam platform features, and achieve success together.
 page.main.enter_name=Your name (For example: John)
 page.main.enter_address=Your email (john@success.com)
-page.main.sex.male=male.
-page.main.sex.female=female.
+page.main.sex.male=male
+page.main.sex.female=female
 page.main.start_the_test=Start test
 page.main.site.people_count=Active users
 page.main.site.team_count=Created teams
-page.main.taketest=Test yourself</br>\
-					 and join
+page.main.taketest=Test yourself and join
 page.main.its_free=(it's free)
+page.main.birthday=Enter your birthday
 
 page.about.title=About project
 page.about.text=<p>Science and technology are developing very fast, the world became\
@@ -97,10 +97,10 @@ page.about.text=<p>Science and technology are developing very fast, the world be
                 	<p>\
                         <ul>\
                             <span>StartNewTeam mechanics is very simple:</span>\
-                            <li><strong>1)</strong> Identify your key entrepreneurial\
+                            <li><strong>1)</strong> Identify your key entrepreneurial \
                                  capabilities and propensities using our unique test.</li>\
                             <li><strong>2)</strong> Find like-minded people and create\
-							effective entrepreneurial teams\
+							effective entrepreneurial team \
                              on the basis of the test.</li>\
                             <li><strong>3)</strong> Work in team, complement each other, and achieve joint success together,\
 							using StartNewTeam.</li>\
@@ -122,7 +122,7 @@ page.test1.error1=You have missed some questions.
 page.test1.error2=Please make your choice in the lines, marked in red.
 
 #first test passed social texts
-page.test1.passed.social.text=My entrepreneurial skills have been assessed and received %s points. Learn how much could you score!
+page.test1.passed.social.text=My entrepreneurial skills have been evaluated and received %s points. Learn how much could you score!
 page.test1.passed.social.title=Business-test
 page.test1.passed.head=You have sucessfully completed the test!
 page.test1.passed.see_mail=
@@ -149,9 +149,9 @@ page.test2.passed.pragmatist_result=<strong>Pragmatic</strong> &ndash; <span cla
 page.test2.passed.recommendation=<p>Successful business requires simultaneous development of all three directions:<br>\
 									think, realize and promote the result. Quite rare when a single person \
 									combines all needed parts, thus the chances to succeed increase\
-									<br> in a team, which combines all needed\
+									 in a team, which combines all needed\
 									parts and where each does what he likes.</p>\
-										<p>Doing what you like the most brings the best results<br>\
+										<p>Doing what you like the most brings the best results \
 									and provides you with an opportunity to fully realize your potential. That's why we suggest you \
 									to concenrate on functions with highest points and attract team members who\
 									will complement you within the functions which are less developped in you.</p>\
@@ -160,7 +160,7 @@ page.test2.passed.recommendation=<p>Successful business requires simultaneous de
 										<p>In order to finish registration and get an access to inner pages and whole functionality of the project\
 									please fill in this short application form.</p>\
 										<p>We advice you to share this test with your friends in social networks - \
-									maybe you will find potential business partners among them!</p>\
+									maybe you will find potential business partners among them.</p>\
 
 page.test2.passed.final_step=Final registration
 
@@ -265,7 +265,7 @@ link.crowd.funding=CrowdFunding
 
 page.partners.title=Partners of StartNewTeam
 page.partners.skolkovo.title=We are looking forward to expand network of our partners. We are looking for both local and global partners.
-page.partners.skolkovo.text=Please contact us to partners@startnewteam.com..
+page.partners.skolkovo.text=Please contact us to partners@startnewteam.com.
 page.partners.asi.title=
 page.partners.asi.text= \
                          \
@@ -273,7 +273,7 @@ page.partners.asi.text= \
 page.partners.microsoft.title=
 page.partners.microsoft.text=
 
-page.partners.text=Let's growth together!
+page.partners.text=We are looking forward to expand network of our partners. Please, contact us.
 
 
 page.contacts.title=Contacts
@@ -284,11 +284,11 @@ page.crowd.consalting.head=Let's develop and improve together a tool, which will
 							Best ideas will be realised in the project, and its' authors will become members of our Hall of fame.
 page.crowd.developing.head=Do you like our project and would like help us in one way or another? Write us a short email, describing what you can help us with and we will talk to you directly.<br>\
 							In future we are planning to create a network of partners\
-							and active members, who will conduct different <br> useful\
-							off-line events and meetings for entrepreneurs <br> in their cities.<br>
+							and active members, who will conduct different useful\
+							off-line events and meetings for entrepreneurs in their cities.<br>
 page.crowd.funding.head=Here you can make financial input in the development of the project \
-						or thank us, if you have already found <br> right people\
-						and launched your own business.<br> Each month, we are publishing report on the in  received, expenditures made, and their results. <br> People, donated their contribution to the development of the project will be presented in the special Hall of Fame. <br><br><strong>Details for donations:</strong><br> Webmoney (USD): Z390298024279<br> Webmoney (EUR): E126193926196<br> PayPal: CrowdFundingSNT@yandex.ru<br><br>
+						or thank us, if you have already found right people\
+						and launched your own business.<br> Each month, we are publishing report on the in  received, expenditures made, and their results. <br> People, donated their contribution to the development of the project will be presented in the special Hall of Fame. <br><br><strong>Details for donations:</strong><br> Webmoney (USD): Z390298024279<br> Webmoney (EUR): E126193926196<br> PayPal: CrowdFundingSNT@yandex.ru<br><br><strong>Reports and plans:</strong><br><br>
 page.crowd.funding.report.translate.en=ENGLISH
 page.crowd.funding.report.translate.ru=РУССКИЕ
 
@@ -303,7 +303,7 @@ page.create.team.globality=International team (possibility to use english)
 page.create.team.need_members=Looking for members
 page.create.team.project_desc=Please describe in free form key goals of your team, your project or idea(if you have any), present situation and other important information which you would like to share with your potential partners.
 page.create.team.need_prof_skills=Team needs
-page.create.team.marketing_advertising=Marketing and advertisment
+page.create.team.marketing_advertising=Marketing and advt
 page.create.team.desc_experience=If you have specific need, please describe it
 page.create.team.management_experience=Management
 page.create.team.sales_experience=Sales and negotiations
@@ -432,7 +432,7 @@ page.profile.team=I'm in the team
 page.profile.founder=Administrator
 page.profile.prof_skills=Professional characteristics
 page.profile.en_skill=Knowledge of English language(can participate in international teams)
-page.profile.marketing_advertising=Marketing and advertising
+page.profile.marketing_advertising=Marketing and advt
 page.profile.management_experience=Management
 page.profile.sales_experience=Sales and negotiations
 page.profile.finance_experience=Finance
@@ -464,23 +464,23 @@ page.profile.current.proff_skills=Professional characteristics
 page.profile.current.business=I want to start this type of business
 page.profile.current.sphere=I want to start business in this sphere
 page.profile.current.en_skill=Knowledge of English language(can participate in international teams)
-page.profile.current.exp_marketing=Experience in marketing and advertisement
+page.profile.current.exp_marketing=Experience in marketing and advt
 page.profile.current.exp_sales=Experience in sales and negotiations
 page.profile.current.exp_management=Experience in management
 page.profile.current.exp_law=Experience in jurisprudence
 page.profile.current.exp_finance=Experience in finances
 page.profile.current.exp_it=Experience in IT and development
-page.profile.current.exp_other=Experience in other spheres(please specify)
+page.profile.current.exp_other=Experience in other spheres (please specify)
 page.profile.current.personal_cv=Goals of registration
 page.profile.current.skill_meta=Please indicate your level of knowledge and experience in the given sphere
 page.profile.current.cv_meta=Describe in few words your goals and expectations
-page.profile.current.desc_marketing=Describe more your experience in marketing and advertisement
+page.profile.current.desc_marketing=Describe more your experience in marketing and advt
 page.profile.current.desc_sales=Describe more your experience in sales and negotiations
 page.profile.current.desc_management=Describe more your experience in management
 page.profile.current.desc_law=Describe more your experience in jurisprudence
 page.profile.current.desc_finance=Describe more your experience in finances
 page.profile.current.desc_it=Describe more your experience in IT and development
-page.profile.current.desc_other=Describe more your experience in other spheres(please specify)
+page.profile.current.desc_other=Describe more your experience in other spheres (please specify)
 page.profile.current.desc_cv=Describe in few words your goals and expectations from registration in the platform
 page.profile.current.desc_skill_meta=Indicate your level of knowledge and experience in this field
 page.profile.current.desc_cv_meta=Describe in few words your goals and expectations from registration
@@ -497,14 +497,14 @@ page.search.members.title_enterpreneurship="Entrepreneurship"
 page.search.members.title_idealist="Idealism"
 page.search.members.title_communicant="Sociability"
 page.search.members.title_pragmatist="Pragmatics"
-page.search.members.title_marketing=Marketing and advertisement
+page.search.members.title_marketing=Marketing and advt
 page.search.members.title_sales=Sales and negotiations
 page.search.members.title_management=Management
 page.search.members.title_law=Jurisprudence
 page.search.members.title_finance=Finances
 page.search.members.title_it=IT and development
 page.search.members.title_other=Other
-page.search.members.business=Type of the business
+page.search.members.business=Business type
 page.search.members.sphere=Sphere
 page.search.members.lang=English
 page.search.members.team=Team
@@ -518,7 +518,7 @@ page.search.members.filter.pragmatist="Pragmatics"
 page.search.members.filter.business=Type of the business
 page.search.members.filter.sphere=Sphere of the business
 page.search.members.filter.lang=Speaks English
-page.search.members.filter.marketing=Marketing and advertisement
+page.search.members.filter.marketing=Marketing and advt
 page.search.members.filter.sales=Sales and negotiations
 page.search.members.filter.management=Management
 page.search.members.filter.law=Jurisprudence
@@ -549,11 +549,11 @@ page.search.groups.filter.col2.msg1="Entrepreneurship"
 page.search.groups.filter.col2.msg2="Idealism"
 page.search.groups.filter.col2.msg3="Sociability"
 page.search.groups.filter.col2.msg4="Pragmatics"
-page.search.groups.filter.col2.msg5=Type of business
+page.search.groups.filter.col2.msg5=Business type
 page.search.groups.filter.col2.msg6=Sphere
 page.search.groups.filter.col2.msg7=Stage
 
-page.search.groups.filter.col3.msg1=Marketing and advertisement
+page.search.groups.filter.col3.msg1=Marketing and advt
 page.search.groups.filter.col3.msg2=Sales and negotiations
 page.search.groups.filter.col3.msg3=Management
 page.search.groups.filter.col3.msg4=Jurisprudence
@@ -576,12 +576,12 @@ page.search.groups.form2.msg2="Entrepreneurship"
 page.search.groups.form2.msg3="Idealism"
 page.search.groups.form2.msg4="Sociability"
 page.search.groups.form2.msg5="Pragmatics"
-page.search.groups.form2.msg6=Type of business
+page.search.groups.form2.msg6=Business type
 page.search.groups.form2.msg7=Sphere
 page.search.groups.form2.msg8=Stage
 
 page.search.groups.form3.msg1=Looking for an expertise in:
-page.search.groups.form3.msg2=Marketing and advertisement
+page.search.groups.form3.msg2=Marketing and advt
 page.search.groups.form3.msg3=Sales and negotiations
 page.search.groups.form3.msg4=Management
 page.search.groups.form3.msg5=Jurisprudence
@@ -677,31 +677,31 @@ validation.loginController.approveRegistration=Confirm registration
 validation.loginController.nonexistentUser=There's no user with such email in our database. Please check the data entered
 
 #test1
-test1.question1.value=You always generate ideas how to create something new or improve existing?
+test1.question1.value=You always have a number of ideas on how to create something new or improve existing?
 test1.question2.value=Can you identify a wide circle of business opportunities around you?
-test1.question3.value=Do you like to take stand-alone decisions and responsibilities over the results?
-test1.question4.value=How good are you in interaction with people and negotiations?
-test1.question5.value=Are you ready to take risk and put everything you have in the venture you believe in?
-test1.question6.value=Do you like when everything depends on you?
-test1.question7.value=Are you a goal-oriented person? Are you ready to move towards you goals despite critics and fails?
-test1.question8.value=Do you continue till you get the result you need and try till you succeed?
-test1.question9.value=If you face unexpected problem, how fast do you find right solutions?
-test1.question10.value=Are you an optimist? Do you find how to profit in any situation?
+test1.question3.value=Do you like to take decisions on your own and take responsibilities over the results?
+test1.question4.value=How good are you at interaction with people, understanding and negotiations?
+test1.question5.value=Are you ready to take risks and put everything you have in the venture you believe in?
+test1.question6.value=Do you like responsibility when everything depends on you? 
+test1.question7.value=Are you a goal-oriented person? Are you ready to move towards your goals despite critics and fails? 
+test1.question8.value=Do you continue till you get the result? Will you continue till you succeed?
+test1.question9.value=If you face unexpected problem, do you find right solutions quickly?
+test1.question10.value=Are you an optimist? Can you come up with how to benefit from every situation?
 test1.question11.value=Do you and your friends consider you being a lucky person?
-test1.question12.value=Do you have an intuition? Do you often use it in life?
+test1.question12.value=Do you have an intuition? Does it help you in your life?
 test1.question13.value=Do you have a lot of energy, enthusiasm and share it with others?
 test1.question14.value=Are you ready to work 12-15 hours per day without week-ends?
-test1.question15.value=Are you a self-reliant person?
+test1.question15.value=Are you a confident person?
 test1.question16.value=You don't like delays and always strive to get the result as soon as possible, do you?
-test1.question17.value=You start new things straight  forward and never postpone the things, don't you?
-test1.question18.value=Do you want to have total independence, accepting its advantages and drawbacks?
-test1.question19.value=Do you have a clear idea and willingness to become and entrepreneur and have your own business?
+test1.question17.value=You start new things straight  forward and never postpone the things, don't you? 
+test1.question18.value=Do you want to have total independence, despite its drawbacks?
+test1.question19.value=Do you have a clear idea and willingness to become an entrepreneur and have your own business?
 test1.question20.value=Do you like to compete and strive to win?
-test1.question21.value=Have you ever dreamed to create a large multinational business?
-test1.question22.value=Are you good in explaining your ideas and its advantages of your ideas and offers to people?
-test1.question23.value=Can you effectively work in the team? Do people accept you as a team member?
-test1.question24.value=Do you like to overcome difficulties?
-test1.question25.value=Are you open to all new, interesting and have a desire to act and learn?
+test1.question21.value=Have you ever dreamed to create the biggest and the most successful business in the world in your sphere?
+test1.question22.value=Are you good at explaining your ideas and their advantages to people?
+test1.question23.value=Can you effectively work in the team? Are you an effective team player?
+test1.question24.value=Do you like to overcome difficulties which help you to grow? 
+test1.question25.value=Are you open to all new and interesting, having a desire to act and learn? 
 test1.answer1.value=no
 test1.answer2.value=probably not
 test1.answer3.value=it depends
@@ -712,7 +712,7 @@ test1.answer5.value=yes
 test2.question1.value=What type of person are you?
 test2.question1.inner_question1.value=Eager to transform ideas and agreements into results
 test2.question1.inner_question2.value=Always look good and presentably
-test2.question1.inner_question3.value=Can easy keep in mind difficult concepts
+test2.question1.inner_question3.value=Can easyly keep in mind and complex concepts
 test2.question2.value=What type of person are you?
 test2.question2.inner_question1.value=Acting consistently, systematically
 test2.question2.inner_question2.value=Has a power to convince
@@ -728,30 +728,30 @@ test2.question4.inner_question3.value=Has good imagination
 test2.question5.value=What type of person are you?
 test2.question5.inner_question1.value=Prudent, prepares everything in advance
 test2.question5.inner_question2.value=Polite and attentive to others
-test2.question5.inner_question3.value=Thinks outside the box
+test2.question5.inner_question3.value=Think out of the box
 test2.question6.value=What type of person are you?
 test2.question6.inner_question1.value=Consistent, disciplined
 test2.question6.inner_question2.value=Sociable, open
 test2.question6.inner_question3.value=With good imagination
 test2.question7.value=What type of person are you?
 test2.question7.inner_question1.value=Results-oriented
-test2.question7.inner_question2.value=Confident
+test2.question7.inner_question2.value=Reliable
 test2.question7.inner_question3.value=Curios, striving to understand everything
 test2.question8.value=What type of person are you?
 test2.question8.inner_question1.value=Able to organise the process
 test2.question8.inner_question2.value=Kind and friendly
 test2.question8.inner_question3.value=Active thinker
 test2.question9.value=What type of person are you?
-test2.question9.inner_question1.value=Who values experience and practice the mos
-test2.question9.inner_question2.value=Has positive approach to all people around
+test2.question9.inner_question1.value=Value experience and practice the most
+test2.question9.inner_question2.value=Have positive attitude to all people around
 test2.question9.inner_question3.value=Creative and has ideas on each occasion
 test2.question10.value=What type of person are you?
-test2.question10.inner_question1.value=Always needs to move
+test2.question10.inner_question1.value=Always needs to act
 test2.question10.inner_question2.value=Have an ability to entertain others
-test2.question10.inner_question3.value=Likes to think
+test2.question10.inner_question3.value=Likes to cogitate
 test2.question11.value=What type of person are you?
 test2.question11.inner_question1.value=Demanding of himself and others
-test2.question11.inner_question2.value=Able to successfully conduct negotiations
+test2.question11.inner_question2.value=Able to negotiate successfully
 test2.question11.inner_question3.value=Prone to theorize
 test2.question12.value=What type of person are you?
 test2.question12.inner_question1.value=Able to control the process
@@ -767,7 +767,7 @@ test2.question14.inner_question2.value=Able to adapt and speak the same language
 test2.question14.inner_question3.value=Inventive
 test2.question15.value=What type of person are you?
 test2.question15.inner_question1.value=Efficient, striving for perfection
-test2.question15.inner_question2.value=Able to get an advantage in any situation
+test2.question15.inner_question2.value=Able to benefit in any situation
 test2.question15.inner_question3.value=Has strategic thinking
 test2.question16.value=What type of person are you?
 test2.question16.inner_question1.value=Who always does something
@@ -775,7 +775,7 @@ test2.question16.inner_question2.value=Can bargain
 test2.question16.inner_question3.value=Always come up with ideas
 test2.question17.value=What type of person are you?
 test2.question17.inner_question1.value=Don't like to waste the time
-test2.question17.inner_question2.value=Can support the conversation on any topic
+test2.question17.inner_question2.value=Can join any conversation
 test2.question17.inner_question3.value=Thoughtful, eager to get to the nature of things
 test2.question18.value=What type of person are you?
 test2.question18.inner_question1.value=Pragmatic, prudent
@@ -783,7 +783,7 @@ test2.question18.inner_question2.value=Can easily explain my ideas
 test2.question18.inner_question3.value=Judicious
 test2.question19.value=What type of person are you?
 test2.question19.inner_question1.value=Responsible and organized
-test2.question19.inner_question2.value=Can easily start communicating with people
+test2.question19.inner_question2.value=Can easily start the talk
 test2.question19.inner_question3.value=Thoughtful, like to philosophize
 test2.question20.value=What type of person are you?
 test2.question20.inner_question1.value=Continue till get the result
@@ -828,10 +828,10 @@ models.ProjectPhase.name.planning=Planning/brownfield
 models.ProjectPhase.name.developing=Realisation
 
 #first test passed texts
-models.test.number1.result1=%s, your result is - <span class="rating">%s points</span>.<br/> For now it's difficult for you to become an entrepreneur. However, if you want to become one - you need to develop and try. Find like-minded people for joint business development. Start gradually with them from small projects and soon you will be ready for big challenges!<br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to asses type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
-models.test.number1.result2=%s, your result is - <span class="rating">%s points</span>.<br/> You have good entrepreneurial inclinations, which you need to develop. Gather a team of like-minded people, start on small projects and gain some experience and you will get the results soon. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to asses type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
-models.test.number1.result3=Congratulations, %s, your result is - <span class="rating">%s points</span>!<br/> You have very good entrepreneurial inclinations! You need to gather a team of like-minded people as soon as possible and proceed to the creation of successful business. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to asses type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
-models.test.number1.result4=Congratulations, %s, your result is - <span class="rating">%s points</span>!<br/> Huge entrepreneurial potential! You need to gather a team of like-minded people as soon as possible and proceed to the creation of successful business. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to asses type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
+models.test.number1.result1=%s, your result is - <span class="rating">%s points</span>.<br/> For now it's difficult for you to become an entrepreneur. However, if you want to become one - you need to develop and try. Find like-minded people for joint business development. Start gradually with them from small projects and soon you will be ready for big challenges!<br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to evaluate type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
+models.test.number1.result2=%s, your result is - <span class="rating">%s points</span>.<br/> You have good entrepreneurial inclinations, which you need to develop. Gather a team of like-minded people, start on small projects and gain some experience and you will get the results soon. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to evaluate type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
+models.test.number1.result3=Congratulations, %s, your result is - <span class="rating">%s points</span>!<br/> You have very good entrepreneurial inclinations! You need to gather a team of like-minded people as soon as possible and proceed to the creation of successful business. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to evaluate type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
+models.test.number1.result4=Congratulations, %s, your result is - <span class="rating">%s points</span>!<br/> Huge entrepreneurial potential! You need to gather a team of like-minded people as soon as possible and proceed to the creation of successful business. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to evaluate type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
 
 
 
