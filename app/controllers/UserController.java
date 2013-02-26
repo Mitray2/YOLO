@@ -48,7 +48,7 @@ public class UserController extends BasicController  implements ApplicationConst
 		User user = null;
 		if (userId != null) {
 			user = User.findById(userId);
-			if (SessionHelper.getCurrentUser(session).id == userId) {
+			if (SessionHelper.getCurrentUser(session).id.equals(userId)) {
 				SessionHelper.setCurrentUser(session, user);
 			}
 		}
@@ -326,7 +326,7 @@ public class UserController extends BasicController  implements ApplicationConst
 		user.commandToInvite = null;
 		int lengthCommands = user.commandsForAprove.size();
 		for (int i = 0; i < lengthCommands; i++) {
-			if (user.commandsForAprove.get(i).id == groupId) {
+			if (user.commandsForAprove.get(i).id.equals(groupId)) {
 				user.commandsForAprove.remove(i);
 				user.save();
 				break;
@@ -340,7 +340,7 @@ public class UserController extends BasicController  implements ApplicationConst
 		User user = User.findById(SessionHelper.getCurrentUser(session).id);
 		int lengthCommands = user.commandsForAprove.size();
 		for (int i = 0; i < lengthCommands; i++) {
-			if (user.commandsForAprove.get(i).id == groupId) {
+			if (user.commandsForAprove.get(i).id.equals(groupId)) {
 				user.commandsForAprove.remove(i);
 				user.save();
 				break;
