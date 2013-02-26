@@ -282,13 +282,13 @@ public class GroupController extends BasicController implements ApplicationConst
     Command group = Command.findById(groupId);
     int lengthUsers = group.usersForAprove.size();
     for (int i = 0; i < lengthUsers; i++) {
-      if (group.usersForAprove.get(i).id == userForAproveId) {
+      if (group.usersForAprove.get(i).id.equals(userForAproveId)) {
         User user = User.findById(group.usersForAprove.get(i).id);
         user.commandToInvite = null;
         group.getUsersForAprove().remove(i);
         group.getUsers().add(user);
         for (Command command : user.commandsForAprove) {
-          if (command.id == group.id) {
+          if (command.id.equals(group.id)) {
             user.commandsForAprove.remove(command);
             break;
           }
@@ -306,7 +306,7 @@ public class GroupController extends BasicController implements ApplicationConst
     Command group = Command.findById(groupId);
     int lengthUsers = group.usersForAprove.size();
     for (int i = 0; i < lengthUsers; i++) {
-      if (group.usersForAprove.get(i).id == userForAproveId) {
+      if (group.usersForAprove.get(i).id.equals(userForAproveId)) {
         User user = User.findById(group.usersForAprove.get(i).id);
         user.commandToInvite = null;
         group.getUsersForAprove().remove(i);
@@ -326,12 +326,12 @@ public class GroupController extends BasicController implements ApplicationConst
     }
     boolean haveGroup = false;
     if (user.command != null) {
-      if (user.command.id == group.id)
+      if (user.command.id.equals(group.id))
         haveGroup = true;
     }
     if (!haveGroup) {
       for (Command command : user.commandsForAprove) {
-        if (command.id == group.id) {
+        if (command.id.equals(group.id)) {
           haveGroup = true;
         }
       }
