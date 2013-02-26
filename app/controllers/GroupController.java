@@ -670,7 +670,7 @@ public class GroupController extends BasicController implements ApplicationConst
     Query query = JPA.em().createQuery("delete from TopicMessage where topic_id IS NULL");
     query.executeUpdate();
     user = SessionHelper.getCurrentUser(session);
-    if (userState.id == user.id) {
+    if (userState.id.equals(user.id)) {
       SessionHelper.setCurrentUser(session, userState);
     }
     UserController.index(user.id);
