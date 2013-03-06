@@ -67,8 +67,8 @@ page.main.content.try.head=Try StartNewTeam method
 page.main.content.try.line1=Evaluate yourself using unique test for identification of your key business aptitudes.
 page.main.content.try.line2=Find right people on the basis of this test, who will effectively complement you.
 page.main.content.try.line3=Work in team, use StartNewTeam platform features, and achieve success together.
-page.main.enter_name=Your name (For example: John)
-page.main.enter_address=Your email (john@success.com)
+page.main.enter_name=Your name
+page.main.enter_address=E-mail
 page.main.sex.male=male
 page.main.sex.female=female
 page.main.start_the_test=Start test
@@ -76,7 +76,7 @@ page.main.site.people_count=Active users
 page.main.site.team_count=Created teams
 page.main.taketest=Test yourself and join
 page.main.its_free=(it's free)
-page.main.birthday=Enter your birthday
+page.main.birthday=Your birthday:
 
 page.about.title=About project
 page.about.text=<p>Science and technology are developing very fast, the world became\
@@ -156,8 +156,6 @@ page.test2.passed.recommendation=<p>Successful business requires simultaneous de
 									will complement you within the functions which are less developped in you.</p>\
 										<p>We hope that you will find here like-minded people\
 									and form dream-team which will lead to you success.</p>\
-										<p>In order to finish registration and get an access to inner pages and whole functionality of the project\
-									please fill in this short application form.</p>\
 										<p>We advice you to share this test with your friends in social networks - \
 									maybe you will find potential business partners among them.</p>\
 
@@ -208,7 +206,7 @@ email.firstTestPassed=Hello, %s!<br>\
                             Entrepreneurally yours, <br>\
                             <a href="%s">StartNewTeam</a> 
 email.blankfformpassed=In order to finish registration on <a href="%s">StartNewTeam</a> please \
-                        confirm your email, by following this <a href="%s/confirmRegistration?ticket=%s">link</a>.<br/>.\
+                        confirm your email, by following this <a href="%s/confirmRegistration?ticket=%s">link</a>.<br/>\
                         <br>\
                         <br>\
                         Entrepreneurally yours, <br>\
@@ -259,8 +257,8 @@ link.contacts=Contacts
 link.partners=Partners
 
 link.crowd.consalting=CrowdConsulting
-link.crowd.developig=CrowdDevelopment
-link.crowd.funding=CrowdFunding
+link.crowd.developig=CrowdDeveloping
+link.crowd.funding=CrowdSourcing
 
 page.partners.title=Partners of StartNewTeam
 page.partners.skolkovo.title=We are looking forward to expand network of our partners. We are looking for both local and global partners.
@@ -285,9 +283,7 @@ page.crowd.developing.head=Do you like our project and would like help us in one
 							In future we are planning to create a network of partners\
 							and active members, who will conduct different useful\
 							off-line events and meetings for entrepreneurs in their cities.<br>
-page.crowd.funding.head=Here you can make financial input in the development of the project \
-						or thank us, if you have already found right people\
-						and launched your own business.<br> Each month, we are publishing report on the in  received, expenditures made, and their results. <br> People, donated their contribution to the development of the project will be presented in the special Hall of Fame. <br><br><strong>Details for donations:</strong><br> Webmoney (USD): Z390298024279<br> Webmoney (EUR): E126193926196<br> PayPal: CrowdFundingSNT@yandex.ru<br><br><strong>Reports and plans:</strong><br><br>
+page.crowd.funding.head=Here we will publish links to other helpful resources for the successful start of a new business. <br> You can send your links and information for publication in this section (info@startnewteam.com). <br>
 page.crowd.funding.report.translate.en=ENGLISH
 page.crowd.funding.report.translate.ru=РУССКИЕ
 
@@ -483,7 +479,7 @@ page.profile.current.desc_other=Describe more your experience in other spheres (
 page.profile.current.desc_cv=Describe in few words your goals and expectations from registration in the platform
 page.profile.current.desc_skill_meta=Indicate your level of knowledge and experience in this field
 page.profile.current.desc_cv_meta=Describe in few words your goals and expectations from registration
-page.profile.current.test2=Test your business skills now!
+page.profile.current.test2=Test your business-aptitudes for better team creation.
 
 page.search.members.title=Partners search system
 page.search.members.personal_data=Personal data
@@ -828,10 +824,10 @@ models.ProjectPhase.name.planning=Planning/brownfield
 models.ProjectPhase.name.developing=Realisation
 
 #first test passed texts
-models.test.number1.result1=%s, your result is - <span class="rating">%s points</span>.<br/> For now it's difficult for you to become an entrepreneur. However, if you want to become one - you need to develop and try. Find like-minded people for joint business development. Start gradually with them from small projects and soon you will be ready for big challenges!<br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to evaluate type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
-models.test.number1.result2=%s, your result is - <span class="rating">%s points</span>.<br/> You have good entrepreneurial inclinations, which you need to develop. Gather a team of like-minded people, start on small projects and gain some experience and you will get the results soon. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to evaluate type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
-models.test.number1.result3=Congratulations, %s, your result is - <span class="rating">%s points</span>!<br/> You have very good entrepreneurial inclinations! You need to gather a team of like-minded people as soon as possible and proceed to the creation of successful business. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to evaluate type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
-models.test.number1.result4=Congratulations, %s, your result is - <span class="rating">%s points</span>!<br/> Huge entrepreneurial potential! You need to gather a team of like-minded people as soon as possible and proceed to the creation of successful business. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/> Now you need to evaluate type of your capabilities in order to find a perfect team for you. Our second test is specially designed for that.
+models.test.number1.result1=%s, your result is - <span class="rating">%s points</span>.<br/> For now it's difficult for you to become an entrepreneur. However, if you want to become one - you need to develop and try. Find like-minded people for joint business development. Start gradually with them from small projects and soon you will be ready for big challenges!<br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/>In order to finish registration and get an access to inner pages and whole functionality of the project please fill in this short application form.
+models.test.number1.result2=%s, your result is - <span class="rating">%s points</span>.<br/> You have good entrepreneurial inclinations, which you need to develop. Gather a team of like-minded people, start on small projects and gain some experience and you will get the results soon. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/>In order to finish registration and get an access to inner pages and whole functionality of the project please fill in this short application form.
+models.test.number1.result3=Congratulations, %s, your result is - <span class="rating">%s points</span>!<br/> You have very good entrepreneurial inclinations! You need to gather a team of like-minded people as soon as possible and proceed to the creation of successful business. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/>In order to finish registration and get an access to inner pages and whole functionality of the project please fill in this short application form.
+models.test.number1.result4=Congratulations, %s, your result is - <span class="rating">%s points</span>!<br/> Huge entrepreneurial potential! You need to gather a team of like-minded people as soon as possible and proceed to the creation of successful business. <br/>Share this result with your friends - maybe it will help some of friends to realize themselves. Or maybe you will find business partners among them. <br/>In order to finish registration and get an access to inner pages and whole functionality of the project please fill in this short application form.
 
 
 
