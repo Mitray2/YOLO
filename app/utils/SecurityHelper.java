@@ -6,18 +6,18 @@ import java.security.NoSuchAlgorithmException;
 public class SecurityHelper {
 
 	public static String createPasswordHash(String password) {
-		MessageDigest md = null;
+        StringBuilder sb = new StringBuilder();
 		try {
-			md = MessageDigest.getInstance("MD5");
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
+            MessageDigest md = MessageDigest.getInstance("MD5");
 		md.update(password.getBytes());
 		byte byteData[] = md.digest();
-		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < byteData.length; i++) {
-			sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16)
+
+            for (byte aByteData : byteData) {
+                sb.append(Integer.toString((aByteData & 0xff) + 0x100, 16)
 					.substring(1));
+		}
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
 		}
 		return sb.toString();
 	}

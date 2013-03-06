@@ -1,24 +1,18 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import modelDTO.UserSkillDTO;
-import models.BSphere;
-import models.BType;
-import models.Command;
-import models.Country;
-import models.User;
-import models.UserLevel;
+import models.*;
 import notifiers.Mails;
 import play.i18n.Messages;
 import play.mvc.Before;
-import play.mvc.Controller;
 import utils.ApplicationConstants;
 import utils.SecurityHelper;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class UserController extends BasicController  implements ApplicationConstants {
 
@@ -36,7 +30,7 @@ public class UserController extends BasicController  implements ApplicationConst
 			user.save();
 		}
 		if (currentUser.role == User.ROLE_INPERFECT_USER) {
-			redirect(request.getBase() + ApplicationConstants.SECOND_TEST_PATH);
+			redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
 		}
 		if (currentUser.role.equals(User.ROLE_WITHOUT_BLANK)) {
 			redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
@@ -44,7 +38,7 @@ public class UserController extends BasicController  implements ApplicationConst
 
 	}
 
-	public static final void index(Long userId) {
+	public static void index(Long userId) {
 		User user = null;
 		if (userId != null) {
 			user = User.findById(userId);

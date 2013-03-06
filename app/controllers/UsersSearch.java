@@ -34,7 +34,7 @@ public class UsersSearch extends AbstractSearch {
 			user.save();
 		}
 		if (currentUser.role == User.ROLE_INPERFECT_USER) {
-			redirect(request.getBase() + ApplicationConstants.SECOND_TEST_PATH);
+			redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
 		}
 		if (currentUser.role.equals(User.ROLE_WITHOUT_BLANK)) {
 			redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
@@ -141,7 +141,7 @@ public class UsersSearch extends AbstractSearch {
 				user_search.put("age", user.age);
 				user_search.put("haveAvatar", user.haveAvatar);
 				user_search.put("info", user.personalCV);
-				user_search.put("commandB", user.command == null ? false : true);
+				user_search.put("commandB", user.command != null);
 				user_search.put("commandId", user.command == null ? false : user.command.id);
 				
 				user_search.put("commandName", user.command == null ? false : user.command.name);

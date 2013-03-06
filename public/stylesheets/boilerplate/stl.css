@@ -3284,7 +3284,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .news-txt li{
 	margin-bottom:5px;
-	//z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('afterBegin', '&mdash;&nbsp;'));
+	/*z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('afterBegin', '&mdash;&nbsp;'));*/
 }
 .news-txt li:before{
 	content: "\2014\a0";
@@ -3465,4 +3465,9 @@ h1.main{
     font: 24px/32px Arial,sans-serif;
     border-bottom: 2px dashed #E1E1E1;
     padding: 0 0 23px;
+}
+
+/* SIARZH */
+.red {
+    color: #e00 !important;
 }

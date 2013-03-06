@@ -51,11 +51,11 @@ public class LoginController extends BasicController implements ApplicationConst
 
 	public static void firstTestPassed(User user, Test test, String birthYear, String birthMonth, String birthDay) {
 		// in case user will want to reaload result page
-		User alereadySavedUser = User.find("email = ?", user.email).first();
-		if (alereadySavedUser == null) {
+		User alreadySavedUser = User.find("email = ?", user.email).first();
+		if (alreadySavedUser == null) {
 			test.refresh();
 			FindAnswerByIdPredicate findAnswerByIdPredicate = new FindAnswerByIdPredicate();
-			int result = 0;
+			int businessTestResult = 0;
 
 			for (int i = 1; i <= test.questions.size(); i++) {
 				Question question = test.questions.get(i - 1);
@@ -64,7 +64,7 @@ public class LoginController extends BasicController implements ApplicationConst
 						findAnswerByIdPredicate.setId(question.answer.id);
 						Answer findedAnwer = (Answer) CollectionUtils.find(question.answers, findAnswerByIdPredicate);
 						if (findedAnwer != null) {
-							result += findedAnwer.score;
+							businessTestResult += findedAnwer.score;
 						}
 					} else {
 						validation.required(VALIDATION_MODEL_TEST_QUESTION_ANSWER_REQUIRED + question.id, question.answer).message(VALIDATION_MODEL_TEST_QUESTION_ANSWER_REQUIRED);
@@ -87,21 +87,26 @@ public class LoginController extends BasicController implements ApplicationConst
 				render("LoginController/firstTest.html", test, user, validation.errors(), birthDay, birthMonth, birthYear);
 			}
 
-			user.name = StringUtils.capitalize(user.name);
-			user.email = user.email.toLowerCase();
-			user.role = User.ROLE_INPERFECT_USER;
+            alreadySavedUser = new User();
+            alreadySavedUser.name = StringUtils.capitalize(user.name);
+            alreadySavedUser.email = user.email.toLowerCase();
+            alreadySavedUser.sex = user.sex;
+            alreadySavedUser.role = User.ROLE_INPERFECT_USER;
 			Calendar birthday = Calendar.getInstance();
 			birthday.set(Integer.parseInt(birthYear), Integer.parseInt(birthMonth), Integer.parseInt(birthDay));
-			user.birthday = birthday.getTime();
-			ModelUtils.calculateUsersAge(user);
-			user.regDate = new Date();
-			user.businessman = result;
+            alreadySavedUser.birthday = birthday.getTime();
+			ModelUtils.calculateUsersAge(alreadySavedUser);
+            alreadySavedUser.regDate = new Date();
+            alreadySavedUser.businessman = businessTestResult;
 
-			Mails.firstTestPassed(user, request.getBase());
+			//Mails.firstTestPassed(user, request.getBase());
 
-			alereadySavedUser = user;
+			//alreadySavedUser = user;
+
+            alreadySavedUser.save();
+            SessionHelper.setCurrentUser(session, alreadySavedUser);
 		}
-		render(alereadySavedUser);
+		render(alreadySavedUser);
 	}
 
 	public static void secondTest() {
@@ -202,10 +207,14 @@ public class LoginController extends BasicController implements ApplicationConst
 			// for not to save test.
 			test.em().detach(test);
 			SessionHelper.setCurrentUser(session, currentUser);
-			currentUser.role = User.ROLE_WITHOUT_BLANK;
+
+			// /currentUser.role = User.ROLE_WITHOUT_BLANK;
+
 			currentUser.save();
 			SessionHelper.setCurrentUser(session, currentUser);
+
 			render(currentUser);
+            //redirect(request.getBase() + SLASH);
 		}
 	}
 
@@ -271,7 +280,9 @@ public class LoginController extends BasicController implements ApplicationConst
 		User userToSave = User.findById(user.id);
 		userToSave.passwordHash = SecurityHelper.createPasswordHash(password);
 		ModelUtils.fillUser(userToSave, user);
+
 		Mails.blankFormPassed(userToSave, request.getBase());
+
 		SessionHelper.logout(session);
 		render(userToSave);
 	}
@@ -280,19 +291,19 @@ public class LoginController extends BasicController implements ApplicationConst
 		if (StringUtils.isNotEmpty(ticket)) {
 			User user = User.find(" mailTicket = ? ", ticket).first();
 			if (user != null) {
-				if (user.role.equals(User.ROLE_INPERFECT_USER)) {
+				/*if (user.role.equals(User.ROLE_INPERFECT_USER)) {
 					SessionHelper.setCurrentUser(session, user);
 					redirect(request.getBase() + "/secondTest/");
 				} else if (user.role.equals(User.ROLE_WITHOUT_BLANK) && StringUtils.isEmpty(user.lastName)) {
 					SessionHelper.setCurrentUser(session, user);
 					redirect(request.getBase() + "/blankForm/");
-				} else {
+				} else {*/
 					user.mailTicket = null;
 					user.role = User.ROLE_USER;
 					user.save();
 					SessionHelper.setCurrentUser(session, user);
 					redirect(request.getBase() + "/");
-				}
+				//}
 			} else {
 				validation.isTrue(false).message(VALIDATION_LOGIN_CONTROLLER_VALIDATION_HAS_BEEN_APPROVED);
 				render("ApplicationController/index.html", validation.errors());

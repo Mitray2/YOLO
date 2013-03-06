@@ -2,24 +2,24 @@
 <h1>&{'page.test1.passed.head'}</h1>
 <div class="test">
 	<div class="test-results">
-		<p>#{if alereadySavedUser.businessman < 25}
-			&{'models.test.number1.result1', alereadySavedUser.name, alereadySavedUser.businessman} 
+		<p>#{if alreadySavedUser.businessman < 25}
+			&{'models.test.number1.result1', alreadySavedUser.name, alreadySavedUser.businessman}
 		#{/if}
-		#{elseif alereadySavedUser.businessman < 50}
-			&{'models.test.number1.result2', alereadySavedUser.name, alereadySavedUser.businessman}
+		#{elseif alreadySavedUser.businessman < 50}
+			&{'models.test.number1.result2', alreadySavedUser.name, alreadySavedUser.businessman}
 		#{/elseif}
-		#{elseif alereadySavedUser.businessman < 75}
-			&{'models.test.number1.result3', alereadySavedUser.name, alereadySavedUser.businessman}
+		#{elseif alreadySavedUser.businessman < 75}
+			&{'models.test.number1.result3', alreadySavedUser.name, alreadySavedUser.businessman}
 		#{/elseif}
 		#{else}
-			&{'models.test.number1.result4', alereadySavedUser.name, alereadySavedUser.businessman}
+			&{'models.test.number1.result4', alreadySavedUser.name, alreadySavedUser.businessman}
 		#{/else} &{'page.test1.passed.see_mail'} </p>
-		<ul class="social-likes" data-title="&{'page.test1.passed.social.title'}" data-twit="&{'page.test1.passed.social.text', alereadySavedUser.businessman} www.startnewteam.ru" data-description="&{'page.test1.passed.social.text', alereadySavedUser.businessman}" data-url="${request.getBase()}" >
+		<ul class="social-likes" data-title="&{'page.test1.passed.social.title'}" data-twit="&{'page.test1.passed.social.text', alreadySavedUser.businessman} www.startnewteam.ru" data-description="&{'page.test1.passed.social.text', alreadySavedUser.businessman}" data-url="${request.getBase()}" >
 			<li class="facebook" title="&{'page.common.social.public.fb'}">Facebook</li>
 			<li class="twitter"  title="&{'page.common.social.public.twitter'}">Twitter</li>
 			<li class="vkontakte" title="&{'page.common.social.public.vk'}">&{'page.common.social.vk'}</li>
 		</ul>
 	</div>
-	<div class="test-btm"><a href="${request.getBase()}/confirmRegistration?ticket=${alereadySavedUser.passwordHash}" class="test-btn">&{'page.test1.pass_test'}</a></div>
+    <div class="test-btm"><a href="/blankform/" class="test-btn">&{'page.test1.passed.final_step'}</a></div>
 </div>
 

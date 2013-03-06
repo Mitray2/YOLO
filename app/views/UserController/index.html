@@ -58,6 +58,7 @@
                          &{'pragmatist'}
                     </div>
                 </div>
+
                 <div class="user-info-ttl">&{'page.profile.personal_characteristics'}</div>
                 <div class="user-info">
                     <pre>${user.personalCV}</pre>
@@ -144,18 +145,23 @@
 		                        &{'businessman'}
 		                    </div>
 		                    <div>
-		                        <strong>${user.idealist}</strong>
+                                <strong #{if user.idealist == 0}class="red"#{/if}>${user.idealist}</strong>
 		                        &{'idealist'}
 		                    </div>
 		                    <div>
-		                       	<strong>${user.communicant}</strong>
+                                <strong #{if user.communicant == 0}class="red"#{/if}>${user.communicant}</strong>
 		                       &{'communicant'}
 		                    </div>
 		                    <div>
-		                        <strong>${user.pragmatist}</strong>
+                                <strong #{if user.pragmatist == 0}class="red"#{/if}>${user.pragmatist}</strong>
 		                         &{'pragmatist'}
 		                    </div>
 						</div>
+
+                        #{if (user.idealist == 0 && user.communicant == 0 && user.pragmatist == 0)}
+                            <div><a href="@{LoginController.secondTest()}">&{'page.profile.current.test2'}</a></div>
+                        #{/if}
+
 						<div class="group-info-rate-help">&{'page.profile.current.based_on_test'}</div>
 					</div>
 					</div>

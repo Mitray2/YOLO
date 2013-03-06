@@ -67,7 +67,7 @@ function errorAvatar(errorDetails) {
 <div id="approveAvatar" class="popup" style="display: none;">
 	<h2>&{'page.avatar.change.approve1'}</h2>
 	<p>&{'page.avatar.change.approve2'}</p>
-	<img src="${play.Play.configuration.getProperty("filestoteURL")}/avatars/${_user.id}/newAvatar_123.jpg">
+	<img src="${play.Play.configuration.getProperty("filestoreURL")}/avatars/${_user.id}/newAvatar_123.jpg">
 	<button class="btn" onclick="$(this).parent().fadeOut(500); approveAvatar(); return false;">OK</button>
 	<button class="btn" onclick="$(this).parent().fadeOut(500); return false;">&{'common.cancel'}</button>
 </div>

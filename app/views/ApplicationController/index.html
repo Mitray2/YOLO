@@ -15,21 +15,26 @@
 <script src="@{'/public/javascripts/controllers/LoginController.js'}" type="text/javascript" charset="utf-8"></script> 
 <script>
 %{
-	def currentValidation = play.data.validation.Validation.current();
+	currentValidation = play.data.validation.Validation.current();
 }%
 $(document).ready(function() {
 	$('input[placeholder], textarea[placeholder]').placeholder();
+
 	//show 2000 selected at first
-        $($('[name="birthYear"]').parent().find('div')[2]).show();
-        $('[name="birthYear"]').parent().find('div')[2].scrollTop = 2500;
-        $($('[name="birthYear"]').parent().find('div')[2]).hide();
+    var birthDiv = $('[name="birthYear"]').parent().find('div')[2];
+    var birthBox = $(birthDiv);
+    birthBox.show();
+    birthDiv.scrollTop = 2500;
+    birthBox.hide();
 
         $('#password').keypress(function (e) {
             if (e.which == 13) {
                 $('#loginForm').submit();
                 return false;
             }
+        return true;
         });
+
     //made for focus when clicking registration on the pages excepts main
     #{if flash.get("registration")}
         $('#regName').focus();
@@ -41,19 +46,19 @@ $(document).ready(function() {
 <style>
     .betaBlocker {
         position: absolute;
-        top: 0px;
-        left: 0px;
+        top: 0;
+        left: 0;
         background-color: #FFF;
-        width: 0px;
-        height: 0px;
+        width: 0;
+        height: 0;
         z-index: 10;
     }
 </style>
 <script>
     function block_screen() {
-        $('#screenBlock').show();
-        $('#screenBlock').css( { opacity: 0.9, width: $(document).width(), height: $(document).height() + 30 } );
-        $('#screenBlock form').css( { opacity: 1 });
+        var screenBlock = $('#screenBlock');
+        screenBlock.show().css( { opacity: 0.9, width: $(document).width(), height: $(document).height() + 30 } );
+        screenBlock.find('form').css( { opacity: 1 });
     }
     $(document).ready(function() {
         #{if (request.cookies.get("validBeta")?.value?.equals("true") || validBeta)}
@@ -67,6 +72,7 @@ $(document).ready(function() {
 
 </head>
 <body>
+<!-- BETA -->
     <div id="screenBlock" class="betaBlocker" style="display: none; text-align: center">
         <div style="padding-top: 200px">
             <form action="/" method="post" class="entry" style="text-align: center; border: 1px solid #d4d4d4; background-color: #fbfbfb; width: 400px; margin: 0 auto;">
@@ -77,6 +83,8 @@ $(document).ready(function() {
             </form>
         </div>
     </div>
+<!-- /BETA -->
+
 	<div class="wrapper">
 		<header class="hdr-page">
 			<div class="inner">
@@ -114,26 +122,19 @@ $(document).ready(function() {
 					#{form @LoginController.firstTest(), class:'entry'}
 						<input type="text" #{if currentValidation?.hasError('user.name')}class="inputerror"#{/if} name="user.name" id="regName" onfocus="this.value=''; this.placeholder=''" onblur="this.placeholder='&{'page.main.enter_name'}'" placeholder="&{'page.main.enter_name'}" value="${user?.name}"/>
 						<input type="text" #{if currentValidation?.hasError('user.email')}class="inputerror"#{/if} name="user.email" id="" onfocus="this.value=''; this.placeholder=''" onblur="this.placeholder='&{'page.main.enter_address'}'" placeholder="&{'page.main.enter_address'}" value="${user?.email}"/>
-						#{if currentValidation?.hasError('user.sex')}
-							<span class="error">
-								<input type="radio" name="user.sex" id="rad1" class="radio" #{if user?.sex == true}checked#{/if} value="true"/><label for="rad1" class="man">&{'page.main.sex.male'}</label><input type="radio" name="user.sex" id="rad2" value="false" class="radio" #{if user?.sex == false}checked#{/if}/><label for="rad2" class="woman">&{'page.main.sex.female'}</label>
-							</span>
-						#{/if}
-						#{else}
+
+                        #{if currentValidation?.hasError('user.sex')}<span class="error">#{/if}
 							<input type="radio" name="user.sex" id="rad1" class="radio" #{if user?.sex == true}checked#{/if} value="true"/><label for="rad1" class="man">&{'page.main.sex.male'}</label><input type="radio" name="user.sex" id="rad2" value="false" class="radio" #{if user?.sex == false}checked#{/if}/><label for="rad2" class="woman">&{'page.main.sex.female'}</label>
-						#{/else}
+                        #{if currentValidation?.hasError('user.sex')}</span>#{/if}
+
 						&{'page.main.birthday'}</br>
 						#{models.user.birthdayComponent day:birthDay, month:birthMonth, year:birthYear/}
+
 						<div class="cl"></div>
 						#{if currentValidation?.hasError('user.sex') || currentValidation?.hasError('user.email') || currentValidation?.hasError('user.name')}
 				            <div class="alert">
 				            	#{errors}
-				            		#{if errors_isLast}
-				            			${error}
-				            		#{/if}
-									#{else}
-										${error}<br/>
-									#{/else}		            		
+                                    ${error} #{if !errors_isLast}<br/>#{/if}
 				            	#{/errors}
 				            </div>
 			            #{/if}

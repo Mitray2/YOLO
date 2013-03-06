@@ -42,7 +42,7 @@ public class GroupController extends BasicController implements ApplicationConst
       user.save();
     }
     if (currentUser.role == User.ROLE_INPERFECT_USER) {
-      redirect(request.getBase() + ApplicationConstants.SECOND_TEST_PATH);
+      redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
     }
     if (currentUser.role.equals(User.ROLE_WITHOUT_BLANK)) {
       redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);

@@ -1,5 +1,5 @@
 %{
-    def currentUser = utils.SessionHelper.getCurrentUser(session);
+    currentUser = utils.SessionHelper.getCurrentUser(session);
     boolean groupAdmin = currentUser?.role == models.User.ROLE_GROUP_ADMIN;
     boolean groupMember = !groupAdmin && (currentUser?.command != null);
     boolean wasInviteToGroup = currentUser?.commandToInvite != null;

@@ -1,6 +1,6 @@
 #{extends 'main_markup.html'/}
 %{
-	def currentValidation = play.data.validation.Validation.current();
+	currentValidation = play.data.validation.Validation.current();
 }%
 <style>
 <!--
@@ -34,7 +34,6 @@
                         <span class="reply-txt">&{'page.test1.answer'}:</span>
                             #{list items:question.answers, as:'answer'}
                                 <input type="radio" name="test.questions[${question_index}].answer.id" id="answer${answer.id}" class="radio" value="${answer.id}" #{if question?.answer?.id.equals(answer.id)}checked#{/if}>
-<!-- 									<input type="radio" name="test.questions[${question_index}].answer.id" id="answer${answer.id}" class="radio" value="${answer.id}" checked> -->
                                 <label for="answer${answer?.id}" class="radio-btn">&{answer.value}</label>
                             #{/list}
                     </div>

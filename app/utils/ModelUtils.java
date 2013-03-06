@@ -51,8 +51,8 @@ public class ModelUtils {
 		to.expManagement = from.expManagement;
 		to.expSale = from.expSale;
 		to.expOther = from.expOther;
-		UserLevel none = UserLevel.findById(1l);
 		to.expMarketing = new ExpMarketing();
+        UserLevel none = UserLevel.findById(1l);
 		to.expMarketing.level = none;
 		to.expFinance = new ExpFinance();
 		to.expFinance.level = none;

@@ -4,13 +4,14 @@ import java.util.Random;
 
 public class PasswordGenerator {
 
+    private static final String validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    private static final Random generator = new Random();
+
 	public static String generate() {
-		String validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-		String s = "";
-		Random generator = new Random();
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < 8; i++) {
-			s += validChars.charAt(generator.nextInt(validChars.length()));
+            sb.append(validChars.charAt(generator.nextInt(validChars.length())));
 		}
-		return s;
+		return sb.toString();
 	}
 }

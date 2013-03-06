@@ -8,8 +8,8 @@ import java.lang.annotation.Target;
 /**
  * Used to indicate that data should be retrieved with defined parameters.
  * Example:
- * 	@ChoiceFilter(value="fieldName^fieldValueLike,value="fieldName^fieldValueLike")
- * 
+ * 	ChoiceFilter(value="fieldName^fieldValueLike,value="fieldName^fieldValueLike")
+ *
  * @author zhenya-yadlovskij
  *
  */

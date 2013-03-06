@@ -1,7 +1,7 @@
 #{extends 'main_markup.html'/}
 <script src="@{'/public/javascripts/controllers/LoginController.js'}" type="text/javascript" charset="utf-8"></script>
 %{
-	def currentValidation = play.data.validation.Validation.current();
+	currentValidation = play.data.validation.Validation.current();
 }% 
 <h1>&{'page.test2.head'}</h1>
 #{form @LoginController.secondTestPassed()}

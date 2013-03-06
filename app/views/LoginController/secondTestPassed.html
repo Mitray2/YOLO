@@ -16,5 +16,6 @@
 			<li class="vkontakte" title="&{'page.common.social.public.vk'}">&{'page.common.social.vk'}</li>
 		</ul>
 	</div>
-	<div class="test-btm"><a href="/blankform/" class="test-btn">&{'page.test2.passed.final_step'}</a></div>
+    <!--<div class="test-btm"><a href="/blankform/" class="test-btn">&{'page.test2.passed.final_step'}</a></div>-->
+    <div class="test-btm"><a href="@{UserController.index(currentUser?.id)}" class="test-btn">&{'page.test2.passed.final_step'}</a></div>
 </div>

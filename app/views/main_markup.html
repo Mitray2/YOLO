@@ -17,8 +17,8 @@
 	#{/if}
 	<!--[if IE]>	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>	<![endif]-->
 %{
-	def currentUser = utils.SessionHelper.getCurrentUser(session);
-	def currentValidation = play.data.validation.Validation.current();
+	currentUser = utils.SessionHelper.getCurrentUser(session);
+	currentValidation = play.data.validation.Validation.current();
 }%
 
 <script type="text/javascript">
@@ -48,19 +48,21 @@ $(document).ready(function() {
 <body>
 	<div class="wrapper inner-page">
 		<header class="hdr-page">
+
 			<div class="inner">
 				#{lang.langSwitcher/}
+                #{if !currentUser || currentUser.role == models.User.ROLE_INPERFECT_USER}
                 #{common.loginForm /}
-                </div>
-                #{if currentUser}
-                    <div class="inner">
+                #{/if}
+                #{else}
                     <a href="/">
                         <img src="@{'public/images/boilerplate/logo-1.png'}" alt="" class="logo" />
                     </a>
                     #{common.menu.nav/}
                     #{common.workingPanel group: group, userForAprove:userForAprove/}
+                #{/else}
 			        </div>
-                #{/if}
+
 		</header>
 		<div class="content wrap-test clearFix">
 			#{doLayout currentValidation:currentValidation/}

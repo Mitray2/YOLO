@@ -21,6 +21,10 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('.dropdown').dropdown();
+    $('.dropdown-menu').find('li').click(function(){
+        window.location.href = $(this).find('a').attr('href');
+        return false;
+    });
 });
 </script>
 </head>
@@ -48,22 +52,22 @@ $(document).ready(function(){
 	            <li class="dropdown" data-original-title="">
 	              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info<b class="caret"></b></a>
 	              <ul class="dropdown-menu">
-	              	<li onclick="window.location.href = $(this).find('a').attr('href'); return false;">
+	              	<li>
                			<a href="@{ContactsController.index()}">Contacts</a>
 	            	</li>
-	             	<li onclick="window.location.href = $(this).find('a').attr('href'); return false;">
+	             	<li>
 	               		<a href="@{NewsController.index()}">News</a>
 		            </li>
-	             	<li onclick="window.location.href = $(this).find('a').attr('href'); return false;">
+	             	<li>
 	               		<a href="@{AboutController.index()}">About</a>
 		            </li>
-	             	<li onclick="window.location.href = $(this).find('a').attr('href'); return false;">
+	             	<li>
 	               		<a href="@{OrganizatorsController.index()}">Organizators</a>
 		            </li>
-	             	<li onclick="window.location.href = $(this).find('a').attr('href'); return false;">
+	             	<li>
 	               		<a href="@{PartnersController.index()}">Partners</a>
 		            </li>
-	             	<li onclick="window.location.href = $(this).find('a').attr('href'); return false;">
+	             	<li>
 	               		<a href="@{SponsorsController.index()}">Sponsors</a>
 		            </li>
 	              </ul>
