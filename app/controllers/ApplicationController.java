@@ -12,11 +12,11 @@ import static utils.ApplicationConstants.CACHE_USERS_COUNT;
 public class ApplicationController extends BasicController {
 
     public static void index() {
-      boolean validBeta = false;
-        if ("sntbeta".equals(request.params.get("betaCode"))) {
-          response.setCookie("validBeta", "true", "100d");
-          validBeta = true;
-        }
+     // boolean validBeta = false;
+     //   if ("sntbeta".equals(request.params.get("betaCode"))) {
+     //     response.setCookie("validBeta", "true", "100d");
+     //     validBeta = true;
+     //   }
         User user = SessionHelper.getCurrentUser(session);
         if (user != null) {
             UserController.index(user.id);
@@ -32,9 +32,9 @@ public class ApplicationController extends BasicController {
                 commandsCount = Command.count();
                 EhCacheImpl.getInstance().add(CACHE_COMMANDS_COUNT, commandsCount, 60 * 60);
             }
-            render(user, usersCount, commandsCount, validBeta);
+            render(user, usersCount, commandsCount /*, validBeta*/);
         }
-        render(validBeta);
+        render(/*validBeta*/);
     }
 
     public static void rss() {
