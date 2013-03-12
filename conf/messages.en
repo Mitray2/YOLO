@@ -120,8 +120,8 @@ page.test1.error1=You have missed some questions.
 page.test1.error2=Please make your choice in the lines, marked in red.
 
 #first test passed social texts
-page.test1.passed.social.text=My entrepreneurial skills have been evaluated and received %s points. Learn how much could you score!
-page.test1.passed.social.title=Business-test
+page.test1.passed.social.text=Find business ideas and potential partners and start your own business. It’s easy and free.
+page.test1.passed.social.title=My entrepreneurial skills have been evaluated and received %s points. Try and learn how much can you score!
 page.test1.passed.head=You have sucessfully completed the test!
 page.test1.passed.see_mail=
 page.test1.passed.final_step=Final registration
@@ -834,8 +834,8 @@ models.test.number1.result4=Congratulations, %s, your result is - <span class="r
 social.populate.link=Post a link
 
 #Tell about groups
-models.group.social.title=Join teams %s
-models.group.social.description=Join teams %s. Description.
+models.group.social.title=Find business ideas and potential partners and start your own business. It’s easy and free, join. http://www.startnewteam.com/
+models.group.social.description=Find business ideas and potential partners and start your own business. It’s easy and free. 
 
 #monthes
 monthName.January=January
