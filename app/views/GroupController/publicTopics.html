@@ -11,8 +11,9 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
 %}
 
 <div class="tabs clearFix">
-    <a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a> <a href="@{GroupController.publicTopics(group.id)}"  class="act">&{'page.team.public_discussion'}</a>
-#{if groupMember || adminGroup}
+    <a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a>
+    <a href="@{GroupController.publicTopics(group.id)}"  class="act">&{'page.team.public_discussion'}</a>
+#{if groupMember || currentGroupAdmin}
     <a href="@{GroupController.groupTopics(group.id)}">&{'page.team.discussion'}</a>
 #{/if}
     <a href="@{GroupController.groupUsers(group.id)}" >&{'page.team.members'}</a>
@@ -33,7 +34,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
 
 
 <div class="search-result-name">
-#{if (groupMember) || adminGroup}
+#{if (groupMember) || currentGroupAdmin}
     <a href="@{GroupController.createTopic(group.id)}" class="new-themes-btn"><img src="@{'public/images/boilerplate/ico-new-theme.gif'}" alt="">&{'page.team.discuss.create_team'}</a>
 #{/if}
     <div class="ttl-search-result2-color">&{'page.team.discuss.count_topics', topicsCount}</div>
