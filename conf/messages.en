@@ -59,7 +59,7 @@ mail.subject.type5=Someone wants to join your team
 mail.subject.type6=Password recovery
 
 
-page.main.content=<h1 class="main">StartNewTeam - is a tool for formation<br> of effective entrepreneurial teams.</h1>\
+page.main.content=<h1 class="main">StartNewTeam – international business dating service for creation of joint business.</h1>\
                     <p>You want to have your business, but lack something for a successful start?</p>\
                     <p>Experience, knowledge, good ideas, money or connections?</p>\
                     <p>One person can't combine it all - you need a team.</p>
@@ -120,8 +120,8 @@ page.test1.error1=You have missed some questions.
 page.test1.error2=Please make your choice in the lines, marked in red.
 
 #first test passed social texts
-page.test1.passed.social.text=Find business ideas and potential partners and start your own business. It’s easy and free.
-page.test1.passed.social.title=My entrepreneurial skills have been evaluated and received %s points. Try and learn how much can you score!
+page.test1.passed.social.text=Global entrepreneur test.
+page.test1.passed.social.title=My entrepreneurial aptitudes are %s points!
 page.test1.passed.head=You have sucessfully completed the test!
 page.test1.passed.see_mail=
 page.test1.passed.final_step=Final registration
@@ -139,8 +139,8 @@ page.test2.error1=You have missed some questions.
 page.test2.error2=Please make your choice in the lines, marked in red.
 
 page.test2.passed.title=You have successfully completed the final test!
-page.test2.passed.social.text=My entrepreneurial type is: Idealist %s, Communicant %s, Pragmatic %s. Do you have different results? Let's complement each other and create effective team!
-page.test2.passed.social.title=The final business-test
+page.test2.passed.social.text=My business type: Idealist %s, Communicant %s, Pragmatic %s.
+page.test2.passed.social.title=Global business dating test.
 page.test2.passed.results=Here's the result of your entrepreneurial propensities on the basis of tests (max. = 100)
 page.test2.passed.idealist_result=<strong>Idealist </strong> &ndash; <span class="rating">%s points</span>, &ndash; propensity to generate new ideas and to find effective solutions.
 page.test2.passed.communicant_result=<strong>Communicant</strong> &ndash; <span class="rating">%s points </span>, &ndash; propensity to promotion, negotiations, sales.
@@ -158,6 +158,7 @@ page.test2.passed.recommendation=<p>Successful business requires simultaneous de
 									and form dream-team which will lead to you success.</p>\
 										<p>We advice you to share this test with your friends in social networks - \
 									maybe you will find potential business partners among them.</p>\
+										<p>Find the team which attracts you and join them, or create your own and invite free people to join you. Be active and build your success!</p>
 
 page.test2.passed.final_step=Back to my profile
 
@@ -834,8 +835,8 @@ models.test.number1.result4=Congratulations, %s, your result is - <span class="r
 social.populate.link=Post a link
 
 #Tell about groups
-models.group.social.title=Find business ideas and potential partners and start your own business. It’s easy and free, join. http://www.startnewteam.com/
-models.group.social.description=Find business ideas and potential partners and start your own business. It’s easy and free. 
+models.group.social.title=Looking for potential business partners, join if interested.
+models.group.social.description=StartNewTeam – worldwide business dating system.
 
 #monthes
 monthName.January=January
