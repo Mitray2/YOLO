@@ -2,7 +2,7 @@
 	def userMessage = utils.SessionHelper.getUserMessage(session); 
 }%
 #{if userMessage}
-	<script type="text/javascript">
+	<script>
 		$(document).ready(function(){
 			$('#userMessagePopup').fadeIn(500);
 		});

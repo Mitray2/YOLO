@@ -71,8 +71,9 @@
 #{search.teamSearchForm/}
 
 <script>
-	var search = new Search();
+	var search = {};
 	$(document).ready(function(){
+        search = new Search();
 		search.type = Search.TYPE_GROUP;
 		//TODO: other params
 		search.searchModel = {

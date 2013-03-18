@@ -69,6 +69,14 @@ GET			/peopleSearch								UserController.peopleSearch
 GET			/groupSearch								UserController.groupSearch
 GET			/{userId}/?									UserController.index
 
+# Messages
+GET		/{userId}/talks/?				                MessageController.index
+GET		/talks/{userToTalkId}/?				            MessageController.talk
+GET		/{userId}/talks/new/?                           MessageController.getNewMessages
+POST    /talks/?                                        MessageController.sendMessage
+DELETE  /talks/?                                        MessageController.deleteConversation
+DELETE  /talks/messages/{id}/?                          MessageController.deleteMessage
+
 #NewsController
 GET			/news/?										NewsController.index
 GET			/news/{id}/?								NewsController.showNews

@@ -262,6 +262,7 @@ link.news=Новости
 link.about=О проекте
 link.contacts=Контакты
 link.partners=Партнеры
+link.messages=Мои сообщения
 
 link.crowd.consalting=КраудКонсалтинг
 link.crowd.developig=КраудДевелопинг

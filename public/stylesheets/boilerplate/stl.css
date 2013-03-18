@@ -2956,27 +2956,33 @@ a, input, input:hover, input:active, input:focus, textarea {
 .dialogs .dialogs-item.unread p a{
 	color:#2583be;
 }
-.dialogs .dialogs-delete{
+.dialogs-delete{
 	position:absolute;
 	left:10px;
 	top:46px;
 	display:none;
 	cursor:pointer;
+    z-index:100;
 }
-.dialogs .dialogs-item:hover .dialogs-delete{
+.dialog-item .dialogs-delete{
+    left:14px;
+    top:18px;
+}
+.dialogs-item:hover .dialogs-delete,
+.dialog-item:hover .dialogs-delete{
 	display:block;
 }
-.dialogs .dialogs-delete i{
+.dialogs-delete i{
 	display:block;
 	width:10px;
 	height:10px;
 	background:url(../../images/boilerplate/ico-dialog-del.png) no-repeat left top;
 	overflow:hidden;
 }
-.dialogs .dialogs-delete i:hover{
+.dialogs-delete i:hover{
 	background-position:left bottom;
 }
-.dialogs .dialogs-delete span{
+.dialogs-delete span{
 	display:none;
 	position:absolute;
 	left:-23px;
@@ -2991,18 +2997,24 @@ a, input, input:hover, input:active, input:focus, textarea {
 	padding:3px 9px;
 	font:11px/16px Arial, Helvetica, sans-serif;
 }
-.dialogs .dialogs-delete span img{
+.dialog-item .dialogs-delete span{
+    left:-10px;
+}
+.dialogs-delete span img{
 	position:absolute;
 	left:21px;
 	bottom:-8px;
 }
-.dialogs .dialogs-delete:hover span{
+.dialog-item .dialogs-delete span img{
+    left:8px;
+}
+.dialogs-delete:hover span{
 	display:block;
 }
 .dialog-head{
 	position:relative;
 	left:-30px;
-	margin:0 -60px 21px 0;
+	margin:0 -60px 0 0;
 	padding:12px 30px;
 	border-bottom:1px solid #e9e9e9;
 }
@@ -3027,22 +3039,25 @@ a, input, input:hover, input:active, input:focus, textarea {
 	color:#7d7d7d;
 }
 .dialog{
-	position:relative;
+	/*position:relative;
 	left:-30px;
 	margin:0 -60px 20px 0;
-	padding:0 30px 3px;
+	padding:21px 30px 3px;*/
+    margin: 0 -30px 20px -30px;
+    padding: 20px 10px 20px 0;
 	border-bottom:1px solid #d4d4d4;
 }
 .dialog .dialog-item{
-	padding:0 0 0 50px;
+	/*padding:0 0 0 50px;*/
+	padding:0 0 20px 80px;
 	font:13px/20px Arial, Helvetica, sans-serif;
 	min-height:40px;
 	position:relative;
-	margin-bottom:21px;
+	/*margin-bottom:21px;*/
 }
 .dialog .dialog-item .dialog-item-pic{
 	position:absolute;
-	left:0;
+	left:30px;
 	top:3px;
 	-webkit-border-radius:3px;
 	-moz-border-radius:3px;
@@ -3470,4 +3485,7 @@ h1.main{
 /* SIARZH */
 .red {
     color: #e00 !important;
+}
+.langSelected {
+    text-decoration: underline;
 }

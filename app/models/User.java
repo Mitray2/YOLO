@@ -56,7 +56,7 @@ public class User extends Model {
 	public Boolean sex;
 
 	public Boolean english;
-	
+
 	@Required
 	@MaxSize(value = 30)
 	public String name;
@@ -148,5 +148,13 @@ public class User extends Model {
 		EhCacheImpl.getInstance().delete(CACHE_USERS_COUNT);
 		return super.save();
 	}
-	
+
+    public User() {
+    }
+
+    public User(Long id) {
+        this.id = id;
+    }
+
+
 }

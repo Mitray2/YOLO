@@ -25,6 +25,13 @@ public class DateUtils {
 		return date == null ? "" : formatter.format(date);
 	}
 
+	public static String getFormatedStringDate(Long time, boolean withTime) {
+		DateFormatSymbols symbols = new DateFormatSymbols();
+		symbols.setShortMonths(MONTH_NAMES);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd" + (withTime ? " HH':'mm':'ss" : StringUtils.EMPTY), new Locale("ru"));
+		return time == null ? "" : formatter.format(new Date(time));
+	}
+
 	public static String getFormatedStringDateRu(Date date) {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd MMM.", new Locale("ru"));
 		return date == null ? "" : formatter.format(date);

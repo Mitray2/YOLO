@@ -10,69 +10,95 @@
         countCommands = (models.User.findById(currentUser.id)?.commandsForAprove == null)? 0 : models.User.findById(currentUser?.id)?.commandsForAprove?.size();
         countUsers = ((models.User.findById(currentUser?.id).command?.usersForAprove == null) || (groupMember)) ? 0 : models.User.findById(currentUser?.id)?.command?.usersForAprove?.size();
     }
+    newMessages = controllers.MessageController.getUserNewMessages(currentUser.id,null,0);
 }%
 *{TODO make better!}*
 #{if !(currentUser.role == models.User.ROLE_INPERFECT_USER || currentUser.role == models.User.ROLE_WITHOUT_BLANK)}
     <div class="logged clearFix">
         <div class="logged-message">
-            <a href="#" class="logged-message-ico"></a>
+            #{if newMessages}
+                <a href="#" onclick="$('.dialog-popup').slideToggle(300); return false;" class="logged-message-ico act"></a>
+                <span class="dialog-num">${newMessages.size()}</span>
+                <div class="dialog-popup" style="display: none;">
+                    <img src="@{'/public/images/boilerplate/logged-arrow2.png'}" alt="">
+                    <ul id="popup-msg-list">
+                    #{list items:newMessages, as:'msg'}
+                        #{if msg_index > newMessages.size() - 10}
+                            <li>
+                                <a href="@{UserController.index(msg.from.id)}" class="user-name-popup">${msg.from.name} ${msg.from.lastName}</a>
+                                <span>${utils.DateUtils.getFormatedStringDate(msg.time,true)}</span>
+                                <p><a href="@{MessageController.talk(msg.from.id, 1, 0)}">${msg.text.nl2br()}</a></p>
+                            </li>
+                        #{/if}
+                    #{/list}
+                    </ul>
+                    <div class="all-dialogs"><a href="@{MessageController.index(currentUser.id)}">
+                        #{if newMessages.size() > 10}Просмотреть все#{/if}#{else}К списку диалогов#{/else}
+                    </a></div>
+                </div>
+            #{/if}
+            #{else}
+                <a href="@{MessageController.index(currentUser.id)}" class="logged-message-ico"></a>
+            #{/else}
         </div>
         <div class="logged-event">
-            <a href="#" onclick="$('.logged-user-menu').hide('slow'); $('.event-popup').show('slow'); return false;" class="logged-event-ico act"></a>
-        #{if (countCommands + countUsers) > 0}
-            <span class="event-num">${countCommands + countUsers}</span>
-        #{/if}
-            <div class="event-popup" style="display:none;">
-                <img src="@{'public/images/boilerplate/logged-arrow2.png'}" alt="">
-            &{'page.main.home.events'}
-                <ul>
-                #{list items:models.User.findById(currentUser.id).commandsForAprove, as:'group'}
-                    <li>
-                        <span><a href="@{GroupController.index(group.id)}">&{'page.main.home.group_invite'}: ${group?.name}</a></span>
+            #{if (countCommands + countUsers)}
+                <a href="#" onclick="$('.event-popup').slideToggle(300); return false;" class="logged-event-ico act"></a>
+
+                <span class="event-num">${countCommands + countUsers}</span>
+
+                <div class="event-popup logg-menu" style="display:none;">
+                    <img src="@{'public/images/boilerplate/logged-arrow2.png'}" alt="">
+                &{'page.main.home.events'}
+                    <ul>
+                        #{list items:models.User.findById(currentUser.id).commandsForAprove, as:'group'}
+                            <li>
+                                <span><a href="@{GroupController.index(group.id)}">&{'page.main.home.group_invite'}: ${group?.name}</a></span>
+                                #{if groupAdmin}
+                                    <div title="&{'page.main.home.msg1'}">&{'page.main.home.agree'}</div>
+                                #{/if}
+                                #{else}
+                                    #{if haveGroupOrInviteJoin}
+                                        <p><a href="" onclick="$('.approveInviteGroup').show(); return false;">&{'page.main.home.agree'}</a></p>
+                                        <div class="approveInviteGroup"  style="display: none">
+                                            <div class="overlay"></div>
+                                            <div class="popup">
+                                                <h2>&{'page.main.home.msg2'}</h2>
+                                                <p>&{'page.main.home.msg3'}</p>
+                                                <a class="btn" href="@{UserController.approveInviteGroup(group.id)}">&{'page.main.home.group_join'}</a>
+                                                <a href="" onclick="$('.approveInviteGroup').hide(); return false;" class="cancel">&{'common.cancel'}</a>
+                                            </div>
+                                        </div>
+                                    #{/if}
+                                    #{else}
+                                        <p><a href="@{UserController.approveInviteGroup(group.id)}">&{'page.main.home.agree'}</a></p>
+                                    #{/else}
+                                #{/else}
+                                <p><a href="@{UserController.declineInviteGroup(group.id)}">&{'page.main.home.reject'}</a></p>
+                            </li>
+                        #{/list}
                         #{if groupAdmin}
-                            <div title="&{'page.main.home.msg1'}">&{'page.main.home.agree'}</div>
+                            #{list items:models.User.findById(currentUser.id).command?.usersForAprove, as:'userForAprove'}
+                                <li>
+                                    <span><a href="@{GroupController.index(currentUser.command?.id)}">&{'page.main.home.group_request'}</a></span>
+                                    <p><a href="@{UserController.index(userForAprove.id)}">${userForAprove.name} ${userForAprove.lastName}</a></p>
+                                    <p><a href="@{GroupController.approveJoin(userForAprove.id, currentUser.command.id)}">&{'page.main.home.add'}</a></p>
+                                    <p><a href="@{GroupController.declineJoin(userForAprove.id, currentUser.command.id)}">&{'page.main.home.reject'}</a></p>
+                                </li>
+                            #{/list}
                         #{/if}
-                        #{else}
-                            #{if haveGroupOrInviteJoin}
-                                <p><a href="" onclick="$('.approveInviteGroup').show(); return false;">&{'page.main.home.agree'}</a></p>
-                                <div class="approveInviteGroup"  style="display: none">
-                                    <div class="overlay"></div>
-                                    <div class="popup">
-                                        <h2>&{'page.main.home.msg2'}</h2>
-                                        <p>&{'page.main.home.msg3'}</p>
-                                        <a class="btn" href="@{UserController.approveInviteGroup(group.id)}">&{'page.main.home.group_join'}</a>
-                                        <a href="" onclick="$('.approveInviteGroup').hide(); return false;" class="cancel">&{'common.cancel'}</a>
-                                    </div>
-                                </div>
-                            #{/if}
-                            #{else}
-                                <p><a href="@{UserController.approveInviteGroup(group.id)}">&{'page.main.home.agree'}</a></p>
-                            #{/else}
-                        #{/else}
-                        <p><a href="@{UserController.declineInviteGroup(group.id)}">&{'page.main.home.reject'}</a></p>
-                    </li>
-                #{/list}
-                #{if groupAdmin}
-                    #{list items:models.User.findById(currentUser.id).command?.usersForAprove, as:'userForAprove'}
-                        <li>
-
-                            <span><a href="@{GroupController.index(currentUser.command?.id)}">&{'page.main.home.group_request'}</a></span>
-                            <p><a href="@{UserController.index(userForAprove.id)}">${userForAprove.name} ${userForAprove.lastName}</a></p>
-                            <p><a href="@{GroupController.approveJoin(userForAprove.id, currentUser.command.id)}">&{'page.main.home.add'}</a></p>
-                            <p><a href="@{GroupController.declineJoin(userForAprove.id, currentUser.command.id)}">&{'page.main.home.reject'}</a></p>
-                            </tr>
-
-                        </li>
-                    #{/list}
-                #{/if}
-                </ul>
-            </div>
+                    </ul>
+                </div>
+            #{/if}
+            #{else}
+                <a href="#" onclick="return false" class="logged-event-ico"></a>
+            #{/else}
         </div>
         <div class="logged-user">
-            <a href="#" onclick="$('.event-popup').hide('slow'); $('.logged-user-menu').show('slow'); return false;">
+            <a href="#" onclick="$('.logged-user-menu').slideToggle(300); return false;">
                 #{avatar.avatar user:currentUser, cssClass:'user-pic', maleImg:'upm.png', femaleImg:'upf.png', avatarSize:27 /}
             </a>
-            <div class="logged-user-menu" style="display:none;">
+            <div class="logged-user-menu logg-menu" style="display:none;">
                 <img src="@{'public/images/boilerplate/logged-arrow2.png'}" alt="">
                 <ul>
                     <li><a href="@{UserController.index(currentUser?.id)}">&{'page.main.home.my_profile'}</a></li>
@@ -84,4 +110,79 @@
             </div>
         </div>
     </div>
+
+<script id="msg-popup-tpl" type="text/x-handlebars-template">
+    {{#if this.length}}
+        <a href="#" onclick="$('.dialog-popup').slideToggle(300); return false;" class="logged-message-ico act"></a>
+        <span class="dialog-num">{{this.length}}</span>
+        <div class="dialog-popup" style="display: none;">
+            <img src="@{'/public/images/boilerplate/logged-arrow2.png'}" alt="" />
+            <ul id="popup-msg-list">
+                {{#each this}}
+                        <li>
+                            <a href="/{{ from.id }}" class="user-name-popup">{{from.name}} {{from.lastName}}</a>
+                            <span>{{formatTime time}}</span>
+                            <p><a href="/talks/{{ from.id }}">{{text}}</a></p>
+                        </li>
+                {{/each}}
+            </ul>
+            <div class="all-dialogs"><a href="/{{ from.id }}/talks">{{#ifCond newMessages 10 1}}Просмотреть все{{else}}К списку диалогов{{/ifCond}}</a></div>
+        </div>
+    {{else}}
+        <a href="/{{ from.id }}/talks" class="logged-message-ico"></a>
+    {{/if}}
+</script>
+
+<script id="msg-popup-item-tpl" type="text/x-handlebars-template">
+    {{#each this}}
+        <li>
+            <a href="/{{ from.id }}" class="user-name-popup">{{from.name}} {{from.lastName}}</a>
+            <span>{{formatTime time}}</span>
+            <p><a href="/talks/{{ from.id }}">{{text}}</a></p>
+        </li>
+    {{/each}}
+</script>
+
+<script>
+    $(document).ready(function(){
+        /*$(":not(.logged)").click(function(){
+            $('.logg-menu').hide();
+        });*/
+
+
+        var Templates = window.Templates || {};
+        Templates.popupMsgTpl = Handlebars.compile($("#msg-popup-tpl").html());
+        Templates.popupMsgItemTpl = Handlebars.compile($("#msg-popup-item-tpl").html());
+
+        #{if !request.controller.equals("MessageController")}
+            var lastUpdateTime = ${newMessages.size() > 0 ? newMessages.get(newMessages.size()-1)?.time : 0};
+            //console.log('popLastTime = ' + lastUpdateTime);
+            if(!lastUpdateTime) {
+                lastUpdateTime = (new Date()).getTime();
+                //console.log('popLastTimeNow = ' + lastUpdateTime);
+            }
+
+            var fnRedrawPopup = function(data) {
+                var cont = $("#popup-msg-list");
+                if(cont.length){
+                    cont.append(Templates.popupMsgItemTpl(data));
+                }else{
+                    $(".logged-message").html(Templates.popupMsgTpl(data));
+                }
+
+                var msgs = cont.find('li');
+                if(msgs.length > 10){
+                    cont.find('li:lt('+(msgs.length-10)+')').remove();
+                    //msgs.slice(10-msgs.length).remove();
+                }
+
+                var counter = $(".dialog-num");
+                var msgCount = parseInt(counter.text())|| 0;
+                counter.html(msgCount + data.length);
+            };
+
+            Dynamics.Messages.startListen(${currentUser.id}, null, lastUpdateTime, fnRedrawPopup);
+        #{/if}
+    });
+</script>
 #{/if}

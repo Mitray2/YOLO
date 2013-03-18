@@ -66,8 +66,9 @@
 #{search.memberSearchForm/}
 
 <script>
-	var search = new Search();
+	var search = {};
 	$(document).ready(function(){
+        search = new Search();
 		search.type = Search.TYPE_USER;
 		search.init();
 		search.doSearch();

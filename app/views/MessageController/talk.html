@@ -1,0 +1,182 @@
+#{extends 'main_templeate.html' /} #{set title: user.name + " " + user.lastName + " - Диалоги"/}
+%{
+	boolean currentAdminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN;
+	boolean otherUser = utils.SessionHelper.getCurrentUser(session)?.id != user?.id;
+	boolean groupAdmin = (utils.SessionHelper.getCurrentUser(session)?.id == user?.id) && (utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN);
+	boolean haveGroupOrInviteJoin = (utils.SessionHelper.getCurrentUser(session)?.command != null) || (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null);
+%}
+
+<h1 class="dialogs-h1">Мои диалоги</h1>
+<div class="dialog-head">
+    <a href="@{MessageController.index(user.id)}" class="back"><span>&#8592;&nbsp;</span> К списку диалогов</a>
+    <div class="clearFix">
+        <div class="dialog-title">Диалог с <a href="@{MessageController.index(userToTalk.id)}">${userToTalk.name} ${userToTalk.lastName}</a></div>
+        <a href="#" class="dialog-delete" data-id="${userToTalk.id}">Удалить диалог</a>
+    </div>
+</div>
+<div class="dialog" style="max-height: 400px; overflow-y: auto">
+#{list items:conversations, as:'msg'}
+    <div class="dialog-item">
+
+        <a href="@{UserController.index(msg.from.id)}">#{avatar.avatar user:msg.from, cssClass:'dialog-item-pic', maleImg:'ava_small_m.png', femaleImg:'ava_small_f.png', avatarSize:36 /}</a>
+        <div class="clearFix">
+            <a href="@{UserController.index(msg.from.id)}">${msg.from.name} ${msg.from.lastName}</a>
+            <span>${utils.DateUtils.getFormatedStringDate(msg.time,true)}</span>
+        </div>
+
+        <p>${msg.text.nl2br()}</p>
+        <span class="dialogs-delete" data-id="${msg.id}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить сообщение</span></span>
+    </div>
+#{/list}
+
+</div>
+<div class="dialog-form">
+    <form id="send-msg-form" action="/talks" method="POST" onsubmit="return false;">
+        <input type="hidden" name="fromId" value="${user.id}" />
+        <input type="hidden" name="toId" value="${userToTalk.id}" />
+        <input type="hidden" name="time" value="0" />
+        <textarea name="msg" cols="" rows="" placeholder="Отправить сообщение"></textarea>
+        <button id="send-msg" class="dialog-form-btn" onsubmit="return false;">Отправить</button>
+    </form>
+</div>
+
+<!-- SCRIPTS -->
+
+<script id="msg-tpl" type="text/x-handlebars-template">
+{{#each this}}
+    <div class="dialog-item">
+        <a href="/{{ from.id }}">
+            {{#if from.hasAvatar}}
+                <img src="${play.Play.configuration.getProperty("filestoreURL")}/avatars/{{ from.id }}/avatar_36.jpg" alt="" class="dialog-item-pic">
+            {{else}}
+                <img src="/public/images/boilerplate/ava_small_{{#if from.sex}}m{{else}}f{{/if}}.png" alt=""  class="dialog-item-pic">
+            {{/if}}
+        </a>
+        <div class="clearFix">
+            <a href="/{{ from.id }}">{{from.name}} {{from.lastName}}</a>
+            <span>{{formatTime time}}</span>
+        </div>
+        <p>{{nl2br text}}</p>
+        <span class="dialogs-delete" data-id="{{ id }}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить сообщение</span></span>
+    </div>
+    {{/each}}
+</script>
+
+<script>
+    $(document).ready(function(){
+        var Templates = window.Templates || {};
+        Templates.talkMsgTpl = Handlebars.compile($("#msg-tpl").html());
+
+        $(".dialog-delete").click(function(){
+            var talkUserId = $(this).attr('data-id');
+            alertify.confirm("Вся переписка с данным пользовательм будет удалена. Продолжить?", function (e) {
+                if (e) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/talks?userId=${user.id}&otherId='+talkUserId,
+                        success: function () {
+                            window.location = "@{MessageController.index(user.id)}";
+                        }
+                    });
+                }
+            });
+        });
+
+        var removeMsg = function(){
+            var $delLink = $(this);
+            var msgId = $delLink.attr('data-id');
+            //var result = confirm("Are you sure to delete this message [" + msgId + "] ?");
+            alertify.confirm("Сообщение будет удалено. Продолжить?", function (e) {
+                if (e) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '/talks/messages/'+msgId,
+                        success: function () {
+                            $delLink.parents(".dialog-item").remove();
+                        }
+                    });
+                }
+            });
+        };
+        $(".dialogs-delete").bind("click", removeMsg);
+
+        var $talksDiv = $(".dialog");
+        var $form = $("#send-msg-form");
+        var $msg = $form.find("textarea");
+        var sendMsg = function(){
+            var msg = $msg.val();
+
+            if(msg){
+                $.post("/talks", $form.serialize(), function(data){
+                    var userMsg = [{
+                        "id": data.id,
+                        "text": msg,
+                        "time": new Date().getTime(),
+                        "from": {
+                            "id": ${user.id},
+                            "name": "${user.name}",
+                            "lastName": "${user.lastName}",
+                            "sex": ${user.sex},
+                            "email": "${user.email}",
+                            "hasAvatar": ${user.haveAvatar}
+                        },
+                        "isRead": false
+                    }];
+                    $talksDiv.append(Templates.talkMsgTpl(userMsg));
+                    $(".dialogs-delete").unbind("click").bind("click", removeMsg);
+                    Utils.scrollToBottom($talksDiv);
+                    $msg.val("");
+                });
+            }
+        };
+
+        $msg.ctrlEnter("textarea", sendMsg);
+        $("#send-msg").click(sendMsg);
+
+        var lastUpdateTime = ${conversations.size() > 0 ? conversations.get(conversations.size()-1)?.time.getTime() : 0};
+        //console.log('lastTime = ' + lastUpdateTime);
+        if(!lastUpdateTime) {
+            lastUpdateTime = (new Date()).getTime();
+            //console.log('lastTimeNow = ' + lastUpdateTime);
+        }
+
+        var fnDrawNewMsg = function(data) {
+            //alert("draw!");
+            $talksDiv.append(Templates.talkMsgTpl(data));
+            if(data.length > 0) {
+                Utils.scrollToBottom($talksDiv);
+                $(".dialogs-delete").unbind("click").bind("click", removeMsg);
+            }
+        };
+
+        //console.log("start listening...");
+        Dynamics.Messages.startListen(${user.id}, ${userToTalk.id}, lastUpdateTime, fnDrawNewMsg);
+
+        Utils.scrollToBottom($talksDiv);
+
+        var loading = false;
+        var page = 1;
+        $talksDiv.scroll(function () {
+            //if (page > 0 && !loading && container.scrollTop() >= container.get(0).scrollHeight - container.height() - 50) {
+            if (page > 0 && !loading && $talksDiv.scrollTop() <= 80) {
+                //console.log("loading...");
+                loading = true;
+                $.getJSON('/talks/${userToTalk.id}?page=' + (page+1),
+                    function (data) {
+                        //console.log(JSON.stringify(data));
+                        if(data.length) {
+                            var $prevTopItem = $talksDiv.find(".dialog-item:first-child");
+                            $talksDiv.prepend(Templates.talkMsgTpl(data));
+                            var scrollToY = $prevTopItem.position().top;
+                            $talksDiv.scrollTop(scrollToY);
+                            $(".dialogs-delete").unbind("click").bind("click", removeMsg);
+                        }
+                        page = data.length < 10 ? -1 : page + 1;
+                        loading = false;
+                    }
+                );
+            }
+        });
+    });
+</script>
+

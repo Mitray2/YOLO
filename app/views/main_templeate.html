@@ -8,20 +8,12 @@
 	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/content.css'}" />
 	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/custom.css'}" />
 	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/jquery.selectbox.css'}" />
-	<!--[if IE]>	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>	<![endif]-->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-	<script src="@{'/public/javascripts/jquery.add.min.js'}" type="text/javascript" charset="utf-8"></script>
-	<script src="@{'/public/javascripts/jquery.selectbox.js'}" type="text/javascript" charset="utf-8"></script>
-	<script src="@{'/public/javascripts/jquery.ocupload-1.1.2.js'}" type="text/javascript" charset="utf-8"></script>
-	#{if request?.path.equals('/firstTestPassed') || request?.path.startsWith('/crowdfunding') || request?.path.startsWith('/news/') || request?.path.equals('/secondTestPassed')}
-		<script src="@{'/public/javascripts/boilerplate/social-likes.js'}" type="text/javascript" charset="utf-8"></script>
-		<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/social-likes.css'}" />
-	#{/if}<script>
-$(document).ready(function() {
-	/*placeholder*/
-	$('input[placeholder], textarea[placeholder]').placeholder();
-});
-</script> 
+	<link rel="stylesheet" href="@{'public/stylesheets/alertify/alertify.core.css'}" />
+	<link rel="stylesheet" href="@{'public/stylesheets/alertify/alertify.bootstrap.css'}" />
+    #{if request?.path.equals('/firstTestPassed') || request?.path.startsWith('/crowdfunding') || request?.path.startsWith('/news/') || request?.path.equals('/secondTestPassed')}
+    <link rel="stylesheet" href="@{'public/stylesheets/boilerplate/social-likes.css'}" />
+    #{/if}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 </head>
 <body>
 %{
@@ -61,6 +53,7 @@ $(document).ready(function() {
 						<li><a href="@{UsersSearch.memberSearch()}">&{'page.profile.find_participant'}</a></li>
 						<li><a href="@{CommandsSearch.groupSearch()}">&{'page.profile.find_command'}</a></li>
                     	<li><a href="/news">&{'link.news'}</a></li>
+                    	<li><a href="@{MessageController.index(utils.SessionHelper.getCurrentUser(session)?.id)}">&{'link.messages'}</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -156,5 +149,26 @@ $(document).ready(function() {
 		</div>
 		#{common.footer/}
 		#{userPopup/}
+
+    <!--[if IE]>	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>	<![endif]-->
+    <script src="@{'/public/javascripts/jquery.add.min.js'}" charset="utf-8"></script>
+    <script src="@{'/public/javascripts/jquery.selectbox.js'}" charset="utf-8"></script>
+    <script src="@{'/public/javascripts/jquery.ocupload-1.1.2.js'}" charset="utf-8"></script>
+    <script src="@{'/public/javascripts/handlebars.js'}"></script>
+    <script src="@{'/public/javascripts/alertify.min.js'}"></script>
+    <script src="@{'/public/javascripts/conversations.js'}"></script>
+    #{if request?.path.equals('/firstTestPassed') || request?.path.startsWith('/crowdfunding') || request?.path.startsWith('/news/') || request?.path.equals('/secondTestPassed')}
+    <script src="@{'/public/javascripts/boilerplate/social-likes.js'}" charset="utf-8"></script>
+    #{/if}
+    <script>
+        $(document).ready(function() {
+            /*placeholder*/
+            $('input[placeholder], textarea[placeholder]').placeholder();
+            alertify.set({ labels: {
+                ok     : "Да",
+                cancel : "Нет"
+            }});
+        });
+    </script>
 </body>
 </html>

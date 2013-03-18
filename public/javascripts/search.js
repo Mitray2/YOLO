@@ -177,11 +177,11 @@ function Search() {
 	this.doSearch = function doSearch() {
 		_this = this;
 		$.each(search.searchModel, function(index, item) {
-			if (index == "asc" || index == "orderBy") return;
-			search.searchModel[index] = $("#"+index+"").val();
-      if ($("#"+index)[0] != undefined && ($("#"+index)[0].placeholder == search.searchModel[index] || $("#"+index)[0].getAttribute("placeholder") == search.searchModel[index])) {
-          search.searchModel[index] = "";
-      }
+            if (index == "asc" || index == "orderBy") return;
+            search.searchModel[index] = $("#"+index+"").val();
+            if ($("#"+index)[0] != undefined && ($("#"+index)[0].placeholder == search.searchModel[index] || $("#"+index)[0].getAttribute("placeholder") == search.searchModel[index])) {
+              search.searchModel[index] = "";
+            }
 		});
 		//console.log(">> " + JSON.stringify(search.searchModel));
 		$("#searchLoader").show();

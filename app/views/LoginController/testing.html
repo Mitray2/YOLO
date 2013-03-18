@@ -1,6 +1,6 @@
 #{extends 'main.html' /} 
 #{set title:'Testing' /}
-<script src="@{'/public/javascripts/controllers/LoginController.js'}" type="text/javascript" charset="utf-8"></script>
+<script src="@{'/public/javascripts/controllers/LoginController.js'}" charset="utf-8"></script>
 #{if test?.number == 1}
 	#{form @LoginController.testPassed()}
 		<table class="table table-striped table-bordered table-condensed">
