@@ -6,7 +6,7 @@
 	boolean haveGroupOrInviteJoin = (utils.SessionHelper.getCurrentUser(session)?.command != null) || (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null);
 %}
 
-<h1 class="dialogs-h1">Мои диалоги</h1>
+<h1 class="dialogs-h1">&{'page.dialogs.title'}</h1>
 <div class="dialogs">
 
 #{list items:conversations, as:'msg'}
@@ -21,7 +21,7 @@
             #{if msg.from.id.equals(user.id)}${user.name} ${user.lastName}: #{/if}
             ${msg.text}
         </a></p>
-        <span class="dialogs-delete" data-id="${msgUser.id}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить переписку</span></span>
+        <span class="dialogs-delete" data-id="${msgUser.id}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete'}</span></span>
     </div>
 #{/list}
 
@@ -42,7 +42,7 @@
             <span>{{formatTime time}}</span>
         </div>
         <p><a href="/talks/{{ from.id }}">{{text}}</a></p>
-        <span class="dialogs-delete" data-id="{{ from.id }}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить переписку</span></span>
+        <span class="dialogs-delete" data-id="{{ from.id }}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete'}</span></span>
     </div>
     {{/each}}
 </script>
@@ -55,7 +55,7 @@
         $(".dialogs-delete").click(function(){
             var talkUserId = $(this).attr('data-id');
             //var result = confirm("This will delete your whole conversation with the user [" + talkUserId + "] ?");
-            alertify.confirm("Вся переписка с выбранным пользовательм будет удалена. Продолжить?", function (e) {
+            alertify.confirm("&{'page.dialogs.delete.confirm'}", function (e) {
                 if (e) {
                     $.ajax({
                         type: 'DELETE',

@@ -33,7 +33,7 @@
                     #{/list}
                     </ul>
                     <div class="all-dialogs"><a href="@{MessageController.index(currentUser.id)}">
-                        #{if newMessages.size() > 10}Просмотреть все#{/if}#{else}К списку диалогов#{/else}
+                        #{if newMessages.size() > 10}Просмотреть все#{/if}#{else}&{'page.dialogs.list'}#{/else}
                     </a></div>
                 </div>
             #{/if}
@@ -126,7 +126,7 @@
                         </li>
                 {{/each}}
             </ul>
-            <div class="all-dialogs"><a href="/{{ from.id }}/talks">{{#ifCond newMessages 10 1}}Просмотреть все{{else}}К списку диалогов{{/ifCond}}</a></div>
+            <div class="all-dialogs"><a href="/{{ from.id }}/talks">{{#ifCond newMessages 10 1}}Просмотреть все{{else}}&{'page.dialogs.list'}{{/ifCond}}</a></div>
         </div>
     {{else}}
         <a href="/{{ from.id }}/talks" class="logged-message-ico"></a>

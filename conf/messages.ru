@@ -622,13 +622,24 @@ page.common.forgot_password=Забыли пароль?
 
 
 
-
+#News page
 page.news.title=Новости
 page.news.read=Читать:
 page.news.translate.ru=РУССКИЕ
 page.news.translate.en=ENGLISH
 
-
+#Dialogs page
+page.dialogs.title=Мои диалоги
+page.dialogs.list=К списку всех диалогов
+page.dialogs.with=Диалог с
+page.dialogs.delete=Удалить диалог
+page.dialogs.delete.confirm=Переписка с выбранным участником будет удалена. Вы уверены в этом ?
+page.dialogs.delete.msg=Удалить сообщение
+page.dialogs.delete.msg.confirm=Данное сообщение будет удалено. Вы уверены в этом ? 
+page.dialogs.button.send=Отправить
+page.dialogs.placeholder.send=Отправить сообщение
+pages.dialogs.yes=Да
+pages.dialogs.no=Нет
 
 play-paginate.prev=Предыдущая
 play-paginate.next=Следующая

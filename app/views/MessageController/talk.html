@@ -6,12 +6,12 @@
 	boolean haveGroupOrInviteJoin = (utils.SessionHelper.getCurrentUser(session)?.command != null) || (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null);
 %}
 
-<h1 class="dialogs-h1">Мои диалоги</h1>
+<h1 class="dialogs-h1">&{'page.dialogs.title'}</h1>
 <div class="dialog-head">
-    <a href="@{MessageController.index(user.id)}" class="back"><span>&#8592;&nbsp;</span> К списку диалогов</a>
+    <a href="@{MessageController.index(user.id)}" class="back"><span>&#8592;&nbsp;</span>&{'page.dialogs.list'}</a>
     <div class="clearFix">
-        <div class="dialog-title">Диалог с <a href="@{MessageController.index(userToTalk.id)}">${userToTalk.name} ${userToTalk.lastName}</a></div>
-        <a href="#" class="dialog-delete" data-id="${userToTalk.id}">Удалить диалог</a>
+        <div class="dialog-title">&{'page.dialogs.with'} <a href="@{MessageController.index(userToTalk.id)}">${userToTalk.name} ${userToTalk.lastName}</a></div>
+        <a href="#" class="dialog-delete" data-id="${userToTalk.id}">&{'page.dialogs.delete'}</a>
     </div>
 </div>
 <div class="dialog" style="max-height: 400px; overflow-y: auto">
@@ -25,7 +25,7 @@
         </div>
 
         <p>${msg.text.nl2br()}</p>
-        <span class="dialogs-delete" data-id="${msg.id}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить сообщение</span></span>
+        <span class="dialogs-delete" data-id="${msg.id}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete.msg'}</span></span>
     </div>
 #{/list}
 
@@ -35,8 +35,8 @@
         <input type="hidden" name="fromId" value="${user.id}" />
         <input type="hidden" name="toId" value="${userToTalk.id}" />
         <input type="hidden" name="time" value="0" />
-        <textarea name="msg" cols="" rows="" placeholder="Отправить сообщение"></textarea>
-        <button id="send-msg" class="dialog-form-btn" onsubmit="return false;">Отправить</button>
+        <textarea name="msg" cols="" rows="" placeholder="&{'page.dialogs.placeholder.send'}"></textarea>
+        <button id="send-msg" class="dialog-form-btn" onsubmit="return false;">&{'page.dialogs.button.send'}</button>
     </form>
 </div>
 
@@ -57,7 +57,7 @@
             <span>{{formatTime time}}</span>
         </div>
         <p>{{nl2br text}}</p>
-        <span class="dialogs-delete" data-id="{{ id }}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">Удалить сообщение</span></span>
+        <span class="dialogs-delete" data-id="{{ id }}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete.msg'}</span></span>
     </div>
     {{/each}}
 </script>
@@ -69,7 +69,7 @@
 
         $(".dialog-delete").click(function(){
             var talkUserId = $(this).attr('data-id');
-            alertify.confirm("Вся переписка с данным пользовательм будет удалена. Продолжить?", function (e) {
+            alertify.confirm("&{'page.dialogs.delete.confirm'}", function (e) {
                 if (e) {
                     $.ajax({
                         type: 'DELETE',
@@ -86,7 +86,7 @@
             var $delLink = $(this);
             var msgId = $delLink.attr('data-id');
             //var result = confirm("Are you sure to delete this message [" + msgId + "] ?");
-            alertify.confirm("Сообщение будет удалено. Продолжить?", function (e) {
+            alertify.confirm("&{'page.dialogs.delete.msg.confirm'}", function (e) {
                 if (e) {
                     $.ajax({
                         type: 'DELETE',

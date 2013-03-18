@@ -611,12 +611,24 @@ page.common.forgot_password=Forgot password?
 
 
 
-
+#News page
 page.news.title=News
 page.news.read=Read:
 page.news.translate.ru=RUSSIAN
 page.news.translate.en=ENGLISH
 
+#Dialogs pages
+page.dialogs.title=My dialogs
+page.dialogs.list=To all dialogs list
+page.dialogs.with=Dialog with
+page.dialogs.delete=Delete dialog
+page.dialogs.delete.confirm=Conversation with the selected user will be deleted. Are you sure?
+page.dialogs.delete.msg=Delete message
+page.dialogs.delete.msg.confirm=This message will be deleted. Are you sure ?
+page.dialogs.button.send=Send
+page.dialogs.placeholder.send=Send message
+pages.dialogs.yes=Yes
+pages.dialogs.no=No
 
 
 play-paginate.prev=Previous
