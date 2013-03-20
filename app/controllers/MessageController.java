@@ -149,7 +149,7 @@ public class MessageController extends BasicController {
             message.text = msg;
             message.from = new User(fromId);
             message.to = new User(toId);
-            message.time = time > 0 ? new Date(time) : new Date();
+            message.time = new Date(); //time > 0 ? new Date(time) :
             message.isRead = false;
             message.create();
 
