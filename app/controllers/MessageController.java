@@ -7,17 +7,14 @@ import play.Logger;
 import play.db.jpa.JPA;
 import utils.SessionHelper;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import java.util.*;
 
 import static ch.lambdaj.Lambda.*;
-import static ch.lambdaj.Lambda.filter;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
-
+/** Controller logic to handle user dialogs management */
 public class MessageController extends BasicController {
 
     public static final int TALKS_TO_PAGE_LIMIT = 10;
@@ -30,17 +27,11 @@ public class MessageController extends BasicController {
     };
 
 
-    /** List user conversations */
+    /** Lists user conversations */
 	public static void index(Long userId){
         if (userId != null) {
             User user = SessionHelper.getCurrentUser(session);
             if (user != null && userId.equals(user.id)) {
-                /*String querySQL = String.format("select id, isRead, text, time, from_id, to_id from (" +
-                        "(select *, to_id as other from (select * from Message where from_id = %d order by time desc) as ms group by from_id, to_id)" +
-                        "union" +
-                        "(select *, from_id as other from (select * from Message where to_id = %d order by time desc) as ms group by from_id, to_id)" +
-                        ") as res group by other order by time desc", userId, userId);*/
-
                 String querySQL = String.format("select id, isRead, text, time, from_id, to_id, deletedBy from ( select * from (" +
                         "(select *, to_id as other from (select * from Message where from_id = %d and deletedBy <> %d order by time desc) as ms group by from_id, to_id)" +
                         " union " +
@@ -56,10 +47,10 @@ public class MessageController extends BasicController {
 	}
 
 
-    /** Single conversation */
+    /** Retrieves single conversation with other user */
     public static void talk(Long userToTalkId, int page, int limit){
         boolean returnJson = request.headers.get("accept").value().contains("application/json");
-        if(returnJson) Logger.info("return talks as JSON");
+        if(returnJson) Logger.debug("return talks as JSON");
 
         if (userToTalkId != null) {
             User user = SessionHelper.getCurrentUser(session);
@@ -93,12 +84,16 @@ public class MessageController extends BasicController {
         else UserController.index(userToTalkId);
     }
 
+
+    /** Lists the newest messages in conversation with other user */
     public static void getNewMessages(Long userId, Long userToTalkId, long time){
         renderJSON(getUserNewMessages(userId,userToTalkId,time));
     }
 
+
+    /** Lists the newest messages recently sent to current user */
     public static List<SimpleMessage> getUserNewMessages(Long userId, Long userToTalkId, long time){
-        Logger.debug("userID: %s, userToTalkId: %s, time: %s", userId, userToTalkId, time);
+        //Logger.debug("userID: %s, userToTalkId: %s, time: %s", userId, userToTalkId, time);
 
         List<SimpleMessage> conversations = new ArrayList<SimpleMessage>();
         User user = SessionHelper.getCurrentUser(session);
@@ -107,14 +102,13 @@ public class MessageController extends BasicController {
                 boolean loadAll = userToTalkId == null;
                 Date lastUpdated = new Date(time);
 
-
                 StringBuilder query = new StringBuilder(
                         "select m from Message m where m.to.id = ? and m.isRead = 0 and m.deletedBy <> ? ")
                         .append( loadAll ? "" : " and m.from.id = ? ")
                         .append( time > 0 ? " and m.time > ? " : "")
                         .append(" order by m.time ASC");
 
-                Logger.debug("q(newMessages) = %s", query);
+                //Logger.debug("q(newMessages) = %s", query);
 
                 List<Message> messages;
                 if(time > 0){
@@ -135,9 +129,8 @@ public class MessageController extends BasicController {
                     markAllAsRead(messages, user.id);
                 }
 
-                Logger.info("%d new messages found for user [%d]", messages.size(), userId);
+                //if(messages.size() > 0) Logger.debug("%d new messages found for user [%d]", messages.size(), userId);
 
-                //List<SimpleMessage> conversations = new ArrayList<SimpleMessage>();
                 for(Message msg : messages) {
                     conversations.add(SimpleMessage.fromFullMessage(msg, loadAll));
                 }
@@ -146,6 +139,7 @@ public class MessageController extends BasicController {
 
         return conversations;
     }
+
 
     /** Creates new user message on the database */
     public static void sendMessage(Long fromId, Long toId, String msg, long time) {
@@ -165,7 +159,8 @@ public class MessageController extends BasicController {
         }
     }
 
-    /** Deletes whole user coversation with the other user */
+
+    /** Deletes whole user conversation with the other user */
     public static void deleteConversation(Long userId, Long otherId) {
         User user = SessionHelper.getCurrentUser(session);
         if(user != null && otherId != null && !user.id.equals(otherId)) {
@@ -179,8 +174,8 @@ public class MessageController extends BasicController {
             int result2 = updQuery.executeUpdate();
 
             int result1 = Message.delete("delete from Message where ((from_id = ? and to_id = ?) or (from_id = ? and to_id = ?)) and deletedBy = ?", userId, otherId, otherId, userId, otherId);
-            Logger.info("conversation between %d and %d erased: %d messages", userId, otherId, result1);                                   //todo |^ check if that null clause needed
-            Logger.info("conversation between %d and %d deleted: %d messages", userId, otherId, result2);
+            Logger.debug("conversation between %d and %d erased: %d messages", userId, otherId, result1);                                   //todo |^ check if that null clause needed
+            Logger.debug("conversation between %d and %d deleted: %d messages", userId, otherId, result2);
 
             renderJSON("{\"status\": \"ok\"}");
         } else {
@@ -218,14 +213,13 @@ public class MessageController extends BasicController {
 
     private static void markAllAsRead(List<Message> messages, Long currentUserId){
         List<Message> unreadMessages = filter(allOf(having(on(Message.class).isRead, is(false)), having(on(Message.class).to.id, is(currentUserId))), messages);
-        //List<Message> unreadReceivedMessages = filter(having(on(Message.class).to.id, is(user.id)), unreadMessages);
         List<Long> unreadMessagesIds = extract(unreadMessages, on(Message.class).id);
 
         if(unreadMessagesIds.size() > 0){
             Query queryMarkAllRead = JPA.em().createQuery("update Message set isRead = 1 where id IN (:ids)");
             queryMarkAllRead.setParameter("ids", unreadMessagesIds);
             int result = queryMarkAllRead.executeUpdate();
-            Logger.info("%d updated: %s", result, Arrays.toString(unreadMessagesIds.toArray()));
+            Logger.debug("%d updated: %s", result, Arrays.toString(unreadMessagesIds.toArray()));
         }
     }
 

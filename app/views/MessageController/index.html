@@ -15,11 +15,11 @@
         #{avatar.avatar user:msgUser, cssClass:'dialogs-item-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
         <div class="clearFix">
             <a href="@{UserController.index(msgUser.id)}">${msgUser.name} ${msgUser.lastName}</a>
-            <span>${utils.DateUtils.getFormatedStringDate(msg.time,true)}</span>
+            <span>${msg.time.getTime().format(request)}</span>
         </div>
         <p><a href="@{MessageController.talk(msgUser.id, 1, 0)}">
             #{if msg.from.id.equals(user.id)}${user.name} ${user.lastName}: #{/if}
-            ${msg.text}
+            ${msg.text.limitTo(200).nl2br()}
         </a></p>
         <span class="dialogs-delete" data-id="${msgUser.id}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete'}</span></span>
     </div>
@@ -41,7 +41,7 @@
             <a href="/{{ from.id }}">{{from.name}} {{from.lastName}}</a>
             <span>{{formatTime time}}</span>
         </div>
-        <p><a href="/talks/{{ from.id }}">{{text}}</a></p>
+        <p><a href="/talks/{{ from.id }}">{{n2lbr (limitTo text 200)}}</a></p>
         <span class="dialogs-delete" data-id="{{ from.id }}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete'}</span></span>
     </div>
     {{/each}}
@@ -69,10 +69,10 @@
         });
 
         var lastUpdateTime = ${conversations.size() > 0 ? conversations.get(0)?.time.getTime() : 0};
-        console.log('convLastTime = ' + lastUpdateTime);
+        //console.log('convLastTime = ' + lastUpdateTime);
         if(!lastUpdateTime) {
             lastUpdateTime = (new Date()).getTime();
-            console.log('lastTimeNow = ' + lastUpdateTime);
+            //console.log('lastTimeNow = ' + lastUpdateTime);
         }
 
         var fnDrawNewTalkMsg = function(data) {
@@ -91,9 +91,9 @@
 
             // update existent talks
             $.each(existData, function(ind, el){
-                console.log("update existent: " + JSON.stringify(el));
+                //console.log("update existent: " + JSON.stringify(el));
                 var item = $(".dialogs").find("[data-id='"+el.from.id+"']");
-                item.find("p").find("a").html(el.text);
+                item.find("p").find("a").html(Utils.nl2br(Utils.limitTo(el.text,200)));
                 if(!item.hasClass("unread")) {
                     item.addClass("unread");
                 }
@@ -102,7 +102,7 @@
             $(".dialogs").prepend(Templates.conversationMsgTpl(newData));
         };
 
-        Dynamics.Messages.startListen(${user.id}, null, lastUpdateTime, fnDrawNewTalkMsg);
+        Dynamics.Dialogs.startListen(${user.id}, null, lastUpdateTime, fnDrawNewTalkMsg);
     });
 
 </script>

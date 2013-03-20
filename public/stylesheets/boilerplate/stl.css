@@ -3038,14 +3038,23 @@ a, input, input:hover, input:active, input:focus, textarea {
 	font:11px/24px Arial, Helvetica, sans-serif;
 	color:#7d7d7d;
 }
+.dialog-wrap{
+    margin: 0 -30px 20px -30px;
+    padding: 0;
+    border-bottom:1px solid #d4d4d4;
+    overflow: hidden;
+}
 .dialog{
 	/*position:relative;
 	left:-30px;
 	margin:0 -60px 20px 0;
 	padding:21px 30px 3px;*/
-    margin: 0 -30px 20px -30px;
-    padding: 20px 10px 20px 0;
-	border-bottom:1px solid #d4d4d4;
+    height: auto;
+    max-height: 500px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0 15px 0 0;
+	/*border-bottom:1px solid #d4d4d4;*/
 }
 .dialog .dialog-item{
 	/*padding:0 0 0 50px;*/
@@ -3054,6 +3063,12 @@ a, input, input:hover, input:active, input:focus, textarea {
 	min-height:40px;
 	position:relative;
 	/*margin-bottom:21px;*/
+}
+.dialog .dialog-item:first-child {
+    margin-top:20px;
+}
+.dialog .dialog-item:last-child {
+    /*margin-bottom:20px;*/
 }
 .dialog .dialog-item .dialog-item-pic{
 	position:absolute;
@@ -3095,7 +3110,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 	color: #aea9a9;
 	display: block;
 	width: 493px;
-	height: 89px;
+	height: 20px;
 	resize: none;
 	margin:0 0 15px;
 }
@@ -3488,4 +3503,9 @@ h1.main{
 }
 .langSelected {
     text-decoration: underline;
+}
+.ajax-loader {
+    height:20px;
+    text-align: center;
+    background: url(/public/img/ajax-loader.gif) 50% 8px no-repeat;
 }

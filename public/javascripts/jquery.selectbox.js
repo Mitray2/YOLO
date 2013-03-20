@@ -184,6 +184,5 @@ jQuery.fn.unselectbox = function(){
 		selectToRemove.replaceWith(selectToRemove.find('select').show());		
 	});
 }
-
-$(function(){$(".cSelect").selectbox();	});
 })(jQuery);
+$(".cSelect").selectbox();

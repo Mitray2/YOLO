@@ -14,28 +14,31 @@
         <a href="#" class="dialog-delete" data-id="${userToTalk.id}">&{'page.dialogs.delete'}</a>
     </div>
 </div>
-<div class="dialog" style="max-height: 400px; overflow-y: auto">
-#{list items:conversations, as:'msg'}
-    <div class="dialog-item">
 
-        <a href="@{UserController.index(msg.from.id)}">#{avatar.avatar user:msg.from, cssClass:'dialog-item-pic', maleImg:'ava_small_m.png', femaleImg:'ava_small_f.png', avatarSize:36 /}</a>
-        <div class="clearFix">
-            <a href="@{UserController.index(msg.from.id)}">${msg.from.name} ${msg.from.lastName}</a>
-            <span>${utils.DateUtils.getFormatedStringDate(msg.time,true)}</span>
+<div class="dialog-wrap">
+    <div class="dialog">
+    #{list items:conversations, as:'msg'}
+        <div class="dialog-item">
+
+            <a href="@{UserController.index(msg.from.id)}">#{avatar.avatar user:msg.from, cssClass:'dialog-item-pic', maleImg:'ava_small_m.png', femaleImg:'ava_small_f.png', avatarSize:36 /}</a>
+            <div class="clearFix">
+                <a href="@{UserController.index(msg.from.id)}">${msg.from.name} ${msg.from.lastName}</a>
+                <span>${msg.time.getTime().format(request)}</span>
+            </div>
+
+            <p>${msg.text.nl2br()}</p>
+            <span class="dialogs-delete" data-id="${msg.id}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete.msg'}</span></span>
         </div>
+    #{/list}
 
-        <p>${msg.text.nl2br()}</p>
-        <span class="dialogs-delete" data-id="${msg.id}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete.msg'}</span></span>
     </div>
-#{/list}
-
 </div>
 <div class="dialog-form">
     <form id="send-msg-form" action="/talks" method="POST" onsubmit="return false;">
         <input type="hidden" name="fromId" value="${user.id}" />
         <input type="hidden" name="toId" value="${userToTalk.id}" />
         <input type="hidden" name="time" value="0" />
-        <textarea name="msg" cols="" rows="" placeholder="&{'page.dialogs.placeholder.send'}"></textarea>
+        <textarea name="msg" cols="" rows="4" placeholder="&{'page.dialogs.placeholder.send'}"></textarea>
         <button id="send-msg" class="dialog-form-btn" onsubmit="return false;">&{'page.dialogs.button.send'}</button>
     </form>
 </div>
@@ -101,6 +104,9 @@
         $(".dialogs-delete").bind("click", removeMsg);
 
         var $talksDiv = $(".dialog");
+
+        Utils.scrollInit($talksDiv);
+
         var $form = $("#send-msg-form");
         var $msg = $form.find("textarea");
         var sendMsg = function(){
@@ -124,14 +130,25 @@
                     }];
                     $talksDiv.append(Templates.talkMsgTpl(userMsg));
                     $(".dialogs-delete").unbind("click").bind("click", removeMsg);
-                    Utils.scrollToBottom($talksDiv);
                     $msg.val("");
+                    Utils.scrollInit($talksDiv);
                 });
             }
         };
 
-        $msg.ctrlEnter("textarea", sendMsg);
         $("#send-msg").click(sendMsg);
+        $msg.ctrlEnter("textarea", sendMsg);
+        $msg.focus(function(){
+            var $this = $(this);
+            setTimeout(function(){
+                $this.height('120px');
+            }, 100);
+        }).blur(function(){
+            var $this = $(this);
+            setTimeout(function(){
+                $this.height('20px');
+            }, 350);
+        });
 
         var lastUpdateTime = ${conversations.size() > 0 ? conversations.get(conversations.size()-1)?.time.getTime() : 0};
         //console.log('lastTime = ' + lastUpdateTime);
@@ -149,32 +166,30 @@
             }
         };
 
-        //console.log("start listening...");
-        Dynamics.Messages.startListen(${user.id}, ${userToTalk.id}, lastUpdateTime, fnDrawNewMsg);
-
-        Utils.scrollToBottom($talksDiv);
+        Dynamics.Dialogs.startListen(${user.id}, ${userToTalk.id}, lastUpdateTime, fnDrawNewMsg);
 
         var loading = false;
         var page = 1;
         $talksDiv.scroll(function () {
-            //if (page > 0 && !loading && container.scrollTop() >= container.get(0).scrollHeight - container.height() - 50) {
             if (page > 0 && !loading && $talksDiv.scrollTop() <= 80) {
-                //console.log("loading...");
                 loading = true;
-                $.getJSON('/talks/${userToTalk.id}?page=' + (page+1),
-                    function (data) {
-                        //console.log(JSON.stringify(data));
-                        if(data.length) {
-                            var $prevTopItem = $talksDiv.find(".dialog-item:first-child");
-                            $talksDiv.prepend(Templates.talkMsgTpl(data));
-                            var scrollToY = $prevTopItem.position().top;
-                            $talksDiv.scrollTop(scrollToY);
-                            $(".dialogs-delete").unbind("click").bind("click", removeMsg);
+                $talksDiv.prepend('<div class="ajax-loader"></div>');
+                setTimeout(function(){
+                    $.getJSON('/talks/${userToTalk.id}?page=' + (page+1),
+                        function (data) {
+                            //console.log(JSON.stringify(data));
+                            $talksDiv.find(".ajax-loader").remove();
+                            if(data.length) {
+                                var $prevTopItem = $talksDiv.find(".dialog-item:first-child");
+                                $talksDiv.prepend(Templates.talkMsgTpl(data));
+                                Utils.scrollToElem($talksDiv, $prevTopItem);
+                                $(".dialogs-delete").unbind("click").bind("click", removeMsg);
+                            }
+                            page = data.length < 10 ? -1 : page + 1;
+                            loading = false;
                         }
-                        page = data.length < 10 ? -1 : page + 1;
-                        loading = false;
-                    }
-                );
+                    );
+                }, 1000);
             }
         });
     });

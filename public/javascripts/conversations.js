@@ -5,11 +5,9 @@ var Templates = window.Templates || {
     popupMsgItemTpl: function(data) {}
 };
 
-var Dynamics = window.Dynamics || {
+var Dynamics = window.Dynamics || {};
 
-};
-
-Dynamics.Messages = Dynamics.Messages || {
+Dynamics.Dialogs = Dynamics.Dialogs || {
     startListen: function(userId,otherUserId,lastUpdateTime,fnUpdate){
         var _lastTime = lastUpdateTime;
         (function updateMessages() {
@@ -20,11 +18,8 @@ Dynamics.Messages = Dynamics.Messages || {
                     url: '/'+userId+'/talks/new?userToTalkId=' + (otherUserId ? otherUserId : '') + '&time=' + _lastTime,
                     success: function (data) {
                         if(data.length) {
-                            //console.log(JSON.stringify(data));
                             if(fnUpdate) fnUpdate(data);
-
                             _lastTime = data[data.length-1].time;
-                            //console.log('newLastTime = ' + _lastTime);
                         }
                     },
                     complete: updateMessages
@@ -42,15 +37,45 @@ var Utils = {
         var date = new Date(time);
         return date.getFullYear() + "-" + this.feed0(date.getMonth()+1) + "-" +
             this.feed0(date.getDate()) + " " +
-            this.feed0(date.getHours()) + ":" + this.feed0(date.getMinutes()); // + ":" + date.getSeconds();
+            this.feed0(date.getHours()) + ":" + this.feed0(date.getMinutes()) + ":" + this.feed0(date.getSeconds());
     },
 
     nl2br: function(str) {
         return str.split("\n").join("<br />");
     },
+    scrollInit: function(el){
+        var maxH = parseInt(el.css("max-height"));
+        var curH = el.get(0).scrollHeight;
+
+        if(curH > maxH){
+            el.slimScroll({
+                height: 'auto',
+                color: '#aaa',
+                alwaysVisible: true
+            });
+            Utils.scrollToBottom(el);
+        }
+    },
     scrollToBottom: function(el){
-        //console.log(el.get(0).scrollHeight + ' - ' + el.height());
-        el.scrollTop(el.get(0).scrollHeight - el.height());
+        //el.scrollTop(el.get(0).scrollHeight - el.height());
+        el.slimScroll({
+            height: 'auto',
+            color: '#aaa',
+            alwaysVisible: true,
+            scrollTo: el.get(0).scrollHeight - el.height()
+        });
+    },
+    scrollToElem: function(cont,el){
+        var scrollToY = el.position().top - 20;
+        cont.slimScroll({
+            height: 'auto',
+            color: '#aaa',
+            alwaysVisible: true,
+            scrollTo: scrollToY
+        });
+    },
+    limitTo: function(str,maxLen) {
+        return str.length > maxLen ? str.substr(0,maxLen) + "\n..." : str;
     }
 };
 
@@ -89,4 +114,5 @@ var Utils = {
         }
         return options.inverse(this);
     });
+    Handlebars.registerHelper('limitTo', Utils.limitTo);
 })();

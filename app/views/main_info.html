@@ -4,34 +4,20 @@
 	<meta charset="UTF-8">
 	<title>#{get 'title'}#{/}</title>
     <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-	<script src="@{'public/javascripts/jquery.add.min.js'}"></script>
 	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/stl.css'}" />
 	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/custom_stl.css'}" />
 	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/content.css'}" />
+#{if request?.path.equals('/firstTestPassed') || request?.path.startsWith('/crowdfunding') || request?.path.startsWith('/news/') || request?.path.equals('/secondTestPassed')}
+    <link rel="stylesheet" href="@{'public/stylesheets/boilerplate/social-likes.css'}" />
+#{/if}
+
 	<!--[if IE]>	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>	<![endif]-->
-	#{if request?.path.equals('/firstTestPassed') || request?.path.startsWith('/crowdfunding') || request?.path.startsWith('/news/') || request?.path.equals('/secondTestPassed')}
-		<script src="@{'/public/javascripts/boilerplate/social-likes.js'}" charset="utf-8"></script>
-		<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/social-likes.css'}" />
-	#{/if}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="@{'/public/javascripts/jquery.cookie.min.js'}"></script>
+    <script src="@{'/public/javascripts/dates.js'}"></script>
     %{
         def currentUser = utils.SessionHelper.getCurrentUser(session);
     }%
-
-<script>
-    $(document).ready(function() {
-	/*placeholder*/
-	$('input[placeholder], textarea[placeholder]').placeholder();
-
-    $('#password').keypress(function (e) {
-        if (e.which == 13) {
-            $('#loginForm').submit();
-            return false;
-        }
-    });
-});
-
-</script>
 </head>
 <body>
 	<div class="wrapper inner-page">
@@ -72,6 +58,28 @@
 	</div>
 	#{common.footer/}
     #{userPopup/}
+
+    <!-- SCRIPTS -->
+    <script src="@{'public/javascripts/jquery.add.min.js'}"></script>
+    #{if request?.path.equals('/firstTestPassed') || request?.path.startsWith('/crowdfunding') || request?.path.startsWith('/news/') || request?.path.equals('/secondTestPassed')}
+    <script src="@{'/public/javascripts/boilerplate/social-likes.js'}" charset="utf-8"></script>
+    #{/if}
+
+    <script>
+        $(document).ready(function() {
+            /*placeholder*/
+            $('input[placeholder], textarea[placeholder]').placeholder();
+
+            $('#password').keypress(function (e) {
+                if (e.which == 13) {
+                    $('#loginForm').submit();
+                    return false;
+                }
+            });
+        });
+
+    </script>
+
 </body>
 </html>
 

@@ -26,8 +26,8 @@
                         #{if msg_index > newMessages.size() - 10}
                             <li>
                                 <a href="@{UserController.index(msg.from.id)}" class="user-name-popup">${msg.from.name} ${msg.from.lastName}</a>
-                                <span>${utils.DateUtils.getFormatedStringDate(msg.time,true)}</span>
-                                <p><a href="@{MessageController.talk(msg.from.id, 1, 0)}">${msg.text.nl2br()}</a></p>
+                                <span>${msg.time.format(request)}</span>
+                                <p><a href="@{MessageController.talk(msg.from.id, 1, 0)}">${msg.text.limitTo(200).nl2br()}</a></p>
                             </li>
                         #{/if}
                     #{/list}
@@ -122,7 +122,7 @@
                         <li>
                             <a href="/{{ from.id }}" class="user-name-popup">{{from.name}} {{from.lastName}}</a>
                             <span>{{formatTime time}}</span>
-                            <p><a href="/talks/{{ from.id }}">{{text}}</a></p>
+                            <p><a href="/talks/{{ from.id }}">{{limitTo text 200}}</a></p>
                         </li>
                 {{/each}}
             </ul>
@@ -138,7 +138,7 @@
         <li>
             <a href="/{{ from.id }}" class="user-name-popup">{{from.name}} {{from.lastName}}</a>
             <span>{{formatTime time}}</span>
-            <p><a href="/talks/{{ from.id }}">{{text}}</a></p>
+            <p><a href="/talks/{{ from.id }}">{{limitTo text 200}}</a></p>
         </li>
     {{/each}}
 </script>
@@ -181,7 +181,7 @@
                 counter.html(msgCount + data.length);
             };
 
-            Dynamics.Messages.startListen(${currentUser.id}, null, lastUpdateTime, fnRedrawPopup);
+            Dynamics.Dialogs.startListen(${currentUser.id}, null, lastUpdateTime, fnRedrawPopup);
         #{/if}
     });
 </script>
