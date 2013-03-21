@@ -2,6 +2,14 @@
 <html lang="${play.i18n.Lang.get()}">
 <head>
 	<meta charset="UTF-8">
+    #{if news?.previewImageURL}
+        <meta property="og:image" content="${news.previewImageURL}" />
+        <link rel="image_src" href="${news.previewImageURL}" />
+    #{/if}
+    #{else}
+        <meta property="og:image" content="http://www.startnewteam.com/public/images/facebook-logo.jpg" />
+        <link rel="image_src" href="http://www.startnewteam.com/public/images/facebook-logo.jpg" />
+    #{/else}
 	<title>#{get 'title'}#{/}</title>
     <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}" />
 	<link rel="stylesheet" href="@{'public/stylesheets/boilerplate/stl.css'}" />
@@ -141,7 +149,7 @@
                      <a href="" class="twitter" onclick="window.open('https://twitter.com/share?text=&{'models.group.social.title', utils.URLUtils.getApplicationName(request.getBase())}&url=${request.getBase()}/register', 'facebook', 'width=626, height=436');">&{'page.profile.tell_friends_tw'}</a>
                      <a href="" class="facebook" onclick="window.open('http://www.facebook.com/sharer.php?s=100&p[url]=${request.getBase()}/register&p[title]=&{'models.group.social.title', utils.URLUtils.getApplicationName(request.getBase())}&p[summary]=&{'models.group.social.description', utils.URLUtils.getApplicationName(request.getBase())}&p[images][0]=${request.getBase()}/public/images/facebook-logo.jpg', 'facebook', 'width=626, height=436'); return false;">&{'page.profile.tell_friends_fb'}</a>
                      <a href="" class="vk" onclick="window.open('http://vk.com/share.php?url=${request.getBase()}/register&title=&{'models.group.social.title', utils.URLUtils.getApplicationName(request.getBase())}&description=&{'models.group.social.description', utils.URLUtils.getApplicationName(request.getBase())}&image=${request.getBase()}/public/images/boilerplate/socials-logo.jpg', 'vkontakte', 'width=626, height=436'); return false;">&{'page.profile.tell_friends_vk'}</a>
- 				</div>
+ 				</div>                                                                  data-media=
  			</div>
 		</aside>
 		<div class="inner-main" onclick="$('.event-popup').hide('slow');">
