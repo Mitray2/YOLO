@@ -17,9 +17,9 @@
     <div class="logged clearFix">
         <div class="logged-message">
             #{if newMessages}
-                <a href="#" onclick="$('.dialog-popup').slideToggle(300); return false;" class="logged-message-ico act"></a>
+                <a href="#" class="logged-message-ico act"></a>
                 <span class="dialog-num">${newMessages.size()}</span>
-                <div class="dialog-popup" style="display: none;">
+                <div class="dialog-popup logg-menu" style="display: none;">
                     <img src="@{'/public/images/boilerplate/logged-arrow2.png'}" alt="">
                     <ul id="popup-msg-list">
                     #{list items:newMessages, as:'msg'}
@@ -43,7 +43,7 @@
         </div>
         <div class="logged-event">
             #{if (countCommands + countUsers)}
-                <a href="#" onclick="$('.event-popup').slideToggle(300); return false;" class="logged-event-ico act"></a>
+                <a href="#"  class="logged-event-ico act"></a>
 
                 <span class="event-num">${countCommands + countUsers}</span>
 
@@ -95,7 +95,7 @@
             #{/else}
         </div>
         <div class="logged-user">
-            <a href="#" onclick="$('.logged-user-menu').slideToggle(300); return false;">
+            <a href="#" class="act">
                 #{avatar.avatar user:currentUser, cssClass:'user-pic', maleImg:'upm.png', femaleImg:'upf.png', avatarSize:27 /}
             </a>
             <div class="logged-user-menu logg-menu" style="display:none;">
@@ -113,17 +113,17 @@
 
 <script id="msg-popup-tpl" type="text/x-handlebars-template">
     {{#if this.length}}
-        <a href="#" onclick="$('.dialog-popup').slideToggle(300); return false;" class="logged-message-ico act"></a>
-        <span class="dialog-num">{{this.length}}</span>
-        <div class="dialog-popup" style="display: none;">
+        <a href="#" class="logged-message-ico act"></a>
+        <span class="dialog-num">{{ this.length }}</span>
+        <div class="dialog-popup logg-menu" style="display: none;">
             <img src="@{'/public/images/boilerplate/logged-arrow2.png'}" alt="" />
             <ul id="popup-msg-list">
                 {{#each this}}
-                        <li>
-                            <a href="/{{ from.id }}" class="user-name-popup">{{from.name}} {{from.lastName}}</a>
-                            <span>{{formatTime time}}</span>
-                            <p><a href="/talks/{{ from.id }}">{{limitTo text 200}}</a></p>
-                        </li>
+                    <li>
+                        <a href="/{{ from.id }}" class="user-name-popup">{{from.name}} {{from.lastName}}</a>
+                        <span>{{formatTime time}}</span>
+                        <p><a href="/talks/{{ from.id }}">{{limitTo text 200}}</a></p>
+                    </li>
                 {{/each}}
             </ul>
             <div class="all-dialogs"><a href="/{{ from.id }}/talks">{{#ifCond newMessages 10 1}}Просмотреть все{{else}}&{'page.dialogs.list'}{{/ifCond}}</a></div>
@@ -145,40 +145,46 @@
 
 <script>
     $(document).ready(function(){
-        /*$(":not(.logged)").click(function(){
-            $('.logg-menu').hide();
-        });*/
-
-
         var Templates = window.Templates || {};
         Templates.popupMsgTpl = Handlebars.compile($("#msg-popup-tpl").html());
         Templates.popupMsgItemTpl = Handlebars.compile($("#msg-popup-item-tpl").html());
 
+
+        var toggleBarMenus = function(){
+            var $thisPopup = $(this).parent().find('.logg-menu');
+            $('.logg-menu').not($thisPopup).slideUp(300);
+            $thisPopup.slideToggle(300);
+        };
+
+        $('.act').bind('click',toggleBarMenus);
+        $('body').bind('click', function(e) {
+            if($(e.target).closest('.logged').length == 0) {
+                $('.logg-menu').slideUp(300);
+            }
+        });
+
+
         #{if !request.controller.equals("MessageController")}
             var lastUpdateTime = ${newMessages.size() > 0 ? newMessages.get(newMessages.size()-1)?.time : 0};
-            //console.log('popLastTime = ' + lastUpdateTime);
-            if(!lastUpdateTime) {
-                lastUpdateTime = (new Date()).getTime();
-                //console.log('popLastTimeNow = ' + lastUpdateTime);
-            }
+            if(!lastUpdateTime) lastUpdateTime = (new Date()).getTime();
 
             var fnRedrawPopup = function(data) {
                 var cont = $("#popup-msg-list");
                 if(cont.length){
                     cont.append(Templates.popupMsgItemTpl(data));
+
+                    var $msgs = cont.find('li');
+                    if($msgs.length > 10){
+                        cont.find('li:lt('+($msgs.length-10)+')').remove();
+                    }
+
+                    var counter = $(".dialog-num");
+                    var msgCount = parseInt(counter.text())|| 0;
+                    counter.html(msgCount + data.length);
                 }else{
                     $(".logged-message").html(Templates.popupMsgTpl(data));
+                    $(".logged-message-ico").bind('click',toggleBarMenus);
                 }
-
-                var msgs = cont.find('li');
-                if(msgs.length > 10){
-                    cont.find('li:lt('+(msgs.length-10)+')').remove();
-                    //msgs.slice(10-msgs.length).remove();
-                }
-
-                var counter = $(".dialog-num");
-                var msgCount = parseInt(counter.text())|| 0;
-                counter.html(msgCount + data.length);
             };
 
             Dynamics.Dialogs.startListen(${currentUser.id}, null, lastUpdateTime, fnRedrawPopup);

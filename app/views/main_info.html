@@ -6,7 +6,12 @@
         <meta property="og:image" content="${news.previewImageURL}" />
     #{/if}
     #{else}
-        <meta property="og:image" content="@{'/public/images/facebook-logo.jpg'}" />
+        #{if report?.previewImageURL}
+            <meta property="og:image" content="${report.previewImageURL}" />
+        #{/if}
+        #{else}
+            <meta property="og:image" content="@{'/public/images/facebook-logo.jpg'}" />
+        #{/else}
     #{/else}
 	<title>#{get 'title'}#{/}</title>
     <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}" />

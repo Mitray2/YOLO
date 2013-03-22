@@ -56,8 +56,8 @@
 			<aside class="home-secondary">
 				<h2>&{'page.main.taketest'}<br/><span>&{'page.main.its_free'}</span></h2>
 					#{form @LoginController.firstTest(), class:'entry'}
-						<input type="text" #{if currentValidation?.hasError('user.name')}class="inputerror"#{/if} name="user.name" id="regName" onfocus="this.value=''; this.placeholder=''" onblur="this.placeholder='&{'page.main.enter_name'}'" placeholder="&{'page.main.enter_name'}" value="${user?.name}"/>
-						<input type="text" #{if currentValidation?.hasError('user.email')}class="inputerror"#{/if} name="user.email" id="" onfocus="this.value=''; this.placeholder=''" onblur="this.placeholder='&{'page.main.enter_address'}'" placeholder="&{'page.main.enter_address'}" value="${user?.email}"/>
+						<input type="text" #{if currentValidation?.hasError('user.name')}class="inputerror"#{/if} name="user.name" id="regName"  placeholder="&{'page.main.enter_name'}" value="${user?.name}"/>
+						<input type="text" #{if currentValidation?.hasError('user.email')}class="inputerror"#{/if} name="user.email" id=""  placeholder="&{'page.main.enter_address'}" value="${user?.email}"/>
 
                         #{if currentValidation?.hasError('user.sex')}<span class="error">#{/if}
 							<input type="radio" name="user.sex" id="rad1" class="radio" #{if user?.sex == true}checked#{/if} value="true"/><label for="rad1" class="man">&{'page.main.sex.male'}</label><input type="radio" name="user.sex" id="rad2" value="false" class="radio" #{if user?.sex == false}checked#{/if}/><label for="rad2" class="woman">&{'page.main.sex.female'}</label>
@@ -93,7 +93,7 @@
 
     <script>
         $(document).ready(function() {
-            $('input[placeholder], textarea[placeholder]').placeholder();
+            //$('input[placeholder], textarea[placeholder]').placeholder();
 
             //show 2000 selected at first
             var birthDiv = $('[name="birthYear"]').parent().find('div')[2];

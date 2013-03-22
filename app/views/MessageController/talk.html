@@ -88,7 +88,7 @@
         var removeMsg = function(){
             var $delLink = $(this);
             var msgId = $delLink.attr('data-id');
-            //var result = confirm("Are you sure to delete this message [" + msgId + "] ?");
+
             alertify.confirm("&{'page.dialogs.delete.msg.confirm'}", function (e) {
                 if (e) {
                     $.ajax({
@@ -138,17 +138,7 @@
 
         $("#send-msg").click(sendMsg);
         $msg.ctrlEnter("textarea", sendMsg);
-        $msg.focus(function(){
-            var $this = $(this);
-            setTimeout(function(){
-                $this.height('120px');
-            }, 100);
-        }).blur(function(){
-            var $this = $(this);
-            setTimeout(function(){
-                $this.height('20px');
-            }, 350);
-        });
+        $msg.autosize({append: "\n"});
 
         var lastUpdateTime = ${conversations.size() > 0 ? conversations.get(conversations.size()-1)?.time.getTime() : 0};
         //console.log('lastTime = ' + lastUpdateTime);
@@ -177,7 +167,6 @@
                 setTimeout(function(){
                     $.getJSON('/talks/${userToTalk.id}?page=' + (page+1),
                         function (data) {
-                            //console.log(JSON.stringify(data));
                             $talksDiv.find(".ajax-loader").remove();
                             if(data.length) {
                                 var $prevTopItem = $talksDiv.find(".dialog-item:first-child");
