@@ -1,15 +1,20 @@
 package notifiers;
 
 import models.Command;
+import models.Message;
 import models.User;
+import play.Play;
 import play.i18n.Messages;
 import play.mvc.Mailer;
 import utils.PasswordGenerator;
 import utils.SecurityHelper;
 
+import java.util.List;
+
 public class Mails extends Mailer {
 
   private static final String EMAIL_FROM = "StartNewTeam <noreply@startnewteam.com>";
+  public static final String BASE_URL = Play.configuration.getProperty("application.baseUrl");
 
 
 	public static void firstTestPassed(User user, String base) {
@@ -83,5 +88,21 @@ public class Mails extends Mailer {
 	// setFrom("info@coachmen.ru");
 	// send(errorMessage);
 	// }
+
+    public static void newUserMessages(User user, List<Message> newMessages) {
+        setSubject(Messages.get("mail.subject.unread.messages"));
+        //addRecipient(user.email); TODO uncomment for prod
+        addRecipient("siarzh@gmail.com");
+        addRecipient("dzyakanau.d@gmail.com");
+        setFrom(EMAIL_FROM);
+        send(user, newMessages);
+    }
+
+    public static void notSeenForAWeek(User user) {
+        setSubject(Messages.get("mail.subject.type5"));
+        addRecipient(user.email);
+        setFrom(EMAIL_FROM);
+        send(user);
+    }
 
 }

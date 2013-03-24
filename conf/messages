@@ -250,6 +250,13 @@ email.secondTestPassed=Hello, %s!\
                         <br>\
                         Entrepreneurally yours, <br>\
                         <a href="%s">StartNewTeam</a>
+email.newMessages=Hello, %s!\
+                 <br>\
+                 You have <a href='%s'>%s unread messages today</a>!\
+                 <br>\
+                 <br>\
+                Entrepreneurally yours, <br>\
+                <a href="%s">StartNewTeam</a>
 
 
 link.main=Main

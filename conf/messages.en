@@ -57,6 +57,7 @@ mail.subject.type3=Confirmation of registration
 mail.subject.type4=Invitation to join the team
 mail.subject.type5=Someone wants to join your team
 mail.subject.type6=Password recovery
+mail.subject.unread.messages=New messages on StartNewTeam
 
 
 page.main.content=<h1 class="main">StartNewTeam – international business dating service for creation of joint business.</h1>\
@@ -249,6 +250,13 @@ email.secondTestPassed=Hello, %s!\
                         <br>\
                         Entrepreneurally yours, <br>\
                         <a href="%s">StartNewTeam</a>
+email.newMessages=Hello, %s!\
+                 <br>\
+                 You have <a href='%s'>%s unread messages today</a>!\
+                 <br>\
+                 <br>\
+                Entrepreneurally yours, <br>\
+                <a href="%s">StartNewTeam</a>
 
 
 link.main=Main

@@ -253,8 +253,15 @@ email.secondTestPassed=Добрый день, %s!\
                         StartNewTeam необходимо подтвердить электронный адрес, пройдя по <a\
                         href="%s/confirmRegistration?ticket=%s">ссылке</a>.<br />\
                         <br>\
-                        С уважением,<br>
+                        С уважением,<br>\
 						команда <a href="%s">StartNewTeam</a>
+email.newMessages=Добрый день, %s!\
+                 <br>\
+                 У вас <a href='%s'>%s непрочитанных сообщений сегодня</a>!\
+                 <br>\
+                 <br>\
+                С уважением, <br>\
+                команда <a href="%s">StartNewTeam</a>
 
 
 link.main=Главная
