@@ -5,6 +5,7 @@
 /.project
 /.idea
 /.idea_modules
+/logs
 *.ipr
 *.iml
 *.iws

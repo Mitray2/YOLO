@@ -2,6 +2,7 @@ package notifiers;
 
 import models.Command;
 import models.Message;
+import models.Post;
 import models.User;
 import play.Play;
 import play.i18n.Messages;
@@ -99,10 +100,21 @@ public class Mails extends Mailer {
     }
 
     public static void notSeenForAWeek(User user) {
-        setSubject(Messages.get("mail.subject.type5"));
-        addRecipient(user.email);
+        setSubject(Messages.get("mail.subject.not.seen"));
+        //addRecipient(user.email); TODO uncomment for prod
+        addRecipient("siarzh@gmail.com");
+        //addRecipient("dzyakanau.d@gmail.com");
         setFrom(EMAIL_FROM);
         send(user);
+    }
+
+    public static void platformNews(User user, Post post) {
+        setSubject(post.title);
+        //addRecipient(user.email); TODO uncomment for prod
+        addRecipient("siarzh@gmail.com");
+        addRecipient("dzyakanau.d@gmail.com");
+        setFrom(EMAIL_FROM);
+        send(post);
     }
 
 }

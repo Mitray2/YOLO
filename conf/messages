@@ -58,6 +58,7 @@ mail.subject.type4=Invitation to join the team
 mail.subject.type5=Someone wants to join your team
 mail.subject.type6=Password recovery
 mail.subject.unread.messages=New messages on StartNewTeam
+mail.subject.not.seen=We are missing you on StartNewTeam
 
 
 page.main.content=<h1 class="main">StartNewTeam - is a tool for formation<br> of effective entrepreneurial teams.</h1>\
@@ -254,6 +255,14 @@ email.secondTestPassed=Hello, %s!\
 email.newMessages=Hello, %s!\
                  <br>\
                  You have <a href='%s'>%s unread messages</a> today!\
+                 <br>\
+                 <br>\
+                Entrepreneurally yours, <br>\
+                <a href="%s">StartNewTeam</a>
+email.notSeen=Hello, %s!\
+                 <br>\
+                 We hope you didn't forget about <a href='%s'>StartNewTeam</a>?\
+                 <br>Don't miss a unique chance to find those who will share your ideas!\
                  <br>\
                  <br>\
                 Entrepreneurally yours, <br>\

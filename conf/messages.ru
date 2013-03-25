@@ -58,6 +58,7 @@ mail.subject.type4=Приглашение в команду
 mail.subject.type5=Кто-то хочет вступить в вашу команду
 mail.subject.type6=Восстановление пароля на сайте
 mail.subject.unread.messages=Новые личные сообщения на StartNewTeam
+mail.subject.not.seen=Нам не хватает вас на StartNewTeam
 
 
 page.main.content=<h1 class="main">StartNewTeam – международная площадка для деловых знакомств и создания совместного бизнеса.</h1>\
@@ -259,6 +260,14 @@ email.secondTestPassed=Добрый день, %s!\
 email.newMessages=Добрый день, %s!\
                  <br>\
                  У вас <a href='%s'>%s непрочитанных сообщений</a> сегодня!\
+                 <br>\
+                 <br>\
+                С уважением, <br>\
+                команда <a href="%s">StartNewTeam</a>
+email.notSeen=Добрый день, %s!\
+                 <br>\
+                 Надеемся, вы не забыли про <a href='%s'>StartNewTeam</a>?\
+                 <br>Не упустите уникальную возможность найти себе единомышлеников!\
                  <br>\
                  <br>\
                 С уважением, <br>\
