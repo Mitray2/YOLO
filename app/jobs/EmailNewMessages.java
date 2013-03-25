@@ -11,13 +11,15 @@ import play.jobs.Every;
 import play.jobs.Job;
 
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import static ch.lambdaj.Lambda.*;
+import static org.hamcrest.Matchers.not;
+
 
 /** Sends email notification for unread messages **/
-@Every("1h") //TODO for prod change it to: @On("0 0 8 * * ?")
+@Every("5mn") //TODO for prod change it to: @On("0 0 8 * * ?")
 public class EmailNewMessages extends Job {
 
 
@@ -37,10 +39,11 @@ public class EmailNewMessages extends Job {
         ImmutableListMultimap<User, Message> userMessagesMap = Multimaps.index(unreadMessages, pickToUserFn);
         for (Map.Entry<User, Collection<Message>> userMessages : userMessagesMap.asMap().entrySet()) {
             User user = userMessages.getKey();
-            List<Message> messages = new LinkedList<Message>(userMessages.getValue());
-            if(messages.size() > 0) {
-                Logger.debug("JOB: notify user [%d] for %d unread messages", user.id, messages.size());
-                Mails.newUserMessages(user, messages);
+            //List<Message> messages = new LinkedList<Message>(userMessages.getValue());
+            List<Message> notDeletedMessages = filter(having(on(Message.class).deletedBy, not(user.id)), userMessages.getValue());
+            if(notDeletedMessages.size() > 0) {
+                Logger.debug("JOB: notify user [%d] for %d unread messages", user.id, notDeletedMessages.size());
+                Mails.newUserMessages(user, notDeletedMessages);
             } else {
                 Logger.debug("JOB: no unread messages for user [%d]", user.id);
             }

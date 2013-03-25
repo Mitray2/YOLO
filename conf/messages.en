@@ -252,7 +252,7 @@ email.secondTestPassed=Hello, %s!\
                         <a href="%s">StartNewTeam</a>
 email.newMessages=Hello, %s!\
                  <br>\
-                 You have <a href='%s'>%s unread messages today</a>!\
+                 You have <a href='%s'>%s unread messages</a> today!\
                  <br>\
                  <br>\
                 Entrepreneurally yours, <br>\

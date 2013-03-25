@@ -57,7 +57,7 @@ function Search() {
 				search.doSearch();
 			});
 		});
-		
+
 		//init tabs
 		$("#searchTab1").click(function(){_this.activateTab(1)});
 		$("#searchTab2").click(function(){_this.activateTab(2)});
