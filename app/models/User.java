@@ -8,12 +8,7 @@ import static utils.ApplicationConstants.*;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import play.cache.EhCacheImpl;
 import play.data.validation.Email;
@@ -132,6 +127,9 @@ public class User extends Model {
 
 	@ManyToMany(cascade = { CascadeType.PERSIST })
 	public List<Command> commandsForAprove = new ArrayList<Command>();
+
+    @ManyToMany(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
+    public List<NotificationType> notifications = new ArrayList<NotificationType>();
 	
 	public Boolean haveAvatar = false;
 	

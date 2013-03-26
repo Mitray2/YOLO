@@ -1,0 +1,127 @@
+#{extends 'main_templeate.html' /}
+#{set 'title'}${user.name} ${user.lastName} - &{'page.settings.title'}#{/set}
+
+<h1 class="profile-h1">&{'page.settings.title'}</h1>
+
+<h2 class="profile-h2" style="margin-bottom:9px;">&{'page.profile.current.personal_data'}</h2>
+#{form @SettingsController.editContactData()} #{showError errors:errors /}
+<div class="profile-form">
+
+    <div class="profile-item mb3">
+        <label for="stn-name">&{'page.profile.current.name'}</label>
+        <input type="text" name="name" value="${user.name}" id="stn-name" />
+    </div>
+    <div class="profile-item mb3">
+        <label for="stn-last-name">&{'page.profile.current.surname'}</label>
+        <input type="text" name="lastName" value="${user.lastName}" id="stn-last-name" />
+    </div>
+
+    <div class="profile-item mb3 entry">
+        <label for="">&{'page.profile.current.sex'}</label>
+
+        <input type="radio" name="sex" id="rad1" class="radio" #{if user?.sex}checked#{/if} value="true"/>
+        <label for="rad1" class="man">&{'page.profile.current.male'}</label>
+        <input type="radio" name="sex" id="rad2" value="false" class="radio" #{if !user?.sex}checked#{/if}/>
+        <label for="rad2" class="woman">&{'page.profile.current.female'}</label>
+
+    </div>
+    <div class="profile-item">
+        <label for="">&{'page.profile.current.birthday'}</label>
+
+        %{
+            Calendar bdate = Calendar.getInstance();
+                     bdate.setTime(user.birthday);
+            birthYear =  bdate.get(Calendar.YEAR);
+            birthMonth = bdate.get(Calendar.MONTH);
+            birthDay =   bdate.get(Calendar.DAY_OF_MONTH);
+        }%
+        <div class="profile-birthday">
+        #{models.user.birthdayComponent day:birthDay, month:birthMonth, year:birthYear/}
+        </div>
+
+        <!-- {common.formattedDate date:user.birthday /} -->
+    </div>
+</div>
+
+<div class="create-form edit-form">
+    <label for="">&{'page.profile.current.email'}:</label>
+    <span>${user.email}</span>
+    <div class="box-radio">
+        <input type="radio" name="showEmailForOthers" id="showEmailForOthersY" class="radio" value="true"  #{if user?.showEmailForOthers}checked#{/if}/>
+        <label for="showEmailForOthersY" class="radio-btn">&{'page.profile.current.email_show'}</label>
+        <input type="radio" name="showEmailForOthers" id="showEmailForOthersN" class="radio" value="false"  #{if !user?.showEmailForOthers}checked#{/if}/>
+        <label for="showEmailForOthersN" class="radio-btn">&{'page.profile.current.email_hide'}</label>
+    </div>
+</div>
+
+<div class="profile-form">
+    <div class="profile-item">
+        <label for="">&{'page.profile.current.ava'}</label>
+        <div class="profile-pic">
+            #{avatar.avatar user:user, cssClass:'profile-pic-img', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
+            <div class="profile-pic-btn" id="changeAvatar">&{'page.profile.current.browse'}<input name="" type="file"></div>
+            #{avatar.changeAvatar user:user/}
+            <div class="profile-pic-type">&{'page.profile.current.max_img_size'} 800х600 px 2Мб (.jpg, .jpeg, .png, .gif, .bmp)</div>
+        </div>
+    </div>
+    <div class="profile-item clearFix">
+        <label for="">&{'page.common.country'}</label>
+        <select name="countryId" class="cSelect" style="width:321px;">
+            #{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
+                <option value="${country.id}" #{if user?.country?.id == country.id}selected="selected"#{/if}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country.name)}</option>
+            #{/list}
+        </select>
+    </div>
+    <div class="profile-item">
+        <label for="">&{'page.common.city'}</label>
+        <input type="text" name="city" value="${user.city}" id="" />
+    </div>
+    <button type="submit" class="profile-btn">&{'page.profile.current.save_changes'}</button>
+</div>
+#{/form}
+
+
+<h2 class="profile-h2">&{'page.profile.current.change_pwd'}</h2>
+
+<div class="profile-form">
+#{form @SettingsController.doChangePassword()}
+    #{showError errors:errors /}
+    <div class="profile-item">
+        <label for="">&{'page.profile.current.old_pwd'}</label>
+        <input type="password" name="oldPassword" id="" />
+    </div>
+    <div class="profile-item">
+        <label for="">&{'page.profile.current.new_pwd'}</label>
+        <input type="password" name="newPassword" id="" />
+    </div>
+    <div class="profile-item">
+        <label for="">&{'page.profile.current.repeate_pwd'}</label>
+        <input type="password" name="newPasswordRepeat" id="" />
+    </div>
+    <button type="submit" class="profile-btn">&{'page.profile.current.save_changes'}</button>
+#{/form}
+</div>
+
+
+<h2 class="profile-h2">&{'page.settings.notifications'}</h2>
+#{form @SettingsController.setNotifications()}
+<div class="profile-form">
+
+    #{list items:models.NotificationType.findAll(), as:'ntype'}
+        <div class="profile-item line">
+        <label for="ntyp_${ntype.id}">&{'profile.settings.notifications.' + ntype.id}</label>
+        %{
+            isSet = false;
+            for(models.NotificationType notific: user?.notifications){
+                if(ntype.id.equals(notific.id)) {
+                    isSet = true;
+                    break;
+                }
+            }
+        }%
+        <input id="ntyp_${ntype.id}" name="nTypes" type="checkbox" value="${ntype.id}" #{if isSet}checked="checked"#{/if}>
+        </div>
+    #{/list}
+    <button type="submit" class="profile-btn">&{'page.profile.current.save_changes'}</button>
+</div>
+#{/form}

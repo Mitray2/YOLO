@@ -500,6 +500,13 @@ page.profile.current.desc_skill_meta=Indicate your level of knowledge and experi
 page.profile.current.desc_cv_meta=Describe in few words your goals and expectations from registration
 page.profile.current.test2=Test your business-aptitudes for better team creation.
 
+page.settings.title=My settings
+page.settings.notifications=Email notifications
+profile.settings.notifications.1=Notify about unread personal messages
+profile.settings.notifications.2=Notify about StartNewTeams news
+profile.settings.notifications.3=Notify about group activities
+profile.settings.notifications.4=Send reminders
+
 page.search.members.title=Partners search system
 page.search.members.personal_data=Personal data
 page.search.members.aptitudes=Aptitudes and interests

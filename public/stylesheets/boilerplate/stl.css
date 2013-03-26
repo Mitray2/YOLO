@@ -343,6 +343,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   background: linear-gradient(#ffffff, #f8f8f8);
   display: inline-block;
   cursor: pointer;
+  cursor: pointer;
   position: relative;
 }
 /* line 282, ../scss/stl.scss */
@@ -1702,7 +1703,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 	border-bottom:1px solid #d4d4d4;
 	position:relative;
 	left:-30px;
-	margin:0 -60px 24px 0;
+	margin:0 -60px 0 0;
 	padding:0 30px 10px;
 }
 .group-info p{
@@ -2133,6 +2134,10 @@ a, input, input:hover, input:active, input:focus, textarea {
 .profile-form .profile-item {
   position: relative;
   padding-left: 260px;
+}
+.profile-form .profile-birthday {
+  position: relative;
+  display: block;
 }
 .profile-form input[type="text"],
 .profile-form input[type="password"],
@@ -3508,4 +3513,46 @@ h1.main{
     height:20px;
     text-align: center;
     background: url(/public/img/ajax-loader.gif) 50% 8px no-repeat;
+}
+
+.profile-form .entry {
+    margin: 0;
+}
+.profile-form .profile-item.entry {
+    margin-bottom: 23px;
+}
+.profile-form .entry label {
+    font: 14px/21px Arial, sans-serif;
+    margin-bottom: 0;
+}
+
+.edit-form{
+    margin-top:30px;
+    padding-top:10px;
+    border-top: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9
+}
+.edit-form label {
+    float:left;
+}
+.edit-form span{
+    /*float:left;*/
+    display: block;
+    margin:0 0 0 260px;
+}
+.edit-form .box-radio {
+    /*float:left;*/
+    display: inline-block;
+    margin:10px 0 0 260px;
+}
+.profile-item.line{
+    display: block;
+    height: 42px;
+}
+.profile-item.line label{
+    line-height: 16px;
+}
+.profile-item.line input[type="checkbox"] {
+    position: absolute;
+    top: 0;
 }

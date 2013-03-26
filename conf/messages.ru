@@ -511,6 +511,13 @@ page.profile.current.desc_skill_meta=Укажите уровень ваших з
 page.profile.current.desc_cv_meta=Опишите в свободной форме свои цели регистрации на сайте
 page.profile.current.test2=Определите свои бизнес-наклонности для лучшего формирования команды.
 
+page.settings.title=Настройки
+page.settings.notifications=Уведомления по электронной почте
+profile.settings.notifications.1=О непрочитанных сообщениях
+profile.settings.notifications.2=О новостях StartNewTeams
+profile.settings.notifications.3=О происходящем в группе
+profile.settings.notifications.4=Получать напоминания
+
 page.search.members.title=Система поиска партнеров
 page.search.members.personal_data=Личные данные
 page.search.members.aptitudes=Склонности и интересы
