@@ -21,7 +21,7 @@ public class UsersSearch extends AbstractSearch {
 	
 
 	@Before
-	public static void checkSecutiry() {
+	public static void checkSecurity() {
 		// TODO warnings on page
 		User currentUser = SessionHelper.getCurrentUser(session);
 		if (currentUser == null)

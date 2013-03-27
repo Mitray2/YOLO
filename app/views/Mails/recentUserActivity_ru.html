@@ -1,0 +1,28 @@
+<html>
+	<body>
+		<p>
+            Добрый день, ${user.name}!
+            <br/>
+            <br/>
+            #{if activity.unreadMessages?.size() > 0}
+                У вас <a href='${notifiers.Mails.BASE_URL}/@{MessageController.index(user.id)}'>${activity.unreadMessages.size()} непрочитанных сообщений</a> сегодня!
+                <br/>
+            #{/if}
+            #{if activity.teamActivity}
+                #{if activity.unreadMessages?.size() > 0}<br/><hr/><br/><br/>#{/if}
+                Последние события в вашей группе <a href="@{GroupController.index(activity.teamActivity.team.id)}">"${activity.teamActivity.team.name}"</a>:
+                <br/>
+                #{if activity.teamActivity.newTopics}создано <strong>${activity.teamActivity.newTopics}</strong> новых тем для обсуждения<br/>#{/if}
+                #{if activity.teamActivity.newMessages}добавлено <strong>${activity.teamActivity.newMessages}</strong> новых сообщений<br/>#{/if}
+                #{if activity.teamActivity.joinedMembers}<strong>${activity.teamActivity.joinedMembers}</strong> человек присоединились к комманде<br/>#{/if}
+                #{if activity.teamActivity.leftMembers}<strong>${activity.teamActivity.leftMembers}</strong> человек покинули комманду<br/>#{/if}
+                <br/>
+                <br/>
+            #{/if}
+            <br/>
+            <br/>
+            С уважением, <br/>
+            команда <a href="${notifiers.Mails.BASE_URL}">StartNewTeam</a>
+		</p>
+	</body>
+</html>

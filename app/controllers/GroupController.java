@@ -31,7 +31,7 @@ public class GroupController extends BasicController implements ApplicationConst
   }
 
   @Before
-  public static void checkSecutiry() {
+  public static void checkSecurity() {
     // TODO warnings on page
     User currentUser = SessionHelper.getCurrentUser(session);
     if (currentUser == null)
@@ -61,7 +61,7 @@ public class GroupController extends BasicController implements ApplicationConst
 
   public static void index(Long id) {
     Command group = Command.findById(id);
-    User sessionUser = SessionHelper.getCurrentUser(session);
+    //User sessionUser = SessionHelper.getCurrentUser(session);
 //		LastUserData lUserData = new LastUserData();
 //		String statement = "select * from LastUserData as lUser where lUser.lastSeen=(select max(l.lastSeen) from LastUserData as l where l.commandId=" + group.id
 //				+ " and l.userId<> " + sessionUser.id + ")";
@@ -294,6 +294,9 @@ public class GroupController extends BasicController implements ApplicationConst
           }
         }
         user.command = group;
+
+        logGroupMemberActivity(user, group, TeamMemberActivity.ACTION_MEMBER_JOINED);
+
         user.save();
         group.save();
         break;
@@ -755,4 +758,9 @@ public class GroupController extends BasicController implements ApplicationConst
       groupTopics(groupId);
     }
   }
+
+    private static void logGroupMemberActivity(User user, Command team, int action) {
+        TeamMemberActivity activity = new TeamMemberActivity(team, user, action, new Date());
+        activity.create();
+    }
 }

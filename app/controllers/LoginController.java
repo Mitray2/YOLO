@@ -98,6 +98,7 @@ public class LoginController extends BasicController implements ApplicationConst
 			ModelUtils.calculateUsersAge(alreadySavedUser);
             alreadySavedUser.regDate = new Date();
             alreadySavedUser.businessman = businessTestResult;
+            alreadySavedUser.notifications = NotificationType.findAll();
 
 			//Mails.firstTestPassed(user, request.getBase());
 

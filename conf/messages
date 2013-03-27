@@ -217,6 +217,7 @@ email.blankfformpassed=In order to finish registration on <a href="%s">StartNewT
                         <a href="%s">StartNewTeam</a> 
 email.groupRequest=Hello, %s!\
                    <br>\
+                   <br>\
                    You have been invited to join the team <a href='%s'>%s</a>!\
                    <br>\
                    <br>\
@@ -226,6 +227,7 @@ email.groupRequest=Hello, %s!\
                   Entrepreneurally yours, <br>\
                   <a href="%s">StartNewTeam</a>
 email.memberRequest=Hello, %s!\
+                    <br>\
                     <br>\
                      Your project has been noticed!<br> \
 					 <a href='%s'>%s</a> wants to join you team.\
@@ -237,6 +239,7 @@ email.memberRequest=Hello, %s!\
                     Entrepreneurally yours, <br>\
                     <a href="%s">StartNewTeam</a> 
 email.lostPassword=Hello!<br/>\
+                   <br>\
                    You, or someone else had requested a new password. Please use this password to access your account: %s\
                    We strongly recommend you to change the password immediately.\
                    <br>\
@@ -254,12 +257,14 @@ email.secondTestPassed=Hello, %s!\
                         <a href="%s">StartNewTeam</a>
 email.newMessages=Hello, %s!\
                  <br>\
+                 <br>\
                  You have <a href='%s'>%s unread messages</a> today!\
                  <br>\
                  <br>\
                 Entrepreneurally yours, <br>\
                 <a href="%s">StartNewTeam</a>
 email.notSeen=Hello, %s!\
+                 <br>\
                  <br>\
                  We hope you didn't forget about <a href='%s'>StartNewTeam</a>?\
                  <br>Don't miss a unique chance to find those who will share your ideas!\

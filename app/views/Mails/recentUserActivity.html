@@ -1,0 +1,28 @@
+<html>
+	<body>
+		<p>
+            Hello, ${user.name}!
+            <br/>
+            <br/>
+            #{if activity.unreadMessages?.size() > 0}
+                You have <a href='${notifiers.Mails.BASE_URL}/@{MessageController.index(user.id)}'>${activity.unreadMessages.size()} unread messages</a> today!
+                <br/>
+            #{/if}
+            #{if activity.teamActivity}
+                #{if activity.unreadMessages?.size() > 0}<br/><hr/><br/><br/>#{/if}
+                Latest activity in your team <a href="@{GroupController.index(activity.teamActivity.team.id)}">"${activity.teamActivity.team.name}"</a>:
+                <br/>
+                #{if activity.teamActivity.newTopics}created <strong>${activity.teamActivity.newTopics}</strong> new discussion topics<br/>#{/if}
+                #{if activity.teamActivity.newMessages}posted <strong>${activity.teamActivity.newMessages}</strong> new messages<br/>#{/if}
+                #{if activity.teamActivity.joinedMembers}<strong>${activity.teamActivity.joinedMembers}</strong> members joined the team<br/>#{/if}
+                #{if activity.teamActivity.leftMembers}<strong>${activity.teamActivity.leftMembers}</strong> members left the team<br/>#{/if}
+                <br/>
+                <br/>
+            #{/if}
+            <br/>
+            <br/>
+            Entrepreneurally yours, <br/>
+            <a href="${notifiers.Mails.BASE_URL}">StartNewTeam</a>
+		</p>
+	</body>
+</html>

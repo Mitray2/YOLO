@@ -1,9 +1,11 @@
 package notifiers;
 
+import modelDTO.UserActivity;
 import models.Command;
 import models.Message;
 import models.Post;
 import models.User;
+import play.Logger;
 import play.Play;
 import play.i18n.Messages;
 import play.mvc.Mailer;
@@ -11,6 +13,7 @@ import utils.PasswordGenerator;
 import utils.SecurityHelper;
 
 import java.util.List;
+import java.util.Locale;
 
 public class Mails extends Mailer {
 
@@ -90,20 +93,27 @@ public class Mails extends Mailer {
 	// send(errorMessage);
 	// }
 
-    public static void newUserMessages(User user, List<Message> newMessages) {
+    public static void recentUserActivity(User user, UserActivity activity) {
+        Locale locale = user.english ? new Locale("en") : new Locale("ru");
         setSubject(Messages.get("mail.subject.unread.messages"));
         //addRecipient(user.email); TODO uncomment for prod
         addRecipient("siarzh@gmail.com");
         addRecipient("dzyakanau.d@gmail.com");
         setFrom(EMAIL_FROM);
-        send(user, newMessages);
+        Logger.info("user lang: " + locale.getLanguage());
+
+        if("ru".equals(locale.getLanguage())){
+            send("Mails/recentUserActivity_ru", user, activity);
+        } else {
+            send(user, activity);
+        }
     }
 
     public static void notSeenForAWeek(User user) {
         setSubject(Messages.get("mail.subject.not.seen"));
         //addRecipient(user.email); TODO uncomment for prod
         addRecipient("siarzh@gmail.com");
-        //addRecipient("dzyakanau.d@gmail.com");
+        addRecipient("dzyakanau.d@gmail.com");
         setFrom(EMAIL_FROM);
         send(user);
     }

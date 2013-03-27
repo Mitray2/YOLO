@@ -223,6 +223,7 @@ email.blankfformpassed=Для завершения регистрации на <
 						команда <a href="%s">StartNewTeam</a>
 email.groupRequest=Добрый день, %s!\
                    <br>\
+                   <br>\
                    Поздравляем, вас приглашают в команду <a href='%s'>%s</a>!\
                    <br>\
                    <br>\
@@ -231,6 +232,7 @@ email.groupRequest=Добрый день, %s!\
                    <br>\
                    С уважением,<br> команда <a href="%s">StartNewTeam</a><br/>
 email.memberRequest=Добрый день, %s!\
+                    <br>\
                     <br>\
                      Ваш проект не остался незамеченным!<br> \
 					 <a href="%s">%s</a> хочет вступить в команду.\
@@ -243,6 +245,7 @@ email.memberRequest=Добрый день, %s!\
                     <br>\
                      команда <a href="%s">StartNewTeam</a><br/>
 email.lostPassword=Добрый день!<br/>\
+                   <br>\
                    Согласно запросу, для восстановления доступа к сайту высылаем новый пароль: %s\
                    Советуем сменить пароль на новый сразу после авторизации.\
                    <br>\
@@ -259,12 +262,14 @@ email.secondTestPassed=Добрый день, %s!\
 						команда <a href="%s">StartNewTeam</a>
 email.newMessages=Добрый день, %s!\
                  <br>\
+                 <br>\
                  У вас <a href='%s'>%s непрочитанных сообщений</a> сегодня!\
                  <br>\
                  <br>\
                 С уважением, <br>\
                 команда <a href="%s">StartNewTeam</a>
 email.notSeen=Добрый день, %s!\
+                 <br>\
                  <br>\
                  Надеемся, вы не забыли про <a href='%s'>StartNewTeam</a>?\
                  <br>Не упустите уникальную возможность найти себе единомышлеников!\

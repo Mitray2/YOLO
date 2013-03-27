@@ -1703,7 +1703,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 	border-bottom:1px solid #d4d4d4;
 	position:relative;
 	left:-30px;
-	margin:0 -60px 0 0;
+	margin:0 -60px 24px 0;
 	padding:0 30px 10px;
 }
 .group-info p{
@@ -3555,4 +3555,7 @@ h1.main{
 .profile-item.line input[type="checkbox"] {
     position: absolute;
     top: 0;
+}
+.profile-form .group-info {
+    margin-bottom: 0;
 }

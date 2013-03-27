@@ -3,6 +3,8 @@ package controllers;
 import modelDTO.UserSkillDTO;
 import models.*;
 import notifiers.Mails;
+import play.Logger;
+import play.db.jpa.JPA;
 import play.i18n.Messages;
 import play.mvc.Before;
 import utils.ApplicationConstants;
@@ -10,15 +12,13 @@ import utils.SecurityHelper;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import javax.persistence.Query;
+import java.util.*;
 
 public class UserController extends BasicController  implements ApplicationConstants {
 
 	@Before
-	public static void checkSecutiry() {
+	public static void checkSecurity() {
 		// TODO warnings on page
 		User currentUser = SessionHelper.getCurrentUser(session);
 		if (currentUser == null)
@@ -60,101 +60,6 @@ public class UserController extends BasicController  implements ApplicationConst
 		render(user);
 	}
 
-	/*public static void editContactData(Long countryId, String city, boolean showEmailForOthers) {
-		User currentUser = User.findById(SessionHelper.getCurrentUser(session).getId());
-		validation.required("city", city).message(ApplicationConstants.VALIDATION_MODEL_USER_CITY_REQUIRED);
-		if (!validation.hasError("city"))
-			validation.maxSize("city", city, 30).message(ApplicationConstants.VALIDATION_MODEL_USER_CITY_MAX_LENGTH);
-//		if (!validation.hasError("city"))
-//			validation.match("city", city, ApplicationConstants.CITY_PATTERN).message(ApplicationConstants.VALIDATION_MODEL_USER_CITY_INVALID);
-		Country country = Country.findById(countryId);
-		currentUser.country = country;
-		currentUser.city = city;
-		currentUser.showEmailForOthers = showEmailForOthers;
-		currentUser.save();
-
-		SessionHelper.setCurrentUser(session, currentUser);
-		index(currentUser.id);
-	}*/
-
-	/*public static void editProfile(User user) {
-		User currentUser = User.findById(SessionHelper.getCurrentUser(session).getId());
-		// validation.required("user.city",
-		// user.city).message(ApplicationConstants.VALIDATION_MODEL_USER_CITY_REQUIRED);
-		// if (!validation.hasError("user.city"))
-		// validation.maxSize("user.city", user.city,
-		// 30).message(ApplicationConstants.VALIDATION_MODEL_USER_CITY_MAX_LENGTH);
-		// if (!validation.hasError("user.city"))
-		// validation.match("user.city", user.city,
-		// ApplicationConstants.CITY_PATTERN).message(ApplicationConstants.VALIDATION_MODEL_USER_CITY_INVALID);
-		//
-		// validation.maxSize("user.expMarketing",
-		// user.expMarketing.description,
-		// 300).message(ApplicationConstants.VALIDATION_MODEL_USER_EXP_MARKETING_MAX_LENGTH);
-		// validation.maxSize("user.expSale", user.expSale.description,
-		// 300).message(ApplicationConstants.VALIDATION_MODEL_USER_EXP_SALE_MAX_LENGTH);
-		// validation.maxSize("user.expManagement",
-		// user.expManagement.description,
-		// 300).message(ApplicationConstants.VALIDATION_MODEL_USER_EXP_MANAGEMENT_MAX_LENGTH);
-		// validation.maxSize("user.expFinance", user.expFinance.description,
-		// 300).message(ApplicationConstants.VALIDATION_MODEL_USER_EXP_FINANCE_MAX_LENGTH);
-		// validation.maxSize("user.expLegal", user.expLegal.description,
-		// 300).message(ApplicationConstants.VALIDATION_MODEL_USER_EXP_LEGAL_MAX_LENGTH);
-		// validation.maxSize("user.expIT", user.expIT.description,
-		// 300).message(ApplicationConstants.VALIDATION_MODEL_USER_EXP_IT_MAX_LENGTH);
-		// validation.maxSize("user.expOther", user.expOther.description,
-		// 300).message(ApplicationConstants.VALIDATION_MODEL_USER_EXP_OTHER_MAX_LENGTH);
-		// validation.maxSize("user.personalCV", user.personalCV,
-		// 300).message(ApplicationConstants.VALIDATION_MODEL_USER_PERSONAL_CV_MAX_LENGTH);
-
-		if (validation.hasErrors()) {
-			user.name = currentUser.name;
-			user.lastName = currentUser.lastName;
-			user.email = currentUser.email;
-			user.id = currentUser.id;
-			user.sex = currentUser.sex;
-			user.birthday = currentUser.birthday;
-			user.regDate = currentUser.regDate;
-			user.pragmatist = currentUser.pragmatist;
-			user.idealist = currentUser.idealist;
-			user.communicant = currentUser.communicant;
-			render("UserController/index.html", validation.errors(), user);
-		}
-
-		currentUser.expMarketing.level = user.expMarketing.level;
-		currentUser.expMarketing.description = user.expMarketing.description;
-
-		currentUser.expSale.level = user.expSale.level;
-		currentUser.expSale.description = user.expSale.description;
-
-		currentUser.expFinance.level = user.expFinance.level;
-		currentUser.expFinance.description = user.expFinance.description;
-
-		currentUser.expLegal.level = user.expLegal.level;
-		currentUser.expLegal.description = user.expLegal.description;
-
-		currentUser.expManagement.level = user.expManagement.level;
-		currentUser.expManagement.description = user.expManagement.description;
-
-		currentUser.expIT.level = user.expIT.level;
-		currentUser.expIT.description = user.expIT.description;
-
-		currentUser.expOther.level = user.expOther.level;
-		currentUser.expOther.description = user.expOther.description;
-		currentUser.expOther.expName = user.expOther.expName;
-
-		currentUser.country = user.country;
-		currentUser.businessType = user.businessType;
-		currentUser.businessSphere = user.businessSphere;
-		currentUser.city = user.city;
-		currentUser.personalCV = user.personalCV;
-		currentUser.showEmailForOthers = user.showEmailForOthers;
-		// updating a user
-		currentUser.save();
-
-		SessionHelper.setCurrentUser(session, currentUser);
-		index(currentUser.id);
-	}*/
 
 	public static void editSkill(UserSkillDTO currentUser) {
 		User user = User.findById(SessionHelper.getCurrentUser(session).getId());
@@ -242,37 +147,6 @@ public class UserController extends BasicController  implements ApplicationConst
 		index(user.id);
 	}
 
-	/*public static void doChangePassword(String oldPassword, String newPassword,
-			String newPasswordRepeat) {
-		User currentUser = null;
-		validation.required(oldPassword).message(Messages.get("page.profile.change.password.mesage1"));
-		validation.required(newPassword).message(Messages.get("page.profile.change.password.mesage2"));
-		if (!validation.hasError("newPassword"))
-			validation.required(newPasswordRepeat).message(Messages.get("page.profile.change.password.mesage3"));
-		if (!validation.hasError("oldPassword")) {
-			currentUser = SessionHelper.getCurrentUser(session);
-			validation.equals(SecurityHelper.createPasswordHash(oldPassword), currentUser.passwordHash).message(Messages.get("page.profile.change.password.mesage4"));
-		}
-		if (!validation.hasError("newPassword")) {
-			validation.minSize(newPassword, 6).message(Messages.get("page.profile.change.password.mesage5"));
-			validation.maxSize(newPassword, 12).message(Messages.get("page.profile.change.password.mesage6"));
-		}
-		if (!validation.hasError("newPassword")) {
-			validation.match(newPassword, "[A-Za-z0-9\\.\\-\\_]+").message(Messages.get("page.profile.change.password.mesage7"));
-		}
-		if (!validation.hasError("newPassword") && !validation.hasError("newPasswordRepeat"))
-			validation.equals(newPassword, newPasswordRepeat).message(Messages.get("page.profile.change.password.mesage8"));
-		if (!validation.hasErrors()) {
-			User user = User.findById(currentUser.id);
-			user.passwordHash = SecurityHelper.createPasswordHash(newPassword);
-			currentUser.passwordHash = user.passwordHash;
-			user.save();
-			index(SessionHelper.getCurrentUser(session).id);
-		} else {
-			User user = User.findById(SessionHelper.getCurrentUser(session).id);
-			render("UserController/index.html", validation.errors(), user);
-		}
-	}*/
 
 	public static void joinGroup(Long groupId, String text) {
 		User user = SessionHelper.getCurrentUser(session);
@@ -288,12 +162,14 @@ public class UserController extends BasicController  implements ApplicationConst
 			userCurrent.save();
 			group.save();
 			SessionHelper.setCurrentUser(session, userCurrent);
-			User userAdmin = (User) User.find("role=? and command.id=?", 3, group.id).fetch().get(0);
+			User userAdmin = (User) User.find("role=? and command.id=?", User.ROLE_GROUP_ADMIN, group.id).first();
 			Mails.memberRequest(userAdmin, request.getBase(), userCurrent, text);
 			SessionHelper.setUserMessage(session, new SessionUserMessage(MESSAGE_USER_CONTROLLER_REQUEST_SENT));
+            index(user.id);
 		}
 
-		index(user.id);
+        GroupController.index(groupId);
+
 	}
 
 	public static void cancelJoinGroup(Long groupId) {
@@ -347,16 +223,24 @@ public class UserController extends BasicController  implements ApplicationConst
 
 	public static void exitGroup() {
 		User user = User.findById(SessionHelper.getCurrentUser(session).id);
-    if (user.command == null) {
-      index(user.id);
-    }
-    if (User.ROLE_GROUP_ADMIN == user.role) {
-      GroupController.index(user.command.id);
-    }
+        if (user.command == null) {
+          index(user.id);
+        }
+        if (User.ROLE_GROUP_ADMIN == user.role) {
+          GroupController.index(user.command.id);
+        }
+
+        logGroupMemberActivity(user, user.command, TeamMemberActivity.ACTION_MEMBER_LEFT);
+
 		user.command = null;
 		user.save();
 		SessionHelper.setCurrentUser(session, user);
 		index(user.id);
 	}
+
+    private static void logGroupMemberActivity(User user, Command team, int action) {
+        TeamMemberActivity activity = new TeamMemberActivity(team, user, action, new Date());
+        activity.create();
+    }
 
 }

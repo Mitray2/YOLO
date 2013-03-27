@@ -33,7 +33,7 @@ import java.util.*;
 public abstract class CRUD_2 extends BasicController {
 
 	@Before(priority = 1)
-	public static void checkSecutiry() {
+	public static void checkSecurity() {
 		User currentUser = SessionHelper.getCurrentUser(session);
 		if (currentUser == null) {
 			CommonController.error(CommonController.ERROR_SECURITY);
