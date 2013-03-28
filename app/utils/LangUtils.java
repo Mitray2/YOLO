@@ -2,6 +2,7 @@ package utils;
 
 import org.apache.commons.lang.StringUtils;
 
+import play.Play;
 import play.i18n.Lang;
 import play.mvc.Http.Cookie;
 import play.mvc.Http.Request;
@@ -28,6 +29,11 @@ public class LangUtils {
 	}
 	
 	public static Integer langToId(String lang) {
-		return lang.equals("ru") ? 0 : 1;
+		return StringUtils.isEmpty(lang) || lang.equals("ru") ? 0 : 1;
 	}
+
+    public static void updateSystemLang(String lang){
+        Lang.set(lang);
+        Response.current().setCookie(Play.configuration.getProperty("application.lang.cookie", "PLAY_LANG"), lang, "365d");
+    }
 }

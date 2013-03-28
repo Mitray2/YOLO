@@ -285,6 +285,7 @@ link.about=О проекте
 link.contacts=Контакты
 link.partners=Партнеры
 link.messages=Мои сообщения
+link.settings=Настройки
 
 link.crowd.consalting=КраудКонсалтинг
 link.crowd.developig=КраудДевелопинг
@@ -518,6 +519,9 @@ page.profile.current.test2=Определите свои бизнес-накло
 
 page.settings.title=Настройки
 page.settings.notifications=Уведомления по электронной почте
+page.settings.lang.preferred=Язык интерфейса
+page.settings.lang.ru=Русский
+page.settings.lang.en=Английский
 profile.settings.notifications.1=О непрочитанных сообщениях
 profile.settings.notifications.2=О новостях StartNewTeams
 profile.settings.notifications.3=О происходящем в группе

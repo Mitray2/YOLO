@@ -125,3 +125,20 @@
     <button type="submit" class="profile-btn">&{'page.profile.current.save_changes'}</button>
 </div>
 #{/form}
+
+<h2 class="profile-h2">&{'page.settings.lang.preferred'}</h2>
+#{form @SettingsController.setPreferredLanguage()}
+<div class="profile-form">
+
+    <div class="profile-item mb3">
+        <label for="pref-lang">&{'page.settings.lang.preferred'}</label>
+        <div class="profile-lang">
+            <select name="preferredLang" id="pref-lang" class="cSelect" style="width:auto;">
+                    <option value="en" #{if user.preferredLang.equals("en")}selected#{/if}>&{'page.settings.lang.en'}</option>
+                    <option value="ru" #{if user.preferredLang.equals("ru")}selected#{/if}>&{'page.settings.lang.ru'}</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="profile-btn">&{'page.profile.current.save_changes'}</button>
+</div>
+#{/form}

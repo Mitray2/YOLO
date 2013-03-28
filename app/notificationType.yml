@@ -1,0 +1,11 @@
+NotificationType(NotificationType_1):
+    name:         Unread messages
+    
+NotificationType(NotificationType_2):
+    name:         Platform news
+    
+NotificationType(NotificationType_3):
+    name:         Group activity
+
+NotificationType(NotificationType_4):
+    name:         Reminders

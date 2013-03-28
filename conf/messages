@@ -511,6 +511,9 @@ page.profile.current.test2=Test your business skills now!
 
 page.settings.title=My settings
 page.settings.notifications=Email notifications
+page.settings.lang.preferred=Interface language
+page.settings.lang.ru=Russian
+page.settings.lang.en=English
 profile.settings.notifications.1=Notify about unread personal messages
 profile.settings.notifications.2=Notify about StartNewTeams news
 profile.settings.notifications.3=Notify about group activities

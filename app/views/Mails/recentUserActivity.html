@@ -5,12 +5,12 @@
             <br/>
             <br/>
             #{if activity.unreadMessages?.size() > 0}
-                You have <a href='${notifiers.Mails.BASE_URL}/@{MessageController.index(user.id)}'>${activity.unreadMessages.size()} unread messages</a> today!
+                You have <a href='${notifiers.Mails.BASE_URL}@{MessageController.index(user.id)}'>${activity.unreadMessages.size()} unread messages</a> today!
                 <br/>
             #{/if}
             #{if activity.teamActivity}
                 #{if activity.unreadMessages?.size() > 0}<br/><hr/><br/><br/>#{/if}
-                Latest activity in your team <a href="@{GroupController.index(activity.teamActivity.team.id)}">"${activity.teamActivity.team.name}"</a>:
+                Latest activity in your team <a href="${notifiers.Mails.BASE_URL}@{GroupController.index(activity.teamActivity.team.id)}">"${activity.teamActivity.team.name}"</a>:
                 <br/>
                 #{if activity.teamActivity.newTopics}created <strong>${activity.teamActivity.newTopics}</strong> new discussion topics<br/>#{/if}
                 #{if activity.teamActivity.newMessages}posted <strong>${activity.teamActivity.newMessages}</strong> new messages<br/>#{/if}

@@ -1,4 +1,4 @@
-#{if !request.controller.equals('LoginController')}
+#{if !request.controller.equals('LoginController') && !utils.SessionHelper.getCurrentUser(session)}
     <style>
         .langSwitcher a {
             font: 12px/21px "MyriadPro-Regular", Arial, sans-serif;

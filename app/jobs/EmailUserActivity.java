@@ -5,10 +5,7 @@ import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.Multimaps;
 import modelDTO.TeamActivity;
 import modelDTO.UserActivity;
-import models.Command;
-import models.Message;
-import models.TeamMemberActivity;
-import models.User;
+import models.*;
 import notifiers.Mails;
 import play.Logger;
 import play.db.jpa.JPA;
@@ -24,7 +21,7 @@ import java.util.concurrent.ConcurrentMap;
 
 /** Sends email notification for user related activity **/
 //@On("0 0 8 * * ?")
-@Every("1mn")
+@Every("1h")
 public class EmailUserActivity extends Job {
 
 
@@ -36,7 +33,9 @@ public class EmailUserActivity extends Job {
     };
 
 	public void doJob() {
-        Logger.info("------------ JOB: user activity ------------");
+        Logger.debug("------------ JOB: user activity ------------");
+        final NotificationType ntUnreadMessages = NotificationType.findById(NotificationType.UNREAD_MESSAGES);
+        final NotificationType ntGroupActivity = NotificationType.findById(NotificationType.GROUP_ACTIVITY);
 
         // 1. get teams updated in last 24 hours (also with new topics and union members tracking)
         Query q = JPA.em().createNativeQuery("select DISTINCT c.id from Command c " +
@@ -57,7 +56,7 @@ public class EmailUserActivity extends Job {
         for(Object res: q.getResultList()){
             updatedTeamsIDs.add(((BigInteger) res).longValue());
         }
-        Logger.info("ids = " + Arrays.toString(updatedTeamsIDs.toArray()));
+        Logger.debug("ids = " + Arrays.toString(updatedTeamsIDs.toArray()));
 
         //List<Command> updatedTeams = JPA.em().createQuery("from Command where id in (:ids)").setParameter("ids", updatedTeamsIDs).getResultList();
         List<Command> updatedTeams = Command.find("id IN (?1)", updatedTeamsIDs).fetch();
@@ -91,42 +90,53 @@ public class EmailUserActivity extends Job {
                     ).getSingleResult()).intValue();
 
             for(User user: team.users){
-                UserActivity activity = new UserActivity();
-                activity.teamActivity = new TeamActivity(team, newTopics, newTeamMessages, joinedMembers, leftMembers);
-                userActivity.put(user, activity);
+                if(user.notifications.contains(ntGroupActivity)){
+                    Logger.debug("user [%d] of team [%d] WANTS to receive group notifications", user.id, team.id);
+
+                    UserActivity activity = new UserActivity();
+                    activity.teamActivity = new TeamActivity(team, newTopics, newTeamMessages, joinedMembers, leftMembers);
+                    userActivity.put(user, activity);
+                } else {
+                    Logger.debug("user [%d] of team [%d] doesn't want to receive group notifications", user.id, team.id);
+                }
             }
         }
 
         // 6. get all unread messages at the moment
 		List<Message> unreadMessages = Message.find("isRead = 0 and to.id <> deletedBy").fetch();
-        Logger.info("JOB: found %d unread messages", unreadMessages.size());
+        Logger.debug("JOB: found %d unread messages", unreadMessages.size());
 
         ImmutableListMultimap<User, Message> userMessagesMap = Multimaps.index(unreadMessages, pickToUserFn);
         for (Map.Entry<User, Collection<Message>> userMessages : userMessagesMap.asMap().entrySet()) {
             User user = userMessages.getKey();
-            List<Message> messages = new LinkedList<Message>(userMessages.getValue());
+            if(user.notifications.contains(ntUnreadMessages)){
+                Logger.debug("user [%d] WANTS to receive unread messages", user.id);
 
-            if(messages.size() > 0) {
+                List<Message> messages = new LinkedList<Message>(userMessages.getValue());
+                if(messages.size() > 0) {
 
-                if(userActivity.containsKey(user)){
-                    UserActivity activity  = userActivity.get(user);
-                    activity.unreadMessages = messages;
-                    userActivity.replace(user, activity);
-                }else{
-                    userActivity.put(user, new UserActivity(messages));
+                    if(userActivity.containsKey(user)){
+                        UserActivity activity  = userActivity.get(user);
+                        activity.unreadMessages = messages;
+                        userActivity.replace(user, activity);
+                    }else{
+                        userActivity.put(user, new UserActivity(messages));
+                    }
+
+                } else {
+                    Logger.debug("JOB: no unread messages for user [%d]", user.id);
                 }
-
             } else {
-                Logger.info("JOB: no unread messages for user [%d]", user.id);
+                Logger.debug("user [%d] doesn't want to receive unread messages", user.id);
             }
         }
 
         for (Map.Entry<User, UserActivity> activity : userActivity.entrySet()) {
-            Logger.info("JOB: notify user [%d] for %s", activity.getKey().id, activity.getValue().toString());
+            Logger.debug("JOB: notify user [%d] for %s", activity.getKey().id, activity.getValue().toString());
             Mails.recentUserActivity(activity.getKey(), activity.getValue());
         }
 
-        Logger.info("----------------------------------------------");
+        Logger.debug("----------------------------------------------");
 	}
 
 }

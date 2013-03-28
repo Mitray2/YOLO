@@ -4,13 +4,13 @@ import modelDTO.UserSkillDTO;
 import models.*;
 import notifiers.Mails;
 import play.Logger;
+import play.Play;
+import play.i18n.Lang;
 import play.i18n.Messages;
 import play.mvc.Before;
-import utils.ApplicationConstants;
-import utils.ModelUtils;
-import utils.SecurityHelper;
+import play.mvc.Http;
+import utils.*;
 import utils.SessionData.SessionUserMessage;
-import utils.SessionHelper;
 
 import java.util.*;
 
@@ -56,8 +56,7 @@ public class SettingsController extends BasicController {
 
 
 	public static void editContactData(String name, String lastName, boolean sex, Long countryId, String city,
-                                       boolean showEmailForOthers, int birthYear, int birthMonth, int birthDay,
-                                       Set<Long> notifications) {
+                                       boolean showEmailForOthers, int birthYear, int birthMonth, int birthDay) {
 		User currentUser = User.findById(SessionHelper.getCurrentUser(session).getId());
 		validation.required("city", city).message(VALIDATION_MODEL_USER_CITY_REQUIRED);
 		if (!validation.hasError("city"))
@@ -100,6 +99,25 @@ public class SettingsController extends BasicController {
 
             SessionHelper.setCurrentUser(session, user);
 
+        }
+
+        SettingsController.settings();
+    }
+
+
+	public static void setPreferredLanguage(String preferredLang){
+        if(preferredLang != null){
+            Logger.info("new preferred lang: %s", preferredLang);
+
+            User user = User.findById(SessionHelper.getCurrentUser(session).id);
+            user.preferredLang = preferredLang;
+            user.save();
+
+            LangUtils.updateSystemLang(preferredLang);
+            /*Lang.set(preferredLang);
+            */Http.Response.current().setCookie(Play.configuration.getProperty("application.lang.cookie", "PLAY_LANG"), preferredLang, "365d");
+
+            SessionHelper.setCurrentUser(session, user);
         }
 
         SettingsController.settings();

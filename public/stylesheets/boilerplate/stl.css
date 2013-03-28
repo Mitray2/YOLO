@@ -3525,6 +3525,9 @@ h1.main{
     font: 14px/21px Arial, sans-serif;
     margin-bottom: 0;
 }
+.profile-form .entry .woman {
+    left: -4px;
+}
 
 .edit-form{
     margin-top:30px;
@@ -3558,4 +3561,10 @@ h1.main{
 }
 .profile-form .group-info {
     margin-bottom: 0;
+}
+.profile-form .profile-birthday > div {
+    margin-right: 5px;
+}
+.profile-form .profile-lang {
+    height: 50px;
 }

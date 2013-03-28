@@ -7,13 +7,12 @@ import models.validators.UserUniqueEmailValidator;
 import notifiers.Mails;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import play.Logger;
 import play.data.validation.Required;
+import play.i18n.Lang;
 import play.i18n.Messages;
-import utils.ApplicationConstants;
-import utils.ModelUtils;
-import utils.SecurityHelper;
+import utils.*;
 import utils.SessionData.SessionUserMessage;
-import utils.SessionHelper;
 
 import java.util.*;
 
@@ -99,6 +98,7 @@ public class LoginController extends BasicController implements ApplicationConst
             alreadySavedUser.regDate = new Date();
             alreadySavedUser.businessman = businessTestResult;
             alreadySavedUser.notifications = NotificationType.findAll();
+            alreadySavedUser.preferredLang = Lang.get();
 
 			//Mails.firstTestPassed(user, request.getBase());
 
@@ -326,6 +326,10 @@ public class LoginController extends BasicController implements ApplicationConst
 					render("ApplicationController/index.html", validation.errors());
 				}
 				SessionHelper.setCurrentUser(session, user);
+                if(!Lang.get().equals(user.preferredLang)){
+                    Logger.debug("------------------------- CHANGE INTERFACE LANG to user preferred: [%s] ------------------", user.preferredLang);
+                    LangUtils.updateSystemLang(user.preferredLang);
+                }
 				redirect(request.getBase() + SLASH);
 			} else {
 				validation.addError("emailPassword", VALIDATION_LOGIN_CONTROLLER_INCORRECT_LOGIN_OR_PASSWORD, new String[] {});

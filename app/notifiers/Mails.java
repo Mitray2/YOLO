@@ -7,8 +7,10 @@ import models.Post;
 import models.User;
 import play.Logger;
 import play.Play;
+import play.i18n.Lang;
 import play.i18n.Messages;
 import play.mvc.Mailer;
+import utils.LangUtils;
 import utils.PasswordGenerator;
 import utils.SecurityHelper;
 
@@ -22,7 +24,8 @@ public class Mails extends Mailer {
 
 
 	public static void firstTestPassed(User user, String base) {
-		setSubject(Messages.get("mail.subject.type1"));
+        String userLang = user.preferredLang;
+		setSubject(Messages.getMessage(userLang, "mail.subject.type1"));
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
 		String password = PasswordGenerator.generate();
@@ -32,7 +35,8 @@ public class Mails extends Mailer {
 	}
 
 	public static void secondTestPassed(User user, String base) {
-		setSubject(Messages.get("mail.subject.type2"));
+        String userLang = user.preferredLang;
+		setSubject(Messages.getMessage(userLang, "mail.subject.type2"));
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
 		String password = PasswordGenerator.generate();
@@ -42,7 +46,8 @@ public class Mails extends Mailer {
 	}
 
 	public static void blankFormPassed(User user, String base) {
-		setSubject(Messages.get("mail.subject.type3"));
+        String userLang = user.preferredLang;
+		setSubject(Messages.getMessage(userLang, "mail.subject.type3"));
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
 		String hash = user.mailTicket = SecurityHelper.createPasswordHash(user.email);
@@ -51,14 +56,16 @@ public class Mails extends Mailer {
 	}
 
 	public static void groupRequest(User user, String base, Command group, String text) {
-		setSubject(Messages.get("mail.subject.type4"));
+        String userLang = user.preferredLang;
+		setSubject(Messages.getMessage(userLang, "mail.subject.type4"));
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
 		send(user, group, base, text);
 	}
 
 	public static void memberRequest(User user, String base, User joinUser, String text) {
-		setSubject(Messages.get("mail.subject.type5"));
+        String userLang = user.preferredLang;
+		setSubject(Messages.getMessage(userLang, "mail.subject.type5"));
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
 		send(user, base, joinUser, text);
@@ -74,12 +81,14 @@ public class Mails extends Mailer {
 	// }
 
 	public static void lostPassword(User user, String base) {
-		setSubject(Messages.get("mail.subject.type6") + " " + base);
+        String userLang = user.preferredLang;
+		setSubject(Messages.getMessage(userLang, "mail.subject.type6") + " " + base);
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
 		String newpassword = PasswordGenerator.generate();
 		user.passwordHash = SecurityHelper.createPasswordHash(newpassword);
 		user.save();
+        Lang.set(userLang);
 		send(user, newpassword);
 	}
 
@@ -94,37 +103,41 @@ public class Mails extends Mailer {
 	// }
 
     public static void recentUserActivity(User user, UserActivity activity) {
-        Locale locale = user.english ? new Locale("en") : new Locale("ru");
-        setSubject(Messages.get("mail.subject.unread.messages"));
+        String userLang = user.preferredLang;
+        Logger.debug("user preferred lang: " + userLang);
+        setSubject(Messages.getMessage(userLang, "mail.subject.unread.messages"));
         //addRecipient(user.email); TODO uncomment for prod
         addRecipient("siarzh@gmail.com");
         addRecipient("dzyakanau.d@gmail.com");
         setFrom(EMAIL_FROM);
-        Logger.info("user lang: " + locale.getLanguage());
 
-        if("ru".equals(locale.getLanguage())){
-            send("Mails/recentUserActivity_ru", user, activity);
+        if("ru".equals(userLang)){
+            send("Mails/ru/recentUserActivity", user, activity);
         } else {
             send(user, activity);
         }
     }
 
     public static void notSeenForAWeek(User user) {
-        setSubject(Messages.get("mail.subject.not.seen"));
+        String userLang = user.preferredLang;
+        setSubject(Messages.getMessage(userLang, "mail.subject.not.seen"));
         //addRecipient(user.email); TODO uncomment for prod
         addRecipient("siarzh@gmail.com");
         addRecipient("dzyakanau.d@gmail.com");
         setFrom(EMAIL_FROM);
+        Lang.set(userLang);
         send(user);
     }
 
     public static void platformNews(User user, Post post) {
-        setSubject(post.title);
-        //addRecipient(user.email); TODO uncomment for prod
-        addRecipient("siarzh@gmail.com");
-        addRecipient("dzyakanau.d@gmail.com");
-        setFrom(EMAIL_FROM);
-        send(post);
+        if( LangUtils.langToId(user.preferredLang).equals(post.lang) ){
+            setSubject(post.title);
+            //addRecipient(user.email); TODO uncomment for prod
+            addRecipient("siarzh@gmail.com");
+            addRecipient("dzyakanau.d@gmail.com");
+            setFrom(EMAIL_FROM);
+            send(post);
+        }
     }
 
 }

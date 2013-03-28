@@ -2,6 +2,8 @@ package controllers.cruds;
 
 import controllers.CRUD_2;
 import controllers.CRUD_2.For;
+import jobs.EmailPlatformNews;
+import models.NotificationType;
 import models.Post;
 import models.User;
 import notifiers.Mails;
@@ -78,10 +80,7 @@ public class Posts extends CRUD_2 {
         if(post.state.equals(Post.STATE_WORK) && post.type.equals(Post.TYPE_NEWS) && !post.published) {
 
             // send email notification to all StartNewTeam users
-            List<User> users = User.findAll();
-            for (User user : users) {
-                Mails.platformNews(user, post);
-            }
+            EmailPlatformNews.doJob(post);
 
             //rss publication
             RssHelper.getInstance(request.getBase()).addNews(post);
