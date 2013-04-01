@@ -2,7 +2,6 @@ package notifiers;
 
 import modelDTO.UserActivity;
 import models.Command;
-import models.Message;
 import models.Post;
 import models.User;
 import play.Logger;
@@ -13,9 +12,6 @@ import play.mvc.Mailer;
 import utils.LangUtils;
 import utils.PasswordGenerator;
 import utils.SecurityHelper;
-
-import java.util.List;
-import java.util.Locale;
 
 public class Mails extends Mailer {
 
@@ -31,6 +27,7 @@ public class Mails extends Mailer {
 		String password = PasswordGenerator.generate();
 		String hash = user.mailTicket = user.passwordHash = SecurityHelper.createPasswordHash(password);
 		user.save();
+        Lang.set(userLang);
 		send(user, password, hash, base);
 	}
 
@@ -42,6 +39,7 @@ public class Mails extends Mailer {
 		String password = PasswordGenerator.generate();
 		String hash = user.mailTicket = user.passwordHash = SecurityHelper.createPasswordHash(password);
 		user.save();
+        Lang.set(userLang);
 		send(user, hash, base);
 	}
 
@@ -52,6 +50,7 @@ public class Mails extends Mailer {
 		setFrom(EMAIL_FROM);
 		String hash = user.mailTicket = SecurityHelper.createPasswordHash(user.email);
 		user.save();
+        Lang.set(userLang);
 		send(user, hash, base);
 	}
 
@@ -60,6 +59,7 @@ public class Mails extends Mailer {
 		setSubject(Messages.getMessage(userLang, "mail.subject.type4"));
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
+        Lang.set(userLang);
 		send(user, group, base, text);
 	}
 
@@ -68,6 +68,7 @@ public class Mails extends Mailer {
 		setSubject(Messages.getMessage(userLang, "mail.subject.type5"));
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
+        Lang.set(userLang);
 		send(user, base, joinUser, text);
 	}
 
@@ -104,7 +105,7 @@ public class Mails extends Mailer {
 
     public static void recentUserActivity(User user, UserActivity activity) {
         String userLang = user.preferredLang;
-        Logger.debug("user preferred lang: " + userLang);
+
         setSubject(Messages.getMessage(userLang, "mail.subject.unread.messages"));
         //addRecipient(user.email); TODO uncomment for prod
         addRecipient("siarzh@gmail.com");
@@ -127,6 +128,41 @@ public class Mails extends Mailer {
         setFrom(EMAIL_FROM);
         Lang.set(userLang);
         send(user);
+    }
+
+    public static void newTeamGenerated(User user) {
+        Logger.debug("MAIL: new team [%s] generated for user [%d](%d)", user.command == null ? "NULL" : user.command.name, user.id, user.role);
+
+        String userLang = user.preferredLang;
+
+        setSubject(Messages.getMessage(userLang, "mail.subject.teams.auto.".concat(
+                user.role.equals(User.ROLE_GROUP_ADMIN) ? "admin" : "user"
+        )));
+        //addRecipient(user.email); TODO uncomment for prod
+        addRecipient("siarzh@gmail.com");
+        addRecipient("dzyakanau.d@gmail.com");
+        setFrom(EMAIL_FROM);
+
+        if("ru".equals(userLang)){
+            send("Mails/ru/newTeamGenerated", user);
+        } else {
+            send(user);
+        }
+    }
+
+    public static void addMoreMembersToTeam(User user) {
+        String userLang = user.preferredLang;
+        setSubject(Messages.getMessage(userLang, "mail.subject.teams.auto.add_more"));
+        //addRecipient(user.email); TODO uncomment for prod
+        addRecipient("siarzh@gmail.com");
+        addRecipient("dzyakanau.d@gmail.com");
+        setFrom(EMAIL_FROM);
+
+        if("ru".equals(userLang)){
+            send("Mails/ru/addMoreMembersToTeam", user);
+        } else {
+            send(user);
+        }
     }
 
     public static void platformNews(User user, Post post) {

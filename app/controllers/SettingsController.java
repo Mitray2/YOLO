@@ -1,20 +1,17 @@
 package controllers;
 
-import modelDTO.UserSkillDTO;
-import models.*;
-import notifiers.Mails;
+import models.Country;
+import models.NotificationType;
+import models.User;
 import play.Logger;
-import play.Play;
-import play.i18n.Lang;
 import play.i18n.Messages;
 import play.mvc.Before;
-import play.mvc.Http;
 import utils.*;
-import utils.SessionData.SessionUserMessage;
 
 import java.util.*;
 
-import static utils.ApplicationConstants.*;
+import static utils.ApplicationConstants.VALIDATION_MODEL_USER_CITY_MAX_LENGTH;
+import static utils.ApplicationConstants.VALIDATION_MODEL_USER_CITY_REQUIRED;
 
 public class SettingsController extends BasicController {
 
@@ -114,11 +111,20 @@ public class SettingsController extends BasicController {
             user.save();
 
             LangUtils.updateSystemLang(preferredLang);
-            /*Lang.set(preferredLang);
-            */Http.Response.current().setCookie(Play.configuration.getProperty("application.lang.cookie", "PLAY_LANG"), preferredLang, "365d");
 
             SessionHelper.setCurrentUser(session, user);
         }
+
+        SettingsController.settings();
+    }
+
+
+	public static void setOtherPreferences(boolean takePartInAutoTeams){
+        User user = User.findById(SessionHelper.getCurrentUser(session).id);
+        user.takePartInAutoTeams = takePartInAutoTeams;
+        user.save();
+
+        SessionHelper.setCurrentUser(session, user);
 
         SettingsController.settings();
     }

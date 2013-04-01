@@ -142,3 +142,20 @@
     <button type="submit" class="profile-btn">&{'page.profile.current.save_changes'}</button>
 </div>
 #{/form}
+
+<h2 class="profile-h2">&{'page.settings.other'}</h2>
+#{form @SettingsController.setOtherPreferences()}
+<div class="create-form">
+
+    <div class="profile-item mb3 line">
+        <label for="pref-lang">&{'page.settings.other.teams.auto'}</label>
+        <div class="box-radio">
+            <input type="radio" name="takePartInAutoTeams" id="takePartInAutoTeamsY" class="radio" value="true" #{if user?.takePartInAutoTeams}checked#{/if}/>
+            <label for="takePartInAutoTeamsY" class="radio-btn">&{'common.yes'}</label>
+            <input type="radio" name="takePartInAutoTeams" id="takePartInAutoTeamsN" class="radio" value="false" #{if !user?.takePartInAutoTeams}checked#{/if}/>
+            <label for="takePartInAutoTeamsN" class="radio-btn">&{'common.no'}</label>
+        </div>
+    </div>
+    <button type="submit" class="profile-btn">&{'page.profile.current.save_changes'}</button>
+</div>
+#{/form}

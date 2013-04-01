@@ -3,19 +3,19 @@
  */
 package models;
 
-import java.util.ArrayList;
-import static utils.ApplicationConstants.*;
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.*;
-
 import play.cache.EhCacheImpl;
 import play.data.validation.Email;
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
 import play.db.jpa.JPABase;
 import play.db.jpa.Model;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import static utils.ApplicationConstants.CACHE_USERS_COUNT;
 
 /**
  * @author Администратор
@@ -138,6 +138,8 @@ public class User extends Model {
 	public Date lastNotified;
 
 	public String preferredLang;
+
+	public boolean takePartInAutoTeams = true;
 
 	@Override
 	public <T extends JPABase> T delete() {

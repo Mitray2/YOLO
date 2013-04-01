@@ -1,15 +1,14 @@
 package models;
 
-import java.util.Date;
-import java.util.List;
+import play.data.validation.MaxSize;
+import play.db.jpa.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-
-import play.data.validation.MaxSize;
-import play.db.jpa.Model;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Topic extends Model {
@@ -37,6 +36,7 @@ public class Topic extends Model {
 	public Long groupId;
 
 	public Date createdDateTime;
+
 	@Lob
 	@MaxSize(value = 2000)
 	public String description;
@@ -44,4 +44,12 @@ public class Topic extends Model {
 	@OneToMany(fetch = FetchType.LAZY)
 	public List<TopicMessage> msg;
 
+    public Topic() {
+    }
+
+    public Topic(boolean mainTopic, boolean publicTopic, Long groupId) {
+        this.mainTopic = mainTopic;
+        this.publicTopic = publicTopic;
+        this.groupId = groupId;
+    }
 }

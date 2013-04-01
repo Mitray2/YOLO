@@ -99,6 +99,7 @@ public class LoginController extends BasicController implements ApplicationConst
             alreadySavedUser.businessman = businessTestResult;
             alreadySavedUser.notifications = NotificationType.findAll();
             alreadySavedUser.preferredLang = Lang.get();
+            alreadySavedUser.takePartInAutoTeams = true;
 
 			//Mails.firstTestPassed(user, request.getBase());
 
