@@ -1,7 +1,6 @@
 package utils;
 
 import org.apache.commons.lang.StringUtils;
-
 import play.Play;
 import play.i18n.Lang;
 import play.mvc.Http.Cookie;
@@ -30,6 +29,10 @@ public class LangUtils {
 	
 	public static Integer langToId(String lang) {
 		return StringUtils.isEmpty(lang) || lang.equals("ru") ? 0 : 1;
+	}
+
+	public static String idToLang(Integer id) {
+		return id != null && id.equals(0) ? "ru" : "en";
 	}
 
     public static void updateSystemLang(String lang){

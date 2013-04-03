@@ -10,6 +10,7 @@ common.login.error.password_empty=Вы не ввели пароль.
 common.login.error.email_empty=Вы не ввели email.
 common.login.error.email_format_invalid=Неверный формат email.
 common.login.password_sended=Новый пароль выслан на указанный email.
+common.post.read.more=Читать далее
 
 client.side.password_repair=Восстановление пароля
 client.side.system_enter=Вход на сайт
@@ -57,11 +58,12 @@ mail.subject.type3=Подтверждение регистрации
 mail.subject.type4=Приглашение в команду
 mail.subject.type5=Кто-то хочет вступить в вашу команду
 mail.subject.type6=Восстановление пароля на сайте
-mail.subject.unread.messages=Новые личные сообщения на StartNewTeam
+mail.subject.unread.messages=Новое на StartNewTeam
 mail.subject.not.seen=Нам не хватает вас на StartNewTeam
 mail.subject.teams.auto.admin=Вы – администратор новой команды
 mail.subject.teams.auto.user=Вы – участник новой команды
 mail.subject.teams.auto.add_more=Недостаточно участников для автоматического формирования команды!
+mail.subject.platform.news=Свежие новости от StartNewTeam
 
 
 page.main.content=<h1 class="main">StartNewTeam – международная площадка для деловых знакомств и создания совместного бизнеса.</h1>\

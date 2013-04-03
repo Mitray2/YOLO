@@ -10,6 +10,7 @@ common.login.error.password_empty=Please enter the password.
 common.login.error.email_empty=Please enter your email.
 common.login.error.email_format_invalid=Wrong email format
 common.login.password_sended=New password has been sent to your email.
+common.post.read.more=Read more
 
 client.side.password_repair=Recover password
 client.side.system_enter=Enter to site
@@ -62,6 +63,7 @@ mail.subject.not.seen=We are missing you on StartNewTeam
 mail.subject.teams.auto.admin=You are administrator of a new team
 mail.subject.teams.auto.user=You are part of a new team
 mail.subject.teams.auto.add_more=Insufficient number of members for auto generated team!
+mail.subject.platform.news=Latest news from StartNewTeam
 
 
 page.main.content=<h1 class="main">StartNewTeam - is a tool for formation<br> of effective entrepreneurial teams.</h1>\

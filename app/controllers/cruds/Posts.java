@@ -2,20 +2,14 @@ package controllers.cruds;
 
 import controllers.CRUD_2;
 import controllers.CRUD_2.For;
-import jobs.EmailPlatformNews;
-import models.NotificationType;
 import models.Post;
-import models.User;
-import notifiers.Mails;
 import play.data.binding.Binder;
 import play.db.Model;
 import play.exceptions.TemplateNotFoundException;
 import play.i18n.Messages;
-import utils.ModelUtils;
 import utils.RssHelper;
 
 import java.lang.reflect.Constructor;
-import java.util.List;
 
 @For(Post.class)
 public class Posts extends CRUD_2 {
@@ -78,10 +72,6 @@ public class Posts extends CRUD_2 {
 
     private static void afterSave(Post post) {
         if(post.state.equals(Post.STATE_WORK) && post.type.equals(Post.TYPE_NEWS) && !post.published) {
-
-            // send email notification to all StartNewTeam users
-            EmailPlatformNews.doJob(post);
-
             //rss publication
             RssHelper.getInstance(request.getBase()).addNews(post);
         }

@@ -52,6 +52,10 @@ public class Post extends Model {
     @Hidden
     public Boolean published = false;
 
+    /** Used to indicate whether post has been already sent to users via email. */
+    @Hidden
+    public boolean sent = false;
+
     @ChoiceList(choices = "1^Новость,2^КраудФандин отчет")
     public Integer type = TYPE_NEWS;
 }

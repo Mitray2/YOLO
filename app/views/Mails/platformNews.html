@@ -1,6 +1,14 @@
 <html>
 	<body>
-        <h1>${post.title}</h1>
-        <p>#{verbatim}${post.value}#{/verbatim}</p>
+        #{list items:news, as:'post'}
+        <h2>${post.title}</h2>
+        <p>#{verbatim}${post.preview}#{/verbatim}
+            &nbsp;<a href="${notifiers.Mails.BASE_URL}@{NewsController.showNews(post.id)}">${play.i18n.Messages.getMessage(user.preferredLang, "common.post.read.more")}</a>
+        </p>
+        #{if !post_isLast}
+        <br />
+        <br />
+        #{/if}
+        #{/list}
 	</body>
 </html>

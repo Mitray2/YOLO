@@ -9,9 +9,10 @@ import play.Play;
 import play.i18n.Lang;
 import play.i18n.Messages;
 import play.mvc.Mailer;
-import utils.LangUtils;
 import utils.PasswordGenerator;
 import utils.SecurityHelper;
+
+import java.util.Collection;
 
 public class Mails extends Mailer {
 
@@ -165,15 +166,13 @@ public class Mails extends Mailer {
         }
     }
 
-    public static void platformNews(User user, Post post) {
-        if( LangUtils.langToId(user.preferredLang).equals(post.lang) ){
-            setSubject(post.title);
-            //addRecipient(user.email); TODO uncomment for prod
-            addRecipient("siarzh@gmail.com");
-            addRecipient("dzyakanau.d@gmail.com");
-            setFrom(EMAIL_FROM);
-            send(post);
-        }
+    public static void platformNews(User user, Collection<Post> news) {
+        setSubject(Messages.getMessage(user.preferredLang, "mail.subject.platform.news"));
+        //addRecipient(user.email); TODO uncomment for prod
+        addRecipient("siarzh@gmail.com");
+        addRecipient("dzyakanau.d@gmail.com");
+        setFrom(EMAIL_FROM);
+        send(user,news);
     }
 
 }

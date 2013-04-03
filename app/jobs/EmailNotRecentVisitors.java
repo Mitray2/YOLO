@@ -7,9 +7,9 @@ import play.Logger;
 import play.db.jpa.JPA;
 import play.jobs.Every;
 import play.jobs.Job;
+import utils.DateUtils;
 
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -24,9 +24,7 @@ public class EmailNotRecentVisitors extends Job {
 	public void doJob() {
         Logger.debug("------------ JOB: not seen users ------------");
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, -7);
-        Date weekAgo = calendar.getTime();
+        Date weekAgo = DateUtils.weekAgo();
 
 		List<User> users = User.find("select u from User u join u.notifications n where u.lastSeen < ? and (u.lastNotified IS NULL or u.lastNotified < ?) and n.id = ?",
                 weekAgo, weekAgo, NotificationType.REMINDERS).fetch();

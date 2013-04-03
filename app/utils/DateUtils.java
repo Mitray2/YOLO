@@ -4,6 +4,7 @@ import org.apache.commons.lang.StringUtils;
 
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -50,5 +51,11 @@ public class DateUtils {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd MMM.", new Locale("ru"));
 		return date == null ? "" : formatter.format(date);
 	}
+
+    public static Date weekAgo(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -7);
+        return calendar.getTime();
+    }
 
 }
