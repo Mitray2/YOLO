@@ -10,10 +10,10 @@
         countCommands = (models.User.findById(currentUser.id)?.commandsForAprove == null)? 0 : models.User.findById(currentUser?.id)?.commandsForAprove?.size();
         countUsers = ((models.User.findById(currentUser?.id).command?.usersForAprove == null) || (groupMember)) ? 0 : models.User.findById(currentUser?.id)?.command?.usersForAprove?.size();
     }
-    newMessages = controllers.MessageController.getUserNewMessages(currentUser.id,null,0);
+    newMessages = controllers.MessageController.getUserNewMessages(currentUser?.id,null,0);
 }%
 *{TODO make better!}*
-#{if !(currentUser.role == models.User.ROLE_INPERFECT_USER || currentUser.role == models.User.ROLE_WITHOUT_BLANK)}
+#{if !(currentUser?.role == models.User.ROLE_INPERFECT_USER || currentUser?.role == models.User.ROLE_WITHOUT_BLANK)}
     <div class="logged clearFix">
         <div class="logged-message">
             #{if newMessages}
@@ -38,7 +38,7 @@
                 </div>
             #{/if}
             #{else}
-                <a href="@{MessageController.index(currentUser.id)}" class="logged-message-ico"></a>
+                <a href="@{MessageController.index(currentUser?.id)}" class="logged-message-ico"></a>
             #{/else}
         </div>
         <div class="logged-event">

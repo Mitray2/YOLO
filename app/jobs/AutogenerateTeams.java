@@ -6,7 +6,6 @@ import com.google.common.collect.Multimaps;
 import models.*;
 import notifiers.Mails;
 import play.Logger;
-import play.i18n.Messages;
 import play.jobs.Every;
 import play.jobs.Job;
 
@@ -60,8 +59,7 @@ public class AutogenerateTeams extends Job {
             for (Map.Entry<Country, Collection<User>> countryUsersEntry : countyUsersMap.asMap().entrySet()) {
                 Country country = countryUsersEntry.getKey();
                 List<User> countryUsers = new ArrayList<User>(countryUsersEntry.getValue());
-                Locale countryLang = country.name.equals("Belarus") || country.name.equals("Russia") ?
-                        new Locale("ru") : new Locale("en");
+                //Locale countryLang = country.name.equals("Belarus") || country.name.equals("Russia") ? new Locale("ru") : new Locale("en");
 
                 // 3. generate N new empty teams
                 int newTeamsCount = Double.valueOf( Math.ceil( countryUsers.size() / (float) TEAM_MEMBERS_COUNT) ).intValue();
@@ -69,9 +67,7 @@ public class AutogenerateTeams extends Job {
 
                 // then FOR EACH NEW TEAM
                 for (int i = 0; i < newTeamsCount; i++) {
-                    final String teamName = String.format(
-                            Messages.getMessage(countryLang.getLanguage(), "teams.auto.name").concat(" %d"),
-                            Command.count() + 1);
+                    final String teamName = String.format("NewTeam %d", Command.count() + 1); //TODO i18n team name
 
                     // 4. pick up users for new team
                     final int startPos = (i % TEAM_MEMBERS_COUNT) * TEAM_MEMBERS_COUNT;
@@ -113,11 +109,27 @@ public class AutogenerateTeams extends Job {
     private static Command createNewTeam(Country country, String name, List<User> members) {
         Command team = new Command();
         team.country = country;
+        team.city = "";
+        team.description = "";
+        team.country = country;
         team.name = name;
         team.isVacancy = members.size() < TEAM_MEMBERS_COUNT;
-        team.phase = ProjectPhase.findById(1L);  // the first one is default
-        team.type = BType.findById(1L);          // the first one is default
-        team.sphere = BSphere.findById(1L);      // the first one is default
+
+        team.phase = ProjectPhase.findById(1L);
+        team.sphere = BSphere.findById(1L);
+        team.type = BType.findById(1L);
+
+        team.communication = new Communication();
+        team.finance = new Finance();
+        team.idealize = new Idealize();
+        team.legal = new Legal();
+        team.management = new Management();
+        team.marketing = new Marketing();
+        team.otherSkill= new OtherSkill();
+        team.pragmatica = new Pragmatica();
+        team.programming = new IT();
+        team.trade = new Trade();
+
         team.global = false;
         team.regDate = new Date();
 

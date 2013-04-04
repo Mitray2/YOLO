@@ -1,26 +1,19 @@
 package controllers;
 
+import com.google.gson.GsonBuilder;
+import modelDTO.GroupSearchDTO;
+import models.Command;
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.StringUtils;
+import play.i18n.Messages;
+import utils.ApplicationConstants;
+import utils.DateUtils;
+import utils.SessionHelper;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import modelDTO.GroupSearchDTO;
-import modelDTO.MemberSearchDTO;
-import models.Command;
-import models.User;
-
-import org.apache.commons.lang.BooleanUtils;
-import org.apache.commons.lang.StringUtils;
-
-import com.google.gson.GsonBuilder;
-
-import controllers.UsersSearch.UserSearchAjaxResult;
-
-import play.i18n.Messages;
-import play.modules.paginate.ValuePaginator;
-import utils.ApplicationConstants;
-import utils.DateUtils;
 
 public class CommandsSearch extends AbstractSearch {
 	
@@ -173,6 +166,10 @@ public class CommandsSearch extends AbstractSearch {
 	}
 	
 	public static void groupSearch() {
+        if(SessionHelper.getCurrentUser(session) == null) {
+            ApplicationController.index();
+        }
+
 		if (!sortOrders.isEmpty()){
 			String search = sortOrders.get("search");
 			if (!search.equals("group")){

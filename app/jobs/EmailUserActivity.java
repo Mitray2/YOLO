@@ -56,48 +56,51 @@ public class EmailUserActivity extends Job {
         for(Object res: q.getResultList()){
             updatedTeamsIDs.add(((BigInteger) res).longValue());
         }
-        Logger.debug("ids = " + Arrays.toString(updatedTeamsIDs.toArray()));
+        Logger.debug("updated teams ids = " + Arrays.toString(updatedTeamsIDs.toArray()));
 
-        //List<Command> updatedTeams = JPA.em().createQuery("from Command where id in (:ids)").setParameter("ids", updatedTeamsIDs).getResultList();
-        List<Command> updatedTeams = Command.find("id IN (?1)", updatedTeamsIDs).fetch();
 
         ConcurrentMap<User, UserActivity> userActivity = new ConcurrentHashMap<User, UserActivity>();
-        for (Command team : updatedTeams) {
-            // 2. for each team get team JOINED members
-            Integer joinedMembers = ((Number) JPA.em().createNativeQuery(
-                    String.format("select count(*) from TeamMemberActivity tma " +
-                        "where tma.team_id = %d and tma.actionDate > DATE_ADD(NOW(),INTERVAL -1 DAY) and tma.action = %d",
-                        team.id, TeamMemberActivity.ACTION_MEMBER_JOINED)).getSingleResult()).intValue();
+        if (updatedTeamsIDs.size() > 0){
+            //List<Command> updatedTeams = JPA.em().createQuery("from Command where id in (:ids)").setParameter("ids", updatedTeamsIDs).getResultList();
+            List<Command> updatedTeams = Command.find("id IN (?1)", updatedTeamsIDs).fetch();
 
-            // 3. for each team get team LEFT members
-            Integer leftMembers = ((Number) JPA.em().createNativeQuery(
-                    String.format("select count(*) from TeamMemberActivity tma " +
+            for (Command team : updatedTeams) {
+                // 2. for each team get team JOINED members
+                Integer joinedMembers = ((Number) JPA.em().createNativeQuery(
+                        String.format("select count(*) from TeamMemberActivity tma " +
                             "where tma.team_id = %d and tma.actionDate > DATE_ADD(NOW(),INTERVAL -1 DAY) and tma.action = %d",
-                            team.id, TeamMemberActivity.ACTION_MEMBER_LEFT)).getSingleResult()).intValue();
+                            team.id, TeamMemberActivity.ACTION_MEMBER_JOINED)).getSingleResult()).intValue();
+
+                // 3. for each team get team LEFT members
+                Integer leftMembers = ((Number) JPA.em().createNativeQuery(
+                        String.format("select count(*) from TeamMemberActivity tma " +
+                                "where tma.team_id = %d and tma.actionDate > DATE_ADD(NOW(),INTERVAL -1 DAY) and tma.action = %d",
+                                team.id, TeamMemberActivity.ACTION_MEMBER_LEFT)).getSingleResult()).intValue();
 
 
-            // 4. for each team get COUNT of recently added TOPICS
-            Integer newTopics = ((Number) JPA.em().createNativeQuery(
-                    String.format("select count(t.id) from Topic t " +
-                            "where t.groupId = %d and t.createdDateTime > DATE_ADD(NOW(),INTERVAL -1 DAY)", team.id)
-                    ).getSingleResult()).intValue();
+                // 4. for each team get COUNT of recently added TOPICS
+                Integer newTopics = ((Number) JPA.em().createNativeQuery(
+                        String.format("select count(t.id) from Topic t " +
+                                "where t.groupId = %d and t.createdDateTime > DATE_ADD(NOW(),INTERVAL -1 DAY)", team.id)
+                        ).getSingleResult()).intValue();
 
-            // 5. for each team get COUNT of recently added MESSAGES
-            Integer newTeamMessages = ((Number) JPA.em().createNativeQuery(
-                    String.format("select count(m.id) from TopicMessage m \n" +
-                            "join Topic t on (t.groupId = %d and t.id = m.topic_id)\n" +
-                            "where m.createDate > DATE_ADD(NOW(),INTERVAL -1 DAY)", team.id)
-                    ).getSingleResult()).intValue();
+                // 5. for each team get COUNT of recently added MESSAGES
+                Integer newTeamMessages = ((Number) JPA.em().createNativeQuery(
+                        String.format("select count(m.id) from TopicMessage m \n" +
+                                "join Topic t on (t.groupId = %d and t.id = m.topic_id)\n" +
+                                "where m.createDate > DATE_ADD(NOW(),INTERVAL -1 DAY)", team.id)
+                        ).getSingleResult()).intValue();
 
-            for(User user: team.users){
-                if(user.notifications.contains(ntGroupActivity)){
-                    Logger.debug("user [%d] of team [%d] WANTS to receive group notifications", user.id, team.id);
+                for(User user: team.users){
+                    if(user.notifications.contains(ntGroupActivity)){
+                        Logger.debug("user [%d] of team [%d] WANTS to receive group notifications", user.id, team.id);
 
-                    UserActivity activity = new UserActivity();
-                    activity.teamActivity = new TeamActivity(team, newTopics, newTeamMessages, joinedMembers, leftMembers);
-                    userActivity.put(user, activity);
-                } else {
-                    Logger.debug("user [%d] of team [%d] doesn't want to receive group notifications", user.id, team.id);
+                        UserActivity activity = new UserActivity();
+                        activity.teamActivity = new TeamActivity(team, newTopics, newTeamMessages, joinedMembers, leftMembers);
+                        userActivity.put(user, activity);
+                    } else {
+                        Logger.debug("user [%d] of team [%d] doesn't want to receive group notifications", user.id, team.id);
+                    }
                 }
             }
         }
