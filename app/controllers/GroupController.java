@@ -1,8 +1,10 @@
 package controllers;
 
 import modelDTO.CommandDTO;
+import modelDTO.SimpleTopicMessage;
 import models.*;
 import notifiers.Mails;
+import play.Logger;
 import play.db.jpa.JPA;
 import play.modules.paginate.ModelPaginator;
 import play.mvc.Before;
@@ -20,7 +22,7 @@ public class GroupController extends BasicController implements ApplicationConst
 
 
 
-  @Catch(value = Throwable.class, priority = 1)
+  //@Catch(value = Throwable.class, priority = 1)
   public static void onError(Throwable throwable) {
     User user = User.findById(SessionHelper.getCurrentUser(session).id);
     if (user.command != null) {
@@ -30,7 +32,7 @@ public class GroupController extends BasicController implements ApplicationConst
     }
   }
 
-  @Before
+  @Before(unless={"getNewTopicMessages"})
   public static void checkSecurity() {
     // TODO warnings on page
     User currentUser = SessionHelper.getCurrentUser(session);
@@ -299,6 +301,9 @@ public class GroupController extends BasicController implements ApplicationConst
 
         user.save();
         group.save();
+
+        Mails.teamMemberApproved(user);
+
         break;
       }
     }
@@ -315,6 +320,9 @@ public class GroupController extends BasicController implements ApplicationConst
         group.getUsersForAprove().remove(i);
         group.save();
         user.save();
+
+        Mails.teamMemberDeclined(user, group);
+
         break;
       }
     }
@@ -429,23 +437,52 @@ public class GroupController extends BasicController implements ApplicationConst
     publicTopics(groupId);
   }
 
+    public static void addTopicMessage(Long groupId, Long topicId, String message){
+        Topic topic = Topic.findById(topicId);
+        if (!topic.publicTopic && !memberOfGroup(groupId)) {
+            renderJSON("{\"status\": 403 }");
+        }
+        //int res = JPA.em().createNativeQuery("insert into TopicMessage values ()")
+        TopicMessage msg = new TopicMessage();
+        msg.text = message;                     // TODO validate required and max size !!!
+        msg.from = User.findById(SessionHelper.getCurrentUser(session).id);
+        msg.createDate = new Date();
+        msg.topic = topic;
+        msg.save();
+
+        renderJSON("{\"status\": 200, \"id\": " + msg.id + "}");
+    }
+
+    public static void getNewTopicMessages(Long topicId, long time) {
+        List<SimpleTopicMessage> newMessages = new ArrayList<SimpleTopicMessage>();
+
+        User user = SessionHelper.getCurrentUser(session);
+        if(user != null){
+            List<TopicMessage> newTopicMessages = TopicMessage.find("topic.id = ? AND createDate > ? ORDER BY createDate ASC", topicId, new Date(time)).fetch();
+            for(TopicMessage msg : newTopicMessages) {
+                newMessages.add(SimpleTopicMessage.fromFullMessage(msg));
+            }
+        }else{
+            Logger.error("NO USER SESSION!");
+        }
+
+        renderJSON(newMessages);
+    }
+
   protected static void addMainMsg(TopicMessage msg, Long topicId, Long groupId){
     Topic topic = Topic.findById(topicId);
-    if (!topic.publicTopic) {
-      if (!memberOfGroup(groupId)) {
+    if (!topic.publicTopic && !memberOfGroup(groupId)) {
         index(groupId);
-      }
     }
-    User user = User.findById(SessionHelper.getCurrentUser(session).id);
-    msg.from = user;
+    msg.from = User.findById(SessionHelper.getCurrentUser(session).id);
     msg.createDate = new Date();
     msg.topic = topic;
     msg.save();
-    if (topic.msg == null) {
-      topic.msg = new ArrayList<TopicMessage>();
+    /*if (topic.messages == null) {
+      topic.messages = new ArrayList<TopicMessage>();
     }
-    topic.msg.add(msg);
-    topic.save();
+    topic.messages.add(msg);
+    topic.save();*/
   }
 
   public static void addMsgToTopic(TopicMessage msg, Long topicId, Long groupId) {
@@ -461,10 +498,10 @@ public class GroupController extends BasicController implements ApplicationConst
     msg.createDate = new Date();
     msg.topic = topic;
     msg.save();
-    if (topic.msg == null) {
-      topic.msg = new ArrayList<TopicMessage>();
+/*    if (topic.messages == null) {
+      topic.messages = new ArrayList<TopicMessage>();
     }
-    topic.msg.add(msg);
+    topic.messages.add(msg);*/
     topic.lastUpdateDate = msg.createDate;
     topic.lastUpdateUserId = user.id;
     topic.lastUpdateUserName = user.name;
@@ -520,7 +557,7 @@ public class GroupController extends BasicController implements ApplicationConst
       ptmQueryMainTopicMessages.setParameter(1, mainTopic.id);
       ptmQueryMainTopicMessages.setMaxResults(GROUP_TOPICS_PAGE_SIZE);
       List<TopicMessage> msgs = ptmQueryMainTopicMessages.getResultList();
-      mainTopic.msg = msgs;
+      mainTopic.messages = msgs;
 
       //get total count of main topic messages
       Query mainTopicMsgCountQuery = JPA.em().createQuery("select count(t.id) from TopicMessage t where t.topic.id = ?");
@@ -649,17 +686,17 @@ public class GroupController extends BasicController implements ApplicationConst
     List<Topic> tempTopics = group.topics;
     for (Topic top : tempTopics) {
       Topic topic = Topic.findById(top.id);
-      for (TopicMessage msg : topic.msg) {
+      for (TopicMessage msg : topic.messages) {
         TopicMessage message = TopicMessage.findById(msg.id);
         message.from = null;
         message.topic = null;
         message.save();
 
       }
-      int length = topic.msg.size() - 1;
+      int length = topic.messages.size() - 1;
       topic.save();
       for (int i = length; i >= 0; i--) {
-        topic.msg.remove(i);
+        topic.messages.remove(i);
       }
     }
 
@@ -683,9 +720,9 @@ public class GroupController extends BasicController implements ApplicationConst
     TopicMessage message = TopicMessage.findById(msgId);
     Long topicId = message.topic.id;
     Topic topic = Topic.findById(topicId);
-    topic.msg.remove(message);
+    topic.messages.remove(message);
     topic.save();
-    int length = topic.msg.size() - 1;
+    int length = topic.messages.size() - 1;
     if (length < 0) {
       topic.lastUpdateDate = null;
       topic.lastUpdateUserId = null;
@@ -693,7 +730,7 @@ public class GroupController extends BasicController implements ApplicationConst
       topic.lastUpdateUserLastName = null;
       topic.save();
     } else {
-      TopicMessage msg = topic.msg.get(length);
+      TopicMessage msg = topic.messages.get(length);
       topic.lastUpdateDate = msg.createDate;
       topic.lastUpdateUserId = msg.from.id;
       topic.lastUpdateUserName = msg.from.name;
@@ -722,7 +759,7 @@ public class GroupController extends BasicController implements ApplicationConst
     TopicMessage message = TopicMessage.findById(msgId);
     Long topicId = message.topic.id;
     Topic topic = Topic.findById(topicId);
-    topic.msg.remove(message);
+    topic.messages.remove(message);
     topic.save();
     message.from = null;
     message.topic = null;
@@ -741,13 +778,13 @@ public class GroupController extends BasicController implements ApplicationConst
     Command command = Command.findById(groupId);
     command.topics.remove(topic);
     command.save();
-    for (TopicMessage msg : topic.msg) {
+    for (TopicMessage msg : topic.messages) {
       TopicMessage message = TopicMessage.findById(msg.id);
       message.from = null;
       message.topic = null;
       message.save();
     }
-    topic.msg = null;
+    topic.messages = null;
     topic.save();
     topic.delete();
     Query query = JPA.em().createQuery("delete from TopicMessage where topic_id IS NULL");

@@ -1,6 +1,7 @@
 #{extends 'group_templeate.html' /} #{set title:'main' /}
 %{
-long userId = utils.SessionHelper.getCurrentUser(session)?.id;
+user = utils.SessionHelper.getCurrentUser(session);
+long userId = user?.id;
 boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN;
 boolean currentGroupAdmin = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id) && (adminGroup);
 boolean notInGroup = utils.SessionHelper.getCurrentUser(session)?.command == null;
@@ -9,6 +10,7 @@ boolean wasNotInviteToGroup = utils.SessionHelper.getCurrentUser(session)?.comma
 boolean wasInviteToOtherGroup = (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null) && (utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id !=group.id);
 boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
 %}
+
 <div class="tabs clearFix">
     <a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a> <a href="@{GroupController.publicTopics(group.id)}">&{'page.team.public_discussion'}</a> <a href="@{GroupController.groupTopics(group.id)}" class="act">&{'page.team.discussion'}</a> <a
         href="@{GroupController.groupUsers(group.id)}" >&{'page.team.members'}</a>
@@ -26,6 +28,8 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
         return false;
     }
 </script>
+
+
 <div class="search-result-name">
 #{if groupMember}
     <a href="@{GroupController.createTopic(group.id)}" class="new-themes-btn"><img src="@{'public/images/boilerplate/ico-new-theme.gif'}" alt="">&{'page.team.discuss.create_team'}</a>
@@ -42,8 +46,9 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
 #{group.loadMore mainTopic:mainTopic, group:group, topicsCount:topicsCount, isPublic:false/}
 
 #{group.reply topic:mainTopic, group:group, count:mainTopicMsgCount, action:'/groupcontroller/addmsgtomaintopic'/}
+
 <ul class="group-theme-dialog">
-#{list items:mainTopic.msg, as:'msg'}
+#{list items:mainTopic.messages, as:'msg'}
     #{form @GroupController.editMainMsg()}
         <input name="msg.id" value="${msg.id}" type="hidden">
         <input name="topicId" value="${mainTopic.id}" type="hidden">
@@ -74,3 +79,100 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
 
 
 
+<script id="topic-msg-tpl" type="text/x-handlebars-template">
+    {{#each this}}
+    {{> singleTopicMsg}}
+    {{/each}}
+</script>
+
+<script id="single-topic-msg-tpl" type="text/x-handlebars-template">
+#{form @GroupController.editMainMsg()}
+    <input name="msg.id" value="{{ id }}" type="hidden">
+    <input name="topicId" value="${mainTopic.id}" type="hidden">
+    <input name="groupId" value="${group.id}" type="hidden">
+    <li>
+        {{#if from.hasAvatar}}
+        <img src="${play.Play.configuration.getProperty("filestoreURL")}/avatars/{{ from.id }}/avatar_55.jpg" alt="" class="group-theme-dialog-pic">
+        {{else}}
+        <img src="/public/images/boilerplate/ava{{#if from.sex}}m{{else}}f{{/if}}.png" alt="" class="group-theme-dialog-pic">
+        {{/if}}
+        <div class="group-theme-dialog-name">
+            <a href="/{{ from.id }}">{{from.name}} {{from.lastName}}</a> {{formatTime time}}
+            {{#hasEditRights ${adminGroup} ${userId} from.id}}
+            <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
+            <a href="/groupController/removeMainMessage?msgId={{id}}&groupId=${group.id}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
+            {{/hasEditRights}}
+        </div>
+        <pre class="msgRead">{{text}}</pre>
+        <div style="display: none" class="msg">
+            <div class="group-theme-dialog-form">
+                <textarea name="msg.text" style="height: 20px" class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);">{{text}} </textarea>
+                <button type="submit" class="group-theme-btn">&{'page.team.discuss.save'}</button>
+                <button type="button" onclick="editDisabled(this);" class="group-theme-btn">&{'page.team.discuss.cancel'}</button>
+            </div>
+        </div>
+    </li>
+#{/form}
+</script>
+
+<script>
+    $(document).ready(function(){
+        var msgCount = ${mainTopicMsgCount} || 0;
+
+        var Templates = window.Templates || {};
+        var singleMsgTpl = $("#single-topic-msg-tpl").html();
+        Templates.topicMsgsTpl = Handlebars.compile($("#topic-msg-tpl").html());
+        Templates.topicMsgTpl = Handlebars.compile(singleMsgTpl);
+        Handlebars.registerPartial("singleTopicMsg", singleMsgTpl);
+
+        var $talksDiv = $(".group-theme-dialog");
+
+        var $form = $("#topicMsgForm");
+        var $msg = $form.find("textarea");
+        var sendMsg = function(){
+            var msg = $msg.val();
+            if(msg){
+                     // @GroupController.addTopicMessage
+                $.post("/groups/${group.id}/topics/${mainTopic.id}/messages", $form.serialize(), function(data){
+                    if(data.status != 200){
+                        console.log("MESSAGE NOT SAVED");
+                        return false;
+                    }
+
+                    /*var userMsg = {
+                        "id": data.id,
+                        "topic": ${mainTopic.id},
+                        "text": msg,
+                        "time": new Date().getTime(),
+                        "from": {
+                            "id": ${user.id},
+                            "name": "${user.name}",
+                            "lastName": "${user.lastName}",
+                            "sex": ${user.sex},
+                            "email": "${user.email}",
+                            "hasAvatar": ${user.haveAvatar}
+                        },
+                    };
+                    $talksDiv.prepend(Templates.topicMsgTpl(userMsg));*/
+
+                    $msg.val("");
+                });
+            }
+        };
+
+        var $form = $("#topicMsgForm");
+        $msg.ctrlEnter("textarea", sendMsg);
+        $form.find("button").bind("click", sendMsg);
+
+        var lastUpdateTime = ${mainTopic?.messages.size() > 0 ? mainTopic?.messages.get(0)?.createDate.getTime() : 0};
+        if(!lastUpdateTime) lastUpdateTime = (new Date()).getTime();
+
+        var fnDrawNewTopicMsg = function(data) {
+            msgCount += data.length;
+            $(".topic-msgs-counter").html(msgCount);
+            $talksDiv.prepend(Templates.topicMsgsTpl(data));
+        };
+
+        Dynamics.Topics.startListen(${mainTopic?.id}, lastUpdateTime, fnDrawNewTopicMsg);
+    });
+</script>

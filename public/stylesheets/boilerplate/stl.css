@@ -3491,6 +3491,13 @@ a, input, input:hover, input:active, input:focus, textarea {
  
 /*---------------The-end-login--------------------*/
 
+.writeComment {
+    vertical-align: top;
+    transition: height 0.2s;
+    -webkit-transition: height 0.2s;
+    -moz-transition: height 0.2s;
+}
+
 .home-secondary h2 span{
     font: 14px/25px Arial,sans-serif;
 /*  color: #2583BE;*/

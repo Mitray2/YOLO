@@ -146,7 +146,7 @@ public class MessageController extends BasicController {
         User user = SessionHelper.getCurrentUser(session);
         if(user != null && user.id.equals(fromId)) {
             Message message = new models.Message();
-            message.text = msg;
+            message.text = msg;                     // TODO validate on not required and max size !!!
             message.from = new User(fromId);
             message.to = new User(toId);
             message.time = new Date(); //time > 0 ? new Date(time) :

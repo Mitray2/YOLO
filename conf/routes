@@ -75,6 +75,8 @@ POST    /talks/?                                        MessageController.sendMe
 DELETE  /talks/?                                        MessageController.deleteConversation
 DELETE  /talks/messages/{id}/?                          MessageController.deleteMessage
 
+POST    /groups/{groupId}/topics/{topicId}/messages     GroupController.addTopicMessage
+
 #UserController
 GET 		/changePassword								UserController.changePassword
 POST 		/doChangePassword							UserController.doChangePassword

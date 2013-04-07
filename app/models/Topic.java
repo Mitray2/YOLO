@@ -41,8 +41,8 @@ public class Topic extends Model {
 	@MaxSize(value = 2000)
 	public String description;
 
-	@OneToMany(fetch = FetchType.LAZY)
-	public List<TopicMessage> msg;
+	@OneToMany(mappedBy="topic", fetch = FetchType.LAZY)
+	public List<TopicMessage> messages;
 
     public Topic() {
     }

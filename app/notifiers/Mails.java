@@ -73,6 +73,66 @@ public class Mails extends Mailer {
 		send(user, base, joinUser, text);
 	}
 
+	public static void teamMemberApproved(User user) {
+        String userLang = user.preferredLang;
+		setSubject(Messages.getMessage(userLang, "mail.subject.team.member.approved"));
+		//addRecipient(user.email); //TODO uncomment for prod
+        addRecipient("siarzh@gmail.com");
+        addRecipient("dzyakanau.d@gmail.com");
+        setFrom(EMAIL_FROM);
+
+        if("ru".equals(userLang)){
+            send("Mails/ru/teamMemberApproved", user);
+        } else {
+            send(user);
+        }
+	}
+
+	public static void teamMemberDeclined(User user, Command team) {
+        String userLang = user.preferredLang;
+		setSubject(Messages.getMessage(userLang, "mail.subject.team.member.declined"));
+		//addRecipient(user.email); //TODO uncomment for prod
+        addRecipient("siarzh@gmail.com");
+        addRecipient("dzyakanau.d@gmail.com");
+        setFrom(EMAIL_FROM);
+
+        if("ru".equals(userLang)){
+            send("Mails/ru/teamMemberDeclined", user, team);
+        } else {
+            send(user, team);
+        }
+	}
+
+	public static void teamInvitationAccepted(User teamAdmin, User potentialMember) {
+        String userLang = teamAdmin.preferredLang;
+		setSubject(Messages.getMessage(userLang, "mail.subject.team.invite.accepted"));
+		//addRecipient(admin.email); //TODO uncomment for prod
+        addRecipient("siarzh@gmail.com");
+        addRecipient("dzyakanau.d@gmail.com");
+        setFrom(EMAIL_FROM);
+
+        if("ru".equals(userLang)){
+            send("Mails/ru/teamInvitationAccepted", teamAdmin, potentialMember);
+        } else {
+            send(teamAdmin, potentialMember);
+        }
+	}
+
+	public static void teamInvitationDeclined(User teamAdmin, User potentialMember) {
+        String userLang = teamAdmin.preferredLang;
+		setSubject(Messages.getMessage(userLang, "mail.subject.team.invite.declined"));
+		//addRecipient(admin.email); //TODO uncomment for prod
+        addRecipient("siarzh@gmail.com");
+        addRecipient("dzyakanau.d@gmail.com");
+        setFrom(EMAIL_FROM);
+
+        if("ru".equals(userLang)){
+            send("Mails/ru/teamInvitationDeclined", teamAdmin, potentialMember);
+        } else {
+            send(teamAdmin, potentialMember);
+        }
+	}
+
 	// public static void feedback(String email, String message) {
 	// setSubject("Фидбек от пользователя - " + email);
 	// addRecipient("al1ks.moiseev@gmail.com");

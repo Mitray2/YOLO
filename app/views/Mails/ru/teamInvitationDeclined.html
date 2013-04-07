@@ -1,0 +1,14 @@
+<html>
+	<body>
+		<p>
+            Добрый день, ${teamAdmin.name}.<br/>
+            <br/>
+            К сожалению, пользователь <a href="${notifiers.Mails.BASE_URL}@{UserController.index(potentialMember.id)}">"${potentialMember.name}"</a>
+            оклонил ваше приглашение в команду <a href="${notifiers.Mails.BASE_URL}@{GroupController.index(teamAdmin.command.id)}">"${teamAdmin.command.name}"</a>.
+            <br/>
+            <br/>
+            С пожеланием бизнес-успехов,<br/>
+            команда <a href="${notifiers.Mails.BASE_URL}">StartNewTeam</a>
+		</p>
+	</body>
+</html>

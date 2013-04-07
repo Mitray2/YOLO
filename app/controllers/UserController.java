@@ -176,12 +176,16 @@ public class UserController extends BasicController  implements ApplicationConst
 		User user = SessionHelper.getCurrentUser(session);
 		if (user != null) {
 			Command group = Command.findById(groupId);
+            if(group != null){
+                User userCurrent = User.findById(user.id);
+                userCurrent.commandToInvite = null;
+                userCurrent.save();
+                group.save();
 
-			User userCurrent = User.findById(user.id);
-			userCurrent.commandToInvite = null;
-			userCurrent.save();
-			group.save();
-			SessionHelper.setCurrentUser(session, userCurrent);
+                Mails.teamInvitationDeclined(group.founderUser, user);
+
+                SessionHelper.setCurrentUser(session, userCurrent);
+            }
 		}
 		index(user.id);
 	}
@@ -203,11 +207,17 @@ public class UserController extends BasicController  implements ApplicationConst
 				break;
 			}
 		}
+
+        if(group != null){
+            Mails.teamInvitationAccepted(group.founderUser, user);
+        }
+
 		SessionHelper.setCurrentUser(session, user);
 		index(user.id);
 	}
 
 	public static void declineInviteGroup(Long groupId) {
+        Command group = Command.findById(groupId);
 		User user = User.findById(SessionHelper.getCurrentUser(session).id);
 		int lengthCommands = user.commandsForAprove.size();
 		for (int i = 0; i < lengthCommands; i++) {
@@ -217,6 +227,11 @@ public class UserController extends BasicController  implements ApplicationConst
 				break;
 			}
 		}
+
+        if(group != null){
+            Mails.teamInvitationDeclined(group.founderUser, user);
+        }
+
 		SessionHelper.setCurrentUser(session, user);
 		index(user.id);
 	}

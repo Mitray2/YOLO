@@ -12,9 +12,9 @@
         #{/if}
     </h4>
 	<pre>#{common.reducedText text:_topic.description /}</pre>
-	<div class="search-result-list-date"><strong>&{'page.team.discuss.total_msgs',_topic.msg?.size()}</strong></div>
+	<div class="search-result-list-date"><strong>&{'page.team.discuss.total_msgs',_topic.messages?.size()}</strong></div>
 	    <br />
-	    #{if _topic.msg?.size() > 0 }
+	    #{if _topic.messages?.size() > 0 }
 	    <div class="search-result-list-last">&{'page.team.discuss.latest_from'} <a href="@{UserController.index(_topic.lastUpdateUserId)}">${_topic.lastUpdateUserLastName} ${_topic.lastUpdateUserName}</a>, <span class="topic_date">${utils.DateUtils.getFormatedStringDate(_topic.lastUpdateDate, true)}</div>
 	    #{/if}
 	<a href="@{GroupController.indexTopic(_topic.id, _group.id)}" class="search-result-list-more">&{'page.team.discuss.discussion'} <span>&nbsp;&#8594;</span></a>

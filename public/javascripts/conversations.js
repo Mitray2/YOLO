@@ -1,11 +1,13 @@
+var Dynamics = window.Dynamics || {};
+
 var Templates = window.Templates || {
     talkMsgTpl: function(data) {},
     conversationMsgTpl: function(data) {},
     popupMsgTpl: function(data) {},
-    popupMsgItemTpl: function(data) {}
+    popupMsgItemTpl: function(data) {},
+    topicMsgTpl: function(data) {},
+    topicMsgsTpl: function(data) {}
 };
-
-var Dynamics = window.Dynamics || {};
 
 Dynamics.Dialogs = Dynamics.Dialogs || {
     startListen: function(userId,otherUserId,lastUpdateTime,fnUpdate){
@@ -24,7 +26,29 @@ Dynamics.Dialogs = Dynamics.Dialogs || {
                     },
                     complete: updateMessages
                 });
-            }, 5000);
+            }, 3000);
+        })();
+    }
+};
+
+Dynamics.Topics = Dynamics.Topics || {
+    startListen: function(topicId,lastUpdateTime,fnUpdate){
+        var _lastTime = lastUpdateTime;
+        (function updateMessages() {
+            setTimeout(function () {
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: '/groupcontroller/getnewtopicmessages?topicId=' + topicId + '&time=' + _lastTime,
+                    success: function (data) {
+                        if(data.length) {
+                            if(fnUpdate) fnUpdate(data);
+                            _lastTime = data[data.length-1].time;
+                        }
+                    },
+                    complete: updateMessages
+                });
+            }, 2000);
         })();
     }
 };
@@ -114,5 +138,15 @@ var Utils = {
         }
         return options.inverse(this);
     });
+/*    Handlebars.registerHelper('OR', function(v1, v2, options) {
+        if(v1 || v2) {
+            return options.fn(this);
+        }
+        return options.inverse(this);
+    });*/
+
     Handlebars.registerHelper('limitTo', Utils.limitTo);
+    Handlebars.registerHelper('hasEditRights', function(isAdmin,userId,authorId,options){
+        return (isAdmin || userId == authorId) ? options.fn(this) : options.inverse(this);
+    });
 })();
