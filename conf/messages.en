@@ -41,7 +41,7 @@ page.main.home.group_request=Request to join your team
 page.main.home.msg1=You need to transfer your team administrator rights, before you can join new team
 page.main.home.msg2=Join the team
 page.main.home.msg3=In order to join new team, you need to leave the one you're in now and cancel other requests. Are you sure you want to do this?
-page.main.home.msg4=You must first submit an administrator member of the group, before going out and create a new group
+page.main.home.msg4=You must first submit an administrator member of the team, before going out and create a new team
 
 page.profile.change.password.mesage1=Please enter old password
 page.profile.change.password.mesage2=Please enter new password
@@ -58,19 +58,19 @@ mail.subject.type3=Confirmation of registration
 mail.subject.type4=Invitation to join the team
 mail.subject.type5=Someone wants to join your team
 mail.subject.type6=Password recovery
-mail.subject.team.member.approved=Congratulations! You are now a member of new team
-mail.subject.team.member.declined=Sorry, you are not accepted for the new team
-mail.subject.team.invite.accepted=Your invitation to the team accepted
-mail.subject.team.invite.declined=Your invitation to the team declined
+mail.subject.team.member.approved=Congratulations! You are now a member of new team!
+mail.subject.team.member.declined=Sorry, you are not accepted for the new team.
+mail.subject.team.invite.accepted=Your invitation accepted
+mail.subject.team.invite.declined=Your invitation declined
 mail.subject.unread.messages=New messages on StartNewTeam
-mail.subject.not.seen=We are missing you on StartNewTeam
-mail.subject.teams.auto.admin=You are administrator of a new team
-mail.subject.teams.auto.user=You are part of a new team
+mail.subject.not.seen=New members and teams on StartNewTeam!
+mail.subject.teams.auto.admin=You are administrator of a new team!
+mail.subject.teams.auto.user=You are part of a new team!
 mail.subject.teams.auto.add_more=Insufficient number of members for auto generated team!
 mail.subject.platform.news=Latest news from StartNewTeam
 
 
-page.main.content=<h1 class="main">StartNewTeam – international business dating service for creation of joint business.</h1>\
+page.main.content=<h1 class="main">StartNewTeam – free business dating service for creation of joint business.</h1>\
                     <p>You want to have your business, but lack something for a successful start?</p>\
                     <p>Experience, knowledge, good ideas, money or connections?</p>\
                     <p>One person can't combine it all - you need a team.</p>
@@ -274,15 +274,15 @@ email.newMessages=Hello, %s!\
 email.notSeen=Hello, %s!\
                  <br>\
                  <br>\
-                 We hope you didn't forget about <a href='%s'>StartNewTeam</a>?\
-                 <br>Don't miss a unique chance to find those who will share your ideas!\
+                 You missed the whole week on <a href='%s'>StartNewTeam</a>!\
+                 <br>During this time, we had a lot of new participants and teams that probably can be interest to you.\
                  <br>\
                  <br>\
                 Entrepreneurally yours, <br>\
                 <a href="%s">StartNewTeam</a>
 
-email.teams.auto.admin.title=You are administrator of a new team
-email.teams.auto.user.title=You are part of a new team
+email.teams.auto.admin.title=You are administrator of a new team!
+email.teams.auto.user.title=You are part of a new team!
 
 link.main=Main
 link.news=News
@@ -290,7 +290,7 @@ link.about=About project
 link.contacts=Contacts
 link.partners=Partners
 link.messages=My messages
-link.settings=My settings
+link.settings=Settings
 
 link.crowd.consalting=CrowdConsulting
 link.crowd.developig=CrowdDeveloping
@@ -396,7 +396,7 @@ page.team.create.topic.public=Make topic public(accesible to all users)
 page.team.create.topic.create_topic=Create topic
 
 page.team.discuss.create_team=Create topic
-page.team.discuss.count_topics=There are %s topic(s) in the group
+page.team.discuss.count_topics=There are %s topic(s) in the team
 page.team.discuss.edit_disc=Edit topic
 page.team.discuss.del_disc=Delete topic
 page.team.discuss.edit_msg=Edit message
@@ -520,16 +520,16 @@ page.profile.current.desc_cv_meta=Describe in few words your goals and expectati
 page.profile.current.test2=Test your business-aptitudes for better team creation.
 
 page.settings.title=My settings
-page.settings.notifications=Email notifications
+page.settings.notifications=E-mail notifications
 page.settings.lang.preferred=Interface language
 page.settings.lang.ru=Russian
 page.settings.lang.en=English
 page.settings.other=Miscellaneous
 page.settings.other.teams.auto=Take part in auto generated teams
-profile.settings.notifications.1=Notify about unread personal messages
-profile.settings.notifications.2=Notify about StartNewTeams news
-profile.settings.notifications.3=Notify about group activities
-profile.settings.notifications.4=Send reminders
+profile.settings.notifications.1=Unread personal messages
+profile.settings.notifications.2=News
+profile.settings.notifications.3=My team activities
+profile.settings.notifications.4=Reminders
 
 page.search.members.title=Partners search system
 page.search.members.personal_data=Personal data
@@ -672,9 +672,9 @@ page.dialogs.with=Dialog with
 page.dialogs.delete=Delete dialog
 page.dialogs.delete.confirm=Conversation with the selected user will be deleted. Are you sure?
 page.dialogs.delete.msg=Delete message
-page.dialogs.delete.msg.confirm=This message will be deleted.<br/>Are you sure ?
+page.dialogs.delete.msg.confirm=This message will be deleted.<br/>Are you sure?
 page.dialogs.button.send=Send
-page.dialogs.placeholder.send=Send message
+page.dialogs.placeholder.send=Write message...
 pages.dialogs.yes=Yes
 pages.dialogs.no=No
 
