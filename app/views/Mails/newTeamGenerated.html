@@ -1,27 +1,29 @@
 <html>
 	<body>
 		<p>
-            Здравствуйте, ${user.name}!<br/>
+            Hello, ${user.name}!<br/>
             <br/>
-            Поздравляем вас с автоматическим распределением
-            #{if user.role == models.User.ROLE_GROUP_ADMIN} и ролью администратора в команде#{/if}
-            #{else} в команду #{/else}
-            : <a href="${notifiers.Mails.BASE_URL}@{GroupController.index(user.command.id)}">${user.command.name}</a>.<br/>
+            Congratulations with automatic assigment to the New Team: <a href="${notifiers.Mails.BASE_URL}@{GroupController.index(user.command.id)}">${user.command.name}</a>.<br/>
             <br/>
             <br/>
-            Все свободные участники <a href="${notifiers.Mails.BASE_URL}">StartNewTeam</a> были автоматически распределены по командам
-            #{if user.role == models.User.ROLE_GROUP_ADMIN}, и вам выпала крайне ответственная роль быть администратором команды. Теперь #{/if}
-            #{else} и теперь #{/else}
-            вам необходимо:<br/>
+            All free users of <a href="${notifiers.Mails.BASE_URL}">StartNewTeam</a> were automatic distributed into the New Teams
+			#{if user.role == models.User.ROLE_GROUP_ADMIN},and you got a great, responsible opportunity to be the administrator of your team.
+			It means that you should be more initiative making first steps to know each other with your team members :#{/if}
+            #{else} For now you should be more initiative:#{/else}
             <br/>
-            1)делай раз<br/>
-            2)делай два<br/>
-            3)делай три<br/>
             <br/>
-            В любой момент вы можете выйти из состава текущей команды и принять участие в следующем распределении, которые будут периодически происходить для свободных людей. Также вы можете отказаться от автоматического распределения, выбрав соответствующую опцию в разделе «Настройки» на сайте.<br/>
+				1) Create new Topic inside the team and tell your team members about yourself in first message.<br/>
+				2) Ask everybody do the same think, and tell about themslves.<br/>
+				3) After you'll know each other start discussion about your possible colaboration and which projects you could build togeather.<br/>
+				4) Once you'll find possible ways of cooperation - move from words to business! 
             <br/>
-            С пожеланием бизнес-успехов,<br/>
-            команда <a href="${notifiers.Mails.BASE_URL}">StartNewTeam</a>
+			<br/>
+           You can leave auto-generated team as soon as you wish and take part in next New Team auto-generaring, that will take place weekly at StartNewTeam. 
+		   Also you can refuse to participate in auto-generating by switching the neccesary option in <a href="${notifiers.Mails.BASE_URL}/settings">My Settings.</a>
+		    <br/>
+            <br/>
+            Entrepreneurally yours,<br/>
+            <a href="${notifiers.Mails.BASE_URL}">StartNewTeam</a> staff.
 		</p>
 	</body>
 </html>
