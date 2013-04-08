@@ -10,12 +10,12 @@
             #{/if}
             #{if activity.teamActivity}
                 #{if activity.unreadMessages?.size() > 0}<br/><hr/><br/><br/>#{/if}
-                Последние события в вашей группе <a href="${notifiers.Mails.BASE_URL}@{GroupController.index(activity.teamActivity.team.id)}">"${activity.teamActivity.team.name}"</a>:
+                Последние события в вашей команде <a href="${notifiers.Mails.BASE_URL}@{GroupController.index(activity.teamActivity.team.id)}">"${activity.teamActivity.team.name}"</a>:
                 <br/>
                 #{if activity.teamActivity.newTopics}создано <strong>${activity.teamActivity.newTopics}</strong> новых тем для обсуждения<br/>#{/if}
                 #{if activity.teamActivity.newMessages}добавлено <strong>${activity.teamActivity.newMessages}</strong> новых сообщений<br/>#{/if}
                 #{if activity.teamActivity.joinedMembers}<strong>${activity.teamActivity.joinedMembers}</strong> человек присоединились к комманде<br/>#{/if}
-                #{if activity.teamActivity.leftMembers}<strong>${activity.teamActivity.leftMembers}</strong> человек покинули комманду<br/>#{/if}
+                #{if activity.teamActivity.leftMembers}<strong>${activity.teamActivity.leftMembers}</strong> человек покинули команду<br/>#{/if}
             #{/if}
             <br/>
             <br/>

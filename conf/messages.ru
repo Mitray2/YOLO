@@ -536,7 +536,7 @@ page.settings.lang.en=Английский
 page.settings.other=Разное
 page.settings.other.teams.auto=Участвовать в автоматическом распределении в команду
 profile.settings.notifications.1=О непрочитанных сообщениях
-profile.settings.notifications.2=О новостях StartNewTeams
+profile.settings.notifications.2=О новостях StartNewTeam
 profile.settings.notifications.3=Об активности в моей команде
 profile.settings.notifications.4=Получать уведомления
 
