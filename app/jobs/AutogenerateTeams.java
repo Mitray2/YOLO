@@ -15,7 +15,7 @@ import static ch.lambdaj.Lambda.extract;
 import static ch.lambdaj.Lambda.on;
 
 /** Generates new teams for free users and sends email notification **/
-@On("0 0 8 ? * SAT") // fires every Saturday at 08:00 UTC
+@On("0 0 11 ? * SAT") // fires every Saturday at 11:00 MSK
 public class AutogenerateTeams extends Job {
 
     private static final int TEAM_MEMBERS_COUNT = 7;

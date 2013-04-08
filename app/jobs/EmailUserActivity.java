@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentMap;
 
 
 /** Sends email notification for user related activity **/
-@On("0 0 18 * * ?") // fires every day at 18:00 UTC
+@On("0 0 21 * * ?") // fires every day at 21:00 MSK
 public class EmailUserActivity extends Job {
 
 

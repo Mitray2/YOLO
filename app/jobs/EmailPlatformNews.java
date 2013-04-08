@@ -23,7 +23,7 @@ import static ch.lambdaj.Lambda.*;
 import static org.hamcrest.Matchers.is;
 
 /** Sends latest platform new to users via email **/
-@On("0 0 14 ? * WED") // fires every Wednesday at 14:00 UTC
+@On("0 0 17 ? * WED") // fires every Wednesday at 17:00 MSK
 public class EmailPlatformNews extends Job {
 
     private static Function<Post, String> pickToUserFn = new Function<Post, String>() {

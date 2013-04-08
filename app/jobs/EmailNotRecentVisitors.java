@@ -17,7 +17,7 @@ import static ch.lambdaj.Lambda.extract;
 import static ch.lambdaj.Lambda.on;
 
 /** Sends email notification to users who hasn't been to site for more than a week **/
-@On("0 0 16 * * ?") // fires every day at 16:00 UTC
+@On("0 0 19 * * ?") // fires every day at 19:00 MSK
 public class EmailNotRecentVisitors extends Job {
 
 	public void doJob() {

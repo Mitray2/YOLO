@@ -448,6 +448,12 @@ public class GroupController extends BasicController implements ApplicationConst
         msg.topic = topic;
         msg.save();
 
+        topic.lastUpdateDate = msg.createDate;
+        topic.lastUpdateUserId = msg.from.id;
+        topic.lastUpdateUserName = msg.from.name;
+        topic.lastUpdateUserLastName = msg.from.lastName;
+        topic.save();
+
         renderJSON("{\"status\": 200, \"id\": " + msg.id + "}");
     }
 

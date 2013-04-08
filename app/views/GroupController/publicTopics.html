@@ -63,13 +63,13 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
             #{avatar.avatar user:msg.from, cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
             <div class="group-theme-dialog-name">
                 <a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${utils.DateUtils.getFormatedStringDate(msg.createDate, true)}
-                #{if userId == msg.from.id || adminGroup}
+                #{if userId == msg.from.id}
                     <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
                     <a href="@{GroupController.removePublicMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
                 #{/if}
-                #{if adminGroup}
+                #{elseif adminGroup}
                     <a href="@{GroupController.removePublicMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
-                #{/if}
+                #{/elseif}
             </div>
             <pre class="msgRead">${msg.text}</pre>
             <div style="display: none" class="msg">
@@ -106,10 +106,14 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
         {{/if}}
         <div class="group-theme-dialog-name">
             <a href="/{{ from.id }}">{{from.name}} {{from.lastName}}</a> {{formatTime time}}
-            {{#hasEditRights ${adminGroup} ${userId} from.id}}
+            {{#ifCond ${userId} from.id 0}}
                 <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
                 <a href="/groupController/removePublicMainMessage?msgId={{id}}&groupId=${group.id}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
-            {{/hasEditRights}}
+            {{else}}
+                {{#if ${adminGroup}}}
+                <a href="/groupController/removePublicMainMessage?msgId={{id}}&groupId=${group.id}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
+                {{/if}}
+            {{/ifCond}}
         </div>
         <pre class="msgRead">{{text}}</pre>
         <div style="display: none" class="msg">
