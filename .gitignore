@@ -6,6 +6,9 @@
 /.idea
 /.idea_modules
 /logs
+/data/attachments
+server.pid
+index.html
 *.ipr
 *.iml
 *.iws
