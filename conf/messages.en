@@ -248,8 +248,9 @@ email.memberRequest=Hello, %s!\
                     <a href="%s">StartNewTeam</a>
 email.lostPassword=Hello!<br/>\
                    <br>\
-                   You, or someone else had requested a new password. Please use this password to access your account: %s\
-                   We strongly recommend you to change the password immediately.\
+                   You, or someone else had requested a new password. Please use this password to access your account: %s \
+                   <br>\
+				   We strongly recommend you to change the password immediately.\
                    <br>\
                    <br>\
                    Entrepreneurally yours, <br>\
