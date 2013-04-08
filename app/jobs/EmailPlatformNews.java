@@ -9,8 +9,8 @@ import models.User;
 import notifiers.Mails;
 import play.Logger;
 import play.db.jpa.JPA;
-import play.jobs.Every;
 import play.jobs.Job;
+import play.jobs.On;
 import utils.DateUtils;
 import utils.LangUtils;
 
@@ -23,8 +23,7 @@ import static ch.lambdaj.Lambda.*;
 import static org.hamcrest.Matchers.is;
 
 /** Sends latest platform new to users via email **/
-//@On("0 0 14 ? * FRI") // fires every friday at 14:00
-@Every("10mn")
+@On("0 0 14 ? * WED") // fires every Wednesday at 14:00 UTC
 public class EmailPlatformNews extends Job {
 
     private static Function<Post, String> pickToUserFn = new Function<Post, String>() {

@@ -16,8 +16,17 @@ import java.util.Collection;
 
 public class Mails extends Mailer {
 
-  private static final String EMAIL_FROM = "StartNewTeam <noreply@startnewteam.com>";
-  public static final String BASE_URL = Play.configuration.getProperty("application.baseUrl");
+    private static final String EMAIL_FROM = "StartNewTeam <noreply@startnewteam.com>";
+    public static final String BASE_URL = Play.configuration.getProperty("application.baseUrl");
+
+    private static void setRecipients(User user) {
+        if(Play.mode.isDev()){
+            addRecipient("siarzh@gmail.com");
+            addRecipient("dzyakanau.d@gmail.com");
+        }else{
+            addRecipient(user.email);
+        }
+    }
 
 
 	public static void firstTestPassed(User user, String base) {
@@ -76,9 +85,7 @@ public class Mails extends Mailer {
 	public static void teamMemberApproved(User user) {
         String userLang = user.preferredLang;
 		setSubject(Messages.getMessage(userLang, "mail.subject.team.member.approved"));
-		//addRecipient(user.email); //TODO uncomment for prod
-        addRecipient("siarzh@gmail.com");
-        addRecipient("dzyakanau.d@gmail.com");
+        setRecipients(user);
         setFrom(EMAIL_FROM);
 
         if("ru".equals(userLang)){
@@ -91,9 +98,7 @@ public class Mails extends Mailer {
 	public static void teamMemberDeclined(User user, Command team) {
         String userLang = user.preferredLang;
 		setSubject(Messages.getMessage(userLang, "mail.subject.team.member.declined"));
-		//addRecipient(user.email); //TODO uncomment for prod
-        addRecipient("siarzh@gmail.com");
-        addRecipient("dzyakanau.d@gmail.com");
+        setRecipients(user);
         setFrom(EMAIL_FROM);
 
         if("ru".equals(userLang)){
@@ -106,9 +111,7 @@ public class Mails extends Mailer {
 	public static void teamInvitationAccepted(User teamAdmin, User potentialMember) {
         String userLang = teamAdmin.preferredLang;
 		setSubject(Messages.getMessage(userLang, "mail.subject.team.invite.accepted"));
-		//addRecipient(admin.email); //TODO uncomment for prod
-        addRecipient("siarzh@gmail.com");
-        addRecipient("dzyakanau.d@gmail.com");
+        setRecipients(teamAdmin);
         setFrom(EMAIL_FROM);
 
         if("ru".equals(userLang)){
@@ -121,9 +124,7 @@ public class Mails extends Mailer {
 	public static void teamInvitationDeclined(User teamAdmin, User potentialMember) {
         String userLang = teamAdmin.preferredLang;
 		setSubject(Messages.getMessage(userLang, "mail.subject.team.invite.declined"));
-		//addRecipient(admin.email); //TODO uncomment for prod
-        addRecipient("siarzh@gmail.com");
-        addRecipient("dzyakanau.d@gmail.com");
+        setRecipients(teamAdmin);
         setFrom(EMAIL_FROM);
 
         if("ru".equals(userLang)){
@@ -168,9 +169,7 @@ public class Mails extends Mailer {
         String userLang = user.preferredLang;
 
         setSubject(Messages.getMessage(userLang, "mail.subject.unread.messages"));
-        //addRecipient(user.email); TODO uncomment for prod
-        addRecipient("siarzh@gmail.com");
-        addRecipient("dzyakanau.d@gmail.com");
+        setRecipients(user);
         setFrom(EMAIL_FROM);
 
         if("ru".equals(userLang)){
@@ -183,9 +182,7 @@ public class Mails extends Mailer {
     public static void notSeenForAWeek(User user) {
         String userLang = user.preferredLang;
         setSubject(Messages.getMessage(userLang, "mail.subject.not.seen"));
-        //addRecipient(user.email); TODO uncomment for prod
-        addRecipient("siarzh@gmail.com");
-        addRecipient("dzyakanau.d@gmail.com");
+        setRecipients(user);
         setFrom(EMAIL_FROM);
         Lang.set(userLang);
         send(user);
@@ -199,9 +196,7 @@ public class Mails extends Mailer {
         setSubject(Messages.getMessage(userLang, "mail.subject.teams.auto.".concat(
                 user.role.equals(User.ROLE_GROUP_ADMIN) ? "admin" : "user"
         )));
-        //addRecipient(user.email); TODO uncomment for prod
-        addRecipient("siarzh@gmail.com");
-        addRecipient("dzyakanau.d@gmail.com");
+        setRecipients(user);
         setFrom(EMAIL_FROM);
 
         if("ru".equals(userLang)){
@@ -214,9 +209,7 @@ public class Mails extends Mailer {
     public static void addMoreMembersToTeam(User user) {
         String userLang = user.preferredLang;
         setSubject(Messages.getMessage(userLang, "mail.subject.teams.auto.add_more"));
-        //addRecipient(user.email); TODO uncomment for prod
-        addRecipient("siarzh@gmail.com");
-        addRecipient("dzyakanau.d@gmail.com");
+        setRecipients(user);
         setFrom(EMAIL_FROM);
 
         if("ru".equals(userLang)){
@@ -228,9 +221,7 @@ public class Mails extends Mailer {
 
     public static void platformNews(User user, Collection<Post> news) {
         setSubject(Messages.getMessage(user.preferredLang, "mail.subject.platform.news"));
-        //addRecipient(user.email); TODO uncomment for prod
-        addRecipient("siarzh@gmail.com");
-        addRecipient("dzyakanau.d@gmail.com");
+        setRecipients(user);
         setFrom(EMAIL_FROM);
         send(user,news);
     }

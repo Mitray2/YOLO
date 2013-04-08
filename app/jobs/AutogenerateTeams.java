@@ -6,8 +6,8 @@ import com.google.common.collect.Multimaps;
 import models.*;
 import notifiers.Mails;
 import play.Logger;
-import play.jobs.Every;
 import play.jobs.Job;
+import play.jobs.On;
 
 import java.util.*;
 
@@ -15,8 +15,7 @@ import static ch.lambdaj.Lambda.extract;
 import static ch.lambdaj.Lambda.on;
 
 /** Generates new teams for free users and sends email notification **/
-//@On("0 0 16 ? * SUN") // fires every sunday at 16:00
-@Every("10mn")
+@On("0 0 8 ? * SAT") // fires every Saturday at 08:00 UTC
 public class AutogenerateTeams extends Job {
 
     private static final int TEAM_MEMBERS_COUNT = 7;

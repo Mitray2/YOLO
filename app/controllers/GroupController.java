@@ -4,11 +4,9 @@ import modelDTO.CommandDTO;
 import modelDTO.SimpleTopicMessage;
 import models.*;
 import notifiers.Mails;
-import play.Logger;
 import play.db.jpa.JPA;
 import play.modules.paginate.ModelPaginator;
 import play.mvc.Before;
-import play.mvc.Catch;
 import utils.ApplicationConstants;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
@@ -462,8 +460,6 @@ public class GroupController extends BasicController implements ApplicationConst
             for(TopicMessage msg : newTopicMessages) {
                 newMessages.add(SimpleTopicMessage.fromFullMessage(msg));
             }
-        }else{
-            Logger.error("NO USER SESSION!");
         }
 
         renderJSON(newMessages);

@@ -5,8 +5,8 @@ import models.User;
 import notifiers.Mails;
 import play.Logger;
 import play.db.jpa.JPA;
-import play.jobs.Every;
 import play.jobs.Job;
+import play.jobs.On;
 import utils.DateUtils;
 
 import java.util.Arrays;
@@ -17,8 +17,7 @@ import static ch.lambdaj.Lambda.extract;
 import static ch.lambdaj.Lambda.on;
 
 /** Sends email notification to users who hasn't been to site for more than a week **/
-//@On("0 0 9 * * ?")
-@Every("1h")
+@On("0 0 16 * * ?") // fires every day at 16:00 UTC
 public class EmailNotRecentVisitors extends Job {
 
 	public void doJob() {

@@ -9,8 +9,8 @@ import models.*;
 import notifiers.Mails;
 import play.Logger;
 import play.db.jpa.JPA;
-import play.jobs.Every;
 import play.jobs.Job;
+import play.jobs.On;
 
 import javax.persistence.Query;
 import java.math.BigInteger;
@@ -20,8 +20,7 @@ import java.util.concurrent.ConcurrentMap;
 
 
 /** Sends email notification for user related activity **/
-//@On("0 0 8 * * ?")
-@Every("1h")
+@On("0 0 18 * * ?") // fires every day at 18:00 UTC
 public class EmailUserActivity extends Job {
 
 
