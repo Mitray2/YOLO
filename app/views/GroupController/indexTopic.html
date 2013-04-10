@@ -95,7 +95,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
 </ul>
 #{paginate.controls items:topicMessages /}
 
-#{group.reply topic:topic, group:group, count:topicMessagesCount, action:'/groupcontroller/addmsgtotopic'/}
+#{group.replyViaAjax topic:topic, group:group, count:topicMessagesCount, action:'/groupcontroller/addmsgtotopic'/}
 
 
 <script id="topic-msg-tpl" type="text/x-handlebars-template">

@@ -45,7 +45,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
 </ul>
 #{group.loadMore mainTopic:mainTopic, group:group, topicsCount:topicsCount, isPublic:false/}
 
-#{group.reply topic:mainTopic, group:group, count:mainTopicMsgCount, action:'/groupcontroller/addmsgtomaintopic'/}
+#{group.replyViaAjax topic:mainTopic, group:group, count:mainTopicMsgCount, action:'/groupcontroller/addmsgtomaintopic'/}
 
 <ul class="group-theme-dialog">
 #{list items:mainTopic.messages, as:'msg'}

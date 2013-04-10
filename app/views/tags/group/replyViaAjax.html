@@ -1,0 +1,45 @@
+<script>
+function writeEnabled(isEnabled){
+	if (isEnabled) {
+		$('.answer-expand').show(); 
+		$('.answer-collapse').hide();
+		$('.writeComment').focus();
+	} else {
+		if ($(".writeComment").val() == "") {
+			$('.answer-expand').hide(); 
+			$('.answer-collapse').show();	
+		}
+	}
+	return false;
+}
+$(document).ready(function(){
+    var $msg = $('.writeComment');
+    $msg.autosize({append: "\n"});
+});
+</script>
+
+<div class="answer-collapse">
+	<!--div class="group-theme-dialog-ttl-color">&{'page.team.discuss.total_msgs_in',_count}</div-->
+    <div class="group-theme-dialog-ttl-color">&{'page.team.discuss.msgs_total'} <span class="topic-msgs-counter">${_count}</span> &{'page.team.discuss.msgs_entries'}</div>
+	<ul class="group-theme-dialog-form">
+		<li>
+			<textarea onClick="writeEnabled(true);" placeholder="&{'page.team.discuss.send_msg'}" name="" cols="" rows="1"></textarea>
+		</li>
+	</ul>
+</div>
+
+<div class="answer-expand" style="display: none">
+	<!--div class="group-theme-dialog-ttl-color">&{'page.team.discuss.total_msgs_in',_count}</div-->
+    <div class="group-theme-dialog-ttl-color">&{'page.team.discuss.msgs_total'} <span class="topic-msgs-counter">${_count}</span> &{'page.team.discuss.msgs_entries'}</div>
+	<form id="topicMsgForm" action="${_action}" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" onsubmit="return false;">
+	<input name="topicId" value="${_topic?.id}" type="hidden"> 
+    <input name="groupId" value="${_group?.id}" type="hidden">
+	<ul class="group-theme-dialog-form">
+		<li>
+			#{avatar.avatar user:utils.SessionHelper.getCurrentUser(session), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
+			<textarea class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);" placeholder="&{'page.team.discuss.send_msg'}" name="message" cols="" rows="2"></textarea>
+			<button id="topicMsgSubmit" type="submit" class="group-theme-btn">&{'page.team.discuss.send'}</button>
+		</li>
+	</ul>
+	</form>
+</div>
