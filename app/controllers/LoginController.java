@@ -222,7 +222,11 @@ public class LoginController extends BasicController implements ApplicationConst
 
 	public static void blankForm() {
 		User user = SessionHelper.getCurrentUser(session);
-		render(user);
+        if(user != null){
+		    render(user);
+        } else {
+          ApplicationController.index();
+        }
 	}
 
 	public static void blankFormPassed(User user) {

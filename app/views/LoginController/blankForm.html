@@ -5,7 +5,7 @@
 }%
 <h1>&{'page.blankform.head', user?.name}</h1>
 #{form @LoginController.blankFormPassed()}
-	<input type="hidden" name="user.id" value="${user.id}">
+	<input type="hidden" name="user.id" value="${user?.id}">
 	<div class="test">
 		<h3 class="profile-ttl">&{'page.blankform.personal_data'}</h3>
 		#{ifErrors}
