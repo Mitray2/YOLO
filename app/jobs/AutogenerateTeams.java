@@ -66,10 +66,10 @@ public class AutogenerateTeams extends Job {
 
                 // then FOR EACH NEW TEAM
                 for (int i = 0; i < newTeamsCount; i++) {
-                    final String teamName = String.format("NewTeam %d", Command.count() + 1); //TODO i18n team name
+                    final String teamName = String.format("NewTeam %d", Command.getMaxId() + 1); //TODO i18n team name
 
                     // 4. pick up users for new team
-                    final int startPos = (i / TEAM_MEMBERS_COUNT) * TEAM_MEMBERS_COUNT;
+                    final int startPos = i * TEAM_MEMBERS_COUNT;
                     final int endPos = Math.min(startPos + TEAM_MEMBERS_COUNT, countryUsers.size());
                     List<User> newTeamUsers = countryUsers.subList(startPos, endPos);
 

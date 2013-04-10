@@ -1,26 +1,19 @@
 package models;
 
-import static utils.ApplicationConstants.*;
+import org.hibernate.annotations.Formula;
+import play.cache.EhCacheImpl;
+import play.data.validation.MaxSize;
+import play.data.validation.Required;
+import play.db.jpa.JPA;
+import play.db.jpa.JPABase;
+import play.db.jpa.Model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.Formula;
-
-import play.cache.EhCacheImpl;
-import play.data.validation.MaxSize;
-import play.data.validation.Required;
-import play.db.jpa.JPABase;
-import play.db.jpa.Model;
+import static utils.ApplicationConstants.CACHE_COMMANDS_COUNT;
 
 @Entity
 public class Command extends Model {
@@ -298,5 +291,9 @@ public class Command extends Model {
 		EhCacheImpl.getInstance().delete(CACHE_COMMANDS_COUNT);
 		return super.save();
 	}
+
+    public static Long getMaxId(){
+        return JPA.em().createQuery("select max(c.id) from Command c", Long.class).getSingleResult();
+    }
 
 }
