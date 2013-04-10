@@ -7,6 +7,7 @@ import notifiers.Mails;
 import play.db.jpa.JPA;
 import play.modules.paginate.ModelPaginator;
 import play.mvc.Before;
+import play.mvc.Catch;
 import utils.ApplicationConstants;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
@@ -20,7 +21,7 @@ public class GroupController extends BasicController implements ApplicationConst
 
 
 
-  //@Catch(value = Throwable.class, priority = 1)
+  @Catch(value = Throwable.class, priority = 1)
   public static void onError(Throwable throwable) {
     User user = User.findById(SessionHelper.getCurrentUser(session).id);
     if (user.command != null) {

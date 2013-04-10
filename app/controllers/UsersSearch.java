@@ -6,7 +6,6 @@ import modelDTO.MemberSearchDTO;
 import models.User;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
-import play.Logger;
 import play.i18n.Messages;
 import play.modules.paginate.ValuePaginator;
 import play.mvc.Before;
@@ -129,7 +128,7 @@ public class UsersSearch extends AbstractSearch {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		for (User user : usersOriginal) {
 			if (user.country != null) {
-                Logger.debug("found user: " + user.id);
+                //Logger.debug("found user: " + user.id);
 				Map<String, Object> user_search = new HashMap<String, Object>();
 
 				user_search.put("lastSeen", DateUtils.getFormatedStringDate(user.lastSeen, true));
