@@ -3,17 +3,14 @@ package controllers;
 import modelDTO.UserSkillDTO;
 import models.*;
 import notifiers.Mails;
-import play.Logger;
-import play.db.jpa.JPA;
-import play.i18n.Messages;
 import play.mvc.Before;
 import utils.ApplicationConstants;
-import utils.SecurityHelper;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
 
-import javax.persistence.Query;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class UserController extends BasicController  implements ApplicationConstants {
 
@@ -63,6 +60,10 @@ public class UserController extends BasicController  implements ApplicationConst
 
 	public static void editSkill(UserSkillDTO currentUser) {
 		User user = User.findById(SessionHelper.getCurrentUser(session).getId());
+
+        if(currentUser == null) {
+            index(user.id);
+        }
 
 		// validation.maxSize("currentUser.expMarketing",
 		// currentUser.expMarketing.description,

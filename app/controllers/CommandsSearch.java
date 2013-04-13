@@ -1,11 +1,14 @@
 package controllers;
 
 import com.google.gson.GsonBuilder;
+import controllers.search.Searcher;
+import controllers.search.TeamSearcher;
 import modelDTO.GroupSearchDTO;
 import models.Command;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import play.i18n.Messages;
+import play.mvc.Controller;
 import utils.ApplicationConstants;
 import utils.DateUtils;
 import utils.SessionHelper;
@@ -15,92 +18,78 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CommandsSearch extends AbstractSearch {
+import static controllers.search.Searcher.Operation.*;
+
+public class CommandsSearch extends Controller {
 	
 	public static void groupSearchAjax() {
+        final Searcher searcher = new TeamSearcher();
+
 		GroupSearchDTO group = new GsonBuilder().create().fromJson(request.params.get("body"), GroupSearchDTO.class);
-		Integer currentPage = Integer.valueOf(request.params.get("page"));
 		
-		statement = "select distinct c from Command c left join c.country as cc " + "left join c.type as type " + "left join c.sphere as s " + "left join c.marketing as m "
+		
+		searcher.setStatement("select distinct c from Command c left join c.country as cc " + "left join c.type as type " + "left join c.sphere as s " + "left join c.marketing as m "
 				+ "left join c.management as man " + "left join c.trade as t "
 				+ "left join c.finance as f " + "left join c.legal as l " + "left join c.programming as pr " + "left join c.otherSkill as other "
-				+ "left join c.phase as phs ";
-		
-		queryParams = new ArrayList<Object>();
-		
+				+ "left join c.phase as phs ");
+
 		if (group != null) {
-			where = new StringBuilder();
 
 			if (StringUtils.isNotEmpty(group.vacancy)) {
-				if (group.vacancy.equals("true")) {
-					appendParam(true, "c.isVacancy", where, EQUAL, queryParams);
-				} else {
-					appendParam(false, "c.isVacancy", where, EQUAL, queryParams);
-				}
+                searcher.addParam("c.isVacancy", EQUAL, group.vacancy.equals("true"));
 			}
-			String sCity = group.city + "%";
-			appendParam(group.avgAgeMin, "c.middleAge", where, MORE, queryParams);
-			appendParam(group.avgAgeMax, "c.middleAge", where, LESS, queryParams);
-			appendParam(group.usersMin, "c.countUser", where, MORE, queryParams);
-			appendParam(group.usersMax, "c.countUser", where, LESS, queryParams);
-			appendParam(group.country, "cc.name", where, EQUAL, queryParams);
-			appendParam(sCity, "c.city", where, LIKE, queryParams);
-			appendParam(group.bissnessType, "type.name", where, EQUAL, queryParams);
-			appendParam(group.bissnessSphere, "s.name", where, EQUAL, queryParams);
+			searcher.addParam("c.middleAge", MORE, group.avgAgeMin);
+			searcher.addParam("c.middleAge", LESS, group.avgAgeMax);
+			searcher.addParam("c.countUser", MORE, group.usersMin);
+			searcher.addParam("c.countUser", LESS, group.usersMax);
+			searcher.addParam("cc.name", EQUAL, group.country);
+			searcher.addParam("c.city", LIKE, group.city + "%");
+			searcher.addParam("type.name", EQUAL, group.bissnessType);
+			searcher.addParam("s.name", EQUAL, group.bissnessSphere);
 			if (StringUtils.isNotEmpty(group.marketing)) {
-				appendParam(BooleanUtils.toBoolean(group.marketing), "m.active", where, EQUAL, queryParams);
+				searcher.addParam("m.active", EQUAL, BooleanUtils.toBoolean(group.marketing));
 			}
 			if (StringUtils.isNotEmpty(group.sale)) {
-				appendParam(BooleanUtils.toBoolean(group.sale), "t.active", where, EQUAL, queryParams);
+				searcher.addParam("t.active", EQUAL, BooleanUtils.toBoolean(group.sale));
 			}
 			if (StringUtils.isNotEmpty(group.management)) {
-				appendParam(BooleanUtils.toBoolean(group.management), "man.active", where, EQUAL, queryParams);
+				searcher.addParam("man.active", EQUAL, BooleanUtils.toBoolean(group.management));
 			}
 			if (StringUtils.isNotEmpty(group.finance)) {
-				appendParam(BooleanUtils.toBoolean(group.finance), "f.active", where, EQUAL, queryParams);
+				searcher.addParam("f.active", EQUAL, BooleanUtils.toBoolean(group.finance));
 			}
 			if (StringUtils.isNotEmpty(group.legal)) {
-				appendParam(BooleanUtils.toBoolean(group.legal), "l.active", where, EQUAL, queryParams);
+				searcher.addParam("l.active", EQUAL, BooleanUtils.toBoolean(group.legal));
 			}
 			if (StringUtils.isNotEmpty(group.it)) {
-				appendParam(BooleanUtils.toBoolean(group.it), "pr.active", where, EQUAL, queryParams);
+				searcher.addParam("pr.active", EQUAL, BooleanUtils.toBoolean(group.it));
 			}
 			if (StringUtils.isNotEmpty(group.other)) {
-				appendParam(BooleanUtils.toBoolean(group.other), "other.active", where, EQUAL, queryParams);
+				searcher.addParam("other.active", EQUAL, BooleanUtils.toBoolean(group.other));
 			}
-			
 			if (StringUtils.isNotEmpty(group.global)) {
-				appendParam(BooleanUtils.toBoolean(group.global), "c.global", where, EQUAL, queryParams);
+				searcher.addParam("c.global", EQUAL, BooleanUtils.toBoolean(group.global));
 			}
-			appendParam(group.bmanMin, "c.businessman", where, MORE, queryParams);
-			appendParam(group.bmanMax, "c.businessman", where, LESS, queryParams);
-			appendParam(group.idealMin, "c.idealist", where, MORE, queryParams);
-			appendParam(group.idealMax, "c.idealist", where, LESS, queryParams);
-			appendParam(group.comutMin, "c.communicant", where, MORE, queryParams);
-			appendParam(group.comutMax, "c.communicant", where, LESS, queryParams);
-			appendParam(group.pragmatMin, "c.pragmatist", where, MORE, queryParams);
-			appendParam(group.pragmatMax, "c.pragmatist", where, LESS, queryParams);
-			appendParam(group.phase, "phs.name", where, EQUAL, queryParams);
-			statement += where.toString();
+			searcher.addParam("c.businessman", MORE, group.bmanMin);
+			searcher.addParam("c.businessman", LESS, group.bmanMax);
+			searcher.addParam("c.idealist", MORE, group.idealMin);
+			searcher.addParam("c.idealist", LESS, group.idealMax);
+			searcher.addParam("c.communicant", MORE, group.comutMin);
+			searcher.addParam("c.communicant", LESS, group.comutMax);
+			searcher.addParam("c.pragmatist", MORE, group.pragmatMin);
+			searcher.addParam("c.pragmatist", LESS, group.pragmatMax);
+			searcher.addParam("phs.name", EQUAL, group.phase);
 		}
-		StringBuilder orderBy = new StringBuilder();
 
-		if (group != null) {
-			if (group.orderBy != null) {
-				orderBy.append(" ORDER BY ");
-				orderBy.append(sortOrders.get(group.orderBy));
-				if (group.asc) {
-					orderBy.append(" asc");
-				} else {
-					orderBy.append(" desc");
-				}
-			}
+		if (group != null && group.orderBy != null) {
+            searcher.setOrder(TeamSearcher.sortOrders.get(group.orderBy), group.asc);
 		}
-		
-		statement += orderBy.toString();
-		List<Command> groups = Command.find(statement, queryParams.toArray()).fetch(currentPage, ApplicationConstants.SEARCH_COUNT_ON_PAGE);
 
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        Integer currentPage = Integer.valueOf(request.params.get("page"));
+		List<Command> groups = Command.find(searcher.getFullQuery(), searcher.getQueryParams().toArray())
+                                      .fetch(currentPage, ApplicationConstants.SEARCH_COUNT_ON_PAGE);
+
+		List<Map<String, Object>> foundTeams = new ArrayList<Map<String, Object>>();
 		for (Command command : groups) {
 			if (command.country != null) {
 				Map<String, Object> group_search = new HashMap<String, Object>();
@@ -150,18 +139,19 @@ public class CommandsSearch extends AbstractSearch {
 				group_search.put("other", command.otherSkill.active);
 				group_search.put("other_desc", command.otherSkill.descrition == null ? "" : command.otherSkill.descrition);
 				
-				list.add(group_search);
+				foundTeams.add(group_search);
 			}
 
 		}
 		GroupsSearchAjaxResult result = new GroupsSearchAjaxResult();
-		result.groups = list;
+		result.groups = foundTeams;
 		if (groups.isEmpty()){
 			result.pagesCount = currentPage;
 		}
 		else{
 			result.pagesCount = currentPage + 1;
 		}
+
 		renderJSON(result);
 	}
 	
@@ -169,50 +159,9 @@ public class CommandsSearch extends AbstractSearch {
         if(SessionHelper.getCurrentUser(session) == null) {
             ApplicationController.index();
         }
-
-		if (!sortOrders.isEmpty()){
-			String search = sortOrders.get("search");
-			if (!search.equals("group")){
-				sortOrders.clear();
-				addsortOrder();
-			}
-		}
-		else{
-			addsortOrder();
-		}
-		
-		
 		render();
 	}
-	
-	protected static void addsortOrder(){
-		sortOrders.put("search", "group");
-		
-		sortOrders.put("country", "cc.name");
-		sortOrders.put("city", "c.city");
-		sortOrders.put("name", "c.name");
-		sortOrders.put("age", "c.middleAge");
-		sortOrders.put("global", "c.global");
-		
-		sortOrders.put("count", "c.countUser");
-		sortOrders.put("predpr", "c.businessman");
-		sortOrders.put("ideal", "c.idealist");
-		sortOrders.put("communic", "c.communicant");
-		sortOrders.put("pragmatic", "c.pragmatist");
-		sortOrders.put("businessType", "type.name");
-		sortOrders.put("businessSphere", "s.name");
-		sortOrders.put("phase", "phs.name");
 
-		sortOrders.put("marketing", "m.active");
-		sortOrders.put("sale", "t.active");
-		sortOrders.put("management", "man.active");
-		sortOrders.put("finance", "f.active");
-		sortOrders.put("right", "l.active");
-		sortOrders.put("it", "pr.active");
-		sortOrders.put("more", "other.active");
-		sortOrders.put("lastSeen", "c.lastSeen");
-	}
-	
 	public static class GroupsSearchAjaxResult {
 		public List<Map<String, Object>> groups;
 		public Integer pagesCount; 

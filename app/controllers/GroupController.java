@@ -4,6 +4,7 @@ import modelDTO.CommandDTO;
 import modelDTO.SimpleTopicMessage;
 import models.*;
 import notifiers.Mails;
+import play.Logger;
 import play.db.jpa.JPA;
 import play.modules.paginate.ModelPaginator;
 import play.mvc.Before;
@@ -22,7 +23,9 @@ public class GroupController extends BasicController implements ApplicationConst
 
 
   @Catch(value = Throwable.class, priority = 1)
-  public static void onError(Throwable throwable) {
+  public static void onError(Throwable e) {
+      Logger.error(e, "[GroupCTR] %s", e.getMessage());
+
     User user = User.findById(SessionHelper.getCurrentUser(session).id);
     if (user.command != null) {
       index(user.command.id);

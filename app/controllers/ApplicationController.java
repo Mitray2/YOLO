@@ -2,7 +2,9 @@ package controllers;
 
 import models.Command;
 import models.User;
+import play.Logger;
 import play.cache.EhCacheImpl;
+import play.mvc.Catch;
 import utils.RssHelper;
 import utils.SessionHelper;
 
@@ -10,6 +12,18 @@ import static utils.ApplicationConstants.CACHE_COMMANDS_COUNT;
 import static utils.ApplicationConstants.CACHE_USERS_COUNT;
 
 public class ApplicationController extends BasicController {
+
+    @Catch(value = Throwable.class, priority = 1)
+    public static void onError(Throwable e) {
+        Logger.error(e, "[AppCTR] %s", e.getMessage());
+
+        User user = User.findById(SessionHelper.getCurrentUser(session).id);
+        if (user != null) {
+            UserController.index(user.id);
+        } else {
+            ApplicationController.index();
+        }
+    }
 
     public static void index() {
      // boolean validBeta = false;

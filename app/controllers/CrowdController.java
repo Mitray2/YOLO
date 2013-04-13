@@ -1,31 +1,36 @@
 package controllers;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Query;
-
-import org.apache.commons.lang.StringUtils;
-
 import models.CrowdConsulting;
 import models.CrowdDeveloping;
 import models.Post;
-import models.Topic;
-import models.TopicMessage;
 import models.User;
+import play.Logger;
 import play.db.jpa.JPA;
-import play.i18n.Lang;
-import play.mvc.Before;
-import play.mvc.Controller;
-import play.mvc.Http.Cookie;
+import play.mvc.Catch;
 import utils.ApplicationConstants;
 import utils.LangUtils;
 import utils.SessionHelper;
 
+import javax.persistence.Query;
+import java.util.Date;
+import java.util.List;
+
 public class CrowdController extends BasicController implements ApplicationConstants {
 
 	private static final String FUNDING_LANG = "fundingLang";
-	
+
+    @Catch(value = Throwable.class, priority = 1)
+    public static void onError(Throwable e) {
+        Logger.error(e, "[CrowdCTR] %s", e.getMessage());
+
+        User user = User.findById(SessionHelper.getCurrentUser(session).id);
+        if (user != null) {
+            UserController.index(user.id);
+        } else {
+            ApplicationController.index();
+        }
+    }
+
 	public static void funding(String lang) {
 		String newsLang = LangUtils.getNewsLang(lang, request, response, FUNDING_LANG);
 		Integer langId = LangUtils.langToId(newsLang);
