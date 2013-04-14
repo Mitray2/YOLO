@@ -8,7 +8,6 @@ import modelDTO.MemberSearchDTO;
 import models.User;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
-import play.Logger;
 import play.i18n.Messages;
 import play.modules.paginate.ValuePaginator;
 import play.mvc.Before;
@@ -23,6 +22,8 @@ import static controllers.search.Searcher.ITEMS_PER_PAGE;
 import static controllers.search.Searcher.Operation.*;
 
 public class UsersSearch extends Controller {
+
+    //private static final Logger log = play.Logger.log4j;
 
     @Before
     public static void checkSecurity() {
@@ -87,8 +88,6 @@ public class UsersSearch extends Controller {
             }
 
             if (member.inCommand != null) {
-                Logger.info("in command: %s", member.inCommand.equals("true"));
-
                 if (member.inCommand.equals("true")) {
                     searcher.addParam("u.command", IS_NOT_NULL, null);
                 }

@@ -3,7 +3,7 @@
  */
 package models;
 
-import play.cache.EhCacheImpl;
+import play.cache.Cache;
 import play.data.validation.Email;
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
@@ -143,13 +143,13 @@ public class User extends Model {
 
 	@Override
 	public <T extends JPABase> T delete() {
-		EhCacheImpl.getInstance().delete(CACHE_USERS_COUNT);
+		Cache.delete(CACHE_USERS_COUNT);
 		return super.delete();
 	}
 	
 	@Override
 	public <T extends JPABase> T save() {
-		EhCacheImpl.getInstance().delete(CACHE_USERS_COUNT);
+        Cache.delete(CACHE_USERS_COUNT);
 		return super.save();
 	}
 

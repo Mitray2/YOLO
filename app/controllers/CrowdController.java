@@ -23,7 +23,7 @@ public class CrowdController extends BasicController implements ApplicationConst
     public static void onError(Throwable e) {
         Logger.error(e, "[CrowdCTR] %s", e.getMessage());
 
-        User user = User.findById(SessionHelper.getCurrentUser(session).id);
+        User user = SessionHelper.getCurrentUser(session);
         if (user != null) {
             UserController.index(user.id);
         } else {

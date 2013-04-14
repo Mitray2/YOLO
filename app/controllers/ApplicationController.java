@@ -2,9 +2,7 @@ package controllers;
 
 import models.Command;
 import models.User;
-import play.Logger;
-import play.cache.EhCacheImpl;
-import play.mvc.Catch;
+import play.cache.Cache;
 import utils.RssHelper;
 import utils.SessionHelper;
 
@@ -13,17 +11,17 @@ import static utils.ApplicationConstants.CACHE_USERS_COUNT;
 
 public class ApplicationController extends BasicController {
 
-    @Catch(value = Throwable.class, priority = 1)
+    /*@Catch(value = Throwable.class, priority = 1)
     public static void onError(Throwable e) {
         Logger.error(e, "[AppCTR] %s", e.getMessage());
 
-        User user = User.findById(SessionHelper.getCurrentUser(session).id);
+        User user = SessionHelper.getCurrentUser(session);
         if (user != null) {
             UserController.index(user.id);
         } else {
-            ApplicationController.index();
+            error();
         }
-    }
+    }*/
 
     public static void index() {
      // boolean validBeta = false;
@@ -36,15 +34,15 @@ public class ApplicationController extends BasicController {
             UserController.index(user.id);
         } else {
             user = new User();
-            Long usersCount = (Long) EhCacheImpl.getInstance().get(CACHE_USERS_COUNT);
+            Long usersCount = (Long) Cache.get(CACHE_USERS_COUNT);
             if (usersCount == null) {
                 usersCount = User.count();
-                EhCacheImpl.getInstance().add(CACHE_USERS_COUNT, usersCount, 60 * 60);
+                Cache.add(CACHE_USERS_COUNT, usersCount, "1h");
             }
-            Long commandsCount = (Long) EhCacheImpl.getInstance().get(CACHE_COMMANDS_COUNT);
+            Long commandsCount = (Long) Cache.get(CACHE_COMMANDS_COUNT);
             if (commandsCount == null) {
                 commandsCount = Command.count();
-                EhCacheImpl.getInstance().add(CACHE_COMMANDS_COUNT, commandsCount, 60 * 60);
+                Cache.add(CACHE_COMMANDS_COUNT, commandsCount, "1h");
             }
             render(user, usersCount, commandsCount /*, validBeta*/);
         }

@@ -26,7 +26,7 @@ public class GroupController extends BasicController implements ApplicationConst
   public static void onError(Throwable e) {
       Logger.error(e, "[GroupCTR] %s", e.getMessage());
 
-    User user = User.findById(SessionHelper.getCurrentUser(session).id);
+    User user = SessionHelper.getCurrentUser(session);
     if (user.command != null) {
       index(user.command.id);
     } else {

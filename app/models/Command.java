@@ -1,7 +1,7 @@
 package models;
 
 import org.hibernate.annotations.Formula;
-import play.cache.EhCacheImpl;
+import play.cache.Cache;
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
 import play.db.jpa.JPA;
@@ -282,13 +282,13 @@ public class Command extends Model {
 	
 	@Override
 	public <T extends JPABase> T delete() {
-		EhCacheImpl.getInstance().delete(CACHE_COMMANDS_COUNT);
+		Cache.delete(CACHE_COMMANDS_COUNT);
 		return super.delete();
 	}
 	
 	@Override
 	public <T extends JPABase> T save() {
-		EhCacheImpl.getInstance().delete(CACHE_COMMANDS_COUNT);
+        Cache.delete(CACHE_COMMANDS_COUNT);
 		return super.save();
 	}
 
