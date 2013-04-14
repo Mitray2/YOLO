@@ -2,7 +2,9 @@ package utils;
 
 import models.User;
 
-public class SessionData {
+import java.io.Serializable;
+
+public class SessionData implements Serializable {
 
     public User user;
 

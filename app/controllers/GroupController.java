@@ -625,7 +625,7 @@ public class GroupController extends BasicController implements ApplicationConst
     currentUser.save();
     user.role = User.ROLE_GROUP_ADMIN;
     user.save();
-    SessionHelper.updateUser(user);
+    SessionHelper.updateUser(session, user);
     SessionHelper.setCurrentUser(session, currentUser);
     index(user.command.id);
   }
