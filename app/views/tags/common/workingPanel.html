@@ -12,6 +12,7 @@
     }
     newMessages = controllers.MessageController.getUserNewMessages(currentUser?.id,null,0);
 }%
+<span id="msg-sound"></span>
 *{TODO make better!}*
 #{if !(currentUser?.role == models.User.ROLE_INPERFECT_USER || currentUser?.role == models.User.ROLE_WITHOUT_BLANK)}
     <div class="logged clearFix">

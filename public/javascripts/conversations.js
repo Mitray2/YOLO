@@ -20,6 +20,7 @@ Dynamics.Dialogs = Dynamics.Dialogs || {
                     url: '/'+userId+'/talks/new?userToTalkId=' + (otherUserId ? otherUserId : '') + '&time=' + _lastTime,
                     success: function (data) {
                         if(data.length) {
+                            Utils.playSound("/public/sounds/CLACK.WAV");
                             if(fnUpdate) fnUpdate(data);
                             _lastTime = data[data.length-1].time;
                         }
@@ -42,6 +43,7 @@ Dynamics.Topics = Dynamics.Topics || {
                     url: '/groupcontroller/getnewtopicmessages?topicId=' + topicId + '&time=' + _lastTime,
                     success: function (data) {
                         if(data.length) {
+                            Utils.playSound("/public/sounds/CLACK.WAV");
                             if(fnUpdate) fnUpdate(data);
                             _lastTime = data[data.length-1].time;
                         }
@@ -100,6 +102,10 @@ var Utils = {
     },
     limitTo: function(str,maxLen) {
         return str.length > maxLen ? str.substr(0,maxLen) + "\n..." : str;
+    },
+    playSound: function(sound){
+        document.getElementById("msg-sound").innerHTML='<embed src="'+sound+'" hidden="true" autostart="true" loop="false" />';
+        return false;
     }
 };
 
