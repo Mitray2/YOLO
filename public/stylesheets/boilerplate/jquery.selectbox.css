@@ -17,7 +17,7 @@
 	border:1px solid #d9d9d9;
 	text-align:left;
 	font:12px/17px Arial, Helvetica, sans-serif;
-	color:#AEA9A9;
+	color:#777; /*OLD-FONT: #AEA9A9*/
 }
 .entry .jquery-selectbox{
 	font: 16px/21px "MyriadPro-Regular", Arial, sans-serif;
@@ -68,7 +68,7 @@
 	-webkit-border-radius:0 0 5px 5px;
   	-moz-border-radius:0 0 5px 5px;
   	border-radius:0 0 5px 5px;
-	color:#AEA9A9;
+    color:#777; /*OLD-FONT: #AEA9A9*/
 }
 .entry .jquery-selectbox .jquery-selectbox-list{
 	top:38px;

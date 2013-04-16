@@ -30,7 +30,7 @@ td{
 /* line 52, ../scss/stl.scss */
 body {
   font: 14px/22px Arial, sans-serif;
-  color: #838383;
+  color: #646464; /*OLD-FONT: #838383 */
   background: white;
 }
 
@@ -528,7 +528,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 /* line 411, ../scss/stl.scss */
 .test .profile label span {
   font: 11px/16px Arial, sans-serif;
-  color: #aea9a9;
+  color:#999;
   display: block;
   margin: 5px 0;
 }
@@ -549,7 +549,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   -webkit-box-shadow: inset #fbfbfb 0 0 5px;
   -moz-box-shadow: inset #fbfbfb 0 0 5px;
   box-shadow: inset #fbfbfb 0 0 5px;
-  color: #aea9a9;
+  color:#999;
 }
 /* line 435, ../scss/stl.scss */
 .test .profile input[type="text"]:focus,
@@ -756,7 +756,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 /* line 565, ../scss/stl.scss */
 .user-block .user-profile .user-name .edit-profile {
   font: 11px/16px Arial, sans-serif;
-  color: #a0a0a0;
+  color: #999; /*OLD-FONT: #a0a0a0*/
   text-decoration:none;
 }
 .user-block .user-profile .user-name .edit-profile:hover{
@@ -1091,7 +1091,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   padding: 7px 0;
   font: 12px/17px Arial, sans-serif;
   margin: 0 9px;
-  color: #aea9a9;
+  color:#999;
 }
 
 /* line 746, ../scss/stl.scss */
@@ -1115,7 +1115,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   -webkit-box-shadow: #7fb9d7 0 0 3px;
   -moz-box-shadow: #7fb9d7 0 0 3px;
   box-shadow: #7fb9d7 0 0 3px;
-  color: #aea9a9;
+  color:#999;
   overflow: hidden;
 }
 
@@ -1179,7 +1179,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .search-form label span {
   font: 11px/16px Arial, sans-serif;
-  color: #aea9a9;
+  color:#999;
   display: block;
   margin: 5px 0;
 }
@@ -1198,7 +1198,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   -webkit-box-shadow: inset #fbfbfb 0 0 5px;
   -moz-box-shadow: inset #fbfbfb 0 0 5px;
   box-shadow: inset #fbfbfb 0 0 5px;
-  color: #aea9a9;
+  color:#999;
 }
 .search-form input[type="text"]:focus,
 .search-form input[type="password"]:focus,
@@ -1471,7 +1471,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .search-result-list .search-profile-links a{
 	display:inline-block;
-	color:#a0a0a0;
+	color:#999;
 	text-decoration:none;
 	margin-bottom:7px;
 }
@@ -1720,7 +1720,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .group-info .group-info-rate-help{
 	font:italic 13px/20px Arial, Helvetica, sans-serif;
-	color:#adadad;
+	color:#999; /*OLD-FONT: adadad*/
 	margin-bottom:11px;
 }
 .group-info .group-info-rate{
@@ -1935,7 +1935,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .group-theme-dialog{
 	font:13px/20px Arial, Helvetica, sans-serif;
-	color:#7d7d7d;
+	color:#777; /*OLD-FONT: 7d7d7d*/
 	margin-bottom:10px;
 }
 .group-theme-dialog li{
@@ -1961,7 +1961,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .group-theme-dialog .group-theme-dialog-name{
 	font:11px/16px Arial, Helvetica, sans-serif;
-	color:#a0a0a0;
+	color:#999;
 	position:relative;
 }
 .group-theme-dialog .group-theme-dialog-name a{
@@ -2008,7 +2008,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .group-theme-dialog-form .group-theme-dialog-name{
 	font:11px/16px Arial, Helvetica, sans-serif;
-	color:#a0a0a0;
+	color:#999;
 }
 .group-theme-dialog-form textarea {
     border: 1px solid #D4D4D4;
@@ -2116,7 +2116,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   top: 0;
   left: 0;
   width: 240px;
-  color: #666;
+  color: #444; /*OLD-FONT: #666;*/
   display: inline-block;
 }
 .profile-form .error label{
@@ -2124,12 +2124,12 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .profile-form label span {
   font: 11px/16px Arial, sans-serif;
-  color: #aea9a9;
+  color:#999;
   display: block;
   margin: 5px 0;
 }
 .profile-form .error label span{
-	color: #aea9a9;
+	color:#999;
 }
 .profile-form .profile-item {
   position: relative;
@@ -2180,7 +2180,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   resize: none;
   line-height:18px;
   font-size:13px;
-  color:#aea9a9;
+  color:#646464; /*OLD-FONT: aea9a9*/
 }
 .profile-form .mt15{
 	margin-top:-15px;
@@ -2274,12 +2274,12 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .create-form label span {
   font: 11px/16px Arial, sans-serif;
-  color: #aea9a9;
+  color:#999;
   display: block;
   margin: 5px 0;
 }
 .create-form .error label span{
-	color: #aea9a9;
+	color:#999;
 }
 .create-form .error .jquery-selectbox{
 	border-color:#bc3030;
@@ -2298,7 +2298,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .create-form .create-item2 label span {
   font: 11px/16px Arial, sans-serif;
-  color: #aea9a9;
+  color:#999;
   display: block;
   margin: 5px 0;
 }
@@ -2360,7 +2360,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   resize: none;
   line-height:18px;
   font-size:13px;
-  color:#aea9a9;
+  color:#999;
 }
 .create-form textarea.dis{
 	background:#fcfcfc;
@@ -2410,7 +2410,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .create-form .group-info-rate-help{
 	font:italic 13px/20px Arial, Helvetica, sans-serif;
-	color:#adadad;
+	color:#999;
 	margin:-5px 0 21px;
 }
 .create-form .fl{
@@ -2829,7 +2829,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 	text-decoration:underline;
 }
 .logged .dialog-popup li span{
-	color:#c6c6c6;
+	color:#999;  /*OLD-FONT: c6c6c6*/
 	margin-left:7px;
 }
 .logged .logged-event{
@@ -2880,7 +2880,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 .logged .event-popup li{
 	border-bottom:1px solid #d4d4d4;
 	font:11px/16px Arial, Helvetica, sans-serif;
-	color:#7d7d7d;
+	color:#7d7d7d; /*OLD-FONT: 7d7d7d*/
 	padding:10px 14px 11px;
 }
 .logged .event-popup li p{
@@ -2948,7 +2948,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .dialogs .dialogs-item div span{
 	float:right;
-	color:#c6c6c6;
+	color:#999; /*OLD-FONT: c6c6c6*/
 	font:11px/16px Arial, Helvetica, sans-serif;
 }
 .dialogs .dialogs-item p{
@@ -3041,7 +3041,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 .dialog-head .dialog-delete{
 	float:right;
 	font:11px/24px Arial, Helvetica, sans-serif;
-	color:#7d7d7d;
+	color:#646464;
 }
 .dialog-wrap{
     margin: 0 -30px 20px -30px;
@@ -3089,7 +3089,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 .dialog .dialog-item div a{
 	float:left;
 	font:bold 11px/16px Arial, Helvetica, sans-serif;
-	color:#7d7d7d;
+	color:#444; /*OLD-FONT: 7d7d7d*/
 	text-decoration:none;
 }
 .dialog .dialog-item div a:hover{
@@ -3097,7 +3097,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .dialog .dialog-item div span{
 	float:right;
-	color:#c6c6c6;
+	color:#999; /*OLD-FONT: c6c6c6*/
 	font:11px/16px Arial, Helvetica, sans-serif;
 }
 .dialog .dialog-item p{
@@ -3112,7 +3112,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 	-webkit-box-shadow: inset #fbfbfb 0 0 5px;
 	-moz-box-shadow: inset #fbfbfb 0 0 5px;
 	box-shadow: inset #fbfbfb 0 0 5px;
-	color: #aea9a9;
+	color: #646464; /*OLD-FONT: aea9a9*/
 	display: block;
 	width: 493px;
 	height: 20px;
@@ -3230,7 +3230,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 	margin:-4px 0 16px;
 }
 .links a{
-	color:#a0a0a0;
+	color:#999; /*OLD-FONT: a0a0a0*/
 	text-decoration:none;
 	margin-right:17px;
 }

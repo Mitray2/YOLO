@@ -27,10 +27,11 @@ public class GroupController extends BasicController implements ApplicationConst
       Logger.error(e, "[GroupCTR] %s", e.getMessage());
 
     User user = SessionHelper.getCurrentUser(session);
-    if (user.command != null) {
-      index(user.command.id);
-    } else {
+    if (user != null && user.command != null) {
+      //index(user.command.id);
       UserController.index(user.id);
+    } else {
+      ApplicationController.index();
     }
   }
 

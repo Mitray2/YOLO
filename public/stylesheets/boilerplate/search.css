@@ -189,8 +189,8 @@ span.block-clip span.block {
 
 .search-name td a {
 	text-decoration: none;
-	border-bottom: 1px dotted #7b7b7b;
-	color: #7b7b7b;
+	border-bottom: 1px dotted #444;
+	color: #444; /*OLD-FONT: 7b7b7b */
 }
 
 .sort {
@@ -927,7 +927,7 @@ span.block-clip span.block {
 }
 
 .private_form label{
-    color: #a1a1a1;
+    color: #777; /*OLD-FONT: a1a1a1*/
 	font: 12px/16px Arial,sans-serif;
 	text-align: left;
 	display: block;
