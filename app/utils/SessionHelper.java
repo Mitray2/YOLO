@@ -77,15 +77,15 @@ public class SessionHelper {
   }
 
 	private static void checkInitialised(Session session) {
-        final String sessionId = session.get(SESSION_ID);
-		if (sessionId == null) {
+		if (session.get(SESSION_ID) == null) {
 			String newSessionId = SessionHelper.generateSessionId();
-			session.put(SessionHelper.SESSION_ID, newSessionId);
+			session.put(SESSION_ID, newSessionId);
 		}
 		/*if (sessionStore.get(session.get(SESSION_ID)) == null) {
 			sessionStore.put(session.get(SESSION_ID), new SessionData());
 		}*/
 
+        final String sessionId = session.get(SESSION_ID);
         if (getSessionData(sessionId) == null) {
             setSessionData(sessionId, new SessionData());
         }
