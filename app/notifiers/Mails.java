@@ -2,6 +2,7 @@ package notifiers;
 
 import modelDTO.UserActivity;
 import models.Command;
+import models.Message;
 import models.Post;
 import models.User;
 import play.Logger;
@@ -165,10 +166,26 @@ public class Mails extends Mailer {
 	// send(errorMessage);
 	// }
 
+    public static void unreadMessage(Message newMessage) {
+        User user = newMessage.to;
+        String userLang = user.preferredLang;
+
+        setSubject(String.format("%s %s %s", Messages.getMessage(userLang, "mail.subject.unread.message"),
+                user.name, user.lastName));
+        setRecipients(user);
+        setFrom(EMAIL_FROM);
+
+        if("ru".equals(userLang)){
+            send("Mails/ru/unreadMessage", user, newMessage);
+        } else {
+            send(user, newMessage);
+        }
+    }
+
     public static void recentUserActivity(User user, UserActivity activity) {
         String userLang = user.preferredLang;
 
-        setSubject(Messages.getMessage(userLang, "mail.subject.unread.messages"));
+        setSubject(Messages.getMessage(userLang, "mail.subject.daily.recap"));
         setRecipients(user);
         setFrom(EMAIL_FROM);
 

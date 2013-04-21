@@ -1,13 +1,12 @@
 package models;
 
-import java.util.Date;
+import play.data.validation.MaxSize;
+import play.db.jpa.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-
-import play.data.validation.MaxSize;
-import play.db.jpa.Model;
+import java.util.Date;
 
 @Entity
 public class Message extends Model{
@@ -25,6 +24,7 @@ public class Message extends Model{
 	public User to;
 
 	public boolean isRead;
+	public boolean isSent;
 
 	public long deletedBy;
 }

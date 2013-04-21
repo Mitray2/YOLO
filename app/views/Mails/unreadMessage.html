@@ -1,0 +1,18 @@
+<html>
+	<body>
+		<p>
+            Hello, ${user.name}!
+            <br/>
+            <br/>
+            ${newMessage.from.name} ${newMessage.from.lastName} wrote you a message:<br/>
+            <blockquote>${newMessage.text}</blockquote>
+            <br/>
+            <br/>
+            Entrepreneurally yours, <br/>
+            <a href="${notifiers.Mails.BASE_URL}">StartNewTeam</a>
+            <br/>
+            <hr/>
+            <small>If you don't want to receive this kind of notifications you can easily switch them off on <a href="@{SettingsController.settings()}">'Settings'</a> page of your profile.</small>
+		</p>
+	</body>
+</html>

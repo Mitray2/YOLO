@@ -5,7 +5,7 @@ NotificationType(NotificationType_2):
     name:         Platform news
     
 NotificationType(NotificationType_3):
-    name:         Group activity
+    name:         Daily recap
 
 NotificationType(NotificationType_4):
     name:         Reminders

@@ -1,0 +1,18 @@
+<html>
+	<body>
+		<p>
+            Добрый день, ${user.name}!
+            <br/>
+            <br/>
+            ${newMessage.from.name} ${newMessage.from.lastName} написал вам сообщение:<br/>
+            <blockquote>${newMessage.text}</blockquote>
+            <br/>
+            <br/>
+            С пожеланием бизнес-успехов,<br/>
+            команда <a href="${notifiers.Mails.BASE_URL}">StartNewTeam</a>
+            <br/>
+            <hr/>
+            <small>Если Вы не хотите получать данные уведомления, Вы можете отключить их на странице <a href="@{SettingsController.settings()}">'Настройки'</a> вашего профиля.</small>
+		</p>
+	</body>
+</html>
