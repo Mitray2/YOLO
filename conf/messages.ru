@@ -12,6 +12,10 @@ common.login.error.email_format_invalid=Неверный формат email.
 common.login.password_sended=Новый пароль выслан на указанный email.
 common.post.read.more=Читать далее
 
+common.status.online=На сайте
+common.status.away=Почти тут
+common.status.offline=Не в сети
+
 client.side.password_repair=Восстановление пароля
 client.side.system_enter=Вход на сайт
 client.side.need_participants=Требуются участники

@@ -113,6 +113,7 @@ public class UsersSearch extends Controller {
                 Map<String, Object> user_search = new HashMap<String, Object>();
 
                 user_search.put("lastSeen", DateUtils.getFormatedStringDate(user.lastSeen, true));
+                user_search.put("onlineStatus", user.onlineStatus);
                 user_search.put("id", user.id);
                 user_search.put("lastName", user.lastName);
                 user_search.put("name", user.name);

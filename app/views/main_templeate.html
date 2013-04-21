@@ -30,13 +30,14 @@
 </head>
 <body>
 %{
-	boolean groupAdmin = utils.SessionHelper.getCurrentUser(session).role == models.User.ROLE_GROUP_ADMIN;
-	boolean groupMember = !groupAdmin && (utils.SessionHelper.getCurrentUser(session).command != null);
-	boolean notInGroup = utils.SessionHelper.getCurrentUser(session).command == null;
-    models.Command commandToInvite = utils.SessionHelper.getCurrentUser(session)?.commandToInvite;
+    user = utils.SessionHelper.getCurrentUser(session);
+	boolean groupAdmin = user?.role == models.User.ROLE_GROUP_ADMIN;
+	boolean groupMember = !groupAdmin && (user?.command != null);
+	boolean notInGroup = user?.command == null;
+    models.Command commandToInvite = user?.commandToInvite;
 	boolean wasInviteToGroup = commandToInvite != null;
-	int countCommands = (models.User.findById(utils.SessionHelper.getCurrentUser(session).id).commandsForAprove == null)? 0 : models.User.findById(utils.SessionHelper.getCurrentUser(session).id).commandsForAprove.size();
-	int countUsers = ((models.User.findById(utils.SessionHelper.getCurrentUser(session).id).command?.usersForAprove == null) || (groupMember)) ? 0 : models.User.findById(utils.SessionHelper.getCurrentUser(session).id).command?.usersForAprove.size();
+	int countCommands = (models.User.findById(user?.id).commandsForAprove == null)? 0 : models.User.findById(user?.id).commandsForAprove.size();
+	int countUsers = ((models.User.findById(user?.id).command?.usersForAprove == null) || (groupMember)) ? 0 : models.User.findById(user?.id).command?.usersForAprove.size();
 	boolean haveGroupOrInviteJoin = groupMember || wasInviteToGroup;
 %}
 	<div class="wrapper inner-page">
@@ -53,11 +54,10 @@
 	<div class="content wrap-inner clearFix">
 		<aside class="user-block">
 			<div class="user-profile">
-				<a href="@{UserController.index(utils.SessionHelper.getCurrentUser(session)?.id)}" class="man">
-					#{avatar.avatar user:utils.SessionHelper.getCurrentUser(session), cssClass:'user-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
+				<a href="@{UserController.index(user?.id)}" class="man">
+					#{avatar.avatar user:user, cssClass:'user-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
 					<div class="user-name">
-						<h3>${utils.SessionHelper.getCurrentUser(session)?.name + " "
-							+ utils.SessionHelper.getCurrentUser(session)?.lastName}</h3>
+						<h3>${user?.name} ${user?.lastName}</h3>
 					</div>
 				</a>
 				<br/>

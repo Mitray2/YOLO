@@ -62,6 +62,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
         <li>
             #{avatar.avatar user:msg.from, cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
             <div class="group-theme-dialog-name">
+                <span class="user-online"><span class="st-${msg.from?.onlineStatus}"></span></span>
                 <a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${utils.DateUtils.getFormatedStringDate(msg.createDate, true)}
                 #{if userId == msg.from.id}
                     <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
@@ -105,6 +106,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
         <img src="/public/images/boilerplate/ava{{#if from.sex}}m{{else}}f{{/if}}.png" alt="" class="group-theme-dialog-pic">
         {{/if}}
         <div class="group-theme-dialog-name">
+            <span class="user-online"><span class="st-{{ from.status }}"></span></span>
             <a href="/{{ from.id }}">{{from.name}} {{from.lastName}}</a> {{formatTime time}}
             {{#ifCond ${userId} from.id 0}}
                 <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>

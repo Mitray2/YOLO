@@ -33,6 +33,7 @@
 				<div class="search-profile-info">
 					<h4 class="search-profile-name"><img src="@{'public/images/boilerplate/ico-man-big.png'}" alt=""><a href="@{UserController.index(user?.id)}">${user.name + " " + user.lastName}</a><span>&{'page.team.members.age'} ${user.age}</span></h4>
 					<p>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.country?.name)} / ${user.city}</p>
+                    <span class="user-online"><span class="st-${user?.onlineStatus}">&{'common.status.' + user?.onlineStatus}</span></span>
 				</div>
 				<ul class="search-profile-test">
 					<li><span>${user.businessman}</span> &mdash; &{'page.edit.team.businessman'}</li>
@@ -86,6 +87,7 @@
 				<div class="search-profile-info">
 					<h4 class="search-profile-name"><img src="@{'public/images/boilerplate/ico-man-big.png'}" alt=""><a href="@{UserController.index(user?.id)}">${user.name + " " + user.lastName}</a><span>&{'page.team.members.age'} ${user.age}</span></h4>
 					<p>${user?.country?.name} / ${user.city}</p>
+                    <span class="user-online"><span class="st-${user?.onlineStatus}">&{'common.status.' + user?.onlineStatus}</span></span>
 				</div>
 				<ul class="search-profile-test">
 					<li><span>${user.businessman}</span> &mdash; &{'page.edit.team.businessman'}</li>

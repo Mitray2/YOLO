@@ -12,6 +12,10 @@ common.login.error.email_format_invalid=Wrong email format
 common.login.password_sended=New password has been sent to your email.
 common.post.read.more=Read more
 
+common.status.online=Online
+common.status.away=Away
+common.status.offline=Offline
+
 client.side.password_repair=Recover password
 client.side.system_enter=Enter to site
 client.side.need_participants=Team members needed

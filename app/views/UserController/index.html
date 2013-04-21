@@ -1,124 +1,124 @@
 #{extends 'main_templeate.html' /} #{set title: user.name + " " + user.lastName /}
 %{
 	boolean currentAdminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN;
-	boolean otherUser = utils.SessionHelper.getCurrentUser(session)?.id != user?.id;
+	boolean isOtherUser = utils.SessionHelper.getCurrentUser(session)?.id != user?.id;
 	boolean groupAdmin = (utils.SessionHelper.getCurrentUser(session)?.id == user?.id) && (utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN);
 	boolean haveGroupOrInviteJoin = (utils.SessionHelper.getCurrentUser(session)?.command != null) || (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null);
 %}
-#{if otherUser}
-<div class="profile-user-name"> 
+#{if isOtherUser}
+<div class="profile-user-name">
+    ${user.name + " " + user.lastName}
+    <em>&{'page.profile.age'} ${user.age}</em>
+    <span class="user-online"><span class="st-${user.onlineStatus}">&{'common.status.' + user.onlineStatus}</span></span>
+    </div>
 
-                    ${user.name + " " + user.lastName}
-                    <em>&{'page.profile.age'} ${user.age}</em>
-                </div>
+    <div class="profile-user-info">
+        #{avatar.avatar user:user, cssClass:'profile-user-info-pic', maleImg:'avabigm.jpg', femaleImg:'avabigf.jpg', avatarSize:123 /}
+        <div><a href="#">&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.country?.name)}</a> / <a href="#">${user?.city}</a></div>
+        <div><span>&{'page.profile.lastseen'}:</span> <em>#{common.formattedDate date:user?.lastSeen /}</em></div>
+        <div><span>&{'page.profile.email'}:</span> #{if user.showEmailForOthers} ${user.email} #{/if} #{else}&{'page.profile.hide_email'}#{/else}</div>
+        <div><span>&{'page.profile.business'}:</span> <a href="#">&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.businessType?.name)}</a> / <a href="#">&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.businessSphere?.name)}</a></div>
+        <div class="profile-user-info-btn">
+            <a href="@{MessageController.talk(user.id,1,0)}">&{'page.profile.sendmsg'}</a>
+            #{if currentAdminGroup}
+                <a href="" onclick="$('.sendNotif').show(); return false;">&{'page.profile.add_to_team'}</a>
+            #{/if}
+        </div>
+        <div class="sendNotif"  style="display: none">
+            <div class="overlay"></div>
+            <div class="popup">
+                <h2>&{'page.profile.add_to_team'}</h2>
+                #{form @GroupController.joinMyGroup()}
+                 <input name="userForJoinId" value="${user.id}" type="hidden">
+                 <input name="groupId" value="${utils.SessionHelper.getCurrentUser(session).command?.id}" type="hidden">
+                 <div class="profile-item clearFix popup-formtxt ">
+                        <textarea name="text" cols="30" rows="5" class="mt15"></textarea>
+                     </div>
+                     <input type="submit" value="&{'page.profile.add_button'}">
+                <a href=""  onclick="$('.sendNotif').hide(); return false;" class="cancel">&{'page.profile.cancel'}</a>
+                #{/form}
+            </div>
+        </div>
+    </div>
+    <div class="user-info-rate clearFix">
+        <div>
+            <strong>${user.businessman}</strong>
+            &{'businessman'}
+        </div>
+        <div>
+            <strong>${user.idealist}</strong>
+            &{'idealist'}
+        </div>
+        <div>
+            <strong>${user.communicant}</strong>
+           &{'communicant'}
+        </div>
+        <div>
+            <strong>${user.pragmatist}</strong>
+             &{'pragmatist'}
+        </div>
+    </div>
 
-                <div class="profile-user-info">
-                	#{avatar.avatar user:user, cssClass:'profile-user-info-pic', maleImg:'avabigm.jpg', femaleImg:'avabigf.jpg', avatarSize:123 /}
-                    <div><a href="#">&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.country?.name)}</a> / <a href="#">${user?.city}</a></div>
-                    <div><span>&{'page.profile.lastseen'}:</span> <em>#{common.formattedDate date:user?.lastSeen /}</em></div>
-                    <div><span>&{'page.profile.email'}:</span> #{if user.showEmailForOthers} ${user.email} #{/if} #{else}&{'page.profile.hide_email'}#{/else}</div>
-                    <div><span>&{'page.profile.business'}:</span> <a href="#">&{'models.bType.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.businessType?.name)}</a> / <a href="#">&{'models.bSphere.name.' + utils.ModelUtils.replaceSpacesForI18n(user?.businessSphere?.name)}</a></div>
-                    <div class="profile-user-info-btn">
-                        <a href="@{MessageController.talk(user.id,1,0)}">&{'page.profile.sendmsg'}</a>
-                        #{if currentAdminGroup}
-                        	<a href="" onclick="$('.sendNotif').show(); return false;">&{'page.profile.add_to_team'}</a>
-                        #{/if}
-                    </div>
-                    <div class="sendNotif"  style="display: none">
-						<div class="overlay"></div>
-						<div class="popup">
-							<h2>&{'page.profile.add_to_team'}</h2>
-							#{form @GroupController.joinMyGroup()}
-							 <input name="userForJoinId" value="${user.id}" type="hidden"> 
-							 <input name="groupId" value="${utils.SessionHelper.getCurrentUser(session).command?.id}" type="hidden"> 
-							 <div class="profile-item clearFix popup-formtxt ">
-								 	<textarea name="text" cols="30" rows="5" class="mt15"></textarea>
-								 </div>
-								 <input type="submit" value="&{'page.profile.add_button'}">
-							<a href=""  onclick="$('.sendNotif').hide(); return false;" class="cancel">&{'page.profile.cancel'}</a>
-							#{/form}
-						</div>
-					</div>
-                </div>
-                <div class="user-info-rate clearFix">
-                    <div>
-                        <strong>${user.businessman}</strong>
-                        &{'businessman'}
-                    </div>
-                    <div>
-                        <strong>${user.idealist}</strong>
-                        &{'idealist'}
-                    </div>
-                    <div>
-                       	<strong>${user.communicant}</strong>
-                       &{'communicant'}
-                    </div>
-                    <div>
-                        <strong>${user.pragmatist}</strong>
-                         &{'pragmatist'}
-                    </div>
-                </div>
+    <div class="user-info-ttl">&{'page.profile.personal_characteristics'}</div>
+    <div class="user-info">
+        <pre>${user.personalCV}</pre>
+    </div>
+    <div class="group-consist-ttl">&{'page.profile.team'}</div>
+    <div class="group-consist">
+        <h4><a href="@{GroupController.index(user.command?.id)}">${user.command?.name}</a></h4>
+        #{if user.command != null}
+        <div class="founder">&{'page.profile.founder'}: <a href="@{UserController.index(user.command?.founderUser?.id)}" class="man">${user.command?.founderUser?.name + " " + user.command?.founderUser?.lastName}</a></div>
+        #{/if}
+    </div>
+    <div class="group-vacancies-ttl">&{'page.profile.prof_skills'}</div>
+    <div class="group-vacancies">
 
-                <div class="user-info-ttl">&{'page.profile.personal_characteristics'}</div>
-                <div class="user-info">
-                    <pre>${user.personalCV}</pre>
-                </div>
-                <div class="group-consist-ttl">&{'page.profile.team'}</div>
-                <div class="group-consist">
-                    <h4><a href="@{GroupController.index(user.command?.id)}">${user.command?.name}</a></h4>
-                    #{if user.command != null}
-                    <div class="founder">&{'page.profile.founder'}: <a href="@{UserController.index(user.command?.founderUser?.id)}" class="man">${user.command?.founderUser?.name + " " + user.command?.founderUser?.lastName}</a></div>
-                    #{/if}
-                </div>
-                <div class="group-vacancies-ttl">&{'page.profile.prof_skills'}</div>
-                <div class="group-vacancies">
-                
-                	<div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">&{'page.profile.en_skill'} <span>&#8594;</span>#{if user.english} &{'page.common.yes'} #{/if} #{else} &{'page.common.no'} #{/else}</div>
-                    </div>
-                    #{if user.expMarketing?.level?.id > 1}
-                	<div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">&{'page.profile.marketing_advertising'} <span>&#8594;</span>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expMarketing?.level?.userLevel)}</div>
-                        <pre>${user?.expMarketing?.description}</pre>
-                    </div>
-                    #{/if}
-                    #{if user.expManagement?.level?.id > 1}
-                    <div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">&{'page.profile.management_experience'} <span>&#8594;</span>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expManagement?.level?.userLevel)}</div>
-                        <pre>${user?.expManagement?.description}</pre>
-                    </div>
-                    #{/if}
-                    #{if user.expSale?.level?.id > 1}
-                    <div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">&{'page.profile.sales_experience'} <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expSale?.level?.userLevel)}</div>
-                        <pre>${user?.expSale?.description}</pre>
-                    </div>
-                    #{/if}
-                    #{if user.expFinance?.level?.id > 1}
-                    <div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">&{'page.profile.finance_experience'}<span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expFinance?.level?.userLevel)}</div>
-                        <pre>${user?.expFinance?.description}</pre>
-                    </div>
-                    #{/if}
-                    #{if user.expLegal?.level?.id > 1}
-                    <div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">&{'page.profile.law_experience'} <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expLegal?.level?.userLevel)}</div>
-                        <pre>${user?.expLegal?.description}</pre>
-                    </div>
-                    #{/if}
-                    #{if user.expIT?.level?.id > 1}
-                    <div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">&{'page.profile.it_experience'} <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expIT?.level?.userLevel)}</div>
-                        <pre>${user?.expIT?.description}</pre>
-                    </div>
-                    #{/if}
-                    #{if user.expOther?.level?.id > 1}
-                    <div class="group-vacancies-item">
-                    	<div class="group-vacancies-name">&{'page.profile.others_experience'} <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expOther?.level?.userLevel)}</div>
-                        <pre>${user?.expOther?.description}</pre>
-                    </div>
-                    #{/if}
-                </div>
+        <div class="group-vacancies-item">
+            <div class="group-vacancies-name">&{'page.profile.en_skill'} <span>&#8594;</span>#{if user.english} &{'page.common.yes'} #{/if} #{else} &{'page.common.no'} #{/else}</div>
+        </div>
+        #{if user.expMarketing?.level?.id > 1}
+        <div class="group-vacancies-item">
+            <div class="group-vacancies-name">&{'page.profile.marketing_advertising'} <span>&#8594;</span>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expMarketing?.level?.userLevel)}</div>
+            <pre>${user?.expMarketing?.description}</pre>
+        </div>
+        #{/if}
+        #{if user.expManagement?.level?.id > 1}
+        <div class="group-vacancies-item">
+            <div class="group-vacancies-name">&{'page.profile.management_experience'} <span>&#8594;</span>&{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expManagement?.level?.userLevel)}</div>
+            <pre>${user?.expManagement?.description}</pre>
+        </div>
+        #{/if}
+        #{if user.expSale?.level?.id > 1}
+        <div class="group-vacancies-item">
+            <div class="group-vacancies-name">&{'page.profile.sales_experience'} <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expSale?.level?.userLevel)}</div>
+            <pre>${user?.expSale?.description}</pre>
+        </div>
+        #{/if}
+        #{if user.expFinance?.level?.id > 1}
+        <div class="group-vacancies-item">
+            <div class="group-vacancies-name">&{'page.profile.finance_experience'}<span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expFinance?.level?.userLevel)}</div>
+            <pre>${user?.expFinance?.description}</pre>
+        </div>
+        #{/if}
+        #{if user.expLegal?.level?.id > 1}
+        <div class="group-vacancies-item">
+            <div class="group-vacancies-name">&{'page.profile.law_experience'} <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expLegal?.level?.userLevel)}</div>
+            <pre>${user?.expLegal?.description}</pre>
+        </div>
+        #{/if}
+        #{if user.expIT?.level?.id > 1}
+        <div class="group-vacancies-item">
+            <div class="group-vacancies-name">&{'page.profile.it_experience'} <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expIT?.level?.userLevel)}</div>
+            <pre>${user?.expIT?.description}</pre>
+        </div>
+        #{/if}
+        #{if user.expOther?.level?.id > 1}
+        <div class="group-vacancies-item">
+            <div class="group-vacancies-name">&{'page.profile.others_experience'} <span>&#8594;</span> &{'models.userLevel.userLevel.' + utils.ModelUtils.replaceSpacesForI18n(user.expOther?.level?.userLevel)}</div>
+            <pre>${user?.expOther?.description}</pre>
+        </div>
+        #{/if}
+    </div>
 #{/if}
 
 

@@ -202,7 +202,10 @@ function Search() {
 					$.each(data.users, function(key, user) {
 						var row = $("<tr class='search-result-item' style='display: none;'>");
 						table.append(row);
-						row.append("<td class='width-170'><span class='block-clip'><span class='block'><a href='/" + user.id + "'>" + user.lastName + " " + user.name  + "</a></span></span></td>");
+                        var onlineStatus = user.onlineStatus;
+                        console.log(onlineStatus);
+                        var onlineHtml = '<span class="user-online"><span class="st-'+onlineStatus+'"></span></span>'
+						row.append("<td class='width-170'><span class='block-clip'><span class='block'><a href='/" + user.id + "'>" + onlineHtml + user.lastName + " " + user.name  + "</a></span></span></td>");
 						appendFirstTabColumns(user, row);
 						appendSecondTabColumns(user, row);
 						appendThirdTabColumns(user, row);
@@ -481,4 +484,11 @@ function getHiddenCss(hidden) {
 	} else {
 		return "";
 	}
+}
+
+function getOnlineStatus(lastSeen){
+    var now = System.currentTimeMillis();
+    if(lastSeenTime > now - tenMins)    return "online";
+    if(lastSeenTime > now - twentyMins) return "away";
+    return "offline";
 }

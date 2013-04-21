@@ -2946,7 +2946,13 @@ a, input, input:hover, input:active, input:focus, textarea {
 	color:#7d7d7d;
 	text-decoration:none;
 }
-.dialogs .dialogs-item div span{
+.dialogs .dialogs-item .user-online {
+    margin-left: 5px;
+    line-height: 16px;
+    float:left;
+    display: block;
+}
+.dialogs .dialogs-item .msg-time{
 	float:right;
 	color:#999; /*OLD-FONT: c6c6c6*/
 	font:11px/16px Arial, Helvetica, sans-serif;
@@ -3574,4 +3580,29 @@ h1.main{
 }
 .profile-form .profile-lang {
     height: 50px;
+}
+
+/*  ONLINE STATUS */
+.user-online {
+    color: #999;
+    font-family: "Lucida Sans Unicode";
+    font-weight: normal;
+    font-size: 10px;
+}
+.user-online > span {
+    padding-left: 12px;
+    background-position: 0 3px;
+    background-repeat: no-repeat;
+}
+.st-online {
+    color: #0c0;
+    background-image: url('/public/images/boilerplate/online.gif');
+}
+.st-away {
+    color: orange;
+    background-image: url('/public/images/boilerplate/away.gif');
+}
+.st-offline {
+    color: #999;
+    background-image: url('/public/images/boilerplate/offline.gif');
 }

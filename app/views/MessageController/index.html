@@ -15,7 +15,8 @@
         #{avatar.avatar user:msgUser, cssClass:'dialogs-item-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
         <div class="clearFix">
             <a href="@{UserController.index(msgUser.id)}">${msgUser.name} ${msgUser.lastName}</a>
-            <span>${msg.time.getTime().format(request)}</span>
+            <span class="user-online"><span class="st-${msgUser.onlineStatus}">${msgUser.onlineStatus}</span></span>
+            <span class="msg-time">${msg.time.getTime().format(request)}</span>
         </div>
         <p><a href="@{MessageController.talk(msgUser.id, 1, 0)}">
             #{if msg.from.id.equals(user.id)}${user.name} ${user.lastName}: #{/if}
@@ -39,7 +40,8 @@
 
         <div class="clearFix">
             <a href="/{{ from.id }}">{{from.name}} {{from.lastName}}</a>
-            <span>{{formatTime time}}</span>
+            <span class="user-online"><span class="st-online">online</span></span>
+            <span class="msg-time">{{formatTime time}}</span>
         </div>
         <p><a href="/talks/{{ from.id }}">{{n2lbr (limitTo text 200)}}</a></p>
         <span class="dialogs-delete" data-id="{{ from.id }}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete'}</span></span>
@@ -94,6 +96,7 @@
                 //console.log("update existent: " + JSON.stringify(el));
                 var item = $(".dialogs").find("[data-id='"+el.from.id+"']");
                 item.find("p").find("a").html(Utils.nl2br(Utils.limitTo(el.text,200)));
+                item.find(".user-online").find("span").removeClass().addClass("st-online").html("&{'common.status.online'}");
                 if(!item.hasClass("unread")) {
                     item.addClass("unread");
                 }

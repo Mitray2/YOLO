@@ -12,6 +12,7 @@ $(document).ready(function(){
                 	<li>
                     	#{avatar.avatar user:msg.from, cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
                         <div class="group-theme-dialog-name">
+                            <span class="user-online"><span class="st-${msg.from?.onlineStatus}"></span></span>
                         	<a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${utils.DateUtils.getFormatedStringDate(msg.createDate, true)}
                         	#{if (userId == msg.from.id || isAdmin)}
                         		<span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>

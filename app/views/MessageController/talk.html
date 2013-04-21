@@ -10,7 +10,11 @@
 <div class="dialog-head">
     <a href="@{MessageController.index(user.id)}" class="back"><span>&#8592;&nbsp;</span>&{'page.dialogs.list'}</a>
     <div class="clearFix">
-        <div class="dialog-title">&{'page.dialogs.with'} <a href="@{MessageController.index(userToTalk.id)}">${userToTalk.name} ${userToTalk.lastName}</a></div>
+        <div class="dialog-title">
+            &{'page.dialogs.with'}
+            <a href="@{MessageController.index(userToTalk.id)}">${userToTalk.name} ${userToTalk.lastName}</a>
+            <span class="user-online"><span class="st-${userToTalk.onlineStatus}">&{'common.status.' + userToTalk.onlineStatus}</span></span>
+        </div>
         <a href="#" class="dialog-delete" data-id="${userToTalk.id}">&{'page.dialogs.delete'}</a>
     </div>
 </div>

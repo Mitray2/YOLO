@@ -3,6 +3,7 @@
  */
 package models;
 
+import org.hibernate.annotations.Formula;
 import play.cache.Cache;
 import play.data.validation.Email;
 import play.data.validation.MaxSize;
@@ -140,6 +141,9 @@ public class User extends Model {
 	public String preferredLang;
 
 	public boolean takePartInAutoTeams = true;
+
+    @Formula("IF(TIMEDIFF(NOW(),lastSeen) < '00:10:00' ,'online',IF(TIMEDIFF(NOW(),lastSeen) < '00:20:00','away','offline'))")
+    public String onlineStatus;
 
 	@Override
 	public <T extends JPABase> T delete() {
