@@ -104,7 +104,8 @@ var Utils = {
         return str.length > maxLen ? str.substr(0,maxLen) + "\n..." : str;
     },
     playSound: function(sound){
-        document.getElementById("msg-sound").innerHTML='<embed src="'+sound+'" hidden="true" autostart="true" loop="false" />';
+        //document.getElementById("msg-sound").innerHTML='<embed src="'+sound+'" hidden="true" autostart="true" loop="false" />';
+        document.getElementById("msg-sound").play();
         return false;
     }
 };

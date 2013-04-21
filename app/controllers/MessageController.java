@@ -32,7 +32,7 @@ public class MessageController extends BasicController {
         if (userId != null) {
             User user = SessionHelper.getCurrentUser(session);
             if (user != null && userId.equals(user.id)) {
-                String querySQL = String.format("select id, isRead, text, time, from_id, to_id, deletedBy from ( select * from (" +
+                String querySQL = String.format("select * from ( select * from (" +
                         "(select *, to_id as other from (select * from Message where from_id = %d and deletedBy <> %d order by time desc) as ms group by from_id, to_id)" +
                         " union " +
                         "(select *, from_id as other from (select * from Message where to_id = %d and deletedBy <> %d order by time desc) as ms group by from_id, to_id)" +
