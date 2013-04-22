@@ -1,0 +1,52 @@
+#{extends 'main_templeate.html' /} #{set title: user.name + " " + user.lastName /}
+<!-- user = utils.SessionHelper.getCurrentUser(session); -->
+%{
+	boolean currentAdminGroup = user?.role == models.User.ROLE_GROUP_ADMIN;
+	boolean groupAdmin = (user?.id == user?.id) && (user?.role == models.User.ROLE_GROUP_ADMIN);
+	boolean haveGroupOrInviteJoin = (user?.command != null) || (user?.commandToInvite != null);
+%}
+
+<h1 class="profile-h1">
+&{'page.teamtrack.title'}
+    <div>&{'page.teamtrack.hint'}:</div>
+    <div class="team-track-form">
+    #{form @UserController.teamtrack()}
+        <select id="tt-country" name="country" class="cSelect" style="width:100px;">
+            <option value="" #{if !country}selected="selected"#{/if}>&{'common.any.female'}</option>
+            #{list items:utils.ModelUtils.getSortedCountries(), as:'acountry'}
+                <option value="${acountry.id}" #{if country == acountry.id}selected="selected"#{/if}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(acountry.name)}</option>
+            #{/list}
+        </select>
+        <label for="country">&{'page.common.country'}</label>
+        <br/>
+        <select id="tt-category" name="category" class="cSelect" style="width:100px;">
+            <option value="" #{if category == null || category == 0}selected="selected"#{/if}>&{'page.teamtrack.category.general'}</option>
+            <option value="1" #{if category == 1}selected="selected"#{/if}>&{'page.teamtrack.category.favourite'}</option>
+            <option value="2" #{if category == 2}selected="selected"#{/if}>&{'page.teamtrack.category.blacklist'}</option>
+        </select>
+        <label for="category">&{'page.common.category'}</label>
+    #{/form}
+    </div>
+</h1>
+
+<div class="teamtrack-list">
+    <ul class="search-result-list">
+        #{list items:topics, as:'topic'}
+            #{group.tracktopic topic:topic, group: models.Command.findById(topic.groupId), user:user, isAdmin:currentAdminGroup, country:country, category:category/}
+        #{/list}
+        #{else}
+            &{'page.teamtrack.noteams'}
+        #{/else}
+    </ul>
+</div>
+
+<script>
+    $(document).ready(function(){
+        var filterTopics = function (){
+            $(".team-track-form").find("form").submit();
+        };
+
+        $('#tt-country').change(filterTopics);
+        $('#tt-category').change(filterTopics);
+    });
+</script>

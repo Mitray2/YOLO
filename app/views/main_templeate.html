@@ -63,6 +63,7 @@
 				<br/>
 				<nav class="user-menu">
 					<ul>
+						<li><a href="@{UserController.profile()}">&{'page.profile.my_profile'}</a></li>
 						<li><a href="@{UsersSearch.memberSearch()}">&{'page.profile.find_participant'}</a></li>
 						<li><a href="@{CommandsSearch.groupSearch()}">&{'page.profile.find_command'}</a></li>
                     	<li><a href="@{MessageController.index(utils.SessionHelper.getCurrentUser(session)?.id)}">&{'link.messages'}</a></li>

@@ -78,13 +78,15 @@ DELETE  /talks/messages/{id}/?                          MessageController.delete
 POST    /groups/{groupId}/topics/{topicId}/messages     GroupController.addTopicMessage
 
 #UserController
+GET			/profile								    UserController.profile
+GET			/teamtrack								    UserController.teamtrack
 GET 		/changePassword								UserController.changePassword
 POST 		/doChangePassword							UserController.doChangePassword
 GET			/user/changePassword						UserController.changePassword
 GET			/user/changeEmail							UserController.changeEmail
 GET			/peopleSearch								UserController.peopleSearch
 GET			/groupSearch								UserController.groupSearch
-GET			/{userId}/?									UserController.index
+GET			/{<[0-9]+>userId}/?							UserController.index
 
 #LocaleController
 GET			/locale/change								LocaleController.change

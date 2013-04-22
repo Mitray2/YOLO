@@ -173,7 +173,6 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
             }
         };
 
-        var $form = $("#topicMsgForm");
         $msg.ctrlEnter("textarea", sendMsg);
         $form.find("button").bind("click", sendMsg);
 

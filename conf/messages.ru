@@ -11,6 +11,7 @@ common.login.error.email_empty=Вы не ввели email.
 common.login.error.email_format_invalid=Неверный формат email.
 common.login.password_sended=Новый пароль выслан на указанный email.
 common.post.read.more=Читать далее
+common.any.female=Любая
 
 common.status.online=На сайте
 common.status.away=Почти тут
@@ -546,6 +547,18 @@ profile.settings.notifications.2=О новостях StartNewTeam
 profile.settings.notifications.3=Отчет за день
 profile.settings.notifications.4=Получать уведомления
 
+page.teamtrack.title=Открытые обсуждения команд
+page.teamtrack.hint=выберите страну и раздел для просмотра
+page.teamtrack.category.general=Общий
+page.teamtrack.category.favourite=Избранное
+page.teamtrack.category.blacklist=Черный список
+page.teamtrack.noteams=По заданному критерию обсуждений не найдено
+page.teamtrack.tip.favor.add=В избранное
+page.teamtrack.tip.favor.remove=Удалить из избранного
+page.teamtrack.tip.blacklist.add=В черный список
+page.teamtrack.tip.blacklist.remove=Удалить из черного списка
+page.teamtrack.topic.main=Обсуждения на стене
+
 page.search.members.title=Система поиска партнеров
 page.search.members.personal_data=Личные данные
 page.search.members.aptitudes=Склонности и интересы
@@ -671,7 +684,7 @@ page.common.logout=Выйти
 page.common.password=Пароль
 page.common.registration=Регистрация
 page.common.forgot_password=Забыли пароль?
-
+page.common.category=Раздел
 
 
 #News page

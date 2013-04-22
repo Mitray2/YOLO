@@ -12,9 +12,7 @@ import play.db.jpa.JPABase;
 import play.db.jpa.Model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static utils.ApplicationConstants.CACHE_USERS_COUNT;
 
@@ -131,6 +129,22 @@ public class User extends Model {
 
     @ManyToMany(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
     public List<NotificationType> notifications = new ArrayList<NotificationType>();
+
+    @JoinTable(
+        name = "UserFavouriteTopic",
+        joinColumns = @JoinColumn(name = "User_id"),
+        inverseJoinColumns = @JoinColumn(name = "Topic_id")
+    )
+    @OneToMany(cascade = { CascadeType.REMOVE }, fetch = FetchType.EAGER)
+    public Set<Topic> favouriteTopics = new HashSet<Topic>();
+
+    @JoinTable(
+        name = "UserBlacklistTopic",
+        joinColumns = @JoinColumn(name = "User_id"),
+        inverseJoinColumns = @JoinColumn(name = "Topic_id")
+    )
+    @OneToMany(cascade = { CascadeType.REMOVE }, fetch = FetchType.EAGER)
+    public Set<Topic> blacklistTopics = new HashSet<Topic>();
 	
 	public Boolean haveAvatar = false;
 	

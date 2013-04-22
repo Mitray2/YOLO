@@ -11,6 +11,7 @@ common.login.error.email_empty=Please enter your email.
 common.login.error.email_format_invalid=Wrong email format
 common.login.password_sended=New password has been sent to your email.
 common.post.read.more=Read more
+common.any.female=Any
 
 common.status.online=Online
 common.status.away=Away
@@ -537,6 +538,18 @@ profile.settings.notifications.2=News
 profile.settings.notifications.3=My team activities
 profile.settings.notifications.4=Reminders
 
+page.teamtrack.title=Teams public discussions
+page.teamtrack.hint=you can choose country and category to view
+page.teamtrack.category.general=General
+page.teamtrack.category.favourite=Favourite
+page.teamtrack.category.blacklist=Blacklist
+page.teamtrack.noteams=No teams found for given criteria
+page.teamtrack.tip.favor.add=Add to favourites
+page.teamtrack.tip.favor.remove=Remove from favourites
+page.teamtrack.tip.blacklist.add=Add to blacklist
+page.teamtrack.tip.blacklist.remove=Remove from blacklist
+page.teamtrack.topic.main=Main public conversation
+
 page.search.members.title=Partners search system
 page.search.members.personal_data=Personal data
 page.search.members.aptitudes=Aptitudes and interests
@@ -662,7 +675,7 @@ page.common.logout=Exit
 page.common.password=Password
 page.common.registration=Registration
 page.common.forgot_password=Forgot password?
-
+page.common.category=Category
 
 
 #News page

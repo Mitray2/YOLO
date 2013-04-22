@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static ch.lambdaj.Lambda.extract;
+import static ch.lambdaj.Lambda.on;
+
 public class ModelUtils {
 	
 	private ModelUtils(){
@@ -90,6 +93,16 @@ public class ModelUtils {
         result.add(0, result.remove(result.indexOf(CollectionUtils.find(result, findCountryPredicate))));
 
         return result;
+    }
+
+    public static boolean isFavTopic(User user, Long topicId){
+        final List<Long> topicIds = extract(user.favouriteTopics, on(Topic.class).id);
+        return topicIds.contains(topicId);
+    }
+
+    public static boolean isBlackTopic(User user, Long topicId){
+        final List<Long> topicIds = extract(user.blacklistTopics, on(Topic.class).id);
+        return topicIds.contains(topicId);
     }
 
 }

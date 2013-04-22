@@ -3,6 +3,7 @@ package controllers;
 import modelDTO.UserSkillDTO;
 import models.*;
 import notifiers.Mails;
+import play.db.jpa.JPA;
 import play.mvc.Before;
 import utils.ApplicationConstants;
 import utils.SessionData.SessionUserMessage;
@@ -13,6 +14,10 @@ import java.util.Date;
 import java.util.List;
 
 public class UserController extends BasicController  implements ApplicationConstants {
+
+    public static final int TRACKED_TOPIC_CATEGORY_ALL = 0;
+    public static final int TRACKED_TOPIC_CATEGORY_FAVOURITE = 1;
+    public static final int TRACKED_TOPIC_CATEGORY_BLACKLIST = 2;
 
 	@Before
 	public static void checkSecurity() {
@@ -42,6 +47,7 @@ public class UserController extends BasicController  implements ApplicationConst
 			user = User.findById(userId);
 			if (SessionHelper.getCurrentUser(session).id.equals(userId)) {
 				SessionHelper.setCurrentUser(session, user);
+                UserController.teamtrack(null, null);
 			}
 		}
 		if (user == null) {
@@ -56,6 +62,82 @@ public class UserController extends BasicController  implements ApplicationConst
 //		}
 		render(user);
 	}
+
+    public static void profile() {
+        User user = SessionHelper.getCurrentUser(session);
+        render(user);
+    }
+
+    public static void teamtrack(Integer country, Integer category) {
+        User user = User.findById(SessionHelper.getCurrentUser(session).id);
+        String query;
+        List<Topic> topics = new ArrayList<Topic>();
+
+        // 1. ALL: select all PUBLIC topics of ALL teams in ALL countries - EXCEPT BLACKLISTED
+        if(country == null && (category == null || category.equals(TRACKED_TOPIC_CATEGORY_ALL))) {
+            query = "SELECT t.* from Topic t " +
+                    "where t.publicTopic = 1  and t.lastUpdateDate IS NOT NULL " +
+                    "and (select count(*) from UserBlacklistTopic ubt where ubt.User_id = ? and ubt.Topic_id = t.id) = 0 " +
+                    "ORDER BY t.lastUpdateDate DESC LIMIT 50";
+
+            topics = JPA.em().createNativeQuery(query, Topic.class)
+                    .setParameter(1, user.id)
+                    .getResultList();
+        } else {
+
+            // 2. COUNTRY: select all PUBLIC topics of ALL teams in chosen COUNTRY - EXCEPT BLACKLISTED
+            if(country != null && category == null || category.equals(TRACKED_TOPIC_CATEGORY_ALL)) {
+                query = "SELECT t.* from Topic t " +
+                        "join Command team on team.id = t.groupId " +
+                        "where t.publicTopic = 1  and t.lastUpdateDate IS NOT NULL and team.country_id = ? " +
+                        "and (select count(*) from UserBlacklistTopic ubt where ubt.User_id = ? and ubt.Topic_id = t.id) = 0 " +
+                        "ORDER BY t.lastUpdateDate DESC LIMIT 50";
+
+                topics = JPA.em().createNativeQuery(query, Topic.class)
+                        .setParameter(1, country)
+                        .setParameter(2, user.id)
+                        .getResultList();
+
+            } else {
+                final String categoryTableName;
+                if(category.equals(TRACKED_TOPIC_CATEGORY_BLACKLIST)){
+                    categoryTableName = "UserBlacklistTopic";
+                } else {
+                    categoryTableName = "UserFavouriteTopic";
+                }
+
+                // 3. CATEGORY: select all PUBLIC topics of ALL teams in chosen CATEGORY
+                if(country == null) {
+
+                    query = "SELECT t.* from Topic t " +
+                            "join " + categoryTableName + " cat on (cat.User_id = ? and cat.Topic_id = t.id) " +
+                            "where t.publicTopic = 1 and t.lastUpdateDate IS NOT NULL " +
+                            "ORDER BY t.lastUpdateDate DESC LIMIT 50";
+
+                    topics = JPA.em().createNativeQuery(query, Topic.class)
+                            .setParameter(1, user.id)
+                            .getResultList();
+
+                } else {
+                    // 4. COUNTRY & CATEGORY: select all PUBLIC topics of ALL teams in chosen COUNTRY & CATEGORY
+
+                    query = "SELECT t.* from Topic t " +
+                            "join Command team on team.id = t.groupId " +
+                            "join " + categoryTableName + " cat on (cat.User_id = ? and cat.Topic_id = t.id) " +
+                            "where t.publicTopic = 1 and t.lastUpdateDate IS NOT NULL and team.country_id = ? " +
+                            "ORDER BY t.lastUpdateDate DESC LIMIT 50";
+
+                    topics = JPA.em().createNativeQuery(query, Topic.class)
+                            .setParameter(1, user.id)
+                            .setParameter(2, country)
+                            .getResultList();
+                }
+            }
+
+        }
+
+        render(user, topics, country, category);
+    }
 
 
 	public static void editSkill(UserSkillDTO currentUser) {
@@ -253,6 +335,48 @@ public class UserController extends BasicController  implements ApplicationConst
 		SessionHelper.setCurrentUser(session, user);
 		index(user.id);
 	}
+
+
+    public static void addTopicToFavourites(Long topicId, Integer country, Integer category) {
+        User user = User.findById(SessionHelper.getCurrentUser(session).id);
+        Topic topic = Topic.findById(topicId);
+        if(topic != null) {
+            user.favouriteTopics.add(topic);
+            user.save();
+        }
+        UserController.teamtrack(country, category);
+    }
+
+    public static void addTopicToBlacklist(Long topicId, Integer country, Integer category) {
+        User user = User.findById(SessionHelper.getCurrentUser(session).id);
+        Topic topic = Topic.findById(topicId);
+        if(topic != null) {
+            user.blacklistTopics.add(topic);
+            user.save();
+        }
+        UserController.teamtrack(country, category);
+    }
+
+    public static void removeTopicFromFavourites(Long topicId, Integer country, Integer category) {
+        User user = User.findById(SessionHelper.getCurrentUser(session).id);
+        Topic topic = Topic.findById(topicId);
+        if(topic != null) {
+            user.favouriteTopics.remove(topic);
+            user.save();
+        }
+        UserController.teamtrack(country, category);
+    }
+
+    public static void removeTopicFromBlacklist(Long topicId, Integer country, Integer category) {
+        User user = User.findById(SessionHelper.getCurrentUser(session).id);
+        Topic topic = Topic.findById(topicId);
+        if(topic != null) {
+            user.blacklistTopics.remove(topic);
+            user.save();
+        }
+        UserController.teamtrack(country, category);
+    }
+
 
     private static void logGroupMemberActivity(User user, Command team, int action) {
         TeamMemberActivity activity = new TeamMemberActivity(team, user, action, new Date());

@@ -1976,10 +1976,16 @@ a, input, input:hover, input:active, input:focus, textarea {
 	right:15px;
 	top:0;
 }
+.teamtrack-list .topic-fav{
+    position:absolute;
+    right:18px;
+    top:-1px;
+}
 .group-theme-dialog .group-theme-dialog-name .theme-edit span{
 	bottom:23px;
 }
-.group-theme-dialog .group-theme-dialog-name .theme-delete{
+.group-theme-dialog .group-theme-dialog-name .theme-delete,
+.teamtrack-list .topic-ban{
 	position:absolute;
 	right:0;
 	top:0;
@@ -3155,9 +3161,27 @@ a, input, input:hover, input:active, input:focus, textarea {
 	text-align:center;
 	cursor:pointer;
 }
-.theme-delete{
+.theme-delete, .theme-edit, .topic-fav, .topic-ban {
 	cursor:pointer;
 	position:relative;
+}
+.topic-fav i, .topic-ban i{
+	display:inline-block;
+	width:16px;
+	height:16px;
+	overflow:hidden;
+}
+.topic-ban i, .topic-ban.hovered:hover i{
+    background:url(../../images/boilerplate/no-blacklist.png) no-repeat left top;
+}
+.topic-ban.hovered i, .topic-ban:hover i {
+    background:url(../../images/boilerplate/blacklist.png) no-repeat left top;
+}
+.topic-fav i, .topic-fav.hovered:hover i {
+    background:url(../../images/boilerplate/no-star.png) no-repeat left top;
+}
+.topic-fav.hovered i, .topic-fav:hover i {
+    background:url(../../images/boilerplate/star.png) no-repeat left top;
 }
 .theme-delete i{
 	display:inline-block;
@@ -3167,10 +3191,13 @@ a, input, input:hover, input:active, input:focus, textarea {
 	overflow:hidden;
 }
 .theme-delete i:hover,
-.theme-delete:hover i{
+.theme-delete:hover i,
+.theme-edit i:hover,
+.theme-edit:hover i{
 	background-position:left bottom;
 }
-.theme-delete span{
+.theme-delete span, .theme-edit span,
+.topic-fav span, .topic-ban span{
 	display:none;
 	position:absolute;
 	left:-23px;
@@ -3185,18 +3212,17 @@ a, input, input:hover, input:active, input:focus, textarea {
 	padding:3px 9px;
 	font:11px/16px Arial, Helvetica, sans-serif;
 }
-.theme-delete span img{
+.theme-delete span img, .theme-edit span img,
+.topic-fav span img, .topic-ban span img{
 	position:absolute;
 	left:21px;
 	bottom:-8px;
 }
-.theme-delete:hover span{
+.theme-delete:hover span, .theme-edit:hover span,
+.topic-fav:hover span, .topic-ban:hover span{
 	display:block;
 }
-.theme-edit{
-	cursor:pointer;
-	position:relative;
-}
+
 .theme-edit i{
 	display:inline-block;
 	width:12px;
@@ -3204,33 +3230,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 	background:url(../../images/boilerplate/ico-edit.png) no-repeat left top;
 	overflow:hidden;
 }
-.theme-edit i:hover,
-.theme-edit:hover i{
-	background-position:left bottom;
-}
-.theme-edit span{
-	display:none;
-	position:absolute;
-	left:-23px;
-	bottom:21px;
-	color:#d95a1b;
-	border:1px solid #d95a1b;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	border-radius:5px;
-	background:#fff;
-	white-space:nowrap;
-	padding:3px 9px;
-	font:11px/16px Arial, Helvetica, sans-serif;
-}
-.theme-edit span img{
-	position:absolute;
-	left:21px;
-	bottom:-8px;
-}
-.theme-edit:hover span{
-	display:block;
-}
+
 .links{
 	font:11px/16px Arial, Helvetica, sans-serif;
 	margin:-4px 0 16px;
@@ -3605,4 +3605,36 @@ h1.main{
 .st-offline {
     color: #999;
     background-image: url('/public/images/boilerplate/offline.gif');
+}
+
+.profile-h1 > div, .profile-h1 > label {
+    font-size: .7em;
+    font-weight: normal;
+}
+.team-track-form {
+    display: block;
+    position: absolute;
+    right: 8px;
+    top: -13px;
+}
+.team-track-form .jquery-custom-selectboxes-replaced {
+    float: right;
+    height: 28px;
+    margin-bottom: 5px;
+}
+.team-track-form label {
+    display: inline-block;
+    height: 35px;
+    float:right;
+    margin-top:2px;
+    margin-right:10px;
+}
+.track-topic-team {
+    display: inline-block;
+    color: #2583be !important; /*<div class="team-name"></div>*/
+    font-weight: normal;
+}
+.track-topic-name{
+    display: inline-block;
+    margin-right:40px;
 }

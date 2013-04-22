@@ -18,6 +18,7 @@
 	text-align:left;
 	font:12px/17px Arial, Helvetica, sans-serif;
 	color:#777; /*OLD-FONT: #AEA9A9*/
+    cursor: pointer;
 }
 .entry .jquery-selectbox{
 	font: 16px/21px "MyriadPro-Regular", Arial, sans-serif;

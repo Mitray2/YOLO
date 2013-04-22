@@ -1,0 +1,57 @@
+#{if _topic.publicTopic}
+%{
+    isFav = utils.ModelUtils.isFavTopic(_user,_topic.id)
+    isBlack = utils.ModelUtils.isBlackTopic(_user,_topic.id)
+}%
+<li class="search-result-item clearFix">
+	<h4>
+        <a class="track-topic-team" href="@{GroupController.index(_group.id)}">${_group.name}</a>
+
+        #{if _topic.mainTopic}
+            <a class="track-topic-name" href="@{GroupController.publicTopics(_group.id)}">
+                <img src="@{'public/images/boilerplate/public1.png'}" alt="public theme" />
+                &{'page.teamtrack.topic.main'}
+            </a>
+        #{/if}
+        #{else}
+            <a href="@{GroupController.indexTopic(_topic.id, _group.id)}">
+                <img src="@{'public/images/boilerplate/public1.png'}" alt="public theme" />
+                ${_topic.name}
+            </a>
+        #{/else}
+
+
+        #{if isFav}
+            <a href="@{UserController.removeTopicFromFavourites(_topic.id, _country, _category)}">
+                <span class="topic-fav hovered"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.teamtrack.tip.favor.remove'}</span></span>
+            </a>
+        #{/if}
+        #{elseif !isBlack}
+            <a href="@{UserController.addTopicToFavourites(_topic.id, _country, _category)}">
+                <span class="topic-fav"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.teamtrack.tip.favor.add'}</span></span>
+            </a>
+        #{/elseif}
+
+
+        #{if isBlack}
+            <a href="@{UserController.removeTopicFromBlacklist(_topic.id, _country, _category)}">
+                <span class="topic-ban hovered"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.teamtrack.tip.blacklist.remove'}</span></span>
+            </a>
+        #{/if}
+        #{elseif !isFav}
+            <a href="@{UserController.addTopicToBlacklist(_topic.id, _country, _category)}">
+                <span class="topic-ban"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.teamtrack.tip.blacklist.add'}</span></span>
+            </a>
+        #{/elseif}
+
+    </h4>
+	<pre>#{common.reducedText text:_topic.description /}</pre>
+	<div class="search-result-list-date"><strong>&{'page.team.discuss.total_msgs',_topic.messages?.size()}</strong></div>
+    <br />
+    #{if _topic.messages?.size() > 0 }
+    <div class="search-result-list-last">&{'page.team.discuss.latest_from'} <a href="@{UserController.index(_topic.lastUpdateUserId)}">${_topic.lastUpdateUserLastName} ${_topic.lastUpdateUserName}</a>, <span class="topic_date">${utils.DateUtils.getFormatedStringDate(_topic.lastUpdateDate, true)}</div>
+    #{/if}
+	<a href="#{if _topic.mainTopic}@{GroupController.publicTopics(_group.id)}#{/if}#{else}@{GroupController.indexTopic(_topic.id, _group.id)}#{/else}"
+       class="search-result-list-more">&{'page.team.discuss.discussion'} <span>&nbsp;&#8594;</span></a>
+</li>
+#{/if}
