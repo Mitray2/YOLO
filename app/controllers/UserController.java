@@ -76,8 +76,8 @@ public class UserController extends BasicController  implements ApplicationConst
         // 1. ALL: select all PUBLIC topics of ALL teams in ALL countries - EXCEPT BLACKLISTED
         if(country == null && (category == null || category.equals(TRACKED_TOPIC_CATEGORY_ALL))) {
             query = "SELECT t.* from Topic t " +
-                    "where t.publicTopic = 1  and t.lastUpdateDate IS NOT NULL " +
-                    "and (select count(*) from UserBlacklistTopic ubt where ubt.User_id = ? and ubt.Topic_id = t.id) = 0 " +
+                    "where t.publicTopic = 1 and t.mainTopic = 0 and t.lastUpdateDate IS NOT NULL " +
+                    "and (select count(*) from UserBlacklistTeam ubt where ubt.User_id = ? and ubt.Team_id = t.groupId) = 0 " +
                     "ORDER BY t.lastUpdateDate DESC LIMIT 50";
 
             topics = JPA.em().createNativeQuery(query, Topic.class)
@@ -89,8 +89,8 @@ public class UserController extends BasicController  implements ApplicationConst
             if(country != null && category == null || category.equals(TRACKED_TOPIC_CATEGORY_ALL)) {
                 query = "SELECT t.* from Topic t " +
                         "join Command team on team.id = t.groupId " +
-                        "where t.publicTopic = 1  and t.lastUpdateDate IS NOT NULL and team.country_id = ? " +
-                        "and (select count(*) from UserBlacklistTopic ubt where ubt.User_id = ? and ubt.Topic_id = t.id) = 0 " +
+                        "where t.publicTopic = 1 and t.mainTopic = 0 and t.lastUpdateDate IS NOT NULL and team.country_id = ? " +
+                        "and (select count(*) from UserBlacklistTeam ubt where ubt.User_id = ? and ubt.Team_id = t.groupId) = 0 " +
                         "ORDER BY t.lastUpdateDate DESC LIMIT 50";
 
                 topics = JPA.em().createNativeQuery(query, Topic.class)
@@ -101,17 +101,17 @@ public class UserController extends BasicController  implements ApplicationConst
             } else {
                 final String categoryTableName;
                 if(category.equals(TRACKED_TOPIC_CATEGORY_BLACKLIST)){
-                    categoryTableName = "UserBlacklistTopic";
+                    categoryTableName = "UserBlacklistTeam";
                 } else {
-                    categoryTableName = "UserFavouriteTopic";
+                    categoryTableName = "UserFavouriteTeam";
                 }
 
                 // 3. CATEGORY: select all PUBLIC topics of ALL teams in chosen CATEGORY
                 if(country == null) {
 
                     query = "SELECT t.* from Topic t " +
-                            "join " + categoryTableName + " cat on (cat.User_id = ? and cat.Topic_id = t.id) " +
-                            "where t.publicTopic = 1 and t.lastUpdateDate IS NOT NULL " +
+                            "join " + categoryTableName + " cat on (cat.User_id = ? and cat.Team_id = t.groupId) " +
+                            "where t.publicTopic = 1 and t.mainTopic = 0 and t.lastUpdateDate IS NOT NULL " +
                             "ORDER BY t.lastUpdateDate DESC LIMIT 50";
 
                     topics = JPA.em().createNativeQuery(query, Topic.class)
@@ -123,8 +123,8 @@ public class UserController extends BasicController  implements ApplicationConst
 
                     query = "SELECT t.* from Topic t " +
                             "join Command team on team.id = t.groupId " +
-                            "join " + categoryTableName + " cat on (cat.User_id = ? and cat.Topic_id = t.id) " +
-                            "where t.publicTopic = 1 and t.lastUpdateDate IS NOT NULL and team.country_id = ? " +
+                            "join " + categoryTableName + " cat on (cat.User_id = ? and cat.Team_id = t.groupId) " +
+                            "where t.publicTopic = 1 and t.mainTopic = 0 and t.lastUpdateDate IS NOT NULL and team.country_id = ? " +
                             "ORDER BY t.lastUpdateDate DESC LIMIT 50";
 
                     topics = JPA.em().createNativeQuery(query, Topic.class)
@@ -337,44 +337,52 @@ public class UserController extends BasicController  implements ApplicationConst
 	}
 
 
-    public static void addTopicToFavourites(Long topicId, Integer country, Integer category) {
+    public static void addTeamToFavourites(Long teamId/*, Integer country, Integer category*/) {
         User user = User.findById(SessionHelper.getCurrentUser(session).id);
-        Topic topic = Topic.findById(topicId);
-        if(topic != null) {
-            user.favouriteTopics.add(topic);
+        Command team = Command.findById(teamId);
+        if(team != null) {
+            user.favouriteTeams.add(team);
             user.save();
+            SessionHelper.setCurrentUser(session, user);
         }
-        UserController.teamtrack(country, category);
+        //UserController.teamtrack(country, category);
+        renderJSON("{\"status\": \"Ok\"}");
     }
 
-    public static void addTopicToBlacklist(Long topicId, Integer country, Integer category) {
+    public static void addTeamToBlacklist(Long teamId) {
         User user = User.findById(SessionHelper.getCurrentUser(session).id);
-        Topic topic = Topic.findById(topicId);
-        if(topic != null) {
-            user.blacklistTopics.add(topic);
+        Command team = Command.findById(teamId);
+        if(team != null) {
+            user.blacklistTeams.add(team);
             user.save();
+            SessionHelper.setCurrentUser(session, user);
         }
-        UserController.teamtrack(country, category);
+        //UserController.teamtrack(country, category);
+        renderJSON("{\"status\": \"Ok\"}");
     }
 
-    public static void removeTopicFromFavourites(Long topicId, Integer country, Integer category) {
+    public static void removeTeamFromFavourites(Long teamId) {
         User user = User.findById(SessionHelper.getCurrentUser(session).id);
-        Topic topic = Topic.findById(topicId);
-        if(topic != null) {
-            user.favouriteTopics.remove(topic);
+        Command team = Command.findById(teamId);
+        if(team != null) {
+            user.favouriteTeams.remove(team);
             user.save();
+            SessionHelper.setCurrentUser(session, user);
         }
-        UserController.teamtrack(country, category);
+        //UserController.teamtrack(country, category);
+        renderJSON("{\"status\": \"Ok\"}");
     }
 
-    public static void removeTopicFromBlacklist(Long topicId, Integer country, Integer category) {
+    public static void removeTeamFromBlacklist(Long teamId) {
         User user = User.findById(SessionHelper.getCurrentUser(session).id);
-        Topic topic = Topic.findById(topicId);
-        if(topic != null) {
-            user.blacklistTopics.remove(topic);
+        Command team = Command.findById(teamId);
+        if(team != null) {
+            user.blacklistTeams.remove(team);
             user.save();
+            SessionHelper.setCurrentUser(session, user);
         }
-        UserController.teamtrack(country, category);
+        //UserController.teamtrack(country, category);
+        renderJSON("{\"status\": \"Ok\"}");
     }
 
 

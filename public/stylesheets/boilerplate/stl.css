@@ -209,7 +209,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 .hdr-page .main-nav {
   position: absolute;
   top: 35px;
-  right: 160px;
+  right: 200px;
 }
 /* line 190, ../scss/stl.scss */
 .hdr-page .main-nav li {
@@ -1976,20 +1976,11 @@ a, input, input:hover, input:active, input:focus, textarea {
 	right:15px;
 	top:0;
 }
-.teamtrack-list .topic-fav{
-    position:absolute;
-    right:18px;
-    top:-1px;
-}
 .group-theme-dialog .group-theme-dialog-name .theme-edit span{
 	bottom:23px;
 }
 .group-theme-dialog .group-theme-dialog-name .theme-delete,
-.teamtrack-list .topic-ban{
-	position:absolute;
-	right:0;
-	top:0;
-}
+
 .group-theme-dialog .group-theme-dialog-name .theme-delete span{
 	bottom:23px;
 }
@@ -2685,7 +2676,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 	right:0;
 	top:26px;
 	background:#fff;
-	width:132px;
+	width:180px;
 	-webkit-border-radius:5px;
 	-moz-border-radius:5px;
 	border-radius:5px;
@@ -2744,6 +2735,23 @@ a, input, input:hover, input:active, input:focus, textarea {
 }
 .logged .logged-user-menu a.logged-user-exit{
 	color:#b8b8b8;
+}
+.logged-team {
+    float:left;
+    border-right:1px solid #ededed;
+    padding:7px 11px 0 0;
+    height:20px;
+    margin-right:12px;
+    position:relative;
+}
+.logged-team-ico{
+    display:block;
+    background:url(../../images/boilerplate/ico-team.png) no-repeat left top;
+    width:29px;
+    height:16px;
+}
+.logged-team-ico.act{
+    background-position:left bottom;
 }
 .logged .logged-message{
 	float:left;
@@ -2902,6 +2910,14 @@ a, input, input:hover, input:active, input:focus, textarea {
 .logged .event-popup li span{
 	display:block;
 }
+.logged .event-popup-title {
+    padding: 2px 12px;
+    background: #fafafa;
+    color: #777;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom: 1px solid #d4d4d4;
+}
 .inner-main .dialogs-h1{
 	font:bold 20px/24px Arial, Helvetica, sans-serif;
 	color:#434240;
@@ -2915,6 +2931,10 @@ a, input, input:hover, input:active, input:focus, textarea {
 	position:relative;
 	left:-30px;
 	margin:0 -60px 0 0;
+}
+.no-dialogs{
+    padding:30px;
+    font-size:0.9em;
 }
 .dialogs .dialogs-item{
 	padding:19px 30px 21px 100px;
@@ -3171,17 +3191,19 @@ a, input, input:hover, input:active, input:focus, textarea {
 	height:16px;
 	overflow:hidden;
 }
-.topic-ban i, .topic-ban.hovered:hover i{
-    background:url(../../images/boilerplate/no-blacklist.png) no-repeat left top;
-}
-.topic-ban.hovered i, .topic-ban:hover i {
+.topic-ban i, .topic-ban-link-hovered:hover i{
+    /*background:url(../../images/boilerplate/no-blacklist.png) no-repeat left top;*/
     background:url(../../images/boilerplate/blacklist.png) no-repeat left top;
 }
-.topic-fav i, .topic-fav.hovered:hover i {
-    background:url(../../images/boilerplate/no-star.png) no-repeat left top;
+.topic-ban-link-hovered i, .topic-ban:hover i {
+    background:url(../../images/boilerplate/blacklist.png) no-repeat left bottom;
 }
-.topic-fav.hovered i, .topic-fav:hover i {
+.topic-fav i, .topic-fav-link-hovered:hover i {
+    /*background:url(../../images/boilerplate/no-star.png) no-repeat left top;*/
     background:url(../../images/boilerplate/star.png) no-repeat left top;
+}
+.topic-fav-link-hovered i, .topic-fav:hover i {
+    background:url(../../images/boilerplate/star.png) no-repeat left bottom;
 }
 .theme-delete i{
 	display:inline-block;
@@ -3211,6 +3233,10 @@ a, input, input:hover, input:active, input:focus, textarea {
 	white-space:nowrap;
 	padding:3px 9px;
 	font:11px/16px Arial, Helvetica, sans-serif;
+}
+.topic-fav span, .topic-ban span {
+    left:-21px;
+    bottom: 27px;
 }
 .theme-delete span img, .theme-edit span img,
 .topic-fav span img, .topic-ban span img{
@@ -3595,21 +3621,62 @@ h1.main{
     background-repeat: no-repeat;
 }
 .st-online {
-    color: #0c0;
-    background-image: url('/public/images/boilerplate/online.gif');
+    color: #0a0;
+    background-image: url('/public/images/boilerplate/online.png');
 }
 .st-away {
     color: orange;
-    background-image: url('/public/images/boilerplate/away.gif');
+    background-image: url('/public/images/boilerplate/away.png');
 }
 .st-offline {
     color: #999;
-    background-image: url('/public/images/boilerplate/offline.gif');
+    background-image: url('/public/images/boilerplate/offline.png');
 }
 
 .profile-h1 > div, .profile-h1 > label {
     font-size: .7em;
     font-weight: normal;
+}
+.fav-buttons {
+    display: block;
+    float: left;
+    margin-right: 5px;
+}
+.fav-buttons > a {
+    display: block;
+    float: left;
+    margin-right: 0;
+}
+.fav-buttons-big {
+    display: block;
+    float: left;
+    margin-right: 7px;
+}
+.fav-buttons-big > a{
+    display:block;
+    float:left;
+    margin-right: 0;
+    text-decoration: none;
+}
+.fav-buttons-big .topic-fav i, .fav-buttons-big .topic-ban i{
+    width:24px;
+    height:24px;
+}
+.fav-buttons-big .topic-ban i, .fav-buttons-big .topic-ban-link-hovered:hover i{
+    background:url(../../images/boilerplate/blacklist_24.png) no-repeat left top;
+}
+.fav-buttons-big .topic-ban-link-hovered i, .fav-buttons-big .topic-ban:hover i {
+    background:url(../../images/boilerplate/blacklist_24.png) no-repeat left bottom;
+}
+.fav-buttons-big .topic-fav i, .fav-buttons-big .topic-fav-link-hovered:hover i {
+    background:url(../../images/boilerplate/star_24.png) no-repeat left top;
+}
+.fav-buttons-big .topic-fav-link-hovered i, .fav-buttons-big .topic-fav:hover i {
+    background:url(../../images/boilerplate/star_24.png) no-repeat left bottom;
+}
+.fav-buttons-big .topic-fav span, .fav-buttons-big .topic-ban span {
+    left:-17px;
+    bottom: 35px;
 }
 .team-track-form {
     display: block;
@@ -3624,13 +3691,15 @@ h1.main{
 }
 .team-track-form label {
     display: inline-block;
+    font-size: .9em;
     height: 35px;
     float:right;
     margin-top:2px;
     margin-right:10px;
 }
 .track-topic-team {
-    display: inline-block;
+    display: block;
+    margin-bottom: 10px;
     color: #2583be !important; /*<div class="team-name"></div>*/
     font-weight: normal;
 }

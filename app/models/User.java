@@ -131,20 +131,20 @@ public class User extends Model {
     public List<NotificationType> notifications = new ArrayList<NotificationType>();
 
     @JoinTable(
-        name = "UserFavouriteTopic",
+        name = "UserFavouriteTeam",
         joinColumns = @JoinColumn(name = "User_id"),
-        inverseJoinColumns = @JoinColumn(name = "Topic_id")
+        inverseJoinColumns = @JoinColumn(name = "Team_id")
     )
     @OneToMany(cascade = { CascadeType.REMOVE }, fetch = FetchType.EAGER)
-    public Set<Topic> favouriteTopics = new HashSet<Topic>();
+    public Set<Command> favouriteTeams = new HashSet<Command>();
 
     @JoinTable(
-        name = "UserBlacklistTopic",
+        name = "UserBlacklistTeam",
         joinColumns = @JoinColumn(name = "User_id"),
-        inverseJoinColumns = @JoinColumn(name = "Topic_id")
+        inverseJoinColumns = @JoinColumn(name = "Team_id")
     )
     @OneToMany(cascade = { CascadeType.REMOVE }, fetch = FetchType.EAGER)
-    public Set<Topic> blacklistTopics = new HashSet<Topic>();
+    public Set<Command> blacklistTeams = new HashSet<Command>();
 	
 	public Boolean haveAvatar = false;
 	

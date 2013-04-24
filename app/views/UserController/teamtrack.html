@@ -35,7 +35,7 @@
             #{group.tracktopic topic:topic, group: models.Command.findById(topic.groupId), user:user, isAdmin:currentAdminGroup, country:country, category:category/}
         #{/list}
         #{else}
-            &{'page.teamtrack.noteams'}
+            <li>&{'page.teamtrack.noteams'}</li>
         #{/else}
     </ul>
 </div>

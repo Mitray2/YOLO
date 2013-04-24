@@ -696,6 +696,7 @@ page.dialogs.button.send=Send
 page.dialogs.placeholder.send=Write message...
 pages.dialogs.yes=Yes
 pages.dialogs.no=No
+page.dialogs.empty=You have no started dialogs currently. To start one, click 'Send a message' button on someone's profile page.
 
 
 play-paginate.prev=Previous

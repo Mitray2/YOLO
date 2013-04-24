@@ -75,7 +75,11 @@ POST    /talks/?                                        MessageController.sendMe
 DELETE  /talks/?                                        MessageController.deleteConversation
 DELETE  /talks/messages/{id}/?                          MessageController.deleteMessage
 
-POST    /groups/{groupId}/topics/{topicId}/messages     GroupController.addTopicMessage
+POST    /groups/{<[0-9]+>groupId}/topics/{<[0-9]+>topicId}/messages     GroupController.addTopicMessage
+POST    /teams/{<[0-9]+>teamId}/favourites                     UserController.addTeamToFavourites
+POST    /teams/{<[0-9]+>teamId}/blacklist                      UserController.addTeamToBlacklist
+DELETE  /teams/{<[0-9]+>teamId}/favourites                     UserController.removeTeamFromFavourites
+DELETE  /teams/{<[0-9]+>teamId}/blacklist                      UserController.removeTeamFromBlacklist
 
 #UserController
 GET			/profile								    UserController.profile

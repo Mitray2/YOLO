@@ -25,6 +25,9 @@
         <span class="dialogs-delete" data-id="${msgUser.id}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete'}</span></span>
     </div>
 #{/list}
+#{else}
+    <div class="no-dialogs">&{'page.dialogs.empty'}</div>
+#{/else}
 
 </div>
 
@@ -43,7 +46,7 @@
             <span class="user-online"><span class="st-online">online</span></span>
             <span class="msg-time">{{formatTime time}}</span>
         </div>
-        <p><a href="/talks/{{ from.id }}">{{n2lbr (limitTo text 200)}}</a></p>
+        <p><a href="/talks/{{ from.id }}">{{limitTo_nl2br text 200}}</a></p>
         <span class="dialogs-delete" data-id="{{ from.id }}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete'}</span></span>
     </div>
     {{/each}}

@@ -705,6 +705,7 @@ page.dialogs.button.send=Отправить
 page.dialogs.placeholder.send=Ввести сообщение...
 pages.dialogs.yes=Да
 pages.dialogs.no=Нет
+page.dialogs.empty=Чтобы начать диалог с другим пользователем, нажмите кнопку 'Отравить сообщение' на странице его/ее профиля.
 
 play-paginate.prev=Предыдущая
 play-paginate.next=Следующая

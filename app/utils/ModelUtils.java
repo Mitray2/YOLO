@@ -95,14 +95,14 @@ public class ModelUtils {
         return result;
     }
 
-    public static boolean isFavTopic(User user, Long topicId){
-        final List<Long> topicIds = extract(user.favouriteTopics, on(Topic.class).id);
-        return topicIds.contains(topicId);
+    public static boolean isFavTeam(User user, Long teamId){
+        final List<Long> teamIds = extract(user.favouriteTeams, on(Command.class).id);
+        return teamIds.contains(teamId);
     }
 
-    public static boolean isBlackTopic(User user, Long topicId){
-        final List<Long> topicIds = extract(user.blacklistTopics, on(Topic.class).id);
-        return topicIds.contains(topicId);
+    public static boolean isBlackTeam(User user, Long teamId){
+        final List<Long> teamIds = extract(user.blacklistTeams, on(Command.class).id);
+        return teamIds.contains(teamId);
     }
 
 }

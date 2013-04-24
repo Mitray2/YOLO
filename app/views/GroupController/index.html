@@ -1,6 +1,6 @@
 #{extends 'group_templeate.html' /} #{set title:'StartNewTeam' /}
-%{ 
-	boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN; 
+%{
+	boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN;
 	boolean currentGroupAdmin = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id) && (adminGroup); 
 	boolean notInGroup = utils.SessionHelper.getCurrentUser(session)?.command == null; 
 	boolean wasInviteToThisGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id == group.id;

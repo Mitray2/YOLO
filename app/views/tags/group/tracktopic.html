@@ -1,10 +1,29 @@
 #{if _topic.publicTopic}
 %{
-    isFav = utils.ModelUtils.isFavTopic(_user,_topic.id)
-    isBlack = utils.ModelUtils.isBlackTopic(_user,_topic.id)
+    isFav = utils.ModelUtils.isFavTeam(_user,_group?.id)
+    isBlack = utils.ModelUtils.isBlackTeam(_user,_group?.id)
 }%
-<li class="search-result-item clearFix">
+<li class="search-result-item clearFix team-${_group?.id}-topic">
 	<h4>
+
+        <span class="fav-buttons">
+            <a href="#" data-team="${_group?.id}" class="topic-fav-link" #{if isFav || isBlack}style="display:none"#{/if}>
+                <span class="topic-fav"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.teamtrack.tip.favor.add'}</span></span>
+            </a>
+
+            <a href="#" data-team="${_group?.id}" class="topic-fav-link-hovered" #{if !isFav || isBlack}style="display:none"#{/if}>
+                <span class="topic-fav"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.teamtrack.tip.favor.remove'}</span></span>
+            </a>
+
+            <a href="#" data-team="${_group?.id}" class="topic-ban-link" #{if isFav || isBlack}style="display:none"#{/if}>
+                <span class="topic-ban"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.teamtrack.tip.blacklist.add'}</span></span>
+            </a>
+
+            <a href="#" data-team="${_group?.id}" class="topic-ban-link-hovered" #{if isFav || !isBlack}style="display:none"#{/if}>
+                <span class="topic-ban"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.teamtrack.tip.blacklist.remove'}</span></span>
+            </a>
+        </span>
+
         <a class="track-topic-team" href="@{GroupController.index(_group.id)}">${_group.name}</a>
 
         #{if _topic.mainTopic}
@@ -19,30 +38,6 @@
                 ${_topic.name}
             </a>
         #{/else}
-
-
-        #{if isFav}
-            <a href="@{UserController.removeTopicFromFavourites(_topic.id, _country, _category)}">
-                <span class="topic-fav hovered"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.teamtrack.tip.favor.remove'}</span></span>
-            </a>
-        #{/if}
-        #{elseif !isBlack}
-            <a href="@{UserController.addTopicToFavourites(_topic.id, _country, _category)}">
-                <span class="topic-fav"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.teamtrack.tip.favor.add'}</span></span>
-            </a>
-        #{/elseif}
-
-
-        #{if isBlack}
-            <a href="@{UserController.removeTopicFromBlacklist(_topic.id, _country, _category)}">
-                <span class="topic-ban hovered"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.teamtrack.tip.blacklist.remove'}</span></span>
-            </a>
-        #{/if}
-        #{elseif !isFav}
-            <a href="@{UserController.addTopicToBlacklist(_topic.id, _country, _category)}">
-                <span class="topic-ban"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.teamtrack.tip.blacklist.add'}</span></span>
-            </a>
-        #{/elseif}
 
     </h4>
 	<pre>#{common.reducedText text:_topic.description /}</pre>
