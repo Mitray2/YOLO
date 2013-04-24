@@ -149,6 +149,7 @@ public class User extends Model {
 	public Boolean haveAvatar = false;
 	
 	public Date lastSeen;
+	public Date lastSeenInTeam;
 
 	public Date lastNotified;
 

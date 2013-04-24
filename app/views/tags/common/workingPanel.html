@@ -1,24 +1,25 @@
 %{
-    currentUser = utils.SessionHelper.getCurrentUser(session);
+    currentUser = models.User.findById(utils.SessionHelper.getCurrentUser(session)?.id);
     boolean groupAdmin = currentUser?.role == models.User.ROLE_GROUP_ADMIN;
     boolean groupMember = !groupAdmin && (currentUser?.command != null);
     boolean wasInviteToGroup = currentUser?.commandToInvite != null;
     boolean haveGroupOrInviteJoin = groupMember || wasInviteToGroup;
-    int countCommands = 0;
-    int countUsers = 0;
-    if(currentUser != null){
-        countCommands = (models.User.findById(currentUser.id)?.commandsForAprove == null)? 0 : models.User.findById(currentUser?.id)?.commandsForAprove?.size();
-        countUsers = ((models.User.findById(currentUser?.id).command?.usersForAprove == null) || (groupMember)) ? 0 : models.User.findById(currentUser?.id)?.command?.usersForAprove?.size();
-    }
+    countCommands = currentUser?.commandsForAprove == null ? 0 : currentUser?.commandsForAprove?.size();
+    countUsers = currentUser?.command?.usersForAprove == null || groupMember ? 0 : currentUser?.command?.usersForAprove?.size();
+
     newMessages = controllers.MessageController.getUserNewMessages(currentUser?.id,null,0);
+    //newTeamEvents = controllers.GroupController.getNewTeamEvents(currentUser?.id);
 }%
 <!--span id="msg-sound"></span-->
-<audio id="msg-sound" preload="auto">
-    <source src="/public/sounds/CLACK.WAV" />
-</audio>
+<audio id="msg-sound" preload="auto"><source src="/public/sounds/CLACK.WAV" /></audio>
 *{TODO make better!}*
 #{if !(currentUser?.role == models.User.ROLE_INPERFECT_USER || currentUser?.role == models.User.ROLE_WITHOUT_BLANK)}
     <div class="logged clearFix">
+
+        <div class="logged-team">
+            <a href="@{GroupController.index(currentUser?.command?.id)}" class="logged-team-ico"></a>
+        </div>
+
         <div class="logged-message">
             #{if newMessages}
                 <a href="#" class="logged-message-ico act"></a>
@@ -36,7 +37,7 @@
                         #{/if}
                     #{/list}
                     </ul>
-                    <div class="all-dialogs"><a href="@{MessageController.index(currentUser.id)}">
+                    <div class="all-dialogs"><a href="@{MessageController.index(currentUser?.id)}">
                         #{if newMessages.size() > 10}Просмотреть все#{/if}#{else}&{'page.dialogs.list'}#{/else}
                     </a></div>
                 </div>
@@ -45,6 +46,8 @@
                 <a href="@{MessageController.index(currentUser?.id)}" class="logged-message-ico"></a>
             #{/else}
         </div>
+
+
         <div class="logged-event">
             #{if (countCommands + countUsers)}
                 <a href="#"  class="logged-event-ico act"></a>
@@ -53,11 +56,11 @@
 
                 <div class="event-popup logg-menu" style="display:none;">
                     <img src="@{'public/images/boilerplate/logged-arrow2.png'}" alt="">
-                &{'page.main.home.events'}
+                    <!--div class="event-popup-title">&{'page.main.home.events'}</div-->
                     <ul>
-                        #{list items:models.User.findById(currentUser.id).commandsForAprove, as:'group'}
+                        #{list items:currentUser?.commandsForAprove, as:'group'}
                             <li>
-                                <span><a href="@{GroupController.index(group.id)}">&{'page.main.home.group_invite'}: ${group?.name}</a></span>
+                                <span>&{'page.main.home.group_invite'}: <a href="@{GroupController.index(group.id)}">${group?.name}</a></span>
                                 #{if groupAdmin}
                                     <div title="&{'page.main.home.msg1'}">&{'page.main.home.agree'}</div>
                                 #{/if}
@@ -82,12 +85,12 @@
                             </li>
                         #{/list}
                         #{if groupAdmin}
-                            #{list items:models.User.findById(currentUser.id).command?.usersForAprove, as:'userForAprove'}
+                            #{list items:currentUser?.command?.usersForAprove, as:'userForAprove'}
                                 <li>
-                                    <span><a href="@{GroupController.index(currentUser.command?.id)}">&{'page.main.home.group_request'}</a></span>
+                                    <span><a href="@{GroupController.index(currentUser?.command?.id)}">&{'page.main.home.group_request'}</a></span>
                                     <p><a href="@{UserController.index(userForAprove.id)}">${userForAprove.name} ${userForAprove.lastName}</a></p>
-                                    <p><a href="@{GroupController.approveJoin(userForAprove.id, currentUser.command.id)}">&{'page.main.home.add'}</a></p>
-                                    <p><a href="@{GroupController.declineJoin(userForAprove.id, currentUser.command.id)}">&{'page.main.home.reject'}</a></p>
+                                    <p><a href="@{GroupController.approveJoin(userForAprove.id, currentUser?.command.id)}">&{'page.main.home.add'}</a></p>
+                                    <p><a href="@{GroupController.declineJoin(userForAprove.id, currentUser?.command.id)}">&{'page.main.home.reject'}</a></p>
                                 </li>
                             #{/list}
                         #{/if}
@@ -98,6 +101,8 @@
                 <a href="#" onclick="return false" class="logged-event-ico"></a>
             #{/else}
         </div>
+
+
         <div class="logged-user">
             <a href="#" class="act">
                 #{avatar.avatar user:currentUser, cssClass:'user-pic', maleImg:'upm.png', femaleImg:'upf.png', avatarSize:27 /}
@@ -191,7 +196,7 @@
                 }
             };
 
-            Dynamics.Dialogs.startListen(${currentUser.id}, null, lastUpdateTime, fnRedrawPopup);
+            Dynamics.Dialogs.startListen(${currentUser?.id}, null, lastUpdateTime, fnRedrawPopup);
         #{/if}
     });
 </script>

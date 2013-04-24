@@ -44,6 +44,7 @@ public class GroupController extends BasicController implements ApplicationConst
     if (currentUser != null) {
       User user = User.findById(currentUser.id);
       user.lastSeen = new Date();
+      user.lastSeenInTeam = new Date();
       user.save();
     }
     if (currentUser.role == User.ROLE_INPERFECT_USER) {
@@ -300,7 +301,7 @@ public class GroupController extends BasicController implements ApplicationConst
         }
         user.command = group;
 
-        logGroupMemberActivity(user, group, TeamMemberActivity.ACTION_MEMBER_JOINED);
+        TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_MEMBER_JOINED, group, null, null);
 
         user.save();
         group.save();
@@ -803,8 +804,15 @@ public class GroupController extends BasicController implements ApplicationConst
     }
   }
 
-    private static void logGroupMemberActivity(User user, Command team, int action) {
-        TeamMemberActivity activity = new TeamMemberActivity(team, user, action, new Date());
-        activity.create();
+
+    public static List<TeamMemberActivity> getNewTeamEvents(Long userId){
+        User user = SessionHelper.getCurrentUser(session);
+        List<TeamMemberActivity> events = new ArrayList<TeamMemberActivity>();
+        if(userId != null && user != null && user.id.equals(userId)){
+            events = TeamMemberActivity.find("actionDate > ? ORDER BY actionDate DESC", user.lastSeenInTeam).fetch();
+        }
+
+        return events;
     }
+
 }

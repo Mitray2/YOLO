@@ -328,7 +328,7 @@ public class UserController extends BasicController  implements ApplicationConst
           GroupController.index(user.command.id);
         }
 
-        logGroupMemberActivity(user, user.command, TeamMemberActivity.ACTION_MEMBER_LEFT);
+        TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_MEMBER_LEFT, user.command, null, null);
 
 		user.command = null;
 		user.save();
@@ -383,12 +383,6 @@ public class UserController extends BasicController  implements ApplicationConst
         }
         //UserController.teamtrack(country, category);
         renderJSON("{\"status\": \"Ok\"}");
-    }
-
-
-    private static void logGroupMemberActivity(User user, Command team, int action) {
-        TeamMemberActivity activity = new TeamMemberActivity(team, user, action, new Date());
-        activity.create();
     }
 
 }

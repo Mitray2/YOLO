@@ -60,13 +60,13 @@ public class EmailDailyRecap extends Job {
                 Integer joinedMembers = ((Number) JPA.em().createNativeQuery(
                         String.format("select count(*) from TeamMemberActivity tma " +
                             "where tma.team_id = %d and tma.actionDate > DATE_ADD(NOW(),INTERVAL -1 DAY) and tma.action = %d",
-                            team.id, TeamMemberActivity.ACTION_MEMBER_JOINED)).getSingleResult()).intValue();
+                            team.id, TeamMemberActivity.Action.ACTION_MEMBER_JOINED.getId())).getSingleResult()).intValue();
 
                 // 3. for each team get team LEFT members
                 Integer leftMembers = ((Number) JPA.em().createNativeQuery(
                         String.format("select count(*) from TeamMemberActivity tma " +
                                 "where tma.team_id = %d and tma.actionDate > DATE_ADD(NOW(),INTERVAL -1 DAY) and tma.action = %d",
-                                team.id, TeamMemberActivity.ACTION_MEMBER_LEFT)).getSingleResult()).intValue();
+                                team.id, TeamMemberActivity.Action.ACTION_MEMBER_LEFT.getId())).getSingleResult()).intValue();
 
 
                 // 4. for each team get COUNT of recently added TOPICS
