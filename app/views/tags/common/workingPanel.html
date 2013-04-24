@@ -8,7 +8,7 @@
     countUsers = currentUser?.command?.usersForAprove == null || groupMember ? 0 : currentUser?.command?.usersForAprove?.size();
 
     newMessages = controllers.MessageController.getUserNewMessages(currentUser?.id,null,0);
-    //newTeamEvents = controllers.GroupController.getNewTeamEvents(currentUser?.id);
+    newTeamEvents = controllers.GroupController.getNewTeamEvents(currentUser?.id);
 }%
 <!--span id="msg-sound"></span-->
 <audio id="msg-sound" preload="auto"><source src="/public/sounds/CLACK.WAV" /></audio>
@@ -17,7 +17,79 @@
     <div class="logged clearFix">
 
         <div class="logged-team">
-            <a href="@{GroupController.index(currentUser?.command?.id)}" class="logged-team-ico"></a>
+            #{if newTeamEvents}
+                <a href="#" class="logged-team-ico act"></a>
+                <span class="dialog-num">${newTeamEvents.size()}</span>
+                <div class="dialog-popup logg-menu" style="display: none;">
+                    <img src="@{'/public/images/boilerplate/logged-arrow2.png'}" alt="">
+                    <ul id="popup-msg-list">
+                        #{list items:newTeamEvents, as:'event'}
+                            #{if event_index > newTeamEvents.size() - 10}
+                                <li>
+                                    #{if event.action == models.TeamMemberActivity.Action.ACTION_NEW_MESSAGE.getId()}
+
+                                        <a href="@{UserController.index(event.message?.from?.id)}" class="user-name-popup">${event.message?.from?.name} ${event.message?.from?.lastName}</a>
+                                        <span>
+                                            &{'work.panel.team.member.activity.10'}
+                                            #{if event.topic?.mainTopic}
+                                                #{if event.topic?.publicTopic}
+                                                    <a href="@{GroupController.publicTopics(event.team?.id)}">
+                                                        &{'work.panel.team.topic.main.public'}
+                                                    </a>
+                                                #{/if}
+                                                #{else}
+                                                    <a href="@{GroupController.groupTopics(event.team?.id)}">
+                                                        &{'work.panel.team.topic.main.private'}
+                                                    </a>
+                                                #{/else}
+                                            #{/if}
+                                            #{else}
+                                            <a href="@{GroupController.indexTopic(event.topic?.id, event.team?.id)}">
+                                                ${event.topic?.name}
+                                            </a>
+                                            #{/else}:
+                                        </span>
+                                        <p><a href="@{GroupController.indexTopic(event.topic?.id, event.team?.id)}">${event.message?.text.limitTo(200).nl2br()}</a></p>
+
+                                    #{/if}
+                                    #{elseif event.action == models.TeamMemberActivity.Action.ACTION_TOPIC_CREATED.getId()}
+
+                                        <a href="@{UserController.index(event.user?.id)}" class="user-name-popup">
+                                            ${event.user?.name} ${event.user?.lastName}
+                                        </a>
+                                        <span>&{'work.panel.team.member.activity.8'}</span>
+                                        <div><a href="@{GroupController.indexTopic(event.topic?.id, event.team?.id)}">${event.topic.name}</a></div>
+
+                                    #{/elseif}
+                                    #{elseif event.action == models.TeamMemberActivity.Action.ACTION_TOPIC_DELETED.getId()}
+
+                                        <a href="@{UserController.index(event.user?.id)}" class="user-name-popup">
+                                            ${event.user?.name} ${event.user?.lastName}
+                                        </a>
+                                        <span>&{'work.panel.team.member.activity.9'}</span>
+                                        <div>"${event.topicName}"</div>
+
+                                    #{/elseif}
+                                    #{else}
+
+                                        <a href="@{UserController.index(event.user?.id)}" class="user-name-popup">
+                                            ${event.user?.name} ${event.user?.lastName}
+                                        </a>
+                                        &{'work.panel.team.member.activity.' + event.action}
+
+                                    #{/else}
+                                </li>
+                            #{/if}
+                        #{/list}
+                    </ul>
+                    <div class="all-dialogs"><a href="@{MessageController.index(currentUser?.id)}">
+                        #{if newMessages.size() > 10}Просмотреть все#{/if}#{else}&{'page.dialogs.list'}#{/else}
+                    </a></div>
+                </div>
+            #{/if}
+            #{else}
+                <a href="@{GroupController.index(currentUser?.command?.id)}" class="logged-team-ico"></a>
+            #{/else}
         </div>
 
         <div class="logged-message">

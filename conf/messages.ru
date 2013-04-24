@@ -48,6 +48,20 @@ page.main.home.msg2=Вступить в команду
 page.main.home.msg3=Вы точно хотите выйти из своей команды и отменить заявки на вступления, чтобы вступить в новую?
 page.main.home.msg4=Вы должны сначала передать права администратора команды или удалить ее, прежде чем создать новую.
 
+work.panel.team.member.activity.0=покинул команду :(
+work.panel.team.member.activity.1=присоединился к вашей команде!
+work.panel.team.member.activity.2=хочет присоединится к вашей команде
+work.panel.team.member.activity.3=был приглашен в команду администратором
+work.panel.team.member.activity.4=не был принят в команду администратором
+work.panel.team.member.activity.5=отказался присоединится к вашей команде
+work.panel.team.member.activity.6=был удален из команды администратором
+work.panel.team.member.activity.7=стал новым администратором команды
+work.panel.team.member.activity.8=создал тему
+work.panel.team.member.activity.9=удалил тему
+work.panel.team.member.activity.10=написал сообщение в теме
+work.panel.team.topic.main.public=Стена
+work.panel.team.topic.main.private=Стена групы
+
 page.profile.change.password.mesage1=Вы не ввели старый пароль.
 page.profile.change.password.mesage2=Вы не ввели новый пароль.
 page.profile.change.password.mesage3=Вы не повторили новый пароль.

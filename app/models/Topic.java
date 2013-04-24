@@ -47,6 +47,10 @@ public class Topic extends Model {
     public Topic() {
     }
 
+    public Topic(String name) {
+        this.name = name;
+    }
+
     public Topic(boolean mainTopic, boolean publicTopic, Long groupId) {
         this.mainTopic = mainTopic;
         this.publicTopic = publicTopic;

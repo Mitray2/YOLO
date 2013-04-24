@@ -248,6 +248,9 @@ public class UserController extends BasicController  implements ApplicationConst
 			User userAdmin = (User) User.find("role=? and command.id=?", User.ROLE_GROUP_ADMIN, group.id).first();
 			Mails.memberRequest(userAdmin, request.getBase(), userCurrent, text);
 			SessionHelper.setUserMessage(session, new SessionUserMessage(MESSAGE_USER_CONTROLLER_REQUEST_SENT));
+
+            TeamMemberActivity.log(userCurrent, TeamMemberActivity.Action.ACTION_MEMBER_APPLIED, group);
+
             index(user.id);
 		}
 
@@ -266,6 +269,7 @@ public class UserController extends BasicController  implements ApplicationConst
                 group.save();
 
                 Mails.teamInvitationDeclined(group.founderUser, user);
+                TeamMemberActivity.log(userCurrent, TeamMemberActivity.Action.ACTION_MEMBER_REFUSED_TO_JOIN, group);
 
                 SessionHelper.setCurrentUser(session, userCurrent);
             }
@@ -293,6 +297,7 @@ public class UserController extends BasicController  implements ApplicationConst
 
         if(group != null){
             Mails.teamInvitationAccepted(group.founderUser, user);
+            TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_MEMBER_JOINED, group);
         }
 
 		SessionHelper.setCurrentUser(session, user);
@@ -313,6 +318,7 @@ public class UserController extends BasicController  implements ApplicationConst
 
         if(group != null){
             Mails.teamInvitationDeclined(group.founderUser, user);
+            TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_MEMBER_REFUSED_TO_JOIN, group);
         }
 
 		SessionHelper.setCurrentUser(session, user);
@@ -357,7 +363,7 @@ public class UserController extends BasicController  implements ApplicationConst
             user.save();
             SessionHelper.setCurrentUser(session, user);
         }
-        //UserController.teamtrack(country, category);
+
         renderJSON("{\"status\": \"Ok\"}");
     }
 
@@ -369,7 +375,7 @@ public class UserController extends BasicController  implements ApplicationConst
             user.save();
             SessionHelper.setCurrentUser(session, user);
         }
-        //UserController.teamtrack(country, category);
+
         renderJSON("{\"status\": \"Ok\"}");
     }
 
@@ -381,7 +387,7 @@ public class UserController extends BasicController  implements ApplicationConst
             user.save();
             SessionHelper.setCurrentUser(session, user);
         }
-        //UserController.teamtrack(country, category);
+
         renderJSON("{\"status\": \"Ok\"}");
     }
 

@@ -48,6 +48,20 @@ page.main.home.msg2=Join the team
 page.main.home.msg3=In order to join new team, you need to leave the one you're in now and cancel other requests. Are you sure you want to do this?
 page.main.home.msg4=You must first submit an administrator member of the team, before going out and create a new team
 
+work.panel.team.member.activity.0=has left the team :(
+work.panel.team.member.activity.1=has joined the team!
+work.panel.team.member.activity.2=wants to join your team
+work.panel.team.member.activity.3=has been invited to the team by admin
+work.panel.team.member.activity.4=has been declined to join the team
+work.panel.team.member.activity.5=has refused to join your team
+work.panel.team.member.activity.6=has been removed from the team by admin
+work.panel.team.member.activity.7=is a new team admin now
+work.panel.team.member.activity.8=has created topic
+work.panel.team.member.activity.9=has deleted topic
+work.panel.team.member.activity.10=has posted a message to topic
+work.panel.team.topic.main.public=Public wall
+work.panel.team.topic.main.private=Private wall
+
 page.profile.change.password.mesage1=Please enter old password
 page.profile.change.password.mesage2=Please enter new password
 page.profile.change.password.mesage3=Please repeat new password

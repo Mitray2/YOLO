@@ -20,8 +20,6 @@ import java.util.List;
 
 public class GroupController extends BasicController implements ApplicationConstants {
 
-
-
   @Catch(value = Throwable.class, priority = 1)
   public static void onError(Throwable e) {
       Logger.error(e, "[GroupCTR] %s", e.getMessage());
@@ -301,12 +299,11 @@ public class GroupController extends BasicController implements ApplicationConst
         }
         user.command = group;
 
-        TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_MEMBER_JOINED, group, null, null);
-
         user.save();
         group.save();
 
         Mails.teamMemberApproved(user);
+        TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_MEMBER_JOINED, group);
 
         break;
       }
@@ -326,6 +323,7 @@ public class GroupController extends BasicController implements ApplicationConst
         user.save();
 
         Mails.teamMemberDeclined(user, group);
+        TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_MEMBER_DECLINED_BY_ADMIN, group);
 
         break;
       }
@@ -355,6 +353,9 @@ public class GroupController extends BasicController implements ApplicationConst
       user.commandsForAprove.add(group);
       user.save();
     }
+
+      TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_MEMBER_INVITED, group);
+
     Mails.groupRequest(user, request.getBase(), group, text);
     SessionHelper.setUserMessage(session, new SessionUserMessage(MESSAGE_GROUP_CONTROLLER_INVITATION_SENT));
     UserController.index(user.id);
@@ -409,6 +410,9 @@ public class GroupController extends BasicController implements ApplicationConst
     }
     group.topics.add(topic);
     group.save();
+
+      TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_TOPIC_CREATED, group, topic);
+
     indexTopic(topic.id, group.id);
   }
 
@@ -459,6 +463,9 @@ public class GroupController extends BasicController implements ApplicationConst
         topic.lastUpdateUserName = msg.from.name;
         topic.lastUpdateUserLastName = msg.from.lastName;
         topic.save();
+
+        Command team = Command.findById(groupId);
+        TeamMemberActivity.log(msg.from, TeamMemberActivity.Action.ACTION_NEW_MESSAGE, team, topic, msg);
 
         renderJSON("{\"status\": 200, \"id\": " + msg.id + "}");
     }
@@ -627,6 +634,9 @@ public class GroupController extends BasicController implements ApplicationConst
     currentUser.save();
     user.role = User.ROLE_GROUP_ADMIN;
     user.save();
+
+      TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_NEW_ADMIN, user.command);
+
     SessionHelper.updateUser(session, user);
     SessionHelper.setCurrentUser(session, currentUser);
     index(user.command.id);
@@ -634,9 +644,13 @@ public class GroupController extends BasicController implements ApplicationConst
 
   public static void removeUser(Long userId) {
     User user = User.findById(userId);
+    Command team = user.command;
     Long groupId = user.command.id;
     user.command = null;
     user.save();
+
+      TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_MEMBER_REMOVED, team);
+
     groupUsers(groupId);
   }
 
@@ -717,6 +731,9 @@ public class GroupController extends BasicController implements ApplicationConst
     group.delete();
     Query query = JPA.em().createQuery("delete from TopicMessage where topic_id IS NULL");
     query.executeUpdate();
+
+      //TODO log as team member activity
+
     user = SessionHelper.getCurrentUser(session);
     if (userState.id.equals(user.id)) {
       SessionHelper.setCurrentUser(session, userState);
@@ -777,6 +794,7 @@ public class GroupController extends BasicController implements ApplicationConst
 
   public static void removeTopic(Long topicId, Long groupId) {
     Topic topic = Topic.findById(topicId);
+    String topicName = topic.name;
     Boolean isPublic = topic.publicTopic;
     if (!isPublic) {
       if (!memberOfGroup(groupId)) {
@@ -796,6 +814,10 @@ public class GroupController extends BasicController implements ApplicationConst
     topic.save();
     topic.delete();
     Query query = JPA.em().createQuery("delete from TopicMessage where topic_id IS NULL");
+
+      User user = SessionHelper.getCurrentUser(session);
+      TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_TOPIC_DELETED, command, new Topic(topicName));
+
     query.executeUpdate();
     if (isPublic) {
       publicTopics(groupId);
@@ -809,7 +831,7 @@ public class GroupController extends BasicController implements ApplicationConst
         User user = SessionHelper.getCurrentUser(session);
         List<TeamMemberActivity> events = new ArrayList<TeamMemberActivity>();
         if(userId != null && user != null && user.id.equals(userId)){
-            events = TeamMemberActivity.find("actionDate > ? ORDER BY actionDate DESC", user.lastSeenInTeam).fetch();
+            events = TeamMemberActivity.find("actionDate > ? ORDER BY actionDate ASC", user.lastSeenInTeam).fetch();
         }
 
         return events;

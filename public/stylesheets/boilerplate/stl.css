@@ -2761,16 +2761,16 @@ a, input, input:hover, input:active, input:focus, textarea {
 	margin-right:12px;
 	position:relative;
 }
-.logged .logged-message .logged-message-ico{
+.logged .logged-message-ico{
 	display:block;
 	background:url(../../images/boilerplate/ico-message.png) no-repeat left top;
 	width:19px;
 	height:14px;
 }
-.logged .logged-message .logged-message-ico.act{
+.logged .logged-message-ico.act{
 	background-position:left bottom;
 }
-.logged .logged-message .dialog-num{
+.logged .dialog-num{
 	background:#d95a1b;
 	position:absolute;
 	left:12px;
@@ -2781,6 +2781,9 @@ a, input, input:hover, input:active, input:focus, textarea {
 	-webkit-border-radius:7px;
 	-moz-border-radius:7px;
 	border-radius:7px;
+}
+.logged .logged-team .dialog-num{
+    left: 22px;
 }
 .logged .dialog-popup{
 	position:absolute;
@@ -2843,8 +2846,12 @@ a, input, input:hover, input:active, input:focus, textarea {
 	text-decoration:underline;
 }
 .logged .dialog-popup li span{
-	color:#999;  /*OLD-FONT: c6c6c6*/
-	margin-left:7px;
+     color:#999;  /*OLD-FONT: c6c6c6*/
+     margin-left:7px;
+ }
+.logged-team .dialog-popup li span{
+    color:#777;
+    margin-left:0;
 }
 .logged .logged-event{
 	float:left;
