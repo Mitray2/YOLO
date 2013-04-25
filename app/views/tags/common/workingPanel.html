@@ -8,7 +8,7 @@
     countUsers = currentUser?.command?.usersForAprove == null || groupMember ? 0 : currentUser?.command?.usersForAprove?.size();
 
     newMessages = controllers.MessageController.getUserNewMessages(currentUser?.id,null,0);
-    newTeamEvents = controllers.GroupController.getNewTeamEvents(currentUser?.id);
+    newTeamEvents = controllers.GroupController.getNewTeamEvents(currentUser?.command?.id,0);
 }%
 <!--span id="msg-sound"></span-->
 <audio id="msg-sound" preload="auto"><source src="/public/sounds/CLACK.WAV" /></audio>
@@ -22,7 +22,7 @@
                 <span class="dialog-num">${newTeamEvents.size()}</span>
                 <div class="dialog-popup logg-menu" style="display: none;">
                     <img src="@{'/public/images/boilerplate/logged-arrow2.png'}" alt="">
-                    <ul id="popup-msg-list">
+                    <ul id="popup-events-list">
                         #{list items:newTeamEvents, as:'event'}
                             #{if event_index > newTeamEvents.size() - 10}
                                 <li>
@@ -82,9 +82,9 @@
                             #{/if}
                         #{/list}
                     </ul>
-                    <div class="all-dialogs"><a href="@{MessageController.index(currentUser?.id)}">
-                        #{if newMessages.size() > 10}Просмотреть все#{/if}#{else}&{'page.dialogs.list'}#{/else}
-                    </a></div>
+                    <div class="all-dialogs">
+                        <a href="@{GroupController.index(currentUser?.command?.id)}">&{'work.panel.team.goto'}</a>
+                    </div>
                 </div>
             #{/if}
             #{else}
@@ -192,6 +192,9 @@
         </div>
     </div>
 
+
+
+<!--  POPUP MESSAGES TEMPLATES -->
 <script id="msg-popup-tpl" type="text/x-handlebars-template">
     {{#if this.length}}
         <a href="#" class="logged-message-ico act"></a>
@@ -200,11 +203,7 @@
             <img src="@{'/public/images/boilerplate/logged-arrow2.png'}" alt="" />
             <ul id="popup-msg-list">
                 {{#each this}}
-                    <li>
-                        <a href="/{{ from.id }}" class="user-name-popup">{{from.name}} {{from.lastName}}</a>
-                        <span>{{formatTime time}}</span>
-                        <p><a href="/talks/{{ from.id }}">{{limitTo text 200}}</a></p>
-                    </li>
+                {{> singlePopupMsg}}
                 {{/each}}
             </ul>
             <div class="all-dialogs"><a href="/{{ from.id }}/talks">{{#ifCond newMessages 10 1}}Просмотреть все{{else}}&{'page.dialogs.list'}{{/ifCond}}</a></div>
@@ -214,21 +213,127 @@
     {{/if}}
 </script>
 
-<script id="msg-popup-item-tpl" type="text/x-handlebars-template">
+<script id="msg-popup-items-tpl" type="text/x-handlebars-template">
     {{#each this}}
-        <li>
-            <a href="/{{ from.id }}" class="user-name-popup">{{from.name}} {{from.lastName}}</a>
-            <span>{{formatTime time}}</span>
-            <p><a href="/talks/{{ from.id }}">{{limitTo text 200}}</a></p>
-        </li>
+        {{> singlePopupMsg}}
     {{/each}}
 </script>
+
+<script id="single-msg-popup-item-tpl" type="text/x-handlebars-template">
+    <li>
+        <a href="/{{ from.id }}" class="user-name-popup">{{from.name}} {{from.lastName}}</a>
+        <span>{{formatTime time}}</span>
+        <p><a href="/talks/{{ from.id }}">{{limitTo text 200}}</a></p>
+    </li>
+</script>
+
+
+
+<!--  POPUP TEAM EVENTS TEMPLATES -->
+<script id="events-popup-tpl" type="text/x-handlebars-template">
+    {{#if this.length}}
+        <a href="#" class="logged-team-ico act"></a>
+        <span class="dialog-num">{{ this.length }}</span>
+        <div class="dialog-popup logg-menu" style="display: none;">
+            <img src="@{'/public/images/boilerplate/logged-arrow2.png'}" alt="" />
+            <ul id="popup-events-list">
+                {{#each this}}
+                    {{> singlePopupEvent}}
+                {{/each}}
+            </ul>
+            <div class="all-dialogs">
+                <a href="@{GroupController.index(currentUser?.command?.id)}">&{'work.panel.team.goto'}</a>
+            </div>
+        </div>
+    {{else}}
+        <a href="@{GroupController.index(currentUser?.command?.id)}" class="logged-team-ico"></a>
+    {{/if}}
+</script>
+
+<script id="events-popup-items-tpl" type="text/x-handlebars-template">
+    {{#each this}}
+        {{> singlePopupEvent}}
+    {{/each}}
+</script>
+
+<script id="single-events-popup-item-tpl" type="text/x-handlebars-template">
+    <li>
+        {{#ifCond action ${models.TeamMemberActivity.Action.ACTION_NEW_MESSAGE.getId()} 0}}
+
+            <a href="/{{ message.from.id }}" class="user-name-popup">{{ message.from.name }} {{ message.from.lastName }}</a>
+            <span>
+                &{'work.panel.team.member.activity.10'}
+                    {{#if isMainTopic}}
+                        {{#if isPublicTopic}}
+                            <a href="/teams/{{ teamId }}/topics/public">&{'work.panel.team.topic.main.public'}</a>
+                        {{else}}
+                            <a href="/teams/{{ teamId }}/topics/private">&{'work.panel.team.topic.main.private'}</a>
+                        {{/if}}
+                    {{else}}
+                        <a href="/teams/{{ teamId }}/topics/{{ topicId }}">{{ topicName }}</a>
+                    {{/if}}
+            </span>
+            <p><a href="/teams/{{ teamId }}/topics/{{ topicId }}">{{ limitTo_nl2br message.text 200 }}</a></p>
+
+        {{else}}
+
+            {{#ifCond action ${models.TeamMemberActivity.Action.ACTION_TOPIC_CREATED.getId()} 0}}
+
+                <a href="/{{ user.id }}" class="user-name-popup">{{ user.name }} {{ user.lastName }}</a>
+                <span>&{'work.panel.team.member.activity.8'}</span>
+                <div><a href="/teams/{{ teamId }}/topics/{{ topicId }}">{{ topicName }}</a></div>
+
+            {{else}}
+
+                {{#ifCond action ${models.TeamMemberActivity.Action.ACTION_TOPIC_DELETED.getId()} 0}}
+
+                    <a href="/{{ user.id }}" class="user-name-popup">{{ user.name }} {{ user.lastName }}</a>
+                    <span>&{'work.panel.team.member.activity.9'}</span>
+                    <div>"{{ topicName }}"</div>
+
+                {{else}}
+                    <a href="/{{ user.id }}" class="user-name-popup">{{ user.name }} {{ user.lastName }}</a>
+                    {{ teamActivity action }}
+                {{/ifCond}}
+
+            {{/ifCond}}
+
+        {{/ifCond}}
+    </li>
+</script>
+
+
 
 <script>
     $(document).ready(function(){
         var Templates = window.Templates || {};
-        Templates.popupMsgTpl = Handlebars.compile($("#msg-popup-tpl").html());
-        Templates.popupMsgItemTpl = Handlebars.compile($("#msg-popup-item-tpl").html());
+        Templates.teamActivityMessages = [
+            "&{'work.panel.team.member.activity.0'}",
+            "&{'work.panel.team.member.activity.1'}",
+            "&{'work.panel.team.member.activity.2'}",
+            "&{'work.panel.team.member.activity.3'}",
+            "&{'work.panel.team.member.activity.4'}",
+            "&{'work.panel.team.member.activity.5'}",
+            "&{'work.panel.team.member.activity.6'}",
+            "&{'work.panel.team.member.activity.7'}",
+            "&{'work.panel.team.member.activity.8'}",
+            "&{'work.panel.team.member.activity.9'}",
+            "&{'work.panel.team.member.activity.10'}"
+        ];
+
+        Templates.popupMsgTpl =      Handlebars.compile($("#msg-popup-tpl").html());
+        Templates.popupMsgItemsTpl = Handlebars.compile($("#msg-popup-items-tpl").html());
+
+        var singlePopupMsgTpl =      $("#single-msg-popup-item-tpl").html();
+        //Templates.popupMsgItemTpl = Handlebars.compile(singlePopupMsgTpl);
+        Handlebars.registerPartial("singlePopupMsg", singlePopupMsgTpl);
+
+        Templates.popupEventTpl =       Handlebars.compile($("#events-popup-tpl").html());
+        Templates.popupEventItemsTpl =  Handlebars.compile($("#events-popup-items-tpl").html());
+
+        var singlePopupEventTpl =       $("#single-events-popup-item-tpl").html();
+        //Templates.popupEventItemTpl = Handlebars.compile(singlePopupEventTpl);
+        Handlebars.registerPartial("singlePopupEvent", singlePopupEventTpl);
 
 
         var toggleBarMenus = function(){
@@ -252,14 +357,14 @@
             var fnRedrawPopup = function(data) {
                 var cont = $("#popup-msg-list");
                 if(cont.length){
-                    cont.append(Templates.popupMsgItemTpl(data));
+                    cont.append(Templates.popupMsgItemsTpl(data));
 
                     var $msgs = cont.find('li');
                     if($msgs.length > 10){
                         cont.find('li:lt('+($msgs.length-10)+')').remove();
                     }
 
-                    var counter = $(".dialog-num");
+                    var counter = $(".logged-message").find(".dialog-num");
                     var msgCount = parseInt(counter.text())|| 0;
                     counter.html(msgCount + data.length);
                 }else{
@@ -269,6 +374,33 @@
             };
 
             Dynamics.Dialogs.startListen(${currentUser?.id}, null, lastUpdateTime, fnRedrawPopup);
+        #{/if}
+
+        #{if currentUser?.command}
+            var lastUpdateEventTime = ${newTeamEvents.size() > 0 ? newTeamEvents.get(newTeamEvents.size()-1)?.actionDate.time : 0};
+            if(!lastUpdateEventTime) lastUpdateEventTime = (new Date()).getTime();
+
+            var fnRedrawEventsPopup = function(data) {
+                var cont = $("#popup-events-list");
+                if(cont.length){
+                    cont.append(Templates.popupEventItemsTpl(data));
+
+                    var $msgs = cont.find('li');
+                    if($msgs.length > 10){
+                        cont.find('li:lt('+($msgs.length-10)+')').remove();
+                    }
+
+                    var counter = $(".logged-team").find(".dialog-num");
+                    var msgCount = parseInt(counter.text())|| 0;
+                    counter.html(msgCount + data.length);
+                }else{
+                    $(".logged-team").html(Templates.popupEventTpl(data));
+                    $(".logged-team-ico").bind('click',toggleBarMenus);
+                }
+                //TODO highlight events icon in working panel
+            };
+
+            Team.startNewEventsListening(${currentUser?.command?.id}, lastUpdateEventTime, fnRedrawEventsPopup);
         #{/if}
     });
 </script>

@@ -75,11 +75,17 @@ POST    /talks/?                                        MessageController.sendMe
 DELETE  /talks/?                                        MessageController.deleteConversation
 DELETE  /talks/messages/{id}/?                          MessageController.deleteMessage
 
-POST    /groups/{<[0-9]+>groupId}/topics/{<[0-9]+>topicId}/messages     GroupController.addTopicMessage
-POST    /teams/{<[0-9]+>teamId}/favourites                     UserController.addTeamToFavourites
-POST    /teams/{<[0-9]+>teamId}/blacklist                      UserController.addTeamToBlacklist
-DELETE  /teams/{<[0-9]+>teamId}/favourites                     UserController.removeTeamFromFavourites
-DELETE  /teams/{<[0-9]+>teamId}/blacklist                      UserController.removeTeamFromBlacklist
+# Teams
+GET     /teams/{<[0-9]+>id}                             GroupController.index
+GET     /teams/{<[0-9]+>teamId}/topics/public           GroupController.publicTopics
+GET     /teams/{<[0-9]+>teamId}/topics/private          GroupController.groupTopics
+GET     /teams/{<[0-9]+>teamId}/topics/{<[0-9]+>topicId}              GroupController.indexTopic
+POST    /teams/{<[0-9]+>teamId}/topics/{<[0-9]+>topicId}/messages     GroupController.addTopicMessage
+GET     /teams/{<[0-9]+>teamId}/events/new              GroupController.newTeamEvents
+POST    /teams/{<[0-9]+>teamId}/favourites              UserController.addTeamToFavourites
+POST    /teams/{<[0-9]+>teamId}/blacklist               UserController.addTeamToBlacklist
+DELETE  /teams/{<[0-9]+>teamId}/favourites              UserController.removeTeamFromFavourites
+DELETE  /teams/{<[0-9]+>teamId}/blacklist               UserController.removeTeamFromBlacklist
 
 #UserController
 GET			/profile								    UserController.profile

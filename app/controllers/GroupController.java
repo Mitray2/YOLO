@@ -1,6 +1,7 @@
 package controllers;
 
 import modelDTO.CommandDTO;
+import modelDTO.SimpleTeamEvent;
 import modelDTO.SimpleTopicMessage;
 import models.*;
 import notifiers.Mails;
@@ -33,7 +34,7 @@ public class GroupController extends BasicController implements ApplicationConst
     }
   }
 
-  @Before(unless={"getNewTopicMessages"})
+  @Before(unless={"getNewTopicMessages", "newTeamEvents"})
   public static void checkSecurity() {
     // TODO warnings on page
     User currentUser = SessionHelper.getCurrentUser(session);
@@ -44,6 +45,7 @@ public class GroupController extends BasicController implements ApplicationConst
       user.lastSeen = new Date();
       user.lastSeenInTeam = new Date();
       user.save();
+      SessionHelper.setCurrentUser(session, user);
     }
     if (currentUser.role == User.ROLE_INPERFECT_USER) {
       redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
@@ -416,12 +418,12 @@ public class GroupController extends BasicController implements ApplicationConst
     indexTopic(topic.id, group.id);
   }
 
-  public static void indexTopic(Long topicId, Long groupId) {
-    Command group = Command.findById(groupId);
+  public static void indexTopic(Long topicId, Long teamId) {
+    Command group = Command.findById(teamId);
     Topic topic = Topic.findById(topicId);
     if (!topic.publicTopic) {
-      if (!memberOfGroup(groupId)) {
-        index(groupId);
+      if (!memberOfGroup(teamId)) {
+        index(teamId);
       }
     }
     ModelPaginator<TopicMessage> topicMessages = new ModelPaginator<TopicMessage>(TopicMessage.class, "topic.id=?", topic.id).orderBy("createDate");
@@ -445,9 +447,9 @@ public class GroupController extends BasicController implements ApplicationConst
     publicTopics(groupId);
   }
 
-    public static void addTopicMessage(Long groupId, Long topicId, String message){
+    public static void addTopicMessage(Long teamId, Long topicId, String message){
         Topic topic = Topic.findById(topicId);
-        if (!topic.publicTopic && !memberOfGroup(groupId)) {
+        if (!topic.publicTopic && !memberOfGroup(teamId)) {
             renderJSON("{\"status\": 403 }");
         }
         //int res = JPA.em().createNativeQuery("insert into TopicMessage values ()")
@@ -464,7 +466,7 @@ public class GroupController extends BasicController implements ApplicationConst
         topic.lastUpdateUserLastName = msg.from.lastName;
         topic.save();
 
-        Command team = Command.findById(groupId);
+        Command team = Command.findById(teamId);
         TeamMemberActivity.log(msg.from, TeamMemberActivity.Action.ACTION_NEW_MESSAGE, team, topic, msg);
 
         renderJSON("{\"status\": 200, \"id\": " + msg.id + "}");
@@ -525,15 +527,15 @@ public class GroupController extends BasicController implements ApplicationConst
     indexTopic(topic.id, group.id);
   }
 
-  public static void groupTopics(Long groupId) {
-    if (!memberOfGroup(groupId)) {
-      index(groupId);
+  public static void groupTopics(Long teamId) {
+    if (!memberOfGroup(teamId)) {
+      index(teamId);
     }
-    topics(groupId, false);
+    topics(teamId, false);
   }
 
-  public static void publicTopics(Long groupId) {
-    topics(groupId, true);
+  public static void publicTopics(Long teamId) {
+    topics(teamId, true);
   }
 
   private static void topics(Long groupId, Boolean isPublic) {
@@ -826,12 +828,23 @@ public class GroupController extends BasicController implements ApplicationConst
     }
   }
 
+    public static void newTeamEvents(Long teamId, long time){
+        List<SimpleTeamEvent> events = new ArrayList<SimpleTeamEvent>();
 
-    public static List<TeamMemberActivity> getNewTeamEvents(Long userId){
+        for(TeamMemberActivity activity : getNewTeamEvents(teamId, time)){
+            events.add(SimpleTeamEvent.fromTeamMemberActivity(activity));
+        }
+        renderJSON(events);
+    }
+
+
+    public static List<TeamMemberActivity> getNewTeamEvents(Long teamId, long time){
         User user = SessionHelper.getCurrentUser(session);
+
         List<TeamMemberActivity> events = new ArrayList<TeamMemberActivity>();
-        if(userId != null && user != null && user.id.equals(userId)){
-            events = TeamMemberActivity.find("actionDate > ? ORDER BY actionDate ASC", user.lastSeenInTeam).fetch();
+        if(teamId != null && user != null && user.command != null){
+            events = TeamMemberActivity.find("team.id = ? AND actionDate > ? ORDER BY actionDate ASC",
+                    user.command.id, time > 0 ? new Date(time) : user.lastSeenInTeam).fetch();
         }
 
         return events;

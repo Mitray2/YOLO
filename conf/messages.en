@@ -61,6 +61,7 @@ work.panel.team.member.activity.9=has deleted topic
 work.panel.team.member.activity.10=has posted a message to topic
 work.panel.team.topic.main.public=Public wall
 work.panel.team.topic.main.private=Private wall
+work.panel.team.goto=Go to team now
 
 page.profile.change.password.mesage1=Please enter old password
 page.profile.change.password.mesage2=Please enter new password

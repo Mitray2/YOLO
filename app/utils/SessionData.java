@@ -10,7 +10,7 @@ public class SessionData implements Serializable {
 
     public SessionUserMessage userMessage;
 
-    public static class SessionUserMessage {
+    public static class SessionUserMessage implements Serializable {
         public SessionUserMessage(String value) {
             this.value = value;
         }

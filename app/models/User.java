@@ -135,7 +135,7 @@ public class User extends Model {
         joinColumns = @JoinColumn(name = "User_id"),
         inverseJoinColumns = @JoinColumn(name = "Team_id")
     )
-    @OneToMany(cascade = { CascadeType.REMOVE }, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     public Set<Command> favouriteTeams = new HashSet<Command>();
 
     @JoinTable(
@@ -143,7 +143,7 @@ public class User extends Model {
         joinColumns = @JoinColumn(name = "User_id"),
         inverseJoinColumns = @JoinColumn(name = "Team_id")
     )
-    @OneToMany(cascade = { CascadeType.REMOVE }, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     public Set<Command> blacklistTeams = new HashSet<Command>();
 	
 	public Boolean haveAvatar = false;

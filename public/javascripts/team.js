@@ -1,3 +1,7 @@
+/**
+ * requires Utils
+ *
+ */
 var Team = window.Team || {
 
     _updateFavs: function(team, type, category, onComplete){
@@ -106,9 +110,29 @@ var Team = window.Team || {
 
         var ban = $(".topic-ban-link");
         if(ban.length>0) ban.on('click', Team.addToBlacklist);
+    },
+
+
+    startNewEventsListening: function(teamId,lastUpdateTime,fnUpdate){
+        var _lastTime = lastUpdateTime;
+        (function updateMessages() {
+            setTimeout(function () {
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: '/teams/'+teamId+'/events/new?time=' + _lastTime,
+                    success: function (data) {
+                        if(data.length) {
+                            Utils.playSound("msg-sound");
+                            if(fnUpdate) fnUpdate(data);
+                            _lastTime = data[data.length-1].time;
+                        }
+                    },
+                    complete: updateMessages
+                });
+            }, 3000);
+        })();
     }
-
-
 };
 
 $(document).ready(function(){

@@ -142,7 +142,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
             var msg = $msg.val();
             if(msg){
                      // @GroupController.addTopicMessage
-                $.post("/groups/${group.id}/topics/${mainTopic.id}/messages", $form.serialize(), function(data){
+                $.post("/teams/${group.id}/topics/${mainTopic.id}/messages", $form.serialize(), function(data){
                     if(data.status != 200){
                         console.log("MESSAGE NOT SAVED");
                         return false;

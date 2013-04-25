@@ -61,6 +61,7 @@ work.panel.team.member.activity.9=удалил тему
 work.panel.team.member.activity.10=написал сообщение в теме
 work.panel.team.topic.main.public=Стена
 work.panel.team.topic.main.private=Стена групы
+work.panel.team.goto=Перейти в команду
 
 page.profile.change.password.mesage1=Вы не ввели старый пароль.
 page.profile.change.password.mesage2=Вы не ввели новый пароль.
