@@ -88,7 +88,12 @@
                 </div>
             #{/if}
             #{else}
-                <a href="@{GroupController.index(currentUser?.command?.id)}" class="logged-team-ico"></a>
+                #{if currentUser?.command}
+                    <a href="@{GroupController.index(currentUser?.command?.id)}" class="logged-team-ico"></a>
+                #{/if}
+                #{else}
+                    <a href="#" class="logged-team-ico"></a>
+                #{/else}
             #{/else}
         </div>
 
@@ -271,7 +276,7 @@
                         {{/if}}
                     {{else}}
                         <a href="/teams/{{ teamId }}/topics/{{ topicId }}">{{ topicName }}</a>
-                    {{/if}}
+                    {{/if}}:
             </span>
             <p><a href="/teams/{{ teamId }}/topics/{{ topicId }}">{{ limitTo_nl2br message.text 200 }}</a></p>
 

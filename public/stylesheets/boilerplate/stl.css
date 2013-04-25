@@ -1979,7 +1979,11 @@ a, input, input:hover, input:active, input:focus, textarea {
 .group-theme-dialog .group-theme-dialog-name .theme-edit span{
 	bottom:23px;
 }
-.group-theme-dialog .group-theme-dialog-name .theme-delete,
+.group-theme-dialog .group-theme-dialog-name .theme-delete{
+    position:absolute;
+    right:0;
+    top:0;
+}
 
 .group-theme-dialog .group-theme-dialog-name .theme-delete span{
 	bottom:23px;

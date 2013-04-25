@@ -424,7 +424,11 @@ public class GroupController extends BasicController implements ApplicationConst
     if (!topic.publicTopic) {
       if (!memberOfGroup(teamId)) {
         index(teamId);
+      } else if (topic.mainTopic) {
+          groupTopics(teamId);
       }
+    } else if (topic.mainTopic) {
+        publicTopics(teamId);
     }
     ModelPaginator<TopicMessage> topicMessages = new ModelPaginator<TopicMessage>(TopicMessage.class, "topic.id=?", topic.id).orderBy("createDate");
     topicMessages.setPageSize(GROUP_TOPICS_PAGE_SIZE);
@@ -843,8 +847,8 @@ public class GroupController extends BasicController implements ApplicationConst
 
         List<TeamMemberActivity> events = new ArrayList<TeamMemberActivity>();
         if(teamId != null && user != null && user.command != null){
-            events = TeamMemberActivity.find("team.id = ? AND actionDate > ? ORDER BY actionDate ASC",
-                    user.command.id, time > 0 ? new Date(time) : user.lastSeenInTeam).fetch();
+            events = TeamMemberActivity.find("team.id = ? AND actionDate > ? AND user.id <> ? ORDER BY actionDate ASC",
+                    user.command.id, time > 0 ? new Date(time) : user.lastSeenInTeam, user.id).fetch();
         }
 
         return events;
