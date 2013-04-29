@@ -1,12 +1,13 @@
 #{extends 'group_templeate.html' /} #{set title:'StartNewTeam' /}
 %{
-	boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN;
-	boolean currentGroupAdmin = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id) && (adminGroup); 
-	boolean notInGroup = utils.SessionHelper.getCurrentUser(session)?.command == null; 
-	boolean wasInviteToThisGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id == group.id;
-	boolean wasNotInviteToGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite == null;
-	boolean wasInviteToOtherGroup = (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null) && (utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id !=group.id);
- 	boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
+    currentUser = utils.SessionHelper.getCurrentUser(session);
+	boolean adminGroup = currentUser?.role == models.User.ROLE_GROUP_ADMIN;
+	boolean currentGroupAdmin = (currentUser?.command?.id == group.id) && (adminGroup);
+	boolean notInGroup = currentUser?.command == null;
+	boolean wasInviteToThisGroup = currentUser?.commandToInvite?.id == group.id;
+	boolean wasNotInviteToGroup = currentUser?.commandToInvite == null;
+	boolean wasInviteToOtherGroup = (currentUser?.commandToInvite != null) && (currentUser?.commandToInvite?.id !=group.id);
+ 	boolean groupMember = (currentUser?.command?.id == group.id);
 %}
 
 <div class="tabs clearFix">

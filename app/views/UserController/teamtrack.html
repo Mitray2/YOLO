@@ -1,10 +1,4 @@
 #{extends 'main_templeate.html' /} #{set title: user.name + " " + user.lastName /}
-<!-- user = utils.SessionHelper.getCurrentUser(session); -->
-%{
-	boolean currentAdminGroup = user?.role == models.User.ROLE_GROUP_ADMIN;
-	boolean groupAdmin = (user?.id == user?.id) && (user?.role == models.User.ROLE_GROUP_ADMIN);
-	boolean haveGroupOrInviteJoin = (user?.command != null) || (user?.commandToInvite != null);
-%}
 
 <h1 class="profile-h1">
 &{'page.teamtrack.title'}
@@ -31,12 +25,7 @@
 
 <div class="teamtrack-list">
     <ul class="search-result-list">
-        #{list items:topics, as:'topic'}
-            #{group.tracktopic topic:topic, group: models.Command.findById(topic.groupId), user:user, isAdmin:currentAdminGroup, country:country, category:category/}
-        #{/list}
-        #{else}
-            <li>&{'page.teamtrack.noteams'}</li>
-        #{/else}
+        #{group.tracktopics topics: topics, user: user /}
     </ul>
 </div>
 
@@ -48,5 +37,47 @@
 
         $('#tt-country').change(filterTopics);
         $('#tt-category').change(filterTopics);
+
+        var $topicsDiv = $(".search-result-list");
+        var loading = false;
+        var offset = ${topics.size()} < 20 ? -1 : ${topics.size()};
+        var loadMoreTopics = function () {
+            if (offset > 0 && !loading && Utils.isScrolledToBottom()) {
+                loading = true;
+                $topicsDiv.append('<div class="ajax-loader"></div>');
+                setTimeout(function(){
+                    $.get('/tracktopics?country=${country}&category=${category}&offset=' + (offset+1),
+                        function (data) {
+                            $topicsDiv.find(".ajax-loader").remove();
+                            $topicsDiv.append(data);
+
+                            var $topicsFin = $topicsDiv.find(".last-topic");
+                            if($topicsFin.length > 0){
+                                $topicsFin.remove();
+                                $(".no-topics").remove();
+                                offset = -1;
+                            } else {
+                                offset = $topicsDiv.find(".search-result-item").length;
+                                console.log("next offset = " + offset);
+                            }
+                            loading = false;
+
+                            //if(onComplete) onComplete();
+                        }
+                    );
+                }, 100);
+            }
+        };
+
+        if($(".no-topics").length < 1){
+            $(window).scroll(loadMoreTopics);
+        }
+
+        //setTimeout(function(){
+        //    loadMoreTopics(function(){
+        //        $(window).scroll(loadMoreTopics);
+        //    });
+        //}, 0);
+
     });
 </script>

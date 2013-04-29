@@ -3631,17 +3631,22 @@ h1.main{
     background-position: 0 3px;
     background-repeat: no-repeat;
 }
-.st-online {
+.st-online, .st-online-txt {
     color: #0a0;
     background-image: url('/public/images/boilerplate/online.png');
 }
-.st-away {
+.st-away, .st-away-txt {
     color: orange;
     background-image: url('/public/images/boilerplate/away.png');
 }
-.st-offline {
+.st-offline, .st-offline-txt {
     color: #999;
     background-image: url('/public/images/boilerplate/offline.png');
+}
+
+.st-online-txt, .st-away-txt, .st-offline-txt {
+    font-weight: bold;
+    background-image: none;
 }
 
 .profile-h1 > div, .profile-h1 > label {

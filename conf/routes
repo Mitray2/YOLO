@@ -90,6 +90,7 @@ DELETE  /teams/{<[0-9]+>teamId}/blacklist               UserController.removeTea
 #UserController
 GET			/profile								    UserController.profile
 GET			/teamtrack								    UserController.teamtrack
+GET			/tracktopics								UserController.tracktopics
 GET 		/changePassword								UserController.changePassword
 POST 		/doChangePassword							UserController.doChangePassword
 GET			/user/changePassword						UserController.changePassword

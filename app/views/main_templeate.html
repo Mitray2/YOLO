@@ -56,9 +56,12 @@
 			<div class="user-profile">
 				<a href="@{UserController.index(user?.id)}" class="man">
 					#{avatar.avatar user:user, cssClass:'user-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
-					<div class="user-name">
+                    <div class="user-name">
 						<h3>${user?.name} ${user?.lastName}</h3>
 					</div>
+                    #{if false && !user.haveAvatar}
+                        <div class="load-avatar-reminder"><a href="#">Load photo</a></div>
+                    #{/if}
 				</a>
 				<br/>
 				<nav class="user-menu">

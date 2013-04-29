@@ -30,6 +30,6 @@ public class SimpleUser {
 
 
     public static SimpleUser fromFullUser(User user) {
-        return new SimpleUser(user.id, user.name, user.lastName, user.sex, user.age, user.email, user.haveAvatar, user.onlineStatus);
+        return user == null ? null : new SimpleUser(user.id, user.name, user.lastName, user.sex, user.age, user.email, user.haveAvatar, user.onlineStatus);
     }
 }

@@ -318,6 +318,7 @@ link.partners=Партнеры
 link.messages=Мои сообщения
 link.settings=Настройки
 
+link.team.tracking=Командная работа
 link.crowd.consalting=КраудКонсалтинг
 link.crowd.developig=КраудДевелопинг
 link.crowd.funding=КраудСорсинг

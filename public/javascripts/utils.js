@@ -25,6 +25,12 @@ var Utils = {
             Utils.scrollToBottom(el);
         }
     },
+    isScrolledToBottom: function(){
+        var wintop = $(window).scrollTop(), docheight = $(document).height(), winheight = $(window).height();
+        var scrolltrigger = 0.95;
+
+        return (wintop/(docheight-winheight)) > scrolltrigger;
+    },
     scrollToBottom: function(el){
         //el.scrollTop(el.get(0).scrollHeight - el.height());
         el.slimScroll({

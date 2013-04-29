@@ -19,6 +19,8 @@ public class UserController extends BasicController  implements ApplicationConst
     public static final int TRACKED_TOPIC_CATEGORY_FAVOURITE = 1;
     public static final int TRACKED_TOPIC_CATEGORY_BLACKLIST = 2;
 
+    public static final int TEAM_TOPICS_TO_PAGE_LIMIT = 20;
+
 	@Before
 	public static void checkSecurity() {
 		// TODO warnings on page
@@ -70,18 +72,38 @@ public class UserController extends BasicController  implements ApplicationConst
 
     public static void teamtrack(Integer country, Integer category) {
         User user = User.findById(SessionHelper.getCurrentUser(session).id);
-        String query;
+        List<Topic> topics = getTrackedTopics(user, country, category, null, null);
+
+        render(user, topics, country, category);
+    }
+
+    public static void tracktopics(Integer country, Integer category, Integer offset, Integer limit) {
+        User _user = User.findById(SessionHelper.getCurrentUser(session).id);
+        List<Topic> _topics = getTrackedTopics(_user, country, category, offset, limit);
+
+        render("tags/group/tracktopics.html", _user, _topics);
+    }
+
+    private static List<Topic> getTrackedTopics(User user, Integer country, Integer category, Integer offset, Integer limit){
         List<Topic> topics = new ArrayList<Topic>();
 
+        if (limit == null || limit <= 0)    limit = TEAM_TOPICS_TO_PAGE_LIMIT;
+        if (offset == null || offset <= 0)  offset =  0;
+
+        String query;
         // 1. ALL: select all PUBLIC topics of ALL teams in ALL countries - EXCEPT BLACKLISTED
         if(country == null && (category == null || category.equals(TRACKED_TOPIC_CATEGORY_ALL))) {
             query = "SELECT t.* from Topic t " +
                     "where t.publicTopic = 1 and t.mainTopic = 0 and t.lastUpdateDate IS NOT NULL " +
                     "and (select count(*) from UserBlacklistTeam ubt where ubt.User_id = ? and ubt.Team_id = t.groupId) = 0 " +
-                    "ORDER BY t.lastUpdateDate DESC LIMIT 50";
+                    "and (select count(*) from UserFavouriteTeam uft where uft.User_id = ? and uft.Team_id = t.groupId) = 0 " +
+                    "ORDER BY t.lastUpdateDate DESC LIMIT ? OFFSET ?";
 
             topics = JPA.em().createNativeQuery(query, Topic.class)
                     .setParameter(1, user.id)
+                    .setParameter(2, user.id)
+                    .setParameter(3, limit)
+                    .setParameter(4, offset)
                     .getResultList();
         } else {
 
@@ -91,11 +113,13 @@ public class UserController extends BasicController  implements ApplicationConst
                         "join Command team on team.id = t.groupId " +
                         "where t.publicTopic = 1 and t.mainTopic = 0 and t.lastUpdateDate IS NOT NULL and team.country_id = ? " +
                         "and (select count(*) from UserBlacklistTeam ubt where ubt.User_id = ? and ubt.Team_id = t.groupId) = 0 " +
-                        "ORDER BY t.lastUpdateDate DESC LIMIT 50";
+                        "ORDER BY t.lastUpdateDate DESC LIMIT ? OFFSET ?";
 
                 topics = JPA.em().createNativeQuery(query, Topic.class)
                         .setParameter(1, country)
                         .setParameter(2, user.id)
+                        .setParameter(3, limit)
+                        .setParameter(4, offset)
                         .getResultList();
 
             } else {
@@ -112,10 +136,12 @@ public class UserController extends BasicController  implements ApplicationConst
                     query = "SELECT t.* from Topic t " +
                             "join " + categoryTableName + " cat on (cat.User_id = ? and cat.Team_id = t.groupId) " +
                             "where t.publicTopic = 1 and t.mainTopic = 0 and t.lastUpdateDate IS NOT NULL " +
-                            "ORDER BY t.lastUpdateDate DESC LIMIT 50";
+                            "ORDER BY t.lastUpdateDate DESC LIMIT ? OFFSET ?";
 
                     topics = JPA.em().createNativeQuery(query, Topic.class)
                             .setParameter(1, user.id)
+                            .setParameter(2, limit)
+                            .setParameter(3, offset)
                             .getResultList();
 
                 } else {
@@ -125,18 +151,20 @@ public class UserController extends BasicController  implements ApplicationConst
                             "join Command team on team.id = t.groupId " +
                             "join " + categoryTableName + " cat on (cat.User_id = ? and cat.Team_id = t.groupId) " +
                             "where t.publicTopic = 1 and t.mainTopic = 0 and t.lastUpdateDate IS NOT NULL and team.country_id = ? " +
-                            "ORDER BY t.lastUpdateDate DESC LIMIT 50";
+                            "ORDER BY t.lastUpdateDate DESC LIMIT ? OFFSET ?";
 
                     topics = JPA.em().createNativeQuery(query, Topic.class)
                             .setParameter(1, user.id)
                             .setParameter(2, country)
+                            .setParameter(3, limit)
+                            .setParameter(4, offset)
                             .getResultList();
                 }
             }
 
         }
 
-        render(user, topics, country, category);
+        return topics;
     }
 
 

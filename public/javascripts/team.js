@@ -38,7 +38,7 @@ var Team = window.Team || {
 
     _makeTeamTopicsFavourite: function(teamId){
         var topics = $(".team-"+teamId+"-topic");
-        if(topics.length){
+        /*if(topics.length){
             topics.find(".topic-fav-link").hide();
             topics.find(".topic-fav-link-hovered").show();
             topics.find(".topic-ban-link").fadeOut(200);
@@ -46,12 +46,20 @@ var Team = window.Team || {
             $(".topic-fav-link").hide();
             $(".topic-fav-link-hovered").show();
             $(".topic-ban-link").fadeOut(200);
+        }*/
+        if(topics.length){
+            topics.remove();
+        }else{
+            $(".topic-ban-link").fadeOut(200);
+            $(".topic-fav-link").hide();
+            $(".topic-fav-link-hovered").show();
+
         }
     },
 
     _undoTeamFavouriteTopics: function(teamId){
         var topics = $(".team-"+teamId+"-topic");
-        if(topics.length){
+        /*if(topics.length){
             var isOnFavTab = $("#tt-category").find(":selected").val();
 
             if(isOnFavTab == 1){
@@ -68,6 +76,18 @@ var Team = window.Team || {
             $(".topic-fav-link-hovered").hide();
             $(".topic-fav-link").show();
             $(".topic-ban-link").fadeIn(200);
+        }*/
+        if(topics.length){
+            topics.remove();
+
+            var isOnFavTab = $("#tt-category").find(":selected").val();
+            if(isOnFavTab == 1 && $("li.search-result-item").length < 1){
+                location.href = "/teamtrack";
+            }
+        }else{
+            $(".topic-ban-link").fadeIn(200);
+            $(".topic-fav-link-hovered").hide();
+            $(".topic-fav-link").show();
         }
     },
 
@@ -99,17 +119,17 @@ var Team = window.Team || {
     },
 
     bindFavButtonsHandlers: function(){
-        var favH = $(".topic-fav-link-hovered");
-        if(favH.length>0) favH.on('click', Team.removeFromFavourites);
+        //var favH = $(".topic-fav-link-hovered");
+        /*if(favH.length>0) */$(document).on('click', ".topic-fav-link-hovered",Team.removeFromFavourites);
 
-        var fav = $(".topic-fav-link");
-        if(fav.length>0) fav.on('click', Team.addToFavourites);
+        //var fav = $(".topic-fav-link");
+        /*if(fav.length>0) */$(document).on('click', ".topic-fav-link", Team.addToFavourites);
 
-        var banH = $(".topic-ban-link-hovered");
-        if(banH.length>0) banH.on('click', Team.removeFromBlacklist);
+        //var banH = $(".topic-ban-link-hovered");
+        /*if(banH.length>0) */$(document).on('click', ".topic-ban-link-hovered", Team.removeFromBlacklist);
 
-        var ban = $(".topic-ban-link");
-        if(ban.length>0) ban.on('click', Team.addToBlacklist);
+        //var ban = $(".topic-ban-link");
+        /*if(ban.length>0)*/ $(document).on('click', ".topic-ban-link", Team.addToBlacklist);
     },
 
 

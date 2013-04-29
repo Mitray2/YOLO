@@ -13,6 +13,8 @@ var Templates = window.Templates || {
     popupEventItemsTpl: function(data) {},
     popupEventItemTpl: function(data) {},
 
+    topicsMsgTpl: function(data) {},
+
     teamActivityMessages: []
 };
 

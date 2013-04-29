@@ -1,0 +1,10 @@
+#{list items:_topics, as:'topic'}
+    #{group.tracktopic topic:topic, team: models.Command.findById(topic.groupId), user:_user /}
+#{/list}
+#{else}
+    <li class="no-topics">&{'page.teamtrack.noteams'}</li>
+    <li class="last-topic"></li>
+#{/else}
+#{if _topics.size() > 0 && _topics.size() < controllers.UserController.TEAM_TOPICS_TO_PAGE_LIMIT}
+    <li class="last-topic"></li>
+#{/if}

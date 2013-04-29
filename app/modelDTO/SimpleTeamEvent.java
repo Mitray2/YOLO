@@ -43,6 +43,7 @@ public class SimpleTeamEvent {
                 activity.topic != null && activity.topic.publicTopic,
                 activity.action,
                 activity.actionDate.getTime(),
-                activity.topic != null ? SimpleTopicMessage.fromFullMessage(activity.message) : null);
+                activity.message != null ? SimpleTopicMessage.fromFullMessage(activity.message) : null
+        );
     }
 }

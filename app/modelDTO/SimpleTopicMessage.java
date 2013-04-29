@@ -1,6 +1,5 @@
 package modelDTO;
 
-import models.Message;
 import models.TopicMessage;
 
 /**
@@ -26,6 +25,6 @@ public class SimpleTopicMessage {
     public SimpleUser from;
 
     public static SimpleTopicMessage fromFullMessage(TopicMessage msg) {
-        return new SimpleTopicMessage(msg.id, msg.topic.id, msg.text, msg.createDate.getTime(), SimpleUser.fromFullUser(msg.from));
+        return msg == null ? null : new SimpleTopicMessage(msg.id, msg.topic.id, msg.text, msg.createDate.getTime(), SimpleUser.fromFullUser(msg.from));
     }
 }

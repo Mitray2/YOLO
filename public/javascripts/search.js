@@ -12,6 +12,7 @@ function Search() {
 		totalCount : 0,
 		rowId : 0
 	};
+    this.messages = {};
 	this.searchModel = {
 			  country : null,
 			  city : null,
@@ -202,9 +203,7 @@ function Search() {
 					$.each(data.users, function(key, user) {
 						var row = $("<tr class='search-result-item' style='display: none;'>");
 						table.append(row);
-                        var onlineStatus = user.onlineStatus;
-                        console.log(onlineStatus);
-                        var onlineHtml = '<span class="user-online"><span class="st-'+onlineStatus+'"></span></span>'
+                        var onlineHtml = '<span class="user-online"><span class="st-'+user.onlineStatus+'"></span></span>';
 						row.append("<td class='width-170'><span class='block-clip'><span class='block'><a href='/" + user.id + "'>" + onlineHtml + user.lastName + " " + user.name  + "</a></span></span></td>");
 						appendFirstTabColumns(user, row);
 						appendSecondTabColumns(user, row);
@@ -466,7 +465,9 @@ function appendFirstTabColumns(user, row) {
 		addCell(row, "searchResultColumn1", "<img src='/public/images/boilerplate/ico-woman.gif' alt=''>", hidden);
 	}
 	addCell(row, "searchResultColumn1", user.age, hidden);
-	row.append("<td class='searchResultColumn1 cntr width-80' "+getHiddenCss(hidden)+">"+user.lastSeen+"</td>");
+	row.append("<td class='searchResultColumn1 cntr width-80' "+getHiddenCss(hidden)+">"+
+        (user.onlineStatus == 'offline' ? user.lastSeen : ("<span class='st-" + user.onlineStatus + "-txt'>" + search.messages["common.status." + user.onlineStatus] + "</span>"))+
+        "</td>");
 	addCell(row, "searchResultColumn1 cntr", "<span class='info' id='info_" + (++search.uiModel.rowId) + "' data-tip='"+user.info+"'></span>", hidden);
 	if(user.info.length != 0){
 		search.tipInfo($("#info_" + search.uiModel.rowId));
