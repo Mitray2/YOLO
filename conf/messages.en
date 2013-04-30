@@ -541,6 +541,7 @@ page.profile.current.desc_cv=Describe in few words your goals and expectations f
 page.profile.current.desc_skill_meta=Indicate your level of knowledge and experience in this field
 page.profile.current.desc_cv_meta=Describe in few words your goals and expectations from registration
 page.profile.current.test2=Test your business-aptitudes for better team creation.
+page.profile.load.photo=Load your photo
 
 page.settings.title=My settings
 page.settings.notifications=E-mail notifications

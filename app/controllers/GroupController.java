@@ -41,6 +41,7 @@ public class GroupController extends BasicController implements ApplicationConst
     if (currentUser == null)
       CommonController.error(CommonController.ERROR_SECURITY);
     if (currentUser != null) {
+        //TODO REFACTOR to a single update
       User user = User.findById(currentUser.id);
       user.lastSeen = new Date();
       user.lastSeenInTeam = new Date();

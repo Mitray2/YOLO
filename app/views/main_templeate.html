@@ -54,15 +54,14 @@
 	<div class="content wrap-inner clearFix">
 		<aside class="user-block">
 			<div class="user-profile">
-				<a href="@{UserController.index(user?.id)}" class="man">
-					#{avatar.avatar user:user, cssClass:'user-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
-                    <div class="user-name">
-						<h3>${user?.name} ${user?.lastName}</h3>
-					</div>
-                    #{if false && !user.haveAvatar}
-                        <div class="load-avatar-reminder"><a href="#">Load photo</a></div>
-                    #{/if}
-				</a>
+                <div class="user-avatar">
+                    #{avatar.avatar user:user, cssClass:'user-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
+                    <a href="@{UserController.index(user?.id)}" class="man">
+                        <div class="user-name"><h3>${user?.name} ${user?.lastName}</h3></div>
+                    </a>
+                    <div class="load-avatar-reminder"><a href="#" id="changeAvatar">#{if !user.haveAvatar}&{'page.profile.load.photo'}#{/if}</a></div>
+                    #{avatar.changeAvatar user:user/}
+                </div>
 				<br/>
 				<nav class="user-menu">
 					<ul>

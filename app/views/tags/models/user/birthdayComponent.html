@@ -29,17 +29,17 @@
 	def isLeapYear = _year != null ? utils.DateUtils.isLeapYear(_year) : true;
 	def days = _month != null ? _month == 1 && isLeapYear ? 29 : utils.DateUtils.MONTH_DAYS[_month] : 31;
 }%
-<select name="birthYear" id="" class="cSelect"> <!-- style="width:67px;" -->
+<select name="birthYear" id="sbBirthYear" class="cSelect"> <!-- style="width:67px;" -->
 	#{list items:1900..2000, as:'year'}
 		<option value="${year}" #{if year.equals(_year)}selected#{/if}#{elseif _year == null && year_isLast}selected#{/elseif}>${year}</option>
 	#{/list}
 </select>
-<select name="birthMonth" id="" class="cSelect"> <!-- style="width:140;" -->
+<select name="birthMonth" id="sbBirthMonth" class="cSelect"> <!-- style="width:140;" -->
 	#{list items:0..11 , as:'month'}
 		<option value="${month}" #{if month.equals(_month)}selected#{/if}>&{'monthName.' + utils.DateUtils.MONTH_NAMES[month_index - 1]}</option> 
 	#{/list}
 </select>
-<select name="birthDay" id="" class="cSelect"> <!-- style="width:47;" -->
+<select name="birthDay" id="sbBirthDay" class="cSelect"> <!-- style="width:47;" -->
 	#{list items:1..days, as:'day'}
 		<option value="${day}" #{if day.equals(_day)}selected#{/if}>${day}</option>
 	#{/list}
