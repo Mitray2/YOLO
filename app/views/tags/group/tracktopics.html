@@ -1,5 +1,5 @@
 #{list items:_topics, as:'topic'}
-    #{group.tracktopic topic:topic, team: models.Command.findById(topic.groupId), user:_user /}
+    #{group.tracktopic topic:topic, team: topic?.team, user:_user /}
 #{/list}
 #{else}
     <li class="no-topics">&{'page.teamtrack.noteams'}</li>

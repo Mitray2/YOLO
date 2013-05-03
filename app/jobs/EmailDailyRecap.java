@@ -32,7 +32,7 @@ public class EmailDailyRecap extends Job {
 
         // 1. get teams updated in last 24 hours (also with new topics and union members tracking)
         Query q = JPA.em().createNativeQuery("select DISTINCT c.id from Command c " +
-                "join Topic t on t.groupId = c.id " +
+                "join Topic t on t.team_id = c.id " +
                 "join TopicMessage m on m.topic_id = t.id " +
                 "where m.createDate > DATE_ADD(NOW(),INTERVAL -1 DAY) " +
                 "UNION " +
@@ -42,7 +42,7 @@ public class EmailDailyRecap extends Job {
                 "and tma.actionDate > DATE_ADD(NOW(),INTERVAL -1 DAY) " +
                 "UNION " +
                 "select DISTINCT c.id from Command c  " +
-                "join Topic t on t.groupId = c.id " +
+                "join Topic t on t.team_id = c.id " +
                 "where t.createdDateTime > DATE_ADD(NOW(),INTERVAL -1 DAY)");
 
         List<Long> updatedTeamsIDs = new ArrayList<Long>();
@@ -72,13 +72,13 @@ public class EmailDailyRecap extends Job {
                 // 4. for each team get COUNT of recently added TOPICS
                 Integer newTopics = ((Number) JPA.em().createNativeQuery(
                         String.format("select count(t.id) from Topic t " +
-                                "where t.groupId = %d and t.createdDateTime > DATE_ADD(NOW(),INTERVAL -1 DAY)", team.id)
+                                "where t.team_id = %d and t.createdDateTime > DATE_ADD(NOW(),INTERVAL -1 DAY)", team.id)
                         ).getSingleResult()).intValue();
 
                 // 5. for each team get COUNT of recently added MESSAGES
                 Integer newTeamMessages = ((Number) JPA.em().createNativeQuery(
                         String.format("select count(m.id) from TopicMessage m \n" +
-                                "join Topic t on (t.groupId = %d and t.id = m.topic_id)\n" +
+                                "join Topic t on (t.team_id = %d and t.id = m.topic_id)\n" +
                                 "where m.createDate > DATE_ADD(NOW(),INTERVAL -1 DAY)", team.id)
                         ).getSingleResult()).intValue();
 

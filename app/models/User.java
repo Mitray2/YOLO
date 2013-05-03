@@ -163,13 +163,13 @@ public class User extends Model {
 	@Override
 	public <T extends JPABase> T delete() {
 		Cache.delete(CACHE_USERS_COUNT);
-		return super.delete();
+		return (T) super.delete();
 	}
 	
 	@Override
 	public <T extends JPABase> T save() {
         Cache.delete(CACHE_USERS_COUNT);
-		return super.save();
+		return (T) super.save();
 	}
 
     public User() {

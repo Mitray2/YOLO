@@ -229,30 +229,43 @@ public class LoginController extends BasicController implements ApplicationConst
         }
 	}
 
+	public static void notValidated() {
+		User user = SessionHelper.getCurrentUser(session);
+        if(user != null){
+            user = User.findById(user.id);
+            if(user != null){
+                SessionHelper.setCurrentUser(session, user);
+
+                if(user.role == User.ROLE_INPERFECT_USER){
+		            render(user);
+                } else {
+                    UserController.profile();
+                }
+            } else {
+                ApplicationController.index();
+            }
+        } else {
+          ApplicationController.index();
+        }
+	}
+
 	public static void blankFormPassed(User user) {
 		String password = params.get("password");
-		String passwordRepeating = params.get("passwordRepeating");
+		//String passwordRepeating = params.get("passwordRepeating");
 
 		validation.required(password).message(VALIDATION_MODEL_USER_PASSORD_REQUIRED);
-		if (!validation.hasError("password"))
-			validation.minSize(password, 8).message(VALIDATION_MODEL_USER_PASSORD_MIN_LENGTH);
-		if (!validation.hasError("password"))
-			validation.maxSize(password, 16).message(VALIDATION_MODEL_USER_PASSORD_MAX_LENGTH);
-		if (!validation.hasError("password"))
-			validation.match(password, "[A-Za-z0-9\\.\\-\\_]+").message(VALIDATION_MODEL_USER_PASSORD_INVALID);
-		validation.required(passwordRepeating).message(VALIDATION_MODEL_USER_PASSORD_REPEATING_REQUIRED);
-		if (!validation.hasError("password") && !validation.hasError("passwordRepeating"))
-			validation.equals(password, passwordRepeating).message(VALIDATION_MODEL_USER_PASSORD_REPEATING_INVALID);
-		validation.required("user.lastName", user.lastName).message(VALIDATION_MODEL_USER_LAST_NAME_REQUIRED);
-		if (!validation.hasError("user.lastName"))
-			validation.maxSize("user.lastName", user.lastName, 30).message(VALIDATION_MODEL_USER_LAST_NAME_MAX_LENGTH);
-//		if (!validation.hasError("user.lastName"))
-//			validation.match("user.lastName", user.lastName, "[А-Яа-я\\-\\s]+").message(VALIDATION_MODEL_USER_LAST_NAME_INVALID);
+		if (!validation.hasError("password")) validation.minSize(password, 6).message(VALIDATION_MODEL_USER_PASSORD_MIN_LENGTH);
+		//if (!validation.hasError("password")) validation.maxSize(password, 16).message(VALIDATION_MODEL_USER_PASSORD_MAX_LENGTH);
+		//if (!validation.hasError("password")) validation.match(password, "[A-Za-z0-9\\.\\-\\_]+").message(VALIDATION_MODEL_USER_PASSORD_INVALID);
+		//validation.required(passwordRepeating).message(VALIDATION_MODEL_USER_PASSORD_REPEATING_REQUIRED);
+		//if (!validation.hasError("password") && !validation.hasError("passwordRepeating")) validation.equals(password, passwordRepeating).message(VALIDATION_MODEL_USER_PASSORD_REPEATING_INVALID);
+
+        validation.required("user.lastName", user.lastName).message(VALIDATION_MODEL_USER_LAST_NAME_REQUIRED);
+		if (!validation.hasError("user.lastName")) validation.maxSize("user.lastName", user.lastName, 30).message(VALIDATION_MODEL_USER_LAST_NAME_MAX_LENGTH);
+        //if (!validation.hasError("user.lastName")) validation.match("user.lastName", user.lastName, "[А-Яа-я\\-\\s]+").message(VALIDATION_MODEL_USER_LAST_NAME_INVALID);
 		validation.required("user.city", user.city).message(VALIDATION_MODEL_USER_CITY_REQUIRED);
-		if (!validation.hasError("user.city"))
-			validation.maxSize("user.city", user.city, 30).message(VALIDATION_MODEL_USER_CITY_MAX_LENGTH);
-//		if (!validation.hasError("user.city"))
-//			validation.match("user.city", user.city, "[А-Яа-я\\-\\s]+").message(VALIDATION_MODEL_USER_CITY_INVALID);
+		if (!validation.hasError("user.city")) validation.maxSize("user.city", user.city, 30).message(VALIDATION_MODEL_USER_CITY_MAX_LENGTH);
+        //if (!validation.hasError("user.city")) validation.match("user.city", user.city, "[А-Яа-я\\-\\s]+").message(VALIDATION_MODEL_USER_CITY_INVALID);
 
 		// validation.required("user.personalCV",
 		// user.personalCV).message(VALIDATION_MODEL_USER_PERSONAL_CV_REQUIRED);

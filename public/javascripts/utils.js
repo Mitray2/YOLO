@@ -12,6 +12,26 @@ var Utils = {
     nl2br: function(str) {
         return str.split("\n").join("<br />");
     },
+    asHtml: function(){
+
+    },
+    linkify: function linkify(inputText) {
+        var replacedText, replacePattern1, replacePattern2, replacePattern3;
+
+        //URLs starting with http://, https://, or ftp://
+        replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+        replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
+
+        //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+        replacePattern2 = /(^|[^\/])(www\.[-A-Z0-9+&@#\/%?=~_|!:,.;]+(\b|$))/gim;
+        replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
+
+        //Change email addresses to mailto:: links.
+        replacePattern3 = /(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim;
+        replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
+
+        return replacedText.split("\n").join("<br />");
+    },
     scrollInit: function(el){
         var maxH = parseInt(el.css("max-height"));
         var curH = el.get(0).scrollHeight;

@@ -690,6 +690,10 @@ a, input, input:hover, input:active, input:focus, textarea {
 	padding:13px 20px 13px;
 	margin:0 0 20px;
 }
+.reg-info{
+    font-size: .8em;
+    margin-left: 60px;
+}
 
 /* line 519, ../scss/stl.scss */
 .main-test {
@@ -2839,12 +2843,13 @@ a, input, input:hover, input:active, input:focus, textarea {
 	text-decoration:none;
 }
 .logged .dialog-popup li p{
-	margin:2px 0 0;
+	margin:5px 0 0;
 }
 .logged .dialog-popup li p a{
 	font:11px/16px Arial, Helvetica, sans-serif;
 	color:#7d7d7d;
 	text-decoration:none;
+    display: block;
 }
 .logged .dialog-popup li a:hover{
 	text-decoration:underline;

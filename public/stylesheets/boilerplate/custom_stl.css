@@ -70,7 +70,8 @@
 }
 
 #blankForm {
-    display: none;
+    /*display: none;*/
+    float: left;
 }
 
 .test .create-form label{
@@ -79,7 +80,7 @@
 
 .test .create-form .box-radio label{
     width: 20px;
-    margin-right: 0px;
+    margin-right: 0;
 }
 
 /*.form-item.clearFix .box-radio{*/

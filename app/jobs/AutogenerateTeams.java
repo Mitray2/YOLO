@@ -146,11 +146,11 @@ public class AutogenerateTeams extends Job {
         }
 
         //	create main topic
-        Topic mainTopicPrivate = new Topic(true, false, team.id);
+        Topic mainTopicPrivate = new Topic(true, false, team);
         mainTopicPrivate.save();
 
         // create public main topic
-        Topic mainTopicPublic = new Topic(true, true, team.id);
+        Topic mainTopicPublic = new Topic(true, true, team);
         mainTopicPublic.save();
 
         team.topics = Arrays.asList(mainTopicPublic, mainTopicPrivate);

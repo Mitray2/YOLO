@@ -1,0 +1,11 @@
+#{extends 'main_markup.html'/}
+<script src="@{'/public/javascripts/controllers/LoginController.js'}" charset="utf-8"></script>
+%{
+	def currentValidation = play.data.validation.Validation.current();
+}%
+<h1>&{'page.notValidated.head', user?.name}</h1>
+<div>
+&{'page.notValidated.message'}
+    Чтобы приступить к работе с сервисом, подтвердите, пожалуйста, Вашу регистрацию.
+    Следуйте по ссылке в письме, которое Вы получили при регитрации.
+</div>

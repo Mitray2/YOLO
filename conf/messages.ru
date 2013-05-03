@@ -208,8 +208,9 @@ page.blankform.surname=Фамилия
 page.blankform.country=Страна
 page.blankform.city=Город
 page.blankform.password=Пароль
+page.blankform.show.pass=показать пароль
 page.blankform.repeat_password=Повторите пароль
-page.blankform.rules=Согласие с <a href="/public/rules_ru.pdf" target="_blank">правилами</a>
+page.blankform.rules=* \u0421\u0432\u043E\u0435\u0439 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0435\u0439 \u043D\u0430 \u0441\u0430\u0439\u0442\u0435 \u0432\u044B \u043F\u043E\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0430\u0435\u0442\u0435 \u0441\u0432\u043E\u0435 \u043F\u043E\u043B\u043D\u043E\u0435 \u0441\u043E\u0433\u043B\u0430\u0441\u0438\u0435 \u0441 <a href\="/public/rules_ru.pdf" target\="_blank">\u041F\u0440\u0430\u0432\u0438\u043B\u0430\u043C\u0438</a>
 page.blankform.professional_skills=Базовая характеристика
 page.blankform.interesting_btype=Интересующий тип бизнеса
 page.blankform.interesting_bsphere=Интересующая сфера бизнеса
@@ -746,7 +747,7 @@ validation.model.user.birthday.required=Введите дату рождения
 validation.model.user.birthday.invalid=Неправильная дата рождения.
 validation.model.user.password.required=Введите пароль.
 validation.model.user.password.invalid=Пароль может содержать только цифры и символы латинского алфавита.
-validation.model.user.password.minLength=Минимальная длина пароля от 8 символов.
+validation.model.user.password.minLength=\u041C\u0438\u043D\u0438\u043C\u0430\u043B\u044C\u043D\u0430\u044F \u0434\u043B\u0438\u043D\u0430 \u043F\u0430\u0440\u043E\u043B\u044F \u043E\u0442 6 \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432.
 validation.model.user.password.maxLength=Максимальная длина пароля до 16 символов.
 validation.model.user.passwordRepeating.required=Введите подтверждение пароля.
 validation.model.user.passwordRepeating.invalid=Пароли не совпадают.
@@ -1178,3 +1179,5 @@ models.country.name.Venezuela=Венесуэла
 models.country.name.Vietnam=Вьетнам
 models.country.name.Yemen=Йемен
 models.country.name.Zambia=Замбия
+page.notValidated.message=\      \u0427\u0442\u043E\u0431\u044B \u043F\u0440\u0438\u0441\u0442\u0443\u043F\u0438\u0442\u044C \u043A \u0440\u0430\u0431\u043E\u0442\u0435 \u0441 \u0441\u0435\u0440\u0432\u0438\u0441\u043E\u043C, \u043F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435, \u043F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u0412\u0430\u0448\u0443 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044E. \u0421\u043B\u0435\u0434\u0443\u0439\u0442\u0435 \u043F\u043E \u0441\u0441\u044B\u043B\u043A\u0435 \u0432 \u043F\u0438\u0441\u044C\u043C\u0435, \u043A\u043E\u0442\u043E\u0440\u043E\u0435 \u0412\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u043B\u0438 \u043F\u0440\u0438 \u0440\u0435\u0433\u0438\u0442\u0440\u0430\u0446\u0438\u0438.
+page.notValidated.head=%s, \u0441\u043F\u0430\u0441\u0438\u0431\u043E, \u0447\u0442\u043E \u043F\u0440\u0438\u0441\u043E\u0435\u0434\u0438\u043D\u0438\u043B\u0438\u0441\u044C \u043A \u043D\u0430\u043C\! \u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435, \u043F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, \u0430\u0434\u0440\u0435\u0441 \u0432\u0430\u0448\u0435\u0439 \u044D\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u043E\u0439 \u043F\u043E\u0447\u0442\u044B.

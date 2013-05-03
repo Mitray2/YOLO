@@ -3,10 +3,7 @@ package models;
 import play.data.validation.MaxSize;
 import play.db.jpa.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Lob;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +30,9 @@ public class Topic extends Model {
 
 	public String createdUserLastName;
 
-	public Long groupId;
+	//public Long groupId;
+    @ManyToOne
+	public Command team;
 
 	public Date createdDateTime;
 
@@ -51,9 +50,9 @@ public class Topic extends Model {
         this.name = name;
     }
 
-    public Topic(boolean mainTopic, boolean publicTopic, Long groupId) {
+    public Topic(boolean mainTopic, boolean publicTopic, Command team) {
         this.mainTopic = mainTopic;
         this.publicTopic = publicTopic;
-        this.groupId = groupId;
+        this.team = team;
     }
 }

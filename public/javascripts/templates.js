@@ -29,6 +29,12 @@ var Templates = window.Templates || {
     Handlebars.registerHelper("nl2br", function(str){
         return new Handlebars.SafeString(Utils.nl2br(str));
     });
+    Handlebars.registerHelper("linkify", function(str){
+        return new Handlebars.SafeString(Utils.linkify(str));
+    });
+    Handlebars.registerHelper("asHtml", function(str){
+        return new Handlebars.SafeString(str);
+    });
     Handlebars.registerHelper('ifCond', function(v1, v2, op, options) {
         var dif = v1 - v2;
         var sgn = dif < 0 ? -1 : (dif > 0 ? 1 : 0);
@@ -47,6 +53,9 @@ var Templates = window.Templates || {
     Handlebars.registerHelper('limitTo', Utils.limitTo);
     Handlebars.registerHelper('limitTo_nl2br', function(str,maxLen){
         return new Handlebars.SafeString(Utils.nl2br(Utils.limitTo(str,maxLen)));
+    });
+    Handlebars.registerHelper('limitTo_n_linkify', function(str,maxLen){
+        return new Handlebars.SafeString(Utils.linkify(Utils.limitTo(str,maxLen)));
     });
     Handlebars.registerHelper('hasEditRights', function(isAdmin,userId,authorId,options){
         return (isAdmin || userId == authorId) ? options.fn(this) : options.inverse(this);

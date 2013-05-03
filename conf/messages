@@ -198,14 +198,17 @@ page.test2.passed.recommendation=<p>Successful business requires simultaneous de
 page.test2.passed.final_step=Back to my profile
 
 #blank form
+page.notValidated.head=%s, thank you for registration! Now confirm you email, please.
+page.notValidated.message=To start you work, please, confirm you email first. Follow the link in the mail sent you on signing up.
 page.blankform.head=%s, you have successfully completed tests!<br> Please fill in the application form in order to get an access to your potential business partners.
 page.blankform.name=Name
 page.blankform.surname=Last name
 page.blankform.country=Country
 page.blankform.city=City
 page.blankform.password=Password
+page.blankform.show.pass=show password
 page.blankform.repeat_password=Please repeat password
-page.blankform.rules=Accept the <a href="/public/rules_en.pdf" target="_blank">terms</a> of usage
+page.blankform.rules=* Signing up to the service you entirely accept the <a href\="/public/rules_en.pdf" target\="_blank">Terms</a> of usage
 page.blankform.professional_skills=Base characteristic
 page.blankform.interesting_btype=Desired type of business
 page.blankform.interesting_bsphere=Desired sphere of business
@@ -729,7 +732,7 @@ validation.model.user.birthday.required=Enter your birthday
 validation.model.user.birthday.invalid=Wrong birthday format
 validation.model.user.password.required=Enter password
 validation.model.user.password.invalid=Password may contain only numbers and symbols from latin alphabet
-validation.model.user.password.minLength=Minimal lenght of password - 8 symbols
+validation.model.user.password.minLength=Minimal lenght of password - 6 symbols
 validation.model.user.password.maxLength=Maximal lenght of password - 16 symbols
 validation.model.user.passwordRepeating.required=Enter password confirmation
 validation.model.user.passwordRepeating.invalid=Passwords don't match

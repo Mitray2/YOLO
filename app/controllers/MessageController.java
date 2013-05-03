@@ -1,10 +1,13 @@
 package controllers;
 
 import modelDTO.SimpleMessage;
+import modelDTO.SimpleResp;
 import models.Message;
 import models.User;
+import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.db.jpa.JPA;
+import play.mvc.Http;
 import utils.SessionHelper;
 
 import javax.persistence.Query;
@@ -142,20 +145,28 @@ public class MessageController extends BasicController {
 
 
     /** Creates new user message on the database */
-    public static void sendMessage(Long fromId, Long toId, String msg, long time) {
-        User user = SessionHelper.getCurrentUser(session);
-        if(user != null && user.id.equals(fromId)) {
-            Message message = new models.Message();
-            message.text = msg;                     // TODO validate on not required and max size !!!
-            message.from = new User(fromId);
-            message.to = new User(toId);
-            message.time = new Date(); //time > 0 ? new Date(time) :
-            message.isRead = false;
-            message.create();
+    public static void sendMessage(Long fromId, Long toId, String msg) {
+        if(StringUtils.isEmpty(msg)){
+            renderJSON(new SimpleResp(Http.StatusCode.BAD_REQUEST, "Message should not be empty"));
+        }else {
+            User user = SessionHelper.getCurrentUser(session);
 
-            renderJSON("{\"status\": \"ok\", \"id\": " + message.id + "}");
-        } else {
-            renderJSON("{\"status\": \"not ok\"}");
+            if(msg.length() > 2000){
+                renderJSON(new SimpleResp(Http.StatusCode.BAD_REQUEST, "Message should not be longer than 2000 symbols"));
+            }else if(user != null && user.id.equals(fromId)) {
+                Message message = new models.Message();
+                message.text = msg;
+                message.from = new User(fromId);
+                message.to = new User(toId);
+                message.time = new Date();
+                message.isRead = false;
+                message.create();
+
+                //renderJSON("{\"status\": \"200\", \"id\": " + message.id + "}");
+                renderJSON(new SimpleResp(Http.StatusCode.OK, message.id));
+            } else {
+                renderJSON(new SimpleResp(Http.StatusCode.FORBIDDEN, "Session expired"));
+            }
         }
     }
 

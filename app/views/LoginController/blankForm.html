@@ -40,20 +40,21 @@
 				</select>
 			</div>
 			<div class="form-item">
-				<label for="">&{'page.blankform.city'}</label>
+				<label for="user.city">&{'page.blankform.city'}</label>
 				<input type="text" #{if currentValidation?.hasError('user.city')}class="inputerror"#{/if} name="user.city" id="" value="${user?.city}"/>
 			</div>
 			<div class="form-item">
-				<label for="">&{'page.blankform.password'}</label>
-				<input type="password" #{if currentValidation?.hasError('password')}class="inputerror"#{/if} name="password" id="" />
-			</div>
-			<div class="form-item">
-				<label for="">&{'page.blankform.repeat_password'}</label>
-				<input type="password" #{if currentValidation?.hasError('passwordRepeating')}class="inputerror"#{/if} name="passwordRepeating" id="" />
+				<label for="password">&{'page.blankform.password'}</label>
+				<input id="user-pass" type="password" #{if currentValidation?.hasError('password')}class="inputerror"#{/if} name="password" value="${password}"
+                       onchange="$('#user-pass-open').val($(this).val())"/>
+				<input id="user-pass-open" type="text" #{if currentValidation?.hasError('password')}class="inputerror"#{/if} name="password" value="${password}" style="display:none"
+                       onchange="$('#user-pass').val($(this).val())"/>
 			</div>
             <div class="form-item">
-				<label for="">&{'page.blankform.rules'}</label>
-				<input type="checkbox" onchange="if(this.checked){$('#blankForm').fadeIn(500);}else{$('#blankForm').fadeOut();}" />
+				<label for=""></label>
+
+				<input type="checkbox" onchange="if(this.checked){$('#user-pass').hide(); $('#user-pass-open').show();}else{$('#user-pass').show(); $('#user-pass-open').hide()}" />
+                <span>&{'page.blankform.show.pass'}</span>
 			</div>
 		</div>
 		<h3 class="profile-ttl">&{'page.blankform.professional_skills'}</h3>
@@ -90,8 +91,9 @@
 				<textarea name="user.personalCV" placeholder="&{'page.blankform.personal_characteristics.placeholer'}">${user?.personalCV}</textarea>
 			</div>
 		</div>
-		<div class="test-btm">
+		<div class="test-btm clearFix">
 			<a href="" id="blankForm" class="test-btn">&{'page.blankform.register'}</a>
+            <span class="reg-info">&{'page.blankform.rules'}</span>
 		</div>
 	</div>
 #{/form}

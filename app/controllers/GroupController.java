@@ -156,60 +156,60 @@ public class GroupController extends BasicController implements ApplicationConst
       SessionHelper.setCurrentUser(session, user);
       UserController.index(user.id);
     }
-    Command command = new Command();
-    command.global = group.global;
-    command.name = group.name;
-    command.city = group.city;
+    Command team = new Command();
+    team.global = group.global;
+    team.name = group.name;
+    team.city = group.city;
     group.country = Country.findById(group.country.id);
-    command.country = group.country;
-    command.description = group.description;
-    command.isVacancy = group.isVacancy;
+    team.country = group.country;
+    team.description = group.description;
+    team.isVacancy = group.isVacancy;
     group.phase = ProjectPhase.findById(group.phase.id);
-    command.phase = group.phase;
+    team.phase = group.phase;
     group.type = BType.findById(group.type.id);
-    command.type = group.type;
+    team.type = group.type;
     group.sphere = BSphere.findById(group.sphere.id);
-    command.sphere = group.sphere;
+    team.sphere = group.sphere;
 
-    command.setMarketing(group.marketing);
-    command.setLegal(group.legal);
-    command.setTrade(group.sale);
-    command.setFinance(group.finance);
-    command.setProgramming(group.programming);
-    command.setManagement(group.management);
-    command.setOtherSkill(group.other);
-    command.setCommunication(group.communication);
-    command.setIdealize(group.idealize);
-    command.setPragmatica(group.pragmatica);
+    team.setMarketing(group.marketing);
+    team.setLegal(group.legal);
+    team.setTrade(group.sale);
+    team.setFinance(group.finance);
+    team.setProgramming(group.programming);
+    team.setManagement(group.management);
+    team.setOtherSkill(group.other);
+    team.setCommunication(group.communication);
+    team.setIdealize(group.idealize);
+    team.setPragmatica(group.pragmatica);
 
-    if (command.users == null) {
-      command.users = new ArrayList<User>();
+    if (team.users == null) {
+      team.users = new ArrayList<User>();
     }
-    command.users.add(user);
-    command.regDate = new Date();
-    command.founderUser = user;
-    command.save();
-    user.command = command;
+    team.users.add(user);
+    team.regDate = new Date();
+    team.founderUser = user;
+    team.save();
+    user.command = team;
     user.role = user.ROLE_GROUP_ADMIN;
     user.save();
     //	creating main topic
     Topic mainTopic = new Topic();
     mainTopic.mainTopic = true;
     mainTopic.publicTopic = false;
-    mainTopic.groupId = command.id;
+    mainTopic.team = team;
     mainTopic.save();
     // creating public main topic
     Topic mainPublicTopic = new Topic();
     mainPublicTopic.mainTopic = true;
     mainPublicTopic.publicTopic = true;
-    mainPublicTopic.groupId = command.id;
+    mainPublicTopic.team = team;
     mainPublicTopic.save();
-    if (command.topics == null) {
-      command.topics = new ArrayList<Topic>();
+    if (team.topics == null) {
+      team.topics = new ArrayList<Topic>();
     }
-    command.topics.add(mainTopic);
-    command.topics.add(mainPublicTopic);
-    command.save();
+    team.topics.add(mainTopic);
+    team.topics.add(mainPublicTopic);
+    team.save();
     // user lastSeen
 //		LastUserData lastSeenUserData = null;
 //		String statement = "select l from LastUserData as l where l.userId=?";
@@ -225,7 +225,7 @@ public class GroupController extends BasicController implements ApplicationConst
 //		lastSeenUserData.commandId = group.id;
 //		lastSeenUserData.save();
     SessionHelper.setCurrentUser(session, user);
-    index(command.id);
+    index(team.id);
   }
 
   public static void updateGroup(CommandDTO group) {
@@ -372,51 +372,51 @@ public class GroupController extends BasicController implements ApplicationConst
   public static void editTopic(Long topicId) {
     Topic topic = Topic.findById(topicId);
     if (!topic.publicTopic) {
-      if (!memberOfGroup(topic.groupId)) {
-        index(topic.groupId);
+      if (!memberOfGroup(topic.team.id)) {
+        index(topic.team.id);
       }
     }
-    Command group = Command.findById(topic.groupId);
+    Command group = topic.team; //Command.findById(topic.groupId);
     render(topic, group);
   }
 
   public static void saveEditTopic(Topic topic) {
     Topic currentTopic = Topic.findById(topic.id);
     if (!currentTopic.publicTopic) {
-      if (!memberOfGroup(currentTopic.groupId)) {
-        index(currentTopic.groupId);
+      if (!memberOfGroup(currentTopic.team.id)) {
+        index(currentTopic.team.id);
       }
     }
     currentTopic.description = topic.description;
     currentTopic.name = topic.name;
     currentTopic.lastUpdateDate = new Date();
     currentTopic.save();
-    indexTopic(currentTopic.id, topic.groupId);
+    indexTopic(currentTopic.id, topic.team.id);
   }
 
   public static void saveTopic(Topic topic) {
     User user = SessionHelper.getCurrentUser(session);
-    Long groupId = user.command.id;
-    if (!memberOfGroup(groupId)) {
-      index(groupId);
+    Long teamId = user.command.id;
+    if (!memberOfGroup(teamId)) {
+      index(teamId);
     }
-    Command group = Command.findById(groupId);
+    Command team = Command.findById(teamId);
     topic.createdUserId = user.id;
     topic.createdDateTime = new Date();
     topic.lastUpdateDate = new Date();
-    topic.groupId = groupId;
+    topic.team = team;
     topic.createdUserName = user.name;
     topic.createdUserLastName = user.lastName;
     topic.save();
-    if (group.topics == null) {
-      group.topics = new ArrayList<Topic>();
+    if (team.topics == null) {
+      team.topics = new ArrayList<Topic>();
     }
-    group.topics.add(topic);
-    group.save();
+    team.topics.add(topic);
+    team.save();
 
-      TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_TOPIC_CREATED, group, topic);
+      TeamMemberActivity.log(user, TeamMemberActivity.Action.ACTION_TOPIC_CREATED, team, topic);
 
-    indexTopic(topic.id, group.id);
+    indexTopic(topic.id, team.id);
   }
 
   public static void indexTopic(Long topicId, Long teamId) {
@@ -551,7 +551,7 @@ public class GroupController extends BasicController implements ApplicationConst
       }
     }
     //find main topic
-    Query ptQueryMainTopic = JPA.em().createQuery("select t from Topic t where t.groupId=? and t.publicTopic=? and t.mainTopic=? order by t.lastUpdateDate desc");
+    Query ptQueryMainTopic = JPA.em().createQuery("select t from Topic t where t.team.id=? and t.publicTopic=? and t.mainTopic=? order by t.lastUpdateDate desc");
     ptQueryMainTopic.setParameter(1, groupId);
     ptQueryMainTopic.setParameter(2, isPublic);
     ptQueryMainTopic.setParameter(3, true);
@@ -559,14 +559,14 @@ public class GroupController extends BasicController implements ApplicationConst
     Topic mainTopic = mainTopics.size() > 0 ? mainTopics.get(0) : null;
 
     //find top 3 all topics
-    Query ptQueryAllTopics = JPA.em().createQuery("select t from Topic t where t.groupId=? and t.publicTopic=? and t.mainTopic=? order by t.lastUpdateDate desc");
+    Query ptQueryAllTopics = JPA.em().createQuery("select t from Topic t where t.team.id=? and t.publicTopic=? and t.mainTopic=? order by t.lastUpdateDate desc");
     ptQueryAllTopics.setParameter(1, groupId);
     ptQueryAllTopics.setParameter(2, isPublic);
     ptQueryAllTopics.setParameter(3, false);
     ptQueryAllTopics.setMaxResults(3);
     List<Topic> topics = ptQueryAllTopics.getResultList();
 
-    Query ptQueryAllTopicsCount = JPA.em().createQuery("select count(t.id) from Topic t where t.groupId=? and t.publicTopic=? and t.mainTopic=?");
+    Query ptQueryAllTopicsCount = JPA.em().createQuery("select count(t.id) from Topic t where t.team.id=? and t.publicTopic=? and t.mainTopic=?");
     ptQueryAllTopicsCount.setParameter(1, groupId);
     ptQueryAllTopicsCount.setParameter(2, isPublic);
     ptQueryAllTopicsCount.setParameter(3, false);
@@ -603,7 +603,7 @@ public class GroupController extends BasicController implements ApplicationConst
     }
 
     //find remain all topics
-    Query ptQueryAllTopics = JPA.em().createQuery("select t from Topic t where t.groupId=? and t.publicTopic=? and t.mainTopic=? order by t.lastUpdateDate desc");
+    Query ptQueryAllTopics = JPA.em().createQuery("select t from Topic t where t.team.id=? and t.publicTopic=? and t.mainTopic=? order by t.lastUpdateDate desc");
     ptQueryAllTopics.setParameter(1, groupId);
     ptQueryAllTopics.setParameter(2, isPublic);
     ptQueryAllTopics.setParameter(3, false);

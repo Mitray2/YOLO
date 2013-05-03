@@ -30,7 +30,7 @@
                 <span>${msg.time.getTime().format(request)}</span>
             </div>
 
-            <p>${msg.text.nl2br()}</p>
+            <p>${msg.text.linkify().raw()}</p>
             <span class="dialogs-delete" data-id="${msg.id}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete.msg'}</span></span>
         </div>
     #{/list}
@@ -63,7 +63,7 @@
             <a href="/{{ from.id }}">{{from.name}} {{from.lastName}}</a>
             <span>{{formatTime time}}</span>
         </div>
-        <p>{{nl2br text}}</p>
+        <p>{{linkify text}}</p>
         <span class="dialogs-delete" data-id="{{ id }}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete.msg'}</span></span>
     </div>
     {{/each}}
@@ -118,6 +118,11 @@
 
             if(msg){
                 $.post("/talks", $form.serialize(), function(data){
+                    if(data.status != 200){
+                        alertify.alert(data.message);
+                        return;
+                    }
+
                     var userMsg = [{
                         "id": data.id,
                         "text": msg,

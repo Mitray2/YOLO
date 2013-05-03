@@ -44,7 +44,7 @@ public class Command extends Model {
 	
 	public Boolean global;
 
-	@OneToMany(cascade = { CascadeType.REMOVE })
+	@OneToMany(mappedBy = "team", cascade = { CascadeType.REMOVE })
 	public List<Topic> topics;
 
 	@Required
@@ -283,13 +283,13 @@ public class Command extends Model {
 	@Override
 	public <T extends JPABase> T delete() {
 		Cache.delete(CACHE_COMMANDS_COUNT);
-		return super.delete();
+		return (T) super.delete();
 	}
 	
 	@Override
 	public <T extends JPABase> T save() {
         Cache.delete(CACHE_COMMANDS_COUNT);
-		return super.save();
+		return (T) super.save();
 	}
 
     public static Long getMaxId(){

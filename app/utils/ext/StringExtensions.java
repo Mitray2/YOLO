@@ -3,6 +3,7 @@ package utils.ext;
 
 import org.apache.commons.lang.StringUtils;
 import play.templates.JavaExtensions;
+import utils.URLUtils;
 
 /** Helper methods to deal with strings in play templates */
 public class StringExtensions extends JavaExtensions {
@@ -19,6 +20,10 @@ public class StringExtensions extends JavaExtensions {
             text = text.concat("...");
         }
         return text;
+    }
+
+    public static String linkify(String text) {
+        return URLUtils.linkify(text);
     }
 }
 

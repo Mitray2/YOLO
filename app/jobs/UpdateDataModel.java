@@ -1,14 +1,7 @@
 package jobs;
 
-import java.util.List;
-
-import models.Command;
-import models.Post;
-import models.Topic;
-import models.User;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
-import utils.ModelUtils;
 
 @OnApplicationStart
 public class UpdateDataModel extends Job {
@@ -40,7 +33,7 @@ public class UpdateDataModel extends Job {
 //			for (Topic topic : command.topics) {
 //				if (topic.mainTopic) {
 //					topic.publicTopic = false;
-//					topic.groupId = command.id;
+//					topic.team = command;
 //					topic.save();
 //				}
 //			}
@@ -48,7 +41,7 @@ public class UpdateDataModel extends Job {
 //			Topic mainPublicTopic = new Topic();
 //			mainPublicTopic.mainTopic = true;
 //			mainPublicTopic.publicTopic = true;
-//			mainPublicTopic.groupId = command.id;
+//			mainPublicTopic.team = command;
 //			mainPublicTopic.save();
 //			
 //			command.topics.add(mainPublicTopic);

@@ -33,14 +33,15 @@ public class UserController extends BasicController  implements ApplicationConst
 			User user = User.findById(currentUser.id);
 			user.lastSeen = new Date();
 			user.save();
-		}
-		if (currentUser.role == User.ROLE_INPERFECT_USER) {
-			redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
-		}
-		if (currentUser.role.equals(User.ROLE_WITHOUT_BLANK)) {
-			redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
-		}
 
+            if (currentUser.role == User.ROLE_INPERFECT_USER) {
+                //redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
+                LoginController.notValidated();
+            }
+            if (currentUser.role.equals(User.ROLE_WITHOUT_BLANK)) {
+                redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
+            }
+		}
 	}
 
 	public static void index(Long userId) {
@@ -95,8 +96,8 @@ public class UserController extends BasicController  implements ApplicationConst
         if(country == null && (category == null || category.equals(TRACKED_TOPIC_CATEGORY_ALL))) {
             query = "SELECT t.* from Topic t " +
                     "where t.publicTopic = 1 and t.mainTopic = 0 and t.lastUpdateDate IS NOT NULL " +
-                    "and (select count(*) from UserBlacklistTeam ubt where ubt.User_id = ? and ubt.Team_id = t.groupId) = 0 " +
-                    "and (select count(*) from UserFavouriteTeam uft where uft.User_id = ? and uft.Team_id = t.groupId) = 0 " +
+                    "and (select count(*) from UserBlacklistTeam ubt where ubt.User_id = ? and ubt.Team_id = t.team_id) = 0 " +
+                    "and (select count(*) from UserFavouriteTeam uft where uft.User_id = ? and uft.Team_id = t.team_id) = 0 " +
                     "ORDER BY t.lastUpdateDate DESC LIMIT ? OFFSET ?";
 
             topics = JPA.em().createNativeQuery(query, Topic.class)
@@ -110,9 +111,9 @@ public class UserController extends BasicController  implements ApplicationConst
             // 2. COUNTRY: select all PUBLIC topics of ALL teams in chosen COUNTRY - EXCEPT BLACKLISTED
             if(country != null && category == null || category.equals(TRACKED_TOPIC_CATEGORY_ALL)) {
                 query = "SELECT t.* from Topic t " +
-                        "join Command team on team.id = t.groupId " +
+                        "join Command team on team.id = t.team_id " +
                         "where t.publicTopic = 1 and t.mainTopic = 0 and t.lastUpdateDate IS NOT NULL and team.country_id = ? " +
-                        "and (select count(*) from UserBlacklistTeam ubt where ubt.User_id = ? and ubt.Team_id = t.groupId) = 0 " +
+                        "and (select count(*) from UserBlacklistTeam ubt where ubt.User_id = ? and ubt.Team_id = t.team_id) = 0 " +
                         "ORDER BY t.lastUpdateDate DESC LIMIT ? OFFSET ?";
 
                 topics = JPA.em().createNativeQuery(query, Topic.class)
@@ -134,7 +135,7 @@ public class UserController extends BasicController  implements ApplicationConst
                 if(country == null) {
 
                     query = "SELECT t.* from Topic t " +
-                            "join " + categoryTableName + " cat on (cat.User_id = ? and cat.Team_id = t.groupId) " +
+                            "join " + categoryTableName + " cat on (cat.User_id = ? and cat.Team_id = t.team_id) " +
                             "where t.publicTopic = 1 and t.mainTopic = 0 and t.lastUpdateDate IS NOT NULL " +
                             "ORDER BY t.lastUpdateDate DESC LIMIT ? OFFSET ?";
 
@@ -148,8 +149,8 @@ public class UserController extends BasicController  implements ApplicationConst
                     // 4. COUNTRY & CATEGORY: select all PUBLIC topics of ALL teams in chosen COUNTRY & CATEGORY
 
                     query = "SELECT t.* from Topic t " +
-                            "join Command team on team.id = t.groupId " +
-                            "join " + categoryTableName + " cat on (cat.User_id = ? and cat.Team_id = t.groupId) " +
+                            "join Command team on team.id = t.team_id " +
+                            "join " + categoryTableName + " cat on (cat.User_id = ? and cat.Team_id = t.team_id) " +
                             "where t.publicTopic = 1 and t.mainTopic = 0 and t.lastUpdateDate IS NOT NULL and team.country_id = ? " +
                             "ORDER BY t.lastUpdateDate DESC LIMIT ? OFFSET ?";
 
