@@ -1,5 +1,6 @@
 package controllers;
 
+import modelDTO.SimpleResp;
 import models.*;
 import models.predicate.FindAnswerByIdPredicate;
 import models.predicate.FindAnswerByQuestionIdPredicate;
@@ -11,6 +12,7 @@ import play.Logger;
 import play.data.validation.Required;
 import play.i18n.Lang;
 import play.i18n.Messages;
+import play.mvc.Http;
 import utils.*;
 import utils.SessionData.SessionUserMessage;
 
@@ -223,9 +225,23 @@ public class LoginController extends BasicController implements ApplicationConst
 	public static void blankForm() {
 		User user = SessionHelper.getCurrentUser(session);
         if(user != null){
-		    render(user);
+            if(user.role == User.ROLE_INPERFECT_USER){
+                render(user);
+            } else {
+                UserController.profile();
+            }
         } else {
           ApplicationController.index();
+        }
+	}
+
+	public static void resendConfirmationEmail() {
+		User user = SessionHelper.getCurrentUser(session);
+        if(user != null){
+            Mails.blankFormPassed(user, request.getBase());
+		    renderJSON(new SimpleResp(Http.StatusCode.OK));
+        } else {
+            renderJSON(new SimpleResp(Http.StatusCode.FORBIDDEN));
         }
 	}
 
@@ -259,6 +275,8 @@ public class LoginController extends BasicController implements ApplicationConst
 		//if (!validation.hasError("password")) validation.match(password, "[A-Za-z0-9\\.\\-\\_]+").message(VALIDATION_MODEL_USER_PASSORD_INVALID);
 		//validation.required(passwordRepeating).message(VALIDATION_MODEL_USER_PASSORD_REPEATING_REQUIRED);
 		//if (!validation.hasError("password") && !validation.hasError("passwordRepeating")) validation.equals(password, passwordRepeating).message(VALIDATION_MODEL_USER_PASSORD_REPEATING_INVALID);
+
+
 
         validation.required("user.lastName", user.lastName).message(VALIDATION_MODEL_USER_LAST_NAME_REQUIRED);
 		if (!validation.hasError("user.lastName")) validation.maxSize("user.lastName", user.lastName, 30).message(VALIDATION_MODEL_USER_LAST_NAME_MAX_LENGTH);

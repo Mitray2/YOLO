@@ -24,15 +24,15 @@
         #{/ifErrors}
 		<div class="profile">
 			<div class="form-item">
-				<label for="">&{'page.blankform.name'}</label>
+				<label for="">&{'page.blankform.name'}*</label>
 				<input type="text" #{if currentValidation?.hasError('user.name')}class="inputerror"#{/if} name="user.name" id="" value="${user?.name}"/>
 			</div>
             <div class="form-item">
-				<label for="">&{'page.blankform.surname'}</label>
+				<label for="">&{'page.blankform.surname'}*</label>
 				<input type="text" #{if currentValidation?.hasError('user.lastName')}class="inputerror"#{/if} name="user.lastName" id="" value="${user?.lastName}"/>
 			</div>
 			<div class="form-item clearFix">
-				<label for="">&{'page.blankform.country'}</label>
+				<label for="">&{'page.blankform.country'}*</label>
 				<select name="user.country.id" id="" class="cSelect" style="width:258px;">
 					#{list items:utils.ModelUtils.getSortedCountries(), as:'country'}
 						<option value="${country?.id}" #{if user?.country?.id == country?.id}selected#{/if}#{elseif country_index == 1}selected#{/elseif}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(country?.name)}</option>
@@ -40,15 +40,16 @@
 				</select>
 			</div>
 			<div class="form-item">
-				<label for="user.city">&{'page.blankform.city'}</label>
+				<label for="user.city">&{'page.blankform.city'}*</label>
 				<input type="text" #{if currentValidation?.hasError('user.city')}class="inputerror"#{/if} name="user.city" id="" value="${user?.city}"/>
 			</div>
 			<div class="form-item">
-				<label for="password">&{'page.blankform.password'}</label>
+				<label for="password">&{'page.blankform.password'}*</label>
 				<input id="user-pass" type="password" #{if currentValidation?.hasError('password')}class="inputerror"#{/if} name="password" value="${password}"
                        onchange="$('#user-pass-open').val($(this).val())"/>
 				<input id="user-pass-open" type="text" #{if currentValidation?.hasError('password')}class="inputerror"#{/if} name="password" value="${password}" style="display:none"
                        onchange="$('#user-pass').val($(this).val())"/>
+                <span class="hint-btn">&{'page.blankform.password.hint'}</span>
 			</div>
             <div class="form-item">
 				<label for=""></label>

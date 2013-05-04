@@ -200,12 +200,14 @@ page.test2.passed.final_step=Back to my profile
 #blank form
 page.notValidated.head=%s, thank you for registration! Now confirm you email, please.
 page.notValidated.message=To start you work, please, confirm you email first. Follow the link in the mail sent you on signing up.
+page.notValidated.resend=Resend confirmation email
 page.blankform.head=%s, you have successfully completed tests!<br> Please fill in the application form in order to get an access to your potential business partners.
 page.blankform.name=Name
 page.blankform.surname=Last name
 page.blankform.country=Country
 page.blankform.city=City
 page.blankform.password=Password
+page.blankform.password.hint=should be at least 6 symbols length
 page.blankform.show.pass=show password
 page.blankform.repeat_password=Please repeat password
 page.blankform.rules=* Signing up to the service you entirely accept the <a href\="/public/rules_en.pdf" target\="_blank">Terms</a> of usage
@@ -708,7 +710,20 @@ page.news.read=Read:
 page.news.translate.ru=RUSSIAN
 page.news.translate.en=ENGLISH
 
-
+#Dialogs pages
+page.dialogs.title=My dialogs
+page.dialogs.list=To all dialogs list
+page.dialogs.with=Dialog with
+page.dialogs.delete=Delete dialog
+page.dialogs.delete.confirm=Conversation with the selected user will be deleted. Are you sure?
+page.dialogs.delete.msg=Delete message
+page.dialogs.delete.msg.confirm=This message will be deleted.<br/>Are you sure?
+page.dialogs.button.send=Send
+page.dialogs.button.send.hint=or hit Ctrl+Enter
+page.dialogs.placeholder.send=Write message...
+pages.dialogs.yes=Yes
+pages.dialogs.no=No
+page.dialogs.empty=You have no started dialogs currently. To start one, click 'Send a message' button on someone's profile page.
 
 play-paginate.prev=Previous
 play-paginate.next=Next
