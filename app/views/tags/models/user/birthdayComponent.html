@@ -1,46 +1,81 @@
 <script>
-	$(function(){
-		var monthDays = {
-			#{list items:utils.DateUtils.MONTH_NAMES, as:'month' }		
-				${month_index - 1}:${utils.DateUtils.MONTH_DAYS[month_index - 1]}#{if !month_isLast},#{/if}
-			#{/list}
-		}
-		
-		$('[name="birthMonth"]').change(changeDays);
-		$('[name="birthYear"]').change(changeDays);
-		
-		function changeDays(){
-			var birthDaySelect = $('[name="birthDay"]');
-			birthDaySelect.parent().unselectbox();
-			birthDaySelect.html('');
-			var month = $('[name="birthMonth"]').val();
-			for(var i = 1; i <= parseInt(month == 1 && isLeapLevel() ? 29 : monthDays[month]); i++){
-				birthDaySelect.append('<option value="' + i + '">' + i + '</option>');	
-			}
-			birthDaySelect.selectbox();
-		}
-		
-		function isLeapLevel() {
-			return parseInt($('[name="birthYear"]').val()) % 4 == 0;
-		}
-	});
+    $(function(){
+        var monthDays = {
+    #{list items:utils.DateUtils.MONTH_NAMES, as:'month' }
+    ${month_index - 1}:${utils.DateUtils.MONTH_DAYS[month_index - 1]}#{if !month_isLast},#{/if}
+    #{/list}
+    }
+
+    $('[name="birthMonth"]').change(changeDays);
+    $('[name="birthYear"]').change(changeDays);
+
+    function changeDays(){
+        var birthDaySelect = $('[name="birthDay"]');
+        birthDaySelect.parent().unselectbox();
+        birthDaySelect.html('');
+        var month = $('[name="birthMonth"]').val();
+        for(var i = 1; i <= parseInt(month == 1 && isLeapLevel() ? 29 : monthDays[month]); i++){
+            birthDaySelect.append('<option value="' + i + '">' + i + '</option>');
+        }
+        birthDaySelect.selectbox();
+    }
+
+    function isLeapLevel() {
+        return parseInt($('[name="birthYear"]').val()) % 4 == 0;
+    }
+    });
 </script>
+<style>
+    .birthday-box {
+        width: 100%;
+        position: relative;
+        height: 43px;
+        overflow: hidden;
+    }
+
+    .birthday-box .jquery-selectbox:first-child {
+        width: 67px !important;
+    }
+    .birthday-box .jquery-selectbox:nth-child(2) {
+        width: 140px !important;
+    }
+    .birthday-box .jquery-selectbox:nth-child(3) {
+        width: 47px !important;
+    }
+
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        .birthday-box .jquery-selectbox {
+            height: 41px !important;
+        }
+        .birthday-box .jquery-selectbox:first-child {
+            width: 67px !important;
+        }
+        .birthday-box .jquery-selectbox:nth-child(2) {
+            width: 140px !important;
+        }
+        .birthday-box .jquery-selectbox:nth-child(3) {
+            width: 47px !important;
+        }
+    }
+</style>
 %{
-	def isLeapYear = _year != null ? utils.DateUtils.isLeapYear(_year) : true;
-	def days = _month != null ? _month == 1 && isLeapYear ? 29 : utils.DateUtils.MONTH_DAYS[_month] : 31;
+def isLeapYear = _year != null ? utils.DateUtils.isLeapYear(_year) : true;
+def days = _month != null ? _month == 1 && isLeapYear ? 29 : utils.DateUtils.MONTH_DAYS[_month] : 31;
 }%
-<select name="birthYear" id="sbBirthYear" class="cSelect"> <!-- style="width:67px;" -->
-	#{list items:1900..2000, as:'year'}
-		<option value="${year}" #{if year.equals(_year)}selected#{/if}#{elseif _year == null && year_isLast}selected#{/elseif}>${year}</option>
-	#{/list}
-</select>
-<select name="birthMonth" id="sbBirthMonth" class="cSelect"> <!-- style="width:140;" -->
-	#{list items:0..11 , as:'month'}
-		<option value="${month}" #{if month.equals(_month)}selected#{/if}>&{'monthName.' + utils.DateUtils.MONTH_NAMES[month_index - 1]}</option> 
-	#{/list}
-</select>
-<select name="birthDay" id="sbBirthDay" class="cSelect"> <!-- style="width:47;" -->
-	#{list items:1..days, as:'day'}
-		<option value="${day}" #{if day.equals(_day)}selected#{/if}>${day}</option>
-	#{/list}
-</select>
+<div class="birthday-box">
+    <select name="birthYear" id="sbBirthYear" class="cSelect"> <!-- style="width:67px;" -->
+    #{list items:1900..2000, as:'year'}
+        <option value="${year}" #{if year.equals(_year)}selected#{/if}#{elseif _year == null && year_isLast}selected#{/elseif}>${year}</option>
+    #{/list}
+    </select>
+    <select name="birthMonth" id="sbBirthMonth" class="cSelect"> <!-- style="width:140;" -->
+    #{list items:0..11 , as:'month'}
+        <option value="${month}" #{if month.equals(_month)}selected#{/if}>&{'monthName.' + utils.DateUtils.MONTH_NAMES[month_index - 1]}</option>
+    #{/list}
+    </select>
+    <select name="birthDay" id="sbBirthDay" class="cSelect"> <!-- style="width:47;" -->
+    #{list items:1..days, as:'day'}
+        <option value="${day}" #{if day.equals(_day)}selected#{/if}>${day}</option>
+    #{/list}
+    </select>
+</div>

@@ -19,7 +19,7 @@ public class UserController extends BasicController  implements ApplicationConst
     public static final int TRACKED_TOPIC_CATEGORY_FAVOURITE = 1;
     public static final int TRACKED_TOPIC_CATEGORY_BLACKLIST = 2;
 
-    public static final int TEAM_TOPICS_TO_PAGE_LIMIT = 20;
+    public static final int TEAM_TOPICS_TO_PAGE_LIMIT = 10;
 
 	@Before
 	public static void checkSecurity() {

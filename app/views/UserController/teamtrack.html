@@ -40,7 +40,7 @@
 
         var $topicsDiv = $(".search-result-list");
         var loading = false;
-        var offset = ${topics.size()} < 20 ? -1 : ${topics.size()};
+        var offset = ${topics.size()} < ${controllers.UserController.TEAM_TOPICS_TO_PAGE_LIMIT} ? -1 : ${topics.size()};
         var loadMoreTopics = function () {
             if (offset > 0 && !loading && Utils.isScrolledToBottom()) {
                 loading = true;
