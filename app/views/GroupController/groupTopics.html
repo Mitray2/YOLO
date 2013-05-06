@@ -144,11 +144,11 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
                      // @GroupController.addTopicMessage
                 $.post("/teams/${group.id}/topics/${mainTopic.id}/messages", $form.serialize(), function(data){
                     if(data.status != 200){
-                        console.log("MESSAGE NOT SAVED");
-                        return false;
+                        alertify.alert(data.message);
+                        return;
                     }
 
-                    /*var userMsg = {
+                    var userMsg = {
                         "id": data.id,
                         "topic": ${mainTopic.id},
                         "text": msg,
@@ -159,10 +159,13 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
                             "lastName": "${user.lastName}",
                             "sex": ${user.sex},
                             "email": "${user.email}",
-                            "hasAvatar": ${user.haveAvatar}
-                        },
+                            "hasAvatar": ${user.haveAvatar},
+                            "status": "${user.onlineStatus}"
+                        }
                     };
-                    $talksDiv.prepend(Templates.topicMsgTpl(userMsg));*/
+                    $talksDiv.prepend(Templates.topicMsgTpl(userMsg));
+                    msgCount++;
+                    $(".topic-msgs-counter").html(msgCount);
 
                     $msg.val("");
                 });

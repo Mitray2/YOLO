@@ -549,6 +549,7 @@ page.profile.current.desc_skill_meta=Indicate your level of knowledge and experi
 page.profile.current.desc_cv_meta=Describe in few words your goals and expectations from registration
 page.profile.current.test2=Test your business skills now!
 page.profile.load.photo=Load your photo
+page.profile.new.photo=New photo
 
 page.settings.title=My settings
 page.settings.notifications=Email notifications

@@ -21,11 +21,13 @@ String __prevURL = __hasPrev ? _items.getCallbackURL(__currentPage-1) : "#";
 String __nextURL = __hasNext ? _items.getCallbackURL(__currentPage+1) : "#";
 String __lastURL = __hasNext ? _items.getCallbackURL(__maxPage) : "#";
 %}
+#{if __maxPage > 1}
 	 <div class="pages">
 	 	#{if __hasPrev}
 			<a class="prev" href="${__prevURL}">&{'play-paginate.prev'}</a>
 		#{/if}
 		<div>
+#{/if}
 %{
 for (__idx = __firstPage; __idx <= __lastPage; __idx++) {
 boolean __active = __currentPage == __idx;
@@ -41,9 +43,10 @@ boolean __active = __currentPage == __idx;
 %{
 }
 %}
-
+#{if __maxPage > 1}
 </div>
 	 	#{if __hasNext}
 			<a class="next" href="${__nextURL}">&{'play-paginate.next'}</a>
 		#{/if}
 	</div>
+#{/if}

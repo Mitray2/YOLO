@@ -1,15 +1,18 @@
 package controllers;
 
 import modelDTO.CommandDTO;
+import modelDTO.SimpleResp;
 import modelDTO.SimpleTeamEvent;
 import modelDTO.SimpleTopicMessage;
 import models.*;
 import notifiers.Mails;
+import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.db.jpa.JPA;
 import play.modules.paginate.ModelPaginator;
 import play.mvc.Before;
 import play.mvc.Catch;
+import play.mvc.Http;
 import utils.ApplicationConstants;
 import utils.SessionData.SessionUserMessage;
 import utils.SessionHelper;
@@ -455,26 +458,31 @@ public class GroupController extends BasicController implements ApplicationConst
     public static void addTopicMessage(Long teamId, Long topicId, String message){
         Topic topic = Topic.findById(topicId);
         if (!topic.publicTopic && !memberOfGroup(teamId)) {
-            renderJSON("{\"status\": 403 }");
+            renderJSON(new SimpleResp(Http.StatusCode.FORBIDDEN));
+        } else if(StringUtils.isEmpty(message)){
+            renderJSON(new SimpleResp(Http.StatusCode.BAD_REQUEST, "Message should not be empty"));
+        } else if(message.length() > 2000){
+            renderJSON(new SimpleResp(Http.StatusCode.BAD_REQUEST, "Message should not be longer than 2000 symbols"));
+        } else {
+            TopicMessage msg = new TopicMessage();
+            msg.text = message;
+            msg.from = User.findById(SessionHelper.getCurrentUser(session).id);
+            msg.createDate = new Date();
+            msg.topic = topic;
+            msg.save();
+
+            topic.lastUpdateDate = msg.createDate;
+            topic.lastUpdateUserId = msg.from.id;
+            topic.lastUpdateUserName = msg.from.name;
+            topic.lastUpdateUserLastName = msg.from.lastName;
+            topic.save();
+
+            Command team = Command.findById(teamId);
+            TeamMemberActivity.log(msg.from, TeamMemberActivity.Action.ACTION_NEW_MESSAGE, team, topic, msg);
+
+            //renderJSON("{\"status\": 200, \"id\": " + msg.id + "}");
+            renderJSON(new SimpleResp(Http.StatusCode.OK, msg.id));
         }
-        //int res = JPA.em().createNativeQuery("insert into TopicMessage values ()")
-        TopicMessage msg = new TopicMessage();
-        msg.text = message;                     // TODO validate required and max size !!!
-        msg.from = User.findById(SessionHelper.getCurrentUser(session).id);
-        msg.createDate = new Date();
-        msg.topic = topic;
-        msg.save();
-
-        topic.lastUpdateDate = msg.createDate;
-        topic.lastUpdateUserId = msg.from.id;
-        topic.lastUpdateUserName = msg.from.name;
-        topic.lastUpdateUserLastName = msg.from.lastName;
-        topic.save();
-
-        Command team = Command.findById(teamId);
-        TeamMemberActivity.log(msg.from, TeamMemberActivity.Action.ACTION_NEW_MESSAGE, team, topic, msg);
-
-        renderJSON("{\"status\": 200, \"id\": " + msg.id + "}");
     }
 
     public static void getNewTopicMessages(Long topicId, long time) {
@@ -482,7 +490,7 @@ public class GroupController extends BasicController implements ApplicationConst
 
         User user = SessionHelper.getCurrentUser(session);
         if(user != null){
-            List<TopicMessage> newTopicMessages = TopicMessage.find("topic.id = ? AND createDate > ? ORDER BY createDate ASC", topicId, new Date(time)).fetch();
+            List<TopicMessage> newTopicMessages = TopicMessage.find("select t from TopicMessage t where t.topic.id = ? AND t.createDate > ? AND t.from.id <> ? ORDER BY t.createDate ASC", topicId, new Date(time), user.id).fetch();
             for(TopicMessage msg : newTopicMessages) {
                 newMessages.add(SimpleTopicMessage.fromFullMessage(msg));
             }

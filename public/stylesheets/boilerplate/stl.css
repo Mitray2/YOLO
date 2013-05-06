@@ -3739,7 +3739,9 @@ h1.main{
     text-align: center;
     font-size: 12px;
     line-height: 12px;
-    font-weight: bold;
+}
+.load-avatar-reminder * {
+    box-sizing: border-box;
 }
 .load-avatar-reminder div {
     text-align: center;
@@ -3747,13 +3749,32 @@ h1.main{
 .load-avatar-reminder a {
     box-sizing: border-box;
     color: #c00;
-    display: inline-block;
-    padding-top: 16px;
+    display: block;
     width: 55px;
     height: 55px;
 }
+.load-avatar-reminder a > span {
+    display: block;
+    padding-top: 16px;
+    border-radius: 3px;
+    width: 55px;
+    height: 55px;
+    font-weight: bold;
+}
+.load-avatar-reminder .new-photo {
+    display: none;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-weight: normal;
+}
+.load-avatar-reminder:hover .new-photo {
+    display: block;
+}
+.load-avatar-reminder:hover a {
+    text-decoration: none;
+}
 .hint-btn{
     padding-left: 5px;
-    font-size:.8em;
+    font-size: 11px;
     color: #999;
 }

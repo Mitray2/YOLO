@@ -45,7 +45,7 @@
                 <div class="group-shot-info-user">
                     #{avatar.avatar user:group?.founderUser, cssClass:'group-shot-info-pic', maleImg:'upm.png', femaleImg:'upf.png', avatarSize:27 /}
                     <a href="@{UserController.index(group?.founderUser?.id)}" class="man">${group.founderUser?.name + " " + group.founderUser.lastName}</a>
-                    <span class="user-online"><span class="st-${group.founderUser?.onlineStatus}">&{'common.status.' + group.founderUser?.onlineStatus}</span></span>
+                    <div><span class="user-online"><span class="st-${group.founderUser?.onlineStatus}">&{'common.status.' + group.founderUser?.onlineStatus}</span></span></div>
                     <div>#{common.formattedDate date:group?.regDate /}</div>
                 </div>
             </td>

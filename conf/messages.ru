@@ -556,6 +556,7 @@ page.profile.current.desc_skill_meta=Укажите уровень ваших з
 page.profile.current.desc_cv_meta=Опишите в свободной форме свои цели регистрации на сайте
 page.profile.current.test2=Определите свои бизнес-наклонности для лучшего формирования команды.
 page.profile.load.photo=Ваше фото
+page.profile.new.photo=Новое фото
 
 page.settings.title=Настройки
 page.settings.notifications=Уведомления по электронной почте
