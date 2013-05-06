@@ -11,7 +11,7 @@ $(document).ready(function() {
 function loadMoreMessages() {
 	currentPage++;
 	$.ajax({
-		  url: "more?page=" + currentPage + "&type=${_type}${_extraParams?.raw()}",
+		  url: "/groupcontroller/more?page=" + currentPage + "&type=${_type}${_extraParams?.raw()}",
 		  cache: false
 		}).done(function( html ) {
 			$(".group-theme-dialog").append(html);

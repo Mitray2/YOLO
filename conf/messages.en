@@ -13,9 +13,9 @@ common.login.password_sended=New password has been sent to your email.
 common.post.read.more=Read more
 common.any.female=Any
 
-common.status.online=Online
+common.status.online=On-line
 common.status.away=Away
-common.status.offline=Offline
+common.status.offline=Off-line
 
 client.side.password_repair=Recover password
 client.side.system_enter=Enter to site
@@ -319,9 +319,9 @@ link.partners=Partners
 link.messages=My messages
 link.settings=Settings
 
-link.team.tracking=TeamTracking
+link.team.tracking=Open discussions
 link.crowd.consalting=CrowdConsulting
-link.crowd.developig=CrowdDeveloping
+link.crowd.developig=Feedback
 link.crowd.funding=CrowdSourcing
 
 page.partners.title=Partners of StartNewTeam
@@ -341,13 +341,9 @@ page.contacts.title=Contacts
 page.contacts.general=General
 page.contacts.for_partnership=To partners
 
-page.crowd.consalting.head=Let's develop and improve together a tool, which will become useful for like-minded people and create sucessfull business with people met here. Share your ideas here.<br> \
-							Best ideas will be realised in the project, and it's authors will become members of our Hall of fame.
-page.crowd.developing.head=Do you like our project and would like help us in one way or another? Write us a short email, describing what you can help us with and we will talk to you directly.<br>\
-							In future we are planning to create a network of partners\
-							and active members, who will conduct different useful\
-							off-line events and meetings for entrepreneurs in their cities.<br>
-page.crowd.funding.head=Here we will publish links to other helpful resources for the successful start of a new business. <br> You can send your links and information for publication in this section (info@startnewteam.com). <br>
+page.crowd.consalting.head=Do you have ideas for development of the project? Tell us!<br>
+page.crowd.developing.head=Do you have ideas for development of the project? Tell us!<br>
+page.crowd.funding.head=Here are links to other helpful resources for new business.<br>
 page.crowd.funding.report.translate.en=ENGLISH
 page.crowd.funding.report.translate.ru=РУССКИЕ
 
@@ -550,13 +546,13 @@ page.profile.load.photo=Load your photo
 page.profile.new.photo=New photo
 
 page.settings.title=My settings
-page.settings.sounds=Notification sounds
-page.settings.sounds.text=Play sounds on new messages and notifications
 page.settings.notifications=E-mail notifications
 page.settings.lang.preferred=Interface language
 page.settings.lang.ru=Russian
 page.settings.lang.en=English
 page.settings.other=Miscellaneous
+page.settings.sounds=Sounds
+page.settings.sounds.text=Turn on sounds
 page.settings.other.teams.auto=Take part in auto generated teams
 profile.settings.notifications.1=Unread personal messages
 profile.settings.notifications.2=News
@@ -718,7 +714,7 @@ page.dialogs.delete.confirm=Conversation with the selected user will be deleted.
 page.dialogs.delete.msg=Delete message
 page.dialogs.delete.msg.confirm=This message will be deleted.<br/>Are you sure?
 page.dialogs.button.send=Send
-page.dialogs.button.send.hint=or hit Ctrl+Enter
+page.dialogs.button.send.hint=(Ctrl+Enter)
 page.dialogs.placeholder.send=Write message...
 pages.dialogs.yes=Yes
 pages.dialogs.no=No
