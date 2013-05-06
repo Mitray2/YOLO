@@ -138,36 +138,39 @@
                         #{list items:currentUser?.commandsForAprove, as:'group'}
                             <li>
                                 <span>&{'page.main.home.group_invite'}: <a href="@{GroupController.index(group.id)}">${group?.name}</a></span>
-                                #{if groupAdmin}
-                                    <div title="&{'page.main.home.msg1'}">&{'page.main.home.agree'}</div>
-                                #{/if}
-                                #{else}
-                                    #{if haveGroupOrInviteJoin}
-                                        <p><a href="" onclick="$('.approveInviteGroup').show(); return false;">&{'page.main.home.agree'}</a></p>
-                                        <div class="approveInviteGroup"  style="display: none">
-                                            <div class="overlay"></div>
-                                            <div class="popup">
-                                                <h2>&{'page.main.home.msg2'}</h2>
-                                                <p>&{'page.main.home.msg3'}</p>
-                                                <a class="btn" href="@{UserController.approveInviteGroup(group.id)}">&{'page.main.home.group_join'}</a>
-                                                <a href="" onclick="$('.approveInviteGroup').hide(); return false;" class="cancel">&{'common.cancel'}</a>
-                                            </div>
-                                        </div>
+                                    #{if groupAdmin}
+                                        <p><a class="btn btn-dis" href="javascript:void(0)" title="&{'page.main.home.msg1'}">&{'page.main.home.agree'}</a>
                                     #{/if}
                                     #{else}
-                                        <p><a href="@{UserController.approveInviteGroup(group.id)}">&{'page.main.home.agree'}</a></p>
+                                        #{if haveGroupOrInviteJoin}
+                                            <div class="approveInviteGroup"  style="display: none">
+                                                <div class="overlay"></div>
+                                                <div class="popup">
+                                                    <h2>&{'page.main.home.msg2'}</h2>
+                                                    <span>&{'page.main.home.msg3'}<br/></span>
+                                                    <a class="btn" href="@{UserController.approveInviteGroup(group.id)}">&{'page.main.home.group_join'}</a>
+                                                    <a href="#" class="btn" onclick="$('.approveInviteGroup').hide(); return false;" class="cancel">&{'common.cancel'}</a>
+                                                </div>
+                                            </div>
+                                            <p><a href="#" class="btn" onclick="$('.approveInviteGroup').show(); return false;">&{'page.main.home.agree'}</a>
+                                        #{/if}
+                                        #{else}
+                                            <p><a class="btn" href="@{UserController.approveInviteGroup(group.id)}">&{'page.main.home.agree'}</a>
+                                        #{/else}
                                     #{/else}
-                                #{/else}
-                                <p><a href="@{UserController.declineInviteGroup(group.id)}">&{'page.main.home.reject'}</a></p>
+                                    <a class="btn" href="@{UserController.declineInviteGroup(group.id)}">&{'page.main.home.reject'}</a>
+                                </p>
                             </li>
                         #{/list}
                         #{if groupAdmin}
                             #{list items:currentUser?.command?.usersForAprove, as:'userForAprove'}
                                 <li>
                                     <span><a href="@{GroupController.index(currentUser?.command?.id)}">&{'page.main.home.group_request'}</a></span>
-                                    <p><a href="@{UserController.index(userForAprove.id)}">${userForAprove.name} ${userForAprove.lastName}</a></p>
-                                    <p><a href="@{GroupController.approveJoin(userForAprove.id, currentUser?.command.id)}">&{'page.main.home.add'}</a></p>
-                                    <p><a href="@{GroupController.declineJoin(userForAprove.id, currentUser?.command.id)}">&{'page.main.home.reject'}</a></p>
+                                    <a href="@{UserController.index(userForAprove.id)}">${userForAprove.name} ${userForAprove.lastName}</a>
+                                    <p>
+                                        <a class="btn" href="@{GroupController.approveJoin(userForAprove.id, currentUser?.command.id)}">&{'page.main.home.add'}</a>
+                                        <a class="btn" href="@{GroupController.declineJoin(userForAprove.id, currentUser?.command.id)}">&{'page.main.home.reject'}</a>
+                                    </p>
                                 </li>
                             #{/list}
                         #{/if}

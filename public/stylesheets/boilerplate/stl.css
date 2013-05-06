@@ -2914,7 +2914,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 	padding:10px 14px 11px;
 }
 .logged .event-popup li p{
-	margin:2px 0 0;
+	margin:5px 0 0;
 }
 .logged .event-popup li p a{
 	font:11px/16px Arial, Helvetica, sans-serif;
@@ -3323,6 +3323,12 @@ a, input, input:hover, input:active, input:focus, textarea {
 	-moz-border-radius: 4px;
   	display: inline-block;
 	cursor:pointer;
+}
+.btn-dis{
+    color: #999;
+}
+.btn-dis:hover{
+    text-decoration: none !important;
 }
 .cancel{
 	font-size:12px;
