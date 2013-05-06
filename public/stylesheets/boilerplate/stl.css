@@ -3731,10 +3731,14 @@ h1.main{
 .user-avatar {
     position: relative;
 }
+.user-avatar .user-pic {
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
 .load-avatar-reminder {
     position: absolute;
-    left: 1px;
-    top: 1px;
+    left: 0;
+    top: 0;
     width: 55px;
     text-align: center;
     font-size: 12px;
@@ -3760,12 +3764,14 @@ h1.main{
     width: 55px;
     height: 55px;
     font-weight: bold;
+    padding-left: 1px;
 }
 .load-avatar-reminder .new-photo {
     display: none;
     background: rgba(0,0,0,0.5);
     color: #fff;
     font-weight: normal;
+    padding-left: 0;
 }
 .load-avatar-reminder:hover .new-photo {
     display: block;

@@ -59,12 +59,12 @@
                     <a href="@{UserController.index(user?.id)}" class="man">
                         <div class="user-name"><h3>${user?.name} ${user?.lastName}</h3></div>
                     </a>
-                    #{if !user.haveAvatar}
-                        <div class="load-avatar-reminder"><a href="#" id="changeAvatar"><span>&{'page.profile.load.photo'}</span></a></div>
-                    #{/if}
-                    #{else}
-                        <div class="load-avatar-reminder"><a href="#" id="changeAvatar"><span class="new-photo">&{'page.profile.new.photo'}</span></a></div>
-                    #{/else}
+                    <div class="load-avatar-reminder">
+                        <a href="#" id="changeAvatar">
+                            #{if !user.haveAvatar}<span>&{'page.profile.load.photo'}</span>#{/if}
+                            #{else}<span class="new-photo">&{'page.profile.new.photo'}</span>#{/else}
+                        </a>
+                    </div>
                     #{avatar.changeAvatar user:user/}
                 </div>
 				<br/>
