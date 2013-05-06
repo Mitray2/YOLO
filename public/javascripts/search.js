@@ -37,7 +37,7 @@ function Search() {
 			  pragmatMin : null,
 			  pragmatMax : null,
 			  english : null,
-			  orderBy : null,
+			  orderBy : "lastSeen",
 			  asc : false,
 			  active_column : null
 			  

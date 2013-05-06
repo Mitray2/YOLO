@@ -74,7 +74,8 @@ var Utils = {
     },
     playSound: function(soundElId){
         //document.getElementById("msg-sound").innerHTML='<embed src="'+sound+'" hidden="true" autostart="true" loop="false" />';
-        document.getElementById(soundElId).play();
+        var player = document.getElementById(soundElId);
+        if(player) player.play();
         return false;
     }
 };

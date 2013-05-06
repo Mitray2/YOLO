@@ -559,6 +559,8 @@ page.profile.load.photo=Ваше фото
 page.profile.new.photo=Новое фото
 
 page.settings.title=Настройки
+page.settings.sounds=Звуковые эфекты
+page.settings.sounds.text=На уведомлениях и новых сообщениях
 page.settings.notifications=Уведомления по электронной почте
 page.settings.lang.preferred=Язык интерфейса
 page.settings.lang.ru=Русский

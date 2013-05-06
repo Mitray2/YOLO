@@ -119,6 +119,17 @@ public class SettingsController extends BasicController {
     }
 
 
+	public static void setSoundMode(boolean enabled){
+        User user = User.findById(SessionHelper.getCurrentUser(session).id);
+        user.playSounds = enabled;
+        user.save();
+
+        SessionHelper.setCurrentUser(session, user);
+
+        SettingsController.settings();
+    }
+
+
 	public static void setOtherPreferences(boolean takePartInAutoTeams){
         User user = User.findById(SessionHelper.getCurrentUser(session).id);
         user.takePartInAutoTeams = takePartInAutoTeams;

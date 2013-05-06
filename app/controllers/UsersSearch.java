@@ -101,6 +101,8 @@ public class UsersSearch extends Controller {
 
         if (member != null && member.orderBy != null) {
             searcher.setOrder(UserSearcher.sortOrders.get(member.orderBy), member.asc);
+        } else {
+            searcher.setOrder(UserSearcher.sortOrders.get("lastSeen"), false);
         }
 
         final Integer currentPage = Integer.valueOf(request.params.get("page"));

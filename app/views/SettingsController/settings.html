@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<div class="profile-form">
+<div class="profile-form" style="padding-top:20px;">
     <!--div class="profile-item">
         <label for="">&{'page.profile.current.ava'}</label>
         <div class="profile-pic">
@@ -82,7 +82,6 @@
 
 
 <h2 class="profile-h2">&{'page.profile.current.change_pwd'}</h2>
-
 <div class="profile-form">
 #{form @SettingsController.doChangePassword()}
     #{showError errors:errors /}
@@ -139,6 +138,19 @@
             </select>
         </div>
     </div>
+    <button type="submit" class="profile-btn">&{'page.profile.current.save_changes'}</button>
+</div>
+#{/form}
+
+<h2 class="profile-h2">&{'page.settings.sounds'}</h2>
+#{form @SettingsController.setSoundMode()}
+<div class="profile-form">
+
+        <div class="profile-item line">
+            <label for="sound-switch">&{'page.settings.sounds.text'}</label>
+            <input id="sound-switch" name="enabled" type="checkbox" value="${user.playSounds}" #{if user.playSounds}checked="checked"#{/if}
+                    onchange="this.value = this.value == 'true' ? 'false' : 'true';">
+        </div>
     <button type="submit" class="profile-btn">&{'page.profile.current.save_changes'}</button>
 </div>
 #{/form}

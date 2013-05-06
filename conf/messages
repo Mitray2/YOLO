@@ -552,6 +552,8 @@ page.profile.load.photo=Load your photo
 page.profile.new.photo=New photo
 
 page.settings.title=My settings
+page.settings.sounds=Notification sounds
+page.settings.sounds.text=Play sounds on new messages and notifications
 page.settings.notifications=Email notifications
 page.settings.lang.preferred=Interface language
 page.settings.lang.ru=Russian

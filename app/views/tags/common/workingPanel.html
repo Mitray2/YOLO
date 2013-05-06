@@ -11,7 +11,9 @@
     newTeamEvents = controllers.GroupController.getNewTeamEvents(currentUser?.command?.id,0);
 }%
 <!--span id="msg-sound"></span-->
+#{if currentUser.playSounds}
 <audio id="msg-sound" preload="auto"><source src="@{'/public/sounds/new-msg.mp3'}" /></audio>
+#{/if}
 *{TODO make better!}*
 #{if !(currentUser?.role == models.User.ROLE_INPERFECT_USER || currentUser?.role == models.User.ROLE_WITHOUT_BLANK)}
     <div class="logged clearFix">

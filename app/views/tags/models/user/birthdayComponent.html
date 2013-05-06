@@ -30,30 +30,35 @@
         width: 100%;
         position: relative;
         height: 43px;
-        overflow: hidden;
     }
 
-    .birthday-box .jquery-selectbox:first-child {
+    .entry .jquery-selectbox:first-child,
+    .entry .jquery-selectbox:first-child .jquery-selectbox-list {
         width: 67px !important;
     }
-    .birthday-box .jquery-selectbox:nth-child(2) {
+    .entry .jquery-selectbox:nth-child(2),
+    .entry .jquery-selectbox:nth-child(2) .jquery-selectbox-list {
         width: 140px !important;
     }
-    .birthday-box .jquery-selectbox:nth-child(3) {
+    .entry .jquery-selectbox:nth-child(3),
+    .entry .jquery-selectbox:nth-child(3) .jquery-selectbox-list {
         width: 47px !important;
     }
 
     @media screen and (-webkit-min-device-pixel-ratio:0) {
-        .birthday-box .jquery-selectbox {
+        .entry .jquery-selectbox {
             height: 41px !important;
         }
-        .birthday-box .jquery-selectbox:first-child {
+        .entry .jquery-selectbox:first-child,
+        .entry .jquery-selectbox:first-child .jquery-selectbox-list {
             width: 67px !important;
         }
-        .birthday-box .jquery-selectbox:nth-child(2) {
+        .entry .jquery-selectbox:nth-child(2),
+        .entry .jquery-selectbox:nth-child(2) .jquery-selectbox-list {
             width: 140px !important;
         }
-        .birthday-box .jquery-selectbox:nth-child(3) {
+        .entry .jquery-selectbox:nth-child(3),
+        .entry .jquery-selectbox:nth-child(3) .jquery-selectbox-list {
             width: 47px !important;
         }
     }

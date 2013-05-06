@@ -2819,6 +2819,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 	border-radius:0 0 6px 6px;
 }
 .logged .dialog-popup .all-dialogs a{
+    display: block;
 	text-decoration:none;
 }
 .logged .dialog-popup .all-dialogs a:hover{

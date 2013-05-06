@@ -78,5 +78,5 @@ function errorAvatar(errorDetails) {
 </div>
 <div id="successAvatar" class="popup" style="display: none;">
 	<h2>&{'page.avatar.change.success'}</h2>
-	<button class="btn" onclick="$(this).parent().fadeOut(500);">OK</button>
+	<button class="btn" onclick="$(this).parent().fadeOut(500); setTimeout(function(){location.reload();}, 100)">OK</button>
 </div>
