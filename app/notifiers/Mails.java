@@ -167,18 +167,19 @@ public class Mails extends Mailer {
 	// }
 
     public static void unreadMessage(Message newMessage) {
-        User user = newMessage.to;
-        String userLang = user.preferredLang;
+        User userFrom = newMessage.from;
+        User userTo = newMessage.to;
+        String userLang = userTo.preferredLang;
 
         setSubject(String.format("%s %s %s", Messages.getMessage(userLang, "mail.subject.unread.message"),
-                user.name, user.lastName));
-        setRecipients(user);
+                userFrom.name, userFrom.lastName));
+        setRecipients(userTo);
         setFrom(EMAIL_FROM);
 
         if("ru".equals(userLang)){
-            send("Mails/ru/unreadMessage", user, newMessage);
+            send("Mails/ru/unreadMessage", newMessage);
         } else {
-            send(user, newMessage);
+            send(newMessage);
         }
     }
 
