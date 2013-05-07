@@ -42,20 +42,21 @@ public class GroupController extends BasicController implements ApplicationConst
     // TODO warnings on page
     User currentUser = SessionHelper.getCurrentUser(session);
     if (currentUser == null)
-      CommonController.error(CommonController.ERROR_SECURITY);
+        CommonController.error(CommonController.ERROR_SECURITY);
     if (currentUser != null) {
         //TODO REFACTOR to a single update
-      User user = User.findById(currentUser.id);
-      user.lastSeen = new Date();
-      user.lastSeenInTeam = new Date();
-      user.save();
-      SessionHelper.setCurrentUser(session, user);
-    }
-    if (currentUser.role == User.ROLE_INPERFECT_USER) {
-      redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
-    }
-    if (currentUser.role.equals(User.ROLE_WITHOUT_BLANK)) {
-      redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
+          User user = User.findById(currentUser.id);
+          user.lastSeen = new Date();
+          user.lastSeenInTeam = new Date();
+          user.save();
+          SessionHelper.setCurrentUser(session, user);
+
+        if (currentUser.role == User.ROLE_INPERFECT_USER) {
+            redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
+        }
+        if (currentUser.role.equals(User.ROLE_WITHOUT_BLANK)) {
+            redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
+        }
     }
   }
 

@@ -19,16 +19,15 @@ import static ch.lambdaj.Lambda.on;
 public class EmailUnreadMessages extends Job {
 
 	public void doJob() {
-        Logger.debug("------------ JOB:MSG------------");
+        //Logger.debug("------------ JOB:MSG------------");
 
 		List<Message> unreadMessages = Message.find(
                 "select m from Message m join m.to.notifications as n " +
                 "where n.id = ? and m.isRead = 0 and m.isSent = 0 and TIMEDIFF(NOW(),m.time) > '00:05:00' and m.to.id <> deletedBy",
                 NotificationType.UNREAD_MESSAGES).fetch();
 
-        Logger.debug("[JOB:MSG]: found %d unread messages", unreadMessages.size());
-
         if(unreadMessages.size() > 0){
+            Logger.debug("[JOB:MSG]: found %d unread messages", unreadMessages.size());
             for (Message unreadMessage : unreadMessages) {
                 Logger.debug("[JOB:MSG]: user [%d] got new unread messages", unreadMessage.to.id);
                 Mails.unreadMessage(unreadMessage);
@@ -40,6 +39,6 @@ public class EmailUnreadMessages extends Job {
                     .executeUpdate();
         }
 
-        Logger.debug("----------------------------------------------");
+        //Logger.debug("----------------------------------------------");
     }
 }

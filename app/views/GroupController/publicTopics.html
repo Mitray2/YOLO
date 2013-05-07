@@ -2,13 +2,13 @@
 %{
 user = utils.SessionHelper.getCurrentUser(session);
 long userId = user?.id;
-boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN;
-boolean currentGroupAdmin = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id) && (adminGroup);
-boolean notInGroup = utils.SessionHelper.getCurrentUser(session)?.command == null;
-boolean wasInviteToThisGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id == group.id;
-boolean wasNotInviteToGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite == null;
-boolean wasInviteToOtherGroup = (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null) && (utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id !=group.id);
-boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
+boolean adminGroup = user?.role == models.User.ROLE_GROUP_ADMIN;
+boolean currentGroupAdmin = (user?.command?.id == group.id) && (adminGroup);
+boolean notInGroup = user?.command == null;
+boolean wasInviteToThisGroup = user?.commandToInvite?.id == group.id;
+boolean wasNotInviteToGroup = user?.commandToInvite == null;
+boolean wasInviteToOtherGroup = (user?.commandToInvite != null) && (user?.commandToInvite?.id !=group.id);
+boolean groupMember = (user?.command?.id == group.id);
 %}
 
 <div class="tabs clearFix">
@@ -45,7 +45,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
 <ul class="search-result-list">
 #{list items:topics, as:'topic'}
         #{if !topic.mainTopic}
-    #{group.topic topic:topic, group:group, userId:userId, isAdmin:adminGroup/}
+    #{group.topic topic:topic, group:group, userId:userId, isAdmin:currentGroupAdmin/}
 #{/if}
     #{/list}
 </ul>
@@ -68,7 +68,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
                     <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
                     <a href="@{GroupController.removePublicMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
                 #{/if}
-                #{elseif adminGroup}
+                #{elseif currentGroupAdmin}
                     <a href="@{GroupController.removePublicMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
                 #{/elseif}
             </div>
@@ -112,7 +112,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
                 <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
                 <a href="/groupController/removePublicMainMessage?msgId={{id}}&groupId=${group.id}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
             {{else}}
-                {{#if ${adminGroup}}}
+                {{#if ${currentGroupAdmin}}}
                 <a href="/groupController/removePublicMainMessage?msgId={{id}}&groupId=${group.id}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
                 {{/if}}
             {{/ifCond}}

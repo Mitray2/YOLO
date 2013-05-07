@@ -2,19 +2,19 @@
 %{
 user = utils.SessionHelper.getCurrentUser(session);
 long userId = user?.id;
-boolean adminGroup = utils.SessionHelper.getCurrentUser(session)?.role == models.User.ROLE_GROUP_ADMIN;
-boolean currentGroupAdmin = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id) && (adminGroup);
-boolean notInGroup = utils.SessionHelper.getCurrentUser(session)?.command == null;
-boolean wasInviteToThisGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id == group.id;
-boolean wasNotInviteToGroup = utils.SessionHelper.getCurrentUser(session)?.commandToInvite == null;
-boolean wasInviteToOtherGroup = (utils.SessionHelper.getCurrentUser(session)?.commandToInvite != null) && (utils.SessionHelper.getCurrentUser(session)?.commandToInvite?.id !=group.id);
-boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id == group.id);
+boolean adminGroup = user?.role == models.User.ROLE_GROUP_ADMIN;
+boolean currentGroupAdmin = (user?.command?.id == group.id) && (adminGroup);
+boolean notInGroup = user?.command == null;
+boolean wasInviteToThisGroup = user?.commandToInvite?.id == group.id;
+boolean wasNotInviteToGroup = user?.commandToInvite == null;
+boolean wasInviteToOtherGroup = (user?.commandToInvite != null) && (user?.commandToInvite?.id !=group.id);
+boolean groupMember = (user?.command?.id == group.id);
 %}
 
 <div class="tabs clearFix">
     <a href="@{GroupController.index(group.id)}" >&{'page.team.description'}</a>
     <a href="@{GroupController.publicTopics(group.id)}" #{if topic.publicTopic}  class="act" #{/if}>&{'page.team.public_discussion'}</a>
-#{if (groupMember) || adminGroup}
+#{if groupMember || currentGroupAdmin}
     <a href="@{GroupController.groupTopics(group.id)}" #{if !topic.publicTopic}  class="act" #{/if}>&{'page.team.discussion'}</a>
 #{/if}
     <a href="@{GroupController.groupUsers(group.id)}" >&{'page.team.members'}</a>
@@ -44,7 +44,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
 #{else}
 <a href="@{GroupController.groupTopics(group.id)}" class="back"><span>&#8592;&nbsp;</span> &{'page.team.discuss.to_list'}</a>
 #{/else}
-#{if userId == topic.createdUserId || adminGroup}
+#{if userId == topic.createdUserId || currentGroupAdmin}
 <div style="float: right">
     <a href="@{GroupController.editTopic(topic.id)}"><span class="theme-edit"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.edit_disc'}</span></span></a>
     <a href="@{GroupController.removeTopic(topic.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_disc'}</span></span></a>
@@ -78,7 +78,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
                     <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
                     <a href="@{GroupController.removeMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
                 #{/if}
-                #{elseif adminGroup}
+                #{elseif currentGroupAdmin}
                     <a href="@{GroupController.removeMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
                 #{/elseif}
             </div>
@@ -123,7 +123,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
                 <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
                 <a href="/groupController/removeMessage?msgId={{id}}&groupId=${group.id}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
             {{else}}
-            {{#if ${adminGroup}}}
+            {{#if ${currentGroupAdmin}}}
                 <a href="/groupController/removeMessage?msgId={{id}}&groupId=${group.id}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
             {{/if}}
             {{/ifCond}}
