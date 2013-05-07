@@ -3711,6 +3711,11 @@ h1.main{
     position: absolute;
     right: 8px;
     top: -13px;
+    width:220px;
+}
+.team-track-form form > div {
+    position: relative;
+    float: right;
 }
 .team-track-form .jquery-custom-selectboxes-replaced {
     float: right;

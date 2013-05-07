@@ -134,6 +134,6 @@
     #{/form}
     <a href="" onclick="$('#loginForm').submit(); return false;" class="sign-in">&{'page.common.enter'}</a>
 #{/if}
-#{if currentUser && !currentUser.idealist == 0}
-go away <a href="@{LoginController.logout()}" class="sign-in">&{'page.common.logout'}</a>
+#{if currentUser && (!currentUser.idealist == 0 || request?.path.startsWith("/logincontroller/notvalidated"))}
+<a href="@{LoginController.logout()}" class="sign-in">&{'page.common.logout'}</a>
 #{/if}

@@ -8,5 +8,18 @@
 &{'page.notValidated.message'}
     <br/>
     <br/>
-    <a href="@{LoginController.resendConfirmationEmail}">&{'page.notValidated.resend'}</a>
+    <a href="#" id="resend-email">&{'page.notValidated.resend'}</a>
 </div>
+<script>
+    $(document).ready(function(){
+        $("#resend-email").bind('click', function(){
+            $.getJSON('@{LoginController.resendConfirmationEmail}', function(data){
+                if(data.status == 200){
+                    alertify.alert("&{'page.notValidated.sent'}");
+                } else {
+                    alertify.alert("&{'page.notValidated.notsent'}");
+                }
+            })
+        })
+    })
+</script>

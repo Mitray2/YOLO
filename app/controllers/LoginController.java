@@ -238,6 +238,7 @@ public class LoginController extends BasicController implements ApplicationConst
 	public static void resendConfirmationEmail() {
 		User user = SessionHelper.getCurrentUser(session);
         if(user != null){
+            user = User.findById(user.id);
             Mails.blankFormPassed(user, request.getBase());
 		    renderJSON(new SimpleResp(Http.StatusCode.OK));
         } else {

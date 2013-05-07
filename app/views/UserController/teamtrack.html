@@ -5,20 +5,23 @@
     <div>&{'page.teamtrack.hint'}:</div>
     <div class="team-track-form">
     #{form @UserController.teamtrack()}
+        <div>
         <select id="tt-country" name="country" class="cSelect" style="width:100px;">
             <option value="" #{if !country}selected="selected"#{/if}>&{'common.any.female'}</option>
             #{list items:utils.ModelUtils.getSortedCountries(), as:'acountry'}
                 <option value="${acountry.id}" #{if country == acountry.id}selected="selected"#{/if}>&{'models.country.name.' + utils.ModelUtils.replaceSpacesForI18n(acountry.name)}</option>
             #{/list}
         </select>
-        <label for="country">&{'page.common.country'}</label>
-        <br/>
+        <label for="country" class="clearFix">&{'page.common.country'}</label>
+        </div>
+        <div>
         <select id="tt-category" name="category" class="cSelect" style="width:100px;">
             <option value="" #{if category == null || category == 0}selected="selected"#{/if}>&{'page.teamtrack.category.general'}</option>
             <option value="1" #{if category == 1}selected="selected"#{/if}>&{'page.teamtrack.category.favourite'}</option>
             <option value="2" #{if category == 2}selected="selected"#{/if}>&{'page.teamtrack.category.blacklist'}</option>
         </select>
         <label for="category">&{'page.common.category'}</label>
+        </div>
     #{/form}
     </div>
 </h1>
