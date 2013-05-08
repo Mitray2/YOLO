@@ -82,15 +82,17 @@ public class EmailDailyRecap extends Job {
                                 "where m.createDate > DATE_ADD(NOW(),INTERVAL -1 DAY)", team.id)
                         ).getSingleResult()).intValue();
 
-                for(User user: team.users){
-                    if(user.notifications.contains(ntDailyRecap)){
-                        Logger.debug("user [%d] of team [%d] WANTS to receive group notifications", user.id, team.id);
+                if(joinedMembers + leftMembers + newTopics + newTeamMessages > 0){
+                    for(User user: team.users){
+                        if(user.notifications.contains(ntDailyRecap)){
+                            //Logger.debug("user [%d] of team [%d] WANTS to receive group notifications", user.id, team.id);
 
-                        UserActivity activity = new UserActivity();
-                        activity.teamActivity = new TeamActivity(team, newTopics, newTeamMessages, joinedMembers, leftMembers);
-                        userActivity.put(user, activity);
-                    } else {
-                        Logger.debug("user [%d] of team [%d] doesn't want to receive group notifications", user.id, team.id);
+                            UserActivity activity = new UserActivity();
+                            activity.teamActivity = new TeamActivity(team, newTopics, newTeamMessages, joinedMembers, leftMembers);
+                            userActivity.put(user, activity);
+                        } else {
+                            Logger.debug("user [%d] of team [%d] doesn't want to receive group notifications", user.id, team.id);
+                        }
                     }
                 }
             }
