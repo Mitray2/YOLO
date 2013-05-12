@@ -10,7 +10,7 @@
 			$("#loadMore").hide();
 			$("#loadMoreLoader").show();
 			$.ajax({
-				  url: "/moreTopics?groupId=" + groupId + "&isPublic=" + isPublic,// + "&formAction=" + formAction + "&removeAction=" + removeAction,
+				  url: "/groupcontroller/moreTopics?groupId=" + groupId + "&isPublic=" + isPublic,// + "&formAction=" + formAction + "&removeAction=" + removeAction,
 				  cache: false
 				}).done(function( html ) {
 					$("#loadMoreLoader").hide();

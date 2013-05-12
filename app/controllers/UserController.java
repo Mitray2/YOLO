@@ -170,6 +170,7 @@ public class UserController extends BasicController  implements ApplicationConst
 
 
 	public static void editSkill(UserSkillDTO currentUser) {
+        checkAuthenticity();
 		User user = User.findById(SessionHelper.getCurrentUser(session).getId());
 
         if(currentUser == null) {
@@ -261,6 +262,7 @@ public class UserController extends BasicController  implements ApplicationConst
 
 
 	public static void joinGroup(Long groupId, String text) {
+        checkAuthenticity();
 		User user = SessionHelper.getCurrentUser(session);
 		if (user != null) {
 			Command group = Command.findById(groupId);

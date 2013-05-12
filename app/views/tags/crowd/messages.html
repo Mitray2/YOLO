@@ -1,5 +1,6 @@
 	#{list _crowdMessages, as:'msg'}
 		<form action="/crowdcontroller/${_editAction}" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded">
+            #{authenticityToken /}
 			<input name="msg.id" value="${msg.id}" type="hidden">
 			<li>
 				#{avatar.avatar user:msg.from, cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}

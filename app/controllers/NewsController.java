@@ -1,18 +1,22 @@
 package controllers;
 
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-
 import models.Post;
-import play.i18n.Lang;
-import play.mvc.Controller;
-import play.mvc.Http.Cookie;
+import play.Logger;
+import play.mvc.Catch;
 import utils.LangUtils;
+
+import java.util.List;
 
 public class NewsController extends BasicController {
 
 	private static final String NEWS_LANG = "newsLang";
+
+
+    @Catch(value = Throwable.class, priority = 1)
+    public static void onError(Throwable e) {
+        Logger.error(e, "[NewsCTR] %s", e.getMessage());
+        ApplicationController.index();
+    }
 	
 	public static void index(String lang){
 		String newsLang = LangUtils.getNewsLang(lang, request, response, NEWS_LANG);
@@ -22,8 +26,18 @@ public class NewsController extends BasicController {
 	}
 	
 	public static void showNews(Long id){
-		Post news = Post.findById(id);
-		render(news);
+        Post news = null;
+        try{
+		    news = Post.findById(id);
+        } catch (Exception e) {
+            NewsController.index(null);
+        }
+
+        if(news != null){
+		    render(news);
+        } else {
+            index(null);
+        }
 	}
 	
 }

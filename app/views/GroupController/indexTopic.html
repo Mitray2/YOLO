@@ -24,6 +24,7 @@ boolean groupMember = (user?.command?.id == group.id);
     function editEnabled(element){
         $(element).parent().parent().parent().find('.msg').show();
         $(element).parent().parent().parent().find('.msgRead').hide();
+        $('.msg').find('.writeComment').autosize({append: "\n"});
         return false;
     }
     function editDisabled(element){

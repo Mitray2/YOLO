@@ -54,6 +54,7 @@ public class SettingsController extends BasicController {
 
 	public static void editContactData(String name, String lastName, boolean sex, Long countryId, String city,
                                        boolean showEmailForOthers, int birthYear, int birthMonth, int birthDay) {
+        checkAuthenticity();
 		User currentUser = User.findById(SessionHelper.getCurrentUser(session).getId());
 		validation.required("city", city).message(VALIDATION_MODEL_USER_CITY_REQUIRED);
 		if (!validation.hasError("city"))
@@ -82,6 +83,7 @@ public class SettingsController extends BasicController {
 
 
 	public static void setNotifications(Set<Long> nTypes){
+        checkAuthenticity();
         if(nTypes != null){
             Logger.info("nTypes: " + Arrays.toString(nTypes.toArray()));
 
@@ -103,6 +105,7 @@ public class SettingsController extends BasicController {
 
 
 	public static void setPreferredLanguage(String preferredLang){
+        checkAuthenticity();
         if(preferredLang != null){
             Logger.info("new preferred lang: %s", preferredLang);
 
@@ -120,6 +123,7 @@ public class SettingsController extends BasicController {
 
 
 	public static void setSoundMode(boolean enabled){
+        checkAuthenticity();
         User user = User.findById(SessionHelper.getCurrentUser(session).id);
         user.playSounds = enabled;
         user.save();
@@ -131,6 +135,7 @@ public class SettingsController extends BasicController {
 
 
 	public static void setOtherPreferences(boolean takePartInAutoTeams){
+        checkAuthenticity();
         User user = User.findById(SessionHelper.getCurrentUser(session).id);
         user.takePartInAutoTeams = takePartInAutoTeams;
         user.save();
@@ -142,6 +147,7 @@ public class SettingsController extends BasicController {
 
 	public static void doChangePassword(String oldPassword, String newPassword,
 			String newPasswordRepeat) {
+        checkAuthenticity();
 		User currentUser = null;
 		validation.required(oldPassword).message(Messages.get("page.profile.change.password.mesage1"));
 		validation.required(newPassword).message(Messages.get("page.profile.change.password.mesage2"));

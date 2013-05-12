@@ -38,7 +38,8 @@
     </div>
 </div>
 <div class="dialog-form">
-    <form id="send-msg-form" action="/talks" method="POST" onsubmit="return false;">
+    <form id="send-msg-form" action="@{MessageController.sendMessage()}" method="POST" onsubmit="return false;">
+        #{authenticityToken /}
         <input type="hidden" name="fromId" value="${user.id}" />
         <input type="hidden" name="toId" value="${userToTalk.id}" />
         <input type="hidden" name="time" value="0" />

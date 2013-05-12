@@ -5,7 +5,8 @@ $(document).ready(function(){
 </script>
             
                	#{list items:topicMessages, as:'msg'}
-               		<form action="/groupcontroller/${formAction}" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded"><input type="hidden" name="authenticityToken" value="f514e639954629f502f9e45550d4908345953bfb">
+               		<form action="/groupcontroller/${formAction}" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded">
+                    #{authenticityToken /}
 	                <input name="msg.id" value="${msg.id}" type="hidden">
 					<input name="topicId" value="${mainTopicId}" type="hidden">
 					<input name="groupId" value="${groupId}" type="hidden">

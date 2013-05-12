@@ -7,6 +7,7 @@ import utils.LangUtils;
 public class LocaleController extends BasicController {
 	
 	public static void change(String locale) {
+        checkAuthenticity();
         LangUtils.updateSystemLang(locale);
         Logger.debug("locale change to: " + locale + " langs=" + Play.langs);
 		renderText("ok");

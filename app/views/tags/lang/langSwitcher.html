@@ -14,7 +14,7 @@
     </div>
     <script>
         function changeLocale(locale) {
-            $.ajax({ url: "/locale/change?locale=" + locale,
+            $.ajax({ url: "/locale/change?locale=" + locale + "&authenticityToken=${session.getAuthenticityToken()}",
             success: function(data) {
             window.location.reload();
         }

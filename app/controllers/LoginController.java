@@ -21,24 +21,35 @@ import java.util.*;
 public class LoginController extends BasicController implements ApplicationConstants {
 
 	public static void firstTest(User user) {
-		Integer birthYear = Integer.parseInt(params.get("birthYear"));
-		Integer birthMonth = Integer.parseInt(params.get("birthMonth"));
-		Integer birthDay = Integer.parseInt(params.get("birthDay"));
+        checkAuthenticity();
+		Integer birthYear;
+        try {
+            birthYear = Integer.parseInt(params.get("birthYear"));
+        } catch (NumberFormatException e) {
+            birthYear = 2000;
+        }
+        Integer birthMonth;
+        try {
+            birthMonth = Integer.parseInt(params.get("birthMonth"));
+        } catch (NumberFormatException e) {
+            birthMonth = 1;
+        }
+        Integer birthDay;
+        try {
+            birthDay = Integer.parseInt(params.get("birthDay"));
+        } catch (NumberFormatException e) {
+            birthDay = 1;
+        }
 
-		user.email = user.email.toLowerCase();
+        user.email = user.email.toLowerCase();
 
+        validation.required("user.name", user.name).message(VALIDATION_MODEL_USER_NAME_REQUIRED);
+        if (!validation.hasError("user.name")) validation.maxSize("user.name", user.name, 30).message(VALIDATION_MODEL_USER_NAME_MAX_LENGTH);
+        //if (!validation.hasError("user.name")) validation.match("user.name", user.name, ValidationUtils.namePattern).message(VALIDATION_MODEL_USER_NAME_INVALID);
 		validation.required("user.email", user.email).message(VALIDATION_MODEL_USER_EMAIL_REQUIRED);
+        if (!validation.hasError("user.email")) validation.email("user.email", user.email).message("validation.model.user.email.invalid");
+        if (!validation.hasError("user.email")) validation.isTrue("user.email", new UserUniqueEmailValidator().isSatisfied(user, user.email)).message("validation.model.user.email.dublicated");
 		validation.required("user.sex", user.sex).message("validation.model.user.sex.required");
-
-		validation.required("user.name", user.name).message(VALIDATION_MODEL_USER_NAME_REQUIRED);
-		if (!validation.hasError("user.name"))
-			validation.maxSize("user.name", user.name, 30).message(VALIDATION_MODEL_USER_NAME_MAX_LENGTH);
-//		if (!validation.hasError("user.name"))
-//			validation.match("user.name", user.name, "[А-Яа-я\\-\\s]+").message(VALIDATION_MODEL_USER_NAME_INVALID);
-		if (!validation.hasError("user.email"))
-			validation.email("user.email", user.email).message("validation.model.user.email.invalid");
-		if (!validation.hasError("user.email"))
-			validation.isTrue("user.email", new UserUniqueEmailValidator().isSatisfied(user, user.email)).message("validation.model.user.email.dublicated");
 
 		if (validation.hasErrors()) {
             Long usersCount = User.count();
@@ -51,6 +62,7 @@ public class LoginController extends BasicController implements ApplicationConst
 	}
 
 	public static void firstTestPassed(User user, Test test, String birthYear, String birthMonth, String birthDay) {
+        checkAuthenticity();
 		// in case user will want to reaload result page
 		User alreadySavedUser = User.find("email = ?", user.email).first();
 		if (alreadySavedUser == null) {
@@ -124,6 +136,7 @@ public class LoginController extends BasicController implements ApplicationConst
 	}
 
 	public static void secondTestPassed() {
+        checkAuthenticity();
 		User currentUser = User.findById(SessionHelper.getCurrentUser(session).id);
 		if (currentUser.role.equals(User.ROLE_WITHOUT_BLANK)) {
 			render(currentUser);
@@ -225,11 +238,11 @@ public class LoginController extends BasicController implements ApplicationConst
 	public static void blankForm() {
 		User user = SessionHelper.getCurrentUser(session);
         if(user != null){
-            if(user.role == User.ROLE_INPERFECT_USER){
+            //if(user.role == User.ROLE_INPERFECT_USER){
                 render(user);
-            } else {
+            /*} else {
                 UserController.profile();
-            }
+            }*/
         } else {
           ApplicationController.index();
         }
@@ -267,6 +280,7 @@ public class LoginController extends BasicController implements ApplicationConst
 	}
 
 	public static void blankFormPassed(User user) {
+        checkAuthenticity();
 		String password = params.get("password");
 		//String passwordRepeating = params.get("passwordRepeating");
 
@@ -278,9 +292,13 @@ public class LoginController extends BasicController implements ApplicationConst
 		//if (!validation.hasError("password") && !validation.hasError("passwordRepeating")) validation.equals(password, passwordRepeating).message(VALIDATION_MODEL_USER_PASSORD_REPEATING_INVALID);
 
 
+        validation.required("user.name", user.name).message(VALIDATION_MODEL_USER_NAME_REQUIRED);
+        if (!validation.hasError("user.name")) validation.maxSize("user.name", user.name, 30).message(VALIDATION_MODEL_USER_NAME_MAX_LENGTH);
+        //if (!validation.hasError("user.name")) validation.match("user.name", user.name, ValidationUtils.namePattern).message(VALIDATION_MODEL_USER_NAME_INVALID);
 
         validation.required("user.lastName", user.lastName).message(VALIDATION_MODEL_USER_LAST_NAME_REQUIRED);
 		if (!validation.hasError("user.lastName")) validation.maxSize("user.lastName", user.lastName, 30).message(VALIDATION_MODEL_USER_LAST_NAME_MAX_LENGTH);
+        //if (!validation.hasError("user.lastName")) validation.match("user.lastName", user.lastName, ValidationUtils.namePattern).message(VALIDATION_MODEL_USER_LAST_NAME_INVALID);
         //if (!validation.hasError("user.lastName")) validation.match("user.lastName", user.lastName, "[А-Яа-я\\-\\s]+").message(VALIDATION_MODEL_USER_LAST_NAME_INVALID);
 		validation.required("user.city", user.city).message(VALIDATION_MODEL_USER_CITY_REQUIRED);
 		if (!validation.hasError("user.city")) validation.maxSize("user.city", user.city, 30).message(VALIDATION_MODEL_USER_CITY_MAX_LENGTH);
@@ -353,6 +371,7 @@ public class LoginController extends BasicController implements ApplicationConst
 	}
 
 	public static void login(String loginEmail, String loginPassword) {
+        checkAuthenticity();
 		validation.required("loginEmail", loginEmail).message(Messages.get("common.login.error.email_empty"));
 		validation.required("loginPassword", loginPassword).message(Messages.get("common.login.error.password_empty"));
 		if (!validation.hasErrors()) {
@@ -387,6 +406,7 @@ public class LoginController extends BasicController implements ApplicationConst
 	}
 
 	public static void recoverPassword(String recoverEmail) {
+        checkAuthenticity();
 		User user = null;
 		validation.required("recoverEmail", recoverEmail).message(Messages.get("common.login.error.email_empty"));
 		if (!validation.hasError("recoverEmail"))

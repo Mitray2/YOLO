@@ -32,6 +32,7 @@ $(document).ready(function(){
 	<!--div class="group-theme-dialog-ttl-color">&{'page.team.discuss.total_msgs_in',_count}</div-->
     <div class="group-theme-dialog-ttl-color">&{'page.team.discuss.msgs_total'} <span class="topic-msgs-counter">${_count}</span> &{'page.team.discuss.msgs_entries'}</div>
 	<form id="topicMsgForm" action="${_action}" method="post" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" onsubmit="return false;">
+    #{authenticityToken /}
 	<input name="topicId" value="${_topic?.id}" type="hidden"> 
     <input name="groupId" value="${_group?.id}" type="hidden">
 	<ul class="group-theme-dialog-form">

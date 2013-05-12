@@ -154,6 +154,7 @@ public class GroupController extends BasicController implements ApplicationConst
 //        if (!memberOfGroup(group.id)) {
 //            index(group.id);
 //        }
+      checkAuthenticity();
     User currentUser = SessionHelper.getCurrentUser(session);
     User user = User.findById(currentUser.id);
     if (group.id == null && user.role == User.ROLE_GROUP_ADMIN) {
@@ -233,6 +234,7 @@ public class GroupController extends BasicController implements ApplicationConst
   }
 
   public static void updateGroup(CommandDTO group) {
+      checkAuthenticity();
     if (!memberOfGroup(group.id)) {
       index(group.id);
     }
@@ -339,6 +341,7 @@ public class GroupController extends BasicController implements ApplicationConst
   }
 
   public static void joinMyGroup(Long userForJoinId, Long groupId, String text) {
+      checkAuthenticity();
     User user = User.findById(userForJoinId);
     Command group = Command.findById(groupId);
     if (user.commandsForAprove == null) {
@@ -385,6 +388,7 @@ public class GroupController extends BasicController implements ApplicationConst
   }
 
   public static void saveEditTopic(Topic topic) {
+      checkAuthenticity();
     Topic currentTopic = Topic.findById(topic.id);
     if (!currentTopic.publicTopic) {
       if (!memberOfGroup(currentTopic.team.id)) {
@@ -399,6 +403,7 @@ public class GroupController extends BasicController implements ApplicationConst
   }
 
   public static void saveTopic(Topic topic) {
+      checkAuthenticity();
     User user = SessionHelper.getCurrentUser(session);
     Long teamId = user.command.id;
     if (!memberOfGroup(teamId)) {
@@ -671,6 +676,7 @@ public class GroupController extends BasicController implements ApplicationConst
   }
 
   public static void editMainMsg(TopicMessage msg, Long topicId, Long groupId) {
+      checkAuthenticity();
     if (!memberOfGroup(groupId)) {
       index(groupId);
     }
@@ -691,6 +697,7 @@ public class GroupController extends BasicController implements ApplicationConst
   }
 
   public static void editMsg(TopicMessage msg, Long topicId, Long groupId) {
+      checkAuthenticity();
     Command group = Command.findById(groupId);
     TopicMessage topicMsg = TopicMessage.findById(msg.id);
     topicMsg.text = msg.text;
