@@ -83,7 +83,9 @@ public class CommandsSearch extends Controller {
 
 		if (group != null && group.orderBy != null) {
             searcher.setOrder(TeamSearcher.sortOrders.get(group.orderBy), group.asc);
-		}
+		} else {
+            searcher.setOrder(TeamSearcher.sortOrders.get("lastSeen"), false);
+        }
 
         Integer currentPage = Integer.valueOf(request.params.get("page"));
 		List<Command> groups = Command.find(searcher.getFullQuery(), searcher.getQueryParams().toArray())
