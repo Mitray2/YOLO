@@ -612,9 +612,9 @@ public class GroupController extends BasicController implements ApplicationConst
     }
     Command group = Command.findById(groupId);
 
-    if (!SessionHelper.getCurrentUser(session).command.id.equals(group.id)) {
-      render("access error");
-    }
+    //if (!SessionHelper.getCurrentUser(session).command.id.equals(group.id)) {
+    //  render("access error");
+    //}
 
     //find remain all topics
     Query ptQueryAllTopics = JPA.em().createQuery("select t from Topic t where t.team.id=? and t.publicTopic=? and t.mainTopic=? order by t.lastUpdateDate desc");
