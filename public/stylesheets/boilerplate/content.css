@@ -6,6 +6,12 @@ h3.index {
 	padding-bottom: 10px;
 }
 
+.helper-info {
+    color: #E6B000;
+    border-top: 2px dashed #E1E1E1;
+	padding-top: 10px;
+}
+
 .padding-20{
 	padding-top: 20px;
 }

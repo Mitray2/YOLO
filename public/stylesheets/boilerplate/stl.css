@@ -728,6 +728,24 @@ a, input, input:hover, input:active, input:focus, textarea {
   margin-right: 20px;
   float: left;
 }
+.board {
+    border-radius: 5px;
+    border: 1px solid #d4d4d4;
+    background: white;
+    margin-bottom: 20px;
+    padding: 21px 30px;
+    float: left;
+}
+.line-hr {
+    margin: 0 -60px 0 0;
+    padding: 0 30px 15px;
+    border-bottom: 1px solid #d4d4d4;
+    position: relative;
+    left: -30px;
+    height: 3px;
+    line-height: 3px;
+}
+
 /* line 547, ../scss/stl.scss */
 .user-block .user-profile,
 .user-block .user-group,
@@ -766,7 +784,7 @@ a, input, input:hover, input:active, input:focus, textarea {
 .user-block .user-profile .user-name .edit-profile:hover{
 	color:#e48f20;
 }
-.user-block .user-profile h2{
+.user-block .user-profile h2 {
 	font:bold 14px/16px Arial, Helvetica, sans-serif;
 	color:#434240;
 	margin:0;
@@ -927,7 +945,7 @@ a, input, input:hover, input:active, input:focus, textarea {
   float:left;
   width:583px;
 }
-.inner-main h2{
+.inner-main h2, .board h2 {
 	font:bold 20px/24px Arial, Helvetica, sans-serif;
 	color:#434240;
 	margin:0 0 15px;

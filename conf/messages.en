@@ -325,6 +325,7 @@ link.team.tracking=Open discussions
 link.crowd.consalting=CrowdConsulting
 link.crowd.developig=Feedback
 link.crowd.funding=CrowdSourcing
+link.helper=Helper
 
 page.partners.title=Partners of StartNewTeam
 page.partners.skolkovo.title=We are looking forward to expand network of our partners. We are looking for both local and global partners.
@@ -338,6 +339,7 @@ page.partners.microsoft.text=
 
 page.partners.text=We are looking forward to expand network of our partners. Please, contact us.
 
+page.help.title=Справочная информация о ключевых особенностях платформы StartNewTeam
 
 page.contacts.title=Contacts
 page.contacts.general=General
@@ -346,8 +348,8 @@ page.contacts.for_partnership=To partners
 page.crowd.consalting.head=Do you have ideas for development of the project? Tell us!<br>
 page.crowd.developing.head=Do you have ideas for development of the project? Tell us!<br>
 page.crowd.funding.head=Here are links to other helpful resources for new business.<br>
-page.crowd.funding.report.translate.en=ENGLISH
-page.crowd.funding.report.translate.ru=РУССКИЕ
+page.crowd.funding.report.translate.en=IN ENGLISH
+page.crowd.funding.report.translate.ru=ПО-РУССКИ
 
 page.create.team.create=Create a team
 page.create.team.head=Tell some details about your projects in order to make users aware about your project and attract the right people.

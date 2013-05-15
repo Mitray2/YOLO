@@ -99,6 +99,16 @@ public class CrowdController extends BasicController implements ApplicationConst
 		Boolean isAdmin = SessionHelper.getCurrentUser(session).role.equals(User.ROLE_ADMIN);
 		render(crowdDeveloping, messagesCount, isAdmin);
 	}
+
+    public static void help(String lang) {
+        String userLang = LangUtils.getLang(lang, session);
+
+        if("ru".equals(userLang)){
+            render("CrowdController/ru/help.html", userLang);
+        } else {
+            render(userLang);
+        }
+    }
 	
 	public static void addmsgF(CrowdDeveloping msg){
 		User user = User.findById(SessionHelper.getCurrentUser(session).id);

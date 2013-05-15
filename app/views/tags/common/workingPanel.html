@@ -192,7 +192,7 @@
             <div class="logged-user-menu logg-menu" style="display:none;">
                 <img src="@{'public/images/boilerplate/logged-arrow2.png'}" alt="">
                 <ul>
-                    <li><a href="@{UserController.index(currentUser?.id)}">&{'page.main.home.my_profile'}</a></li>
+                    <li><a href="@{UserController.profile()}">&{'page.main.home.my_profile'}</a></li>
                     #{if (currentUser?.command != null)}
                         <li><a href="@{GroupController.index(currentUser?.command?.id)}">&{'page.main.home.my_group'}</a></li>
                     #{/if}

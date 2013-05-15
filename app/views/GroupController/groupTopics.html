@@ -67,7 +67,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
                     <a href="@{GroupController.removeMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
                 #{/elseif}
             </div>
-            <pre class="msgRead">${msg.text}</pre>
+            <pre class="msgRead">${msg.text.linkify().raw()}</pre>
             <div style="display: none" class="msg">
                 <div class="group-theme-dialog-form">
                     <textarea name="msg.text" style="height: 20px" class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);">${msg.text} </textarea>
@@ -113,7 +113,7 @@ boolean groupMember = (utils.SessionHelper.getCurrentUser(session)?.command?.id 
             {{/if}}
             {{/ifCond}}
         </div>
-        <pre class="msgRead">{{text}}</pre>
+        <pre class="msgRead">{{linkify text}}</pre>
         <div style="display: none" class="msg">
             <div class="group-theme-dialog-form">
                 <textarea name="msg.text" style="height: 20px" class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);">{{text}} </textarea>

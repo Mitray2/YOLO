@@ -329,6 +329,7 @@ link.team.tracking=Открытые обсуждения
 link.crowd.consalting=КраудКонсалтинг
 link.crowd.developig=Обратная связь
 link.crowd.funding=Полезное инфо
+link.helper=Справочник
 
 page.partners.title=Партнеры StartNewTeam
 page.partners.skolkovo.title=Фонд Skolkovo
@@ -352,11 +353,13 @@ page.contacts.title=Контакты
 page.contacts.general=Основные
 page.contacts.for_partnership=Партнерам
 
+page.help.title=Справочная информация о ключевых особенностях платформы StartNewTeam
+
 page.crowd.consalting.head=Есть идеи и предложения по развитию проекта? Предлагайте!<br>
 page.crowd.developing.head=Есть идеи и предложения по развитию проекта? Предлагайте!<br>
 page.crowd.funding.head=Ссылки на другие полезные ресурсы для старта бизнеса.<br>
-page.crowd.funding.report.translate.en=ENGLISH
-page.crowd.funding.report.translate.ru=РУССКИЕ
+page.crowd.funding.report.translate.en=IN ENGLISH
+page.crowd.funding.report.translate.ru=ПО-РУССКИ
 
 page.create.team.create=Создать команду
 page.create.team.head=Расскажите о своей идее или проекте как можно больше подробностей, чтобы точнее найти подходящих единомышленников и партнеров в минимальные сроки.
