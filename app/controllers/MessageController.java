@@ -7,6 +7,7 @@ import models.User;
 import org.apache.commons.lang.StringUtils;
 import play.Logger;
 import play.db.jpa.JPA;
+import play.mvc.Before;
 import play.mvc.Http;
 import utils.SessionHelper;
 
@@ -28,6 +29,22 @@ public class MessageController extends BasicController {
                    msg2.time.getTime() > msg1.time.getTime() ? -1 : 0;
         }
     };
+
+
+    @Before(priority = 10, unless = {"getNewMessages", "getOtherCommunicant"})
+    public static void lastSeenUpdate() {
+        User user = SessionHelper.getCurrentUser(session);
+        if (user != null && user.role != User.ROLE_ADMIN){
+            JPA.em().createQuery("update User set lastSeen = ? where id  = ?")
+                    .setParameter(1, new Date())
+                    .setParameter(2, user.id)
+                    .executeUpdate();
+
+            /*user = User.findById(currentUser.id);
+            user.lastSeen = new Date();
+            user.save();*/
+        }
+    }
 
 
     /** Lists user conversations */

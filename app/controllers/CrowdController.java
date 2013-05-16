@@ -103,11 +103,11 @@ public class CrowdController extends BasicController implements ApplicationConst
     public static void help(String lang) {
         String userLang = LangUtils.getLang(lang, session);
 
-        if("ru".equals(userLang)){
+        //if("ru".equals(userLang)){
             render("CrowdController/ru/help.html", userLang);
-        } else {
-            render(userLang);
-        }
+        //} else {
+        //    render(userLang);
+        //}
     }
 	
 	public static void addmsgF(CrowdDeveloping msg){

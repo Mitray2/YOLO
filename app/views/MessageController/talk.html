@@ -160,8 +160,9 @@
 
         var fnDrawNewMsg = function(data) {
             //alert("draw!");
-            $talksDiv.append(Templates.talkMsgTpl(data));
             if(data.length > 0) {
+                $talksDiv.append(Templates.talkMsgTpl(data));
+                $(".user-online").find("span").removeClass().addClass("st-online").html("&{'common.status.online'}");
                 Utils.scrollToBottom($talksDiv);
                 $(".dialogs-delete").unbind("click").bind("click", removeMsg);
             }
