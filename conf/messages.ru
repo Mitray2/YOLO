@@ -716,8 +716,8 @@ page.common.category=Раздел
 #News page
 page.news.title=Новости
 page.news.read=Читать:
-page.news.translate.ru=РУССКИЕ
-page.news.translate.en=ENGLISH
+page.news.translate.ru=ПО-РУССКИ
+page.news.translate.en=IN ENGLISH
 
 #Dialogs page
 page.dialogs.title=Мои диалоги

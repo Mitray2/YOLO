@@ -714,8 +714,8 @@ page.common.forgot_password=Forgot password?
 
 page.news.title=News
 page.news.read=Read:
-page.news.translate.ru=RUSSIAN
-page.news.translate.en=ENGLISH
+page.news.translate.ru=ПО-РУССКИ
+page.news.translate.en=IN ENGLISH
 
 #Dialogs pages
 page.dialogs.title=My dialogs
