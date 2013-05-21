@@ -9,9 +9,10 @@ $(document).ready(function() {
 	}
 });
 function loadMoreMessages() {
+    var route = "${_type == 0 ? 'groupcontroller' : 'crowdcontroller'}";
 	currentPage++;
 	$.ajax({
-		  url: "/groupcontroller/more?page=" + currentPage + "&type=${_type}${_extraParams?.raw()}",
+		  url: "/" + route + "/more?page=" + currentPage + "&type=${_type}${_extraParams?.raw()}",
 		  cache: false
 		}).done(function( html ) {
 			$(".group-theme-dialog").append(html);

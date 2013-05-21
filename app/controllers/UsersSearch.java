@@ -34,15 +34,17 @@ public class UsersSearch extends Controller {
         if (currentUser != null) {
             if (currentUser.email.equals(ApplicationConstants.ADMIN_EMAIL) && !request.path.startsWith(ApplicationConstants.ADMIN_PATH_STARTS_WITH))
                 redirect(ApplicationConstants.ADMIN_PATH);
-            User user = User.findById(currentUser.id);
-            user.lastSeen = new Date();
-            user.save();
-        }
-        if (currentUser.role == User.ROLE_INPERFECT_USER) {
-            redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
-        }
-        if (currentUser.role.equals(User.ROLE_WITHOUT_BLANK)) {
-            redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
+
+            User.updateLastSeen(currentUser);
+            currentUser.lastSeen = new Date();
+            SessionHelper.setCurrentUser(session, currentUser);
+
+            if (currentUser.role == User.ROLE_INPERFECT_USER) {
+                redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
+            }
+            if (currentUser.role.equals(User.ROLE_WITHOUT_BLANK)) {
+                redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
+            }
         }
 
     }

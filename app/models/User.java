@@ -8,6 +8,7 @@ import play.cache.Cache;
 import play.data.validation.Email;
 import play.data.validation.MaxSize;
 import play.data.validation.Required;
+import play.db.jpa.JPA;
 import play.db.jpa.JPABase;
 import play.db.jpa.Model;
 
@@ -172,6 +173,24 @@ public class User extends Model {
 	public <T extends JPABase> T save() {
         Cache.delete(CACHE_USERS_COUNT);
 		return (T) super.save();
+	}
+
+	public static void updateLastSeen(User user) {
+        if (user != null && user.role != User.ROLE_ADMIN){
+            JPA.em().createQuery("update User set lastSeen = ? where id  = ?")
+                    .setParameter(1, new Date())
+                    .setParameter(2, user.id)
+                    .executeUpdate();
+        }
+	}
+
+	public static void updateLastSeenInTeam(User user) {
+        if (user != null && user.role != User.ROLE_ADMIN){
+            JPA.em().createQuery("update User set lastSeenInTeam = ? where id  = ?")
+                    .setParameter(1, new Date())
+                    .setParameter(2, user.id)
+                    .executeUpdate();
+        }
 	}
 
     public User() {

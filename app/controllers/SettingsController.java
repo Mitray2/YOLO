@@ -26,10 +26,10 @@ public class SettingsController extends BasicController {
 
 				redirect(ApplicationConstants.ADMIN_PATH);
             }
-            // TODO refactor to single update query and move to UserDAO
-			User user = User.findById(currentUser.id);
-			user.lastSeen = new Date();
-			user.save();
+
+            User.updateLastSeen(currentUser);
+            currentUser.lastSeen = new Date();
+            SessionHelper.setCurrentUser(session, currentUser);
 
             if (currentUser.role == User.ROLE_INPERFECT_USER) {
                 redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);

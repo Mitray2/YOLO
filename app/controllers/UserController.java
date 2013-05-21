@@ -30,9 +30,10 @@ public class UserController extends BasicController  implements ApplicationConst
 		if (currentUser != null) {
 			if (currentUser.email.equals(ApplicationConstants.ADMIN_EMAIL) && !request.path.startsWith(ApplicationConstants.ADMIN_PATH_STARTS_WITH))
 				redirect(ApplicationConstants.ADMIN_PATH);
-			User user = User.findById(currentUser.id);
-			user.lastSeen = new Date();
-			user.save();
+
+            User.updateLastSeen(currentUser);
+            currentUser.lastSeen = new Date();
+            SessionHelper.setCurrentUser(session, currentUser);
 
             if (currentUser.role == User.ROLE_INPERFECT_USER) {
                 //redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);

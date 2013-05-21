@@ -37,28 +37,26 @@ public class GroupController extends BasicController implements ApplicationConst
     }
   }
 
-  @Before(unless={"getNewTopicMessages", "newTeamEvents"})
-  public static void checkSecurity() {
-    // TODO warnings on page
-    User currentUser = SessionHelper.getCurrentUser(session);
-    if (currentUser == null)
-        CommonController.error(CommonController.ERROR_SECURITY);
-    if (currentUser != null) {
-        //TODO REFACTOR to a single update
-          User user = User.findById(currentUser.id);
-          user.lastSeen = new Date();
-          user.lastSeenInTeam = new Date();
-          user.save();
-          SessionHelper.setCurrentUser(session, user);
+    @Before(unless={"getNewTopicMessages", "newTeamEvents"})
+    public static void checkSecurity() {
+        // TODO warnings on page
+        User currentUser = SessionHelper.getCurrentUser(session);
+        if (currentUser == null) {
+            CommonController.error(CommonController.ERROR_SECURITY);
+        } else {
+            User.updateLastSeen(currentUser);
 
-        if (currentUser.role == User.ROLE_INPERFECT_USER) {
-            redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
-        }
-        if (currentUser.role.equals(User.ROLE_WITHOUT_BLANK)) {
-            redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
+            currentUser.lastSeen = new Date();
+            SessionHelper.setCurrentUser(session, currentUser);
+
+            if (currentUser.role == User.ROLE_INPERFECT_USER) {
+                redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
+            }
+            if (currentUser.role.equals(User.ROLE_WITHOUT_BLANK)) {
+                redirect(request.getBase() + ApplicationConstants.BLANK_FORM_PATH);
+            }
         }
     }
-  }
 
   private static boolean memberOfGroup(Long groupId) {
     User user = User.findById(SessionHelper.getCurrentUser(session).id);
@@ -70,8 +68,16 @@ public class GroupController extends BasicController implements ApplicationConst
     }
   }
 
+    private static void updateLastSeenIfInOwnTeam(Long teamId) {
+        User user = SessionHelper.getCurrentUser(session);
+        if(user != null && user.command != null && user.command.id.equals(teamId)){
+            User.updateLastSeenInTeam(user);
+        }
+    }
+
   public static void index(Long id) {
     Command group = Command.findById(id);
+    if(group != null) updateLastSeenIfInOwnTeam(group.id);
     //User sessionUser = SessionHelper.getCurrentUser(session);
 //		LastUserData lUserData = new LastUserData();
 //		String statement = "select * from LastUserData as lUser where lUser.lastSeen=(select max(l.lastSeen) from LastUserData as l where l.commandId=" + group.id
@@ -106,7 +112,8 @@ public class GroupController extends BasicController implements ApplicationConst
       index(id);
     }
     Command group = Command.findById(id);
-    User sessionUser = SessionHelper.getCurrentUser(session);
+    if(group != null) updateLastSeenIfInOwnTeam(group.id);
+    //User sessionUser = SessionHelper.getCurrentUser(session);
 //		LastUserData lUserData = new LastUserData();
 //		String statement = "select * from LastUserData as lUser where lUser.lastSeen=(select max(l.lastSeen) from LastUserData as l where l.commandId=" + group.id
 //				+ " and l.userId<> " + sessionUser.id + ")";
@@ -238,6 +245,7 @@ public class GroupController extends BasicController implements ApplicationConst
     if (!memberOfGroup(group.id)) {
       index(group.id);
     }
+    updateLastSeenIfInOwnTeam(group.id);
     Command currentGroup = Command.findById(group.id);
     currentGroup.city = group.city;
     group.country = Country.findById(group.country.id);
@@ -293,6 +301,9 @@ public class GroupController extends BasicController implements ApplicationConst
 
   public static void approveJoin(Long userForAproveId, Long groupId) {
     Command group = Command.findById(groupId);
+    if(group == null) index(groupId);
+
+    updateLastSeenIfInOwnTeam(group.id);
     int lengthUsers = group.usersForAprove.size();
     for (int i = 0; i < lengthUsers; i++) {
       if (group.usersForAprove.get(i).id.equals(userForAproveId)) {
@@ -322,6 +333,10 @@ public class GroupController extends BasicController implements ApplicationConst
 
   public static void declineJoin(Long userForAproveId, Long groupId) {
     Command group = Command.findById(groupId);
+    if(group == null) index(groupId);
+
+    updateLastSeenIfInOwnTeam(group.id);
+
     int lengthUsers = group.usersForAprove.size();
     for (int i = 0; i < lengthUsers; i++) {
       if (group.usersForAprove.get(i).id.equals(userForAproveId)) {
@@ -344,6 +359,10 @@ public class GroupController extends BasicController implements ApplicationConst
       checkAuthenticity();
     User user = User.findById(userForJoinId);
     Command group = Command.findById(groupId);
+    if(group == null) UserController.index(user.id);
+
+    updateLastSeenIfInOwnTeam(group.id);
+
     if (user.commandsForAprove == null) {
       user.commandsForAprove = new ArrayList<Command>();
     }
@@ -373,6 +392,7 @@ public class GroupController extends BasicController implements ApplicationConst
 
   public static void createTopic(Long groupId) {
     Command group = Command.findById(groupId);
+    if(group != null) updateLastSeenIfInOwnTeam(group.id);
     render(group);
   }
 
@@ -384,12 +404,14 @@ public class GroupController extends BasicController implements ApplicationConst
       }
     }
     Command group = topic.team; //Command.findById(topic.groupId);
+    if(group != null) updateLastSeenIfInOwnTeam(group.id);
     render(topic, group);
   }
 
   public static void saveEditTopic(Topic topic) {
       checkAuthenticity();
     Topic currentTopic = Topic.findById(topic.id);
+    if(currentTopic != null) updateLastSeenIfInOwnTeam(currentTopic.team.id);
     if (!currentTopic.publicTopic) {
       if (!memberOfGroup(currentTopic.team.id)) {
         index(currentTopic.team.id);
@@ -406,6 +428,9 @@ public class GroupController extends BasicController implements ApplicationConst
       checkAuthenticity();
     User user = SessionHelper.getCurrentUser(session);
     Long teamId = user.command.id;
+
+    updateLastSeenIfInOwnTeam(teamId);
+
     if (!memberOfGroup(teamId)) {
       index(teamId);
     }
@@ -430,6 +455,8 @@ public class GroupController extends BasicController implements ApplicationConst
 
   public static void indexTopic(Long topicId, Long teamId) {
     Command group = Command.findById(teamId);
+    if(group != null) updateLastSeenIfInOwnTeam(group.id);
+
     Topic topic = Topic.findById(topicId);
     if (!topic.publicTopic) {
       if (!memberOfGroup(teamId)) {
@@ -486,6 +513,8 @@ public class GroupController extends BasicController implements ApplicationConst
             Command team = Command.findById(teamId);
             TeamMemberActivity.log(msg.from, TeamMemberActivity.Action.ACTION_NEW_MESSAGE, team, topic, msg);
 
+            if(team != null) updateLastSeenIfInOwnTeam(team.id);
+
             //renderJSON("{\"status\": 200, \"id\": " + msg.id + "}");
             renderJSON(new SimpleResp(Http.StatusCode.OK, msg.id));
         }
@@ -506,6 +535,8 @@ public class GroupController extends BasicController implements ApplicationConst
     }
 
   protected static void addMainMsg(TopicMessage msg, Long topicId, Long groupId){
+    updateLastSeenIfInOwnTeam(groupId);
+
     Topic topic = Topic.findById(topicId);
     if (!topic.publicTopic && !memberOfGroup(groupId)) {
         index(groupId);
@@ -559,6 +590,8 @@ public class GroupController extends BasicController implements ApplicationConst
 
   private static void topics(Long groupId, Boolean isPublic) {
     Command group = Command.findById(groupId);
+    if(group != null) updateLastSeenIfInOwnTeam(group.id);
+
     if (!isPublic) {
       if (!memberOfGroup(groupId)) {
         index(groupId);
@@ -611,7 +644,7 @@ public class GroupController extends BasicController implements ApplicationConst
       }
     }
     Command group = Command.findById(groupId);
-
+    if(group != null) updateLastSeenIfInOwnTeam(group.id);
     //if (!SessionHelper.getCurrentUser(session).command.id.equals(group.id)) {
     //  render("access error");
     //}
@@ -641,6 +674,8 @@ public class GroupController extends BasicController implements ApplicationConst
 
   public static void groupUsers(Long groupId) {
     Command group = Command.findById(groupId);
+    if(group != null) updateLastSeenIfInOwnTeam(group.id);
+
     List<User> users = group.users;
     render(users, group);
   }
@@ -708,6 +743,8 @@ public class GroupController extends BasicController implements ApplicationConst
 
   public static void removeGroup(Long groupId) {
     Command group = Command.findById(groupId);
+    if(group != null) updateLastSeenIfInOwnTeam(group.id);
+
     if (group.users.size() > 1) {
       index(groupId);
     }
