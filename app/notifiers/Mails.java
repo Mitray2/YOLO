@@ -33,7 +33,7 @@ public class Mails extends Mailer {
         String hash = user.mailTicket;
 
 		setSubject(Messages.getMessage(userLang, "mail.subject.type1"));
-		addRecipient(user.email);
+        setRecipients(user);
 		setFrom(EMAIL_FROM);
 
         Lang.set(userLang);
@@ -45,7 +45,7 @@ public class Mails extends Mailer {
         String hash = user.mailTicket;
 
 		setSubject(Messages.getMessage(userLang, "mail.subject.type2"));
-		addRecipient(user.email);
+        setRecipients(user);
 		setFrom(EMAIL_FROM);
 
         Lang.set(userLang);
@@ -57,7 +57,7 @@ public class Mails extends Mailer {
         String hash = user.mailTicket;
 
 		setSubject(Messages.getMessage(userLang, "mail.subject.type3"));
-		addRecipient(user.email);
+        setRecipients(user);
 		setFrom(EMAIL_FROM);
 
         Lang.set(userLang);
@@ -67,7 +67,7 @@ public class Mails extends Mailer {
 	public static void groupRequest(User user, String base, Command group, String text) {
         String userLang = user.preferredLang;
 		setSubject(Messages.getMessage(userLang, "mail.subject.type4"));
-		addRecipient(user.email);
+        setRecipients(user);
 		setFrom(EMAIL_FROM);
         Lang.set(userLang);
 		send(user, group, base, text);
@@ -76,7 +76,7 @@ public class Mails extends Mailer {
 	public static void memberRequest(User user, String base, User joinUser, String text) {
         String userLang = user.preferredLang;
 		setSubject(Messages.getMessage(userLang, "mail.subject.type5"));
-		addRecipient(user.email);
+        setRecipients(user);
 		setFrom(EMAIL_FROM);
         Lang.set(userLang);
 		send(user, base, joinUser, text);
@@ -146,7 +146,7 @@ public class Mails extends Mailer {
 	public static void lostPassword(User user, String newpassword, String base) {
         String userLang = user.preferredLang;
 		setSubject(Messages.getMessage(userLang, "mail.subject.type6") + " " + base);
-		addRecipient(user.email);
+        setRecipients(user);
 		setFrom(EMAIL_FROM);
 
         Lang.set(userLang);
