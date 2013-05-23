@@ -43,33 +43,21 @@ public class ModelUtils {
 		to.name = from.name;
 		to.lastName = from.lastName;
 		to.city = from.city;
-		if(from.businessType != null && from.businessType.id != null)
-			to.businessType = BType.findById(from.businessType.id);
-		if(from.businessSphere != null && from.businessSphere.id != null)
-			to.businessSphere = BSphere.findById(from.businessSphere.id);
-		to.expMarketing = from.expMarketing;
-		to.expFinance = from.expFinance;
-		to.expIT = from.expIT;
-		to.expLegal = from.expLegal;
-		to.expManagement = from.expManagement;
-		to.expSale = from.expSale;
-		to.expOther = from.expOther;
-		to.expMarketing = new ExpMarketing();
-        UserLevel none = UserLevel.findById(1l);
-		to.expMarketing.level = none;
-		to.expFinance = new ExpFinance();
-		to.expFinance.level = none;
-		to.expIT = new ExpIT();
-		to.expIT.level = none;
-		to.expLegal = new ExpLegal();
-		to.expLegal.level = none;
-		to.expManagement = new ExpManagement();
-		to.expManagement.level = none;
-		to.expSale = new ExpSale();
-		to.expSale.level = none;
-		to.expOther = new ExpOther();
-		to.expOther.level = none;
         to.english = from.english;
+
+        to.businessType = BType.findById(from.businessType != null && from.businessType.id != null ? from.businessType.id : 1);
+        to.businessSphere = BSphere.findById(from.businessSphere != null && from.businessSphere.id != null ? from.businessSphere.id : 1);
+
+        UserLevel none = UserLevel.findById(1L);
+
+        to.expFinance =     from.expFinance != null ?   from.expFinance     : new ExpFinance(none);
+        to.expIT =          from.expIT != null ?        from.expIT          : new ExpIT(none);
+        to.expLegal =       from.expLegal != null ?     from.expLegal       : new ExpLegal(none);
+        to.expManagement =  from.expManagement != null ? from.expManagement : new ExpManagement(none);
+        to.expMarketing =   from.expMarketing != null ? from.expMarketing   : new ExpMarketing(none);
+        to.expOther =       from.expOther != null ?     from.expOther       : new ExpOther(none);
+        to.expSale =        from.expSale != null ?      from.expSale        : new ExpSale(none);
+
 		return to;
 	}
 

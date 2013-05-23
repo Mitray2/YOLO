@@ -10,8 +10,6 @@ import play.Play;
 import play.i18n.Lang;
 import play.i18n.Messages;
 import play.mvc.Mailer;
-import utils.PasswordGenerator;
-import utils.SecurityHelper;
 
 import java.util.Collection;
 
@@ -30,37 +28,38 @@ public class Mails extends Mailer {
     }
 
 
-	public static void firstTestPassed(User user, String base) {
+	public static void firstTestPassed(User user, String password, String base) {
         String userLang = user.preferredLang;
+        String hash = user.mailTicket;
+
 		setSubject(Messages.getMessage(userLang, "mail.subject.type1"));
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
-		String password = PasswordGenerator.generate();
-		String hash = user.mailTicket = user.passwordHash = SecurityHelper.createPasswordHash(password);
-		user.save();
+
         Lang.set(userLang);
 		send(user, password, hash, base);
 	}
 
 	public static void secondTestPassed(User user, String base) {
         String userLang = user.preferredLang;
+        String hash = user.mailTicket;
+
 		setSubject(Messages.getMessage(userLang, "mail.subject.type2"));
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
-		String password = PasswordGenerator.generate();
-		String hash = user.mailTicket = user.passwordHash = SecurityHelper.createPasswordHash(password);
-		user.save();
+
         Lang.set(userLang);
 		send(user, hash, base);
 	}
 
 	public static void blankFormPassed(User user, String base) {
         String userLang = user.preferredLang;
+        String hash = user.mailTicket;
+
 		setSubject(Messages.getMessage(userLang, "mail.subject.type3"));
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
-		String hash = user.mailTicket = SecurityHelper.createPasswordHash(user.email);
-		user.save();
+
         Lang.set(userLang);
 		send(user, hash, base);
 	}
@@ -144,14 +143,12 @@ public class Mails extends Mailer {
 	// send(email, message);
 	// }
 
-	public static void lostPassword(User user, String base) {
+	public static void lostPassword(User user, String newpassword, String base) {
         String userLang = user.preferredLang;
 		setSubject(Messages.getMessage(userLang, "mail.subject.type6") + " " + base);
 		addRecipient(user.email);
 		setFrom(EMAIL_FROM);
-		String newpassword = PasswordGenerator.generate();
-		user.passwordHash = SecurityHelper.createPasswordHash(newpassword);
-		user.save();
+
         Lang.set(userLang);
 		send(user, newpassword);
 	}

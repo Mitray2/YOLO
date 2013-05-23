@@ -114,6 +114,7 @@ public class LoginController extends BasicController implements ApplicationConst
             alreadySavedUser.notifications = NotificationType.findAll();
             alreadySavedUser.preferredLang = Lang.get();
             alreadySavedUser.takePartInAutoTeams = true;
+            alreadySavedUser.playSounds = true;
 
 			//Mails.firstTestPassed(user, request.getBase());
 
@@ -252,7 +253,9 @@ public class LoginController extends BasicController implements ApplicationConst
 		User user = SessionHelper.getCurrentUser(session);
         if(user != null){
             user = User.findById(user.id);
+            user.mailTicket = SecurityHelper.createPasswordHash(user.email);
             Mails.blankFormPassed(user, request.getBase());
+            user.save();
 		    renderJSON(new SimpleResp(Http.StatusCode.OK));
         } else {
             renderJSON(new SimpleResp(Http.StatusCode.FORBIDDEN));
@@ -335,12 +338,16 @@ public class LoginController extends BasicController implements ApplicationConst
 
 		User userToSave = User.findById(user.id);
 		userToSave.passwordHash = SecurityHelper.createPasswordHash(password);
+        userToSave.mailTicket = SecurityHelper.createPasswordHash(userToSave.email);
 		ModelUtils.fillUser(userToSave, user);
 
 		Mails.blankFormPassed(userToSave, request.getBase());
 
+		userToSave.save();
+
 		SessionHelper.logout(session);
 		render(userToSave);
+
 	}
 
 	public static void confirmRegistration(@Required String ticket) {
@@ -418,20 +425,37 @@ public class LoginController extends BasicController implements ApplicationConst
 		if (!validation.hasErrors()) {
 			if (user.role == User.ROLE_INPERFECT_USER) {
 				// user passed the first test
-				Mails.firstTestPassed(user, request.getBase());
+                String plainPassword = PasswordGenerator.generate();
+                String hash = SecurityHelper.createPasswordHash(plainPassword);
+                user.mailTicket = user.passwordHash = hash;
+                user.save();
+
+				Mails.firstTestPassed(user, plainPassword, request.getBase());
 			} else if (user.role == User.ROLE_WITHOUT_BLANK) {
 				// in case user fill out blank form and then click on recovering
 				// password
 				if (StringUtils.isNotEmpty(user.lastName)) {
-					Mails.blankFormPassed(user, request.getBase());
+                    user.mailTicket = SecurityHelper.createPasswordHash(user.email);
+                    user.save();
+
+                    Mails.blankFormPassed(user, request.getBase());
 				} else {
 					// in case user clicked recovering having passed the second
 					// test
+                    String hash = SecurityHelper.createPasswordHash(PasswordGenerator.generate());
+                    user.mailTicket = user.passwordHash = hash;
+                    user.save();
+
 					Mails.secondTestPassed(user, request.getBase());
+
 				}
 			} else {
 				// registered user
-				Mails.lostPassword(user, request.getBase());
+                String newpassword = PasswordGenerator.generate();
+                user.passwordHash = SecurityHelper.createPasswordHash(newpassword);
+                user.save();
+
+				Mails.lostPassword(user, newpassword, request.getBase());
 			}
 			SessionHelper.setUserMessage(session, new SessionUserMessage(Messages.get("common.login.password_sended")));
 			ApplicationController.index();

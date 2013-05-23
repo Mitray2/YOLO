@@ -83,22 +83,21 @@ public class SettingsController extends BasicController {
 
 
 	public static void setNotifications(Set<Long> nTypes){
+        //Logger.debug("nTypes: " + (nTypes == null ? "[]" : Arrays.toString(nTypes.toArray())));
         checkAuthenticity();
+
+        User user = User.findById(SessionHelper.getCurrentUser(session).id);
+
+        List<NotificationType> newNotifications = new ArrayList<NotificationType>();
         if(nTypes != null){
-            Logger.info("nTypes: " + Arrays.toString(nTypes.toArray()));
-
-            User user = User.findById(SessionHelper.getCurrentUser(session).id);
-
-            List<NotificationType> newNotifications = new ArrayList<NotificationType>();
             for (Long nTypeId : nTypes) {
                 newNotifications.add((NotificationType) NotificationType.findById(nTypeId));
             }
-            user.notifications = newNotifications;
-            user.save();
-
-            SessionHelper.setCurrentUser(session, user);
-
         }
+        user.notifications = newNotifications;
+        user.save();
+
+        SessionHelper.setCurrentUser(session, user);
 
         SettingsController.settings();
     }
@@ -107,7 +106,7 @@ public class SettingsController extends BasicController {
 	public static void setPreferredLanguage(String preferredLang){
         checkAuthenticity();
         if(preferredLang != null){
-            Logger.info("new preferred lang: %s", preferredLang);
+            Logger.debug("new preferred lang: %s", preferredLang);
 
             User user = User.findById(SessionHelper.getCurrentUser(session).id);
             user.preferredLang = preferredLang;

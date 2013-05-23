@@ -1,13 +1,13 @@
 package models;
 
+import play.data.validation.MaxSize;
+import play.data.validation.Required;
+import play.db.jpa.Model;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-
-import play.data.validation.MaxSize;
-import play.data.validation.Required;
-import play.db.jpa.Model;
 
 @Entity
 public class ExpFinance extends Model {
@@ -35,5 +35,12 @@ public class ExpFinance extends Model {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+    public ExpFinance() {
+    }
+
+    public ExpFinance(UserLevel level) {
+        this.level = level;
+    }
 
 }
