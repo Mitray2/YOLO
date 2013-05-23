@@ -727,7 +727,6 @@ public class GroupController extends BasicController implements ApplicationConst
   protected static void modifyMainMsg(TopicMessage msg, Long topicId, Long groupId){
     TopicMessage topicMsg = TopicMessage.findById(msg.id);
     topicMsg.text = msg.text;
-    msg.createDate = new Date();
     topicMsg.save();
   }
 
@@ -736,7 +735,6 @@ public class GroupController extends BasicController implements ApplicationConst
     Command group = Command.findById(groupId);
     TopicMessage topicMsg = TopicMessage.findById(msg.id);
     topicMsg.text = msg.text;
-    msg.createDate = new Date();
     topicMsg.save();
     indexTopic(topicId, group.id);
   }
