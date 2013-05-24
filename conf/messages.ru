@@ -47,6 +47,9 @@ page.main.home.msg1=Вы должны сначала передать права
 page.main.home.msg2=Вступить в команду
 page.main.home.msg3=Вы точно хотите выйти из своей команды и отменить все заявки на вступление, чтобы вступить в новую?
 page.main.home.msg4=Вы должны сначала передать права администратора команды или удалить ее, прежде чем выйти и создать новую.
+page.main.home.helper.info=Больше информации в
+page.main.home.helper.link=Справочнике
+page.main.home.helper.more=по платформе
 
 work.panel.team.member.activity.0=покинул команду :(
 work.panel.team.member.activity.1=присоединился к вашей команде!

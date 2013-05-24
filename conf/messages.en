@@ -47,6 +47,9 @@ page.main.home.msg1=You need to transfer your team administrator rights, before 
 page.main.home.msg2=Join the team
 page.main.home.msg3=In order to join new team, you need to leave the one you're in now and cancel other requests. Are you sure you want to do this?
 page.main.home.msg4=You must first submit an administrator member of the team, before going out and create a new team
+page.main.home.helper.info=You can find more info in
+page.main.home.helper.link=Platform helper
+page.main.home.helper.more=
 
 work.panel.team.member.activity.0=has left the team :(
 work.panel.team.member.activity.1=has joined the team!
