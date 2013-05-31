@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static ch.lambdaj.Lambda.extract;
-import static ch.lambdaj.Lambda.on;
+import static ch.lambdaj.Lambda.*;
+import static org.hamcrest.Matchers.equalTo;
 
 public class ModelUtils {
 	
@@ -43,7 +43,7 @@ public class ModelUtils {
 		to.name = from.name;
 		to.lastName = from.lastName;
 		to.city = from.city;
-        to.english = from.english;
+        to.english = from.english != null && from.english;
 
         to.businessType = BType.findById(from.businessType != null && from.businessType.id != null ? from.businessType.id : 1);
         to.businessSphere = BSphere.findById(from.businessSphere != null && from.businessSphere.id != null ? from.businessSphere.id : 1);
@@ -91,6 +91,14 @@ public class ModelUtils {
     public static boolean isBlackTeam(User user, Long teamId){
         final List<Long> teamIds = extract(user.blacklistTeams, on(Command.class).id);
         return teamIds.contains(teamId);
+    }
+
+    public static boolean isOnList(User user, List<User> users){
+        return exists(users, having(on(User.class).id, equalTo(user.id)));
+    }
+
+    public static boolean isOnList(Long id, List<Long> ids){
+        return ids.contains(id);
     }
 
 }

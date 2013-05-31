@@ -81,6 +81,11 @@ boolean groupMember = (user?.command?.id == group.id);
                     <button type="button" onclick="editDisabled(this);" class="group-theme-btn">&{'page.team.discuss.cancel'}</button>
                 </div>
             </div>
+            <span class="likes">
+                #{if msg.usersLiked}<span class="likes-count">${msg.usersLiked?.size()}</span>#{/if}
+                #{if utils.ModelUtils.isOnList(user, msg.usersLiked)}<span class="like-it"></span>#{/if}
+                #{else}<a href="#" class="like-it" data-msg-id="${msg.id}">nice!</a>#{/else}
+            </span>
         </li>
     #{/form}
 #{/list}
@@ -126,6 +131,11 @@ boolean groupMember = (user?.command?.id == group.id);
                 <button type="button" onclick="editDisabled(this);" class="group-theme-btn">&{'page.team.discuss.cancel'}</button>
             </div>
         </div>
+        <span class="likes">
+            {{#if usersLiked}}<span class="likes-count">{{/if}}
+            {{#ifOnList ${user.id} usersLiked}}<span class="like-it"></span>{{else}}
+            <a href="#" class="like-it" data-msg-id="{{ id }}">nice!</a>{{/ifOnList}}
+        </span>
     </li>
   #{/form}
 </script>
@@ -166,7 +176,8 @@ boolean groupMember = (user?.command?.id == group.id);
                             "email": "${user.email}",
                             "hasAvatar": ${user.haveAvatar},
                             "status": "${user.onlineStatus}"
-                        }
+                        },
+                        usersLiked: []
                     };
                     $talksDiv.prepend(Templates.topicMsgTpl(userMsg));
                     msgCount++;

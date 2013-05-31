@@ -43,6 +43,12 @@ var Templates = window.Templates || {
         }
         return options.inverse(this);
     });
+    Handlebars.registerHelper('ifOnList', function(value, list, options) {
+        if(list.indexOf(value) !== -1) {
+            return options.fn(this);
+        }
+        return options.inverse(this);
+    });
 /*    Handlebars.registerHelper('OR', function(v1, v2, options) {
         if(v1 || v2) {
             return options.fn(this);

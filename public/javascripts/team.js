@@ -4,6 +4,36 @@
  */
 var Team = window.Team || {
 
+    likeMsg: function(){
+        var msgId = $(this).attr("data-msg-id") || null;
+        if(msgId){
+            var $likebox = $(this).closest(".likes");
+            var $likescount = $likebox.find(".likes-count");
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '/likes/topicmessage/'+msgId,
+                success: function (data) {
+                    if(data.status == 200) {
+
+                        if($likescount.length){
+                            console.log($likescount.text());
+                            $likescount.text(parseInt($likescount.text()) + 1);
+                        }else{
+                            console.log('likes-count = 1');
+                            $likebox.prepend("<span class='likes-count'>1</span>")
+                        }
+
+                        $likebox.find(".like-it").remove().andSelf().append("<span class='like-it'></span>");
+                    }
+                }
+            });
+        }
+
+        return false;
+    },
+
     _updateFavs: function(team, type, category, onComplete){
         $.ajax({
             type: type,
@@ -119,17 +149,14 @@ var Team = window.Team || {
     },
 
     bindFavButtonsHandlers: function(){
-        //var favH = $(".topic-fav-link-hovered");
-        /*if(favH.length>0) */$(document).on('click', ".topic-fav-link-hovered",Team.removeFromFavourites);
+        $(document).on('click', ".topic-fav-link-hovered",Team.removeFromFavourites);
+        $(document).on('click', ".topic-fav-link", Team.addToFavourites);
+        $(document).on('click', ".topic-ban-link-hovered", Team.removeFromBlacklist);
+        $(document).on('click', ".topic-ban-link", Team.addToBlacklist);
+    },
 
-        //var fav = $(".topic-fav-link");
-        /*if(fav.length>0) */$(document).on('click', ".topic-fav-link", Team.addToFavourites);
-
-        //var banH = $(".topic-ban-link-hovered");
-        /*if(banH.length>0) */$(document).on('click', ".topic-ban-link-hovered", Team.removeFromBlacklist);
-
-        //var ban = $(".topic-ban-link");
-        /*if(ban.length>0)*/ $(document).on('click', ".topic-ban-link", Team.addToBlacklist);
+    bindLikeHandlers: function(){
+        $(document).on('click', "a.like-it", Team.likeMsg);
     },
 
 
@@ -157,4 +184,5 @@ var Team = window.Team || {
 
 $(document).ready(function(){
     Team.bindFavButtonsHandlers();
+    Team.bindLikeHandlers();
 });

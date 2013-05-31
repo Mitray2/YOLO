@@ -667,8 +667,9 @@ public class GroupController extends BasicController implements ApplicationConst
     ptmQuery.setFirstResult(page * GROUP_TOPICS_PAGE_SIZE);
     ptmQuery.setMaxResults(GROUP_TOPICS_PAGE_SIZE);
     List<TopicMessage> topicMessages = ptmQuery.getResultList();
-    Long userId = SessionHelper.getCurrentUser(session).getId();
-    Boolean isAdmin = SessionHelper.getCurrentUser(session).role.equals(User.ROLE_ADMIN);
+    User user = SessionHelper.getCurrentUser(session);
+    Long userId = user.id;
+    Boolean isAdmin = user.role.equals(User.ROLE_ADMIN) && user.command != null && user.command.id.equals(groupId);
     render(topicMessages, mainTopicId, userId, isAdmin, groupId, formAction, removeAction);
   }
 
@@ -820,9 +821,9 @@ public class GroupController extends BasicController implements ApplicationConst
       topic.lastUpdateUserLastName = msg.from.lastName;
       topic.save();
     }
-    message.from = null;
-    message.topic = null;
-    message.save();
+    //message.from = null;
+    //message.topic = null;
+    //message.save();
     message.delete();
 
     indexTopic(topicId, groupId);
@@ -904,6 +905,22 @@ public class GroupController extends BasicController implements ApplicationConst
         }
 
         return events;
+    }
+
+    public static void likeTopicMessage(Long msgId) {
+        User user = User.findById(SessionHelper.getCurrentUser(session).id);
+        TopicMessage msg = TopicMessage.findById(msgId);
+        if(msg != null) {
+            Logger.info("user: %d, msg: %d", user.id, msg.id);
+            msg.usersLiked.add(user);
+            try {
+                msg.save();
+            } catch(RuntimeException ex) {
+                renderJSON("{\"status\": \"409\"}");
+            }
+        }
+
+        renderJSON("{\"status\": \"200\"}");
     }
 
 }

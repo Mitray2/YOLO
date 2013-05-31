@@ -3814,3 +3814,21 @@ h1.main{
     font-size: 11px;
     color: #999;
 }
+
+.likes {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+}
+.likes-count {
+    float: left
+}
+.like-it {
+    margin-left: 3px;
+    background: url(/public/images/boilerplate/nice.png) no-repeat;
+    padding-left: 20px;
+    text-decoration: none;
+}
+.like-it:hover {
+    text-decoration: underline;
+}

@@ -88,6 +88,9 @@ POST    /teams/{<[0-9]+>teamId}/blacklist               UserController.addTeamTo
 DELETE  /teams/{<[0-9]+>teamId}/favourites              UserController.removeTeamFromFavourites
 DELETE  /teams/{<[0-9]+>teamId}/blacklist               UserController.removeTeamFromBlacklist
 
+# Likes
+POST    /likes/topicmessage/{<[0-9]+>msgId}             GroupController.likeTopicMessage
+
 #UserController
 GET			/profile								    UserController.profile
 GET			/teamtrack								    UserController.teamtrack
