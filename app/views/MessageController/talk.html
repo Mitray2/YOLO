@@ -20,22 +20,24 @@
 </div>
 
 <div class="dialog-wrap">
-    <div class="dialog">
+    <ul class="dialog">
     #{list items:conversations, as:'msg'}
-        <div class="dialog-item">
+        <li class="dialog-item">
 
             <a href="@{UserController.index(msg.from.id)}">#{avatar.avatar user:msg.from, cssClass:'dialog-item-pic', maleImg:'ava_small_m.png', femaleImg:'ava_small_f.png', avatarSize:36 /}</a>
             <div class="clearFix">
-                <a href="@{UserController.index(msg.from.id)}">${msg.from.name} ${msg.from.lastName}</a>
+                <a class="writer" href="@{UserController.index(msg.from.id)}">${msg.from.name} ${msg.from.lastName}</a>
                 <span>${msg.time.getTime().format(request)}</span>
+                <a href="#" class="quote-it quote-all" data-msg-id="${msg.id}"><span class="ttip"><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.quote'}</span></a>
             </div>
 
-            <p>${msg.text.linkify().raw()}</p>
+            <pre class="msgRead">${msg.text.linkify().raw()}</pre>
             <span class="dialogs-delete" data-id="${msg.id}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete.msg'}</span></span>
-        </div>
+            <span class="quote-tip"><a href="#" class="quote-it" data-msg-id="${msg.id}">&{'page.team.discuss.quote-this'}</a></span>
+        </li>
     #{/list}
 
-    </div>
+    </ul>
 </div>
 <div class="dialog-form">
     <form id="send-msg-form" action="@{MessageController.sendMessage()}" method="POST" onsubmit="return false;">
@@ -43,7 +45,7 @@
         <input type="hidden" name="fromId" value="${user.id}" />
         <input type="hidden" name="toId" value="${userToTalk.id}" />
         <input type="hidden" name="time" value="0" />
-        <textarea name="msg" cols="" rows="4" placeholder="&{'page.dialogs.placeholder.send'}"></textarea>
+        <textarea name="msg" class="writeComment" cols="" rows="4" placeholder="&{'page.dialogs.placeholder.send'}"></textarea>
         <button id="send-msg" class="dialog-form-btn" onsubmit="return false;">&{'page.dialogs.button.send'}</button>
         <span class="hint-btn">&{'page.dialogs.button.send.hint'}</span>
     </form>
@@ -65,7 +67,7 @@
             <a href="/{{ from.id }}">{{from.name}} {{from.lastName}}</a>
             <span>{{formatTime time}}</span>
         </div>
-        <p>{{linkify text}}</p>
+        <pre class="msgRead">{{linkify text}}</pre>
         <span class="dialogs-delete" data-id="{{ id }}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete.msg'}</span></span>
     </div>
     {{/each}}

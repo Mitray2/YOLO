@@ -64,7 +64,9 @@ boolean groupMember = (user?.command?.id == group.id);
             #{avatar.avatar user:msg.from, cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
             <div class="group-theme-dialog-name">
                 <span class="user-online"><span class="st-${msg.from?.onlineStatus}"></span></span>
-                <a href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a> ${utils.DateUtils.getFormatedStringDate(msg.createDate, true)}
+                <a class="writer" href="@{UserController.index(msg.from?.id)}">${msg.from.name + " " + msg.from.lastName}</a>
+                ${utils.DateUtils.getFormatedStringDate(msg.createDate, true)}
+                <a href="#" class="quote-it quote-all" data-msg-id="${msg.id}"><span class="ttip"><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.quote'}</span></a>
                 #{if userId == msg.from.id}
                     <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
                     <a href="@{GroupController.removePublicMainMessage(msg.id, group.id)}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
@@ -86,6 +88,7 @@ boolean groupMember = (user?.command?.id == group.id);
                 #{if utils.ModelUtils.isOnList(user, msg.usersLiked)}<span class="like-it"></span>#{/if}
                 #{else}<a href="#" class="like-it" data-msg-id="${msg.id}">nice!</a>#{/else}
             </span>
+            <span class="quote-tip"><a href="#" class="quote-it" data-msg-id="${msg.id}">&{'page.team.discuss.quote-this'}</a></span>
         </li>
     #{/form}
 #{/list}
@@ -113,7 +116,9 @@ boolean groupMember = (user?.command?.id == group.id);
         {{/if}}
         <div class="group-theme-dialog-name">
             <span class="user-online"><span class="st-{{ from.status }}"></span></span>
-            <a href="/{{ from.id }}">{{from.name}} {{from.lastName}}</a> {{formatTime time}}
+            <a class="writer" href="/{{ from.id }}">{{from.name}} {{from.lastName}}</a>
+            {{formatTime time}}
+            <a href="#" class="quote-it quote-all" data-msg-id="{{ id }}"><span class="ttip"><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.quote'}</span></a>
             {{#ifCond ${userId} from.id 0}}
                 <span class="theme-edit" onclick="editEnabled(this);"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}"  alt="" onclick="editEnabled(this);">&{'page.team.discuss.edit_msg'}</span></span>
                 <a href="/groupController/removePublicMainMessage?msgId={{id}}&groupId=${group.id}"><span class="theme-delete"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.team.discuss.del_msg'}</span></span></a>
@@ -136,6 +141,7 @@ boolean groupMember = (user?.command?.id == group.id);
             {{#ifOnList ${user.id} usersLiked}}<span class="like-it"></span>{{else}}
             <a href="#" class="like-it" data-msg-id="{{ id }}">nice!</a>{{/ifOnList}}
         </span>
+        <span class="quote-tip"><a href="#" class="quote-it" data-msg-id="{{ id }}">&{'page.team.discuss.quote-this'}</a></span>
     </li>
   #{/form}
 </script>

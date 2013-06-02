@@ -32,6 +32,6 @@ public class URLUtils {
         replacePattern3 = "(?uim)(\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,6})";
         replacedText = replacedText.replaceAll(replacePattern3, "<a href='mailto:$1'>$1</a>");
 
-        return replacedText.replaceAll("\n", "<br/>");
+        return replacedText; //.replaceAll("\n", "<br/>");
     }
 }

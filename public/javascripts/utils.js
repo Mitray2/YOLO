@@ -30,7 +30,7 @@ var Utils = {
         replacePattern3 = /(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim;
         replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
 
-        return replacedText.split("\n").join("<br />");
+        return replacedText; //.split("\n").join("<br />");
     },
     scrollInit: function(el){
         var maxH = parseInt(el.css("max-height"));

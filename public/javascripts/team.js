@@ -159,6 +159,46 @@ var Team = window.Team || {
         $(document).on('click', "a.like-it", Team.likeMsg);
     },
 
+    bindQuoteHandlers: function(){
+        var getSelectedText = function() {
+            if (window.getSelection) {
+                return window.getSelection().toString();
+            } else if (document.selection) {
+                return document.selection.createRange().text;
+            }
+            return '';
+        };
+
+        $(document).on("mousedown", function() {
+            $(".quote-tip").fadeOut();
+        });
+
+        $(document).on("click", ".quote-it", function() {
+            var $this = $(this);
+            var $msgBox = $this.closest("li");
+            var msgWriter = $msgBox.find(".writer").text();
+
+            var selection = $this.hasClass("quote-all") ? $msgBox.find(".msgRead").text() : getSelectedText();
+            if(selection) {
+                if(typeof(writeEnabled) == "function") writeEnabled(true);
+                var $inputBox = $(".writeComment");
+                $inputBox.val($inputBox.val() + "<blockquote>"+selection+"<span>"+msgWriter+"</span></blockquote>\n")
+                         .trigger('autosize').focus();
+            }
+            return false;
+        });
+
+        $(document).on("mouseup", ".msgRead", function() {
+            var _this = this;
+            var selection = getSelectedText();
+            if(selection) {
+                var $msgBox = $(_this).closest("li");
+                var $quoteTip = $msgBox.find(".quote-tip");
+                $quoteTip.fadeIn(300);
+            }
+        });
+    },
+
 
     startNewEventsListening: function(teamId,lastUpdateTime,fnUpdate){
         var _lastTime = lastUpdateTime;
@@ -185,4 +225,5 @@ var Team = window.Team || {
 $(document).ready(function(){
     Team.bindFavButtonsHandlers();
     Team.bindLikeHandlers();
+    Team.bindQuoteHandlers();
 });

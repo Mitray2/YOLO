@@ -3254,7 +3254,8 @@ a, input, input:hover, input:active, input:focus, textarea {
 	background-position:left bottom;
 }
 .theme-delete span, .theme-edit span,
-.topic-fav span, .topic-ban span{
+.topic-fav span, .topic-ban span,
+.ttip {
 	display:none;
 	position:absolute;
 	left:-23px;
@@ -3274,13 +3275,15 @@ a, input, input:hover, input:active, input:focus, textarea {
     bottom: 27px;
 }
 .theme-delete span img, .theme-edit span img,
-.topic-fav span img, .topic-ban span img{
+.topic-fav span img, .topic-ban span img,
+.ttip img {
 	position:absolute;
 	left:21px;
 	bottom:-8px;
 }
 .theme-delete:hover span, .theme-edit:hover span,
-.topic-fav:hover span, .topic-ban:hover span{
+.topic-fav:hover span, .topic-ban:hover span,
+.quote-all:hover .ttip {
 	display:block;
 }
 
@@ -3831,4 +3834,39 @@ h1.main{
 }
 .like-it:hover {
     text-decoration: underline;
+}
+.quote-tip {
+    position: absolute;
+    display:none;
+    top: 30px;
+    background: #eee;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px #999;
+    padding: 3px 3px 0 0;
+}
+.quote-it {
+    display: inline-block;
+    min-width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    padding-left: 20px;
+    background: url(/public/images/boilerplate/quote.png) no-repeat;
+    text-decoration: none;
+    position: relative;
+}
+.dialog-item .msgRead {
+    margin: 0;
+}
+.msgRead blockquote {
+    display: inline-block;
+    margin: 0;
+    background: url(/public/images/boilerplate/bquote.png) no-repeat;
+    font-style: italic !important;
+    padding: 3px 3px 3px 15px;
+    color: #999;
+}
+.msgRead blockquote span {
+    display: block;
+    border-top: 1px solid #eee;
+    padding-top: 3px;
 }

@@ -336,18 +336,17 @@ public class LoginController extends BasicController implements ApplicationConst
 			render("LoginController/blankForm.html", validation.errors(), user);
 		}
 
-		User userToSave = User.findById(user.id);
-		userToSave.passwordHash = SecurityHelper.createPasswordHash(password);
+        User userToSave = User.findById(user.id);
+        userToSave.passwordHash = SecurityHelper.createPasswordHash(password);
         userToSave.mailTicket = SecurityHelper.createPasswordHash(userToSave.email);
-		ModelUtils.fillUser(userToSave, user);
+        ModelUtils.fillUser(userToSave, user);
 
-		Mails.blankFormPassed(userToSave, request.getBase());
+        Mails.blankFormPassed(userToSave, request.getBase());
 
-		userToSave.save();
+        userToSave.save();
 
-		SessionHelper.logout(session);
-		render(userToSave);
-
+        SessionHelper.logout(session);
+        render(userToSave);
 	}
 
 	public static void confirmRegistration(@Required String ticket) {
