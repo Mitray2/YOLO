@@ -181,7 +181,7 @@ var Team = window.Team || {
             var selection = $this.hasClass("quote-all") ? $msgBox.find(".msgRead").text() : getSelectedText();
             if(selection) {
                 if(typeof(writeEnabled) == "function") writeEnabled(true);
-                var $inputBox = $(".writeComment");
+                var $inputBox = $(".answer-expand").find(".writeComment");
                 $inputBox.val($inputBox.val() + "<blockquote>"+selection+"<span>"+msgWriter+"</span></blockquote>\n")
                          .trigger('autosize').focus();
             }
