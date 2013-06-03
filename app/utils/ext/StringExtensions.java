@@ -22,6 +22,12 @@ public class StringExtensions extends JavaExtensions {
         return text;
     }
 
+    public static String noTags(String text) {
+        if(StringUtils.isEmpty(text)) return StringUtils.EMPTY;
+
+        return text.replaceAll("</?[A-Za-z]+>"," / ");
+    }
+
     public static String linkify(String text) {
         return URLUtils.linkify(text);
     }

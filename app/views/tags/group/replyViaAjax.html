@@ -38,7 +38,7 @@ $(document).ready(function(){
 	<ul class="group-theme-dialog-form">
 		<li>
 			#{avatar.avatar user:utils.SessionHelper.getCurrentUser(session), cssClass:'group-theme-dialog-pic', maleImg:'avam.png', femaleImg:'avaf.png', avatarSize:55 /}
-			<textarea class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);" placeholder="&{'page.team.discuss.send_msg'}" name="message" cols="" rows="2"></textarea>
+			<textarea  id="msg-box" class="writeComment" onBlur="setTimeout('writeEnabled(false)', 100);" placeholder="&{'page.team.discuss.send_msg'}" name="message" cols="" rows="2"></textarea>
 			<button id="topicMsgSubmit" type="submit" class="group-theme-btn">&{'page.team.discuss.send'}</button>
             <span class="hint-btn">&{'page.dialogs.button.send.hint'}</span>
 		</li>

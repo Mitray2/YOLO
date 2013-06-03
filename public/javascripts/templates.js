@@ -57,11 +57,15 @@ var Templates = window.Templates || {
     });*/
 
     Handlebars.registerHelper('limitTo', Utils.limitTo);
+    Handlebars.registerHelper('noTags', Utils.noTags);
     Handlebars.registerHelper('limitTo_nl2br', function(str,maxLen){
         return new Handlebars.SafeString(Utils.nl2br(Utils.limitTo(str,maxLen)));
     });
     Handlebars.registerHelper('limitTo_n_linkify', function(str,maxLen){
         return new Handlebars.SafeString(Utils.linkify(Utils.limitTo(str,maxLen)));
+    });
+    Handlebars.registerHelper('noTags_limitTo', function(str,maxLen){
+        return new Handlebars.SafeString(Utils.limitTo(Utils.noTags(str),maxLen));
     });
     Handlebars.registerHelper('hasEditRights', function(isAdmin,userId,authorId,options){
         return (isAdmin || userId == authorId) ? options.fn(this) : options.inverse(this);

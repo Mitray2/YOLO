@@ -45,7 +45,7 @@
         <input type="hidden" name="fromId" value="${user.id}" />
         <input type="hidden" name="toId" value="${userToTalk.id}" />
         <input type="hidden" name="time" value="0" />
-        <textarea name="msg" class="writeComment" cols="" rows="4" placeholder="&{'page.dialogs.placeholder.send'}"></textarea>
+        <textarea id="msg-box" name="msg" class="writeComment" cols="" rows="4" placeholder="&{'page.dialogs.placeholder.send'}"></textarea>
         <button id="send-msg" class="dialog-form-btn" onsubmit="return false;">&{'page.dialogs.button.send'}</button>
         <span class="hint-btn">&{'page.dialogs.button.send.hint'}</span>
     </form>

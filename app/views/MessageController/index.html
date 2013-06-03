@@ -20,7 +20,7 @@
         </div>
         <p><a href="@{MessageController.talk(msgUser.id, 1, 0)}">
             #{if msg.from.id.equals(user.id)}${user.name} ${user.lastName}: #{/if}
-            ${msg.text.limitTo(200)}
+            ${msg.text.noTags().limitTo(200)}
         </a></p>
         <span class="dialogs-delete" data-id="${msgUser.id}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete'}</span></span>
     </div>
@@ -46,7 +46,7 @@
             <span class="user-online"><span class="st-online">&{'common.status.online'}</span></span>
             <span class="msg-time">{{formatTime time}}</span>
         </div>
-        <p><a href="/talks/{{ from.id }}">{{limitTo text 200}}</a></p>
+        <p><a href="/talks/{{ from.id }}" data-text="{{text}}">{{noTags_limitTo text 200}}</a></p>
         <span class="dialogs-delete" data-id="{{ from.id }}"><i></i><span><img src="@{'public/images/boilerplate/tooltip-arrow.png'}" alt="">&{'page.dialogs.delete'}</span></span>
     </div>
     {{/each}}
@@ -98,7 +98,7 @@
             $.each(existData, function(ind, el){
                 //console.log("update existent: " + JSON.stringify(el));
                 var item = $(".dialogs").find("[data-id='"+el.from.id+"']");
-                item.find("p").find("a").html(Utils.limitTo(el.text,200));
+                item.find("p").find("a").html(Utils.limitTo(Utils.noTags(el.text),200));
                 item.find(".user-online").find("span").removeClass().addClass("st-online").html("&{'common.status.online'}");
                 if(!item.hasClass("unread")) {
                     item.addClass("unread");

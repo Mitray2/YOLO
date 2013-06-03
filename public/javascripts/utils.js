@@ -72,6 +72,9 @@ var Utils = {
     limitTo: function(str,maxLen) {
         return str.length > maxLen ? str.substr(0,maxLen) + "\n..." : str;
     },
+    noTags: function(str) {
+        return str.replace(/<\/?[A-Za-z]+>/g, ' / ');
+    },
     playSound: function(soundElId){
         //document.getElementById("msg-sound").innerHTML='<embed src="'+sound+'" hidden="true" autostart="true" loop="false" />';
         var player = document.getElementById(soundElId);
